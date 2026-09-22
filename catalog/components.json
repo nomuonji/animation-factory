@@ -1,13 +1,92 @@
 {
-  "version": 1,
+  "version": 2,
+  "renderer": "phaser",
   "components": [
-    { "id": "pixel-actor", "kind": "actor", "events": ["actor.move", "actor.pose"] },
-    { "id": "office-night", "kind": "environment", "events": [] },
-    { "id": "dialogue-box", "kind": "ui", "events": ["dialogue.say"] },
-    { "id": "caption", "kind": "ui", "events": ["ui.caption"] },
-    { "id": "camera-zoom", "kind": "camera", "events": ["camera.zoom"] },
-    { "id": "camera-shake", "kind": "camera", "events": ["camera.shake"] },
-    { "id": "damage-number", "kind": "effect", "events": ["effect.damage"] },
-    { "id": "exclamation", "kind": "effect", "events": ["effect.exclamation"] }
+    {
+      "id": "pixel-actor",
+      "kind": "actor",
+      "description": "Procedural pixel actor with reusable archetypes and poses.",
+      "events": {
+        "actor.move": {
+          "required": ["actor", "x", "y", "duration"],
+          "notes": "Moves linearly while automatically alternating walk-a/walk-b."
+        },
+        "actor.pose": {
+          "required": ["actor", "pose"],
+          "pose": ["idle", "walk-a", "walk-b", "surprised", "dead-inside"]
+        }
+      },
+      "archetypes": ["salaryman", "boss"]
+    },
+    {
+      "id": "office-night",
+      "kind": "environment",
+      "description": "Pixel office environment at night.",
+      "events": {}
+    },
+    {
+      "id": "dialogue-box",
+      "kind": "ui",
+      "description": "RPG-style fixed dialogue box.",
+      "events": {
+        "dialogue.say": {
+          "required": ["actor", "text", "duration"]
+        }
+      }
+    },
+    {
+      "id": "caption",
+      "kind": "ui",
+      "description": "Top-of-frame caption for scene labels or punchlines.",
+      "events": {
+        "ui.caption": {
+          "required": ["text", "duration"]
+        }
+      }
+    },
+    {
+      "id": "camera-zoom",
+      "kind": "camera",
+      "description": "Interpolated camera zoom.",
+      "events": {
+        "camera.zoom": {
+          "required": ["zoom", "duration"],
+          "constraints": { "zoom": "> 0" }
+        }
+      }
+    },
+    {
+      "id": "camera-shake",
+      "kind": "camera",
+      "description": "Short impact shake. Deterministic mode uses a decaying sinusoidal offset.",
+      "events": {
+        "camera.shake": {
+          "required": ["duration"],
+          "optional": ["intensity"]
+        }
+      }
+    },
+    {
+      "id": "damage-number",
+      "kind": "effect",
+      "description": "Floating fading RPG damage/status text.",
+      "events": {
+        "effect.damage": {
+          "required": ["actor", "text"],
+          "optional": ["duration"]
+        }
+      }
+    },
+    {
+      "id": "exclamation",
+      "kind": "effect",
+      "description": "Pulsing exclamation mark above an actor.",
+      "events": {
+        "effect.exclamation": {
+          "required": ["actor"],
+          "optional": ["duration"]
+        }
+      }
+    }
   ]
 }
