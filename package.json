@@ -1,15 +1,25 @@
 {
   "name": "animation-factory",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "type": "module",
-  "engines": {"node": ">=22.12.0"},
+  "engines": {
+    "node": ">=22.12.0"
+  },
   "scripts": {
     "dev": "vite",
     "build": "tsc --noEmit && vite build",
     "typecheck": "tsc --noEmit",
-    "validate:demo": "node tools/validate-production.mjs productions/demo/production.json"
+    "validate": "node tools/validate-production.mjs",
+    "validate:demo": "node tools/validate-production.mjs productions/demo/production.json",
+    "render": "node tools/render-production.mjs"
   },
-  "dependencies": {"phaser": "4.2.1"},
-  "devDependencies": {"typescript": "^5.9.2", "vite": "8.3.0"}
+  "dependencies": {
+    "phaser": "4.2.1"
+  },
+  "devDependencies": {
+    "playwright": "1.63.0",
+    "typescript": "^5.9.2",
+    "vite": "8.3.0"
+  }
 }

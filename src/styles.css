@@ -11,7 +11,7 @@ body {
   min-height: 100vh;
   background: radial-gradient(circle at 72% 18%, rgba(91,111,164,.16), transparent 28rem), #0b0d12;
 }
-button { font: inherit; }
+button, select { font: inherit; }
 #app {
   min-height: 100vh;
   display: grid;
@@ -56,6 +56,24 @@ h2 {
   padding: 7px 9px;
   border-radius: 999px;
   color: #b9c3d8;
+}
+.production-picker {
+  display: grid;
+  gap: 8px;
+  color: #8e96a8;
+  font: 600 11px/1.2 monospace;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+}
+.production-picker select {
+  width: 100%;
+  padding: 9px 10px;
+  border: 1px solid #303746;
+  border-radius: 8px;
+  background: #151922;
+  color: #e8ebf1;
+  text-transform: none;
+  letter-spacing: 0;
 }
 .actions {
   display: grid;
@@ -110,6 +128,22 @@ button:disabled { opacity: .5; cursor: wait; }
   width: 100% !important;
   height: 100% !important;
   image-rendering: pixelated;
+}
+.render-mode .panel {
+  display: none;
+}
+.render-mode #app {
+  grid-template-columns: 1fr;
+}
+.render-mode .preview-shell {
+  padding: 0;
+}
+.render-mode .phone-frame {
+  width: 270px;
+  height: 480px;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
 }
 @media (max-width: 760px) {
   #app { grid-template-columns: 1fr; }

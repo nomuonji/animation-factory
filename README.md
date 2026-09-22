@@ -11,7 +11,10 @@ The repository is designed so an AI agent can behave like a director: choose act
 - Vite preview studio
 - Declarative JSON productions
 - Procedural pixel actors
-- Browser WebM preview recording
+- Deterministic timestamp renderer
+- Playwright PNG frame capture
+- FFmpeg MP4 output
+- Optional browser WebM preview recording
 
 Phaser is intentionally hidden behind factory components. Production files should not call Phaser directly.
 
@@ -29,6 +32,15 @@ For a production build:
 npm run build
 ```
 
+For a deterministic MP4 render:
+
+```bash
+npx playwright install chromium
+npm run render -- demo
+```
+
+FFmpeg must be available on `PATH`. The demo renders from a 270x480 logical canvas to a 1080x1920 H.264 MP4.
+
 ## Repository shape
 
 ```text
@@ -41,9 +53,11 @@ animation-factory/
 ├─ schemas/                 Production contract
 ├─ src/
 │  ├─ components/           Actors, environments, UI and effects
-│  ├─ core/                 Types and validation
-│  └─ runtime/              Timeline director and Phaser scene
-└─ tools/                   CLI validation / future render tooling
+│  ├─ core/                 Types, validation, production registry
+│  └─ runtime/              Preview + deterministic directors
+└─ tools/
+   ├─ validate-production.mjs
+   └─ render-production.mjs
 ```
 
 ## Agent contract
@@ -53,23 +67,35 @@ Read `AGENTS.md` first.
 ```text
 prompt
   ↓
-agent writes production.json
+agent writes productions/<id>/production.json
   ↓
 validator
   ↓
 Animation Factory runtime
   ↓
-preview / record
+deterministic PNG frames
+  ↓
+FFmpeg
+  ↓
+MP4
   ↓
 promote useful new behavior into reusable components
 ```
 
 Productions remain data. If a new animation behavior is broadly useful, it is added once to the factory and exposed through `catalog/components.json`.
 
+New production folders are discovered automatically by Vite. The preview UI lists them, and the CLI renders one by folder name:
+
+```bash
+npm run render -- my-production
+```
+
 ## Included demo
 
 `productions/demo/production.json` demonstrates procedural pixel actors, a walk cycle, pose changes, RPG dialogue, captions, floating damage, camera shake and camera zoom. No external image assets are required.
 
-## Export status
+## Rendering in GitHub Actions
 
-The preview UI can record the canvas to WebM in real time. The next rendering milestone is deterministic frame stepping plus FFmpeg MP4 export, suitable for GitHub Actions and scheduled agent production.
+The `Render production` workflow is manual-only. It accepts a production folder, renders an MP4, and uploads the result as an artifact. It is deliberately not triggered on push so routine development does not consume rendering quota.
+
+See `docs/rendering.md` for details.

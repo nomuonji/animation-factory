@@ -1,0 +1,46 @@
+name: Render production
+
+on:
+  workflow_dispatch:
+    inputs:
+      production:
+        description: Folder name under productions/
+        required: true
+        default: demo
+        type: string
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Install Chromium and system dependencies
+        run: npx playwright install --with-deps chromium
+
+      - name: Install FFmpeg and Japanese fonts
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg fonts-noto-cjk
+
+      - name: Validate production
+        run: node tools/validate-production.mjs "productions/${{ inputs.production }}/production.json"
+
+      - name: Render MP4
+        run: npm run render -- "${{ inputs.production }}"
+
+      - name: Upload MP4
+        uses: actions/upload-artifact@v4
+        with:
+          name: animation-${{ inputs.production }}
+          path: outputs/*.mp4
+          if-no-files-found: error

@@ -1,4 +1,6 @@
 node_modules
 dist
+outputs
+.render-cache
 .DS_Store
 *.log
