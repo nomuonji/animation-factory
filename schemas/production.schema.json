@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://animation-factory.local/schemas/production.schema.json",
+  "title": "Animation Factory Production",
+  "type": "object",
+  "required": ["meta", "canvas", "environment", "actors", "events"],
+  "properties": {
+    "meta": {
+      "type": "object",
+      "required": ["id", "title", "duration"],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "title": { "type": "string", "minLength": 1 },
+        "description": { "type": "string" },
+        "duration": { "type": "number", "exclusiveMinimum": 0 }
+      }
+    },
+    "canvas": {
+      "type": "object",
+      "required": ["width", "height", "fps", "outputScale"],
+      "properties": {
+        "width": { "type": "integer", "minimum": 1 },
+        "height": { "type": "integer", "minimum": 1 },
+        "fps": { "type": "integer", "minimum": 1, "maximum": 120 },
+        "outputScale": { "type": "integer", "minimum": 1, "maximum": 8 }
+      }
+    },
+    "environment": { "type": "string" },
+    "actors": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "archetype", "x", "y"],
+        "properties": {
+          "id": { "type": "string" },
+          "archetype": { "enum": ["salaryman", "boss"] },
+          "x": { "type": "number" },
+          "y": { "type": "number" },
+          "scale": { "type": "number", "exclusiveMinimum": 0 },
+          "facing": { "enum": ["left", "right"] },
+          "pose": { "enum": ["idle", "walk-a", "walk-b", "surprised", "dead-inside"] }
+        }
+      }
+    },
+    "events": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["kind", "at"],
+        "properties": {
+          "kind": {
+            "enum": [
+              "actor.move", "actor.pose", "dialogue.say", "ui.caption",
+              "camera.zoom", "camera.shake", "effect.damage", "effect.exclamation"
+            ]
+          },
+          "at": { "type": "number", "minimum": 0 }
+        },
+        "additionalProperties": true
+      }
+    }
+  }
+}

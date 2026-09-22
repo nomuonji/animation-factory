@@ -1,0 +1,29 @@
+{
+  "meta": {
+    "id": "overtime-rpg-demo",
+    "title": "残業RPG — Factory Demo",
+    "description": "Reusable actors, movement, dialogue, camera and effects.",
+    "duration": 12
+  },
+  "canvas": { "width": 270, "height": 480, "fps": 30, "outputScale": 4 },
+  "environment": "office-night",
+  "actors": [
+    { "id": "worker", "archetype": "salaryman", "x": 62, "y": 390, "scale": 2, "facing": "right", "pose": "idle" },
+    { "id": "boss", "archetype": "boss", "x": 244, "y": 390, "scale": 2, "facing": "left", "pose": "idle" }
+  ],
+  "events": [
+    { "kind": "ui.caption", "at": 0.2, "duration": 2.2, "text": "22:47 / OFFICE DUNGEON" },
+    { "kind": "actor.move", "at": 0.8, "actor": "worker", "x": 116, "y": 390, "duration": 2.2 },
+    { "kind": "dialogue.say", "at": 3.3, "actor": "worker", "duration": 1.7, "text": "よし、今日は帰れる。" },
+    { "kind": "actor.move", "at": 4.7, "actor": "boss", "x": 188, "y": 390, "duration": 1.2 },
+    { "kind": "effect.exclamation", "at": 5.8, "actor": "worker", "duration": 0.8 },
+    { "kind": "actor.pose", "at": 5.9, "actor": "worker", "pose": "surprised" },
+    { "kind": "camera.shake", "at": 6.0, "duration": 0.25, "intensity": 0.012 },
+    { "kind": "dialogue.say", "at": 6.25, "actor": "boss", "duration": 1.8, "text": "ちょっといい？" },
+    { "kind": "camera.zoom", "at": 7.9, "duration": 0.55, "zoom": 1.28 },
+    { "kind": "effect.damage", "at": 8.3, "actor": "worker", "duration": 1.0, "text": "HP -80" },
+    { "kind": "actor.pose", "at": 8.5, "actor": "worker", "pose": "dead-inside" },
+    { "kind": "ui.caption", "at": 9.6, "duration": 2.0, "text": "STATUS: 残業" },
+    { "kind": "camera.zoom", "at": 10.4, "duration": 0.6, "zoom": 1.0 }
+  ]
+}

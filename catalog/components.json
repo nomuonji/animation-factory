@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "components": [
+    { "id": "pixel-actor", "kind": "actor", "events": ["actor.move", "actor.pose"] },
+    { "id": "office-night", "kind": "environment", "events": [] },
+    { "id": "dialogue-box", "kind": "ui", "events": ["dialogue.say"] },
+    { "id": "caption", "kind": "ui", "events": ["ui.caption"] },
+    { "id": "camera-zoom", "kind": "camera", "events": ["camera.zoom"] },
+    { "id": "camera-shake", "kind": "camera", "events": ["camera.shake"] },
+    { "id": "damage-number", "kind": "effect", "events": ["effect.damage"] },
+    { "id": "exclamation", "kind": "effect", "events": ["effect.exclamation"] }
+  ]
+}
