@@ -93,9 +93,9 @@ export class Director {
 
       case "ui.speech": {
         const actor = this.actor(event.actor);
-        this.presentation.setSpeech({ actor, text: event.text });
-        this.scene.time.delayedCall(
-          event.duration * 1000,
+        this.animate(
+          event.duration,
+          () => this.presentation.setSpeech({ actor, text: event.text }),
           () => this.presentation.setSpeech(null)
         );
         break;

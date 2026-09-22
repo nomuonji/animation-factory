@@ -60,6 +60,7 @@ interface PropState {
 
 const clamp01 = (value: number) => Math.max(0, Math.min(1, value));
 const lerp = (from: number, to: number, progress: number) => from + (to - from) * progress;
+const easeSineInOut = (progress: number) => -(Math.cos(Math.PI * progress) - 1) / 2;
 
 export class DeterministicDirector {
   private readonly events: TimelineEvent[];
@@ -194,13 +195,17 @@ export class DeterministicDirector {
           break;
 
         case "camera.zoom": {
-          const progress = clamp01((time - event.at) / event.duration);
+          const progress = easeSineInOut(
+            clamp01((time - event.at) / event.duration)
+          );
           cameraZoom = lerp(cameraZoom, event.zoom, progress);
           break;
         }
 
         case "camera.pan": {
-          const progress = clamp01((time - event.at) / event.duration);
+          const progress = easeSineInOut(
+            clamp01((time - event.at) / event.duration)
+          );
           cameraScrollX = lerp(cameraScrollX, event.x, progress);
           cameraScrollY = lerp(cameraScrollY, event.y, progress);
           break;
