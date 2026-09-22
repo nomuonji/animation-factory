@@ -2,7 +2,7 @@
 
 An agent-native 2D animation factory for reusable pixel-art productions.
 
-The repository is designed so an AI agent can behave like a director: choose actors, actions, dialogue, effects and camera moves from a catalog, then express a video as structured timeline data instead of writing arbitrary rendering code.
+The repository is designed so an AI agent can behave like a director: choose actors, actions, dialogue, effects, props and camera moves from a catalog, then express a video as structured timeline data instead of writing arbitrary rendering code.
 
 ## Current stack
 
@@ -10,7 +10,8 @@ The repository is designed so an AI agent can behave like a director: choose act
 - TypeScript
 - Vite preview studio
 - Declarative JSON productions
-- Procedural pixel actors
+- Procedural pixel actors and props
+- Reusable presentation/effect component layer
 - Deterministic timestamp renderer
 - Playwright PNG frame capture
 - FFmpeg MP4 output
@@ -39,20 +40,20 @@ npx playwright install chromium
 npm run render -- demo
 ```
 
-FFmpeg must be available on `PATH`. The demo renders from a 270x480 logical canvas to a 1080x1920 H.264 MP4.
+FFmpeg must be available on `PATH`. The default logical canvas is 270x480; with `outputScale: 4`, the renderer creates a 1080x1920 H.264 MP4 using nearest-neighbor scaling.
 
 ## Repository shape
 
 ```text
 animation-factory/
 ├─ catalog/                 Agent-readable component inventory
-├─ docs/                    Architecture and renderer notes
+├─ docs/                    Architecture, authoring and renderer notes
 ├─ productions/
-│  └─ demo/
-│     └─ production.json    Complete example animation
+│  ├─ demo/
+│  └─ component-showcase/
 ├─ schemas/                 Production contract
 ├─ src/
-│  ├─ components/           Actors, environments, UI and effects
+│  ├─ components/           Actors, environments, presentation, UI and effects
 │  ├─ core/                 Types, validation, production registry
 │  └─ runtime/              Preview + deterministic directors
 └─ tools/
@@ -62,7 +63,7 @@ animation-factory/
 
 ## Agent contract
 
-Read `AGENTS.md` first.
+Read `AGENTS.md` and `catalog/components.json` first.
 
 ```text
 prompt
@@ -82,7 +83,7 @@ MP4
 promote useful new behavior into reusable components
 ```
 
-Productions remain data. If a new animation behavior is broadly useful, it is added once to the factory and exposed through `catalog/components.json`.
+Productions remain data. If a new animation behavior is broadly useful, it is added once to the factory and exposed through the catalog.
 
 New production folders are discovered automatically by Vite. The preview UI lists them, and the CLI renders one by folder name:
 
@@ -90,12 +91,14 @@ New production folders are discovered automatically by Vite. The preview UI list
 npm run render -- my-production
 ```
 
-## Included demo
+## Included productions
 
-`productions/demo/production.json` demonstrates procedural pixel actors, a walk cycle, pose changes, RPG dialogue, captions, floating damage, camera shake and camera zoom. No external image assets are required.
+`productions/demo/production.json` is the original compact overtime RPG demo.
+
+`productions/component-showcase/production.json` demonstrates the broader component library, including speech bubbles, procedural props, actor emotes, particles, status UI, screen flash, camera pan, zoom, shake and fade transitions.
 
 ## Rendering in GitHub Actions
 
 The `Render production` workflow is manual-only. It accepts a production folder, renders an MP4, and uploads the result as an artifact. It is deliberately not triggered on push so routine development does not consume rendering quota.
 
-See `docs/rendering.md` for details.
+See `docs/rendering.md`, `docs/authoring.md`, and `docs/components.md` for details.

@@ -1,6 +1,10 @@
 export type ActorArchetype = "salaryman" | "boss";
 export type ActorPose = "idle" | "walk-a" | "walk-b" | "surprised" | "dead-inside";
 export type Facing = "left" | "right";
+export type EmoteKind = "sweat" | "heart";
+export type ParticleKind = "spark" | "coin" | "dust";
+export type PropKind = "coffee" | "briefcase" | "coin";
+export type FadeMode = "in" | "out";
 
 export interface CanvasConfig {
   width: number;
@@ -8,12 +12,14 @@ export interface CanvasConfig {
   fps: number;
   outputScale: number;
 }
+
 export interface ProductionMeta {
   id: string;
   title: string;
   duration: number;
   description?: string;
 }
+
 export interface ActorDefinition {
   id: string;
   archetype: ActorArchetype;
@@ -23,40 +29,138 @@ export interface ActorDefinition {
   facing?: Facing;
   pose?: ActorPose;
 }
-interface BaseEvent { at: number; }
+
+interface BaseEvent {
+  at: number;
+}
+
 export interface ActorMoveEvent extends BaseEvent {
-  kind: "actor.move"; actor: string; x: number; y: number; duration: number;
+  kind: "actor.move";
+  actor: string;
+  x: number;
+  y: number;
+  duration: number;
 }
+
 export interface ActorPoseEvent extends BaseEvent {
-  kind: "actor.pose"; actor: string; pose: ActorPose;
+  kind: "actor.pose";
+  actor: string;
+  pose: ActorPose;
 }
+
 export interface DialogueSayEvent extends BaseEvent {
-  kind: "dialogue.say"; actor: string; text: string; duration: number;
+  kind: "dialogue.say";
+  actor: string;
+  text: string;
+  duration: number;
 }
+
+export interface SpeechBubbleEvent extends BaseEvent {
+  kind: "ui.speech";
+  actor: string;
+  text: string;
+  duration: number;
+}
+
 export interface CaptionShowEvent extends BaseEvent {
-  kind: "ui.caption"; text: string; duration: number;
+  kind: "ui.caption";
+  text: string;
+  duration: number;
 }
+
+export interface RpgStatusEvent extends BaseEvent {
+  kind: "ui.rpgStatus";
+  title: string;
+  lines: string[];
+  duration: number;
+}
+
 export interface CameraZoomEvent extends BaseEvent {
-  kind: "camera.zoom"; zoom: number; duration: number;
+  kind: "camera.zoom";
+  zoom: number;
+  duration: number;
 }
+
+export interface CameraPanEvent extends BaseEvent {
+  kind: "camera.pan";
+  x: number;
+  y: number;
+  duration: number;
+}
+
 export interface CameraShakeEvent extends BaseEvent {
-  kind: "camera.shake"; intensity?: number; duration: number;
+  kind: "camera.shake";
+  intensity?: number;
+  duration: number;
 }
+
 export interface DamageEffectEvent extends BaseEvent {
-  kind: "effect.damage"; actor: string; text: string; duration?: number;
+  kind: "effect.damage";
+  actor: string;
+  text: string;
+  duration?: number;
 }
+
 export interface ExclamationEffectEvent extends BaseEvent {
-  kind: "effect.exclamation"; actor: string; duration?: number;
+  kind: "effect.exclamation";
+  actor: string;
+  duration?: number;
 }
+
+export interface EmoteEffectEvent extends BaseEvent {
+  kind: "effect.emote";
+  actor: string;
+  emote: EmoteKind;
+  duration: number;
+}
+
+export interface ParticleEffectEvent extends BaseEvent {
+  kind: "effect.particles";
+  actor: string;
+  particle: ParticleKind;
+  duration: number;
+}
+
+export interface ScreenFlashEvent extends BaseEvent {
+  kind: "effect.screenFlash";
+  duration: number;
+  color?: string;
+  strength?: number;
+}
+
+export interface FadeTransitionEvent extends BaseEvent {
+  kind: "transition.fade";
+  mode: FadeMode;
+  duration: number;
+  color?: string;
+}
+
+export interface PropShowEvent extends BaseEvent {
+  kind: "prop.show";
+  prop: PropKind;
+  x: number;
+  y: number;
+  duration: number;
+  scale?: number;
+}
+
 export type TimelineEvent =
   | ActorMoveEvent
   | ActorPoseEvent
   | DialogueSayEvent
+  | SpeechBubbleEvent
   | CaptionShowEvent
+  | RpgStatusEvent
   | CameraZoomEvent
+  | CameraPanEvent
   | CameraShakeEvent
   | DamageEffectEvent
-  | ExclamationEffectEvent;
+  | ExclamationEffectEvent
+  | EmoteEffectEvent
+  | ParticleEffectEvent
+  | ScreenFlashEvent
+  | FadeTransitionEvent
+  | PropShowEvent;
 
 export interface Production {
   meta: ProductionMeta;

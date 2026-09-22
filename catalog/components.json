@@ -1,5 +1,5 @@
 {
-  "version": 2,
+  "version": 3,
   "renderer": "phaser",
   "components": [
     {
@@ -35,12 +35,32 @@
       }
     },
     {
+      "id": "speech-bubble",
+      "kind": "ui",
+      "description": "Actor-anchored speech bubble.",
+      "events": {
+        "ui.speech": {
+          "required": ["actor", "text", "duration"]
+        }
+      }
+    },
+    {
       "id": "caption",
       "kind": "ui",
       "description": "Top-of-frame caption for scene labels or punchlines.",
       "events": {
         "ui.caption": {
           "required": ["text", "duration"]
+        }
+      }
+    },
+    {
+      "id": "rpg-status",
+      "kind": "ui",
+      "description": "Compact RPG status panel with a title and text lines.",
+      "events": {
+        "ui.rpgStatus": {
+          "required": ["title", "lines", "duration"]
         }
       }
     },
@@ -52,6 +72,16 @@
         "camera.zoom": {
           "required": ["zoom", "duration"],
           "constraints": { "zoom": "> 0" }
+        }
+      }
+    },
+    {
+      "id": "camera-pan",
+      "kind": "camera",
+      "description": "Interpolates camera scroll offsets.",
+      "events": {
+        "camera.pan": {
+          "required": ["x", "y", "duration"]
         }
       }
     },
@@ -85,6 +115,67 @@
         "effect.exclamation": {
           "required": ["actor"],
           "optional": ["duration"]
+        }
+      }
+    },
+    {
+      "id": "actor-emote",
+      "kind": "effect",
+      "description": "Procedural pixel emote anchored to an actor.",
+      "events": {
+        "effect.emote": {
+          "required": ["actor", "emote", "duration"],
+          "emote": ["sweat", "heart"]
+        }
+      }
+    },
+    {
+      "id": "pixel-particles",
+      "kind": "effect",
+      "description": "Deterministic radial pixel particles.",
+      "events": {
+        "effect.particles": {
+          "required": ["actor", "particle", "duration"],
+          "particle": ["spark", "coin", "dust"]
+        }
+      }
+    },
+    {
+      "id": "screen-flash",
+      "kind": "effect",
+      "description": "Full-screen impact flash.",
+      "events": {
+        "effect.screenFlash": {
+          "required": ["duration"],
+          "optional": ["color", "strength"],
+          "constraints": {
+            "color": "#RRGGBB",
+            "strength": "0..1"
+          }
+        }
+      }
+    },
+    {
+      "id": "fade-transition",
+      "kind": "transition",
+      "description": "Persistent fade-out or fade-in overlay.",
+      "events": {
+        "transition.fade": {
+          "required": ["mode", "duration"],
+          "optional": ["color"],
+          "mode": ["in", "out"]
+        }
+      }
+    },
+    {
+      "id": "procedural-props",
+      "kind": "prop",
+      "description": "Temporary procedural pixel props.",
+      "events": {
+        "prop.show": {
+          "required": ["prop", "x", "y", "duration"],
+          "optional": ["scale"],
+          "prop": ["coffee", "briefcase", "coin"]
         }
       }
     }

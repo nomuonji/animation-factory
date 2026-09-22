@@ -2,12 +2,17 @@ import Phaser from "phaser";
 import type {
   ActorDefinition,
   ActorPose,
+  EmoteKind,
+  FadeMode,
   Facing,
+  ParticleKind,
   Production,
+  PropKind,
   TimelineEvent
 } from "../core/types";
 import type { PixelActor } from "../components/PixelActor";
 import type { DialogueBox } from "../components/DialogueBox";
+import type { PresentationLayer } from "../components/PresentationLayer";
 
 interface ActorState {
   x: number;
@@ -20,6 +25,37 @@ interface TimedActorEffect {
   actor: string;
   text?: string;
   progress: number;
+}
+
+interface EmoteState {
+  actor: string;
+  kind: EmoteKind;
+  progress: number;
+}
+
+interface ParticleState {
+  actor: string;
+  kind: ParticleKind;
+  progress: number;
+}
+
+interface FlashState {
+  progress: number;
+  color?: string;
+  strength: number;
+}
+
+interface FadeState {
+  progress: number;
+  mode: FadeMode;
+  color?: string;
+}
+
+interface PropState {
+  kind: PropKind;
+  x: number;
+  y: number;
+  scale: number;
 }
 
 const clamp01 = (value: number) => Math.max(0, Math.min(1, value));
@@ -36,7 +72,8 @@ export class DeterministicDirector {
     private readonly scene: Phaser.Scene,
     private readonly production: Production,
     private readonly actors: Map<string, PixelActor>,
-    private readonly dialogue: DialogueBox
+    private readonly dialogue: DialogueBox,
+    private readonly presentation: PresentationLayer
   ) {
     this.events = [...production.events].sort((a, b) => a.at - b.at);
     for (const definition of production.actors) {
@@ -90,12 +127,21 @@ export class DeterministicDirector {
     const states = this.initialActorStates();
 
     let dialogueText: string | null = null;
+    let speechState: { actor: string; text: string } | null = null;
     let captionText: string | null = null;
+    let statusState: { title: string; lines: string[] } | null = null;
+
     let cameraZoom = 1;
     let cameraScrollX = 0;
     let cameraScrollY = 0;
+
     let damageEffect: TimedActorEffect | null = null;
     let exclamationEffect: TimedActorEffect | null = null;
+    let emoteState: EmoteState | null = null;
+    let particleState: ParticleState | null = null;
+    let flashState: FlashState | null = null;
+    let fadeState: FadeState | null = null;
+    let propState: PropState | null = null;
 
     for (const event of this.events) {
       if (event.at > time) break;
@@ -131,13 +177,32 @@ export class DeterministicDirector {
           if (time < event.at + event.duration) dialogueText = event.text;
           break;
 
+        case "ui.speech":
+          if (time < event.at + event.duration) {
+            speechState = { actor: event.actor, text: event.text };
+          }
+          break;
+
         case "ui.caption":
           if (time < event.at + event.duration) captionText = event.text;
+          break;
+
+        case "ui.rpgStatus":
+          if (time < event.at + event.duration) {
+            statusState = { title: event.title, lines: event.lines };
+          }
           break;
 
         case "camera.zoom": {
           const progress = clamp01((time - event.at) / event.duration);
           cameraZoom = lerp(cameraZoom, event.zoom, progress);
+          break;
+        }
+
+        case "camera.pan": {
+          const progress = clamp01((time - event.at) / event.duration);
+          cameraScrollX = lerp(cameraScrollX, event.x, progress);
+          cameraScrollY = lerp(cameraScrollY, event.y, progress);
           break;
         }
 
@@ -178,6 +243,55 @@ export class DeterministicDirector {
           }
           break;
         }
+
+        case "effect.emote":
+          if (time < event.at + event.duration) {
+            emoteState = {
+              actor: event.actor,
+              kind: event.emote,
+              progress: clamp01((time - event.at) / event.duration)
+            };
+          }
+          break;
+
+        case "effect.particles":
+          if (time < event.at + event.duration) {
+            particleState = {
+              actor: event.actor,
+              kind: event.particle,
+              progress: clamp01((time - event.at) / event.duration)
+            };
+          }
+          break;
+
+        case "effect.screenFlash":
+          if (time < event.at + event.duration) {
+            flashState = {
+              progress: clamp01((time - event.at) / event.duration),
+              color: event.color,
+              strength: event.strength ?? 0.9
+            };
+          }
+          break;
+
+        case "transition.fade":
+          fadeState = {
+            progress: clamp01((time - event.at) / event.duration),
+            mode: event.mode,
+            color: event.color
+          };
+          break;
+
+        case "prop.show":
+          if (time < event.at + event.duration) {
+            propState = {
+              kind: event.prop,
+              x: event.x,
+              y: event.y,
+              scale: event.scale ?? 1
+            };
+          }
+          break;
       }
     }
 
@@ -200,6 +314,64 @@ export class DeterministicDirector {
     } else {
       this.caption.setVisible(false);
     }
+
+    if (speechState) {
+      const actor = this.actors.get(speechState.actor) ?? null;
+      this.presentation.setSpeech(
+        actor ? { actor, text: speechState.text } : null
+      );
+    } else {
+      this.presentation.setSpeech(null);
+    }
+
+    this.presentation.setRpgStatus(
+      statusState?.title ?? null,
+      statusState?.lines ?? []
+    );
+
+    if (emoteState) {
+      const actor = this.actors.get(emoteState.actor) ?? null;
+      this.presentation.setEmote(actor, emoteState.kind, emoteState.progress);
+    } else {
+      this.presentation.setEmote(null, null);
+    }
+
+    if (particleState) {
+      const actor = this.actors.get(particleState.actor) ?? null;
+      this.presentation.setParticles(
+        actor
+          ? {
+              actor,
+              kind: particleState.kind,
+              progress: particleState.progress
+            }
+          : null
+      );
+    } else {
+      this.presentation.setParticles(null);
+    }
+
+    if (flashState) {
+      this.presentation.setScreenFlash(
+        flashState.progress,
+        flashState.color,
+        flashState.strength
+      );
+    } else {
+      this.presentation.setScreenFlash(null);
+    }
+
+    if (fadeState) {
+      this.presentation.setFade(
+        fadeState.progress,
+        fadeState.mode,
+        fadeState.color
+      );
+    } else {
+      this.presentation.setFade(null);
+    }
+
+    this.presentation.setProp(propState);
 
     this.renderDamage(damageEffect);
     this.renderExclamation(exclamationEffect);

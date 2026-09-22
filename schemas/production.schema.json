@@ -50,8 +50,22 @@
         "properties": {
           "kind": {
             "enum": [
-              "actor.move", "actor.pose", "dialogue.say", "ui.caption",
-              "camera.zoom", "camera.shake", "effect.damage", "effect.exclamation"
+              "actor.move",
+              "actor.pose",
+              "dialogue.say",
+              "ui.speech",
+              "ui.caption",
+              "ui.rpgStatus",
+              "camera.zoom",
+              "camera.pan",
+              "camera.shake",
+              "effect.damage",
+              "effect.exclamation",
+              "effect.emote",
+              "effect.particles",
+              "effect.screenFlash",
+              "transition.fade",
+              "prop.show"
             ]
           },
           "at": { "type": "number", "minimum": 0 }

@@ -9,12 +9,20 @@ const POSES = new Set<ActorPose>([
   "surprised",
   "dead-inside"
 ]);
+const EMOTES = new Set(["sweat", "heart"]);
+const PARTICLES = new Set(["spark", "coin", "dust"]);
+const PROPS = new Set(["coffee", "briefcase", "coin"]);
+const FADE_MODES = new Set(["in", "out"]);
+const HEX_COLOR = /^#?[0-9a-fA-F]{6}$/;
 
 function isFiniteNumber(value: unknown): value is number {
   return typeof value === "number" && Number.isFinite(value);
 }
 
-function requireDuration(event: { kind: string; at: number; duration?: number }, total: number): number {
+function requireDuration(
+  event: { kind: string; at: number; duration?: number },
+  total: number
+): number {
   if (!isFiniteNumber(event.duration) || event.duration <= 0) {
     throw new Error(`${event.kind} at ${event.at}s requires duration > 0.`);
   }
@@ -36,6 +44,19 @@ function requireActorReference(
     );
   }
   return event.actor;
+}
+
+function requireText(kind: string, text: unknown): string {
+  if (typeof text !== "string" || text.length === 0) {
+    throw new Error(`${kind} requires non-empty text.`);
+  }
+  return text;
+}
+
+function validateColor(kind: string, color: unknown): void {
+  if (color !== undefined && (typeof color !== "string" || !HEX_COLOR.test(color))) {
+    throw new Error(`${kind} color must be a 6-digit hex string.`);
+  }
 }
 
 function validateEvent(
@@ -64,17 +85,26 @@ function validateEvent(
       return;
 
     case "dialogue.say":
+    case "ui.speech":
       requireActorReference(event, actorIds);
       requireDuration(event, totalDuration);
-      if (typeof event.text !== "string" || event.text.length === 0) {
-        throw new Error("dialogue.say requires non-empty text.");
-      }
+      requireText(event.kind, event.text);
       return;
 
     case "ui.caption":
       requireDuration(event, totalDuration);
-      if (typeof event.text !== "string" || event.text.length === 0) {
-        throw new Error("ui.caption requires non-empty text.");
+      requireText(event.kind, event.text);
+      return;
+
+    case "ui.rpgStatus":
+      requireDuration(event, totalDuration);
+      requireText(event.kind, event.title);
+      if (
+        !Array.isArray(event.lines) ||
+        event.lines.length === 0 ||
+        event.lines.some((line) => typeof line !== "string" || line.length === 0)
+      ) {
+        throw new Error("ui.rpgStatus requires a non-empty string lines array.");
       }
       return;
 
@@ -82,6 +112,13 @@ function validateEvent(
       requireDuration(event, totalDuration);
       if (!isFiniteNumber(event.zoom) || event.zoom <= 0) {
         throw new Error("camera.zoom requires zoom > 0.");
+      }
+      return;
+
+    case "camera.pan":
+      requireDuration(event, totalDuration);
+      if (!isFiniteNumber(event.x) || !isFiniteNumber(event.y)) {
+        throw new Error("camera.pan requires finite x and y.");
       }
       return;
 
@@ -98,14 +135,65 @@ function validateEvent(
     case "effect.damage":
       requireActorReference(event, actorIds);
       if (event.duration !== undefined) requireDuration(event, totalDuration);
-      if (typeof event.text !== "string" || event.text.length === 0) {
-        throw new Error("effect.damage requires non-empty text.");
-      }
+      requireText(event.kind, event.text);
       return;
 
     case "effect.exclamation":
       requireActorReference(event, actorIds);
       if (event.duration !== undefined) requireDuration(event, totalDuration);
+      return;
+
+    case "effect.emote":
+      requireActorReference(event, actorIds);
+      requireDuration(event, totalDuration);
+      if (!EMOTES.has(event.emote)) {
+        throw new Error(`effect.emote has unsupported emote "${String(event.emote)}".`);
+      }
+      return;
+
+    case "effect.particles":
+      requireActorReference(event, actorIds);
+      requireDuration(event, totalDuration);
+      if (!PARTICLES.has(event.particle)) {
+        throw new Error(
+          `effect.particles has unsupported particle "${String(event.particle)}".`
+        );
+      }
+      return;
+
+    case "effect.screenFlash":
+      requireDuration(event, totalDuration);
+      validateColor(event.kind, event.color);
+      if (
+        event.strength !== undefined &&
+        (!isFiniteNumber(event.strength) || event.strength < 0 || event.strength > 1)
+      ) {
+        throw new Error("effect.screenFlash strength must be between 0 and 1.");
+      }
+      return;
+
+    case "transition.fade":
+      requireDuration(event, totalDuration);
+      if (!FADE_MODES.has(event.mode)) {
+        throw new Error(`transition.fade has unsupported mode "${String(event.mode)}".`);
+      }
+      validateColor(event.kind, event.color);
+      return;
+
+    case "prop.show":
+      requireDuration(event, totalDuration);
+      if (!PROPS.has(event.prop)) {
+        throw new Error(`prop.show has unsupported prop "${String(event.prop)}".`);
+      }
+      if (!isFiniteNumber(event.x) || !isFiniteNumber(event.y)) {
+        throw new Error("prop.show requires finite x and y.");
+      }
+      if (
+        event.scale !== undefined &&
+        (!isFiniteNumber(event.scale) || event.scale <= 0)
+      ) {
+        throw new Error("prop.show scale must be > 0.");
+      }
       return;
 
     default: {

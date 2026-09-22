@@ -3,6 +3,7 @@ import type { Production } from "../core/types";
 import { DialogueBox } from "../components/DialogueBox";
 import { renderEnvironment } from "../components/Environment";
 import { PixelActor } from "../components/PixelActor";
+import { PresentationLayer } from "../components/PresentationLayer";
 import { DeterministicDirector } from "./DeterministicDirector";
 import { Director } from "./Director";
 
@@ -45,17 +46,25 @@ export class FactoryScene extends Phaser.Scene {
     }
 
     const dialogue = new DialogueBox(this, width, height);
+    const presentation = new PresentationLayer(this, width, height);
 
     if (this.options.deterministic) {
       this.deterministicDirector = new DeterministicDirector(
         this,
         this.production,
         this.actors,
-        dialogue
+        dialogue,
+        presentation
       );
       this.deterministicDirector.renderAt(0);
     } else {
-      new Director(this, this.production, this.actors, dialogue).start();
+      new Director(
+        this,
+        this.production,
+        this.actors,
+        dialogue,
+        presentation
+      ).start();
     }
 
     this.options.onReady?.(this);
