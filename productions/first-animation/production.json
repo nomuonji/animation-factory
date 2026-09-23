@@ -1,0 +1,50 @@
+{
+  "meta": {
+    "id": "first-animation",
+    "title": "定時退社クエスト",
+    "description": "夜のオフィスで、帰れないと思った社員に思いがけないひと言が届く、15秒のピクセルアニメ。",
+    "duration": 15
+  },
+  "canvas": { "width": 270, "height": 480, "fps": 24, "outputScale": 4 },
+  "environment": "office-night",
+  "actors": [
+    { "id": "worker", "archetype": "salaryman", "x": 78, "y": 390, "scale": 2, "facing": "right", "pose": "dead-inside" },
+    { "id": "boss", "archetype": "boss", "x": 250, "y": 390, "scale": 2, "facing": "left", "pose": "idle" }
+  ],
+  "events": [
+    { "kind": "transition.fade", "at": 0, "mode": "in", "duration": 0.6 },
+    { "kind": "ui.caption", "at": 0.4, "duration": 2, "text": "23:58  /  OFFICE" },
+    { "kind": "ui.rpgStatus", "at": 0.8, "duration": 2, "title": "WORKER", "lines": ["HP 01 / 100", "MP 00 / 12", "QUEST: 帰宅"] },
+    { "kind": "ui.speech", "at": 2.3, "actor": "worker", "duration": 1.4, "text": "今日も帰れない…" },
+    { "kind": "actor.move", "at": 3.3, "actor": "boss", "x": 184, "y": 390, "duration": 1.2 },
+    { "kind": "effect.exclamation", "at": 4.4, "actor": "worker", "duration": 0.7 },
+    { "kind": "actor.pose", "at": 4.5, "actor": "worker", "pose": "surprised" },
+    { "kind": "effect.emote", "at": 4.6, "actor": "worker", "emote": "sweat", "duration": 0.9 },
+    { "kind": "camera.zoom", "at": 4.7, "zoom": 1.18, "duration": 0.5 },
+    { "kind": "ui.speech", "at": 5.1, "actor": "boss", "duration": 1.7, "text": "もう帰っていいよ。" },
+    { "kind": "camera.zoom", "at": 6.8, "zoom": 1, "duration": 0.5 },
+    { "kind": "effect.screenFlash", "at": 7, "duration": 0.3, "color": "#fff3b0", "strength": 0.55 },
+    { "kind": "effect.particles", "at": 7.1, "actor": "worker", "particle": "spark", "duration": 1 },
+    { "kind": "effect.damage", "at": 7.2, "actor": "worker", "duration": 1, "text": "HP +99" },
+    { "kind": "actor.pose", "at": 7.3, "actor": "worker", "pose": "idle" },
+    { "kind": "ui.rpgStatus", "at": 8.2, "duration": 2, "title": "QUEST CLEAR", "lines": ["HP 100 / 100", "REWARD: じぶんの時間"] },
+    { "kind": "effect.emote", "at": 8.4, "actor": "worker", "emote": "heart", "duration": 1.1 },
+    { "kind": "ui.speech", "at": 10.2, "actor": "worker", "duration": 1.2, "text": "お先に失礼します！" },
+    { "kind": "actor.move", "at": 11.4, "actor": "worker", "x": -24, "y": 390, "duration": 1.7 },
+    { "kind": "effect.particles", "at": 11.5, "actor": "worker", "particle": "dust", "duration": 0.8 },
+    { "kind": "ui.caption", "at": 13.1, "duration": 1.2, "text": "MISSION COMPLETE" },
+    { "kind": "transition.fade", "at": 14.3, "mode": "out", "duration": 0.7 }
+  ],
+  "audio": {
+    "masterVolume": 1.4,
+    "tts": { "provider": "none" },
+    "bgm": [
+      { "id": "office-bed", "preset": "office-night", "at": 0, "duration": 15, "volume": 1.6, "fadeIn": 0.6, "fadeOut": 0.8 }
+    ],
+    "sfx": [
+      { "id": "boss-appears", "preset": "alert", "at": 4.4, "volume": 1.3 },
+      { "id": "quest-clear", "preset": "heal", "at": 7, "volume": 1.5 },
+      { "id": "reward", "preset": "coin", "at": 8.3, "volume": 1.3 }
+    ]
+  }
+}

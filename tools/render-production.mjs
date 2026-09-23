@@ -20,7 +20,6 @@ const productionPath = join(
   productionFolder,
   "production.json"
 );
-const npmCommand = process.platform === "win32" ? "npm.cmd" : "npm";
 const ffmpegCommand = process.platform === "win32" ? "ffmpeg.exe" : "ffmpeg";
 const espeakCommand = process.platform === "win32" ? "espeak-ng.exe" : "espeak-ng";
 
@@ -58,8 +57,8 @@ async function waitForServer(url, timeoutMs = 30_000) {
 
 function startVite() {
   return spawn(
-    npmCommand,
-    ["run", "dev", "--", "--host", host, "--port", String(port), "--strictPort"],
+    process.execPath,
+    [join(root, "node_modules", "vite", "bin", "vite.js"), "--host", host, "--port", String(port), "--strictPort"],
     {
       cwd: root,
       stdio: ["ignore", "pipe", "pipe"]

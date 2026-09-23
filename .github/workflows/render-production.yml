@@ -6,13 +6,15 @@ on:
       production:
         description: Folder name under productions/
         required: true
-        default: demo
+        default: first-animation
         type: string
 
 jobs:
   render:
     runs-on: ubuntu-latest
     timeout-minutes: 30
+    env:
+      PRODUCTION: ${{ inputs.production }}
 
     steps:
       - uses: actions/checkout@v4
@@ -22,7 +24,7 @@ jobs:
           node-version: 22
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci
 
       - name: Install Chromium and system dependencies
         run: npx playwright install --with-deps chromium
@@ -36,7 +38,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          production="${{ inputs.production }}"
+          production="$PRODUCTION"
           if ! [[ "$production" =~ ^[A-Za-z0-9._-]+$ ]]; then
             echo "Unsafe production folder: $production" >&2
             exit 2
@@ -44,13 +46,28 @@ jobs:
           test -f "productions/$production/production.json"
 
       - name: Validate production
-        run: node tools/validate-production.mjs "productions/${{ inputs.production }}/production.json"
+        run: node tools/validate-production.mjs "productions/$PRODUCTION/production.json"
 
       - name: Render MP4
-        run: npm run render -- "${{ inputs.production }}"
+        run: npm run render -- "$PRODUCTION"
+
+      - name: Verify rendered audio
+        shell: bash
+        run: |
+          set -euo pipefail
+          production="$PRODUCTION"
+          production_id="$(node -p "require('./productions/${production}/production.json').meta.id")"
+          output="outputs/${production_id}.mp4"
+          test -s "$output"
+          if node -e "const p=require('./productions/${production}/production.json'); process.exit(p.audio ? 0 : 1)"; then
+            codec="$(ffprobe -v error -select_streams a:0 -show_entries stream=codec_name -of default=noprint_wrappers=1:nokey=1 "$output")"
+            test "$codec" = "aac" || { echo "Rendered audio stream is missing" >&2; exit 1; }
+            peak="$(ffmpeg -hide_banner -nostats -i "$output" -af volumedetect -f null - 2>&1 | sed -n 's/.*max_volume: \([-0-9.]*\) dB/\1/p')"
+            awk -v peak="$peak" 'BEGIN { exit !(peak != "" && peak > -22) }' || { echo "Rendered audio is too quiet: ${peak} dB peak" >&2; exit 1; }
+          fi
 
       - name: Build browser review package
-        run: node tools/package-review.mjs "${{ inputs.production }}"
+        run: node tools/package-review.mjs "$PRODUCTION"
 
       - name: Upload render + review artifact
         uses: actions/upload-artifact@v4
