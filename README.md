@@ -119,7 +119,7 @@ See `docs/review.md`.
 
 ## Reusable asset library
 
-`assets/` now contains two original pixel backgrounds, three CC0 sprite packs, three CC0 music tracks and three CC0 sound packs. See [`docs/asset-library.md`](docs/asset-library.md) for previews, intended uses and source links, and [`catalog/asset-library.json`](catalog/asset-library.json) for machine-readable provenance and hashes. These files are stocked for future productions; the current production schema still uses its built-in procedural visuals and audio presets.
+`assets/` now contains four original pixel backgrounds (two portrait and two landscape), three CC0 sprite packs, three CC0 music tracks and three CC0 sound packs. See [`docs/asset-library.md`](docs/asset-library.md) for previews, intended uses and source links, and [`catalog/asset-library.json`](catalog/asset-library.json) for machine-readable provenance and hashes. These files are stocked for future productions; the current production schema still uses its built-in procedural visuals and audio presets.
 
 ## Rendering in GitHub Actions
 
