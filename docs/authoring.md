@@ -76,6 +76,19 @@ npm run validate -- productions/my-short/production.json
 
 Validation rejects unknown actors, unsupported poses/event kinds, invalid numeric values and timed events that extend past the production duration.
 
+## Portrait and landscape
+
+The canvas is part of each production, so both formats use the same events and renderer:
+
+| Format | Logical canvas | Output scale | MP4 size | Typical use |
+| --- | --- | --- | --- | --- |
+| Vertical | 270×480 | 4 | 1080×1920 | Shorts |
+| Landscape | 480×270 | 4 | 1920×1080 | Standard video and long-form episodes |
+
+`productions/landscape-pilot/production.json` is a working 16:9 example using `office-night-wide`. For longer videos, set `meta.duration` to the intended number of seconds and divide the timeline into sections. Events still use absolute seconds, so a 10-minute production ends at 600. Check text legibility and actor spacing at the final 1920×1080 output size.
+
+The preview studio and review gallery read the canvas aspect ratio from the production. They do not require a separate vertical or horizontal renderer.
+
 ## 6. Promote repeated ideas
 
 If several productions repeat the same low-level event pattern, do not continue copying it. Promote that pattern into a reusable factory component or template and document it in the catalog.

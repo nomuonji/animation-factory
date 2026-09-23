@@ -13,8 +13,10 @@
     "validate": "node tools/validate-production.mjs",
     "validate:demo": "node tools/validate-production.mjs productions/demo/production.json",
     "validate:showcase": "node tools/validate-production.mjs productions/component-showcase/production.json",
+    "validate:landscape": "node tools/validate-production.mjs productions/landscape-pilot/production.json",
     "render": "node tools/render-production.mjs",
     "render:showcase": "node tools/render-production.mjs component-showcase",
+    "render:landscape": "node tools/render-production.mjs landscape-pilot",
     "review:package": "node tools/package-review.mjs",
     "review:build": "node tools/build-review-site.mjs"
   },

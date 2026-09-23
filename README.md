@@ -13,7 +13,7 @@ The repository is designed so an AI agent can behave like a director: choose act
 - Procedural pixel actors and props
 - Reusable presentation/effect component layer
 - Deterministic timestamp renderer
-- Playwright PNG frame capture
+- Playwright PNG frame capture streamed to FFmpeg
 - FFmpeg MP4 output
 - TTS / procedural BGM / procedural SFX audio pipeline
 - FFmpeg audio mixing and final A/V mux
@@ -43,7 +43,7 @@ npx playwright install chromium
 npm run render -- demo
 ```
 
-FFmpeg must be available on `PATH`. The default logical canvas is 270x480; with `outputScale: 4`, the renderer creates a 1080x1920 H.264 MP4 using nearest-neighbor scaling.
+FFmpeg must be available on `PATH`. A 270x480 canvas with `outputScale: 4` creates a 1080x1920 vertical MP4; a 480x270 canvas creates a 1920x1080 landscape MP4. Both use nearest-neighbor scaling.
 
 ## Repository shape
 
@@ -77,7 +77,7 @@ validator
   ↓
 Animation Factory runtime
   ↓
-deterministic PNG frames
+deterministic PNG frames streamed to FFmpeg
   ↓
 FFmpeg
   ↓
@@ -99,6 +99,8 @@ npm run render -- my-production
 `productions/demo/production.json` is the original compact overtime RPG demo.
 
 `productions/component-showcase/production.json` demonstrates the broader component library, including speech bubbles, procedural props, actor emotes, particles, status UI, screen flash, camera pan, zoom, shake and fade transitions. It also contains a complete audio plan: actor-specific Japanese TTS, procedural BGM and synchronized SFX.
+
+`productions/landscape-pilot/production.json` demonstrates a 16:9 composition, 1920x1080 output and the `office-night-wide` environment. The same production format supports longer absolute timelines. See `docs/authoring.md` and `docs/rendering.md` for format and runtime guidance.
 
 ## Browser review
 

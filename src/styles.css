@@ -115,9 +115,9 @@ button:disabled { opacity: .5; cursor: wait; }
   place-items: center;
   padding: 28px;
 }
-.phone-frame {
-  height: min(88vh, 880px);
-  aspect-ratio: 9 / 16;
+.preview-frame {
+  width: min(100%, calc(88vh * var(--stage-ratio)));
+  aspect-ratio: var(--stage-aspect);
   border-radius: 22px;
   overflow: hidden;
   border: 1px solid #363c49;
@@ -138,9 +138,9 @@ button:disabled { opacity: .5; cursor: wait; }
 .render-mode .preview-shell {
   padding: 0;
 }
-.render-mode .phone-frame {
-  width: 270px;
-  height: 480px;
+.render-mode .preview-frame {
+  width: var(--logical-width);
+  height: var(--logical-height);
   border: 0;
   border-radius: 0;
   box-shadow: none;
@@ -149,5 +149,5 @@ button:disabled { opacity: .5; cursor: wait; }
   #app { grid-template-columns: 1fr; }
   .panel { border-right: 0; border-bottom: 1px solid #242833; }
   .preview-shell { padding: 18px; }
-  .phone-frame { width: min(90vw, 420px); height: auto; }
+  .preview-frame { width: min(90vw, calc(75vh * var(--stage-ratio))); }
 }

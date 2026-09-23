@@ -1,0 +1,47 @@
+{
+  "meta": {
+    "id": "landscape-pilot",
+    "title": "深夜のひらめき",
+    "description": "横型16:9の画面構成とレンダリングを確認する、短いパイロット作品。",
+    "duration": 20
+  },
+  "canvas": { "width": 480, "height": 270, "fps": 24, "outputScale": 4 },
+  "environment": "office-night-wide",
+  "actors": [
+    { "id": "worker", "archetype": "salaryman", "x": 136, "y": 215, "scale": 2, "facing": "right", "pose": "dead-inside" },
+    { "id": "boss", "archetype": "boss", "x": 444, "y": 215, "scale": 2, "facing": "left", "pose": "idle" }
+  ],
+  "events": [
+    { "kind": "transition.fade", "at": 0, "mode": "in", "duration": 0.7 },
+    { "kind": "ui.caption", "at": 0.5, "duration": 2.3, "text": "IDEA: 0 / 100" },
+    { "kind": "ui.speech", "at": 2.7, "actor": "worker", "duration": 1.7, "text": "もう浮かばない…" },
+    { "kind": "actor.move", "at": 4.4, "actor": "boss", "x": 339, "y": 215, "duration": 1.5 },
+    { "kind": "effect.exclamation", "at": 5.8, "actor": "worker", "duration": 0.6 },
+    { "kind": "actor.pose", "at": 5.9, "actor": "worker", "pose": "surprised" },
+    { "kind": "prop.show", "at": 6, "prop": "coffee", "x": 283, "y": 157, "duration": 2.8, "scale": 1.5 },
+    { "kind": "ui.speech", "at": 6.2, "actor": "boss", "duration": 1.5, "text": "少し休もう。" },
+    { "kind": "camera.zoom", "at": 8, "zoom": 1.1, "duration": 0.6 },
+    { "kind": "effect.particles", "at": 8.4, "actor": "worker", "particle": "spark", "duration": 1 },
+    { "kind": "effect.screenFlash", "at": 8.6, "duration": 0.25, "color": "#fff3b0", "strength": 0.4 },
+    { "kind": "actor.pose", "at": 8.8, "actor": "worker", "pose": "idle" },
+    { "kind": "effect.damage", "at": 9, "actor": "worker", "duration": 1.2, "text": "IDEA +100" },
+    { "kind": "camera.zoom", "at": 10, "zoom": 1, "duration": 0.6 },
+    { "kind": "ui.speech", "at": 11, "actor": "worker", "duration": 1.6, "text": "それ、いい案かも！" },
+    { "kind": "effect.emote", "at": 11.1, "actor": "worker", "emote": "heart", "duration": 1.2 },
+    { "kind": "ui.rpgStatus", "at": 13, "duration": 2.5, "title": "NEW IDEA", "lines": ["REST: +100", "TEAM: 2 / 2"] },
+    { "kind": "ui.caption", "at": 16, "duration": 2.3, "text": "GOOD IDEAS NEED A BREAK" },
+    { "kind": "transition.fade", "at": 19.2, "mode": "out", "duration": 0.8 }
+  ],
+  "audio": {
+    "masterVolume": 1.4,
+    "tts": { "provider": "none" },
+    "bgm": [
+      { "id": "office-bed", "preset": "office-night", "at": 0, "duration": 20, "volume": 1.6, "fadeIn": 0.6, "fadeOut": 1 }
+    ],
+    "sfx": [
+      { "id": "arrival", "preset": "alert", "at": 5.8, "volume": 1.1 },
+      { "id": "inspiration", "preset": "heal", "at": 8.5, "volume": 1.5 },
+      { "id": "idea", "preset": "coin", "at": 13, "volume": 1.2 }
+    ]
+  }
+}

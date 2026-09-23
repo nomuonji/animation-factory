@@ -61,9 +61,9 @@ const css = `
 *{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 75% 0,#18213a 0,transparent 35rem),#090b10;color:#eef1f6}
 a{color:inherit}.wrap{width:min(1180px,calc(100% - 32px));margin:0 auto;padding:38px 0 64px}.eyebrow{font:700 11px/1.2 ui-monospace,monospace;letter-spacing:.18em;color:#8fa8ed}
 h1{font-size:clamp(34px,6vw,72px);letter-spacing:-.055em;line-height:.95;margin:10px 0 12px}.lede{color:#9da7b9;max-width:720px;font-size:15px;line-height:1.65}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px;margin-top:32px}.card{display:block;text-decoration:none;border:1px solid #29303d;background:rgba(18,22,31,.88);border-radius:15px;padding:18px;transition:.15s transform,.15s border-color}.card:hover{transform:translateY(-2px);border-color:#53678f}.card h2{font-size:18px;margin:10px 0 8px}.muted{color:#8d97aa}.meta{display:flex;flex-wrap:wrap;gap:7px;margin-top:14px}.badge{font:600 11px/1 ui-monospace,monospace;border:1px solid #313a49;border-radius:999px;padding:7px 9px;color:#b9c5dc}.topbar{display:flex;justify-content:space-between;gap:20px;align-items:center;margin-bottom:28px}.back{color:#a8b6d4;text-decoration:none}.video-shell{display:grid;grid-template-columns:minmax(0,420px) 1fr;gap:26px;align-items:start}.video-shell video{width:100%;aspect-ratio:9/16;background:#000;border:1px solid #303848;border-radius:16px}.panel{border:1px solid #29303d;background:#11151e;border-radius:15px;padding:20px}.panel h2{margin:0 0 12px}.sheet{width:100%;border-radius:10px;border:1px solid #29303d;margin-top:12px}.actions{display:flex;flex-wrap:wrap;gap:9px;margin-top:18px}.button{display:inline-block;text-decoration:none;border:1px solid #38445a;background:#171d29;padding:10px 12px;border-radius:9px;font-weight:700;font-size:13px}.json{margin-top:24px}.json pre{overflow:auto;white-space:pre-wrap;background:#07090e;border:1px solid #242b37;padding:16px;border-radius:12px;color:#bec8dc;font:12px/1.55 ui-monospace,monospace}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px;margin-top:32px}.card{display:block;text-decoration:none;border:1px solid #29303d;background:rgba(18,22,31,.88);border-radius:15px;padding:18px;transition:.15s transform,.15s border-color}.card:hover{transform:translateY(-2px);border-color:#53678f}.card h2{font-size:18px;margin:10px 0 8px}.muted{color:#8d97aa}.meta{display:flex;flex-wrap:wrap;gap:7px;margin-top:14px}.badge{font:600 11px/1 ui-monospace,monospace;border:1px solid #313a49;border-radius:999px;padding:7px 9px;color:#b9c5dc}.topbar{display:flex;justify-content:space-between;gap:20px;align-items:center;margin-bottom:28px}.back{color:#a8b6d4;text-decoration:none}.video-shell{display:grid;grid-template-columns:minmax(0,420px) 1fr;gap:26px;align-items:start}.video-shell.landscape{grid-template-columns:minmax(0,760px) minmax(280px,1fr)}.video-shell video{width:100%;aspect-ratio:var(--video-aspect,9/16);background:#000;border:1px solid #303848;border-radius:16px}.panel{border:1px solid #29303d;background:#11151e;border-radius:15px;padding:20px}.panel h2{margin:0 0 12px}.sheet{width:100%;border-radius:10px;border:1px solid #29303d;margin-top:12px}.actions{display:flex;flex-wrap:wrap;gap:9px;margin-top:18px}.button{display:inline-block;text-decoration:none;border:1px solid #38445a;background:#171d29;padding:10px 12px;border-radius:9px;font-weight:700;font-size:13px}.json{margin-top:24px}.json pre{overflow:auto;white-space:pre-wrap;background:#07090e;border:1px solid #242b37;padding:16px;border-radius:12px;color:#bec8dc;font:12px/1.55 ui-monospace,monospace}
 .empty{margin-top:30px;border:1px dashed #354056;padding:24px;border-radius:14px;color:#9ca8bc}
-@media(max-width:760px){.video-shell{grid-template-columns:1fr}.video-shell video{max-height:72vh}.wrap{width:min(100% - 22px,1180px);padding-top:24px}}
+@media(max-width:760px){.video-shell,.video-shell.landscape{grid-template-columns:1fr}.video-shell video{max-height:72vh}.wrap{width:min(100% - 22px,1180px);padding-top:24px}}
 `;
 
 await rm(siteRoot, { recursive: true, force: true });
@@ -106,6 +106,11 @@ for (const dirName of artifactDirs) {
   const eventKinds = [
     ...new Set((production.events ?? []).map((event) => event.kind))
   ].sort();
+  const width = Number(production.canvas?.width);
+  const height = Number(production.canvas?.height);
+  const hasDimensions = Number.isFinite(width) && Number.isFinite(height) && width > 0 && height > 0;
+  const orientation = hasDimensions ? (width > height ? "landscape" : "portrait") : "unknown";
+  const aspect = hasDimensions ? `${width}/${height}` : "9/16";
 
   reviews.push({
     folder,
@@ -118,6 +123,7 @@ for (const dirName of artifactDirs) {
     renderedAt,
     eventKinds,
     hasAudio: metadata.hasAudio ?? Boolean(production.audio),
+    orientation,
     production
   });
 
@@ -131,7 +137,7 @@ for (const dirName of artifactDirs) {
 <title>${escapeHtml(title)} · Animation Factory Review</title><style>${css}</style></head>
 <body><main class="wrap">
 <div class="topbar"><a class="back" href="../">← Review Gallery</a><span class="eyebrow">ANIMATION FACTORY REVIEW</span></div>
-<div class="video-shell">
+<div class="video-shell ${orientation === "landscape" ? "landscape" : ""}" style="--video-aspect:${aspect}">
   <video controls playsinline preload="metadata" src="./video.mp4"></video>
   <section class="panel">
     <div class="eyebrow">${escapeHtml(folder)}</div>
@@ -139,6 +145,7 @@ for (const dirName of artifactDirs) {
     <p class="lede">${escapeHtml(description || "Rendered production review.")}</p>
     <div class="meta">
       ${duration != null ? `<span class="badge">${escapeHtml(duration)}s</span>` : ""}
+      ${hasDimensions ? `<span class="badge">${width}×${height} · ${orientation}</span>` : ""}
       <span class="badge">${escapeHtml(shortSha)}</span>
       <span class="badge">${metadata.hasAudio ?? Boolean(production.audio) ? "audio" : "silent"}</span>
       <span class="badge">${escapeHtml(formatDate(renderedAt))}</span>
@@ -173,6 +180,7 @@ const gallery = reviews.length
   <p class="muted">${escapeHtml(review.description || "Rendered production review.")}</p>
   <div class="meta">
     ${review.duration != null ? `<span class="badge">${escapeHtml(review.duration)}s</span>` : ""}
+    <span class="badge">${escapeHtml(review.orientation)}</span>
     <span class="badge">${review.hasAudio ? "audio" : "silent"}</span>
     <span class="badge">${escapeHtml(review.commitSha?.slice(0, 8) ?? "unknown")}</span>
   </div>

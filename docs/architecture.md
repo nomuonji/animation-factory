@@ -13,7 +13,7 @@ An agent should normally edit only a production definition. Runtime changes are 
 
 ## Current renderer
 
-The first renderer is Phaser 4. The logical vertical canvas is 270x480 and is intended to be upscaled using nearest-neighbor filtering for final delivery.
+The renderer is Phaser 4. Each production selects its own logical canvas. The standard portrait preset is 270x480; the landscape preset is 480x270. Both can be upscaled 4× with nearest-neighbor filtering for final delivery.
 
 The initial actor system is procedural: character frames are authored as tiny character grids and rendered as hard-edged rectangles. This keeps the repository text-native and lets agents add or adjust pixel poses without binary image tooling. Sprite-sheet assets can be added behind the same actor abstraction later.
 
@@ -32,8 +32,8 @@ Events use absolute seconds. This makes a production easy to inspect, diff and g
 
 The browser UI currently supports a real-time WebM preview export via `canvas.captureStream()`.
 
-The intended production renderer is deterministic:
+The production renderer is deterministic:
 
-`production.json -> fixed-time frame stepping -> PNG frames -> FFmpeg -> MP4`
+`production.json -> fixed-time frame stepping -> PNG pipe -> FFmpeg -> MP4`
 
-That exporter should remain outside individual productions so every channel can share it.
+The encoder consumes frames as they are captured, rather than keeping a PNG directory for the entire video. That exporter remains outside individual productions so every channel can share it.

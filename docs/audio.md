@@ -4,7 +4,7 @@ Audio is deliberately separate from Phaser rendering.
 
 ```text
 production.json
-├─ visual timeline -> deterministic PNG frames -> H.264 video
+├─ visual timeline -> deterministic PNG stream -> H.264 video
 └─ audio config
    ├─ TTS
    ├─ procedural BGM
