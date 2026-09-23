@@ -6,6 +6,31 @@ function block(scene: Phaser.Scene, x: number, y: number, width: number, height:
 
 export function renderEnvironment(scene: Phaser.Scene, id: string, width: number, height: number): void {
   block(scene, width / 2, height / 2, width, height, 0x0d1120, -20);
+  if (id === "office-night-wide") {
+    const sx = width / 480;
+    const sy = height / 270;
+    const tile = (x: number, y: number, w: number, h: number, color: number, depth = -10) =>
+      block(scene, x * sx, y * sy, w * sx, h * sy, color, depth);
+
+    tile(240, 76, 454, 136, 0x1a2030, -18);
+    tile(240, 210, 480, 120, 0x292b34, -17);
+    for (let index = 0; index < 6; index += 1) {
+      const x = 55 + index * 74;
+      tile(x, 73, 54, 82, 0x090d19, -16);
+      tile(x, 73, 2, 82, 0x415071, -15);
+      tile(x + 15, 95, 8, 18, 0x16233b, -15);
+      tile(x - 16, 100, 5, 9, 0x2e3c50, -15);
+    }
+    for (const x of [118, 362]) {
+      tile(x, 171, 170, 8, 0x76533e, -7);
+      tile(x - 68, 193, 7, 39, 0x4d382f, -7);
+      tile(x + 68, 193, 7, 39, 0x4d382f, -7);
+      tile(x - 27, 154, 45, 28, 0x11151d, -6);
+      tile(x - 27, 154, 37, 20, 0x8fb3bd, -5);
+    }
+    tile(240, 238, 480, 4, 0x171a24, -2);
+    return;
+  }
   if (id !== "office-night") {
     block(scene, width / 2, height * 0.8, width, height * 0.4, 0x24293a, -10);
     return;

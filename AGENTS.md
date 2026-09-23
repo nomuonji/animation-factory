@@ -21,7 +21,8 @@ This repository is a reusable animation factory, not a collection of one-off vid
 
 ## Pixel conventions
 
-- Author at a low logical resolution. Default vertical format: 270x480.
+- Author at a low logical resolution. Use 270x480 for vertical shorts and 480x270 for 16:9 landscape work when 1080p output is needed at 4× scale.
+- Keep UI, actor placement, camera moves and review layout inside the chosen canvas. Long-form productions use the same absolute timeline; plan sections before adding events.
 - Keep positions and sizes on integer coordinates when practical.
 - Prefer hard edges and discrete poses over smooth vector-looking motion.
 - Final output can be upscaled with nearest-neighbor filtering.

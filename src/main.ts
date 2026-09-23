@@ -34,6 +34,10 @@ if (renderMode) document.body.classList.add("render-mode");
 
 const app = document.querySelector<HTMLDivElement>("#app");
 if (!app) throw new Error("#app was not found.");
+app.style.setProperty("--logical-width", `${production.canvas.width}px`);
+app.style.setProperty("--logical-height", `${production.canvas.height}px`);
+app.style.setProperty("--stage-aspect", `${production.canvas.width} / ${production.canvas.height}`);
+app.style.setProperty("--stage-ratio", String(production.canvas.width / production.canvas.height));
 
 app.innerHTML = `
   <aside class="panel">
@@ -73,7 +77,7 @@ app.innerHTML = `
     <p id="status" class="status">${renderMode ? "Deterministic render mode." : "Ready."}</p>
   </aside>
   <main class="preview-shell">
-    <div class="phone-frame">
+    <div class="preview-frame">
       <div id="stage"></div>
     </div>
   </main>

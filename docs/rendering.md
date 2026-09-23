@@ -4,7 +4,7 @@ Animation Factory renders visuals and audio as separate deterministic pipelines 
 
 ## Visual pipeline
 
-`?render=1&production=<folder>` enables deterministic visual mode. For every frame the runtime computes state from an explicit timestamp, captures the logical Phaser canvas as PNG, then FFmpeg encodes the frame sequence to an H.264 video-only MP4.
+`?render=1&production=<folder>` enables deterministic visual mode. For every frame the runtime computes state from an explicit timestamp and captures the logical Phaser canvas as PNG. The renderer pipes each PNG straight to FFmpeg, which encodes an H.264 video-only MP4. It does not keep a directory of every frame, so long-form videos do not fill the runner with temporary PNGs.
 
 ## Audio pipeline
 
@@ -38,6 +38,7 @@ Render:
 ```bash
 npm run render -- demo
 npm run render -- component-showcase
+npm run render -- landscape-pilot
 ```
 
 or:
@@ -50,7 +51,6 @@ Temporary work is written under:
 
 ```text
 .render-cache/<production>/
-├─ frames/
 ├─ audio/
 │  ├─ tts-*.wav
 │  ├─ bgm-*.wav
@@ -66,6 +66,7 @@ outputs/<production-meta-id>.mp4
 ```
 
 A 270x480 production with `outputScale: 4` becomes a 1080x1920 H.264/AAC MP4.
+The 480x270 landscape preset with the same scale becomes 1920x1080. Rendering time still grows with `duration × fps`; reserve more time for long episodes and use the preview studio to inspect the timeline before a full export. The Actions job allows up to 180 minutes and remains manual-only.
 
 ## GitHub Actions
 

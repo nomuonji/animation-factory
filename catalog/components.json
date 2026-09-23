@@ -25,6 +25,12 @@
       "events": {}
     },
     {
+      "id": "office-night-wide",
+      "kind": "environment",
+      "description": "Wide pixel office environment for landscape productions.",
+      "events": {}
+    },
+    {
       "id": "dialogue-box",
       "kind": "ui",
       "description": "RPG-style fixed dialogue box.",

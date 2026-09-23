@@ -1,18 +1,25 @@
 import { spawn } from "node:child_process";
-import { copyFile, mkdir, readFile, rm, writeFile } from "node:fs/promises";
-import { join } from "node:path";
+import { once } from "node:events";
+import { copyFile, mkdir, readFile, rm } from "node:fs/promises";
+import { join, resolve, sep } from "node:path";
 import process from "node:process";
 import { fileURLToPath } from "node:url";
 import { chromium } from "playwright";
 import { buildAudio } from "./audio-pipeline.mjs";
 
 const productionFolder = process.argv[2] ?? "demo";
+if (!/^[A-Za-z0-9._-]+$/.test(productionFolder) || productionFolder === "." || productionFolder === "..") {
+  throw new Error(`Unsafe production folder: ${productionFolder}`);
+}
 const root = fileURLToPath(new URL("..", import.meta.url));
 const host = "127.0.0.1";
 const port = 4173;
 const baseUrl = `http://${host}:${port}`;
-const cacheDir = join(root, ".render-cache", productionFolder);
-const framesDir = join(cacheDir, "frames");
+const cacheRoot = resolve(root, ".render-cache");
+const cacheDir = resolve(cacheRoot, productionFolder);
+if (!cacheDir.startsWith(`${cacheRoot}${sep}`)) {
+  throw new Error(`Render cache path escapes workspace: ${cacheDir}`);
+}
 const outputsDir = join(root, "outputs");
 const productionPath = join(
   root,
@@ -80,79 +87,80 @@ async function ensureFfmpeg() {
   });
 }
 
-async function renderFrames(page, metadata) {
+async function renderVideo(page, metadata) {
   const totalFrames = Math.ceil(metadata.duration * metadata.fps);
-  const digits = Math.max(6, String(totalFrames).length);
+  const videoPath = join(cacheDir, "video-only.mp4");
 
   console.log(
     `Rendering ${metadata.title}: ${totalFrames} frames @ ${metadata.fps}fps (${metadata.width}x${metadata.height})`
   );
 
-  for (let frame = 0; frame < totalFrames; frame += 1) {
-    const seconds = frame / metadata.fps;
-
-    const dataUrl = await page.evaluate(async (time) => {
-      const factory = window.__ANIMATION_FACTORY__;
-      if (!factory) throw new Error("Render bridge disappeared.");
-
-      factory.renderAt(time);
-
-      await new Promise((resolvePromise) =>
-        requestAnimationFrame(() => resolvePromise())
-      );
-      await new Promise((resolvePromise) =>
-        requestAnimationFrame(() => resolvePromise())
-      );
-
-      const canvas = document.querySelector("canvas");
-      if (!(canvas instanceof HTMLCanvasElement)) {
-        throw new Error("Canvas was not found.");
-      }
-      return canvas.toDataURL("image/png");
-    }, seconds);
-
-    const encoded = dataUrl.slice(dataUrl.indexOf(",") + 1);
-    const filename = `${String(frame).padStart(digits, "0")}.png`;
-    await writeFile(join(framesDir, filename), Buffer.from(encoded, "base64"));
-
-    if (
-      frame === 0 ||
-      frame === totalFrames - 1 ||
-      frame % metadata.fps === 0
-    ) {
-      console.log(`  frame ${frame + 1}/${totalFrames}`);
-    }
-  }
-
-  return {
-    digits,
-    inputPattern: join(framesDir, `%0${digits}d.png`)
-  };
-}
-
-async function renderVideoOnly(metadata, inputPattern) {
-  const videoPath = join(cacheDir, "video-only.mp4");
-
-  await run(ffmpegCommand, [
+  const encoder = spawn(ffmpegCommand, [
+    "-hide_banner", "-loglevel", "error", "-nostats",
     "-y",
-    "-framerate",
-    String(metadata.fps),
-    "-i",
-    inputPattern,
-    "-vf",
-    `scale=iw*${metadata.outputScale}:ih*${metadata.outputScale}:flags=neighbor`,
-    "-c:v",
-    "libx264",
-    "-preset",
-    "medium",
-    "-crf",
-    "18",
-    "-pix_fmt",
-    "yuv420p",
-    "-movflags",
-    "+faststart",
+    "-f", "image2pipe",
+    "-framerate", String(metadata.fps),
+    "-c:v", "png",
+    "-i", "pipe:0",
+    "-vf", `scale=iw*${metadata.outputScale}:ih*${metadata.outputScale}:flags=neighbor`,
+    "-c:v", "libx264",
+    "-preset", "medium",
+    "-crf", "18",
+    "-pix_fmt", "yuv420p",
+    "-movflags", "+faststart",
     videoPath
-  ]);
+  ], { cwd: root, stdio: ["pipe", "inherit", "inherit"] });
+  // A closed encoder pipe can emit EPIPE before the process exit is observed.
+  encoder.stdin.on("error", () => {});
+  const encoded = new Promise((resolvePromise, reject) => {
+    encoder.on("error", reject);
+    encoder.on("exit", (code) => {
+      if (code === 0) resolvePromise();
+      else reject(new Error(`FFmpeg video encoding exited with code ${code}`));
+    });
+  });
+  encoded.catch(() => {});
+
+  try {
+    for (let frame = 0; frame < totalFrames; frame += 1) {
+      const seconds = frame / metadata.fps;
+
+      const dataUrl = await page.evaluate(async (time) => {
+        const factory = window.__ANIMATION_FACTORY__;
+        if (!factory) throw new Error("Render bridge disappeared.");
+
+        factory.renderAt(time);
+
+        await new Promise((resolvePromise) =>
+          requestAnimationFrame(() => resolvePromise())
+        );
+        await new Promise((resolvePromise) =>
+          requestAnimationFrame(() => resolvePromise())
+        );
+
+        const canvas = document.querySelector("canvas");
+        if (!(canvas instanceof HTMLCanvasElement)) {
+          throw new Error("Canvas was not found.");
+        }
+        return canvas.toDataURL("image/png");
+      }, seconds);
+
+      const png = Buffer.from(dataUrl.slice(dataUrl.indexOf(",") + 1), "base64");
+      if (!encoder.stdin.write(png)) {
+        await once(encoder.stdin, "drain");
+      }
+
+      if (frame === 0 || frame === totalFrames - 1 || frame % metadata.fps === 0) {
+        console.log(`  frame ${frame + 1}/${totalFrames}`);
+      }
+    }
+    encoder.stdin.end();
+    await encoded;
+  } catch (error) {
+    encoder.kill();
+    await encoded.catch(() => {});
+    throw error;
+  }
 
   return videoPath;
 }
@@ -164,6 +172,7 @@ async function muxFinal({ videoPath, audioPath, outputPath, duration }) {
   }
 
   await run(ffmpegCommand, [
+    "-hide_banner", "-loglevel", "error", "-nostats",
     "-y",
     "-i",
     videoPath,
@@ -193,7 +202,7 @@ async function main() {
   const production = JSON.parse(await readFile(productionPath, "utf8"));
 
   await rm(cacheDir, { recursive: true, force: true });
-  await mkdir(framesDir, { recursive: true });
+  await mkdir(cacheDir, { recursive: true });
   await mkdir(outputsDir, { recursive: true });
 
   const vite = startVite();
@@ -231,8 +240,7 @@ async function main() {
       throw new Error("Animation Factory render bridge was not initialized.");
     }
 
-    const { inputPattern } = await renderFrames(page, metadata);
-    const videoPath = await renderVideoOnly(metadata, inputPattern);
+    const videoPath = await renderVideo(page, metadata);
 
     const audioPath = await buildAudio({
       production,
