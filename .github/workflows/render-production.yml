@@ -32,15 +32,30 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y ffmpeg fonts-noto-cjk espeak-ng
 
+      - name: Validate production input
+        shell: bash
+        run: |
+          set -euo pipefail
+          production="${{ inputs.production }}"
+          if ! [[ "$production" =~ ^[A-Za-z0-9._-]+$ ]]; then
+            echo "Unsafe production folder: $production" >&2
+            exit 2
+          fi
+          test -f "productions/$production/production.json"
+
       - name: Validate production
         run: node tools/validate-production.mjs "productions/${{ inputs.production }}/production.json"
 
       - name: Render MP4
         run: npm run render -- "${{ inputs.production }}"
 
-      - name: Upload MP4
+      - name: Build browser review package
+        run: node tools/package-review.mjs "${{ inputs.production }}"
+
+      - name: Upload render + review artifact
         uses: actions/upload-artifact@v4
         with:
           name: animation-${{ inputs.production }}
-          path: outputs/*.mp4
+          path: review-package/
           if-no-files-found: error
+          retention-days: 90

@@ -17,6 +17,7 @@ The repository is designed so an AI agent can behave like a director: choose act
 - FFmpeg MP4 output
 - TTS / procedural BGM / procedural SFX audio pipeline
 - FFmpeg audio mixing and final A/V mux
+- GitHub Pages Review Gallery for browser playback of final MP4s
 - Optional browser WebM preview recording
 
 Phaser is intentionally hidden behind factory components. Production files should not call Phaser directly.
@@ -98,6 +99,21 @@ npm run render -- my-production
 `productions/demo/production.json` is the original compact overtime RPG demo.
 
 `productions/component-showcase/production.json` demonstrates the broader component library, including speech bubbles, procedural props, actor emotes, particles, status UI, screen flash, camera pan, zoom, shake and fade transitions. It also contains a complete audio plan: actor-specific Japanese TTS, procedural BGM and synchronized SFX.
+
+## Browser review
+
+After a successful manual render, the separate `Review Pages` workflow collects the latest successful artifact for each production and publishes a browser review gallery.
+
+Once GitHub Pages is enabled with **GitHub Actions** as the source:
+
+```text
+https://nomuonji.github.io/animation-factory/review/
+https://nomuonji.github.io/animation-factory/review/component-showcase/
+```
+
+Each review page shows the actual FFmpeg-produced MP4, contact sheet, production metadata, component inventory, source commit and workflow run.
+
+See `docs/review.md`.
 
 ## Rendering in GitHub Actions
 

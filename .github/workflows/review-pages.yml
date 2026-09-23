@@ -1,0 +1,130 @@
+name: Review Pages
+
+on:
+  workflow_run:
+    workflows: ["Render production"]
+    types: [completed]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: animation-review-pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    if: ${{ github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout review builder from main
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: main
+
+      - name: Setup Node
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: "22"
+
+      - name: Configure Pages
+        uses: actions/configure-pages@45bfe0192ca1faeb007ade9deae92b16b8254a0d # v6.0.0
+
+      - name: Collect latest successful render per production
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf review-artifacts review-site
+          mkdir -p review-artifacts
+
+          declare -A seen=()
+          count=0
+
+          mapfile -t run_ids < <(
+            gh api "repos/${GITHUB_REPOSITORY}/actions/workflows/render-production.yml/runs?status=success&branch=main&per_page=50" \
+              --jq '.workflow_runs[].id'
+          )
+
+          for run_id in "${run_ids[@]}"; do
+            artifact_name="$(
+              gh api "repos/${GITHUB_REPOSITORY}/actions/runs/${run_id}/artifacts?per_page=100" \
+                --jq '.artifacts[] | select(.expired == false and (.name | startswith("animation-"))) | .name' \
+                | head -n 1 || true
+            )"
+
+            if [ -z "$artifact_name" ]; then
+              continue
+            fi
+
+            production="${artifact_name#animation-}"
+            if ! [[ "$production" =~ ^[A-Za-z0-9._-]+$ ]]; then
+              echo "Skipping unsafe artifact production name: $production" >&2
+              continue
+            fi
+
+            if [ "${seen[$production]+yes}" = "yes" ]; then
+              continue
+            fi
+
+            mkdir -p "review-artifacts/$production"
+            if gh run download "$run_id" \
+              --repo "$GITHUB_REPOSITORY" \
+              --name "$artifact_name" \
+              --dir "review-artifacts/$production"; then
+              seen[$production]=1
+              count=$((count + 1))
+              echo "Collected $production from run $run_id"
+            else
+              rm -rf "review-artifacts/$production"
+            fi
+
+            if [ "$count" -ge 20 ]; then
+              break
+            fi
+          done
+
+          echo "Collected $count production review artifact(s)."
+
+      - name: Build Review Gallery
+        run: node tools/build-review-site.mjs review-artifacts review-site
+
+      - name: Assert public review payload
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -s review-site/index.html
+          test -s review-site/review/index.html
+
+          if find review-site -type f \( -name 'READY.json' -o -name 'APPROVED.json' \) | grep -q .; then
+            echo "Internal gate marker leaked into review site" >&2
+            exit 2
+          fi
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
+        with:
+          path: review-site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}review/
+
+    steps:
+      - name: Deploy Review Gallery
+        id: deployment
+        uses: actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346 # v5.0.1

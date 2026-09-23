@@ -30,3 +30,14 @@ This repository is a reusable animation factory, not a collection of one-off vid
 `idea -> production definition -> preview -> validate -> visual render + audio build -> FFmpeg mux -> reusable component promotion`
 
 If a production needs a new effect, implement it generically, document it in the catalog, then use it from the production definition.
+
+
+## Human review
+
+Rendered productions are reviewable from GitHub Pages. Treat the final MP4 review page, not only the live Phaser preview, as the human-facing QA artifact.
+
+Expected stable URL:
+
+`https://nomuonji.github.io/animation-factory/review/<production-folder>/`
+
+When changing a reviewed production, re-render it so the Review Pages workflow can replace that production's gallery entry with the latest successful artifact.
