@@ -1,0 +1,115 @@
+{
+  "version": 1,
+  "checkedOn": "2026-09-23",
+  "backgrounds": [
+    {
+      "id": "rainy-city-alley",
+      "master": "assets/backgrounds/rainy-city-alley.png",
+      "logical": "assets/backgrounds/rainy-city-alley-270x480.png",
+      "origin": "Generated for this repository with OpenAI image generation",
+      "license": "Project-generated; do not label as CC0",
+      "use": "Night streets, mystery, introspective scenes"
+    },
+    {
+      "id": "summer-shrine",
+      "master": "assets/backgrounds/summer-shrine.png",
+      "logical": "assets/backgrounds/summer-shrine-270x480.png",
+      "origin": "Generated for this repository with OpenAI image generation",
+      "license": "Project-generated; do not label as CC0",
+      "use": "Fantasy, travel, summer, quiet discovery"
+    }
+  ],
+  "packs": [
+    {
+      "id": "pico-8-platformer",
+      "kind": "sprites",
+      "path": "assets/kenney/pico-8-platformer",
+      "source": "https://kenney.nl/assets/pico-8-platformer",
+      "archiveSha256": "869d8ef81e7436a0282fd4dec5161df87bf9ff1d668fd19f25ce2f4ae165a489",
+      "license": "CC0-1.0",
+      "licenseFile": "assets/kenney/pico-8-platformer/License.txt",
+      "use": "8x8 platform scenes, foreground tiles and character motion"
+    },
+    {
+      "id": "roguelike-characters",
+      "kind": "sprites",
+      "path": "assets/kenney/roguelike-characters",
+      "source": "https://kenney.nl/assets/roguelike-characters",
+      "archiveSha256": "05c4c0af7326584cfffbbb196571eb9e102981d2033e90e225c5ba8da8771284",
+      "license": "CC0-1.0",
+      "licenseFile": "assets/kenney/roguelike-characters/License.txt",
+      "use": "Modular pixel characters, equipment and items"
+    },
+    {
+      "id": "pixel-pack",
+      "kind": "sprites",
+      "path": "assets/kenney/pixel-pack",
+      "source": "https://kenney.nl/assets/pixel-pack",
+      "archiveSha256": "8a147f84d25cd3d2192837d9418822c2a61f889fc4f3a05f03230e7e2046944e",
+      "license": "CC0-1.0",
+      "licenseFile": "assets/kenney/pixel-pack/License.txt",
+      "use": "Tiny monochrome UI pixels and particle shapes"
+    },
+    {
+      "id": "interface-sounds",
+      "kind": "sfx",
+      "path": "assets/kenney/interface-sounds/Audio",
+      "source": "https://kenney.nl/assets/interface-sounds",
+      "archiveSha256": "f2193d072726d6758a5f7871b2dcc54dcce0d5c35c6f0a62f92549b327c81232",
+      "license": "CC0-1.0",
+      "licenseFile": "assets/kenney/interface-sounds/License.txt",
+      "use": "Menus, transitions, selection and confirmation"
+    },
+    {
+      "id": "impact-sounds",
+      "kind": "sfx",
+      "path": "assets/kenney/impact-sounds/Audio",
+      "source": "https://kenney.nl/assets/impact-sounds",
+      "archiveSha256": "029d734af1582474edf3a694d1b0cebc97c1c152f2f39fa34d4c2bafc5de77f8",
+      "license": "CC0-1.0",
+      "licenseFile": "assets/kenney/impact-sounds/License.txt",
+      "use": "Footsteps, hits, collisions and physical actions"
+    },
+    {
+      "id": "music-jingles",
+      "kind": "sfx",
+      "path": "assets/kenney/music-jingles/Audio",
+      "source": "https://kenney.nl/assets/music-jingles",
+      "archiveSha256": "b729ba57959bd58793d2c5cafa348aaf2655d354f3da35ec4729e03ec77197b8",
+      "license": "CC0-1.0",
+      "licenseFile": "assets/kenney/music-jingles/License.txt",
+      "use": "Title stings, reveals, wins and short transitions"
+    }
+  ],
+  "music": [
+    {
+      "id": "safe-space-loop",
+      "path": "assets/music/safe-space-loop.ogg",
+      "source": "https://opengameart.org/content/safe-space-0",
+      "author": "Tsorthan Grove",
+      "license": "CC0-1.0",
+      "sourceSha256": "159a2bb84cfdbd6a519699d7a76bb1d4305a1afcaccf941fbea5d09b063e66",
+      "sha256": "926737e1a00031367ee45ad948250a263e1b605820cdf26f035f6e404fb1c694",
+      "processing": "Original FLAC loop transcoded to Opus 160 kb/s",
+      "use": "Moody ambient scenes, night streets and safe rooms"
+    },
+    {
+      "id": "flowerbed-fields",
+      "path": "assets/music/flowerbed-fields.ogg",
+      "source": "https://opengameart.org/content/flowerbed-fields-loop",
+      "author": "Zane Little Music",
+      "license": "CC0-1.0",
+      "sha256": "99607b996cc43c1891afcbf7c2c8d8aad1009266cea358d4753e3c50b1332d36",
+      "use": "Upbeat adventures, cute scenes and opening sequences"
+    },
+    {
+      "id": "battle-music-loop",
+      "path": "assets/music/battle-music-loop.ogg",
+      "source": "https://opengameart.org/content/chiptune-battle-music",
+      "author": "pmiller",
+      "license": "CC0-1.0",
+      "sha256": "fef13a566090b3f9e8492dcee58e724373a90a0ca7e53171d1d0a03190623b30",
+      "use": "RPG fights, deadlines and escalating tension"
+    }
+  ]
+}
