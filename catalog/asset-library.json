@@ -4,6 +4,8 @@
   "backgrounds": [
     {
       "id": "rainy-city-alley",
+      "orientation": "portrait",
+      "logicalSize": "270x480",
       "master": "assets/backgrounds/rainy-city-alley.png",
       "logical": "assets/backgrounds/rainy-city-alley-270x480.png",
       "origin": "Generated for this repository with OpenAI image generation",
@@ -12,11 +14,33 @@
     },
     {
       "id": "summer-shrine",
+      "orientation": "portrait",
+      "logicalSize": "270x480",
       "master": "assets/backgrounds/summer-shrine.png",
       "logical": "assets/backgrounds/summer-shrine-270x480.png",
       "origin": "Generated for this repository with OpenAI image generation",
       "license": "Project-generated; do not label as CC0",
       "use": "Fantasy, travel, summer, quiet discovery"
+    },
+    {
+      "id": "office-night-wide",
+      "orientation": "landscape",
+      "logicalSize": "480x270",
+      "master": "assets/backgrounds/office-night-wide.png",
+      "logical": "assets/backgrounds/office-night-wide-480x270.png",
+      "origin": "Generated for this repository with OpenAI image generation",
+      "license": "Project-generated; do not label as CC0",
+      "use": "Late-night office scenes, dialogue, work and deadlines"
+    },
+    {
+      "id": "rainy-neighborhood-wide",
+      "orientation": "landscape",
+      "logicalSize": "480x270",
+      "master": "assets/backgrounds/rainy-neighborhood-wide.png",
+      "logical": "assets/backgrounds/rainy-neighborhood-wide-480x270.png",
+      "origin": "Generated for this repository with OpenAI image generation",
+      "license": "Project-generated; do not label as CC0",
+      "use": "Rainy street walks, travel, transitions and reflective scenes"
     }
   ],
   "packs": [
