@@ -5,6 +5,7 @@ This repository is a reusable animation factory, not a collection of one-off vid
 ## Before creating a production
 
 1. Read `catalog/components.json` and `catalog/audio.json`.
+   Check `catalog/asset-library.json` before creating or sourcing new art or sound.
 2. Read `schemas/production.schema.json`.
 3. Compose existing components and event kinds before changing engine/runtime code.
 4. Keep production-specific decisions inside `productions/<production-id>/production.json`.
