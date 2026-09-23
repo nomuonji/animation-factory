@@ -33,53 +33,288 @@
     }
   ],
   "events": [
-    { "kind": "transition.fade", "at": 0, "mode": "in", "duration": 0.8, "color": "#000000" },
-    { "kind": "ui.caption", "at": 0.4, "duration": 1.8, "text": "COMPONENT SHOWCASE" },
-    { "kind": "actor.move", "at": 1.0, "actor": "worker", "x": 110, "y": 390, "duration": 1.4 },
-
-    { "kind": "prop.show", "at": 2.4, "prop": "coffee", "x": 133, "y": 354, "scale": 1.5, "duration": 2.0 },
-    { "kind": "ui.speech", "at": 2.5, "actor": "worker", "duration": 1.5, "text": "コーヒーで回復。" },
-    { "kind": "effect.emote", "at": 2.6, "actor": "worker", "emote": "heart", "duration": 1.0 },
-    { "kind": "effect.particles", "at": 3.5, "actor": "worker", "particle": "spark", "duration": 0.9 },
-    { "kind": "effect.screenFlash", "at": 3.6, "duration": 0.25, "color": "#fff3b0", "strength": 0.6 },
-
+    {
+      "kind": "transition.fade",
+      "at": 0,
+      "mode": "in",
+      "duration": 0.8,
+      "color": "#000000"
+    },
+    {
+      "kind": "ui.caption",
+      "at": 0.4,
+      "duration": 1.8,
+      "text": "COMPONENT SHOWCASE"
+    },
+    {
+      "kind": "actor.move",
+      "at": 1,
+      "actor": "worker",
+      "x": 110,
+      "y": 390,
+      "duration": 1.4
+    },
+    {
+      "kind": "prop.show",
+      "at": 2.4,
+      "prop": "coffee",
+      "x": 133,
+      "y": 354,
+      "scale": 1.5,
+      "duration": 2
+    },
+    {
+      "kind": "ui.speech",
+      "at": 2.5,
+      "actor": "worker",
+      "duration": 1.5,
+      "text": "コーヒーで回復。"
+    },
+    {
+      "kind": "effect.emote",
+      "at": 2.6,
+      "actor": "worker",
+      "emote": "heart",
+      "duration": 1
+    },
+    {
+      "kind": "effect.particles",
+      "at": 3.5,
+      "actor": "worker",
+      "particle": "spark",
+      "duration": 0.9
+    },
+    {
+      "kind": "effect.screenFlash",
+      "at": 3.6,
+      "duration": 0.25,
+      "color": "#fff3b0",
+      "strength": 0.6
+    },
     {
       "kind": "ui.rpgStatus",
       "at": 4.2,
       "duration": 2.7,
       "title": "WORKER STATUS",
-      "lines": ["HP 92 / 100", "MP 12 / 12", "BUFF: CAFFEINE"]
+      "lines": [
+        "HP 92 / 100",
+        "MP 12 / 12",
+        "BUFF: CAFFEINE"
+      ]
     },
-    { "kind": "camera.pan", "at": 5.1, "x": 12, "y": 0, "duration": 0.9 },
-
-    { "kind": "actor.move", "at": 6.4, "actor": "boss", "x": 184, "y": 390, "duration": 1.0 },
-    { "kind": "ui.speech", "at": 7.4, "actor": "boss", "duration": 1.2, "text": "ちょっといい？" },
-    { "kind": "actor.pose", "at": 7.45, "actor": "worker", "pose": "surprised" },
-    { "kind": "effect.emote", "at": 7.5, "actor": "worker", "emote": "sweat", "duration": 1.0 },
-    { "kind": "camera.shake", "at": 8.0, "duration": 0.3, "intensity": 0.012 },
-    { "kind": "effect.screenFlash", "at": 8.15, "duration": 0.2, "color": "#ff6464", "strength": 0.55 },
-    { "kind": "effect.damage", "at": 8.35, "actor": "worker", "duration": 1.0, "text": "HP -80" },
-    { "kind": "effect.particles", "at": 8.55, "actor": "worker", "particle": "dust", "duration": 1.0 },
-    { "kind": "actor.pose", "at": 8.7, "actor": "worker", "pose": "dead-inside" },
-
-    { "kind": "prop.show", "at": 9.4, "prop": "briefcase", "x": 181, "y": 378, "scale": 1.2, "duration": 2.1 },
+    {
+      "kind": "camera.pan",
+      "at": 5.1,
+      "x": 12,
+      "y": 0,
+      "duration": 0.9
+    },
+    {
+      "kind": "actor.move",
+      "at": 6.4,
+      "actor": "boss",
+      "x": 184,
+      "y": 390,
+      "duration": 1
+    },
+    {
+      "kind": "ui.speech",
+      "at": 7.4,
+      "actor": "boss",
+      "duration": 1.2,
+      "text": "ちょっといい？"
+    },
+    {
+      "kind": "actor.pose",
+      "at": 7.45,
+      "actor": "worker",
+      "pose": "surprised"
+    },
+    {
+      "kind": "effect.emote",
+      "at": 7.5,
+      "actor": "worker",
+      "emote": "sweat",
+      "duration": 1
+    },
+    {
+      "kind": "camera.shake",
+      "at": 8,
+      "duration": 0.3,
+      "intensity": 0.012
+    },
+    {
+      "kind": "effect.screenFlash",
+      "at": 8.15,
+      "duration": 0.2,
+      "color": "#ff6464",
+      "strength": 0.55
+    },
+    {
+      "kind": "effect.damage",
+      "at": 8.35,
+      "actor": "worker",
+      "duration": 1,
+      "text": "HP -80"
+    },
+    {
+      "kind": "effect.particles",
+      "at": 8.55,
+      "actor": "worker",
+      "particle": "dust",
+      "duration": 1
+    },
+    {
+      "kind": "actor.pose",
+      "at": 8.7,
+      "actor": "worker",
+      "pose": "dead-inside"
+    },
+    {
+      "kind": "prop.show",
+      "at": 9.4,
+      "prop": "briefcase",
+      "x": 181,
+      "y": 378,
+      "scale": 1.2,
+      "duration": 2.1
+    },
     {
       "kind": "ui.rpgStatus",
       "at": 9.6,
       "duration": 2.4,
       "title": "WORKER STATUS",
-      "lines": ["HP 12 / 100", "MP 0 / 12", "DEBUFF: 残業"]
+      "lines": [
+        "HP 12 / 100",
+        "MP 0 / 12",
+        "DEBUFF: 残業"
+      ]
     },
-
-    { "kind": "camera.zoom", "at": 12.1, "zoom": 1.35, "duration": 0.7 },
-    { "kind": "ui.speech", "at": 12.4, "actor": "worker", "duration": 1.5, "text": "……帰りたい。" },
-    { "kind": "effect.particles", "at": 13.0, "actor": "worker", "particle": "coin", "duration": 0.9 },
-    { "kind": "prop.show", "at": 13.1, "prop": "coin", "x": 130, "y": 330, "scale": 1.4, "duration": 1.2 },
-
-    { "kind": "camera.zoom", "at": 14.1, "zoom": 1.0, "duration": 0.6 },
-    { "kind": "camera.pan", "at": 14.2, "x": 0, "y": 0, "duration": 0.6 },
-    { "kind": "transition.fade", "at": 15.2, "mode": "out", "duration": 1.0, "color": "#000000" },
-    { "kind": "transition.fade", "at": 16.4, "mode": "in", "duration": 0.8, "color": "#000000" },
-    { "kind": "ui.caption", "at": 17.15, "duration": 0.7, "text": "FACTORY READY" }
-  ]
+    {
+      "kind": "camera.zoom",
+      "at": 12.1,
+      "zoom": 1.35,
+      "duration": 0.7
+    },
+    {
+      "kind": "ui.speech",
+      "at": 12.4,
+      "actor": "worker",
+      "duration": 1.5,
+      "text": "……帰りたい。"
+    },
+    {
+      "kind": "effect.particles",
+      "at": 13,
+      "actor": "worker",
+      "particle": "coin",
+      "duration": 0.9
+    },
+    {
+      "kind": "prop.show",
+      "at": 13.1,
+      "prop": "coin",
+      "x": 130,
+      "y": 330,
+      "scale": 1.4,
+      "duration": 1.2
+    },
+    {
+      "kind": "camera.zoom",
+      "at": 14.1,
+      "zoom": 1,
+      "duration": 0.6
+    },
+    {
+      "kind": "camera.pan",
+      "at": 14.2,
+      "x": 0,
+      "y": 0,
+      "duration": 0.6
+    },
+    {
+      "kind": "transition.fade",
+      "at": 15.2,
+      "mode": "out",
+      "duration": 1,
+      "color": "#000000"
+    },
+    {
+      "kind": "transition.fade",
+      "at": 16.4,
+      "mode": "in",
+      "duration": 0.8,
+      "color": "#000000"
+    },
+    {
+      "kind": "ui.caption",
+      "at": 17.15,
+      "duration": 0.7,
+      "text": "FACTORY READY"
+    }
+  ],
+  "audio": {
+    "masterVolume": 0.9,
+    "tts": {
+      "provider": "espeak-ng",
+      "events": [
+        "ui.speech"
+      ],
+      "defaultVoice": {
+        "voice": "ja",
+        "rate": 175,
+        "pitch": 50,
+        "volume": 1
+      },
+      "actors": {
+        "worker": {
+          "rate": 185,
+          "pitch": 55,
+          "volume": 1
+        },
+        "boss": {
+          "rate": 145,
+          "pitch": 35,
+          "volume": 1
+        }
+      }
+    },
+    "bgm": [
+      {
+        "id": "office-bed",
+        "preset": "office-night",
+        "at": 0,
+        "duration": 18,
+        "volume": 0.14,
+        "fadeIn": 0.8,
+        "fadeOut": 1
+      }
+    ],
+    "sfx": [
+      {
+        "id": "coffee-heal",
+        "preset": "heal",
+        "at": 3.5,
+        "volume": 0.55
+      },
+      {
+        "id": "boss-alert",
+        "preset": "alert",
+        "at": 7.35,
+        "volume": 0.38
+      },
+      {
+        "id": "damage-hit",
+        "preset": "impact",
+        "at": 8.15,
+        "volume": 0.7
+      },
+      {
+        "id": "coin-pickup",
+        "preset": "coin",
+        "at": 13,
+        "volume": 0.55
+      }
+    ]
+  }
 }

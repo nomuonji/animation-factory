@@ -1,3 +1,4 @@
+import { validateAudio } from "./validate-audio.mjs";
 import { readFile } from "node:fs/promises";
 
 const path = process.argv[2];
@@ -181,6 +182,8 @@ for (const event of production.events ?? []) {
       errors.push(`unsupported event kind: ${String(event.kind)}`);
   }
 }
+
+validateAudio(production.audio, actorIds, production.meta.duration, errors);
 
 if (errors.length) {
   console.error("Production validation failed:");

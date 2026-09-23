@@ -1,60 +1,78 @@
 # Deterministic rendering
 
-Animation Factory has two execution modes.
+Animation Factory renders visuals and audio as separate deterministic pipelines and joins them only at the end.
 
-## Preview mode
+## Visual pipeline
 
-The normal browser preview uses Phaser timers and tweens so authors can inspect a production interactively.
+`?render=1&production=<folder>` enables deterministic visual mode. For every frame the runtime computes state from an explicit timestamp, captures the logical Phaser canvas as PNG, then FFmpeg encodes the frame sequence to an H.264 video-only MP4.
 
-## Render mode
+## Audio pipeline
 
-`?render=1&production=<folder>` enables deterministic mode. The runtime exposes a small render bridge and computes visual state from an explicit timestamp instead of recording real-time tweens.
+When a production has an `audio` block:
 
-For every frame the renderer:
+1. dialogue events selected by `audio.tts.events` are synthesized at their existing absolute timestamps,
+2. procedural BGM presets are generated with FFmpeg,
+3. procedural SFX presets are generated with FFmpeg,
+4. every audio item is delayed to its `at` time and mixed to 48 kHz stereo,
+5. the mix is limited and written to `mix.wav`,
+6. FFmpeg muxes `video-only.mp4` and `mix.wav` into the final MP4.
 
-1. resets actor state from the production definition,
-2. applies all timeline events up to timestamp `t`,
-3. interpolates active movement and camera events,
-4. computes transient effects from their normalized progress,
-5. captures the native logical canvas as PNG.
+Productions without audio still render normally.
 
-This means a frame can be regenerated independently from the frames before it.
-
-## Local MP4 render
-
-Requirements:
+## Local render requirements
 
 - Node 22+
 - FFmpeg on `PATH`
 - Chromium installed for Playwright
+- `espeak-ng` on `PATH` only when using the built-in TTS provider
 
-Install once:
+Install JavaScript and browser dependencies:
 
 ```bash
 npm install
 npx playwright install chromium
 ```
 
-Render the demo:
+Render:
 
 ```bash
 npm run render -- demo
+npm run render -- component-showcase
 ```
 
-The pipeline writes temporary PNGs under `.render-cache/` and produces:
+or:
+
+```bash
+npm run render:showcase
+```
+
+Temporary work is written under:
+
+```text
+.render-cache/<production>/
+├─ frames/
+├─ audio/
+│  ├─ tts-*.wav
+│  ├─ bgm-*.wav
+│  ├─ sfx-*.wav
+│  └─ mix.wav
+└─ video-only.mp4
+```
+
+The final artifact is:
 
 ```text
 outputs/<production-meta-id>.mp4
 ```
 
-The default demo is authored at 270x480 and has `outputScale: 4`, so FFmpeg produces a 1080x1920 H.264 MP4 using nearest-neighbor scaling.
+A 270x480 production with `outputScale: 4` becomes a 1080x1920 H.264/AAC MP4.
 
 ## GitHub Actions
 
-`.github/workflows/render-production.yml` is intentionally `workflow_dispatch` only.
+`.github/workflows/render-production.yml` remains `workflow_dispatch` only. It installs Chromium, FFmpeg, Japanese fonts and espeak-ng, validates the requested production, renders it, and uploads the final MP4 artifact.
 
-This keeps rendering from consuming Actions quota on every push. Supply the folder name under `productions/`; the workflow validates it, installs Chromium/FFmpeg, renders the MP4, and uploads it as an artifact.
+This avoids consuming Actions quota on every push.
 
-## Current limitation
+## TTS quality
 
-The deterministic renderer currently handles visual state only. Audio/TTS/BGM composition is the next pipeline layer and should be mixed by FFmpeg from explicit production audio tracks rather than captured from browser playback.
+`espeak-ng` is the no-key baseline that proves the full pipeline. The TTS layer is intentionally isolated from Phaser and FFmpeg composition so a higher-quality provider can be added without changing visual production definitions.

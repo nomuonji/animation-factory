@@ -162,10 +162,54 @@ export type TimelineEvent =
   | FadeTransitionEvent
   | PropShowEvent;
 
+export type TtsEventKind = "dialogue.say" | "ui.speech";
+export type TtsProvider = "none" | "espeak-ng";
+export type BgmPreset = "office-night" | "retro-drone";
+export type SfxPreset = "heal" | "impact" | "coin" | "alert";
+
+export interface TtsVoiceProfile {
+  voice?: string;
+  rate?: number;
+  pitch?: number;
+  volume?: number;
+}
+
+export interface TtsConfig {
+  provider: TtsProvider;
+  events?: TtsEventKind[];
+  defaultVoice?: TtsVoiceProfile;
+  actors?: Record<string, TtsVoiceProfile>;
+}
+
+export interface BgmTrack {
+  id: string;
+  preset: BgmPreset;
+  at?: number;
+  duration?: number;
+  volume?: number;
+  fadeIn?: number;
+  fadeOut?: number;
+}
+
+export interface SfxTrack {
+  id: string;
+  preset: SfxPreset;
+  at: number;
+  volume?: number;
+}
+
+export interface AudioConfig {
+  masterVolume?: number;
+  tts?: TtsConfig;
+  bgm?: BgmTrack[];
+  sfx?: SfxTrack[];
+}
+
 export interface Production {
   meta: ProductionMeta;
   canvas: CanvasConfig;
   environment: string;
   actors: ActorDefinition[];
   events: TimelineEvent[];
+  audio?: AudioConfig;
 }

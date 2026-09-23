@@ -1,6 +1,6 @@
 {
   "name": "animation-factory",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "private": true,
   "type": "module",
   "engines": {
@@ -13,7 +13,8 @@
     "validate": "node tools/validate-production.mjs",
     "validate:demo": "node tools/validate-production.mjs productions/demo/production.json",
     "validate:showcase": "node tools/validate-production.mjs productions/component-showcase/production.json",
-    "render": "node tools/render-production.mjs"
+    "render": "node tools/render-production.mjs",
+    "render:showcase": "node tools/render-production.mjs component-showcase"
   },
   "dependencies": {
     "phaser": "4.2.1"

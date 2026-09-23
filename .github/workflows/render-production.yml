@@ -30,7 +30,7 @@ jobs:
       - name: Install FFmpeg and Japanese fonts
         run: |
           sudo apt-get update
-          sudo apt-get install -y ffmpeg fonts-noto-cjk
+          sudo apt-get install -y ffmpeg fonts-noto-cjk espeak-ng
 
       - name: Validate production
         run: node tools/validate-production.mjs "productions/${{ inputs.production }}/production.json"

@@ -1,4 +1,5 @@
 import type { ActorPose, Production, TimelineEvent } from "./types";
+import { validateAudioConfig } from "./validateAudio";
 
 const ARCHETYPES = new Set(["salaryman", "boss"]);
 const FACINGS = new Set(["left", "right"]);
@@ -273,5 +274,9 @@ export function validateProduction(value: unknown): asserts value is Production 
 
   for (const event of production.events) {
     validateEvent(event, actorIds, production.meta.duration);
+  }
+
+  if (production.audio) {
+    validateAudioConfig(production.audio, actorIds, production.meta.duration);
   }
 }

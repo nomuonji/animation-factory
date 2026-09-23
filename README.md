@@ -15,6 +15,8 @@ The repository is designed so an AI agent can behave like a director: choose act
 - Deterministic timestamp renderer
 - Playwright PNG frame capture
 - FFmpeg MP4 output
+- TTS / procedural BGM / procedural SFX audio pipeline
+- FFmpeg audio mixing and final A/V mux
 - Optional browser WebM preview recording
 
 Phaser is intentionally hidden behind factory components. Production files should not call Phaser directly.
@@ -95,10 +97,10 @@ npm run render -- my-production
 
 `productions/demo/production.json` is the original compact overtime RPG demo.
 
-`productions/component-showcase/production.json` demonstrates the broader component library, including speech bubbles, procedural props, actor emotes, particles, status UI, screen flash, camera pan, zoom, shake and fade transitions.
+`productions/component-showcase/production.json` demonstrates the broader component library, including speech bubbles, procedural props, actor emotes, particles, status UI, screen flash, camera pan, zoom, shake and fade transitions. It also contains a complete audio plan: actor-specific Japanese TTS, procedural BGM and synchronized SFX.
 
 ## Rendering in GitHub Actions
 
 The `Render production` workflow is manual-only. It accepts a production folder, renders an MP4, and uploads the result as an artifact. It is deliberately not triggered on push so routine development does not consume rendering quota.
 
-See `docs/rendering.md`, `docs/authoring.md`, and `docs/components.md` for details.
+See `docs/rendering.md`, `docs/authoring.md`, `docs/components.md`, and `docs/audio.md` for details.
