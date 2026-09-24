@@ -8,8 +8,13 @@ if (!path) {
 }
 
 const production = JSON.parse(await readFile(path, "utf8"));
+const productionSchema = JSON.parse(
+  await readFile(new URL("../schemas/production.schema.json", import.meta.url), "utf8")
+);
 const errors = [];
-const archetypes = new Set(["salaryman", "boss"]);
+const archetypes = new Set(
+  productionSchema.properties.actors.items.properties.archetype.enum
+);
 const facings = new Set(["left", "right"]);
 const poses = new Set(["idle", "walk-a", "walk-b", "surprised", "dead-inside"]);
 const emotes = new Set(["sweat", "heart"]);
