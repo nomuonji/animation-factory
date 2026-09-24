@@ -102,7 +102,7 @@ async function renderVideo(page, metadata) {
   await page.evaluate(async () => {
     await document.fonts.ready;
   });
-  const frame = page.locator(".preview-frame");
+  const stageFrame = page.locator(".preview-frame");
 
   const encoder = spawn(ffmpegCommand, [
     "-hide_banner", "-loglevel", "error", "-nostats",
@@ -147,7 +147,7 @@ async function renderVideo(page, metadata) {
         );
       }, seconds);
 
-      const png = await frame.screenshot({
+      const png = await stageFrame.screenshot({
         type: "png",
         animations: "disabled"
       });
