@@ -2,7 +2,7 @@
   "meta": {
     "id": "tweet-youtube-001-quality-probe",
     "title": "人間ごっこをAIへ外注できる？ — quality probe",
-    "description": "Free-only QA probe: local VOICEVOX Nemo + spoken/display text separation + attention timeline.",
+    "description": "Free-only QA probe: local VOICEVOX Nemo (official engine) + spoken/display text separation + attention timeline. Fixed host-to-engine port mapping.",
     "duration": 48,
     "credits": [
       "VOICEVOX Nemo"
@@ -252,7 +252,7 @@
         "dialogue.say"
       ],
       "defaultVoice": {
-        "voice": "男声2",
+        "voice": "10000",
         "style": "ノーマル",
         "speedScale": 1.04,
         "intonationScale": 1.05,
@@ -260,7 +260,7 @@
       },
       "actors": {
         "narrator": {
-          "voice": "男声2",
+          "voice": "10000",
           "style": "ノーマル",
           "speedScale": 1.04,
           "intonationScale": 1.05,
