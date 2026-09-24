@@ -2,7 +2,7 @@
   "meta": {
     "id": "tweet-youtube-001-human-simulation",
     "title": "AIが人間を演じるなら、人間は何をしなくていいのか",
-    "description": "Source tweetをMethod v0.1でTuring・LLM role-play・感情労働へ展開した横型YouTube essay pilot。pixel-art scene + full-resolution DOM typography + Piper Plus Japanese TTS。TTS-first fail-fast render pipeline.",
+    "description": "Source tweetをMethod v0.1でTuring・LLM role-play・感情労働へ展開した横型YouTube essay pilot。pixel-art scene + full-resolution DOM typography + Piper Plus Japanese TTS。Explicit Tsukuyomi ONNX/config paths.",
     "duration": 108
   },
   "canvas": {
