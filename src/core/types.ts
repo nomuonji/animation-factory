@@ -176,7 +176,7 @@ export type TimelineEvent =
   | PropShowEvent;
 
 export type TtsEventKind = "dialogue.say" | "ui.speech";
-export type TtsProvider = "none" | "espeak-ng" | "piper-plus" | "voicevox";
+export type TtsProvider = "none" | "espeak-ng" | "piper-plus" | "voicevox" | "voicevox-nemo";
 export type BgmPreset = "office-night" | "retro-drone";
 export type SfxPreset = "heal" | "impact" | "coin" | "alert";
 
