@@ -73,7 +73,7 @@ export class DialogueBox {
     if (!this.label) {
       this.label = this.scene.add
         .text(24, this.height - 69, "", {
-          fontFamily: "monospace",
+          fontFamily: '"Noto Sans JP", "Noto Sans CJK JP", "Yu Gothic", sans-serif',
           fontSize: "12px",
           color: "#f4f2e8",
           wordWrap: { width: this.width - 48 },
