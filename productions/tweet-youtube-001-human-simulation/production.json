@@ -2,7 +2,7 @@
   "meta": {
     "id": "tweet-youtube-001-human-simulation",
     "title": "AIが人間を演じるなら、人間は何をしなくていいのか",
-    "description": "Source tweetをMethod v0.1でTuring・LLM role-play・感情労働へ展開した横型YouTube essay pilot。背景/キャラはpixel-art、主要テキストはfull-resolution DOM typography、日本語音声はPiper Plus 1.13系（python -m piper）。",
+    "description": "Source tweetをMethod v0.1でTuring・LLM role-play・感情労働へ展開した横型YouTube essay pilot。pixel-art scene + full-resolution DOM typography + Piper Plus Japanese TTS。",
     "duration": 108
   },
   "canvas": {
