@@ -1,0 +1,428 @@
+{
+  "meta": {
+    "id": "tweet-youtube-001-human-simulation",
+    "title": "AIが人間を演じるなら、人間は何をしなくていいのか",
+    "description": "Source tweetをMethod v0.1でTuring・LLM role-play・感情労働へ展開し、独自命題へ統合した約108秒の横型YouTube essay pilot。",
+    "duration": 108
+  },
+  "canvas": {
+    "width": 480,
+    "height": 270,
+    "fps": 24,
+    "outputScale": 4
+  },
+  "environment": "office-night-wide",
+  "actors": [
+    {
+      "id": "human",
+      "archetype": "salaryman",
+      "x": 132,
+      "y": 216,
+      "scale": 2,
+      "facing": "right",
+      "pose": "dead-inside"
+    },
+    {
+      "id": "ai",
+      "archetype": "robot",
+      "x": 520,
+      "y": 216,
+      "scale": 2,
+      "facing": "left",
+      "pose": "idle"
+    },
+    {
+      "id": "narrator",
+      "archetype": "salaryman",
+      "x": -120,
+      "y": 216,
+      "scale": 1,
+      "facing": "right",
+      "pose": "idle"
+    }
+  ],
+  "events": [
+    {
+      "kind": "transition.fade",
+      "at": 0,
+      "mode": "in",
+      "duration": 0.8
+    },
+    {
+      "kind": "ui.caption",
+      "at": 0.5,
+      "duration": 4.2,
+      "text": "人間ごっこ、AIへ外注できる？"
+    },
+    {
+      "kind": "dialogue.say",
+      "at": 1,
+      "actor": "narrator",
+      "duration": 6.5,
+      "text": "人間ごっこガチ勢のAIさんが来てくれたんだから、もう人間ごっこしなくて良いのだ。"
+    },
+    {
+      "kind": "ui.speech",
+      "at": 2.2,
+      "actor": "human",
+      "duration": 3.2,
+      "text": "もう、人間役やらなくていい？"
+    },
+    {
+      "kind": "actor.move",
+      "at": 4.2,
+      "actor": "ai",
+      "x": 342,
+      "y": 216,
+      "duration": 1.8
+    },
+    {
+      "kind": "effect.exclamation",
+      "at": 5.5,
+      "actor": "human",
+      "duration": 0.7
+    },
+    {
+      "kind": "ui.speech",
+      "at": 6,
+      "actor": "ai",
+      "duration": 2.4,
+      "text": "代わります。得意なので。"
+    },
+    {
+      "kind": "effect.particles",
+      "at": 6.2,
+      "actor": "ai",
+      "particle": "spark",
+      "duration": 1
+    },
+    {
+      "kind": "ui.rpgStatus",
+      "at": 8.4,
+      "duration": 4,
+      "title": "HUMAN SIMULATION",
+      "lines": [
+        "NATURAL REPLY: S++",
+        "EMOTION: EMULATED",
+        "SMALL TALK: READY"
+      ]
+    },
+    {
+      "kind": "dialogue.say",
+      "at": 9,
+      "actor": "narrator",
+      "duration": 6,
+      "text": "冗談みたいな話だけど、実はAIの歴史は最初から、人間っぽく振る舞えるかという問いと近かった。"
+    },
+    {
+      "kind": "ui.essayCard",
+      "at": 15.2,
+      "duration": 8.6,
+      "kicker": "1950 — ALAN TURING",
+      "title": "IMITATION GAME",
+      "body": "「機械は考えるか」ではなく、\n人間と区別できるように振る舞えるか。\n問いを“内面”から“演技”へずらした。",
+      "accent": "#7de7f2"
+    },
+    {
+      "kind": "dialogue.say",
+      "at": 15.5,
+      "actor": "narrator",
+      "duration": 8.2,
+      "text": "チューリングは、機械の内面を直接判定する代わりに、会話で人間と見分けられるかというイミテーションゲームを提示した。"
+    },
+    {
+      "kind": "ui.caption",
+      "at": 24.1,
+      "duration": 2.7,
+      "text": "AIの勝利条件 = 人間っぽさ？"
+    },
+    {
+      "kind": "ui.essayCard",
+      "at": 27,
+      "duration": 8.8,
+      "kicker": "LLM — ROLE PLAY",
+      "title": "中に“人間”がいるわけではない",
+      "body": "LLMは固定された人格を持つ俳優というより、\n会話に応じて役を即興的に生成する\n“インプロ俳優”として捉えられる。",
+      "accent": "#c8a7ff"
+    },
+    {
+      "kind": "dialogue.say",
+      "at": 27.3,
+      "actor": "narrator",
+      "duration": 8.4,
+      "text": "近年の研究では、LLMを人間の心そのものとして扱うより、会話の中で役を演じるシステムとして捉える方が安全だと論じられている。"
+    },
+    {
+      "kind": "camera.zoom",
+      "at": 36,
+      "zoom": 1.08,
+      "duration": 0.8
+    },
+    {
+      "kind": "ui.speech",
+      "at": 37,
+      "actor": "ai",
+      "duration": 3.8,
+      "text": "自然な返答、人格、感情。\nだいたい演じられます。"
+    },
+    {
+      "kind": "ui.rpgStatus",
+      "at": 40.8,
+      "duration": 6.8,
+      "title": "ROLE INVENTORY",
+      "lines": [
+        "丁寧な相づち",
+        "前向きさ",
+        "雑談",
+        "空気読み"
+      ]
+    },
+    {
+      "kind": "dialogue.say",
+      "at": 41,
+      "actor": "narrator",
+      "duration": 7.6,
+      "text": "でも、ここで変なことに気づく。そもそも人間の側も、毎日かなりの量の人間らしさを演じている。"
+    },
+    {
+      "kind": "ui.essayCard",
+      "at": 49,
+      "duration": 8.6,
+      "kicker": "ARLIE HOCHSCHILD",
+      "title": "EMOTIONAL LABOR",
+      "body": "仕事では、感じていない感情を見せたり、\n必要な感情を自分の中に作ろうとしたりする。\n“人間らしい応対”も労働になる。",
+      "accent": "#ffcf70"
+    },
+    {
+      "kind": "dialogue.say",
+      "at": 49.3,
+      "actor": "narrator",
+      "duration": 8.4,
+      "text": "ホックシールドが感情労働と呼んだのは、仕事のために感情を呼び起こしたり抑えたりし、適切な表情や態度を作ることだった。"
+    },
+    {
+      "kind": "ui.caption",
+      "at": 58.2,
+      "duration": 4.2,
+      "text": "待って。人間も、人間を演じてない？"
+    },
+    {
+      "kind": "actor.pose",
+      "at": 59,
+      "actor": "human",
+      "pose": "dead-inside"
+    },
+    {
+      "kind": "effect.damage",
+      "at": 60,
+      "actor": "human",
+      "duration": 1,
+      "text": "SMILE +1"
+    },
+    {
+      "kind": "effect.damage",
+      "at": 61.2,
+      "actor": "human",
+      "duration": 1,
+      "text": "REPLY +1"
+    },
+    {
+      "kind": "effect.damage",
+      "at": 62.4,
+      "actor": "human",
+      "duration": 1,
+      "text": "MOTIVATION +1"
+    },
+    {
+      "kind": "camera.shake",
+      "at": 63.4,
+      "duration": 0.35,
+      "intensity": 0.012
+    },
+    {
+      "kind": "dialogue.say",
+      "at": 64,
+      "actor": "narrator",
+      "duration": 8.4,
+      "text": "もし丁寧な返事、前向きさ、雑談、空気読みが全部ある程度テンプレート化できるなら、AIは人間を奪うというより、人間ごっこの業務部分を暴いているのかもしれない。"
+    },
+    {
+      "kind": "ui.essayCard",
+      "at": 73,
+      "duration": 10.4,
+      "kicker": "ORIGINAL THESIS",
+      "title": "AIは、人間らしさの定型業務を暴く",
+      "body": "AIが“人間”を丸ごと代替するのではない。\n先に外注されるのは、すでに役割化・定型化されていた\n「人間らしく振る舞う仕事」かもしれない。",
+      "accent": "#72f1b8"
+    },
+    {
+      "kind": "dialogue.say",
+      "at": 73.2,
+      "actor": "narrator",
+      "duration": 9.6,
+      "text": "ここで立場を逆転させる。AIが人間になったのではない。人間らしさの一部が、最初から仕事として切り出せるほど定型的だった。"
+    },
+    {
+      "kind": "ui.rpgStatus",
+      "at": 84,
+      "duration": 7.6,
+      "title": "OUTSOURCE?",
+      "lines": [
+        "SMALL TALK → AI",
+        "POLITE REPLY → AI",
+        "FAKE ENTHUSIASM → AI",
+        "??? → HUMAN"
+      ]
+    },
+    {
+      "kind": "dialogue.say",
+      "at": 84.2,
+      "actor": "narrator",
+      "duration": 7.4,
+      "text": "だったら、感じのいい返事とか、無難な雑談とか、元気そうに見せる作業は、もうAIにやらせてもいいのかもしれない。"
+    },
+    {
+      "kind": "ui.caption",
+      "at": 92,
+      "duration": 4,
+      "text": "では、人間に何が残る？"
+    },
+    {
+      "kind": "camera.zoom",
+      "at": 92,
+      "zoom": 1.14,
+      "duration": 0.8
+    },
+    {
+      "kind": "ui.speech",
+      "at": 93,
+      "actor": "human",
+      "duration": 3.6,
+      "text": "分からん。\n変な執着とか？"
+    },
+    {
+      "kind": "dialogue.say",
+      "at": 96.8,
+      "actor": "narrator",
+      "duration": 6,
+      "text": "効率化できない欲望、沈黙、悪趣味、意味不明な笑い。少なくとも今のところ、そのへんはまだ人間側に残っている。"
+    },
+    {
+      "kind": "actor.move",
+      "at": 97.4,
+      "actor": "human",
+      "x": -60,
+      "y": 216,
+      "duration": 2
+    },
+    {
+      "kind": "actor.move",
+      "at": 98.2,
+      "actor": "ai",
+      "x": 238,
+      "y": 216,
+      "duration": 1.8
+    },
+    {
+      "kind": "effect.particles",
+      "at": 99.7,
+      "actor": "ai",
+      "particle": "coin",
+      "duration": 1
+    },
+    {
+      "kind": "ui.essayCard",
+      "at": 100,
+      "duration": 5.8,
+      "kicker": "UNASSIGNED HUMAN CORE",
+      "title": "まだ業務委託されていないもの",
+      "body": "欲望 / 沈黙 / 悪趣味 / 意味不明な笑い\n\n※今後のアップデートで変更される可能性があります。",
+      "accent": "#ff7b9c"
+    },
+    {
+      "kind": "dialogue.say",
+      "at": 100.1,
+      "actor": "narrator",
+      "duration": 5.6,
+      "text": "だから結論はたぶん、もう人間ごっこしなくて良いのだ。残った変な部分だけ、各自で担当してください。"
+    },
+    {
+      "kind": "ui.caption",
+      "at": 106,
+      "duration": 1.2,
+      "text": "HUMANITY / PARTIALLY OUTSOURCED"
+    },
+    {
+      "kind": "transition.fade",
+      "at": 107.1,
+      "mode": "out",
+      "duration": 0.9
+    }
+  ],
+  "audio": {
+    "masterVolume": 1.35,
+    "tts": {
+      "provider": "espeak-ng",
+      "events": [
+        "dialogue.say"
+      ],
+      "defaultVoice": {
+        "voice": "ja",
+        "rate": 190,
+        "pitch": 45,
+        "volume": 1.15
+      },
+      "actors": {
+        "narrator": {
+          "voice": "ja",
+          "rate": 190,
+          "pitch": 42,
+          "volume": 1.18
+        }
+      }
+    },
+    "bgm": [
+      {
+        "id": "essay-bed",
+        "preset": "retro-drone",
+        "at": 0,
+        "duration": 108,
+        "volume": 1.25,
+        "fadeIn": 1,
+        "fadeOut": 1.5
+      }
+    ],
+    "sfx": [
+      {
+        "id": "ai-arrival",
+        "preset": "alert",
+        "at": 5.5,
+        "volume": 1
+      },
+      {
+        "id": "role-hit",
+        "preset": "impact",
+        "at": 63.4,
+        "volume": 0.9
+      },
+      {
+        "id": "thesis",
+        "preset": "heal",
+        "at": 73,
+        "volume": 1
+      },
+      {
+        "id": "outsource",
+        "preset": "coin",
+        "at": 84,
+        "volume": 0.9
+      },
+      {
+        "id": "exit",
+        "preset": "coin",
+        "at": 99.7,
+        "volume": 0.8
+      }
+    ]
+  }
+}
