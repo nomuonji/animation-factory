@@ -1,11 +1,12 @@
 {
-  "version": 2,
+  "version": 3,
   "sampleRate": 48000,
   "tts": {
     "providers": [
       "none",
       "espeak-ng",
-      "piper-plus"
+      "piper-plus",
+      "voicevox"
     ],
     "eventKinds": [
       "dialogue.say",
@@ -17,7 +18,7 @@
       "pitch": 50,
       "volume": 1
     },
-    "notes": "piper-plus is the preferred local Japanese neural TTS provider; espeak-ng remains a lightweight fallback for compatible languages. The voice field is interpreted as a Piper model name when provider=piper-plus."
+    "notes": "voicevox is the default free Japanese production provider. Prefer VOICEVOX Nemo when you want a simple non-character narration license; store required credit in meta.credits. Use dialogue.spokenText for TTS-specific punctuation/pronunciation. piper-plus is a lightweight fallback."
   },
   "bgmPresets": {
     "office-night": "Low synthetic office-night drone with subtle pink-noise room tone.",

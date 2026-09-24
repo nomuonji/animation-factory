@@ -73,6 +73,23 @@ jobs:
         with:
           python-version: "3.13"
 
+      - name: Start VOICEVOX Engine
+        if: steps.tts.outputs.provider == 'voicevox'
+        shell: bash
+        run: |
+          set -euo pipefail
+          docker pull voicevox/voicevox_engine:cpu-latest
+          docker run -d --rm --name voicevox -p 127.0.0.1:50021:50021 voicevox/voicevox_engine:cpu-latest
+          for i in {1..90}; do
+            if curl -fsS http://127.0.0.1:50021/version >/dev/null; then
+              echo "VOICEVOX ready: $(curl -fsS http://127.0.0.1:50021/version)"
+              exit 0
+            fi
+            sleep 1
+          done
+          docker logs voicevox || true
+          exit 1
+
       - name: Install Japanese neural TTS
         if: steps.tts.outputs.provider == 'piper-plus'
         run: |
@@ -108,6 +125,9 @@ jobs:
 
       - name: Validate production
         run: node tools/validate-production.mjs "productions/$PRODUCTION/production.json"
+
+      - name: Validate attention design
+        run: node tools/validate-attention.mjs "productions/$PRODUCTION/production.json"
 
       - name: Typecheck and build
         run: npm run build

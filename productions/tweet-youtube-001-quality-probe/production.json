@@ -1,0 +1,297 @@
+{
+  "meta": {
+    "id": "tweet-youtube-001-quality-probe",
+    "title": "人間ごっこをAIへ外注できる？ — quality probe",
+    "description": "Free-only QA probe: VOICEVOX Nemo + spoken/display text separation + attention timeline.",
+    "duration": 48,
+    "credits": [
+      "VOICEVOX Nemo"
+    ]
+  },
+  "canvas": {
+    "width": 480,
+    "height": 270,
+    "fps": 24,
+    "outputScale": 4
+  },
+  "environment": "office-night-wide",
+  "actors": [
+    {
+      "id": "human",
+      "archetype": "salaryman",
+      "x": 132,
+      "y": 216,
+      "scale": 2,
+      "facing": "right",
+      "pose": "dead-inside"
+    },
+    {
+      "id": "ai",
+      "archetype": "robot",
+      "x": 520,
+      "y": 216,
+      "scale": 2,
+      "facing": "left",
+      "pose": "idle"
+    },
+    {
+      "id": "narrator",
+      "archetype": "salaryman",
+      "x": -120,
+      "y": 216,
+      "scale": 1,
+      "facing": "right",
+      "pose": "idle"
+    }
+  ],
+  "attention": {
+    "maxReadingCharsPerSecond": 8,
+    "maxTextLayers": 1,
+    "beats": [
+      {
+        "id": "hook",
+        "at": 0,
+        "duration": 7,
+        "focus": "caption",
+        "intent": "Tweetの飛躍だけを先に読ませる"
+      },
+      {
+        "id": "arrival",
+        "at": 7,
+        "duration": 7,
+        "focus": "character",
+        "intent": "文字量を落としてAI登場を見る"
+      },
+      {
+        "id": "turing",
+        "at": 14,
+        "duration": 10,
+        "focus": "card",
+        "intent": "カードを主役にし字幕を消す"
+      },
+      {
+        "id": "roleplay",
+        "at": 24,
+        "duration": 10,
+        "focus": "card",
+        "intent": "一論点一画面で理解させる"
+      },
+      {
+        "id": "reversal",
+        "at": 34,
+        "duration": 8,
+        "focus": "caption",
+        "intent": "人間側への反転を短文で見せる"
+      },
+      {
+        "id": "breath",
+        "at": 42,
+        "duration": 6,
+        "focus": "character",
+        "intent": "結論前に視覚情報を減らす"
+      }
+    ]
+  },
+  "events": [
+    {
+      "kind": "transition.fade",
+      "at": 0,
+      "mode": "in",
+      "duration": 0.7
+    },
+    {
+      "kind": "ui.caption",
+      "at": 0.4,
+      "duration": 4.2,
+      "text": "人間ごっこ、AIへ外注できる？"
+    },
+    {
+      "kind": "dialogue.say",
+      "at": 0.9,
+      "actor": "narrator",
+      "duration": 5.7,
+      "text": "人間ごっこガチ勢のAIが来た。",
+      "spokenText": "人間ごっこガチ勢の、エーアイが来た。",
+      "showSubtitle": false
+    },
+    {
+      "kind": "actor.move",
+      "at": 6.5,
+      "actor": "ai",
+      "x": 342,
+      "y": 216,
+      "duration": 1.5
+    },
+    {
+      "kind": "effect.exclamation",
+      "at": 7.2,
+      "actor": "human",
+      "duration": 0.6
+    },
+    {
+      "kind": "ui.speech",
+      "at": 8,
+      "actor": "human",
+      "duration": 2.8,
+      "text": "もう、人間役やらなくていい？"
+    },
+    {
+      "kind": "ui.speech",
+      "at": 11,
+      "actor": "ai",
+      "duration": 2.2,
+      "text": "代わります。"
+    },
+    {
+      "kind": "dialogue.say",
+      "at": 8,
+      "actor": "narrator",
+      "duration": 5.5,
+      "text": "冗談みたいだけど、AIの歴史は最初から「人間っぽく振る舞えるか」という問いと近い。",
+      "spokenText": "冗談みたいだけど。エーアイの歴史は最初から、人間っぽく振る舞えるか、という問いと近い。",
+      "showSubtitle": false
+    },
+    {
+      "kind": "ui.essayCard",
+      "at": 14.2,
+      "duration": 8.8,
+      "kicker": "1950 — ALAN TURING",
+      "title": "人間らしさを「演技」で測る",
+      "body": "内面を直接のぞく代わりに、\\n会話で人間と区別できるかを問う。",
+      "accent": "#7de7f2"
+    },
+    {
+      "kind": "dialogue.say",
+      "at": 14.5,
+      "actor": "narrator",
+      "duration": 8,
+      "text": "チューリングは、機械の内面そのものより、会話で人間と見分けられるかを問うた。",
+      "spokenText": "チューリングは。機械の内面そのものより、会話で、人間と見分けられるかを問うた。",
+      "showSubtitle": false
+    },
+    {
+      "kind": "ui.essayCard",
+      "at": 24.2,
+      "duration": 8.8,
+      "kicker": "LLM — ROLE PLAY",
+      "title": "中に「人間」がいる必要はない",
+      "body": "会話ごとに、その場に合う役を生成する。\\n人間そのものより、即興の役者に近い。",
+      "accent": "#c8a7ff"
+    },
+    {
+      "kind": "dialogue.say",
+      "at": 24.5,
+      "actor": "narrator",
+      "duration": 8,
+      "text": "LLMも、人間の心が中に入っているというより、会話の中で役を即興的に生成すると考えた方がいい。",
+      "spokenText": "エルエルエムも。人間の心が、中に入っている、というより。会話の中で、役を即興的に生成する、と考えた方がいい。",
+      "showSubtitle": false
+    },
+    {
+      "kind": "ui.caption",
+      "at": 34.2,
+      "duration": 4.2,
+      "text": "でも、人間も「人間」を演じてない？"
+    },
+    {
+      "kind": "dialogue.say",
+      "at": 34.6,
+      "actor": "narrator",
+      "duration": 6.6,
+      "text": "ここで話が反転する。そもそも人間の側も、毎日かなりの量の「人間らしさ」を演じている。",
+      "spokenText": "ここで、話が反転する。そもそも人間の側も。毎日かなりの量の、人間らしさを、演じている。",
+      "showSubtitle": false
+    },
+    {
+      "kind": "actor.pose",
+      "at": 40.7,
+      "actor": "human",
+      "pose": "dead-inside"
+    },
+    {
+      "kind": "effect.damage",
+      "at": 41,
+      "actor": "human",
+      "duration": 0.8,
+      "text": "SMILE +1"
+    },
+    {
+      "kind": "effect.damage",
+      "at": 42,
+      "actor": "human",
+      "duration": 0.8,
+      "text": "REPLY +1"
+    },
+    {
+      "kind": "camera.zoom",
+      "at": 43,
+      "zoom": 1.08,
+      "duration": 0.8
+    },
+    {
+      "kind": "dialogue.say",
+      "at": 42.4,
+      "actor": "narrator",
+      "duration": 4.7,
+      "text": "だったら、外注されるのは「人間」ではなく、人間らしく見せる仕事なのかもしれない。",
+      "spokenText": "だったら。外注されるのは、人間そのものではなく。人間らしく見せる仕事、なのかもしれない。",
+      "showSubtitle": true
+    },
+    {
+      "kind": "transition.fade",
+      "at": 47.2,
+      "mode": "out",
+      "duration": 0.8
+    }
+  ],
+  "audio": {
+    "masterVolume": 1,
+    "tts": {
+      "provider": "voicevox",
+      "events": [
+        "dialogue.say"
+      ],
+      "defaultVoice": {
+        "voice": "男声2",
+        "style": "ノーマル",
+        "speedScale": 1.04,
+        "intonationScale": 1.05,
+        "volume": 1.05
+      },
+      "actors": {
+        "narrator": {
+          "voice": "男声2",
+          "style": "ノーマル",
+          "speedScale": 1.04,
+          "intonationScale": 1.05,
+          "volume": 1.05
+        }
+      }
+    },
+    "bgm": [
+      {
+        "id": "essay-bed",
+        "preset": "retro-drone",
+        "at": 0,
+        "duration": 48,
+        "volume": 0.28,
+        "fadeIn": 0.8,
+        "fadeOut": 1.2
+      }
+    ],
+    "sfx": [
+      {
+        "id": "arrival",
+        "preset": "alert",
+        "at": 7.2,
+        "volume": 0.45
+      },
+      {
+        "id": "reversal",
+        "preset": "impact",
+        "at": 34.2,
+        "volume": 0.35
+      }
+    ]
+  }
+}
