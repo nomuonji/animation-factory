@@ -1,16 +1,23 @@
 {
-  "version": 1,
+  "version": 2,
   "sampleRate": 48000,
   "tts": {
-    "providers": ["none", "espeak-ng"],
-    "eventKinds": ["dialogue.say", "ui.speech"],
+    "providers": [
+      "none",
+      "espeak-ng",
+      "piper-plus"
+    ],
+    "eventKinds": [
+      "dialogue.say",
+      "ui.speech"
+    ],
     "defaultVoice": {
-      "voice": "ja",
+      "voice": "tsukuyomi",
       "rate": 175,
       "pitch": 50,
       "volume": 1
     },
-    "notes": "espeak-ng is the built-in zero-key baseline provider. Higher quality providers can replace the adapter later without changing the visual runtime."
+    "notes": "piper-plus is the preferred local Japanese neural TTS provider; espeak-ng remains a lightweight fallback for compatible languages. The voice field is interpreted as a Piper model name when provider=piper-plus."
   },
   "bgmPresets": {
     "office-night": "Low synthetic office-night drone with subtle pink-noise room tone.",
