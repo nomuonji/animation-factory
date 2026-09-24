@@ -131,13 +131,26 @@ async function renderTtsTracks({
     if (config.provider === "piper-plus") {
       const speakingRate = profile.rate ?? 175;
       const lengthScale = Math.max(0.55, Math.min(2.2, 175 / speakingRate));
+      const voice = profile.voice ?? "tsukuyomi";
+      const model =
+        voice === "tsukuyomi"
+          ? join(process.cwd(), "tsukuyomi-chan-6lang-fp16.onnx")
+          : voice;
+      const configPath =
+        voice === "tsukuyomi"
+          ? join(process.cwd(), "config.json")
+          : undefined;
+
       await run(piperPythonCommand, [
         "-m",
         "piper",
         "--model",
-        profile.voice ?? "tsukuyomi",
+        model,
+        ...(configPath ? ["--config", configPath] : []),
         "--length-scale",
         String(lengthScale),
+        "--noise-scale",
+        "0.5",
         "-f",
         output,
         event.text
