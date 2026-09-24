@@ -1,5 +1,28 @@
 import Phaser from "phaser";
 
+function wrapDialogueText(text: string, maxChars = 34): string {
+  return text
+    .split("\n")
+    .flatMap((line) => {
+      const chars = Array.from(line);
+      const rows: string[] = [];
+      while (chars.length > maxChars) {
+        let cut = maxChars;
+        const minCut = Math.floor(maxChars * 0.65);
+        for (let index = maxChars; index >= minCut; index -= 1) {
+          if (/[、。，．！？!? ]/.test(chars[index - 1] ?? "")) {
+            cut = index;
+            break;
+          }
+        }
+        rows.push(chars.splice(0, cut).join("").trim());
+      }
+      if (chars.length || rows.length === 0) rows.push(chars.join("").trim());
+      return rows;
+    })
+    .join("\n");
+}
+
 export class DialogueBox {
   private panel?: Phaser.GameObjects.Rectangle;
   private label?: Phaser.GameObjects.Text;
@@ -23,7 +46,7 @@ export class DialogueBox {
 
     this.ensureObjects();
     this.panel?.setVisible(true);
-    this.label?.setText(text).setVisible(true);
+    this.label?.setText(wrapDialogueText(text)).setVisible(true);
   }
 
   show(text: string, duration: number): void {
@@ -41,7 +64,7 @@ export class DialogueBox {
   private ensureObjects(): void {
     if (!this.panel) {
       this.panel = this.scene.add
-        .rectangle(this.width / 2, this.height - 58, this.width - 24, 78, 0x080a0f, 0.94)
+        .rectangle(this.width / 2, this.height - 42, this.width - 24, 70, 0x080a0f, 0.94)
         .setStrokeStyle(2, 0xf1f1e9)
         .setScrollFactor(0)
         .setDepth(100);
@@ -49,7 +72,7 @@ export class DialogueBox {
 
     if (!this.label) {
       this.label = this.scene.add
-        .text(24, this.height - 82, "", {
+        .text(24, this.height - 69, "", {
           fontFamily: "monospace",
           fontSize: "12px",
           color: "#f4f2e8",
