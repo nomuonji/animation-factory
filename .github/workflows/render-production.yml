@@ -79,6 +79,8 @@ jobs:
           python -m pip install --upgrade pip
           python -m pip install "piper-plus>=1.13,<2"
           python -m piper --download-model tsukuyomi
+          test -s tsukuyomi-chan-6lang-fp16.onnx
+          test -s config.json
 
       - name: Install Chromium and system dependencies
         run: npx playwright install --with-deps chromium
