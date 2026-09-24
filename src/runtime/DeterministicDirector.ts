@@ -74,7 +74,8 @@ export class DeterministicDirector {
     private readonly production: Production,
     private readonly actors: Map<string, PixelActor>,
     private readonly dialogue: DialogueBox,
-    private readonly presentation: PresentationLayer
+    private readonly presentation: PresentationLayer,
+    private readonly renderCanvasText = true
   ) {
     this.events = [...production.events].sort((a, b) => a.at - b.at);
     for (const definition of production.actors) {
@@ -83,7 +84,7 @@ export class DeterministicDirector {
 
     this.caption = scene.add
       .text(production.canvas.width / 2, 36, "", {
-        fontFamily: "monospace",
+        fontFamily: '"Noto Sans JP", "Noto Sans CJK JP", "Yu Gothic", sans-serif',
         fontSize: "12px",
         color: "#ffffff",
         backgroundColor: "#11141ddd",
@@ -98,7 +99,7 @@ export class DeterministicDirector {
 
     this.damage = scene.add
       .text(0, 0, "", {
-        fontFamily: "monospace",
+        fontFamily: '"Noto Sans JP", "Noto Sans CJK JP", "Yu Gothic", sans-serif',
         fontSize: "14px",
         fontStyle: "bold",
         color: "#ff5964",
@@ -111,7 +112,7 @@ export class DeterministicDirector {
 
     this.exclamation = scene.add
       .text(0, 0, "!", {
-        fontFamily: "monospace",
+        fontFamily: '"Noto Sans JP", "Noto Sans CJK JP", "Yu Gothic", sans-serif',
         fontSize: "22px",
         fontStyle: "bold",
         color: "#ffe268",
@@ -324,28 +325,36 @@ export class DeterministicDirector {
     camera.setZoom(cameraZoom);
     camera.setScroll(cameraScrollX, cameraScrollY);
 
-    this.dialogue.set(dialogueText);
+    if (this.renderCanvasText) {
+      this.dialogue.set(dialogueText);
 
-    if (captionText) {
-      this.caption.setText(captionText).setVisible(true);
-    } else {
-      this.caption.setVisible(false);
-    }
+      if (captionText) {
+        this.caption.setText(captionText).setVisible(true);
+      } else {
+        this.caption.setVisible(false);
+      }
 
-    if (speechState) {
-      const actor = this.actors.get(speechState.actor) ?? null;
-      this.presentation.setSpeech(
-        actor ? { actor, text: speechState.text } : null
+      if (speechState) {
+        const actor = this.actors.get(speechState.actor) ?? null;
+        this.presentation.setSpeech(
+          actor ? { actor, text: speechState.text } : null
+        );
+      } else {
+        this.presentation.setSpeech(null);
+      }
+
+      this.presentation.setRpgStatus(
+        statusState?.title ?? null,
+        statusState?.lines ?? []
       );
+      this.presentation.setEssayCard(essayState);
     } else {
+      this.dialogue.set(null);
+      this.caption.setVisible(false);
       this.presentation.setSpeech(null);
+      this.presentation.setRpgStatus(null);
+      this.presentation.setEssayCard(null);
     }
-
-    this.presentation.setRpgStatus(
-      statusState?.title ?? null,
-      statusState?.lines ?? []
-    );
-    this.presentation.setEssayCard(essayState);
 
     if (emoteState) {
       const actor = this.actors.get(emoteState.actor) ?? null;
