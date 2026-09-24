@@ -2,7 +2,7 @@
   "meta": {
     "id": "tweet-youtube-001-quality-probe",
     "title": "人間ごっこをAIへ外注できる？ — quality probe",
-    "description": "Free-only QA probe: VOICEVOX Nemo + spoken/display text separation + attention timeline.",
+    "description": "Free-only QA probe: VOICEVOX Nemo + spoken/display text separation + attention timeline. Final thesis beat intentionally voice-only to preserve visual breathing room.",
     "duration": 48,
     "credits": [
       "VOICEVOX Nemo"
@@ -235,7 +235,7 @@
       "duration": 4.7,
       "text": "だったら、外注されるのは「人間」ではなく、人間らしく見せる仕事なのかもしれない。",
       "spokenText": "だったら。外注されるのは、人間そのものではなく。人間らしく見せる仕事、なのかもしれない。",
-      "showSubtitle": true
+      "showSubtitle": false
     },
     {
       "kind": "transition.fade",
