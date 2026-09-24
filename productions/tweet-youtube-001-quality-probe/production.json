@@ -2,7 +2,7 @@
   "meta": {
     "id": "tweet-youtube-001-quality-probe",
     "title": "人間ごっこをAIへ外注できる？ — quality probe",
-    "description": "Free-only QA probe: VOICEVOX Nemo + separated spoken/display text + attention timeline. Visual QA fixed real line breaks and card density.",
+    "description": "Free-only QA probe v2: VOICEVOX Nemo + separated spoken/display text + attention timeline + reading-budget validation + visual-QA line-break/card-density fixes.",
     "duration": 48,
     "credits": [
       "VOICEVOX Nemo"
