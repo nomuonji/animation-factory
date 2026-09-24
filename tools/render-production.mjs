@@ -91,9 +91,18 @@ async function renderVideo(page, metadata) {
   const totalFrames = Math.ceil(metadata.duration * metadata.fps);
   const videoPath = join(cacheDir, "video-only.mp4");
 
+  const renderWidth = metadata.width * metadata.outputScale;
+  const renderHeight = metadata.height * metadata.outputScale;
+
   console.log(
-    `Rendering ${metadata.title}: ${totalFrames} frames @ ${metadata.fps}fps (${metadata.width}x${metadata.height})`
+    `Rendering ${metadata.title}: ${totalFrames} frames @ ${metadata.fps}fps (${renderWidth}x${renderHeight})`
   );
+
+  await page.setViewportSize({ width: renderWidth, height: renderHeight });
+  await page.evaluate(async () => {
+    await document.fonts.ready;
+  });
+  const frame = page.locator(".preview-frame");
 
   const encoder = spawn(ffmpegCommand, [
     "-hide_banner", "-loglevel", "error", "-nostats",
@@ -102,7 +111,6 @@ async function renderVideo(page, metadata) {
     "-framerate", String(metadata.fps),
     "-c:v", "png",
     "-i", "pipe:0",
-    "-vf", `scale=iw*${metadata.outputScale}:ih*${metadata.outputScale}:flags=neighbor`,
     "-c:v", "libx264",
     "-preset", "medium",
     "-crf", "18",
@@ -125,7 +133,7 @@ async function renderVideo(page, metadata) {
     for (let frame = 0; frame < totalFrames; frame += 1) {
       const seconds = frame / metadata.fps;
 
-      const dataUrl = await page.evaluate(async (time) => {
+      await page.evaluate(async (time) => {
         const factory = window.__ANIMATION_FACTORY__;
         if (!factory) throw new Error("Render bridge disappeared.");
 
@@ -137,15 +145,12 @@ async function renderVideo(page, metadata) {
         await new Promise((resolvePromise) =>
           requestAnimationFrame(() => resolvePromise())
         );
-
-        const canvas = document.querySelector("canvas");
-        if (!(canvas instanceof HTMLCanvasElement)) {
-          throw new Error("Canvas was not found.");
-        }
-        return canvas.toDataURL("image/png");
       }, seconds);
 
-      const png = Buffer.from(dataUrl.slice(dataUrl.indexOf(",") + 1), "base64");
+      const png = await frame.screenshot({
+        type: "png",
+        animations: "disabled"
+      });
       if (!encoder.stdin.write(png)) {
         await once(encoder.stdin, "drain");
       }
