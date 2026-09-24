@@ -2,7 +2,7 @@
   "meta": {
     "id": "tweet-youtube-001-human-simulation",
     "title": "AIが人間を演じるなら、人間は何をしなくていいのか",
-    "description": "Source tweetをMethod v0.1でTuring・LLM role-play・感情労働へ展開し、独自命題へ統合した約108秒の横型YouTube essay pilot。research.mdを制作根拠として保持。日本語字幕wrap/layout QA済み。",
+    "description": "Source tweetをMethod v0.1でTuring・LLM role-play・感情労働へ展開した横型YouTube essay pilot。背景/キャラはpixel-art、主要テキストはfull-resolution DOM typography、日本語音声はPiper Plus。",
     "duration": 108
   },
   "canvas": {
@@ -362,22 +362,20 @@
   "audio": {
     "masterVolume": 1.35,
     "tts": {
-      "provider": "espeak-ng",
+      "provider": "piper-plus",
       "events": [
         "dialogue.say"
       ],
       "defaultVoice": {
-        "voice": "ja",
-        "rate": 190,
-        "pitch": 45,
-        "volume": 1.15
+        "voice": "tsukuyomi",
+        "rate": 185,
+        "volume": 1.12
       },
       "actors": {
         "narrator": {
-          "voice": "ja",
-          "rate": 190,
-          "pitch": 42,
-          "volume": 1.18
+          "voice": "tsukuyomi",
+          "rate": 185,
+          "volume": 1.16
         }
       }
     },
