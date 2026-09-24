@@ -3,6 +3,7 @@ import "./styles.css";
 import catalog from "../catalog/components.json";
 import { listProductions, loadProduction } from "./core/productionRegistry";
 import { FactoryScene } from "./runtime/FactoryScene";
+import type { TimelineEvent } from "./core/types";
 
 interface FactoryBridge {
   ready: true;
@@ -38,6 +39,9 @@ app.style.setProperty("--logical-width", `${production.canvas.width}px`);
 app.style.setProperty("--logical-height", `${production.canvas.height}px`);
 app.style.setProperty("--stage-aspect", `${production.canvas.width} / ${production.canvas.height}`);
 app.style.setProperty("--stage-ratio", String(production.canvas.width / production.canvas.height));
+app.style.setProperty("--output-scale", String(production.canvas.outputScale));
+app.style.setProperty("--render-width", `${production.canvas.width * production.canvas.outputScale}px`);
+app.style.setProperty("--render-height", `${production.canvas.height * production.canvas.outputScale}px`);
 
 app.innerHTML = `
   <aside class="panel">
@@ -79,14 +83,92 @@ app.innerHTML = `
   <main class="preview-shell">
     <div class="preview-frame">
       <div id="stage"></div>
+      <div id="text-overlay" aria-hidden="true"></div>
     </div>
   </main>
 `;
+
+
+const textOverlay = document.querySelector<HTMLDivElement>("#text-overlay");
+
+function activeEvent<K extends TimelineEvent["kind"]>(
+  kind: K,
+  time: number
+): Extract<TimelineEvent, { kind: K }> | null {
+  let active: Extract<TimelineEvent, { kind: K }> | null = null;
+  for (const event of production.events) {
+    if (event.kind !== kind || event.at > time) continue;
+    const duration =
+      "duration" in event && typeof event.duration === "number"
+        ? event.duration
+        : 0;
+    if (duration > 0 && time < event.at + duration) {
+      active = event as Extract<TimelineEvent, { kind: K }>;
+    }
+  }
+  return active;
+}
+
+function block(className: string, text?: string): HTMLDivElement {
+  const node = document.createElement("div");
+  node.className = className;
+  if (text !== undefined) node.textContent = text;
+  return node;
+}
+
+function renderDomText(time: number, scene: FactoryScene): void {
+  if (!renderMode || !textOverlay) return;
+  textOverlay.replaceChildren();
+
+  const caption = activeEvent("ui.caption", time);
+  if (caption) {
+    textOverlay.append(block("video-caption", caption.text));
+  }
+
+  const essay = activeEvent("ui.essayCard", time);
+  if (essay) {
+    const card = block("essay-card");
+    const kicker = block("essay-kicker", essay.kicker ?? "ESSAY");
+    if (essay.accent) kicker.style.color = essay.accent;
+    const title = block("essay-title", essay.title);
+    const body = block("essay-body", essay.body);
+    if (essay.accent) card.style.setProperty("--essay-accent", essay.accent);
+    card.append(kicker, title, body);
+    textOverlay.append(card);
+  }
+
+  const statusEvent = activeEvent("ui.rpgStatus", time);
+  if (statusEvent) {
+    const statusCard = block("status-card");
+    statusCard.append(
+      block("status-title", statusEvent.title),
+      block("status-body", statusEvent.lines.join("\n"))
+    );
+    textOverlay.append(statusCard);
+  }
+
+  const speech = activeEvent("ui.speech", time);
+  if (speech) {
+    const position = scene.actorPosition(speech.actor);
+    if (position) {
+      const bubble = block("speech-bubble-dom", speech.text);
+      bubble.style.left = `${(position.x / production.canvas.width) * 100}%`;
+      bubble.style.top = `${(position.y / production.canvas.height) * 100}%`;
+      textOverlay.append(bubble);
+    }
+  }
+
+  const dialogue = activeEvent("dialogue.say", time);
+  if (dialogue) {
+    textOverlay.append(block("dialogue-subtitle", dialogue.text));
+  }
+}
 
 let sceneRef: FactoryScene | undefined;
 
 const scene = new FactoryScene(production, {
   deterministic: renderMode,
+  renderTextInCanvas: !renderMode,
   onReady: (readyScene) => {
     sceneRef = readyScene;
 
@@ -103,8 +185,12 @@ const scene = new FactoryScene(production, {
           height: production.canvas.height,
           outputScale: production.canvas.outputScale
         },
-        renderAt: (seconds: number) => readyScene.renderAt(seconds)
+        renderAt: (seconds: number) => {
+          readyScene.renderAt(seconds);
+          renderDomText(seconds, readyScene);
+        }
       };
+      renderDomText(0, readyScene);
     }
   }
 });
