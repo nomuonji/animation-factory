@@ -154,7 +154,7 @@ async function renderTtsTracks({
   const config = production.audio?.tts;
   if (!config || config.provider === "none") return;
 
-  if (!["espeak-ng", "piper-plus", "voicevox"].includes(config.provider)) {
+  if (!["espeak-ng", "piper-plus", "voicevox", "voicevox-nemo"].includes(config.provider)) {
     throw new Error(`Unsupported TTS provider: ${config.provider}`);
   }
 
@@ -182,7 +182,7 @@ async function renderTtsTracks({
         ? event.spokenText
         : event.text;
 
-    if (config.provider === "voicevox") {
+    if (config.provider === "voicevox" || config.provider === "voicevox-nemo") {
       await renderVoicevox({ text: spokenText, profile, output });
     } else if (config.provider === "piper-plus") {
       const speakingRate = profile.rate ?? 175;
