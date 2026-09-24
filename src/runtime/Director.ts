@@ -104,7 +104,7 @@ export class Director {
       case "ui.caption": {
         const caption = this.scene.add
           .text(this.production.canvas.width / 2, 36, event.text, {
-            fontFamily: "monospace",
+            fontFamily: '"Noto Sans JP", "Noto Sans CJK JP", "Yu Gothic", sans-serif',
             fontSize: "12px",
             color: "#ffffff",
             backgroundColor: "#11141ddd",
