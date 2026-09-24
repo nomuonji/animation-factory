@@ -2,7 +2,7 @@
   "meta": {
     "id": "tweet-youtube-001-quality-probe",
     "title": "人間ごっこをAIへ外注できる？ — quality probe",
-    "description": "Free-only QA probe: VOICEVOX Nemo + spoken/display text separation + attention timeline. Final thesis beat intentionally voice-only to preserve visual breathing room.",
+    "description": "Free-only QA probe: local VOICEVOX Nemo + spoken/display text separation + attention timeline.",
     "duration": 48,
     "credits": [
       "VOICEVOX Nemo"
@@ -247,7 +247,7 @@
   "audio": {
     "masterVolume": 1,
     "tts": {
-      "provider": "voicevox",
+      "provider": "voicevox-nemo",
       "events": [
         "dialogue.say"
       ],
