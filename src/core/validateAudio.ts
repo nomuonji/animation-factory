@@ -1,6 +1,6 @@
 import type { AudioConfig, TtsVoiceProfile } from "./types";
 
-const TTS_PROVIDERS = new Set(["none", "espeak-ng", "piper-plus", "voicevox"]);
+const TTS_PROVIDERS = new Set(["none", "espeak-ng", "piper-plus", "voicevox", "voicevox-nemo"]);
 const TTS_EVENTS = new Set(["dialogue.say", "ui.speech"]);
 const BGM_PRESETS = new Set(["office-night", "retro-drone"]);
 const SFX_PRESETS = new Set(["heal", "impact", "coin", "alert"]);
