@@ -96,7 +96,7 @@ jobs:
         run: |
           set -euo pipefail
           docker pull voicevox/voicevox_nemo_engine:cpu-latest
-          docker run -d --rm --name voicevox-nemo -p 127.0.0.1:50021:50021 voicevox/voicevox_nemo_engine:cpu-latest
+          docker run -d --rm --name voicevox-nemo -p 127.0.0.1:50021:50121 voicevox/voicevox_nemo_engine:cpu-latest
           for i in {1..90}; do
             if curl -fsS http://127.0.0.1:50021/version >/dev/null; then
               echo "VOICEVOX Nemo ready: $(curl -fsS http://127.0.0.1:50021/version)"
