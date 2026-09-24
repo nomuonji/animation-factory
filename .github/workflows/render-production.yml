@@ -8,16 +8,49 @@ on:
         required: true
         default: first-animation
         type: string
+  push:
+    branches: [main]
+    paths:
+      - "productions/*/production.json"
 
 jobs:
   render:
     runs-on: ubuntu-latest
     timeout-minutes: 180
-    env:
-      PRODUCTION: ${{ inputs.production }}
-
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Resolve production
+        id: resolve
+        shell: bash
+        env:
+          MANUAL_PRODUCTION: ${{ inputs.production }}
+        run: |
+          set -euo pipefail
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            production="$MANUAL_PRODUCTION"
+          else
+            mapfile -t changed < <(
+              git diff --name-only HEAD^ HEAD -- 'productions/*/production.json' |
+              sed -n 's#^productions/\([^/][^/]*\)/production\.json$#\1#p' |
+              sort -u
+            )
+            if [ "${#changed[@]}" -ne 1 ]; then
+              echo "Expected exactly one changed production.json, found ${#changed[@]}." >&2
+              printf '%s\n' "${changed[@]}" >&2
+              exit 2
+            fi
+            production="${changed[0]}"
+          fi
+          if ! [[ "$production" =~ ^[A-Za-z0-9._-]+$ ]]; then
+            echo "Unsafe production folder: $production" >&2
+            exit 2
+          fi
+          echo "PRODUCTION=$production" >> "$GITHUB_ENV"
+          echo "production=$production" >> "$GITHUB_OUTPUT"
+
 
       - uses: actions/setup-node@v4
         with:
@@ -72,7 +105,7 @@ jobs:
       - name: Upload render + review artifact
         uses: actions/upload-artifact@v4
         with:
-          name: animation-${{ inputs.production }}
+          name: animation-${{ steps.resolve.outputs.production }}
           path: review-package/
           if-no-files-found: error
           retention-days: 90
