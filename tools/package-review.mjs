@@ -60,6 +60,7 @@ const metadata = {
   productionId: production.meta.id,
   title: production.meta.title,
   description: production.meta.description ?? "",
+  credits: Array.isArray(production.meta.credits) ? production.meta.credits : [],
   duration: production.meta.duration,
   fps: production.canvas?.fps ?? null,
   logicalSize: production.canvas
