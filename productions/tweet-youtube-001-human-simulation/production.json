@@ -2,7 +2,7 @@
   "meta": {
     "id": "tweet-youtube-001-human-simulation",
     "title": "AIが人間を演じるなら、人間は何をしなくていいのか",
-    "description": "Source tweetをMethod v0.1でTuring・LLM role-play・感情労働へ展開し、独自命題へ統合した約108秒の横型YouTube essay pilot。research.mdを制作根拠として保持。",
+    "description": "Source tweetをMethod v0.1でTuring・LLM role-play・感情労働へ展開し、独自命題へ統合した約108秒の横型YouTube essay pilot。research.mdを制作根拠として保持。日本語字幕wrap/layout QA済み。",
     "duration": 108
   },
   "canvas": {
