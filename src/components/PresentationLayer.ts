@@ -72,7 +72,7 @@ export class PresentationLayer {
       .setStrokeStyle(2, 0x161923);
     this.speechText = scene.add
       .text(0, 0, "", {
-        fontFamily: "monospace",
+        fontFamily: '"Noto Sans JP", "Noto Sans CJK JP", "Yu Gothic", sans-serif',
         fontSize: "10px",
         color: "#171923",
         align: "center",
@@ -91,7 +91,7 @@ export class PresentationLayer {
       .setStrokeStyle(2, 0xd9dfeb);
     this.statusTitle = scene.add
       .text(0, -23, "", {
-        fontFamily: "monospace",
+        fontFamily: '"Noto Sans JP", "Noto Sans CJK JP", "Yu Gothic", sans-serif',
         fontSize: "10px",
         fontStyle: "bold",
         color: "#f4e18a"
@@ -99,7 +99,7 @@ export class PresentationLayer {
       .setOrigin(0.5);
     this.statusBody = scene.add
       .text(-49, -10, "", {
-        fontFamily: "monospace",
+        fontFamily: '"Noto Sans JP", "Noto Sans CJK JP", "Yu Gothic", sans-serif',
         fontSize: "9px",
         color: "#edf0f7",
         lineSpacing: 3
@@ -119,7 +119,7 @@ export class PresentationLayer {
       .setStrokeStyle(2, 0x7de7f2);
     this.essayKicker = scene.add
       .text(-essayWidth / 2 + 18, -essayHeight / 2 + 16, "", {
-        fontFamily: "monospace",
+        fontFamily: '"Noto Sans JP", "Noto Sans CJK JP", "Yu Gothic", sans-serif',
         fontSize: "9px",
         fontStyle: "bold",
         color: "#7de7f2"
@@ -127,7 +127,7 @@ export class PresentationLayer {
       .setOrigin(0, 0);
     this.essayTitle = scene.add
       .text(-essayWidth / 2 + 18, -essayHeight / 2 + 34, "", {
-        fontFamily: "monospace",
+        fontFamily: '"Noto Sans JP", "Noto Sans CJK JP", "Yu Gothic", sans-serif',
         fontSize: "17px",
         fontStyle: "bold",
         color: "#ffffff",
@@ -136,7 +136,7 @@ export class PresentationLayer {
       .setOrigin(0, 0);
     this.essayBody = scene.add
       .text(-essayWidth / 2 + 18, -essayHeight / 2 + 70, "", {
-        fontFamily: "monospace",
+        fontFamily: '"Noto Sans JP", "Noto Sans CJK JP", "Yu Gothic", sans-serif',
         fontSize: "10px",
         color: "#dce4ef",
         lineSpacing: 4,
