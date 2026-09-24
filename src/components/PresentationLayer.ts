@@ -108,9 +108,9 @@ export class PresentationLayer {
     this.status.add([this.statusPanel, this.statusTitle, this.statusBody]);
 
     const essayWidth = Math.min(width - 36, 404);
-    const essayHeight = Math.min(height - 54, 182);
+    const essayHeight = Math.min(height - 92, 154);
     this.essay = scene.add
-      .container(width / 2, height / 2 + 4)
+      .container(width / 2, height / 2 - 28)
       .setDepth(170)
       .setScrollFactor(0)
       .setVisible(false);
