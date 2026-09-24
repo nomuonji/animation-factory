@@ -102,16 +102,21 @@ async function renderTtsTracks({
   production,
   audioDir,
   espeakCommand,
+  piperPythonCommand,
   tracks
 }) {
   const config = production.audio?.tts;
   if (!config || config.provider === "none") return;
 
-  if (config.provider !== "espeak-ng") {
+  if (!["espeak-ng", "piper-plus"].includes(config.provider)) {
     throw new Error(`Unsupported TTS provider: ${config.provider}`);
   }
 
-  await ensureCommand(espeakCommand, "espeak-ng");
+  if (config.provider === "espeak-ng") {
+    await ensureCommand(espeakCommand, "espeak-ng");
+  } else {
+    await ensureCommand(piperPythonCommand, "Python for Piper Plus");
+  }
 
   const eventKinds = new Set(config.events ?? ["dialogue.say", "ui.speech"]);
   let index = 0;
@@ -123,19 +128,35 @@ async function renderTtsTracks({
     const profile = actorVoice(config, event.actor);
     const output = join(audioDir, `tts-${String(index).padStart(3, "0")}.wav`);
 
-    const args = [
-      "-v",
-      profile.voice ?? "ja",
-      "-s",
-      String(profile.rate ?? 175),
-      "-p",
-      String(profile.pitch ?? 50),
-      "-w",
-      output,
-      event.text
-    ];
-
-    await run(espeakCommand, args);
+    if (config.provider === "piper-plus") {
+      const speakingRate = profile.rate ?? 175;
+      const lengthScale = Math.max(0.55, Math.min(2.2, 175 / speakingRate));
+      await run(piperPythonCommand, [
+        "-m",
+        "piper_plus",
+        "--model",
+        profile.voice ?? "tsukuyomi",
+        "--text",
+        event.text,
+        "--length-scale",
+        String(lengthScale),
+        "-f",
+        output
+      ]);
+    } else {
+      const args = [
+        "-v",
+        profile.voice ?? "en",
+        "-s",
+        String(profile.rate ?? 175),
+        "-p",
+        String(profile.pitch ?? 50),
+        "-w",
+        output,
+        event.text
+      ];
+      await run(espeakCommand, args);
+    }
     tracks.push({
       path: output,
       at: event.at,
@@ -275,7 +296,8 @@ export async function buildAudio({
   production,
   cacheDir,
   ffmpegCommand = "ffmpeg",
-  espeakCommand = "espeak-ng"
+  espeakCommand = "espeak-ng",
+  piperPythonCommand = process.platform === "win32" ? "python" : "python3"
 }) {
   if (!production.audio) return null;
 
@@ -288,6 +310,7 @@ export async function buildAudio({
     production,
     audioDir,
     espeakCommand,
+    piperPythonCommand,
     tracks
   });
 
