@@ -25,6 +25,11 @@ const readable = (p.events ?? []).flatMap((event) => {
   return [];
 });
 for (const event of readable) {
+  if (String(event.readText).includes("\\n")) {
+    errors.push(
+      `${event.kind} at ${event.at}s contains a literal \\n sequence; use a real newline instead`
+    );
+  }
   const minimum = chars(event.readText) / cps + 0.6;
   if (minimum > event.duration + 0.01) {
     errors.push(`${event.kind} at ${event.at}s: ${chars(event.readText)} chars / ${event.duration}s; needs ~${minimum.toFixed(1)}s`);
