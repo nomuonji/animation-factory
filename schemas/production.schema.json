@@ -182,7 +182,8 @@
                 "none",
                 "espeak-ng",
                 "piper-plus",
-                "voicevox"
+                "voicevox",
+                "voicevox-nemo"
               ]
             },
             "events": {
