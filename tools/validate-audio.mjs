@@ -1,4 +1,4 @@
-const TTS_PROVIDERS = new Set(["none", "espeak-ng"]);
+const TTS_PROVIDERS = new Set(["none", "espeak-ng", "piper-plus"]);
 const TTS_EVENTS = new Set(["dialogue.say", "ui.speech"]);
 const BGM_PRESETS = new Set(["office-night", "retro-drone"]);
 const SFX_PRESETS = new Set(["heal", "impact", "coin", "alert"]);
