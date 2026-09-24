@@ -136,12 +136,11 @@ async function renderTtsTracks({
         "piper",
         "--model",
         profile.voice ?? "tsukuyomi",
-        "--text",
-        event.text,
         "--length-scale",
         String(lengthScale),
         "-f",
-        output
+        output,
+        event.text
       ]);
     } else {
       const args = [
