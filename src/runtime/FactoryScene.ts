@@ -9,6 +9,7 @@ import { Director } from "./Director";
 
 export interface FactorySceneOptions {
   deterministic?: boolean;
+  renderTextInCanvas?: boolean;
   onReady?: (scene: FactoryScene) => void;
 }
 
@@ -54,7 +55,8 @@ export class FactoryScene extends Phaser.Scene {
         this.production,
         this.actors,
         dialogue,
-        presentation
+        presentation,
+        this.options.renderTextInCanvas ?? true
       );
       this.deterministicDirector.renderAt(0);
     } else {
@@ -75,5 +77,10 @@ export class FactoryScene extends Phaser.Scene {
       throw new Error("renderAt() is only available in deterministic render mode.");
     }
     this.deterministicDirector.renderAt(seconds);
+  }
+
+  actorPosition(id: string): { x: number; y: number } | null {
+    const actor = this.actors.get(id);
+    return actor ? { x: actor.x, y: actor.y } : null;
   }
 }
