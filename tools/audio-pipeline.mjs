@@ -1,5 +1,5 @@
 import { spawn } from "node:child_process";
-import { mkdir } from "node:fs/promises";
+import { mkdir, writeFile } from "node:fs/promises";
 import { join } from "node:path";
 
 function run(command, args, options = {}) {
@@ -98,6 +98,52 @@ function actorVoice(config, actor) {
   return { ...base, ...override };
 }
 
+async function fetchJson(url, options, label) {
+  const response = await fetch(url, options);
+  if (!response.ok) throw new Error(`${label} failed: ${response.status} ${response.statusText}`);
+  return response.json();
+}
+
+let voicevoxSpeakers;
+
+async function resolveVoicevoxStyle(baseUrl, profile) {
+  const rawVoice = profile.voice ?? "男声2";
+  if (/^\d+$/.test(rawVoice)) return Number(rawVoice);
+  voicevoxSpeakers ??= await fetchJson(`${baseUrl}/speakers`, undefined, "VOICEVOX /speakers");
+  const speaker = voicevoxSpeakers.find((item) => item.name === rawVoice);
+  if (!speaker) throw new Error(`VOICEVOX speaker "${rawVoice}" was not found.`);
+  const styleName = profile.style ?? "ノーマル";
+  const style = speaker.styles.find((item) => item.name === styleName) ?? speaker.styles[0];
+  if (!style) throw new Error(`VOICEVOX speaker "${rawVoice}" has no styles.`);
+  return style.id;
+}
+
+async function renderVoicevox({ text, profile, output }) {
+  const baseUrl = process.env.VOICEVOX_URL ?? "http://127.0.0.1:50021";
+  const speaker = await resolveVoicevoxStyle(baseUrl, profile);
+  const queryUrl = new URL(`${baseUrl}/audio_query`);
+  queryUrl.searchParams.set("speaker", String(speaker));
+  queryUrl.searchParams.set("text", text);
+  const query = await fetchJson(queryUrl, { method: "POST" }, "VOICEVOX /audio_query");
+  query.speedScale = profile.speedScale ?? Math.max(0.75, Math.min(1.35, (profile.rate ?? 175) / 175));
+  query.intonationScale = profile.intonationScale ?? 1;
+  query.pitchScale = 0;
+  query.volumeScale = 1;
+  query.prePhonemeLength = Math.max(query.prePhonemeLength ?? 0.1, 0.08);
+  query.postPhonemeLength = Math.max(query.postPhonemeLength ?? 0.1, 0.12);
+  query.outputSamplingRate = 48000;
+  query.outputStereo = false;
+  const synthesisUrl = new URL(`${baseUrl}/synthesis`);
+  synthesisUrl.searchParams.set("speaker", String(speaker));
+  const response = await fetch(synthesisUrl, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(query)
+  });
+  if (!response.ok) throw new Error(`VOICEVOX /synthesis failed: ${response.status} ${response.statusText}`);
+  await writeFile(output, Buffer.from(await response.arrayBuffer()));
+}
+
 async function renderTtsTracks({
   production,
   audioDir,
@@ -108,14 +154,18 @@ async function renderTtsTracks({
   const config = production.audio?.tts;
   if (!config || config.provider === "none") return;
 
-  if (!["espeak-ng", "piper-plus"].includes(config.provider)) {
+  if (!["espeak-ng", "piper-plus", "voicevox"].includes(config.provider)) {
     throw new Error(`Unsupported TTS provider: ${config.provider}`);
   }
 
   if (config.provider === "espeak-ng") {
     await ensureCommand(espeakCommand, "espeak-ng");
-  } else {
+  } else if (config.provider === "piper-plus") {
     await ensureCommand(piperPythonCommand, "Python for Piper Plus");
+  } else {
+    const baseUrl = process.env.VOICEVOX_URL ?? "http://127.0.0.1:50021";
+    const response = await fetch(`${baseUrl}/version`);
+    if (!response.ok) throw new Error("VOICEVOX Engine is not reachable.");
   }
 
   const eventKinds = new Set(config.events ?? ["dialogue.say", "ui.speech"]);
@@ -127,8 +177,14 @@ async function renderTtsTracks({
 
     const profile = actorVoice(config, event.actor);
     const output = join(audioDir, `tts-${String(index).padStart(3, "0")}.wav`);
+    const spokenText =
+      typeof event.spokenText === "string" && event.spokenText.length > 0
+        ? event.spokenText
+        : event.text;
 
-    if (config.provider === "piper-plus") {
+    if (config.provider === "voicevox") {
+      await renderVoicevox({ text: spokenText, profile, output });
+    } else if (config.provider === "piper-plus") {
       const speakingRate = profile.rate ?? 175;
       const lengthScale = Math.max(0.55, Math.min(2.2, 175 / speakingRate));
       const voice = profile.voice ?? "tsukuyomi";
@@ -153,7 +209,7 @@ async function renderTtsTracks({
         "0.5",
         "-f",
         output,
-        event.text
+        spokenText
       ]);
     } else {
       const args = [
@@ -165,7 +221,7 @@ async function renderTtsTracks({
         String(profile.pitch ?? 50),
         "-w",
         output,
-        event.text
+        spokenText
       ];
       await run(espeakCommand, args);
     }

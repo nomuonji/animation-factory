@@ -1,4 +1,4 @@
-const TTS_PROVIDERS = new Set(["none", "espeak-ng", "piper-plus"]);
+const TTS_PROVIDERS = new Set(["none", "espeak-ng", "piper-plus", "voicevox"]);
 const TTS_EVENTS = new Set(["dialogue.say", "ui.speech"]);
 const BGM_PRESETS = new Set(["office-night", "retro-drone"]);
 const SFX_PRESETS = new Set(["heal", "impact", "coin", "alert"]);
@@ -21,10 +21,24 @@ function validateVoice(errors, label, profile) {
     errors.push(`${label}.voice must be a non-empty string`);
   }
   if (
+    profile.style !== undefined &&
+    (typeof profile.style !== "string" || !profile.style)
+  ) {
+    errors.push(`${label}.style must be a non-empty string`);
+  }
+  if (
     profile.rate !== undefined &&
     (!finite(profile.rate) || profile.rate < 80 || profile.rate > 450)
   ) {
     errors.push(`${label}.rate must be between 80 and 450`);
+  }
+  for (const [field, value] of [
+    ["speedScale", profile.speedScale],
+    ["intonationScale", profile.intonationScale]
+  ]) {
+    if (value !== undefined && (!finite(value) || value < 0.5 || value > 2)) {
+      errors.push(`${label}.${field} must be between 0.5 and 2`);
+    }
   }
   if (
     profile.pitch !== undefined &&

@@ -1,6 +1,6 @@
 import type { AudioConfig, TtsVoiceProfile } from "./types";
 
-const TTS_PROVIDERS = new Set(["none", "espeak-ng", "piper-plus"]);
+const TTS_PROVIDERS = new Set(["none", "espeak-ng", "piper-plus", "voicevox"]);
 const TTS_EVENTS = new Set(["dialogue.say", "ui.speech"]);
 const BGM_PRESETS = new Set(["office-night", "retro-drone"]);
 const SFX_PRESETS = new Set(["heal", "impact", "coin", "alert"]);
@@ -25,10 +25,26 @@ function voiceProfile(label: string, profile: TtsVoiceProfile | undefined): void
   }
 
   if (
+    profile.style !== undefined &&
+    (typeof profile.style !== "string" || profile.style.length === 0)
+  ) {
+    throw new Error(`${label}.style must be a non-empty string.`);
+  }
+
+  if (
     profile.rate !== undefined &&
     (!finite(profile.rate) || profile.rate < 80 || profile.rate > 450)
   ) {
     throw new Error(`${label}.rate must be between 80 and 450.`);
+  }
+
+  for (const [field, value] of [
+    ["speedScale", profile.speedScale],
+    ["intonationScale", profile.intonationScale]
+  ] as const) {
+    if (value !== undefined && (!finite(value) || value < 0.5 || value > 2)) {
+      throw new Error(`${label}.${field} must be between 0.5 and 2.`);
+    }
   }
 
   if (

@@ -18,6 +18,7 @@ export interface ProductionMeta {
   title: string;
   duration: number;
   description?: string;
+  credits?: string[];
 }
 
 export interface ActorDefinition {
@@ -53,6 +54,8 @@ export interface DialogueSayEvent extends BaseEvent {
   actor: string;
   text: string;
   duration: number;
+  spokenText?: string;
+  showSubtitle?: boolean;
 }
 
 export interface SpeechBubbleEvent extends BaseEvent {
@@ -173,15 +176,18 @@ export type TimelineEvent =
   | PropShowEvent;
 
 export type TtsEventKind = "dialogue.say" | "ui.speech";
-export type TtsProvider = "none" | "espeak-ng" | "piper-plus";
+export type TtsProvider = "none" | "espeak-ng" | "piper-plus" | "voicevox";
 export type BgmPreset = "office-night" | "retro-drone";
 export type SfxPreset = "heal" | "impact" | "coin" | "alert";
 
 export interface TtsVoiceProfile {
   voice?: string;
+  style?: string;
   rate?: number;
   pitch?: number;
   volume?: number;
+  speedScale?: number;
+  intonationScale?: number;
 }
 
 export interface TtsConfig {
@@ -215,6 +221,20 @@ export interface AudioConfig {
   sfx?: SfxTrack[];
 }
 
+export interface AttentionBeat {
+  id: string;
+  at: number;
+  duration: number;
+  focus: "character" | "caption" | "card" | "status" | "silence";
+  intent?: string;
+}
+
+export interface AttentionConfig {
+  maxReadingCharsPerSecond?: number;
+  maxTextLayers?: number;
+  beats?: AttentionBeat[];
+}
+
 export interface Production {
   meta: ProductionMeta;
   canvas: CanvasConfig;
@@ -222,4 +242,5 @@ export interface Production {
   actors: ActorDefinition[];
   events: TimelineEvent[];
   audio?: AudioConfig;
+  attention?: AttentionConfig;
 }

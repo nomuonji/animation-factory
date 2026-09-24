@@ -159,7 +159,8 @@ function renderDomText(time: number, scene: FactoryScene): void {
   }
 
   const dialogue = activeEvent("dialogue.say", time);
-  if (dialogue) {
+  const primaryReadingLayer = Boolean(essay || statusEvent);
+  if (dialogue && dialogue.showSubtitle !== false && !primaryReadingLayer) {
     textOverlay.append(block("dialogue-subtitle", dialogue.text));
   }
 }
