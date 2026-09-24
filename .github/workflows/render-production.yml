@@ -64,7 +64,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          provider="$(node -p "require('./productions/\${PRODUCTION}/production.json').audio?.tts?.provider || 'none'")"
+          provider="$(node -p "require('./productions/${PRODUCTION}/production.json').audio?.tts?.provider || 'none'")"
           echo "provider=$provider" >> "$GITHUB_OUTPUT"
           echo "TTS provider: $provider"
 
