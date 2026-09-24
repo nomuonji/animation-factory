@@ -2,7 +2,7 @@
   "meta": {
     "id": "tweet-youtube-001-quality-probe",
     "title": "人間ごっこをAIへ外注できる？ — quality probe",
-    "description": "Free-only QA probe: local VOICEVOX Nemo (official engine) + spoken/display text separation + attention timeline. Fixed host-to-engine port mapping.",
+    "description": "Free-only QA probe: VOICEVOX Nemo + separated spoken/display text + attention timeline. Visual QA fixed real line breaks and card density.",
     "duration": 48,
     "credits": [
       "VOICEVOX Nemo"
@@ -157,7 +157,7 @@
       "duration": 8.8,
       "kicker": "1950 — ALAN TURING",
       "title": "人間らしさを「演技」で測る",
-      "body": "内面を直接のぞく代わりに、\\n会話で人間と区別できるかを問う。",
+      "body": "内面を直接のぞく代わりに、\n会話で人間と区別できるかを問う。",
       "accent": "#7de7f2"
     },
     {
@@ -175,7 +175,7 @@
       "duration": 8.8,
       "kicker": "LLM — ROLE PLAY",
       "title": "中に「人間」がいる必要はない",
-      "body": "会話ごとに、その場に合う役を生成する。\\n人間そのものより、即興の役者に近い。",
+      "body": "会話ごとに、その場に合う役を生成する。\n人間そのものより、即興の役者に近い。",
       "accent": "#c8a7ff"
     },
     {
