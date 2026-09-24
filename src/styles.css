@@ -191,7 +191,7 @@ button:disabled { opacity: .5; cursor: wait; }
   left: 8%;
   right: 8%;
   top: 13%;
-  min-height: 43%;
+  min-height: 30%;
   padding: calc(8px * var(--output-scale)) calc(10px * var(--output-scale));
   border: calc(.65px * var(--output-scale)) solid var(--essay-accent);
   border-radius: calc(4px * var(--output-scale));
