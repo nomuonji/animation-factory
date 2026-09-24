@@ -6,7 +6,8 @@
       "none",
       "espeak-ng",
       "piper-plus",
-      "voicevox"
+      "voicevox",
+      "voicevox-nemo"
     ],
     "eventKinds": [
       "dialogue.say",
@@ -18,7 +19,7 @@
       "pitch": 50,
       "volume": 1
     },
-    "notes": "voicevox is the default free Japanese production provider. Prefer VOICEVOX Nemo when you want a simple non-character narration license; store required credit in meta.credits. Use dialogue.spokenText for TTS-specific punctuation/pronunciation. piper-plus is a lightweight fallback."
+    "notes": "voicevox-nemo is the free default for this YouTube series; it uses the official local Nemo engine and stores the required VOICEVOX Nemo credit in meta.credits. voicevox remains available for character libraries. Paid cloud TTS is not part of the default pipeline."
   },
   "bgmPresets": {
     "office-night": "Low synthetic office-night drone with subtle pink-noise room tone.",
