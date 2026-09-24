@@ -133,7 +133,7 @@ async function renderTtsTracks({
       const lengthScale = Math.max(0.55, Math.min(2.2, 175 / speakingRate));
       await run(piperPythonCommand, [
         "-m",
-        "piper_plus",
+        "piper",
         "--model",
         profile.voice ?? "tsukuyomi",
         "--text",
