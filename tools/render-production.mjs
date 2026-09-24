@@ -245,14 +245,15 @@ async function main() {
       throw new Error("Animation Factory render bridge was not initialized.");
     }
 
-    const videoPath = await renderVideo(page, metadata);
-
+    // Build audio first so TTS/model failures fail fast before expensive frame rendering.
     const audioPath = await buildAudio({
       production,
       cacheDir,
       ffmpegCommand,
       espeakCommand
     });
+
+    const videoPath = await renderVideo(page, metadata);
 
     const outputPath = join(outputsDir, `${metadata.id}.mp4`);
 
