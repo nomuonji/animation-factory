@@ -102,6 +102,9 @@ jobs:
       - name: Validate production
         run: node tools/validate-production.mjs "productions/$PRODUCTION/production.json"
 
+      - name: Typecheck and build
+        run: npm run build
+
       - name: Render MP4
         run: npm run render -- "$PRODUCTION"
 
