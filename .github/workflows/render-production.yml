@@ -77,7 +77,7 @@ jobs:
         if: steps.tts.outputs.provider == 'piper-plus'
         run: |
           python -m pip install --upgrade pip
-          python -m pip install "piper-plus>=2,<3"
+          python -m pip install "piper-plus>=1.13,<2"
           python -m piper_plus --download-model tsukuyomi
 
       - name: Install Chromium and system dependencies
