@@ -172,7 +172,8 @@
             "provider": {
               "enum": [
                 "none",
-                "espeak-ng"
+                "espeak-ng",
+                "piper-plus"
               ]
             },
             "events": {
