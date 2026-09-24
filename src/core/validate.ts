@@ -1,7 +1,7 @@
 import type { ActorPose, Production, TimelineEvent } from "./types";
 import { validateAudioConfig } from "./validateAudio";
 
-const ARCHETYPES = new Set(["salaryman", "boss"]);
+const ARCHETYPES = new Set(["salaryman", "boss", "robot"]);
 const FACINGS = new Set(["left", "right"]);
 const POSES = new Set<ActorPose>([
   "idle",

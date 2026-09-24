@@ -85,7 +85,8 @@
           "archetype": {
             "enum": [
               "salaryman",
-              "boss"
+              "boss",
+              "robot"
             ]
           },
           "x": {

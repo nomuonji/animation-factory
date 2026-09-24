@@ -1,5 +1,5 @@
 {
-  "version": 3,
+  "version": 4,
   "renderer": "phaser",
   "components": [
     {
@@ -8,15 +8,33 @@
       "description": "Procedural pixel actor with reusable archetypes and poses.",
       "events": {
         "actor.move": {
-          "required": ["actor", "x", "y", "duration"],
+          "required": [
+            "actor",
+            "x",
+            "y",
+            "duration"
+          ],
           "notes": "Moves linearly while automatically alternating walk-a/walk-b."
         },
         "actor.pose": {
-          "required": ["actor", "pose"],
-          "pose": ["idle", "walk-a", "walk-b", "surprised", "dead-inside"]
+          "required": [
+            "actor",
+            "pose"
+          ],
+          "pose": [
+            "idle",
+            "walk-a",
+            "walk-b",
+            "surprised",
+            "dead-inside"
+          ]
         }
       },
-      "archetypes": ["salaryman", "boss"]
+      "archetypes": [
+        "salaryman",
+        "boss",
+        "robot"
+      ]
     },
     {
       "id": "office-night",
@@ -36,7 +54,11 @@
       "description": "RPG-style fixed dialogue box.",
       "events": {
         "dialogue.say": {
-          "required": ["actor", "text", "duration"]
+          "required": [
+            "actor",
+            "text",
+            "duration"
+          ]
         }
       }
     },
@@ -46,7 +68,11 @@
       "description": "Actor-anchored speech bubble.",
       "events": {
         "ui.speech": {
-          "required": ["actor", "text", "duration"]
+          "required": [
+            "actor",
+            "text",
+            "duration"
+          ]
         }
       }
     },
@@ -56,7 +82,10 @@
       "description": "Top-of-frame caption for scene labels or punchlines.",
       "events": {
         "ui.caption": {
-          "required": ["text", "duration"]
+          "required": [
+            "text",
+            "duration"
+          ]
         }
       }
     },
@@ -66,7 +95,11 @@
       "description": "Compact RPG status panel with a title and text lines.",
       "events": {
         "ui.rpgStatus": {
-          "required": ["title", "lines", "duration"]
+          "required": [
+            "title",
+            "lines",
+            "duration"
+          ]
         }
       }
     },
@@ -76,8 +109,13 @@
       "description": "Interpolated camera zoom.",
       "events": {
         "camera.zoom": {
-          "required": ["zoom", "duration"],
-          "constraints": { "zoom": "> 0" }
+          "required": [
+            "zoom",
+            "duration"
+          ],
+          "constraints": {
+            "zoom": "> 0"
+          }
         }
       }
     },
@@ -87,7 +125,11 @@
       "description": "Interpolates camera scroll offsets.",
       "events": {
         "camera.pan": {
-          "required": ["x", "y", "duration"]
+          "required": [
+            "x",
+            "y",
+            "duration"
+          ]
         }
       }
     },
@@ -97,8 +139,12 @@
       "description": "Short impact shake. Deterministic mode uses a decaying sinusoidal offset.",
       "events": {
         "camera.shake": {
-          "required": ["duration"],
-          "optional": ["intensity"]
+          "required": [
+            "duration"
+          ],
+          "optional": [
+            "intensity"
+          ]
         }
       }
     },
@@ -108,8 +154,13 @@
       "description": "Floating fading RPG damage/status text.",
       "events": {
         "effect.damage": {
-          "required": ["actor", "text"],
-          "optional": ["duration"]
+          "required": [
+            "actor",
+            "text"
+          ],
+          "optional": [
+            "duration"
+          ]
         }
       }
     },
@@ -119,8 +170,12 @@
       "description": "Pulsing exclamation mark above an actor.",
       "events": {
         "effect.exclamation": {
-          "required": ["actor"],
-          "optional": ["duration"]
+          "required": [
+            "actor"
+          ],
+          "optional": [
+            "duration"
+          ]
         }
       }
     },
@@ -130,8 +185,15 @@
       "description": "Procedural pixel emote anchored to an actor.",
       "events": {
         "effect.emote": {
-          "required": ["actor", "emote", "duration"],
-          "emote": ["sweat", "heart"]
+          "required": [
+            "actor",
+            "emote",
+            "duration"
+          ],
+          "emote": [
+            "sweat",
+            "heart"
+          ]
         }
       }
     },
@@ -141,8 +203,16 @@
       "description": "Deterministic radial pixel particles.",
       "events": {
         "effect.particles": {
-          "required": ["actor", "particle", "duration"],
-          "particle": ["spark", "coin", "dust"]
+          "required": [
+            "actor",
+            "particle",
+            "duration"
+          ],
+          "particle": [
+            "spark",
+            "coin",
+            "dust"
+          ]
         }
       }
     },
@@ -152,8 +222,13 @@
       "description": "Full-screen impact flash.",
       "events": {
         "effect.screenFlash": {
-          "required": ["duration"],
-          "optional": ["color", "strength"],
+          "required": [
+            "duration"
+          ],
+          "optional": [
+            "color",
+            "strength"
+          ],
           "constraints": {
             "color": "#RRGGBB",
             "strength": "0..1"
@@ -167,9 +242,17 @@
       "description": "Persistent fade-out or fade-in overlay.",
       "events": {
         "transition.fade": {
-          "required": ["mode", "duration"],
-          "optional": ["color"],
-          "mode": ["in", "out"]
+          "required": [
+            "mode",
+            "duration"
+          ],
+          "optional": [
+            "color"
+          ],
+          "mode": [
+            "in",
+            "out"
+          ]
         }
       }
     },
@@ -179,9 +262,20 @@
       "description": "Temporary procedural pixel props.",
       "events": {
         "prop.show": {
-          "required": ["prop", "x", "y", "duration"],
-          "optional": ["scale"],
-          "prop": ["coffee", "briefcase", "coin"]
+          "required": [
+            "prop",
+            "x",
+            "y",
+            "duration"
+          ],
+          "optional": [
+            "scale"
+          ],
+          "prop": [
+            "coffee",
+            "briefcase",
+            "coin"
+          ]
         }
       }
     }

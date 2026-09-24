@@ -33,5 +33,6 @@ export const PIXEL_FRAMES: Record<ActorPose, PixelFrame> = {
 
 export const PALETTES: Record<ActorArchetype, Record<string, number>> = {
   salaryman: { H: 0x171923, S: 0xe5b08f, W: 0xffffff, J: 0xd7dce5, T: 0xb33a42, P: 0x27334a },
-  boss: { H: 0x3d3027, S: 0xd9a27f, W: 0xffffff, J: 0x33343f, T: 0x7a2030, P: 0x1f2029 }
+  boss: { H: 0x3d3027, S: 0xd9a27f, W: 0xffffff, J: 0x33343f, T: 0x7a2030, P: 0x1f2029 },
+  robot: { H: 0x102431, S: 0x7de7f2, W: 0xf5ffff, J: 0x6e8ea3, T: 0x00d9ff, P: 0x243b4a }
 };
