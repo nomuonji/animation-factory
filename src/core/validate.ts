@@ -109,6 +109,13 @@ function validateEvent(
       }
       return;
 
+    case "ui.essayCard":
+      requireDuration(event, totalDuration);
+      requireText(event.kind, event.title);
+      requireText(event.kind, event.body);
+      validateColor(event.kind, event.accent);
+      return;
+
     case "camera.zoom":
       requireDuration(event, totalDuration);
       if (!isFiniteNumber(event.zoom) || event.zoom <= 0) {

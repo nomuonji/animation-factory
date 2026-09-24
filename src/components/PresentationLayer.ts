@@ -24,6 +24,13 @@ interface PropState {
   scale: number;
 }
 
+interface EssayCardState {
+  title: string;
+  body: string;
+  kicker?: string;
+  accent?: string;
+}
+
 function parseColor(value: string | undefined, fallback: number): number {
   if (!value) return fallback;
   const normalized = value.startsWith("#") ? value.slice(1) : value;
@@ -40,6 +47,12 @@ export class PresentationLayer {
   private readonly statusPanel: Phaser.GameObjects.Rectangle;
   private readonly statusTitle: Phaser.GameObjects.Text;
   private readonly statusBody: Phaser.GameObjects.Text;
+
+  private readonly essay: Phaser.GameObjects.Container;
+  private readonly essayPanel: Phaser.GameObjects.Rectangle;
+  private readonly essayKicker: Phaser.GameObjects.Text;
+  private readonly essayTitle: Phaser.GameObjects.Text;
+  private readonly essayBody: Phaser.GameObjects.Text;
 
   private readonly emote: Phaser.GameObjects.Container;
   private readonly particles: Phaser.GameObjects.Container;
@@ -94,6 +107,44 @@ export class PresentationLayer {
       .setOrigin(0, 0);
     this.status.add([this.statusPanel, this.statusTitle, this.statusBody]);
 
+    const essayWidth = Math.min(width - 36, 404);
+    const essayHeight = Math.min(height - 54, 182);
+    this.essay = scene.add
+      .container(width / 2, height / 2 + 4)
+      .setDepth(170)
+      .setScrollFactor(0)
+      .setVisible(false);
+    this.essayPanel = scene.add
+      .rectangle(0, 0, essayWidth, essayHeight, 0x090c13, 0.96)
+      .setStrokeStyle(2, 0x7de7f2);
+    this.essayKicker = scene.add
+      .text(-essayWidth / 2 + 18, -essayHeight / 2 + 16, "", {
+        fontFamily: "monospace",
+        fontSize: "9px",
+        fontStyle: "bold",
+        color: "#7de7f2"
+      })
+      .setOrigin(0, 0);
+    this.essayTitle = scene.add
+      .text(-essayWidth / 2 + 18, -essayHeight / 2 + 34, "", {
+        fontFamily: "monospace",
+        fontSize: "17px",
+        fontStyle: "bold",
+        color: "#ffffff",
+        wordWrap: { width: essayWidth - 36 }
+      })
+      .setOrigin(0, 0);
+    this.essayBody = scene.add
+      .text(-essayWidth / 2 + 18, -essayHeight / 2 + 70, "", {
+        fontFamily: "monospace",
+        fontSize: "10px",
+        color: "#dce4ef",
+        lineSpacing: 4,
+        wordWrap: { width: essayWidth - 36 }
+      })
+      .setOrigin(0, 0);
+    this.essay.add([this.essayPanel, this.essayKicker, this.essayTitle, this.essayBody]);
+
     this.emote = scene.add.container(0, 0).setDepth(85).setVisible(false);
     this.particles = scene.add.container(0, 0).setDepth(75).setVisible(false);
     this.prop = scene.add.container(0, 0).setDepth(45).setVisible(false);
@@ -132,6 +183,22 @@ export class PresentationLayer {
     this.statusTitle.setText(title);
     this.statusBody.setText(lines.join("\n"));
     this.status.setVisible(true);
+  }
+
+  setEssayCard(state: EssayCardState | null): void {
+    if (!state) {
+      this.essay.setVisible(false);
+      return;
+    }
+
+    const accent = parseColor(state.accent, 0x7de7f2);
+    this.essayPanel.setStrokeStyle(2, accent);
+    this.essayKicker
+      .setText(state.kicker ?? "ESSAY")
+      .setColor("#" + accent.toString(16).padStart(6, "0"));
+    this.essayTitle.setText(state.title);
+    this.essayBody.setText(state.body);
+    this.essay.setVisible(true);
   }
 
   setEmote(actor: PixelActor | null, kind: EmoteKind | null, progress = 0): void {

@@ -1,5 +1,5 @@
 {
-  "version": 4,
+  "version": 5,
   "renderer": "phaser",
   "components": [
     {
@@ -100,6 +100,27 @@
             "lines",
             "duration"
           ]
+        }
+      }
+    },
+    {
+      "id": "essay-card",
+      "kind": "ui",
+      "description": "Large centered editorial card for long-form essays, research beats and thesis reveals.",
+      "events": {
+        "ui.essayCard": {
+          "required": [
+            "title",
+            "body",
+            "duration"
+          ],
+          "optional": [
+            "kicker",
+            "accent"
+          ],
+          "constraints": {
+            "accent": "#RRGGBB"
+          }
         }
       }
     },

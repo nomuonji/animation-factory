@@ -130,6 +130,12 @@ for (const event of production.events ?? []) {
         errors.push("ui.rpgStatus requires a non-empty string lines array");
       }
       break;
+    case "ui.essayCard":
+      durationOf(event);
+      requireText("title");
+      requireText("body");
+      validColor(event);
+      break;
     case "camera.zoom":
       durationOf(event);
       if (!finite(event.zoom) || event.zoom <= 0) errors.push("camera.zoom requires zoom > 0");

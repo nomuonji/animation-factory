@@ -131,6 +131,19 @@ export class Director {
         );
         break;
 
+      case "ui.essayCard":
+        this.presentation.setEssayCard({
+          title: event.title,
+          body: event.body,
+          kicker: event.kicker,
+          accent: event.accent
+        });
+        this.scene.time.delayedCall(
+          event.duration * 1000,
+          () => this.presentation.setEssayCard(null)
+        );
+        break;
+
       case "camera.zoom":
         this.scene.cameras.main.zoomTo(
           event.zoom,

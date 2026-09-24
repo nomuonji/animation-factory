@@ -134,6 +134,7 @@
               "ui.speech",
               "ui.caption",
               "ui.rpgStatus",
+              "ui.essayCard",
               "camera.zoom",
               "camera.pan",
               "camera.shake",

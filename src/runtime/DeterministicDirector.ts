@@ -131,6 +131,7 @@ export class DeterministicDirector {
     let speechState: { actor: string; text: string } | null = null;
     let captionText: string | null = null;
     let statusState: { title: string; lines: string[] } | null = null;
+    let essayState: { title: string; body: string; kicker?: string; accent?: string } | null = null;
 
     let cameraZoom = 1;
     let cameraScrollX = 0;
@@ -191,6 +192,17 @@ export class DeterministicDirector {
         case "ui.rpgStatus":
           if (time < event.at + event.duration) {
             statusState = { title: event.title, lines: event.lines };
+          }
+          break;
+
+        case "ui.essayCard":
+          if (time < event.at + event.duration) {
+            essayState = {
+              title: event.title,
+              body: event.body,
+              kicker: event.kicker,
+              accent: event.accent
+            };
           }
           break;
 
@@ -333,6 +345,7 @@ export class DeterministicDirector {
       statusState?.title ?? null,
       statusState?.lines ?? []
     );
+    this.presentation.setEssayCard(essayState);
 
     if (emoteState) {
       const actor = this.actors.get(emoteState.actor) ?? null;

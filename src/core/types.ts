@@ -75,6 +75,15 @@ export interface RpgStatusEvent extends BaseEvent {
   duration: number;
 }
 
+export interface EssayCardEvent extends BaseEvent {
+  kind: "ui.essayCard";
+  title: string;
+  body: string;
+  duration: number;
+  kicker?: string;
+  accent?: string;
+}
+
 export interface CameraZoomEvent extends BaseEvent {
   kind: "camera.zoom";
   zoom: number;
@@ -151,6 +160,7 @@ export type TimelineEvent =
   | SpeechBubbleEvent
   | CaptionShowEvent
   | RpgStatusEvent
+  | EssayCardEvent
   | CameraZoomEvent
   | CameraPanEvent
   | CameraShakeEvent
