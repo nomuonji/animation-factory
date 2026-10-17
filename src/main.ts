@@ -116,6 +116,9 @@ function block(className: string, text?: string): HTMLDivElement {
   return node;
 }
 
+// Keep decoded image elements alive across 510 deterministic screenshots.
+const cachedPhotoPanes = new Map<string, HTMLDivElement>();
+
 function renderDomText(time: number, scene: FactoryScene): void {
   if (!renderMode || !textOverlay) return;
   textOverlay.replaceChildren();
@@ -123,18 +126,24 @@ function renderDomText(time: number, scene: FactoryScene): void {
   const photo = activeEvent("ui.photo", time);
   if (photo) {
     const ext = photo.assetId==="gold-imprint" ? "png" : "jpg";
-    const pane = block("licensed-photo-frame");
-    const backdrop = document.createElement("img");
-    backdrop.src = `/visuals/${photo.assetId}.${ext}`;
-    backdrop.className = "licensed-photo-blur";
-    backdrop.alt = "";
-    const picture = document.createElement("img");
-    picture.src = backdrop.src;
-    picture.className = "licensed-photo-main";
-    picture.alt = "";
-    picture.style.setProperty("--asset-zoom", String(photo.zoom || 1.06));
-    const stamp = block("licensed-photo-source",photo.caption);
-    pane.append(backdrop,picture,stamp);
+    let pane = cachedPhotoPanes.get(photo.assetId);
+    if (!pane) {
+      pane = block("licensed-photo-frame");
+      const backdrop = document.createElement("img");
+      backdrop.src = `/visuals/${photo.assetId}.${ext}`;
+      backdrop.className = "licensed-photo-blur";
+      backdrop.alt = "";
+      const picture = document.createElement("img");
+      picture.src = backdrop.src;
+      picture.className = "licensed-photo-main";
+      picture.alt = "";
+      pane.append(backdrop,picture,block("licensed-photo-source"));
+      cachedPhotoPanes.set(photo.assetId,pane);
+    }
+    pane.querySelector<HTMLImageElement>(".licensed-photo-main")!
+      .style.setProperty("--asset-zoom",String(photo.zoom || 1.06));
+    pane.querySelector<HTMLDivElement>(".licensed-photo-source")!
+      .textContent = photo.caption;
     textOverlay.append(pane);
   }
 
