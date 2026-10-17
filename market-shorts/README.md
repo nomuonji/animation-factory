@@ -38,3 +38,17 @@ The Actions workflow performs these steps plus builds the review artifact. No up
 - Automation: cap at two Shorts/day only after creative, cost, credential and publishing checks. This workflow intentionally has no timer and cannot publicly post.
 
 Do not treat a merged PR or generated MP4 as evidence that the end-to-end live publishing system is running.
+
+## Read-only Keywords feed integration
+
+Keywords PR adds /api/market-shorts-feed?id=<canonical-id>. This is an exact one-idea projection. The route requires a dedicated MARKET_SHORTS_FEED_TOKEN in Vercel. In this video repo set repository variable MARKET_IDEAS_FEED_URL to the production HTTPS endpoint *without* query parameters and set MARKET_IDEAS_FEED_TOKEN to the same bearer secret. The pipeline adds the id query parameter itself; token and URL are never committed.
+
+The feed does not contain user-private idea lists or derivative narration. A version-pinned real brief must be present under market-shorts/briefs/<ideaId>.json with the author's reviewed claims, assets and licensing status. The pipeline rejects missing briefs or mismatched source revisions. No periodic discovery/publishing is enabled; a dispatch event must name the idea ID explicitly.
+
+## Unconnected upload and measurement adapters
+
+Tools market-shorts-upload.mjs and market-shorts-analytics.mjs are dormant; no GitHub workflow calls them. They need YOUTUBE_CLIENT_ID, YOUTUBE_CLIENT_SECRET, YOUTUBE_REFRESH_TOKEN and YOUTUBE_CHANNEL_ID for the new experimental channel. OAuth scopes must authorize channel inspection, upload and Analytics separately.
+
+Uploads require MARKET_SHORTS_UPLOAD_MODE=private_only and an explicitly reviewed YOUTUBE_MADE_FOR_KIDS=true/false selection. The uploader requires --mp4, --experiment and --receipt and attempts a resumable YouTube insert. It verifies the OAuth channel ID, creates private uploads only, and saves video ID or upload_unknown as a local receipt. That local receipt is *not* a cross-run idempotency store. Do not enable it in unattended Actions until a durable private receipt ledger is implemented, tested, and can reconcile ambiguous uploads.
+
+Analytics requires --receipt, --out, --checkpoint (24h, 72h or 7d), --start and --end UTC calendar dates. It only fetches read-only, daily aggregated performance (views, engaged views, average duration, likes, comments, shares); this is not equivalent to a precise 24-hour rolling window or proof of product purchase intent. No scheduled collection or Idea Memory feedback write exists yet.
