@@ -63,6 +63,9 @@ async function feed() {
   if (!urlText) throw new Error('Supply --input or MARKET_IDEAS_FEED_URL; live Keywords feed is not configured.');
   const url = new URL(urlText);
   if (url.protocol !== 'https:') throw new Error('HTTPS-only feed');
+  const id = arg('--id');
+  if (!id || !/^[a-zA-Z0-9_-]{1,100}$/.test(id)) throw new Error('Remote feed requires canonical --id');
+  url.searchParams.set('id', id);
   const token = process.env.MARKET_IDEAS_FEED_TOKEN;
   if (!token) throw new Error('MARKET_IDEAS_FEED_TOKEN is required for a remote feed');
   const res = await fetch(url, {
@@ -105,7 +108,20 @@ function production(idea) {
 }
 async function main() {
   const data = await feed();
-  const ideas = Array.isArray(data) ? data : (Array.isArray(data.ideas) ? data.ideas : null);
+  const rawIdeas = Array.isArray(data) ? data : (Array.isArray(data.ideas) ? data.ideas : null);
+  let ideas = rawIdeas;
+  if (!arg('--input') && rawIdeas && arg('--id')) {
+    const id = arg('--id');
+    const briefPath = join(root, 'market-shorts', 'briefs', id + '.json');
+    let brief;
+    try { brief = JSON.parse(await readFile(briefPath, 'utf8')); }
+    catch { throw new Error('Reviewed creative brief missing: market-shorts/briefs/' + id + '.json'); }
+    ideas = rawIdeas.map(idea => {
+      if (idea.id !== id) return idea;
+      if (brief.ideaId !== id || brief.sourceRevision !== idea.revision) throw new Error('Creative brief source revision mismatch: ' + id);
+      return { ...idea, videoExperiment:brief.videoExperiment };
+    });
+  }
   if (!ideas) throw new Error('Feed must be an array or {ideas:[...]}');
   const specified = arg('--id');
   const eligible = ideas.filter(i =>
