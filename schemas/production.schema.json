@@ -166,7 +166,8 @@
               "transition.fade",
               "prop.show",
               "ui.kineticText",
-              "prop.exhibit"
+              "prop.exhibit",
+              "ui.photo"
             ]
           },
           "at": {
