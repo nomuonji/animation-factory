@@ -36,7 +36,7 @@ function validate(idea) {
   if (['rejected', 'deferred'].includes(idea.status)) throw new Error('Idea is rejected/deferred: ' + id);
   if (!scoreEligible(idea)) throw new Error('Idea lacks independently scored, passing v4 review: ' + id);
   if (!Array.isArray(idea.destinations) ||
-      !idea.destinations.some(d => ['youtube_shorts','short_video'].includes(d)))
+      !idea.destinations.some(d => ['youtube_video','youtube_shorts','short_video'].includes(d)))
     throw new Error('Not routed to shorts: ' + id);
   if (!Array.isArray(idea.marketEvidenceRefs) || idea.marketEvidenceRefs.length === 0)
     throw new Error('Missing source references: ' + id);
@@ -111,7 +111,7 @@ async function main() {
   const eligible = ideas.filter(i =>
     i && i.status !== 'rejected' && i.status !== 'deferred' &&
     scoreEligible(i) && Array.isArray(i.destinations) &&
-    i.destinations.some(d => ['youtube_shorts','short_video'].includes(d)) &&
+    i.destinations.some(d => ['youtube_video','youtube_shorts','short_video'].includes(d)) &&
     i.videoExperiment?.evidenceChecked && i.videoExperiment?.rightsChecked
   );
   const chosen = specified ? eligible.find(i => i.id === specified) : eligible[0];
