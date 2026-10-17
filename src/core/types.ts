@@ -1,4 +1,4 @@
-export type ActorArchetype = "salaryman" | "boss" | "robot";
+export type ActorArchetype = "salaryman" | "boss" | "robot" | "worker-m" | "worker-f" | "manager" | "clerk" | "student-m" | "student-f" | "old-man" | "old-woman" | "nerd" | "gal" | "worker-exhausted" | "host";
 export type ActorPose = "idle" | "walk-a" | "walk-b" | "surprised" | "dead-inside";
 export type Facing = "left" | "right";
 export type EmoteKind = "sweat" | "heart";

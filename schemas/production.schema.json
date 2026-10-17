@@ -94,7 +94,19 @@
             "enum": [
               "salaryman",
               "boss",
-              "robot"
+              "robot",
+              "worker-m",
+              "worker-f",
+              "manager",
+              "clerk",
+              "student-m",
+              "student-f",
+              "old-man",
+              "old-woman",
+              "nerd",
+              "gal",
+              "worker-exhausted",
+              "host"
             ]
           },
           "x": {

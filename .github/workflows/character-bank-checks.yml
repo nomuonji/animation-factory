@@ -1,0 +1,47 @@
+name: Character bank CI
+
+on:
+  pull_request:
+    paths:
+      - "character-bank/**"
+      - "tools/character-bank*.mjs"
+      - "productions/market-short-character-test/**"
+      - "src/components/pixelFrames.ts"
+      - "src/core/types.ts"
+      - "src/core/validate.ts"
+      - "schemas/production.schema.json"
+      - ".github/workflows/character-bank-checks.yml"
+  push:
+    branches: [main]
+    paths:
+      - "character-bank/**"
+      - "tools/character-bank*.mjs"
+      - "productions/market-short-character-test/**"
+      - "src/components/pixelFrames.ts"
+      - "src/core/types.ts"
+      - "src/core/validate.ts"
+      - "schemas/production.schema.json"
+      - ".github/workflows/character-bank-checks.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  contract:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Validate character bank and 20-image commercial threshold
+        run: node tools/character-bank-smoke.mjs
+      - name: Validate animated Shorts test scene
+        run: |
+          node tools/validate-production.mjs productions/market-short-character-test/production.json
+          node tools/validate-attention.mjs productions/market-short-character-test/production.json
+      - name: Type-check and build render project
+        run: npm run build

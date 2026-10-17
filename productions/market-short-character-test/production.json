@@ -1,0 +1,253 @@
+{
+  "meta": {
+    "id": "market-short-character-test",
+    "title": "「5分だけいい？」と聞かれた会社員",
+    "duration": 13.5,
+    "description": "Character-bank synthetic QA, not market observation, not for publishing.",
+    "credits": [
+      "VOICEVOX Nemo",
+      "Kenney CC0 sounds/music"
+    ]
+  },
+  "canvas": {
+    "width": 270,
+    "height": 480,
+    "fps": 15,
+    "outputScale": 2
+  },
+  "environment": "office-night",
+  "actors": [
+    {
+      "id": "boss",
+      "archetype": "manager",
+      "x": 195,
+      "y": 365,
+      "scale": 3,
+      "facing": "left",
+      "pose": "idle"
+    },
+    {
+      "id": "worker",
+      "archetype": "worker-exhausted",
+      "x": 75,
+      "y": 365,
+      "scale": 3,
+      "facing": "right",
+      "pose": "dead-inside"
+    },
+    {
+      "id": "narrator",
+      "archetype": "host",
+      "x": -700,
+      "y": -700
+    }
+  ],
+  "events": [
+    {
+      "kind": "ui.kineticText",
+      "at": 0,
+      "duration": 2.25,
+      "text": "上司の「5分だけ」",
+      "accent": "#ffcd56",
+      "placement": "upper"
+    },
+    {
+      "kind": "ui.speech",
+      "at": 0.4,
+      "duration": 2.1,
+      "actor": "boss",
+      "text": "・",
+      "spokenText": "5分だけ、いい？"
+    },
+    {
+      "kind": "actor.pose",
+      "at": 0.8,
+      "actor": "worker",
+      "pose": "surprised"
+    },
+    {
+      "kind": "effect.exclamation",
+      "at": 1.25,
+      "actor": "worker",
+      "duration": 0.6
+    },
+    {
+      "kind": "ui.kineticText",
+      "at": 2.6,
+      "duration": 2.4,
+      "text": "はい。5分ですね",
+      "accent": "#74e5cc",
+      "placement": "upper"
+    },
+    {
+      "kind": "ui.speech",
+      "at": 2.8,
+      "duration": 2,
+      "actor": "worker",
+      "text": "・",
+      "spokenText": "はい。5分ですよね。"
+    },
+    {
+      "kind": "actor.pose",
+      "at": 3,
+      "actor": "worker",
+      "pose": "idle"
+    },
+    {
+      "kind": "ui.caption",
+      "at": 5.4,
+      "duration": 2.2,
+      "text": "（開始から30分経過）"
+    },
+    {
+      "kind": "actor.pose",
+      "at": 5.3,
+      "actor": "worker",
+      "pose": "dead-inside"
+    },
+    {
+      "kind": "actor.pose",
+      "at": 6.5,
+      "actor": "boss",
+      "pose": "walk-a"
+    },
+    {
+      "kind": "actor.move",
+      "at": 6.6,
+      "duration": 1.2,
+      "actor": "boss",
+      "x": 180,
+      "y": 365
+    },
+    {
+      "kind": "ui.kineticText",
+      "at": 8,
+      "duration": 2.4,
+      "text": "まだ、最初の話です",
+      "accent": "#ff8f80",
+      "placement": "upper"
+    },
+    {
+      "kind": "ui.speech",
+      "at": 8.3,
+      "duration": 2.1,
+      "actor": "boss",
+      "text": "・",
+      "spokenText": "それで、最初の話に戻るけど。"
+    },
+    {
+      "kind": "effect.emote",
+      "at": 10.4,
+      "actor": "worker",
+      "emote": "sweat",
+      "duration": 1
+    },
+    {
+      "kind": "ui.kineticText",
+      "at": 10.7,
+      "duration": 2.6,
+      "text": "5分って何だったんだ",
+      "accent": "#ff839c",
+      "placement": "upper"
+    },
+    {
+      "kind": "ui.speech",
+      "at": 11,
+      "duration": 2.1,
+      "actor": "worker",
+      "text": "・",
+      "spokenText": "5分って、何だったんだ。"
+    }
+  ],
+  "audio": {
+    "masterVolume": 0.92,
+    "tts": {
+      "provider": "voicevox-nemo",
+      "events": [
+        "ui.speech"
+      ],
+      "defaultVoice": {
+        "voice": "男声2",
+        "speedScale": 1.24,
+        "volume": 1.1
+      }
+    },
+    "bgm": [
+      {
+        "id": "loop",
+        "assetId": "battle-music-loop",
+        "at": 0,
+        "duration": 13.5,
+        "volume": 0.09,
+        "fadeIn": 0.12,
+        "fadeOut": 0.6
+      }
+    ],
+    "sfx": [
+      {
+        "id": "hook",
+        "role": "hook_hit",
+        "at": 0,
+        "volume": 0.35
+      },
+      {
+        "id": "cue",
+        "role": "pop",
+        "at": 2.6,
+        "volume": 0.19
+      },
+      {
+        "id": "timer",
+        "role": "transition",
+        "at": 5.4,
+        "volume": 0.22
+      },
+      {
+        "id": "reveal",
+        "role": "impact",
+        "at": 8,
+        "volume": 0.22
+      },
+      {
+        "id": "fail",
+        "role": "fail",
+        "at": 10.7,
+        "volume": 0.27
+      }
+    ]
+  },
+  "attention": {
+    "maxReadingCharsPerSecond": 12,
+    "maxTextLayers": 1,
+    "beats": [
+      {
+        "id": "hook",
+        "at": 0,
+        "duration": 2.2,
+        "focus": "caption",
+        "intent": "pattern interrupt"
+      },
+      {
+        "id": "setup",
+        "at": 2.6,
+        "duration": 2.4,
+        "focus": "character",
+        "intent": "agreement"
+      },
+      {
+        "id": "escalation",
+        "at": 5.3,
+        "duration": 5.1,
+        "focus": "character",
+        "intent": "time jump"
+      },
+      {
+        "id": "payoff",
+        "at": 10.7,
+        "duration": 2.6,
+        "focus": "caption",
+        "intent": "punchline"
+      }
+    ]
+  }
+}
