@@ -97,6 +97,15 @@ function validateEvent(
       requireText(event.kind, event.text);
       return;
 
+    case "ui.kineticText":
+      requireDuration(event, totalDuration);
+      requireText(event.kind, event.text);
+      if ([...event.text].length > 22) throw new Error("ui.kineticText text exceeds 22 characters");
+      if (event.placement !== undefined && !["upper","middle"].includes(event.placement))
+        throw new Error("ui.kineticText placement is invalid");
+      validateColor(event.kind, event.accent);
+      return;
+
     case "ui.rpgStatus":
       requireDuration(event, totalDuration);
       requireText(event.kind, event.title);
