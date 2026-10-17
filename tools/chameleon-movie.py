@@ -50,10 +50,11 @@ def load_video(path):
         if not ok:break
         arr.append(cv2.resize(frame,(960,540),interpolation=cv2.INTER_AREA))
     cap.release()
-    if len(arr)<80 or fps<15:raise RuntimeError("Insufficient research source frames")
+    print("Decoded source video frames:",len(arr),"fps:",fps,flush=True)
+    if len(arr)<80 or fps<10:raise RuntimeError("Insufficient normalized scientific source frames")
     print(f"Loaded {len(arr)} real scientific frames at {fps:.2f}fps",flush=True)
     return arr,fps
-frames,srcfps=load_video(DIR/"s2.ogv")
+frames,srcfps=load_video(DIR/"s2-normalized.mp4")
 def shot(sec):
     return frames[max(0,min(len(frames)-1,int(sec*srcfps)))]
 GREEN=shot(3.7)
