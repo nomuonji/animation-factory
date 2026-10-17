@@ -44,16 +44,16 @@ function validate(idea) {
   if (!video || video.evidenceChecked !== true || video.rightsChecked !== true)
     throw new Error('Independent evidence and rights review is required: ' + id);
   requireText(video.hook, 'videoExperiment.hook', 48);
-  requireText(video.hookVoice, 'videoExperiment.hookVoice', 42);
+  requireText(video.hookVoice, 'videoExperiment.hookVoice', 34);
   if (!Array.isArray(video.beats) || video.beats.length !== 3)
     throw new Error('Exactly 3 authored beats required: ' + id);
   for (const [i, beat] of video.beats.entries()) {
     requireText(beat.heading, 'beats[' + i + '].heading', 36);
     requireText(beat.body, 'beats[' + i + '].body', 54);
-    requireText(beat.voice, 'beats[' + i + '].voice', 42);
+    requireText(beat.voice, 'beats[' + i + '].voice', 34);
   }
   requireText(video.close, 'videoExperiment.close', 48);
-  requireText(video.closeVoice, 'videoExperiment.closeVoice', 42);
+  requireText(video.closeVoice, 'videoExperiment.closeVoice', 34);
   return title;
 }
 async function feed() {
@@ -75,7 +75,7 @@ async function feed() {
 }
 function production(idea) {
   const exp = idea.videoExperiment;
-  const id = 'market-short-' + createHash('sha256').update(idea.id).digest('hex').slice(0,12);
+  const id = 'market-short-' + createHash('sha256').update(idea.id + ':' + (exp.variant || 'baseline')).digest('hex').slice(0,12);
   const clips = [
     { title: exp.hook, body: 'この話、あなたならどう思う？', voice: exp.hookVoice, seconds: 4.5, kicker: 'MARKET LAB / 01' },
     ...exp.beats.map((b,i) => ({ title:b.heading, body:b.body, voice:b.voice, seconds:7, kicker:'OBSERVATION / 0' + (i+1) })),
@@ -126,7 +126,7 @@ async function main() {
     production:value.meta.id, productionFile:'productions/' + value.meta.id + '/production.json',
     title:chosen.title, experimentVariant:chosen.videoExperiment.variant || 'baseline',
     marketEvidenceRefs:chosen.marketEvidenceRefs, rightsChecked:true, evidenceChecked:true,
-    uploadStatus:'not_connected', createdAt:new Date().toISOString()};
+    demoOnly:Boolean(data.demoOnly || chosen.demoOnly), uploadStatus:'not_connected', createdAt:new Date().toISOString()};
   await writeFile(join(dir,'experiment.json'),JSON.stringify(result,null,2) + '\n');
   console.log(JSON.stringify(result));
   if (process.env.GITHUB_OUTPUT) {
