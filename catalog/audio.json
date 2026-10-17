@@ -1,5 +1,5 @@
 {
-  "version": 3,
+  "version": 4,
   "sampleRate": 48000,
   "tts": {
     "providers": [
@@ -30,5 +30,38 @@
     "impact": "Short filtered noise hit.",
     "coin": "Two-tone coin pickup cue.",
     "alert": "Two-step warning beep."
-  }
+  },
+  "soundBank": {
+    "storage": "repository-local, pre-downloaded CC0 packs",
+    "indexTool": "node tools/sound-bank.mjs",
+    "roles": [
+      "hook_hit",
+      "impact",
+      "thud",
+      "pop",
+      "click",
+      "transition",
+      "reveal",
+      "fail",
+      "suspense"
+    ],
+    "sourcePackIds": [
+      "interface-sounds",
+      "impact-sounds",
+      "music-jingles"
+    ],
+    "youtubeShortsMusicPolicy": "YouTube Shorts licensed/trending songs are platform-scoped and NOT downloaded/reused by automated uploads; use cleared files only",
+    "selection": "deterministic role + production + cue id",
+    "introSound": "hook_hit",
+    "recommendedMix": {
+      "ttsFirst": true,
+      "bgmLevel": 0.1,
+      "sfxLevel": 0.35
+    }
+  },
+  "musicAssetIds": [
+    "safe-space-loop",
+    "flowerbed-fields",
+    "battle-music-loop"
+  ]
 }
