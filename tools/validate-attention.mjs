@@ -19,6 +19,7 @@ const readable = (p.events ?? []).flatMap((event) => {
   if (!Number.isFinite(event.duration) || event.duration <= 0) return [];
   if (event.kind === "dialogue.say") return event.showSubtitle === false ? [] : [{...event,label:"subtitle",readText:event.text}];
   if (event.kind === "ui.caption") return [{...event,label:"caption",readText:event.text}];
+  if (event.kind === "ui.kineticText") return [{...event,label:"caption",readText:event.text}];
   if (event.kind === "ui.speech") return [{...event,label:"speech",readText:event.text}];
   if (event.kind === "ui.essayCard") return [{...event,label:"essay",readText:[event.title,event.body].join(" ")}];
   if (event.kind === "ui.rpgStatus") return [{...event,label:"status",readText:[event.title,...(event.lines??[])].join(" ")}];
