@@ -92,6 +92,8 @@ export class Director {
         break;
 
       case "ui.speech": {
+        // The narrator audio anchor must never show a visible "・" bubble.
+        if (event.text === "・") break;
         const actor = this.actor(event.actor);
         this.animate(
           event.duration,

@@ -169,6 +169,32 @@ button:disabled { opacity: .5; cursor: wait; }
   text-align: center;
   white-space: pre-wrap;
 }
+.render-mode .kinetic-title {
+  --kinetic-accent: #ffe568;
+  --kinetic-zoom: 1;
+  position: absolute;
+  left: 4%;
+  right: 4%;
+  z-index: 24;
+  padding: calc(10px * var(--output-scale)) calc(8px * var(--output-scale));
+  background: rgba(10, 12, 20, .91);
+  border: calc(2px * var(--output-scale)) solid var(--kinetic-accent);
+  border-radius: calc(5px * var(--output-scale));
+  box-shadow: 0 calc(8px * var(--output-scale)) calc(26px * var(--output-scale)) rgba(0,0,0,.46);
+  font-size: calc(23px * var(--output-scale));
+  line-height: 1.22;
+  font-weight: 950;
+  letter-spacing: -.04em;
+  text-align: center;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+  color: #fffdf0;
+  text-shadow: 0 calc(2px * var(--output-scale)) 0 #0d0e17;
+  transform: scale(var(--kinetic-zoom));
+  transform-origin: center;
+}
+.render-mode .kinetic-upper { top: 18%; }
+.render-mode .kinetic-middle { top: 30%; }
 .render-mode .dialogue-subtitle {
   position: absolute;
   left: 4%;
