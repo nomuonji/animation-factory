@@ -86,12 +86,23 @@ function production(idea) {
   ];
   let t = 0;
   const events = [];
-  for (const clip of clips) {
-    events.push({kind:'ui.essayCard', at:t, duration:clip.seconds - 0.05,
-      kicker:clip.kicker, title:clip.title, body:clip.body, accent:'#77D8E8'});
-    // An off-canvas speech anchor supplies VOICEVOX audio without obscuring the essay card.
-    events.push({kind:'ui.speech', at:t + 0.12, duration:clip.seconds - 0.24,
-      actor:'narrator', text:'・', spokenText:clip.voice});
+  const soundCues = [];
+  for (const [i, clip] of clips.entries()) {
+    // First second must contain visible action; not a cold "research report" title.
+    if (i === 0 || i === clips.length - 1) {
+      events.push({kind:'ui.kineticText',at:t,duration:clip.seconds - 0.1,
+        text:clip.title,accent:i === 0 ? '#ffe568' : '#f78ea4',placement:'middle'});
+    } else {
+      events.push({kind:'ui.essayCard',at:t,duration:clip.seconds - 0.05,
+        kicker:clip.kicker,title:clip.title,body:clip.body,accent:'#77D8E8'});
+    }
+    // Invisible speech anchor drives VOICEVOX audio, without obscuring the headline.
+    events.push({kind:'ui.speech',at:t + 0.12,duration:clip.seconds - 0.24,
+      actor:'narrator',text:'・',spokenText:clip.voice});
+    soundCues.push({
+      id:'beat-sfx-' + i,role:i === 0 ? 'hook_hit' : i === clips.length - 1 ? 'reveal' : 'pop',
+      at:t,volume:i === 0 ? 0.38 : 0.22
+    });
     t += clip.seconds;
   }
   return {
@@ -103,7 +114,8 @@ function production(idea) {
     events,
     audio:{masterVolume:0.95,tts:{provider:'voicevox-nemo',events:['ui.speech'],
       defaultVoice:{voice:'男声2',speedScale:1.1,volume:1}},
-      bgm:[{id:'market-bed',preset:'retro-drone',at:0,duration:t,volume:0.12,fadeIn:0.4,fadeOut:0.7}]}
+      bgm:[{id:'market-bed',assetId:'battle-music-loop',at:0,duration:t,volume:0.08,fadeIn:0.25,fadeOut:0.7}],
+      sfx:soundCues}
   };
 }
 async function main() {
