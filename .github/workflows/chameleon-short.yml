@@ -50,6 +50,10 @@ jobs:
           exit 1
       - name: Install editorial film renderer
         run: python -m pip install --quiet numpy opencv-python-headless
+      - name: Normalize research video decoding only (no changes to colors)
+        run: |
+          ffmpeg -hide_banner -loglevel error -y -i outputs/chameleon-probe/s2.ogv -an -vf 'fps=24,scale=960:540' -c:v libx264 -pix_fmt yuv420p -preset veryfast -crf 12 outputs/chameleon-probe/s2-normalized.mp4
+          ffprobe -v error -show_entries stream=nb_frames,avg_frame_rate -of default=noprint_wrappers=1 outputs/chameleon-probe/s2-normalized.mp4
       - name: Make Japanese narrated playable rough-cut from ACTUAL footage
         run: python tools/chameleon-movie.py
       - name: Verify video and audible audio
