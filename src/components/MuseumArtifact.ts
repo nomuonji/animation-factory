@@ -14,17 +14,17 @@ export function createMuseumExhibit(scene: Phaser.Scene, kind: ExhibitKind): Pha
   if (kind==="gold-seal") {
     g.fillStyle(0xfff6a2,0.18).fillCircle(0,-11,68);
     // Three-dimensional stylized seal with gold cube and a small coiled animal knob.
-    g.fillStyle(0xb37726).fillPoints([{x:-35,y:-12},{x:23,y:-21},{x:36,y:36},{x:-28,y:45}],true);
-    g.fillStyle(0xf7c957).fillPoints([{x:-35,y:-12},{x:14,y:-26},{x:23,y:-21},{x:-28,y:-7}],true);
+    g.fillStyle(0xb37726).fillPoints([[-35,-12],[23,-21],[36,36],[-28,45]].map(([x,y])=>new Phaser.Math.Vector2(x,y)),true);
+    g.fillStyle(0xf7c957).fillPoints([[-35,-12],[14,-26],[23,-21],[-28,-7]].map(([x,y])=>new Phaser.Math.Vector2(x,y)),true);
     g.fillStyle(0xffdc6b).fillRoundedRect(-28,-8,55,53,2);
     g.lineStyle(2,0xf6e18c).strokeRoundedRect(-28,-8,55,53,2);
     g.lineStyle(4,0xb58b33).beginPath().moveTo(-8,-12).lineTo(-9,-34).lineTo(4,-44).lineTo(18,-40).lineTo(26,-29).strokePath();
     g.lineStyle(3,0xf4db80).strokeCircle(3,-40,7);
     g.fillStyle(0x171827).fillCircle(8,-41,1.5);
-    for (const [x,y] of [[-21,8],[-4,12],[12,13],[-17,28],[1,28],[17,27]]) {
+    for (const [x,y] of [[-21,8],[-4,12],[12,13],[-17,28],[1,28],[17,27]] as Array<[number,number]>) {
       g.lineStyle(1,0xa97725).strokeRoundedRect(x,y,8,10,1);
     }
-    for (const [x,y] of [[-56,-37],[54,-48],[-52,25],[60,25]]) {
+    for (const [x,y] of [[-56,-37],[54,-48],[-52,25],[60,25]] as Array<[number,number]>) {
       g.lineStyle(2,0xffd778,0.8).beginPath().moveTo(x-4,y).lineTo(x+4,y).moveTo(x,y-4).lineTo(x,y+4).strokePath();
     }
   } else if(kind==="dogu") {
