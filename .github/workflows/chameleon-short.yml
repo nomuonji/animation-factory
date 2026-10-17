@@ -1,0 +1,40 @@
+name: Chameleon Short — research-footage probe
+
+on:
+  pull_request:
+    paths:
+      - "tools/chameleon-*.py"
+      - ".github/workflows/chameleon-short.yml"
+      - "productions/chameleon-short/**"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install FFmpeg and Japanese fonts
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg fonts-noto-cjk
+          python -m pip install --quiet pillow
+      - name: Download unmodified original peer-reviewed film
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p outputs/chameleon-probe
+          curl --fail --location --retry 3 --silent --show-error 'https://upload.wikimedia.org/wikipedia/commons/7/73/Photonic-crystals-cause-active-colour-change-in-chameleons-ncomms7368-s2.ogv' -o outputs/chameleon-probe/s2.ogv
+          curl --fail --location --retry 3 --silent --show-error 'https://upload.wikimedia.org/wikipedia/commons/9/98/Photonic-crystals-cause-active-colour-change-in-chameleons-ncomms7368-s3.ogv' -o outputs/chameleon-probe/s3.ogv
+          printf '798a41e09e836995ac5cacdfcc419ea641ddb68a  outputs/chameleon-probe/s2.ogv\nab92b1cc37cd303dab50dc097331123f104a5c10  outputs/chameleon-probe/s3.ogv\n' | sha1sum --check --status
+          ffprobe -v error -show_entries format=duration,size -of default=noprint_wrappers=1 outputs/chameleon-probe/s2.ogv
+      - name: Inspect frames BEFORE creating the final story
+        run: python tools/chameleon-probe.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: chameleon-source-probe
+          path: outputs/chameleon-probe/filmstrip.jpg
+          retention-days: 30
