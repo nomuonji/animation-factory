@@ -1,4 +1,5 @@
 import Phaser from "phaser";
+import { createMuseumExhibit, type ExhibitKind } from "./MuseumArtifact";
 import type {
   EmoteKind,
   ParticleKind,
@@ -57,6 +58,9 @@ export class PresentationLayer {
   private readonly emote: Phaser.GameObjects.Container;
   private readonly particles: Phaser.GameObjects.Container;
   private readonly prop: Phaser.GameObjects.Container;
+
+  private currentExhibit?: ExhibitKind;
+  private exhibitObject?: Phaser.GameObjects.Container;
 
   private readonly flash: Phaser.GameObjects.Rectangle;
   private readonly fade: Phaser.GameObjects.Rectangle;
@@ -312,6 +316,23 @@ export class PresentationLayer {
         Math.max(0, Math.min(1, alpha))
       )
       .setVisible(alpha > 0);
+  }
+
+  setMuseumExhibit(kind: ExhibitKind | null, progress = 0): void {
+    if (!kind) {
+      this.exhibitObject?.setVisible(false);
+      return;
+    }
+    if (kind !== this.currentExhibit || !this.exhibitObject) {
+      this.exhibitObject?.destroy();
+      this.exhibitObject = createMuseumExhibit(this.scene, kind);
+      this.currentExhibit = kind;
+    }
+    const eased = Math.min(1, progress * 7);
+    this.exhibitObject.setScale(0.8 + 0.2 * eased)
+      .setY(245 - Math.sin(progress * Math.PI * 2) * 3)
+      .setAlpha(Math.min(1, eased * 1.3))
+      .setVisible(true);
   }
 
   setProp(state: PropState | null): void {
