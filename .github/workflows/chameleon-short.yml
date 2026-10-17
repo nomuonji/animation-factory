@@ -64,6 +64,9 @@ jobs:
           test -s "$file"
           test "$(ffprobe -v error -select_streams v:0 -show_entries stream=codec_name -of default=nk=1:nw=1 "$file")" = h264
           test "$(ffprobe -v error -select_streams a:0 -show_entries stream=codec_name -of default=nk=1:nw=1 "$file")" = aac
+          test "$(ffprobe -v error -select_streams v:0 -show_entries stream=width -of default=nk=1:nw=1 "$file")" = 1080
+          test "$(ffprobe -v error -select_streams v:0 -show_entries stream=height -of default=nk=1:nw=1 "$file")" = 1920
+          test "$(ffprobe -v error -select_streams a:0 -show_entries stream=sample_rate -of default=nk=1:nw=1 "$file")" = 48000
           ffmpeg -hide_banner -nostats -i "$file" -af volumedetect -f null - 2>&1 | grep -E 'mean_volume|max_volume'
       - uses: actions/upload-artifact@v4
         with:
