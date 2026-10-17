@@ -106,6 +106,14 @@ function validateEvent(
       validateColor(event.kind, event.accent);
       return;
 
+    case "ui.photo":
+      requireDuration(event, totalDuration);
+      requireText(event.kind, event.caption);
+      if (!["gold-face","gold-imprint","dogu-real","haniwa-large","haniwa-small"].includes(event.assetId))
+        throw new Error("Unapproved photo asset");
+      if (event.zoom !== undefined && (event.zoom<1 || event.zoom>1.35)) throw new Error("Photo zoom must be in 1..1.35");
+      return;
+
     case "ui.rpgStatus":
       requireDuration(event, totalDuration);
       requireText(event.kind, event.title);
