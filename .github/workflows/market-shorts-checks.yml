@@ -25,5 +25,10 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
+      - name: Check adapter syntax
+        run: |
+          node --check tools/market-shorts.mjs
+          node --check tools/market-shorts-upload.mjs
+          node --check tools/market-shorts-analytics.mjs
       - name: Smoke test idea eligibility and production schema
         run: node tools/market-shorts-smoke.mjs
