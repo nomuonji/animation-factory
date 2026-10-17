@@ -125,6 +125,20 @@ function renderDomText(time: number, scene: FactoryScene): void {
     textOverlay.append(block("video-caption", caption.text));
   }
 
+  const kinetic = activeEvent("ui.kineticText", time);
+  if (kinetic) {
+    const headline=block("kinetic-title",kinetic.text);
+    const progress=Math.max(0,(time-kinetic.at)/kinetic.duration);
+    const opening=Math.min(1, progress*5);
+    const closing=Math.min(1,(1-progress)*9);
+    const zoom=1.11-0.11*Math.min(1,progress*4);
+    headline.style.setProperty("--kinetic-zoom",String(zoom));
+    headline.style.opacity=String(Math.min(opening,closing));
+    headline.style.setProperty("--kinetic-accent",kinetic.accent??"#ffe568");
+    headline.classList.add(kinetic.placement==="middle"?"kinetic-middle":"kinetic-upper");
+    textOverlay.append(headline);
+  }
+
   const essay = activeEvent("ui.essayCard", time);
   if (essay) {
     const card = block("essay-card");
@@ -148,7 +162,7 @@ function renderDomText(time: number, scene: FactoryScene): void {
   }
 
   const speech = activeEvent("ui.speech", time);
-  if (speech) {
+  if (speech && speech.text !== "・") {
     const position = scene.actorPosition(speech.actor);
     if (position) {
       const bubble = block("speech-bubble-dom", speech.text);
