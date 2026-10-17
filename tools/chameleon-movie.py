@@ -247,7 +247,9 @@ def main():
     audio=create_audio()
     out=DIR/"chameleon_short_final.mp4"
     subprocess.run(["ffmpeg","-hide_banner","-loglevel","error","-y",
-       "-i",str(video),"-i",str(audio),"-c:v","copy","-c:a","aac","-b:a","192k",
+       "-i",str(video),"-i",str(audio),"-c:v","libx264","-preset","fast","-crf","18",
+       "-vf","scale=1080:1920:flags=lanczos","-pix_fmt","yuv420p",
+       "-c:a","aac","-b:a","192k","-ar","48000",
        "-af","loudnorm=I=-17:TP=-1.5:LRA=10",
        "-t",str(DURATION),"-movflags","+faststart",str(out)],check=True)
     result=subprocess.check_output(["ffprobe","-v","error","-of","json",
