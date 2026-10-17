@@ -47,6 +47,8 @@ jobs:
       - name: Validate editorial brief and source rights
         shell: bash
         run: node tools/footage-first-validate.mjs "productions/$PRODUCTION/footage-first.json"
+      - name: Test footage-led editorial metadata and regression boundaries
+        run: node tools/footage-first-test.mjs
       - name: Make temporary moving image (synthetic smoke test ONLY)
         if: env.PRODUCTION == 'footage-first-smoke'
         run: |
