@@ -5,7 +5,7 @@
  *
  * Usage: node tools/fetch-licensed-photos.mjs museum-idea-shorts-20261017-02
  */
-import {readFile,mkdir,writeFile,stat} from "node:fs/promises";
+import {readFile,mkdir,writeFile,stat,readdir} from "node:fs/promises";
 import {createHash} from "node:crypto";
 import {join,resolve} from "node:path";
 import {fileURLToPath} from "node:url";
@@ -18,9 +18,15 @@ if (!photoEvents.length) {
   console.log("No real photos requested: "+folder);
   process.exit(0);
 }
-const file=join(root,"market-shorts","photo-bank","museum-artifacts.json");
-const manifest=JSON.parse(await readFile(file,"utf8"));
-const list=new Map(manifest.photos.map(p=>[p.id,p]));
+const bank=join(root,"market-shorts","photo-bank");
+const list=new Map();
+for (const file of (await readdir(bank)).filter(n=>/^[a-z0-9-]+\.json$/.test(n))) {
+  const manifest=JSON.parse(await readFile(join(bank,file),"utf8"));
+  for (const photo of manifest.photos || []) {
+    if (list.has(photo.id)) throw Error("Duplicate photo ID in bank: "+photo.id);
+    list.set(photo.id,photo);
+  }
+}
 const ids=[...new Set(photoEvents.map(x=>x.assetId))];
 if (ids.length<3) throw Error("Photo-led Shorts require >=3 independently identifiable real photos");
 const approved=new Set(["CC BY 4.0","CC BY-SA 3.0","CC BY-SA 4.0"]);
