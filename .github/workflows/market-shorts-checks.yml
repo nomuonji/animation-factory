@@ -5,6 +5,7 @@ on:
     paths:
       - "tools/market-shorts*.mjs"
       - "tools/sound-bank*.mjs"
+      - "tools/visual-bank-report.mjs"
       - "tools/audio-pipeline.mjs"
       - "tools/validate-audio.mjs"
       - "tools/validate-attention.mjs"
@@ -22,6 +23,7 @@ on:
     paths:
       - "tools/market-shorts*.mjs"
       - "tools/sound-bank*.mjs"
+      - "tools/visual-bank-report.mjs"
       - "tools/audio-pipeline.mjs"
       - "tools/validate-audio.mjs"
       - "tools/validate-attention.mjs"
@@ -55,6 +57,8 @@ jobs:
           fi
       - name: Check local audio bank and sound decoding
         run: node tools/sound-bank-smoke.mjs
+      - name: Inventory licensed visual assets
+        run: node tools/visual-bank-report.mjs > /tmp/visual-bank-inventory.json
       - name: Install and typecheck
         run: |
           npm ci
