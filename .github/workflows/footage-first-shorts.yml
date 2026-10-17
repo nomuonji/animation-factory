@@ -1,0 +1,92 @@
+name: Footage-first Shorts (draft review)
+
+on:
+  pull_request:
+    paths:
+      - "tools/footage-first-*.mjs"
+      - "tools/footage-first-*.py"
+      - "productions/footage-first-smoke/**"
+      - ".github/workflows/footage-first-shorts.yml"
+  workflow_dispatch:
+    inputs:
+      production:
+        description: Folder in productions/ with footage-first.json
+        required: true
+        default: footage-first-smoke
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  render-draft:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Resolve review-only production
+        shell: bash
+        env:
+          REQUESTED: ${{ inputs.production }}
+        run: |
+          set -euo pipefail
+          production="${REQUESTED:-footage-first-smoke}"
+          [[ "$production" =~ ^[a-z0-9][a-z0-9-]*$ ]] || exit 2
+          test -s "productions/$production/footage-first.json"
+          echo "PRODUCTION=$production" >> "$GITHUB_ENV"
+      - name: Dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg fonts-noto-cjk
+          python -m pip install --quiet numpy pillow opencv-python-headless
+      - name: Validate editorial brief and source rights
+        shell: bash
+        run: node tools/footage-first-validate.mjs "productions/$PRODUCTION/footage-first.json"
+      - name: Make temporary moving image (synthetic smoke test ONLY)
+        if: env.PRODUCTION == 'footage-first-smoke'
+        run: |
+          mkdir -p outputs/footage-first-sources
+          ffmpeg -hide_banner -loglevel error -y -f lavfi -i "testsrc2=size=960x540:rate=24" -t 6 -c:v libx264 -pix_fmt yuv420p -f mp4 outputs/footage-first-sources/demo-motion.source
+      - name: Start local VOICEVOX Nemo when requested
+        shell: bash
+        run: |
+          set -euo pipefail
+          backend="$(node -e 'const p=require("./productions/"+process.env.PRODUCTION+"/footage-first.json"); console.log(p.voice?.provider || "none")')"
+          if [ "$backend" != "voicevox-nemo" ]; then exit 0; fi
+          docker pull voicevox/voicevox_nemo_engine:cpu-latest
+          docker run -d --rm --name footage-nemo -p 127.0.0.1:50021:50121 voicevox/voicevox_nemo_engine:cpu-latest
+          for i in {1..90}; do
+            if curl -fsS http://127.0.0.1:50021/version >/dev/null; then exit 0; fi
+            sleep 1
+          done
+          docker logs footage-nemo || true
+          exit 1
+      - name: Render reusable moving-footage MP4 + editorial contact sheet
+        shell: bash
+        run: python tools/footage-first-render.py "productions/$PRODUCTION/footage-first.json"
+      - name: Confirm real playable video (technical, not creative approval)
+        shell: bash
+        run: |
+          set -euo pipefail
+          id="$(node -p 'require("./productions/"+process.env.PRODUCTION+"/footage-first.json").id')"
+          file="outputs/footage-first/$id/video.mp4"
+          test -s "$file"
+          test "$(ffprobe -v error -select_streams v:0 -show_entries stream=codec_name -of default=nk=1:nw=1 "$file")" = h264
+          test "$(ffprobe -v error -select_streams v:0 -show_entries stream=width -of default=nk=1:nw=1 "$file")" = 1080
+          test "$(ffprobe -v error -select_streams v:0 -show_entries stream=height -of default=nk=1:nw=1 "$file")" = 1920
+          test "$(ffprobe -v error -select_streams a:0 -show_entries stream=codec_name -of default=nk=1:nw=1 "$file")" = aac
+          test -s "outputs/footage-first/$id/review-filmstrip.jpg"
+      - name: Save private review artifact (NEVER publish automatically)
+        uses: actions/upload-artifact@v4
+        with:
+          name: footage-first-${{ env.PRODUCTION }}-draft
+          path: |
+            outputs/footage-first/*/video.mp4
+            outputs/footage-first/*/review-filmstrip.jpg
+          if-no-files-found: error
+          retention-days: 60
