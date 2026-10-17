@@ -33,8 +33,40 @@ jobs:
           ffprobe -v error -show_entries format=duration,size -of default=noprint_wrappers=1 outputs/chameleon-probe/s2.ogv
       - name: Inspect frames BEFORE creating the final story
         run: python tools/chameleon-probe.py
+      - name: Start VOICEVOX Nemo for Japanese narration
+        shell: bash
+        run: |
+          set -euo pipefail
+          docker pull voicevox/voicevox_nemo_engine:cpu-latest
+          docker run -d --rm --name nemo -p 127.0.0.1:50021:50121 voicevox/voicevox_nemo_engine:cpu-latest
+          for i in {1..90}; do
+            if curl -fsS http://127.0.0.1:50021/version >/dev/null; then
+              echo "VOICEVOX Nemo ready"
+              exit 0
+            fi
+            sleep 1
+          done
+          docker logs nemo || true
+          exit 1
+      - name: Install editorial film renderer
+        run: python -m pip install --quiet numpy opencv-python-headless
+      - name: Make Japanese narrated playable rough-cut from ACTUAL footage
+        run: python tools/chameleon-movie.py
+      - name: Verify video and audible audio
+        shell: bash
+        run: |
+          set -euo pipefail
+          file=outputs/chameleon-probe/chameleon_short_v1.mp4
+          test -s "$file"
+          test "$(ffprobe -v error -select_streams v:0 -show_entries stream=codec_name -of default=nk=1:nw=1 "$file")" = h264
+          test "$(ffprobe -v error -select_streams a:0 -show_entries stream=codec_name -of default=nk=1:nw=1 "$file")" = aac
+          ffmpeg -hide_banner -nostats -i "$file" -af volumedetect -f null - 2>&1 | grep -E 'mean_volume|max_volume'
       - uses: actions/upload-artifact@v4
         with:
-          name: chameleon-source-probe
-          path: outputs/chameleon-probe/filmstrip.jpg
+          name: chameleon-film-first-roughcut
+          path: |
+            outputs/chameleon-probe/filmstrip.jpg
+            outputs/chameleon-probe/edited-filmstrip.jpg
+            outputs/chameleon-probe/chameleon_short_v1.mp4
+            outputs/chameleon-probe/video-metadata.json
           retention-days: 30
