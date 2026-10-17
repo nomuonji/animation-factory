@@ -1,0 +1,749 @@
+{
+  "version": 1,
+  "policy": {
+    "irasutoya": {
+      "termsUrl": "https://www.irasutoya.com/p/terms.html",
+      "faqUrl": "https://www.irasutoya.com/p/faq.html",
+      "maxDistinctPerVideo": 20,
+      "includesThumbnail": true,
+      "attribution": "respect terms; copyrights retained",
+      "permittedUse": "part of a composed video, not a standalone asset redistribution",
+      "characterVideoClipRestriction": "Do not use irasutoya content as a VTuber avatar without specific permission",
+      "readyRule": "reference_only until manually obtained and locally licensed for a specific composite video"
+    }
+  },
+  "characters": [
+    {
+      "id": "worker-m",
+      "title": "会社員・男性",
+      "sourceType": "project-original",
+      "license": "project-original",
+      "state": "ready",
+      "render": {
+        "kind": "pixel-archetype",
+        "archetype": "worker-m"
+      },
+      "tags": {
+        "role": [
+          "office-worker"
+        ],
+        "gender": [
+          "male"
+        ],
+        "emotion": [
+          "neutral"
+        ],
+        "pose": [
+          "standing",
+          "walking",
+          "surprised",
+          "dead-inside"
+        ]
+      },
+      "palette": {
+        "H": 2170923,
+        "S": 15712673,
+        "W": 15069170,
+        "J": 4548261,
+        "T": 13522529,
+        "P": 2635342
+      }
+    },
+    {
+      "id": "worker-f",
+      "title": "会社員・女性",
+      "sourceType": "project-original",
+      "license": "project-original",
+      "state": "ready",
+      "render": {
+        "kind": "pixel-archetype",
+        "archetype": "worker-f"
+      },
+      "tags": {
+        "role": [
+          "office-worker"
+        ],
+        "gender": [
+          "female"
+        ],
+        "emotion": [
+          "neutral"
+        ],
+        "pose": [
+          "standing",
+          "walking",
+          "surprised",
+          "dead-inside"
+        ]
+      },
+      "palette": {
+        "H": 5910829,
+        "S": 16172965,
+        "W": 15069688,
+        "J": 6186639,
+        "T": 15556989,
+        "P": 3749456
+      }
+    },
+    {
+      "id": "manager",
+      "title": "上司",
+      "sourceType": "project-original",
+      "license": "project-original",
+      "state": "ready",
+      "render": {
+        "kind": "pixel-archetype",
+        "archetype": "manager"
+      },
+      "tags": {
+        "role": [
+          "boss"
+        ],
+        "gender": [
+          "male"
+        ],
+        "emotion": [
+          "angry"
+        ],
+        "pose": [
+          "standing",
+          "walking",
+          "surprised",
+          "dead-inside"
+        ]
+      },
+      "palette": {
+        "H": 5853776,
+        "S": 14460799,
+        "W": 15064275,
+        "J": 2632498,
+        "T": 11093056,
+        "P": 2237486
+      }
+    },
+    {
+      "id": "clerk",
+      "title": "店員",
+      "sourceType": "project-original",
+      "license": "project-original",
+      "state": "ready",
+      "render": {
+        "kind": "pixel-archetype",
+        "archetype": "clerk"
+      },
+      "tags": {
+        "role": [
+          "shop-clerk"
+        ],
+        "gender": [
+          "female"
+        ],
+        "emotion": [
+          "friendly"
+        ],
+        "pose": [
+          "standing",
+          "walking",
+          "surprised",
+          "dead-inside"
+        ]
+      },
+      "palette": {
+        "H": 6502187,
+        "S": 15844512,
+        "W": 16115923,
+        "J": 11752258,
+        "T": 16110711,
+        "P": 3817544
+      }
+    },
+    {
+      "id": "student-m",
+      "title": "学生・男性",
+      "sourceType": "project-original",
+      "license": "project-original",
+      "state": "ready",
+      "render": {
+        "kind": "pixel-archetype",
+        "archetype": "student-m"
+      },
+      "tags": {
+        "role": [
+          "student"
+        ],
+        "gender": [
+          "male"
+        ],
+        "emotion": [
+          "neutral"
+        ],
+        "pose": [
+          "standing",
+          "walking",
+          "surprised",
+          "dead-inside"
+        ]
+      },
+      "palette": {
+        "H": 1777706,
+        "S": 15845038,
+        "W": 15726067,
+        "J": 3101809,
+        "T": 6204106,
+        "P": 2700859
+      }
+    },
+    {
+      "id": "student-f",
+      "title": "学生・女性",
+      "sourceType": "project-original",
+      "license": "project-original",
+      "state": "ready",
+      "render": {
+        "kind": "pixel-archetype",
+        "archetype": "student-f"
+      },
+      "tags": {
+        "role": [
+          "student"
+        ],
+        "gender": [
+          "female"
+        ],
+        "emotion": [
+          "neutral"
+        ],
+        "pose": [
+          "standing",
+          "walking",
+          "surprised",
+          "dead-inside"
+        ]
+      },
+      "palette": {
+        "H": 3156269,
+        "S": 15844256,
+        "W": 16246234,
+        "J": 10117241,
+        "T": 15389042,
+        "P": 4407387
+      }
+    },
+    {
+      "id": "old-man",
+      "title": "高齢男性",
+      "sourceType": "project-original",
+      "license": "project-original",
+      "state": "ready",
+      "render": {
+        "kind": "pixel-archetype",
+        "archetype": "old-man"
+      },
+      "tags": {
+        "role": [
+          "elder"
+        ],
+        "gender": [
+          "male"
+        ],
+        "emotion": [
+          "friendly"
+        ],
+        "pose": [
+          "standing",
+          "walking",
+          "surprised",
+          "dead-inside"
+        ]
+      },
+      "palette": {
+        "H": 11975105,
+        "S": 15580563,
+        "W": 16118244,
+        "J": 7435898,
+        "T": 7311789,
+        "P": 7169893
+      }
+    },
+    {
+      "id": "old-woman",
+      "title": "高齢女性",
+      "sourceType": "project-original",
+      "license": "project-original",
+      "state": "ready",
+      "render": {
+        "kind": "pixel-archetype",
+        "archetype": "old-woman"
+      },
+      "tags": {
+        "role": [
+          "elder"
+        ],
+        "gender": [
+          "female"
+        ],
+        "emotion": [
+          "friendly"
+        ],
+        "pose": [
+          "standing",
+          "walking",
+          "surprised",
+          "dead-inside"
+        ]
+      },
+      "palette": {
+        "H": 13025979,
+        "S": 15846571,
+        "W": 16314338,
+        "J": 8944006,
+        "T": 11493472,
+        "P": 4669517
+      }
+    },
+    {
+      "id": "nerd",
+      "title": "おとなしい青年",
+      "sourceType": "project-original",
+      "license": "project-original",
+      "state": "ready",
+      "render": {
+        "kind": "pixel-archetype",
+        "archetype": "nerd"
+      },
+      "tags": {
+        "role": [
+          "young-adult"
+        ],
+        "gender": [
+          "male"
+        ],
+        "emotion": [
+          "anxious"
+        ],
+        "pose": [
+          "standing",
+          "walking",
+          "surprised",
+          "dead-inside"
+        ]
+      },
+      "palette": {
+        "H": 2499372,
+        "S": 15253408,
+        "W": 15659751,
+        "J": 7765127,
+        "T": 6135995,
+        "P": 3686486
+      }
+    },
+    {
+      "id": "gal",
+      "title": "派手な女性",
+      "sourceType": "project-original",
+      "license": "project-original",
+      "state": "ready",
+      "render": {
+        "kind": "pixel-archetype",
+        "archetype": "gal"
+      },
+      "tags": {
+        "role": [
+          "young-adult"
+        ],
+        "gender": [
+          "female"
+        ],
+        "emotion": [
+          "confident"
+        ],
+        "pose": [
+          "standing",
+          "walking",
+          "surprised",
+          "dead-inside"
+        ]
+      },
+      "palette": {
+        "H": 14991208,
+        "S": 15248515,
+        "W": 16113890,
+        "J": 12145029,
+        "T": 16766043,
+        "P": 5586541
+      }
+    },
+    {
+      "id": "worker-exhausted",
+      "title": "疲れた会社員",
+      "sourceType": "project-original",
+      "license": "project-original",
+      "state": "ready",
+      "render": {
+        "kind": "pixel-archetype",
+        "archetype": "worker-exhausted"
+      },
+      "tags": {
+        "role": [
+          "office-worker"
+        ],
+        "gender": [
+          "male"
+        ],
+        "emotion": [
+          "dead-inside"
+        ],
+        "pose": [
+          "standing",
+          "walking",
+          "surprised",
+          "dead-inside"
+        ]
+      },
+      "palette": {
+        "H": 2370611,
+        "S": 13547174,
+        "W": 13686236,
+        "J": 5592934,
+        "T": 9537675,
+        "P": 3422016
+      }
+    },
+    {
+      "id": "host",
+      "title": "ナレーター",
+      "sourceType": "project-original",
+      "license": "project-original",
+      "state": "ready",
+      "render": {
+        "kind": "pixel-archetype",
+        "archetype": "host"
+      },
+      "tags": {
+        "role": [
+          "host"
+        ],
+        "gender": [
+          "neutral"
+        ],
+        "emotion": [
+          "expressive"
+        ],
+        "pose": [
+          "standing",
+          "walking",
+          "surprised",
+          "dead-inside"
+        ]
+      },
+      "palette": {
+        "H": 1587529,
+        "S": 8576492,
+        "W": 15202556,
+        "J": 3430252,
+        "T": 6542546,
+        "P": 1387582
+      }
+    },
+    {
+      "id": "irasutoya-worker-smartphone",
+      "title": "スマートフォンを見る会社員",
+      "sourceType": "irasutoya",
+      "state": "reference_only",
+      "sourceUrl": "https://www.irasutoya.com/2016/07/blog-post_823.html",
+      "license": "irasutoya-standard-terms",
+      "commercialPolicy": {
+        "allowed": true,
+        "maxDistinctPerVideo": 20,
+        "redistributionAllowed": false
+      },
+      "tags": {
+        "role": [
+          "office-worker"
+        ],
+        "emotion": [
+          "neutral"
+        ],
+        "pose": [
+          "phone"
+        ]
+      },
+      "render": null
+    },
+    {
+      "id": "irasutoya-manager-angry",
+      "title": "怒る男性上司（三段階）",
+      "sourceType": "irasutoya",
+      "state": "reference_only",
+      "sourceUrl": "https://www.irasutoya.com/2018/10/blog-post_267.html",
+      "license": "irasutoya-standard-terms",
+      "commercialPolicy": {
+        "allowed": true,
+        "maxDistinctPerVideo": 20,
+        "redistributionAllowed": false
+      },
+      "tags": {
+        "role": [
+          "boss"
+        ],
+        "emotion": [
+          "angry"
+        ],
+        "pose": [
+          "lecture"
+        ]
+      },
+      "render": null
+    },
+    {
+      "id": "irasutoya-manager-f-angry",
+      "title": "怒る女性上司（三段階）",
+      "sourceType": "irasutoya",
+      "state": "reference_only",
+      "sourceUrl": "https://www.irasutoya.com/2018/10/blog-post_287.html",
+      "license": "irasutoya-standard-terms",
+      "commercialPolicy": {
+        "allowed": true,
+        "maxDistinctPerVideo": 20,
+        "redistributionAllowed": false
+      },
+      "tags": {
+        "role": [
+          "boss"
+        ],
+        "emotion": [
+          "angry"
+        ],
+        "pose": [
+          "lecture"
+        ]
+      },
+      "render": null
+    },
+    {
+      "id": "irasutoya-clerk",
+      "title": "案内する女性店員",
+      "sourceType": "irasutoya",
+      "state": "reference_only",
+      "sourceUrl": "https://www.irasutoya.com/2015/11/blog-post_84.html",
+      "license": "irasutoya-standard-terms",
+      "commercialPolicy": {
+        "allowed": true,
+        "maxDistinctPerVideo": 20,
+        "redistributionAllowed": false
+      },
+      "tags": {
+        "role": [
+          "shop-clerk"
+        ],
+        "emotion": [
+          "friendly"
+        ],
+        "pose": [
+          "guide"
+        ]
+      },
+      "render": null
+    },
+    {
+      "id": "irasutoya-worker-tired",
+      "title": "いやいや働く会社員",
+      "sourceType": "irasutoya",
+      "state": "reference_only",
+      "sourceUrl": "https://www.irasutoya.com/2016/03/blog-post_55.html",
+      "license": "irasutoya-standard-terms",
+      "commercialPolicy": {
+        "allowed": true,
+        "maxDistinctPerVideo": 20,
+        "redistributionAllowed": false
+      },
+      "tags": {
+        "role": [
+          "office-worker"
+        ],
+        "emotion": [
+          "dead-inside"
+        ],
+        "pose": [
+          "typing"
+        ]
+      },
+      "render": null
+    },
+    {
+      "id": "irasutoya-worker-working",
+      "title": "仕事中の男性会社員",
+      "sourceType": "irasutoya",
+      "state": "reference_only",
+      "sourceUrl": "https://www.irasutoya.com/2016/03/blog-post_36.html",
+      "license": "irasutoya-standard-terms",
+      "commercialPolicy": {
+        "allowed": true,
+        "maxDistinctPerVideo": 20,
+        "redistributionAllowed": false
+      },
+      "tags": {
+        "role": [
+          "office-worker"
+        ],
+        "emotion": [
+          "friendly"
+        ],
+        "pose": [
+          "typing"
+        ]
+      },
+      "render": null
+    },
+    {
+      "id": "irasutoya-worker-boss",
+      "title": "スーツの中年男性会社員",
+      "sourceType": "irasutoya",
+      "state": "reference_only",
+      "sourceUrl": "https://www.irasutoya.com/2016/09/blog-post_17.html",
+      "license": "irasutoya-standard-terms",
+      "commercialPolicy": {
+        "allowed": true,
+        "maxDistinctPerVideo": 20,
+        "redistributionAllowed": false
+      },
+      "tags": {
+        "role": [
+          "office-worker"
+        ],
+        "emotion": [
+          "neutral"
+        ],
+        "pose": [
+          "standing"
+        ]
+      },
+      "render": null
+    },
+    {
+      "id": "irasutoya-worker-elder",
+      "title": "スーツを着た高齢男性",
+      "sourceType": "irasutoya",
+      "state": "reference_only",
+      "sourceUrl": "https://www.irasutoya.com/2016/09/blog-post_56.html",
+      "license": "irasutoya-standard-terms",
+      "commercialPolicy": {
+        "allowed": true,
+        "maxDistinctPerVideo": 20,
+        "redistributionAllowed": false
+      },
+      "tags": {
+        "role": [
+          "elder"
+        ],
+        "emotion": [
+          "neutral"
+        ],
+        "pose": [
+          "standing"
+        ]
+      },
+      "render": null
+    },
+    {
+      "id": "irasutoya-worker-phone-clerk",
+      "title": "スマホ画面を見せる店員",
+      "sourceType": "irasutoya",
+      "state": "reference_only",
+      "sourceUrl": "https://www.irasutoya.com/2019/01/blog-post_352.html",
+      "license": "irasutoya-standard-terms",
+      "commercialPolicy": {
+        "allowed": true,
+        "maxDistinctPerVideo": 20,
+        "redistributionAllowed": false
+      },
+      "tags": {
+        "role": [
+          "shop-clerk"
+        ],
+        "emotion": [
+          "neutral"
+        ],
+        "pose": [
+          "phone"
+        ]
+      },
+      "render": null
+    },
+    {
+      "id": "irasutoya-worker-running",
+      "title": "締め切りに追われる会社員",
+      "sourceType": "irasutoya",
+      "state": "reference_only",
+      "sourceUrl": "https://www.irasutoya.com/2017/03/blog-post_755.html",
+      "license": "irasutoya-standard-terms",
+      "commercialPolicy": {
+        "allowed": true,
+        "maxDistinctPerVideo": 20,
+        "redistributionAllowed": false
+      },
+      "tags": {
+        "role": [
+          "office-worker"
+        ],
+        "emotion": [
+          "anxious"
+        ],
+        "pose": [
+          "running"
+        ]
+      },
+      "render": null
+    },
+    {
+      "id": "irasutoya-worker-decision",
+      "title": "分かれ道で迷う会社員",
+      "sourceType": "irasutoya",
+      "state": "reference_only",
+      "sourceUrl": "https://www.irasutoya.com/2017/06/blog-post_41.html",
+      "license": "irasutoya-standard-terms",
+      "commercialPolicy": {
+        "allowed": true,
+        "maxDistinctPerVideo": 20,
+        "redistributionAllowed": false
+      },
+      "tags": {
+        "role": [
+          "office-worker"
+        ],
+        "emotion": [
+          "anxious"
+        ],
+        "pose": [
+          "standing"
+        ]
+      },
+      "render": null
+    },
+    {
+      "id": "irasutoya-worker-into-door",
+      "title": "ドアに入る会社員",
+      "sourceType": "irasutoya",
+      "state": "reference_only",
+      "sourceUrl": "https://www.irasutoya.com/2018/02/blog-post_463.html",
+      "license": "irasutoya-standard-terms",
+      "commercialPolicy": {
+        "allowed": true,
+        "maxDistinctPerVideo": 20,
+        "redistributionAllowed": false
+      },
+      "tags": {
+        "role": [
+          "office-worker"
+        ],
+        "emotion": [
+          "neutral"
+        ],
+        "pose": [
+          "walking"
+        ]
+      },
+      "render": null
+    }
+  ]
+}
