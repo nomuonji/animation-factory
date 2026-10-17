@@ -73,7 +73,7 @@ def putphoto(image,arr,rect,rounded=13,scale=1.0,cx=.5,cy=.5):
 def split(image,progress=1):
     d=ImageDraw.Draw(image)
     for x,im,col,name in [(29,GREEN,MINT,"BEFORE"),(367,RED,GOLD,"AFTER")]:
-        putphoto(image,im,(x,385,324,525),14,scale=1.0,cx=0.36)
+        putphoto(image,im,(x,385,324,525),14,scale=1.0,cx=0.10)
         d=ImageDraw.Draw(image)
         d.rounded_rectangle((x,388,x+323,909),radius=14,outline=col,width=4)
         d.rounded_rectangle((x+12,405,x+164,450),radius=8,fill=BG)
@@ -87,7 +87,7 @@ def moving(image,sec,t,label_text,mark=False):
     # INSET: full view for orientation, synchronized from same source time.
     arr=shot(sec)
     # upper close-up takes maximum possible vertical space.
-    putphoto(image,arr,(20,286,680,725),22,scale=1.04,cx=.40)
+    putphoto(image,arr,(20,286,680,725),22,scale=1.04,cx=.14)
     putphoto(image,arr,(73,896,574,287),12,scale=1.0,cx=.5)
     d=ImageDraw.Draw(image)
     d.rounded_rectangle((21,288,699,1010),radius=22,outline=(81,124,111),width=3)
