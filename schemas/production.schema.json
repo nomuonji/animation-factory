@@ -165,7 +165,8 @@
               "effect.screenFlash",
               "transition.fade",
               "prop.show",
-              "ui.kineticText"
+              "ui.kineticText",
+              "prop.exhibit"
             ]
           },
           "at": {

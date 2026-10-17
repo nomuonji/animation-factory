@@ -1,0 +1,333 @@
+{
+  "meta": {
+    "id": "museum-idea-shorts-20261017-01",
+    "title": "国宝のレプリカが4,950円!? 博物館グッズの意外な変身",
+    "duration": 25.5,
+    "description": "Real Ideas Memory source marketidea-20261017-museum-artifact-transformations-v1 rev2, fictional original graphical representations of three sourced merchandise types. Gold seal replica sold out on 2026-10-17.",
+    "credits": [
+      "Sources: Fukuoka Art Foundation Shop, Good Smile Company, Tokyo National Museum Shop",
+      "Original procedural stylized props (not photos of actual items)",
+      "VOICEVOX Nemo",
+      "Kenney CC0 sound packs",
+      "Opengameart CC0 BGM"
+    ]
+  },
+  "canvas": {
+    "width": 270,
+    "height": 480,
+    "fps": 20,
+    "outputScale": 4
+  },
+  "environment": "museum-gallery",
+  "actors": [
+    {
+      "id": "narrator",
+      "archetype": "host",
+      "x": 42,
+      "y": 438,
+      "scale": 2.5,
+      "pose": "idle"
+    },
+    {
+      "id": "viewer",
+      "archetype": "nerd",
+      "x": 230,
+      "y": 438,
+      "scale": 2.6,
+      "pose": "surprised"
+    }
+  ],
+  "events": [
+    {
+      "kind": "prop.exhibit",
+      "at": 0,
+      "duration": 3.25,
+      "exhibit": "gold-seal"
+    },
+    {
+      "kind": "ui.kineticText",
+      "at": 0,
+      "duration": 3.1799999999999997,
+      "text": "国宝が4,950円!?",
+      "placement": "upper",
+      "accent": "#ffe27b"
+    },
+    {
+      "kind": "dialogue.say",
+      "at": 0.15,
+      "duration": 3.05,
+      "actor": "narrator",
+      "text": "国宝の金印が、四千九百五十円？",
+      "spokenText": "国宝の金印が、四千九百五十円？",
+      "showSubtitle": true
+    },
+    {
+      "kind": "actor.pose",
+      "at": 0,
+      "actor": "viewer",
+      "pose": "surprised"
+    },
+    {
+      "kind": "prop.exhibit",
+      "at": 3.3,
+      "duration": 4.05,
+      "exhibit": "gold-seal"
+    },
+    {
+      "kind": "ui.kineticText",
+      "at": 3.3,
+      "duration": 3.9799999999999995,
+      "text": "※博物館監修の複製品",
+      "placement": "upper",
+      "accent": "#ebd28c"
+    },
+    {
+      "kind": "dialogue.say",
+      "at": 3.4499999999999997,
+      "duration": 3.8499999999999996,
+      "actor": "narrator",
+      "text": "もちろん本物じゃない。博物館監修の、実物大レプリカです。",
+      "spokenText": "もちろん本物じゃない。博物館監修の、実物大レプリカです。",
+      "showSubtitle": true
+    },
+    {
+      "kind": "actor.pose",
+      "at": 3.3,
+      "actor": "viewer",
+      "pose": "idle"
+    },
+    {
+      "kind": "prop.exhibit",
+      "at": 7.4,
+      "duration": 3.5500000000000003,
+      "exhibit": "gold-seal"
+    },
+    {
+      "kind": "ui.kineticText",
+      "at": 7.4,
+      "duration": 3.48,
+      "text": "2.3cm・24金メッキ",
+      "placement": "upper",
+      "accent": "#ebd28c"
+    },
+    {
+      "kind": "dialogue.say",
+      "at": 7.550000000000001,
+      "duration": 3.35,
+      "actor": "narrator",
+      "text": "二十四金メッキ。でも、公式通販では売り切れ。",
+      "spokenText": "二十四金メッキ。でも、公式通販では売り切れ。",
+      "showSubtitle": true
+    },
+    {
+      "kind": "actor.pose",
+      "at": 7.4,
+      "actor": "viewer",
+      "pose": "idle"
+    },
+    {
+      "kind": "prop.exhibit",
+      "at": 11,
+      "duration": 5.15,
+      "exhibit": "dogu"
+    },
+    {
+      "kind": "ui.kineticText",
+      "at": 11,
+      "duration": 5.08,
+      "text": "土偶は…動く!?",
+      "placement": "upper",
+      "accent": "#e5ac88"
+    },
+    {
+      "kind": "dialogue.say",
+      "at": 11.15,
+      "duration": 4.95,
+      "actor": "narrator",
+      "text": "一方、土偶は可動フィギュアに。価格は、一万一千円。",
+      "spokenText": "一方、土偶は可動フィギュアに。価格は、一万一千円。",
+      "showSubtitle": true
+    },
+    {
+      "kind": "actor.pose",
+      "at": 11,
+      "actor": "viewer",
+      "pose": "surprised"
+    },
+    {
+      "kind": "prop.exhibit",
+      "at": 16.2,
+      "duration": 5.05,
+      "exhibit": "haniwa"
+    },
+    {
+      "kind": "ui.kineticText",
+      "at": 16.2,
+      "duration": 4.9799999999999995,
+      "text": "埴輪は紙で作れる",
+      "placement": "upper",
+      "accent": "#ecc18d"
+    },
+    {
+      "kind": "dialogue.say",
+      "at": 16.349999999999998,
+      "duration": 4.85,
+      "actor": "narrator",
+      "text": "そして埴輪は、組み立てる紙工作になって、九百六十円。",
+      "spokenText": "そして埴輪は、組み立てる紙工作になって、九百六十円。",
+      "showSubtitle": true
+    },
+    {
+      "kind": "actor.pose",
+      "at": 16.2,
+      "actor": "viewer",
+      "pose": "idle"
+    },
+    {
+      "kind": "prop.exhibit",
+      "at": 21.3,
+      "duration": 4.15,
+      "exhibit": "gold-seal"
+    },
+    {
+      "kind": "ui.kineticText",
+      "at": 21.3,
+      "duration": 4.08,
+      "text": "あなたなら、どれ？",
+      "placement": "upper",
+      "accent": "#9ef7d6"
+    },
+    {
+      "kind": "dialogue.say",
+      "at": 21.45,
+      "duration": 3.95,
+      "actor": "narrator",
+      "text": "金印、土偶、埴輪。家に置くなら、どれがいい？",
+      "spokenText": "金印、土偶、埴輪。家に置くなら、どれがいい？",
+      "showSubtitle": true
+    },
+    {
+      "kind": "actor.pose",
+      "at": 21.3,
+      "actor": "viewer",
+      "pose": "surprised"
+    },
+    {
+      "kind": "effect.exclamation",
+      "at": 0.8,
+      "actor": "viewer",
+      "duration": 0.7
+    },
+    {
+      "kind": "effect.particles",
+      "at": 11.2,
+      "actor": "viewer",
+      "particle": "spark",
+      "duration": 0.9
+    },
+    {
+      "kind": "effect.emote",
+      "at": 20.7,
+      "actor": "viewer",
+      "emote": "heart",
+      "duration": 0.6
+    }
+  ],
+  "audio": {
+    "masterVolume": 0.93,
+    "tts": {
+      "provider": "voicevox-nemo",
+      "events": [
+        "dialogue.say"
+      ],
+      "defaultVoice": {
+        "voice": "男声2",
+        "speedScale": 1.27,
+        "volume": 1.12
+      }
+    },
+    "bgm": [
+      {
+        "id": "music",
+        "assetId": "battle-music-loop",
+        "at": 0,
+        "duration": 25.5,
+        "volume": 0.08,
+        "fadeIn": 0.2,
+        "fadeOut": 0.8
+      }
+    ],
+    "sfx": [
+      {
+        "id": "cue-0",
+        "role": "hook_hit",
+        "at": 0,
+        "volume": 0.37
+      },
+      {
+        "id": "cue-1",
+        "role": "transition",
+        "at": 3.3,
+        "volume": 0.17
+      },
+      {
+        "id": "cue-2",
+        "role": "pop",
+        "at": 7.4,
+        "volume": 0.17
+      },
+      {
+        "id": "cue-3",
+        "role": "reveal",
+        "at": 11,
+        "volume": 0.17
+      },
+      {
+        "id": "cue-4",
+        "role": "transition",
+        "at": 16.2,
+        "volume": 0.17
+      },
+      {
+        "id": "cue-5",
+        "role": "fail",
+        "at": 21.3,
+        "volume": 0.17
+      }
+    ]
+  },
+  "attention": {
+    "maxReadingCharsPerSecond": 12,
+    "maxTextLayers": 1,
+    "beats": [
+      {
+        "id": "hook",
+        "at": 0,
+        "duration": 3.3,
+        "focus": "caption",
+        "intent": "immediate surprise + misleading claim corrected promptly"
+      },
+      {
+        "id": "correction",
+        "at": 3.3,
+        "duration": 7.7,
+        "focus": "caption",
+        "intent": "honest replica distinction and sold out"
+      },
+      {
+        "id": "pivot",
+        "at": 11,
+        "duration": 10.3,
+        "focus": "character",
+        "intent": "additional examples and visual transforms"
+      },
+      {
+        "id": "question",
+        "at": 21.3,
+        "duration": 4.2,
+        "focus": "caption",
+        "intent": "audience preference prompt"
+      }
+    ]
+  }
+}

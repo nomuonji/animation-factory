@@ -197,6 +197,11 @@ function validateEvent(
       validateColor(event.kind, event.color);
       return;
 
+    case "prop.exhibit":
+      requireDuration(event, totalDuration);
+      if (!["gold-seal","dogu","haniwa"].includes(event.exhibit)) throw new Error("Unsupported exhibit: "+event.exhibit);
+      return;
+
     case "prop.show":
       requireDuration(event, totalDuration);
       if (!PROPS.has(event.prop)) {

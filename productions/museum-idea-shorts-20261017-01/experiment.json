@@ -1,0 +1,85 @@
+{
+  "sourceSystem": "Keywords Operator Idea Memory",
+  "sourceIdeaId": "marketidea-20261017-museum-artifact-transformations-v1",
+  "sourceRevision": 2,
+  "sourceIdeaStatus": "liked",
+  "destinations": [
+    "youtube_video",
+    "social_content",
+    "new_site_db",
+    "product_affiliate"
+  ],
+  "review": {
+    "rubricVersion": "idea-final-judge-v4",
+    "verdict": "pass",
+    "axes": {
+      "appeal": 5,
+      "seo": 4,
+      "revenue": 4,
+      "contentFeasibility": 4,
+      "dbValue": 4,
+      "upkeep": 4
+    }
+  },
+  "evidenceChecked": true,
+  "rightsChecked": true,
+  "storyAngle": "Museum artifacts turned into official reproductions, articulated sculptures, and make-it-yourself paper figures.",
+  "factChecks": [
+    {
+      "claim": "National treasure gold seal replica 2.3 cm/24k plating, 4,950JPY, SOLD OUT at time checked; original NOT sold",
+      "source": "https://ffac.shop-pro.jp/?pid=142776515",
+      "date": "2026-10-17"
+    },
+    {
+      "claim": "Articulated dogu figure from Good Smile Company, price JPY11000, Dec 2026 rerelease planned; it is not museum-authenticated historical replica",
+      "source": "https://www.goodsmile.com/ja/product/10159/figma%2B%E9%81%AE%E5%85%89%E5%99%A8%E5%9C%9F%E5%81%B6",
+      "date": "2026-10-17"
+    },
+    {
+      "claim": "Tokyo National Museum Shop paper haniwa 'Dancing Figures (small)' craft sells for JPY960 including tax",
+      "source": "https://www.tnm-shop.jp/view/item/000000000892",
+      "date": "2026-10-17"
+    }
+  ],
+  "assetLicenses": [
+    {
+      "type": "characters",
+      "assetIds": [
+        "host",
+        "nerd"
+      ],
+      "rights": "Original procedural Animation Factory character-bank"
+    },
+    {
+      "type": "objects",
+      "assetIds": [
+        "gold-seal",
+        "dogu",
+        "haniwa"
+      ],
+      "rights": "Original simplified code-rendered illustrations, not product photos. Not exact replicas."
+    },
+    {
+      "type": "sfx",
+      "source": "assets/kenney",
+      "rights": "CC0; licensed packs indexed by tools/sound-bank.mjs"
+    },
+    {
+      "type": "music",
+      "assetId": "battle-music-loop",
+      "rights": "CC0; hash checked in catalog/asset-library.json"
+    },
+    {
+      "type": "tts",
+      "name": "VOICEVOX Nemo",
+      "creditRequired": true
+    }
+  ],
+  "publication": {
+    "status": "not_uploaded",
+    "proposedTitle": "国宝が4,950円!? まさかの博物館グッズ3選 #shorts",
+    "proposedDescription": "国宝『漢委奴国王』の監修レプリカは4,950円、遮光器土偶の可動フィギュアは11,000円、埴輪の組み立て紙工作は960円。\n※金印の本物を売っているわけではありません。金印レプリカは確認時点で売り切れです。価格・販売状況は変動します。映像の物体は独自に簡略化して描いたイメージであり、公式写真ではありません。\n\n出典：福岡市文化芸術振興財団 https://ffac.shop-pro.jp/?pid=142776515\nグッドスマイルカンパニー https://www.goodsmile.com/ja/product/10159/figma%2B%E9%81%AE%E5%85%89%E5%99%A8%E5%9C%9F%E5%81%B6\n東京国立博物館ショップ https://www.tnm-shop.jp/view/item/000000000892\nVOICEVOX Nemo / CC0サウンド：Kenney / CC0 BGM：pmiller\n#博物館 #国宝 #土偶 #埴輪 #shorts",
+    "madeForKids": false,
+    "thumbnailText": "国宝が4,950円!?"
+  }
+}

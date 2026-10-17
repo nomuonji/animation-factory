@@ -188,6 +188,10 @@ for (const event of production.events ?? []) {
       validColor(event);
       if (!fadeModes.has(event.mode)) errors.push(`transition.fade has invalid mode: ${event.mode}`);
       break;
+    case "prop.exhibit":
+      durationOf(event);
+      if (!["gold-seal","dogu","haniwa"].includes(event.exhibit)) errors.push("Invalid museum exhibit");
+      break;
     case "prop.show":
       durationOf(event);
       if (!props.has(event.prop)) errors.push(`prop.show has invalid prop: ${event.prop}`);

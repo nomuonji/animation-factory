@@ -4,6 +4,7 @@ export type Facing = "left" | "right";
 export type EmoteKind = "sweat" | "heart";
 export type ParticleKind = "spark" | "coin" | "dust";
 export type PropKind = "coffee" | "briefcase" | "coin";
+export type ExhibitKind = "gold-seal" | "dogu" | "haniwa";
 export type FadeMode = "in" | "out";
 
 export interface CanvasConfig {
@@ -156,6 +157,12 @@ export interface FadeTransitionEvent extends BaseEvent {
   color?: string;
 }
 
+export interface ExhibitEvent extends BaseEvent {
+  kind: "prop.exhibit";
+  exhibit: ExhibitKind;
+  duration: number;
+}
+
 export interface PropShowEvent extends BaseEvent {
   kind: "prop.show";
   prop: PropKind;
@@ -183,7 +190,8 @@ export type TimelineEvent =
   | ParticleEffectEvent
   | ScreenFlashEvent
   | FadeTransitionEvent
-  | PropShowEvent;
+  | PropShowEvent
+  | ExhibitEvent;
 
 export type TtsEventKind = "dialogue.say" | "ui.speech";
 export type TtsProvider = "none" | "espeak-ng" | "piper-plus" | "voicevox" | "voicevox-nemo";

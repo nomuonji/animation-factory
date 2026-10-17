@@ -145,6 +145,7 @@ export class DeterministicDirector {
     let flashState: FlashState | null = null;
     let fadeState: FadeState | null = null;
     let propState: PropState | null = null;
+    let exhibitState: {kind: "gold-seal" | "dogu" | "haniwa"; progress: number} | null = null;
 
     for (const event of this.events) {
       if (event.at > time) break;
@@ -300,6 +301,12 @@ export class DeterministicDirector {
           };
           break;
 
+        case "prop.exhibit":
+          if (time < event.at + event.duration) {
+            exhibitState = {kind:event.exhibit,progress:clamp01((time-event.at)/event.duration)};
+          }
+          break;
+
         case "prop.show":
           if (time < event.at + event.duration) {
             propState = {
@@ -399,6 +406,7 @@ export class DeterministicDirector {
     }
 
     this.presentation.setProp(propState);
+    this.presentation.setMuseumExhibit(exhibitState?.kind ?? null, exhibitState?.progress ?? 0);
 
     this.renderDamage(damageEffect);
     this.renderExclamation(exclamationEffect);
