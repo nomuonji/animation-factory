@@ -47,6 +47,12 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
+      - name: Install FFmpeg for licensed audio decoding
+        run: |
+          if ! command -v ffmpeg >/dev/null 2>&1; then
+            sudo apt-get update
+            sudo apt-get install -y ffmpeg
+          fi
       - name: Check local audio bank and sound decoding
         run: node tools/sound-bank-smoke.mjs
       - name: Install and typecheck
