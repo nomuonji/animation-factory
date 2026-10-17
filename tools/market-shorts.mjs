@@ -8,7 +8,7 @@
  *   MARKET_IDEAS_FEED_URL=https://... MARKET_IDEAS_FEED_TOKEN=... node tools/market-shorts.mjs
  */
 import { createHash } from 'node:crypto';
-import { readFile, mkdir, writeFile } from 'node:fs/promises';
+import { readFile, mkdir, writeFile, readdir } from 'node:fs/promises';
 import { resolve, join } from 'node:path';
 
 const root = resolve(import.meta.dirname, '..');
@@ -29,7 +29,38 @@ function scoreEligible(idea) {
   return ['appeal','dbValue','seo','revenue','contentFeasibility','upkeep']
     .every(k => Number.isInteger(a[k]) && a[k] >= 4 && a[k] <= 5);
 }
-function validate(idea) {
+async function readLicensedImages() {
+  const base = join(root, 'market-shorts', 'photo-bank');
+  const files = (await readdir(base)).filter(name=>/^[a-z0-9-]+\.json$/.test(name));
+  const catalog = new Map();
+  for (const file of files) {
+    const data = JSON.parse(await readFile(join(base,file),'utf8'));
+    for (const p of data.photos || []) {
+      if (!/^[a-z0-9-]+$/.test(p.id || '') || catalog.has(p.id) ||
+          !['CC BY 4.0','CC BY-SA 3.0','CC BY-SA 4.0'].includes(p.license) ||
+          !p.sourcePage?.startsWith('https://commons.wikimedia.org/wiki/File:') ||
+          !p.author || !p.filename) throw new Error('Unapproved or duplicate licensed photo: ' + p.id);
+      catalog.set(p.id,p);
+    }
+  }
+  return catalog;
+}
+function validateMediaPlan(video, catalog) {
+  const shots = video.mediaPlan?.shots;
+  if (!Array.isArray(shots) || shots.length !== 5)
+    throw new Error('Real Shorts require exactly 5 planned licensed-photo shots; no slide-only fallback');
+  const ids = new Set();
+  for (const [i,shot] of shots.entries()) {
+    const asset = catalog.get(shot.assetId);
+    if (!asset) throw new Error('Licensed photo missing from approved bank: ' + shot.assetId);
+    requireText(shot.caption,'mediaPlan.shots['+i+'].caption',120);
+    if (shot.zoom !== undefined && (!Number.isFinite(shot.zoom)||shot.zoom<1||shot.zoom>1.35))
+      throw new Error('Photo zoom outside 1.0..1.35');
+    ids.add(shot.assetId);
+  }
+  if (ids.size < 3) throw new Error('Live Shorts require at least 3 genuinely different licensed photos');
+}
+function validate(idea, {demoOnly=false, catalog=new Map()}={}) {
   const title = requireText(idea.title, 'idea.title', 120);
   const id = requireText(idea.id, 'idea.id', 100);
   if (!/^[a-zA-Z0-9_-]+$/.test(id)) throw new Error('Unsafe idea id');
@@ -54,6 +85,7 @@ function validate(idea) {
   }
   requireText(video.close, 'videoExperiment.close', 48);
   requireText(video.closeVoice, 'videoExperiment.closeVoice', 34);
+  if (!demoOnly) validateMediaPlan(video,catalog);
   return title;
 }
 async function feed() {
@@ -76,7 +108,7 @@ async function feed() {
   if (!res.ok) throw new Error('Idea feed HTTP ' + res.status);
   return res.json();
 }
-function production(idea) {
+function production(idea, demoOnly=false) {
   const exp = idea.videoExperiment;
   const id = 'market-short-' + createHash('sha256').update(idea.id + ':' + (exp.variant || 'baseline')).digest('hex').slice(0,12);
   const clips = [
@@ -88,7 +120,16 @@ function production(idea) {
   const events = [];
   const soundCues = [];
   for (const [i, clip] of clips.entries()) {
-    // First second must contain visible action; not a cold "research report" title.
+    // Real market experiments MUST be led by actual cleared photography.
+    // Synthetic smoke fixtures remain visibly non-publishable text demos.
+    if (!demoOnly) {
+      const shot = exp.mediaPlan.shots[i];
+      events.push({kind:'ui.photo',at:t,duration:clip.seconds-0.05,assetId:shot.assetId,
+        caption:shot.caption,zoom:shot.zoom || 1.08});
+      events.push({kind:'ui.kineticText',at:t,duration:clip.seconds-0.1,
+        text:clip.title,accent:i===0?'#ffe568':'#f6e1a4',placement:'upper'});
+    } else {
+    // Synthetic fixtures may keep the historical card-only layout.
     if (i === 0 || i === clips.length - 1) {
       events.push({kind:'ui.kineticText',at:t,duration:clip.seconds - 0.1,
         text:clip.title,accent:i === 0 ? '#ffe568' : '#f78ea4',placement:'middle'});
@@ -96,9 +137,14 @@ function production(idea) {
       events.push({kind:'ui.essayCard',at:t,duration:clip.seconds - 0.05,
         kicker:clip.kicker,title:clip.title,body:clip.body,accent:'#77D8E8'});
     }
-    // Invisible speech anchor drives VOICEVOX audio, without obscuring the headline.
-    events.push({kind:'ui.speech',at:t + 0.12,duration:clip.seconds - 0.24,
-      actor:'narrator',text:'・',spokenText:clip.voice});
+    }
+    if (!demoOnly) {
+      events.push({kind:'dialogue.say',at:t+0.12,duration:clip.seconds-0.24,
+        actor:'narrator',text:clip.voice,spokenText:clip.voice,showSubtitle:true});
+    } else {
+      events.push({kind:'ui.speech',at:t+0.12,duration:clip.seconds-0.24,
+        actor:'narrator',text:'・',spokenText:clip.voice});
+    }
     soundCues.push({
       id:'beat-sfx-' + i,role:i === 0 ? 'hook_hit' : i === clips.length - 1 ? 'reveal' : 'pop',
       at:t,volume:i === 0 ? 0.38 : 0.22
@@ -107,12 +153,12 @@ function production(idea) {
   }
   return {
     meta: {id, title:idea.title, description:'Market demand experiment / sourceIdeaId=' + idea.id,
-      duration:t, credits:['VOICEVOX Nemo']},
+      duration:t, credits:['VOICEVOX Nemo',...(!demoOnly ? exp.mediaPlan.shots.map(s=>'Photo: '+s.assetId+' (see photo-bank manifest, source + license)') : [])]},
     canvas:{width:270,height:480,fps:24,outputScale:4},
     environment:'office-night',
     actors:[{id:'narrator',archetype:'robot',x:-900,y:-900,scale:1}],
     events,
-    audio:{masterVolume:0.95,tts:{provider:'voicevox-nemo',events:['ui.speech'],
+    audio:{masterVolume:0.95,tts:{provider:'voicevox-nemo',events:[demoOnly?'ui.speech':'dialogue.say'],
       defaultVoice:{voice:'男声2',speedScale:1.1,volume:1}},
       bgm:[{id:'market-bed',assetId:'battle-music-loop',at:0,duration:t,volume:0.08,fadeIn:0.25,fadeOut:0.7}],
       sfx:soundCues}
@@ -144,8 +190,10 @@ async function main() {
   );
   const chosen = specified ? eligible.find(i => i.id === specified) : eligible[0];
   if (!chosen) throw new Error('No independently approved, scripted and evidence-backed candidate in feed');
-  validate(chosen);
-  const value = production(chosen);
+  const demoOnly = Boolean(data.demoOnly || chosen.demoOnly);
+  const catalog = demoOnly ? new Map() : await readLicensedImages();
+  validate(chosen,{demoOnly,catalog});
+  const value = production(chosen,demoOnly);
   const dir = join(root, 'productions', value.meta.id);
   await mkdir(dir, {recursive:true});
   const path = join(dir, 'production.json');
@@ -154,7 +202,8 @@ async function main() {
     production:value.meta.id, productionFile:'productions/' + value.meta.id + '/production.json',
     title:chosen.title, experimentVariant:chosen.videoExperiment.variant || 'baseline',
     marketEvidenceRefs:chosen.marketEvidenceRefs, rightsChecked:true, evidenceChecked:true,
-    demoOnly:Boolean(data.demoOnly || chosen.demoOnly), uploadStatus:'not_connected', createdAt:new Date().toISOString()};
+    demoOnly, photoFirst:!demoOnly, photoIds:demoOnly?[]:chosen.videoExperiment.mediaPlan.shots.map(s=>s.assetId),
+    uploadStatus:'not_connected', createdAt:new Date().toISOString()};
   await writeFile(join(dir,'experiment.json'),JSON.stringify(result,null,2) + '\n');
   console.log(JSON.stringify(result));
   if (process.env.GITHUB_OUTPUT) {
