@@ -120,6 +120,24 @@ function renderDomText(time: number, scene: FactoryScene): void {
   if (!renderMode || !textOverlay) return;
   textOverlay.replaceChildren();
 
+  const photo = activeEvent("ui.photo", time);
+  if (photo) {
+    const ext = photo.assetId==="gold-imprint" ? "png" : "jpg";
+    const pane = block("licensed-photo-frame");
+    const backdrop = document.createElement("img");
+    backdrop.src = `/visuals/${photo.assetId}.${ext}`;
+    backdrop.className = "licensed-photo-blur";
+    backdrop.alt = "";
+    const picture = document.createElement("img");
+    picture.src = backdrop.src;
+    picture.className = "licensed-photo-main";
+    picture.alt = "";
+    picture.style.setProperty("--asset-zoom", String(photo.zoom || 1.06));
+    const stamp = block("licensed-photo-source",photo.caption);
+    pane.append(backdrop,picture,stamp);
+    textOverlay.append(pane);
+  }
+
   const caption = activeEvent("ui.caption", time);
   if (caption) {
     textOverlay.append(block("video-caption", caption.text));
