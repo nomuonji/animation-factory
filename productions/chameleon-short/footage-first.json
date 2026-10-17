@@ -1,0 +1,156 @@
+{
+  "version": 1,
+  "id": "chameleon-footage-long-draft",
+  "title": "緑から赤へ、そして戻る：実研究映像で見るカメレオンの色の理由",
+  "publishStatus": "draft",
+  "demoOnly": false,
+  "viewerPromise": "Same animal appears green vs colorful in original filmed experiment; the body visibly changes even as background stays dark.",
+  "finalPayoff": "Excitation/social signalling, and footage of colors subsiding, explain why the animal becomes conspicuous rather than hidden.",
+  "canvas": {
+    "width": 720,
+    "height": 1280,
+    "fps": 24
+  },
+  "voice": {
+    "provider": "voicevox-nemo",
+    "voice": "男声2",
+    "speedScale": 1.22
+  },
+  "sources": [
+    {
+      "id": "chameleon-excitation",
+      "title": "Photonic crystals — excited color change (supplementary video s2)",
+      "downloadUrl": "https://upload.wikimedia.org/wikipedia/commons/7/73/Photonic-crystals-cause-active-colour-change-in-chameleons-ncomms7368-s2.ogv",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Photonic-crystals-cause-active-colour-change-in-chameleons-ncomms7368-s2.ogv",
+      "sha1": "798a41e09e836995ac5cacdfcc419ea641ddb68a",
+      "author": "Teyssier J, Saenko S, van der Marel D, Milinkovitch M (2015)",
+      "license": "CC BY 4.0",
+      "credit": "Teyssier et al. 2015 CC BY 4.0"
+    },
+    {
+      "id": "chameleon-relaxation",
+      "title": "Photonic crystals — relaxing after color change (supplementary video s3)",
+      "downloadUrl": "https://upload.wikimedia.org/wikipedia/commons/9/98/Photonic-crystals-cause-active-colour-change-in-chameleons-ncomms7368-s3.ogv",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Photonic-crystals-cause-active-colour-change-in-chameleons-ncomms7368-s3.ogv",
+      "sha1": "ab92b1cc37cd303dab50dc097331123f104a5c10",
+      "author": "Teyssier J, Saenko S, van der Marel D, Milinkovitch M (2015)",
+      "license": "CC BY 4.0",
+      "credit": "Teyssier et al. 2015 CC BY 4.0"
+    }
+  ],
+  "beats": [
+    {
+      "id": "opening-comparison",
+      "duration": 2.6,
+      "sourceId": "chameleon-excitation",
+      "sourceIn": 7.3,
+      "rate": 1,
+      "layout": "compare",
+      "compareAt": [
+        7.3,
+        14.2
+      ],
+      "onScreen": "この2枚、同じ個体。",
+      "narration": "この二枚、同じカメレオンです。",
+      "storyFunction": "hook: visual before/after promise",
+      "visualChange": "First frame contrasts actual two times from one unmodified experiment clip",
+      "soundCue": "hit",
+      "focalX": 0.12,
+      "sourceNotice": "※ 研究者が公開した8倍速映像"
+    },
+    {
+      "id": "on-camera-color-change",
+      "duration": 8.5,
+      "sourceId": "chameleon-excitation",
+      "sourceIn": 6.1,
+      "rate": 1,
+      "layout": "motion",
+      "onScreen": "背景は黒いまま",
+      "narration": "背景は変わっていないのに、カメレオンの体だけ、どんどん目立つ色に変わります。",
+      "storyFunction": "evidence: uninterrupted visible change",
+      "visualChange": "Real filmed skin gradually shifts green yellow and red; a synchronized wide inset holds the animal in context",
+      "focalX": 0.12,
+      "sourceNotice": "※ 研究者が公開した8倍速映像"
+    },
+    {
+      "id": "color-detail",
+      "duration": 5.5,
+      "sourceId": "chameleon-excitation",
+      "sourceIn": 12,
+      "rate": 1,
+      "layout": "wide",
+      "onScreen": "緑から、黄と赤へ。",
+      "narration": "緑から黄色へ。そして、赤い模様まで。",
+      "storyFunction": "development: color pattern and bodily change",
+      "visualChange": "Uncut mid-phase real scientific frames visibly show a colorful animal",
+      "sourceNotice": "※ 研究者が公開した8倍速映像"
+    },
+    {
+      "id": "question-before-answer",
+      "duration": 3,
+      "sourceId": "chameleon-excitation",
+      "sourceIn": 7.3,
+      "rate": 1,
+      "layout": "compare",
+      "compareAt": [
+        7.3,
+        14.2
+      ],
+      "onScreen": "これ、隠れてる？",
+      "narration": "でも、これは隠れるためでしょうか。",
+      "storyFunction": "turn: audience re-evaluates camouflage assumption",
+      "visualChange": "Direct comparison shows that the colorful animal is much more conspicuous",
+      "soundCue": "none",
+      "focalX": 0.12,
+      "sourceNotice": "※ 研究者が公開した8倍速映像"
+    },
+    {
+      "id": "second-source-relaxation",
+      "duration": 8.1,
+      "sourceId": "chameleon-relaxation",
+      "sourceIn": 1,
+      "rate": 1,
+      "layout": "motion",
+      "onScreen": "別のオスへの反応",
+      "narration": "この変化には、別のオスの存在が関係しています。",
+      "storyFunction": "evidence for social signalling in scientific context",
+      "visualChange": "Switch from exciting to relaxation recording of the same species; do not claim same individual",
+      "focalX": 0.18,
+      "sourceNotice": "※ 研究者が公開した8倍速映像"
+    },
+    {
+      "id": "reverse-color-shift",
+      "duration": 8.3,
+      "sourceId": "chameleon-relaxation",
+      "sourceIn": 9,
+      "rate": 1,
+      "layout": "motion",
+      "onScreen": "落ち着くと、また変わる",
+      "narration": "そして興奮がおさまると、色はまた落ち着いていきます。",
+      "storyFunction": "second payoff: show the return transition and avoid padding",
+      "visualChange": "Actual second scientific clip of relaxing male, not reverse playback and not synthetic coloring",
+      "focalX": 0.2,
+      "sourceNotice": "※ 研究者が公開した8倍速映像"
+    },
+    {
+      "id": "payoff",
+      "duration": 4.2,
+      "sourceId": "chameleon-excitation",
+      "sourceIn": 7.3,
+      "rate": 1,
+      "layout": "compare",
+      "compareAt": [
+        7.3,
+        14.2
+      ],
+      "onScreen": "隠れるだけじゃない。",
+      "narration": "色は、隠れるだけじゃなく、相手へのサインにもなる。",
+      "storyFunction": "visual callback and science explanation",
+      "visualChange": "Final compare returns to the visible promise from the first frame",
+      "soundCue": "reveal",
+      "focalX": 0.12,
+      "sourceNotice": "※ 研究者が公開した8倍速映像"
+    }
+  ],
+  "licenseStatement": "Edited research footage: Teyssier J, Saenko S, van der Marel D & Milinkovitch M, Nature Communications 6, 6368 (2015), https://doi.org/10.1038/ncomms7368. Images from supplementary video s2 and s3, CC BY 4.0 https://creativecommons.org/licenses/by/4.0/. Edited: cropping, titles, subtitles, time selection, juxtaposition, narration, original sounds. Both original videos were published accelerated eightfold; mark source speed prominently in YouTube credits. s2 and s3 should not be assumed same individual."
+}
