@@ -209,7 +209,8 @@ export interface TtsConfig {
 
 export interface BgmTrack {
   id: string;
-  preset: BgmPreset;
+  preset?: BgmPreset;
+  assetId?: "safe-space-loop" | "flowerbed-fields" | "battle-music-loop";
   at?: number;
   duration?: number;
   volume?: number;
@@ -219,7 +220,8 @@ export interface BgmTrack {
 
 export interface SfxTrack {
   id: string;
-  preset: SfxPreset;
+  preset?: SfxPreset;
+  role?: "hook_hit" | "impact" | "thud" | "pop" | "click" | "transition" | "reveal" | "fail" | "suspense";
   at: number;
   volume?: number;
 }
