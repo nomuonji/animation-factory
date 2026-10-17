@@ -267,6 +267,13 @@ export class Director {
         );
         break;
 
+      case "prop.exhibit": {
+        this.animate(event.duration,
+          (progress) => this.presentation.setMuseumExhibit(event.exhibit, progress),
+          () => this.presentation.setMuseumExhibit(null));
+        break;
+      }
+
       case "prop.show":
         this.presentation.setProp({
           kind: event.prop,
