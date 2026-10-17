@@ -20,7 +20,7 @@ if (!photoEvents.length) {
 }
 const bank=join(root,"market-shorts","photo-bank");
 const list=new Map();
-for (const file of (await readdir(bank)).filter(n=>/^[a-z0-9-]+\\.json$/.test(n))) {
+for (const file of (await readdir(bank)).filter(n=>/^[a-z0-9-]+\.json$/.test(n))) {
   const manifest=JSON.parse(await readFile(join(bank,file),"utf8"));
   for (const photo of manifest.photos || []) {
     if (list.has(photo.id)) throw Error("Duplicate photo ID in bank: "+photo.id);
