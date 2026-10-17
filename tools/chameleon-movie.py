@@ -57,7 +57,7 @@ def load_video(path):
 frames,srcfps=load_video(DIR/"s2-normalized.mp4")
 def shot(sec):
     return frames[max(0,min(len(frames)-1,int(sec*srcfps)))]
-GREEN=shot(5.9)
+GREEN=shot(7.3)
 RED=shot(14.2)
 def imagecrop(arr,rect,rounded=14):
     x,y,w,h=rect
@@ -132,9 +132,7 @@ def frame(t):
         center(d,(360,180),"隠れるため？",F72,WHITE)
         split(im)
         d=ImageDraw.Draw(im)
-        # Delayed reveal setup
-        d.rounded_rectangle((66,1013,654,1098),radius=16,fill=(34,62,55))
-        center(d,(360,1026),"まだ理由は言ってません",F44,GOLD)
+        # Silence and comparison are stronger here than another explanatory card.
     elif t<18.95:
         sec=11.3+min(4.1,(t-15.1)*1.1)
         moving(im,sec,t,"別のオスを見せたときの反応")
@@ -247,7 +245,7 @@ def create_audio():
 def main():
     video=make_video()
     audio=create_audio()
-    out=DIR/"chameleon_short_v2.mp4"
+    out=DIR/"chameleon_short_final.mp4"
     subprocess.run(["ffmpeg","-hide_banner","-loglevel","error","-y",
        "-i",str(video),"-i",str(audio),"-c:v","copy","-c:a","aac","-b:a","192k",
        "-af","loudnorm=I=-17:TP=-1.5:LRA=10",
