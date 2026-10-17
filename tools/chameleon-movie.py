@@ -57,8 +57,8 @@ def load_video(path):
 frames,srcfps=load_video(DIR/"s2-normalized.mp4")
 def shot(sec):
     return frames[max(0,min(len(frames)-1,int(sec*srcfps)))]
-GREEN=shot(3.7)
-RED=shot(12.6)
+GREEN=shot(5.9)
+RED=shot(14.2)
 def imagecrop(arr,rect,rounded=14):
     x,y,w,h=rect
     res=fit_cover(arr,w,h)
@@ -97,7 +97,7 @@ def moving(image,sec,t,label_text,mark=False):
     d.text((100,903),"全体",font=F32,fill=GOLD)
     label(d,38,234,label_text,GOLD)
     # No recoloring. This line represents time in the uploaded, accelerated footage.
-    xx=48+int(min(1,max(0,(sec-3.5)/13.0))*624)
+    xx=48+int(min(1,max(0,(sec-5.9)/9.8))*624)
     d.rounded_rectangle((48,1206,672,1215),radius=4,fill=(46,66,63))
     d.rounded_rectangle((48,1206,xx,1215),radius=4,fill=MINT)
     d.ellipse((xx-9,1201,xx+9,1219),fill=GOLD)
@@ -116,10 +116,10 @@ def frame(t):
     im=background(t);d=ImageDraw.Draw(im)
     if t<1.85:
         # Hook A was chosen: instant before/after; B was verbal-first and was rejected.
-        center(d,(360,190),"この2匹、同じ個体。",F56)
+        center(d,(360,190),"これ、同じ個体。",F56)
         split(im)
     elif t<11.6:
-        sec=3.7+(t-1.85)*1.17
+        sec=5.9+(t-1.85)*1.0
         moving(im,sec,t,"↓ 実際の変化を見てください",mark=True)
         d=ImageDraw.Draw(im)
         if t<5.4:
@@ -136,7 +136,7 @@ def frame(t):
         d.rounded_rectangle((66,1013,654,1098),radius=16,fill=(34,62,55))
         center(d,(360,1026),"まだ理由は言ってません",F44,GOLD)
     elif t<18.95:
-        sec=10.5+min(4.7,(t-15.1)*1.16)
+        sec=11.3+min(4.1,(t-15.1)*1.1)
         moving(im,sec,t,"別のオスを見せたときの反応")
         d=ImageDraw.Draw(im)
         center(d,(360,159),"原因は、別のオス。",F56,GOLD)
@@ -247,7 +247,7 @@ def create_audio():
 def main():
     video=make_video()
     audio=create_audio()
-    out=DIR/"chameleon_short_v1.mp4"
+    out=DIR/"chameleon_short_v2.mp4"
     subprocess.run(["ffmpeg","-hide_banner","-loglevel","error","-y",
        "-i",str(video),"-i",str(audio),"-c:v","copy","-c:a","aac","-b:a","192k",
        "-t",str(DURATION),"-movflags","+faststart",str(out)],check=True)
