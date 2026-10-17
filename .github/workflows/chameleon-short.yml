@@ -60,7 +60,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          file=outputs/chameleon-probe/chameleon_short_v2.mp4
+          file=outputs/chameleon-probe/chameleon_short_final.mp4
           test -s "$file"
           test "$(ffprobe -v error -select_streams v:0 -show_entries stream=codec_name -of default=nk=1:nw=1 "$file")" = h264
           test "$(ffprobe -v error -select_streams a:0 -show_entries stream=codec_name -of default=nk=1:nw=1 "$file")" = aac
@@ -71,6 +71,6 @@ jobs:
           path: |
             outputs/chameleon-probe/filmstrip.jpg
             outputs/chameleon-probe/edited-filmstrip.jpg
-            outputs/chameleon-probe/chameleon_short_v2.mp4
+            outputs/chameleon-probe/chameleon_short_final.mp4
             outputs/chameleon-probe/video-metadata.json
           retention-days: 30
