@@ -1,0 +1,53 @@
+{
+  "version": 1,
+  "id": "footage-first-technical-smoke",
+  "title": "Footage-first test — NOT CONTENT",
+  "publishStatus": "draft",
+  "demoOnly": true,
+  "viewerPromise": "A physical, visible moving object will change on screen",
+  "finalPayoff": "This is only a codec/timeline smoke test, not an editorially reviewed Short",
+  "canvas": {
+    "width": 720,
+    "height": 1280,
+    "fps": 24
+  },
+  "voice": {
+    "provider": "none"
+  },
+  "sources": [
+    {
+      "id": "demo-motion",
+      "title": "FFmpeg moving synthetic test pattern (technical only; NOT a real market idea)"
+    }
+  ],
+  "beats": [
+    {
+      "id": "show-motion",
+      "duration": 2.9,
+      "sourceId": "demo-motion",
+      "sourceIn": 0,
+      "rate": 1,
+      "layout": "motion",
+      "onScreen": "映像テスト",
+      "visualChange": "Check changing source frames instead of slideshow",
+      "storyFunction": "hook",
+      "soundCue": "hit"
+    },
+    {
+      "id": "compare-motion",
+      "duration": 2.8,
+      "sourceId": "demo-motion",
+      "sourceIn": 0.4,
+      "rate": 1,
+      "layout": "compare",
+      "compareAt": [
+        0.4,
+        2.6
+      ],
+      "onScreen": "比較テスト",
+      "visualChange": "Check comparison uses two real source timestamps",
+      "storyFunction": "technical ending",
+      "soundCue": "none"
+    }
+  ]
+}
