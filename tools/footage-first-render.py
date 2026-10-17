@@ -115,6 +115,8 @@ def draw_frame(beat,frame,other,at,width,height,credit):
     # Visual hierarchy: actual footage first, on-screen text secondary.
     d.rounded_rectangle((18,17,702,71),radius=12,fill=(27,46,43))
     d.text((37,27),"REAL FOOTAGE",font=F[1],fill=MINT)
+    if beat.get("sourceNotice"):
+        d.text((29,203),beat["sourceNotice"][:28],font=F[1],fill=YELLOW)
     text_center(d,(360,126),beat["onScreen"],F[4] if len(beat["onScreen"])<=11 else F[3])
     progress=min(1,at/beat["duration"])
     kind=beat["layout"]
