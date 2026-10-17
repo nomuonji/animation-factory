@@ -152,7 +152,8 @@
               "effect.particles",
               "effect.screenFlash",
               "transition.fade",
-              "prop.show"
+              "prop.show",
+              "ui.kineticText"
             ]
           },
           "at": {
