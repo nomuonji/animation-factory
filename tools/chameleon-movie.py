@@ -250,6 +250,7 @@ def main():
     out=DIR/"chameleon_short_v2.mp4"
     subprocess.run(["ffmpeg","-hide_banner","-loglevel","error","-y",
        "-i",str(video),"-i",str(audio),"-c:v","copy","-c:a","aac","-b:a","192k",
+       "-af","loudnorm=I=-17:TP=-1.5:LRA=10",
        "-t",str(DURATION),"-movflags","+faststart",str(out)],check=True)
     result=subprocess.check_output(["ffprobe","-v","error","-of","json",
      "-show_entries","format=duration,size:stream=codec_name,width,height,sample_rate",str(out)])
