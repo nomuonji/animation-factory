@@ -63,12 +63,21 @@ export interface SpeechBubbleEvent extends BaseEvent {
   actor: string;
   text: string;
   duration: number;
+  spokenText?: string;
 }
 
 export interface CaptionShowEvent extends BaseEvent {
   kind: "ui.caption";
   text: string;
   duration: number;
+}
+
+export interface KineticTextEvent extends BaseEvent {
+  kind: "ui.kineticText";
+  text: string;
+  duration: number;
+  accent?: string;
+  placement?: "upper" | "middle";
 }
 
 export interface RpgStatusEvent extends BaseEvent {
@@ -162,6 +171,7 @@ export type TimelineEvent =
   | DialogueSayEvent
   | SpeechBubbleEvent
   | CaptionShowEvent
+  | KineticTextEvent
   | RpgStatusEvent
   | EssayCardEvent
   | CameraZoomEvent
@@ -199,7 +209,8 @@ export interface TtsConfig {
 
 export interface BgmTrack {
   id: string;
-  preset: BgmPreset;
+  preset?: BgmPreset;
+  assetId?: "safe-space-loop" | "flowerbed-fields" | "battle-music-loop";
   at?: number;
   duration?: number;
   volume?: number;
@@ -209,7 +220,8 @@ export interface BgmTrack {
 
 export interface SfxTrack {
   id: string;
-  preset: SfxPreset;
+  preset?: SfxPreset;
+  role?: "hook_hit" | "impact" | "thud" | "pop" | "click" | "transition" | "reveal" | "fail" | "suspense";
   at: number;
   volume?: number;
 }

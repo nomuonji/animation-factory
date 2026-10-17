@@ -119,6 +119,13 @@ for (const event of production.events ?? []) {
       durationOf(event);
       requireText();
       break;
+    case "ui.kineticText":
+      durationOf(event);
+      requireText();
+      if ([...String(event.text ?? "")].length > 22) errors.push("ui.kineticText text exceeds 22 characters");
+      if (event.placement !== undefined && !["upper","middle"].includes(event.placement)) errors.push("ui.kineticText invalid placement");
+      if (event.accent !== undefined) validColor(event);
+      break;
     case "ui.rpgStatus":
       durationOf(event);
       requireText("title");

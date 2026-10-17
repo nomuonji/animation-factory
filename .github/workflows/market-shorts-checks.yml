@@ -4,12 +4,36 @@ on:
   pull_request:
     paths:
       - "tools/market-shorts*.mjs"
+      - "tools/sound-bank*.mjs"
+      - "tools/visual-bank-report.mjs"
+      - "tools/audio-pipeline.mjs"
+      - "tools/validate-audio.mjs"
+      - "tools/validate-attention.mjs"
+      - "tools/validate-production.mjs"
+      - "src/core/types.ts"
+      - "src/runtime/Director.ts"
+      - "schemas/production.schema.json"
+      - "catalog/audio.json"
+      - "catalog/components.json"
+      - "catalog/asset-library.json"
       - "market-shorts/**"
       - ".github/workflows/market-shorts-*.yml"
   push:
     branches: [main]
     paths:
       - "tools/market-shorts*.mjs"
+      - "tools/sound-bank*.mjs"
+      - "tools/visual-bank-report.mjs"
+      - "tools/audio-pipeline.mjs"
+      - "tools/validate-audio.mjs"
+      - "tools/validate-attention.mjs"
+      - "tools/validate-production.mjs"
+      - "src/core/types.ts"
+      - "src/runtime/Director.ts"
+      - "schemas/production.schema.json"
+      - "catalog/audio.json"
+      - "catalog/components.json"
+      - "catalog/asset-library.json"
       - "market-shorts/**"
       - ".github/workflows/market-shorts-*.yml"
 
@@ -25,6 +49,20 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
+      - name: Install FFmpeg for licensed audio decoding
+        run: |
+          if ! command -v ffmpeg >/dev/null 2>&1; then
+            sudo apt-get update
+            sudo apt-get install -y ffmpeg
+          fi
+      - name: Check local audio bank and sound decoding
+        run: node tools/sound-bank-smoke.mjs
+      - name: Inventory licensed visual assets
+        run: node tools/visual-bank-report.mjs > /tmp/visual-bank-inventory.json
+      - name: Install and typecheck
+        run: |
+          npm ci
+          npm run build
       - name: Check adapter syntax
         run: |
           node --check tools/market-shorts.mjs

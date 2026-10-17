@@ -123,6 +123,31 @@ export class Director {
         break;
       }
 
+      case "ui.kineticText": {
+        const width = this.production.canvas.width;
+        const y = event.placement === "middle" ? 192 : 136;
+        const fontSize = [...event.text].length > 13 ? 18 : [...event.text].length > 8 ? 23 : 29;
+        const layer = this.scene.add.container(width / 2, y).setDepth(175).setScrollFactor(0);
+        const panel = this.scene.add.rectangle(0, 0, width - 20, 93, 0x111528, 0.96)
+          .setStrokeStyle(3, Number.parseInt((event.accent ?? "#ffe568").replace("#", ""), 16));
+        const text = this.scene.add.text(0, 0, event.text, {
+          fontFamily: '"Noto Sans JP", "Noto Sans CJK JP", "Yu Gothic", sans-serif',
+          fontSize: String(fontSize) + "px", fontStyle: "bold", color: "#fff8e9",
+          align: "center", wordWrap: { width: width - 48 },
+          stroke: "#101123", strokeThickness: 2
+        }).setOrigin(0.5);
+        layer.add([panel, text]);
+        layer.setScale(1.18).setAlpha(0);
+        this.scene.tweens.add({ targets: layer, alpha: 1, scaleX: 1, scaleY: 1,
+          duration: 190, ease: "Back.Out" });
+        this.scene.time.delayedCall(Math.max(0, event.duration - 0.22) * 1000, () => {
+          if (!layer.active) return;
+          this.scene.tweens.add({ targets: layer, alpha: 0, y: y - 12,
+            duration: 220, onComplete: () => layer.destroy() });
+        });
+        break;
+      }
+
       case "ui.rpgStatus":
         this.presentation.setRpgStatus(event.title, event.lines);
         this.scene.time.delayedCall(

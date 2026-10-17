@@ -152,7 +152,8 @@
               "effect.particles",
               "effect.screenFlash",
               "transition.fade",
-              "prop.show"
+              "prop.show",
+              "ui.kineticText"
             ]
           },
           "at": {
@@ -212,8 +213,7 @@
           "items": {
             "type": "object",
             "required": [
-              "id",
-              "preset"
+              "id"
             ],
             "properties": {
               "id": {
@@ -246,8 +246,37 @@
               "fadeOut": {
                 "type": "number",
                 "minimum": 0
+              },
+              "assetId": {
+                "enum": [
+                  "safe-space-loop",
+                  "flowerbed-fields",
+                  "battle-music-loop"
+                ]
               }
-            }
+            },
+            "oneOf": [
+              {
+                "required": [
+                  "preset"
+                ],
+                "not": {
+                  "required": [
+                    "assetId"
+                  ]
+                }
+              },
+              {
+                "required": [
+                  "assetId"
+                ],
+                "not": {
+                  "required": [
+                    "preset"
+                  ]
+                }
+              }
+            ]
           }
         },
         "sfx": {
@@ -256,7 +285,6 @@
             "type": "object",
             "required": [
               "id",
-              "preset",
               "at"
             ],
             "properties": {
@@ -280,8 +308,43 @@
                 "type": "number",
                 "minimum": 0,
                 "maximum": 2
+              },
+              "role": {
+                "enum": [
+                  "hook_hit",
+                  "impact",
+                  "thud",
+                  "pop",
+                  "click",
+                  "transition",
+                  "reveal",
+                  "fail",
+                  "suspense"
+                ]
               }
-            }
+            },
+            "oneOf": [
+              {
+                "required": [
+                  "preset"
+                ],
+                "not": {
+                  "required": [
+                    "role"
+                  ]
+                }
+              },
+              {
+                "required": [
+                  "role"
+                ],
+                "not": {
+                  "required": [
+                    "preset"
+                  ]
+                }
+              }
+            ]
           }
         }
       }

@@ -1,6 +1,7 @@
 import { spawn } from "node:child_process";
 import { mkdir, writeFile } from "node:fs/promises";
 import { join } from "node:path";
+import { chooseSound, chooseMusic } from "./sound-bank.mjs";
 
 function run(command, args, options = {}) {
   return new Promise((resolvePromise, reject) => {
@@ -245,7 +246,8 @@ async function renderBgmTracks({
       track.duration ??
       Math.max(0.1, production.meta.duration - (track.at ?? 0));
     const output = join(audioDir, `bgm-${String(index).padStart(3, "0")}.wav`);
-    const graph = bgmGraph(track.preset, duration);
+    const source = track.assetId ? await chooseMusic({id:track.assetId}) : null;
+    const graph = source ? null : bgmGraph(track.preset, duration);
 
     const filters = [];
     if ((track.fadeIn ?? 0) > 0) {
@@ -256,23 +258,18 @@ async function renderBgmTracks({
       filters.push(`afade=t=out:st=${start}:d=${track.fadeOut}`);
     }
 
-    const filter = filters.length > 0
-      ? `${graph},${filters.join(",")}`
-      : graph;
-
-    await run(ffmpegCommand, [
-      "-hide_banner",
-      "-loglevel",
-      "error",
-      "-y",
-      "-f",
-      "lavfi",
-      "-i",
-      filter,
-      "-c:a",
-      "pcm_s16le",
-      output
-    ]);
+    if (source) {
+      // Local approved music is looped to the exact video cue length.
+      await run(ffmpegCommand, ["-hide_banner","-loglevel","error","-y",
+        "-stream_loop","-1","-i",source.path,
+        "-af",`atrim=0:${duration},asetpts=PTS-STARTPTS${filters.length ? "," + filters.join(",") : ""}`,
+        "-ar","48000","-ac","2","-c:a","pcm_s16le",output]);
+    } else {
+      const filter = filters.length > 0 ? `${graph},${filters.join(",")}` : graph;
+      await run(ffmpegCommand, [
+        "-hide_banner","-loglevel","error","-y","-f","lavfi","-i",filter,
+        "-c:a","pcm_s16le",output]);
+    }
 
     tracks.push({
       path: output,
@@ -291,19 +288,17 @@ async function renderSfxTracks({
   for (const [index, track] of (production.audio?.sfx ?? []).entries()) {
     const output = join(audioDir, `sfx-${String(index).padStart(3, "0")}.wav`);
 
-    await run(ffmpegCommand, [
-      "-hide_banner",
-      "-loglevel",
-      "error",
-      "-y",
-      "-f",
-      "lavfi",
-      "-i",
-      sfxGraph(track.preset),
-      "-c:a",
-      "pcm_s16le",
-      output
-    ]);
+    if (track.role) {
+      const selected = await chooseSound({role:track.role,seed:`${production.meta.id}:${track.id}:${index}`});
+      console.log(`Sound bank: ${track.role} -> ${selected.relativePath} (${selected.license})`);
+      await run(ffmpegCommand, ["-hide_banner","-loglevel","error","-y",
+        "-i",selected.path,"-af",`atrim=0:${selected.maxDuration},asetpts=PTS-STARTPTS,afade=t=out:st=${Math.max(0,selected.maxDuration-0.12)}:d=0.12`,
+        "-ar","48000","-ac","2","-c:a","pcm_s16le",output]);
+    } else {
+      await run(ffmpegCommand, ["-hide_banner","-loglevel","error","-y",
+        "-f","lavfi","-i",sfxGraph(track.preset),
+        "-c:a","pcm_s16le",output]);
+    }
 
     tracks.push({
       path: output,
