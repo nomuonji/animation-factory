@@ -1,0 +1,356 @@
+{
+  "meta": {
+    "id": "museum-idea-shorts-20261017-02",
+    "title": "国宝が4,950円!?｜実物写真で見る博物館グッズ3選",
+    "duration": 25.5,
+    "description": "Idea Memory real approved idea + five legally reusable photos of museum objects or independent replicas, not photos of offered goods. YouTube experimental channel not connected. PHOTO-led visual iteration.",
+    "credits": [
+      "Photo credits: PHGCOM / CC BY-SA 3.0; Corphine / CC BY-SA 3.0; Kakidai / CC BY-SA 4.0; ColBase・国立文化財機構 / CC BY 4.0",
+      "The photographic adaptation (and resulting composite video) is licensed CC BY-SA 4.0; see experiment.json and file pages",
+      "VOICEVOX Nemo",
+      "Kenney CC0 SFX; pmiller CC0 BGM"
+    ]
+  },
+  "canvas": {
+    "width": 270,
+    "height": 480,
+    "fps": 20,
+    "outputScale": 4
+  },
+  "environment": "museum-gallery",
+  "actors": [
+    {
+      "id": "narrator",
+      "archetype": "host",
+      "x": 35,
+      "y": 437,
+      "scale": 2.4,
+      "pose": "idle"
+    },
+    {
+      "id": "reactor",
+      "archetype": "nerd",
+      "x": 235,
+      "y": 437,
+      "scale": 2.5,
+      "pose": "surprised"
+    }
+  ],
+  "events": [
+    {
+      "kind": "ui.photo",
+      "at": 0,
+      "duration": 2.95,
+      "assetId": "gold-face",
+      "caption": "金印の複製・参考写真 / PHGCOM (CC BY-SA 3.0)",
+      "zoom": 1.05
+    },
+    {
+      "kind": "ui.kineticText",
+      "at": 0,
+      "duration": 2.7,
+      "text": "国宝、4,950円!?",
+      "placement": "upper",
+      "accent": "#ffe575"
+    },
+    {
+      "kind": "dialogue.say",
+      "at": 0.15,
+      "duration": 2.78,
+      "actor": "narrator",
+      "text": "国宝の金印が、四千九百五十円？",
+      "spokenText": "国宝の金印が、四千九百五十円？",
+      "showSubtitle": true
+    },
+    {
+      "kind": "ui.photo",
+      "at": 3,
+      "duration": 3.0500000000000003,
+      "assetId": "gold-imprint",
+      "caption": "金印の印面を再現した参考画像 / Corphine (CC BY-SA 3.0)",
+      "zoom": 1.15
+    },
+    {
+      "kind": "ui.kineticText",
+      "at": 3,
+      "duration": 2.7,
+      "text": "もちろん本物じゃない",
+      "placement": "upper",
+      "accent": "#fff0b4"
+    },
+    {
+      "kind": "dialogue.say",
+      "at": 3.15,
+      "duration": 2.88,
+      "actor": "narrator",
+      "text": "もちろん本物ではなく、博物館監修の複製品です。",
+      "spokenText": "もちろん本物ではなく、博物館監修の複製品です。",
+      "showSubtitle": true
+    },
+    {
+      "kind": "ui.photo",
+      "at": 6.1,
+      "duration": 3.35,
+      "assetId": "gold-face",
+      "caption": "この写真は別の複製品です / PHGCOM (CC BY-SA 3.0)",
+      "zoom": 1.27
+    },
+    {
+      "kind": "ui.kineticText",
+      "at": 6.1,
+      "duration": 2.7,
+      "text": "2.3cm、24金メッキ",
+      "placement": "upper",
+      "accent": "#fff0b4"
+    },
+    {
+      "kind": "dialogue.say",
+      "at": 6.25,
+      "duration": 3.1799999999999997,
+      "actor": "narrator",
+      "text": "小さいのに、二十四金メッキ。今は売り切れ。",
+      "spokenText": "小さいのに、二十四金メッキ。今は売り切れ。",
+      "showSubtitle": true
+    },
+    {
+      "kind": "ui.photo",
+      "at": 9.5,
+      "duration": 4.05,
+      "assetId": "dogu-real",
+      "caption": "縄文土偶の展示写真・製品写真ではありません / Kakidai (CC BY-SA 4.0)",
+      "zoom": 1.05
+    },
+    {
+      "kind": "ui.kineticText",
+      "at": 9.5,
+      "duration": 2.7,
+      "text": "土偶は、動く!?",
+      "placement": "upper",
+      "accent": "#ffba78"
+    },
+    {
+      "kind": "dialogue.say",
+      "at": 9.65,
+      "duration": 3.8799999999999994,
+      "actor": "narrator",
+      "text": "そして土偶は、なんと、動くフィギュアに。",
+      "spokenText": "そして土偶は、なんと、動くフィギュアに。",
+      "showSubtitle": true
+    },
+    {
+      "kind": "ui.photo",
+      "at": 13.6,
+      "duration": 3.75,
+      "assetId": "dogu-real",
+      "caption": "※展示資料の参考写真。商品画像ではありません / Kakidai",
+      "zoom": 1.25
+    },
+    {
+      "kind": "ui.kineticText",
+      "at": 13.6,
+      "duration": 2.7,
+      "text": "価格、11,000円",
+      "placement": "upper",
+      "accent": "#fff0b4"
+    },
+    {
+      "kind": "dialogue.say",
+      "at": 13.75,
+      "duration": 3.5799999999999996,
+      "actor": "narrator",
+      "text": "フィギュアの価格は、一万一千円。",
+      "spokenText": "フィギュアの価格は、一万一千円。",
+      "showSubtitle": true
+    },
+    {
+      "kind": "ui.photo",
+      "at": 17.4,
+      "duration": 3.95,
+      "assetId": "haniwa-large",
+      "caption": "踊る埴輪の収蔵写真 / ColBase (CC BY 4.0)",
+      "zoom": 1.05
+    },
+    {
+      "kind": "ui.kineticText",
+      "at": 17.4,
+      "duration": 2.7,
+      "text": "埴輪が紙工作に！",
+      "placement": "upper",
+      "accent": "#fff0b4"
+    },
+    {
+      "kind": "dialogue.say",
+      "at": 17.549999999999997,
+      "duration": 3.78,
+      "actor": "narrator",
+      "text": "さらに、あの埴輪が、組み立てる紙工作に。",
+      "spokenText": "さらに、あの埴輪が、組み立てる紙工作に。",
+      "showSubtitle": true
+    },
+    {
+      "kind": "ui.photo",
+      "at": 21.4,
+      "duration": 4.05,
+      "assetId": "haniwa-small",
+      "caption": "別の踊る埴輪の収蔵写真 / ColBase (CC BY 4.0)",
+      "zoom": 1.14
+    },
+    {
+      "kind": "ui.kineticText",
+      "at": 21.4,
+      "duration": 2.7,
+      "text": "紙工作は、960円",
+      "placement": "upper",
+      "accent": "#8af3cc"
+    },
+    {
+      "kind": "dialogue.say",
+      "at": 21.549999999999997,
+      "duration": 3.8799999999999994,
+      "actor": "narrator",
+      "text": "九百六十円。あなたなら、どれを家に置く？",
+      "spokenText": "九百六十円。あなたなら、どれを家に置く？",
+      "showSubtitle": true
+    },
+    {
+      "kind": "actor.pose",
+      "at": 0,
+      "actor": "reactor",
+      "pose": "surprised"
+    },
+    {
+      "kind": "effect.exclamation",
+      "at": 0.5,
+      "actor": "reactor",
+      "duration": 0.65
+    },
+    {
+      "kind": "actor.pose",
+      "at": 3,
+      "actor": "reactor",
+      "pose": "dead-inside"
+    },
+    {
+      "kind": "actor.pose",
+      "at": 9.5,
+      "actor": "reactor",
+      "pose": "surprised"
+    },
+    {
+      "kind": "effect.emote",
+      "at": 9.7,
+      "actor": "reactor",
+      "emote": "heart",
+      "duration": 1.4
+    },
+    {
+      "kind": "actor.pose",
+      "at": 17.4,
+      "actor": "reactor",
+      "pose": "idle"
+    }
+  ],
+  "audio": {
+    "masterVolume": 0.93,
+    "tts": {
+      "provider": "voicevox-nemo",
+      "events": [
+        "dialogue.say"
+      ],
+      "defaultVoice": {
+        "voice": "男声2",
+        "speedScale": 1.25,
+        "volume": 1.16
+      }
+    },
+    "bgm": [
+      {
+        "id": "bg",
+        "assetId": "battle-music-loop",
+        "at": 0,
+        "duration": 25.5,
+        "volume": 0.065,
+        "fadeIn": 0.15,
+        "fadeOut": 0.8
+      }
+    ],
+    "sfx": [
+      {
+        "id": "photo-cue-0",
+        "role": "hook_hit",
+        "at": 0,
+        "volume": 0.38
+      },
+      {
+        "id": "photo-cue-1",
+        "role": "transition",
+        "at": 3,
+        "volume": 0.17
+      },
+      {
+        "id": "photo-cue-2",
+        "role": "pop",
+        "at": 6.1,
+        "volume": 0.17
+      },
+      {
+        "id": "photo-cue-3",
+        "role": "reveal",
+        "at": 9.5,
+        "volume": 0.17
+      },
+      {
+        "id": "photo-cue-4",
+        "role": "impact",
+        "at": 13.6,
+        "volume": 0.17
+      },
+      {
+        "id": "photo-cue-5",
+        "role": "transition",
+        "at": 17.4,
+        "volume": 0.17
+      },
+      {
+        "id": "photo-cue-6",
+        "role": "fail",
+        "at": 21.4,
+        "volume": 0.17
+      }
+    ]
+  },
+  "attention": {
+    "maxReadingCharsPerSecond": 13,
+    "maxTextLayers": 1,
+    "beats": [
+      {
+        "id": "shock",
+        "at": 0,
+        "duration": 3,
+        "focus": "caption",
+        "intent": "actual licensed photograph in first frame"
+      },
+      {
+        "id": "clarify",
+        "at": 3,
+        "duration": 6.5,
+        "focus": "caption",
+        "intent": "distinguish replicas, sold out, no fake merchandise picture"
+      },
+      {
+        "id": "objects",
+        "at": 9.5,
+        "duration": 11.9,
+        "focus": "character",
+        "intent": "different real photos and quick-cut examples"
+      },
+      {
+        "id": "question",
+        "at": 21.4,
+        "duration": 4.1,
+        "focus": "caption",
+        "intent": "viewer choice prompt"
+      }
+    ]
+  }
+}

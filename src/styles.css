@@ -308,3 +308,53 @@ button:disabled { opacity: .5; cursor: wait; }
   .preview-shell { padding: 18px; }
   .preview-frame { width: min(90vw, calc(75vh * var(--stage-ratio))); }
 }
+
+
+/* Licensed photographic media is the primary visual, not a decorative chart.
+   Actual history object / replica, never mislabelled as a purchasable product photo. */
+.render-mode .licensed-photo-frame {
+  position: absolute;
+  top: 9%;
+  left: 3.5%;
+  width: 93%;
+  height: 77%;
+  overflow: hidden;
+  border-radius: calc(10px * var(--output-scale));
+  background: #14191f;
+  box-shadow: 0 calc(8px * var(--output-scale)) calc(22px * var(--output-scale)) rgba(0,0,0,.7);
+  border: calc(1px * var(--output-scale)) solid #a2a49a;
+  z-index: 9;
+}
+.render-mode .licensed-photo-blur {
+  position: absolute;
+  width: 115%;
+  height: 115%;
+  top: -7%;
+  left: -7%;
+  object-fit: cover;
+  filter: blur(calc(13px * var(--output-scale))) brightness(.3);
+}
+.render-mode .licensed-photo-main {
+  position: absolute;
+  inset: 4% 4% 12% 4%;
+  width: 92%;
+  height: 84%;
+  object-fit: contain;
+  transform: scale(var(--asset-zoom, 1));
+  object-position: center center;
+  filter: contrast(1.06) saturate(1.06);
+}
+.render-mode .licensed-photo-source {
+  position: absolute;
+  left: 4%;
+  right: 4%;
+  bottom: 2%;
+  font-size: calc(6.2px * var(--output-scale));
+  line-height: 1.25;
+  font-weight: 800;
+  text-align: center;
+  background: rgba(6,11,17,.85);
+  color: #faf8f2;
+  padding: calc(3px * var(--output-scale));
+  border-radius: calc(3px * var(--output-scale));
+}
