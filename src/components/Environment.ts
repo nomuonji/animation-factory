@@ -6,6 +6,27 @@ function block(scene: Phaser.Scene, x: number, y: number, width: number, height:
 
 export function renderEnvironment(scene: Phaser.Scene, id: string, width: number, height: number): void {
   block(scene, width / 2, height / 2, width, height, 0x0d1120, -20);
+  if (id === "museum-gallery") {
+    // Purpose-built illustrated gallery background; no photographed artifacts.
+    block(scene,width/2,height/2,width,height,0x151c2a,-19);
+    block(scene,width/2,171,width-22,287,0x263044,-18);
+    block(scene,width/2,407,width,146,0x352d31,-17);
+    block(scene,width/2,342,width,4,0xc8a166,-15);
+    block(scene,18,188,5,260,0x546078,-14);
+    block(scene,width-18,188,5,260,0x546078,-14);
+    for (const x of [38,232]) {
+      block(scene,x,84,39,65,0x161d2b,-13);
+      block(scene,x,84,34,60,0xb49b74,-12);
+      block(scene,x,84,28,54,0x303544,-11);
+      block(scene,x,143,30,3,0xd7ba79,-11);
+    }
+    block(scene,135,42,125,6,0xffdc9b,-12);
+    block(scene,135,55,182,17,0x182033,-12);
+    block(scene,135,58,103,2,0x746b64,-11);
+    block(scene,135,399,196,8,0x9f846e,-6);
+    block(scene,135,416,184,28,0x47383c,-6);
+    return;
+  }
   if (id === "office-night-wide") {
     const sx = width / 480;
     const sy = height / 270;
