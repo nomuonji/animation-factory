@@ -2,6 +2,8 @@ const TTS_PROVIDERS = new Set(["none", "espeak-ng", "piper-plus", "voicevox", "v
 const TTS_EVENTS = new Set(["dialogue.say", "ui.speech"]);
 const BGM_PRESETS = new Set(["office-night", "retro-drone"]);
 const SFX_PRESETS = new Set(["heal", "impact", "coin", "alert"]);
+const SOUND_ROLES = new Set(["hook_hit","impact","thud","pop","click","transition","reveal","fail","suspense"]);
+const CC0_MUSIC = new Set(["safe-space-loop","flowerbed-fields","battle-music-loop"]);
 
 const finite = (value) => typeof value === "number" && Number.isFinite(value);
 
@@ -85,8 +87,10 @@ export function validateAudio(audio, actorIds, duration, errors) {
     }
     ids.add(track.id);
 
-    if (!BGM_PRESETS.has(track.preset)) {
-      errors.push(`unsupported BGM preset: ${track.preset}`);
+    if (Boolean(track.preset) === Boolean(track.assetId) ||
+      (track.preset && !BGM_PRESETS.has(track.preset)) ||
+      (track.assetId && !CC0_MUSIC.has(track.assetId))) {
+      errors.push(`BGM ${track.id} requires one approved preset OR assetId`);
     }
 
     const at = track.at ?? 0;
@@ -124,8 +128,10 @@ export function validateAudio(audio, actorIds, duration, errors) {
     }
     ids.add(track.id);
 
-    if (!SFX_PRESETS.has(track.preset)) {
-      errors.push(`unsupported SFX preset: ${track.preset}`);
+    if (Boolean(track.preset) === Boolean(track.role) ||
+      (track.preset && !SFX_PRESETS.has(track.preset)) ||
+      (track.role && !SOUND_ROLES.has(track.role))) {
+      errors.push(`SFX ${track.id} requires one approved preset OR bank role`);
     }
     if (!finite(track.at) || track.at < 0 || track.at >= duration) {
       errors.push(`SFX ${track.id} has invalid at`);
