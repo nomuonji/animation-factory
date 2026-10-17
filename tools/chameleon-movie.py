@@ -74,11 +74,11 @@ def putphoto(image,arr,rect,rounded=13,scale=1.0,cx=.5,cy=.5):
 def split(image,progress=1):
     d=ImageDraw.Draw(image)
     for x,im,col,name in [(29,GREEN,MINT,"BEFORE"),(367,RED,GOLD,"AFTER")]:
-        putphoto(image,im,(x,385,324,525),14,scale=1.0,cx=0.10)
+        putphoto(image,im,(x,254,324,655),14,scale=1.0,cx=0.10)
         d=ImageDraw.Draw(image)
-        d.rounded_rectangle((x,388,x+323,909),radius=14,outline=col,width=4)
-        d.rounded_rectangle((x+12,405,x+164,450),radius=8,fill=BG)
-        d.text((x+23,408),name,font=F32,fill=col)
+        d.rounded_rectangle((x,256,x+323,908),radius=14,outline=col,width=4)
+        d.rounded_rectangle((x+12,275,x+164,320),radius=8,fill=BG)
+        d.text((x+23,278),name,font=F32,fill=col)
     d=ImageDraw.Draw(image)
     center(d,(360,925),"同じ個体、同じ背景",F44)
     d.line((320,650,390,650),fill=(255,255,255),width=6)
@@ -116,7 +116,7 @@ def frame(t):
     im=background(t);d=ImageDraw.Draw(im)
     if t<1.85:
         # Hook A was chosen: instant before/after; B was verbal-first and was rejected.
-        center(d,(360,190),"これ、同じ個体。",F56)
+        center(d,(360,170),"これ、同じ個体。",F56)
         split(im)
     elif t<11.6:
         sec=5.9+(t-1.85)*1.0
