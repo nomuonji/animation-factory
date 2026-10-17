@@ -18,7 +18,7 @@
     "fps": 20,
     "outputScale": 4
   },
-  "environment": "office-night",
+  "environment": "museum-gallery",
   "actors": [
     {
       "id": "narrator",
