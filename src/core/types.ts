@@ -81,6 +81,14 @@ export interface KineticTextEvent extends BaseEvent {
   placement?: "upper" | "middle";
 }
 
+export interface LicensedPhotoEvent extends BaseEvent {
+  kind: "ui.photo";
+  assetId: "gold-face" | "gold-imprint" | "dogu-real" | "haniwa-large" | "haniwa-small";
+  caption: string;
+  duration: number;
+  zoom?: number;
+}
+
 export interface RpgStatusEvent extends BaseEvent {
   kind: "ui.rpgStatus";
   title: string;
@@ -179,6 +187,7 @@ export type TimelineEvent =
   | SpeechBubbleEvent
   | CaptionShowEvent
   | KineticTextEvent
+  | LicensedPhotoEvent
   | RpgStatusEvent
   | EssayCardEvent
   | CameraZoomEvent
