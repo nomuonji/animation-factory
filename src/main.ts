@@ -197,6 +197,23 @@ function renderDomText(time: number, scene: FactoryScene): void {
   }
 }
 
+// Decode the entire pinned photo set before advertising render bridge readiness.
+// Missing/invalid photos are fatal, never silently replaced by procedural placeholders.
+const photoPreload = renderMode ? Promise.all(
+  [...new Set(production.events.filter((e) => e.kind === "ui.photo")
+    .map((e) => e.assetId))].map((id) => {
+    const ext = id === "gold-imprint" ? "png" : "jpg";
+    return new Promise<void>((resolve, reject) => {
+      const img = new Image();
+      img.onload = () => {
+        img.decode().then(() => resolve()).catch(reject);
+      };
+      img.onerror = () => reject(new Error("Real photo could not load: " + id));
+      img.src = "/visuals/" + id + "." + ext;
+    });
+  })
+) : Promise.resolve();
+
 let sceneRef: FactoryScene | undefined;
 
 const scene = new FactoryScene(production, {
@@ -206,6 +223,7 @@ const scene = new FactoryScene(production, {
     sceneRef = readyScene;
 
     if (renderMode) {
+      void photoPreload.then(() => {
       window.__ANIMATION_FACTORY__ = {
         ready: true,
         production: {
@@ -224,6 +242,10 @@ const scene = new FactoryScene(production, {
         }
       };
       renderDomText(0, readyScene);
+      }).catch((error: unknown) => {
+        console.error("Licensed photo preload failed", error);
+        document.body.dataset.photoLoadError = String(error);
+      });
     }
   }
 });
