@@ -1,0 +1,79 @@
+name: Chameleon Short — research-footage probe
+
+on:
+  pull_request:
+    paths:
+      - "tools/chameleon-*.py"
+      - ".github/workflows/chameleon-short.yml"
+      - "productions/chameleon-short/**"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install FFmpeg and Japanese fonts
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg fonts-noto-cjk
+          python -m pip install --quiet pillow
+      - name: Download unmodified original peer-reviewed film
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p outputs/chameleon-probe
+          curl --fail --location --retry 3 --silent --show-error 'https://upload.wikimedia.org/wikipedia/commons/7/73/Photonic-crystals-cause-active-colour-change-in-chameleons-ncomms7368-s2.ogv' -o outputs/chameleon-probe/s2.ogv
+          curl --fail --location --retry 3 --silent --show-error 'https://upload.wikimedia.org/wikipedia/commons/9/98/Photonic-crystals-cause-active-colour-change-in-chameleons-ncomms7368-s3.ogv' -o outputs/chameleon-probe/s3.ogv
+          printf '798a41e09e836995ac5cacdfcc419ea641ddb68a  outputs/chameleon-probe/s2.ogv\nab92b1cc37cd303dab50dc097331123f104a5c10  outputs/chameleon-probe/s3.ogv\n' | sha1sum --check --status
+          ffprobe -v error -show_entries format=duration,size -of default=noprint_wrappers=1 outputs/chameleon-probe/s2.ogv
+      - name: Inspect frames BEFORE creating the final story
+        run: python tools/chameleon-probe.py
+      - name: Start VOICEVOX Nemo for Japanese narration
+        shell: bash
+        run: |
+          set -euo pipefail
+          docker pull voicevox/voicevox_nemo_engine:cpu-latest
+          docker run -d --rm --name nemo -p 127.0.0.1:50021:50121 voicevox/voicevox_nemo_engine:cpu-latest
+          for i in {1..90}; do
+            if curl -fsS http://127.0.0.1:50021/version >/dev/null; then
+              echo "VOICEVOX Nemo ready"
+              exit 0
+            fi
+            sleep 1
+          done
+          docker logs nemo || true
+          exit 1
+      - name: Install editorial film renderer
+        run: python -m pip install --quiet numpy opencv-python-headless
+      - name: Normalize research video decoding only (no changes to colors)
+        run: |
+          ffmpeg -hide_banner -loglevel error -y -i outputs/chameleon-probe/s2.ogv -an -vf 'fps=24,scale=960:540' -c:v libx264 -pix_fmt yuv420p -preset veryfast -crf 12 outputs/chameleon-probe/s2-normalized.mp4
+          ffprobe -v error -show_entries stream=nb_frames,avg_frame_rate -of default=noprint_wrappers=1 outputs/chameleon-probe/s2-normalized.mp4
+      - name: Make Japanese narrated playable rough-cut from ACTUAL footage
+        run: python tools/chameleon-movie.py
+      - name: Verify video and audible audio
+        shell: bash
+        run: |
+          set -euo pipefail
+          file=outputs/chameleon-probe/chameleon_short_final.mp4
+          test -s "$file"
+          test "$(ffprobe -v error -select_streams v:0 -show_entries stream=codec_name -of default=nk=1:nw=1 "$file")" = h264
+          test "$(ffprobe -v error -select_streams a:0 -show_entries stream=codec_name -of default=nk=1:nw=1 "$file")" = aac
+          test "$(ffprobe -v error -select_streams v:0 -show_entries stream=width -of default=nk=1:nw=1 "$file")" = 1080
+          test "$(ffprobe -v error -select_streams v:0 -show_entries stream=height -of default=nk=1:nw=1 "$file")" = 1920
+          test "$(ffprobe -v error -select_streams a:0 -show_entries stream=sample_rate -of default=nk=1:nw=1 "$file")" = 48000
+          ffmpeg -hide_banner -nostats -i "$file" -af volumedetect -f null - 2>&1 | grep -E 'mean_volume|max_volume'
+      - uses: actions/upload-artifact@v4
+        with:
+          name: chameleon-film-first-roughcut
+          path: |
+            outputs/chameleon-probe/filmstrip.jpg
+            outputs/chameleon-probe/edited-filmstrip.jpg
+            outputs/chameleon-probe/chameleon_short_final.mp4
+            outputs/chameleon-probe/video-metadata.json
+          retention-days: 30
