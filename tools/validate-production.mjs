@@ -126,6 +126,12 @@ for (const event of production.events ?? []) {
       if (event.placement !== undefined && !["upper","middle"].includes(event.placement)) errors.push("ui.kineticText invalid placement");
       if (event.accent !== undefined) validColor(event);
       break;
+    case "ui.photo":
+      durationOf(event);
+      if (!["gold-face","gold-imprint","dogu-real","haniwa-large","haniwa-small"].includes(event.assetId)) errors.push("Unapproved photo id");
+      if (!event.caption || typeof event.caption!=="string") errors.push("Licensed photo requires provenance caption");
+      if (event.zoom !== undefined && (!finite(event.zoom)||event.zoom<1||event.zoom>1.35)) errors.push("Invalid photo zoom");
+      break;
     case "ui.rpgStatus":
       durationOf(event);
       requireText("title");
