@@ -55,7 +55,8 @@
       "storyFunction": "hook: visual before/after promise",
       "visualChange": "First frame contrasts actual two times from one unmodified experiment clip",
       "soundCue": "hit",
-      "focalX": 0.12
+      "focalX": 0.12,
+      "sourceNotice": "※ 研究者が公開した8倍速映像"
     },
     {
       "id": "on-camera-color-change",
@@ -68,7 +69,8 @@
       "narration": "背景は変わっていないのに、カメレオンの体だけ、どんどん目立つ色に変わります。",
       "storyFunction": "evidence: uninterrupted visible change",
       "visualChange": "Real filmed skin gradually shifts green yellow and red; a synchronized wide inset holds the animal in context",
-      "focalX": 0.12
+      "focalX": 0.12,
+      "sourceNotice": "※ 研究者が公開した8倍速映像"
     },
     {
       "id": "color-detail",
@@ -80,7 +82,8 @@
       "onScreen": "緑から、黄と赤へ。",
       "narration": "緑から黄色へ。そして、赤い模様まで。",
       "storyFunction": "development: color pattern and bodily change",
-      "visualChange": "Uncut mid-phase real scientific frames visibly show a colorful animal"
+      "visualChange": "Uncut mid-phase real scientific frames visibly show a colorful animal",
+      "sourceNotice": "※ 研究者が公開した8倍速映像"
     },
     {
       "id": "question-before-answer",
@@ -98,7 +101,8 @@
       "storyFunction": "turn: audience re-evaluates camouflage assumption",
       "visualChange": "Direct comparison shows that the colorful animal is much more conspicuous",
       "soundCue": "none",
-      "focalX": 0.12
+      "focalX": 0.12,
+      "sourceNotice": "※ 研究者が公開した8倍速映像"
     },
     {
       "id": "second-source-relaxation",
@@ -111,7 +115,8 @@
       "narration": "この変化には、別のオスの存在が関係しています。",
       "storyFunction": "evidence for social signalling in scientific context",
       "visualChange": "Switch from exciting to relaxation recording of the same species; do not claim same individual",
-      "focalX": 0.18
+      "focalX": 0.18,
+      "sourceNotice": "※ 研究者が公開した8倍速映像"
     },
     {
       "id": "reverse-color-shift",
@@ -124,7 +129,8 @@
       "narration": "そして興奮がおさまると、色はまた落ち着いていきます。",
       "storyFunction": "second payoff: show the return transition and avoid padding",
       "visualChange": "Actual second scientific clip of relaxing male, not reverse playback and not synthetic coloring",
-      "focalX": 0.2
+      "focalX": 0.2,
+      "sourceNotice": "※ 研究者が公開した8倍速映像"
     },
     {
       "id": "payoff",
@@ -142,7 +148,8 @@
       "storyFunction": "visual callback and science explanation",
       "visualChange": "Final compare returns to the visible promise from the first frame",
       "soundCue": "reveal",
-      "focalX": 0.12
+      "focalX": 0.12,
+      "sourceNotice": "※ 研究者が公開した8倍速映像"
     }
   ],
   "licenseStatement": "Edited research footage: Teyssier J, Saenko S, van der Marel D & Milinkovitch M, Nature Communications 6, 6368 (2015), https://doi.org/10.1038/ncomms7368. Images from supplementary video s2 and s3, CC BY 4.0 https://creativecommons.org/licenses/by/4.0/. Edited: cropping, titles, subtitles, time selection, juxtaposition, narration, original sounds. Both original videos were published accelerated eightfold; mark source speed prominently in YouTube credits. s2 and s3 should not be assumed same individual."
