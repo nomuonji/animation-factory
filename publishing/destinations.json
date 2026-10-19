@@ -5,17 +5,19 @@
     "destinations": {
       "ganbaru": {
         "channelName": "今日の頑張り",
-        "publisherRepository": "nomuonji/ganbaru",
+        "publisherRepository": "nomuonji/animation-factory",
         "sourceRepository": "nomuonji/animation-factory",
-        "uploadWorkflow": ".github/workflows/animation-factory-channel.yml",
-        "credentialAuthority": "GitHub Actions secrets belonging to nomuonji/ganbaru; do not copy or echo them",
-        "channelIdentity": "verify owned channel against historical video IDs in Ganbaru's data/video-status.json",
-        "identityStatus": "pending-live-oauth-verification",
+        "uploadWorkflow": ".github/workflows/youtube-ganbaru-private.yml",
+        "credentialAuthority": "YouTube OAuth GitHub Actions secrets in nomuonji/animation-factory; derive channel ID via old Ganbaru historic upload ownership, no plaintext copy",
+        "channelIdentity": "OAuth channels.list(mine=true), matched with historical Ganbaru video xeoGIqyAY8I on 2026-10-19",
+        "identityStatus": "verified-2026-10-19",
         "allowedUploadPrivacy": "private",
         "autoPublishEnabled": false,
         "publicPublicationEnabled": false,
         "legacyGanbaruSchedule": "disabled",
-        "notes": "Render from Animation Factory main within the Ganbaru runner; OAuth identity is verified before every private upload. Do not use Kirinuki source IDs."
+        "notes": "Verified live against historical video xeoGIqyAY8I on 2026-10-19 using moved Animation Factory OAuth secrets. Derived owned channel ID at runtime; GitHub YOUTUBE_CHANNEL_ID variable optional. Manual private-only workflows for standard/footage-first productions and Market Shorts; no public posting, no automatic retry.",
+        "channelId": "UCka8SDf1XsNGVccbyLTj8cA",
+        "alternateMarketShortsWorkflow": ".github/workflows/market-shorts-youtube-private.yml"
       }
     }
   }

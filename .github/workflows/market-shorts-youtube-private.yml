@@ -52,6 +52,9 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
+      - name: Resolve the channel from historically verified Ganbaru uploads
+        shell: bash
+        run: node tools/verify-ganbaru-channel.mjs
       - name: Verify intended posting channel without publishing
         shell: bash
         run: |
