@@ -97,8 +97,11 @@ def validate(b: dict) -> None:
         seen.add(bt.get("id"))
         _req(bt.get("role") in ROLES, f"{where}.role must be one of {sorted(ROLES)}", e)
         _req(bool(str(bt.get("why", "")).strip()), f"{where}.why is required (what NEW thing the viewer sees)", e)
-        _req(bool(str(bt.get("say", "")).strip()) or float(bt.get("min", 0)) > 0,
-             f"{where} needs narration (say) or an explicit min duration", e)
+        clip = bt.get("clip")
+        _req(bool(str(bt.get("say", "")).strip()) or float(bt.get("min", 0)) > 0 or bool(clip),
+             f"{where} needs narration (say), a source clip, or an explicit min duration", e)
+        if clip is not None:
+            _validate_clip(clip, where, bt, e)
         _req(bt.get("sfx", "none") in SFX, f"{where}.sfx must be one of {sorted(SFX)}", e)
         shots = bt.get("shots")
         _req(isinstance(shots, list) and len(shots) >= 1, f"{where}.shots needs at least one shot", e)
@@ -117,6 +120,28 @@ def validate(b: dict) -> None:
     _req("payoff" in roles, "a payoff beat is required", e)
     if e:
         raise BriefError("Brief invalid:\n- " + "\n- ".join(e))
+
+
+def _validate_clip(clip: dict, where: str, bt: dict, e: list[str]) -> None:
+    """A clip plays the source's own audio (e.g. a real radio call) instead of narration."""
+    _req(not str(bt.get("say", "")).strip(), f"{where}: a clip beat cannot also have narration (say)", e)
+    _req(isinstance(clip.get("src"), str) and bool(SRC_RE.match(clip.get("src", ""))),
+         f"{where}.clip.src must be pixabay:<id>, commons:<File name> or local:<path>", e)
+    a, b = float(clip.get("in", 0)), float(clip.get("out", 0))
+    _req(0 <= a < b, f"{where}.clip needs 0 <= in < out (seconds in the source)", e)
+    _req(b - a <= 20, f"{where}.clip is {b - a:.1f}s; keep a real-audio moment under 20s", e)
+    _req(0.2 <= float(clip.get("gain", 1)) <= 4, f"{where}.clip.gain out of range", e)
+    lines = clip.get("lines") or []
+    _req(len(lines) >= 1, f"{where}.clip.lines: transcribe what is said (en) with times", e)
+    for k, ln in enumerate(lines):
+        lw = f"{where}.clip.lines[{k}]"
+        _req(bool(str(ln.get("en", "")).strip()), f"{lw}.en is required (verbatim English)", e)
+        t0, t1 = float(ln.get("at", -1)), float(ln.get("to", -1))
+        _req(0 <= t0 < t1 <= b - a + 0.05, f"{lw}: need 0 <= at < to <= clip length (times relative to clip.in)", e)
+
+
+def clip_sources(b: dict) -> list[str]:
+    return [bt["clip"]["src"] for bt in b["beats"] if bt.get("clip")]
 
 
 def caption_chunks(beat: dict) -> list[str]:
@@ -164,6 +189,11 @@ def lint(b: dict, timeline: dict | None = None) -> list[str]:
     if not any(r.get("watched") for r in b.get("references", [])):
         w.append("No reference Short marked watched=true; study at least 3 comparable Shorts before finalizing.")
     for bt in beats:
+        for ln in (bt.get("clip") or {}).get("lines", []):
+            if len(ln["en"]) > 44:
+                w.append(f"{bt['id']}: clip line is long for one screen ({len(ln['en'])} chars): {ln['en']}")
+            if not str(ln.get("ja", "")).strip():
+                w.append(f"{bt['id']}: clip line has no Japanese support: {ln['en']}")
         for c in caption_chunks(bt):
             if len(display_text(c)) > 22:
                 w.append(f"{bt['id']}: caption chunk too long to read at a glance ({len(c)} chars): {c}")

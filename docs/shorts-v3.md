@@ -72,6 +72,20 @@ python tools/shorts/shorts.py render productions/<id>/short.json
 - ビートの長さは音声の長さで自動決定（`min` で下限、`hold` で余韻）。
 - `voice`: VOICEVOX の話者とスタイル、速度。`music`: `catalog/asset-library.json` の曲ID、音量、声の下での下げ幅。
 
+## 実音声クリップ（本物の英語を聞かせる）
+
+ビートに `clip` を書くと、ナレーションの代わりに**素材そのものの音声**（実際の交信、会見など）を流し、英語の原文（大）と日本語訳（小）の字幕を出す。ビートの長さはクリップの長さで決まる。`say` と同時には使えない。
+
+```json
+"clip": {"src": "commons:Apollo13-wehaveaproblem.ogg", "in": 12.0, "out": 16.5, "gain": 1.0,
+         "lines": [{"at": 0.0, "to": 2.4, "en": "Okay, Houston, we've had a problem here.", "ja": "ヒューストン、問題が起きた"}]}
+```
+
+- `in`/`out` は素材上の秒、`lines[].at`/`to` はクリップ先頭からの秒。英語は**一字一句そのまま**（聞こえた通り）。
+- 音量は自動で語りと同程度にそろえる（古い無線音声の雑音ピークは抑える）。`gain` で微調整。
+- 画面は通常どおり `shots` で指定する。`label` に「実際の交信音声（NASA, 1970）」のように原音であることを必ず出す。
+- 素材探しは検索語の先頭に `image:` / `audio:` を付けると Commons の画像・音声を探せる（無指定は動画）。音声を `inspect.txt` に書くと、秒目盛り付きの波形と、Commons に英語字幕（TimedText）があればその `.en.srt` が成果物に入る。
+
 ## 素材とライセンス
 
 - 資格情報（APIキー）は必ず Actions の **Secrets** に置く。**Variables はログに平文で出る**ので使わない。ワークフローも secrets 以外からは読まない。

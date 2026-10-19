@@ -1,14 +1,5 @@
 # Download + filmstrip these sources (one src per line) so they can be watched before
 # writing a brief. Committing this file to a PR runs it and attaches the results.
-commons:Chameleon eyes.webm
-commons:Furcifer pardalis moving eyes.ogv
-commons:Chameleon 01.webm
-commons:Photonic-crystals-cause-active-colour-change-in-chameleons-ncomms7368-s2.ogv
-commons:Photonic-crystals-cause-active-colour-change-in-chameleons-ncomms7368-s3.ogv
-commons:Lightning strikes in slow motion (240fps) in Muurame, Finland.webm
-commons:Orage 4K SlowMotion 17072015 à TROYES.webm
-commons:Lightning in Slow Motion (Free to Use HD Stock Video Footage).webm
-commons:White cabbage to adult butterfly.webm
-commons:Monarch Butterfly Emerging from Chrysalis.webm
-commons:Rufous hummingbird feeding in slow motion.webm
-# rerun 1
+# Audio-only sources get a waveform sheet with a seconds ruler (+ Commons English subtitles if any).
+commons:Apollo13-wehaveaproblem.ogg
+commons:Apollo 11 Landing - first steps on the moon.ogv
