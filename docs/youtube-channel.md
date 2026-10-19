@@ -1,3 +1,22 @@
+# Animation Factory — YouTube destination: 今日の頑張り
+
+## Canonical destination (2026-10-19)
+
+The user has explicitly selected their previously operated **「今日の頑張り」** YouTube channel for Animation Factory. The binding is tracked in [publishing/destinations.json](../publishing/destinations.json). The publisher is **nomuonji/ganbaru**, *not* Social Video Publisher or Kirinuki Generator.
+
+This design reuses Ganbaru's existing GitHub Actions OAuth secrets **in place**; no API tokens are copied from one repository to another. Ganbaru's historical channel is identified by matching YouTube `channels.list(mine=true)` with video IDs in its historical `data/video-status.json`. Merely matching the channel name is NOT sufficient.
+
+**Use** [Ganbaru Actions](https://github.com/nomuonji/ganbaru/actions/workflows/animation-factory-channel.yml):
+- `mode=verify`: checks the existing OAuth refresh token and ownership of the historical channel; uploads nothing. The same verification runs on main when this publishing workflow is initially merged.
+- `mode=upload_private`: opt-in for one reviewed real `productions/<name>/footage-first.json` or `production.json` tracked in Animation Factory main. It checks the OAuth identity, checks source rights through the relevant existing validator, re-renders in the Ganbaru job, and uploads as **private**. No public posting, timer, or indefinite retry is enabled.
+- The old Ganbaru morning/night/summary schedules remain disabled; the history is preserved.
+
+If verification fails, inspect the Ganbaru repository secrets `YOUTUBE_CLIENT_ID`, `YOUTUBE_CLIENT_SECRET` and `YOUTUBE_REFRESH_TOKEN` via the repository settings. Do not paste secrets in chat or copy the refresh token into `animation-factory`. Renew the YouTube OAuth consent *for the historical channel* if necessary. Never use Kirinuki's watched-source IDs.
+
+The older direct Animation Factory private uploader below is retained for compatibility but **not selected as the publishing destination**.
+
+---
+
 # Animation Factory: reuse an OWNED YouTube channel
 
 The Kirinuki Generator's `YOUTUBE_CHANNEL_ID` settings refer to **source channels watched for clipping** (including third-party channels). They are NOT authenticated publishing destinations. Its Google Drive OAuth token is scoped to Drive, not YouTube uploading. Never copy those source IDs or reuse its Drive refresh token as a YouTube publishing credential.
