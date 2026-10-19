@@ -1,0 +1,291 @@
+{
+  "version": 3,
+  "id": "chameleon-signal",
+  "title": "カメレオンが色を変えるのは「隠れるため」じゃない",
+  "status": "draft",
+  "topic": {
+    "source": "manual",
+    "ref": "productions/chameleon-short (2026-10-17 本人GOOD版の作り直し、40〜60秒)",
+    "summary": "パンサーカメレオンのオスはライバルを見ると皮膚の光の結晶の間隔を広げて黄・橙に変わり、落ち着くと緑に戻る。色は隠れるためでなく合図"
+  },
+  "audience": "カメレオン＝擬態と思っている人。鮮やかな縞模様の実映像で止まる",
+  "reaction": "驚き",
+  "format": "myth-flip",
+  "promise": {
+    "firstFrame": "黄色と赤の縞に燃え上がったカメレオンの頭と体の寄りと『隠れるためじゃない』の見出し",
+    "payoff": "緑に戻る実映像の後、同じ種のカメレオンの目がこちらを向き『色は相手へのことば』で回収する"
+  },
+  "references": [
+    {
+      "url": "https://doi.org/10.1038/ncomms7368",
+      "watched": false,
+      "note": "事実根拠と映像の出典: Teyssier et al. 2015 Nature Communications。参照Shortsではない"
+    },
+    {
+      "url": "https://mappingignorance.org/2015/03/25/the-secrets-behind-chameleons-skin-coloration-change/",
+      "watched": false,
+      "note": "論文解説: 興奮時に結晶間隔が広がり黄〜橙に。擬態ではなく社会的な合図"
+    }
+  ],
+  "voice": {
+    "engine": "voicevox",
+    "speaker": "青山龍星",
+    "style": "ノーマル",
+    "speed": 1.12
+  },
+  "music": {
+    "asset": "flowerbed-fields",
+    "gain": 0.13,
+    "duck": 0.4
+  },
+  "look": {
+    "frame": "fit"
+  },
+  "descriptionLines": [
+    "研究映像は論文の補足動画で、8倍速で公開されたものです。",
+    "論文: Teyssier J, Saenko SV, van der Marel D, Milinkovitch MC (2015) Photonic crystals cause active colour change in chameleons. Nature Communications 6:6368 https://doi.org/10.1038/ncomms7368"
+  ],
+  "beats": [
+    {
+      "id": "hook",
+      "role": "hook",
+      "overlay": "隠れるため\nじゃない",
+      "say": "カメレオンが色を変えるのは、／隠れるためじゃありません。",
+      "emphasis": [
+        "隠れるため"
+      ],
+      "shots": [
+        {
+          "src": "commons:Photonic-crystals-cause-active-colour-change-in-chameleons-ncomms7368-s2.ogv",
+          "in": 12.6,
+          "speed": 0.5,
+          "frame": "fill",
+          "zoom": [
+            1.0,
+            1.1
+          ],
+          "focus": [
+            0.03,
+            0.45
+          ],
+          "label": "研究映像（8倍速）"
+        }
+      ],
+      "why": "黒背景で最も鮮やかに燃え上がった全身。隠れる気のない色と常識の否定を0秒で同時に見せる"
+    },
+    {
+      "id": "belief",
+      "role": "setup",
+      "say": "確かに森の中では、／葉っぱにまぎれる色をしています。",
+      "emphasis": [
+        "まぎれる"
+      ],
+      "shots": [
+        {
+          "src": "commons:Chameleon 01.webm",
+          "in": 41.2,
+          "speed": 1.0,
+          "frame": "fill",
+          "zoom": [
+            1.6,
+            1.75
+          ],
+          "focus": [
+            0.45,
+            0.3
+          ]
+        }
+      ],
+      "sfx": "none",
+      "why": "茂みの中で目立たないカメレオンの実映像。視聴者の思い込みを一度認める"
+    },
+    {
+      "id": "calm",
+      "role": "turn",
+      "say": "でも、色を大きく変えるのは別のとき。／落ち着いているオスに、／ライバルのオスを見せると…",
+      "emphasis": [
+        "ライバル"
+      ],
+      "shots": [
+        {
+          "src": "commons:Photonic-crystals-cause-active-colour-change-in-chameleons-ncomms7368-s2.ogv",
+          "in": 6.25,
+          "speed": 0.22,
+          "zoom": [
+            1.0,
+            1.04
+          ],
+          "focus": [
+            0.5,
+            0.5
+          ],
+          "label": "研究映像（8倍速）",
+          "weight": 1.2
+        },
+        {
+          "src": "commons:Photonic-crystals-cause-active-colour-change-in-chameleons-ncomms7368-s2.ogv",
+          "in": 6.25,
+          "speed": 0.22,
+          "frame": "fill",
+          "zoom": [
+            1.0,
+            1.1
+          ],
+          "focus": [
+            0.2,
+            0.45
+          ],
+          "label": "研究映像（8倍速）",
+          "weight": 1
+        }
+      ],
+      "sfx": "whoosh",
+      "why": "変化前の緑の状態に巻き戻す。比較の起点"
+    },
+    {
+      "id": "change",
+      "role": "evidence",
+      "say": "1分もしないうちに、／緑が、黄色とオレンジに変わっていく。",
+      "emphasis": [
+        "黄色とオレンジ"
+      ],
+      "shots": [
+        {
+          "src": "commons:Photonic-crystals-cause-active-colour-change-in-chameleons-ncomms7368-s2.ogv",
+          "in": 7.0,
+          "speed": 1.15,
+          "zoom": [
+            1.0,
+            1.08
+          ],
+          "focus": [
+            0.5,
+            0.5
+          ],
+          "label": "研究映像（8倍速）"
+        }
+      ],
+      "why": "同じ個体の体が実際に色を変えていく連続映像（元映像7〜12秒）"
+    },
+    {
+      "id": "signal",
+      "role": "evidence",
+      "say": "暗い場所で、わざわざ目立つ色。／ライバルへの、／やる気だぞ、という合図です。",
+      "emphasis": [
+        "合図"
+      ],
+      "shots": [
+        {
+          "src": "commons:Photonic-crystals-cause-active-colour-change-in-chameleons-ncomms7368-s2.ogv",
+          "in": 13.0,
+          "speed": 0.6,
+          "zoom": [
+            1.0,
+            1.06
+          ],
+          "focus": [
+            0.5,
+            0.5
+          ],
+          "label": "研究映像（8倍速）",
+          "weight": 1
+        },
+        {
+          "src": "commons:Photonic-crystals-cause-active-colour-change-in-chameleons-ncomms7368-s2.ogv",
+          "in": 15.5,
+          "speed": 0.6,
+          "frame": "fill",
+          "zoom": [
+            1.0,
+            1.15
+          ],
+          "focus": [
+            0.42,
+            0.45
+          ],
+          "label": "研究映像（8倍速）",
+          "weight": 1.2
+        }
+      ],
+      "why": "縞に寄っていき、目立つ色そのものを大きく見せる"
+    },
+    {
+      "id": "crystals",
+      "role": "escalation",
+      "say": "しかも、絵の具のように／色を混ぜているのではありません。／皮膚の中の小さな結晶のすき間を広げて、／光の反射を変えているんです。",
+      "emphasis": [
+        "結晶"
+      ],
+      "shots": [
+        {
+          "src": "commons:Photonic-crystals-cause-active-colour-change-in-chameleons-ncomms7368-s2.ogv",
+          "in": 7.2,
+          "speed": 0.9,
+          "frame": "fill",
+          "zoom": [
+            1.05,
+            1.25
+          ],
+          "focus": [
+            0.5,
+            0.42
+          ],
+          "label": "研究映像（8倍速）・拡大",
+          "motionJustified": true
+        }
+      ],
+      "why": "皮膚の粒が見えるマクロ映像に切り替え、仕組みの話に一段深める（結晶自体が見えるとは言わない）"
+    },
+    {
+      "id": "relax",
+      "role": "evidence",
+      "say": "相手がいなくなると、／結晶はまた詰まって、／色は緑に戻っていく。",
+      "emphasis": [
+        "緑に戻っていく"
+      ],
+      "shots": [
+        {
+          "src": "commons:Photonic-crystals-cause-active-colour-change-in-chameleons-ncomms7368-s3.ogv",
+          "in": 6.4,
+          "speed": 1.5,
+          "zoom": [
+            1.0,
+            1.05
+          ],
+          "focus": [
+            0.6,
+            0.5
+          ],
+          "label": "別の記録（8倍速をさらに早送り）"
+        }
+      ],
+      "why": "別の記録で鮮やかな色が緑寄りに戻っていく実映像。往復の変化を見せる"
+    },
+    {
+      "id": "payoff",
+      "role": "payoff",
+      "say": "カメレオンの色は、／隠れるためではなく、／相手に話しかけるための言葉なんです。",
+      "emphasis": [
+        "言葉"
+      ],
+      "shots": [
+        {
+          "src": "commons:Furcifer pardalis moving eyes.ogv",
+          "in": 8.6,
+          "speed": 0.9,
+          "frame": "fill",
+          "zoom": [
+            1.0,
+            1.12
+          ],
+          "focus": [
+            0.62,
+            0.5
+          ]
+        }
+      ],
+      "min": 4.5,
+      "why": "同じ種のカメレオンの目がぐるりとこちらを向く。最後に視聴者が『話しかけられる』側になる"
+    }
+  ]
+}

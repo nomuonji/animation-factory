@@ -1,0 +1,6 @@
+# Footage scouting: one English query per line. Committing this file to a PR runs a
+# search on Pixabay + Wikimedia Commons and attaches a thumbnail sheet to the run.
+chameleon
+hummingbird slow motion
+lightning slow motion
+butterfly emerging chrysalis

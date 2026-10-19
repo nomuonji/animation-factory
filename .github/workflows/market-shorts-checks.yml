@@ -1,4 +1,4 @@
-name: Market Shorts contract checks
+name: Audio bank and channel adapter checks
 
 on:
   pull_request:
@@ -65,8 +65,5 @@ jobs:
           npm run build
       - name: Check adapter syntax
         run: |
-          node --check tools/market-shorts.mjs
           node --check tools/market-shorts-upload.mjs
           node --check tools/market-shorts-analytics.mjs
-      - name: Smoke test idea eligibility and production schema
-        run: node tools/market-shorts-smoke.mjs

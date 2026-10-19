@@ -1,0 +1,218 @@
+name: Shorts v3
+
+# One workflow for every topic. Nothing here publishes or uploads anywhere.
+#   scout  : search real footage for free-form queries before choosing a topic
+#   find   : search footage for a brief's beat queries
+#   render : lock sources, render MP4 + review pack (technical pass only)
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: scout | find | render
+        required: true
+        default: render
+        type: choice
+        options: [scout, find, render]
+      production:
+        description: production folder under productions/ (find/render)
+        required: false
+      queries:
+        description: scout queries separated by ';' (scout)
+        required: false
+  pull_request:
+    paths:
+      - "tools/shorts/**"
+      - ".github/workflows/shorts.yml"
+      - "productions/**/short.json"
+      - "productions/**/sources.lock.json"
+      - "shorts-requests/scout.txt"
+      - "shorts-requests/inspect.txt"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shorts-${{ github.event.inputs.production || github.event.inputs.mode || github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  smoke:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Media dependencies
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg fonts-noto-cjk
+          pip install --quiet numpy pillow opencv-python-headless
+      - name: Start VOICEVOX engine
+        run: |
+          docker run -d --rm --name vv -p 127.0.0.1:50021:50021 voicevox/voicevox_engine:cpu-latest
+          for i in $(seq 1 120); do curl -fsS http://127.0.0.1:50021/version && exit 0; sleep 2; done; docker logs vv; exit 1
+      - name: Technical smoke test (synthetic footage, never content)
+        env:
+          SHORTS_TEST_VOICE: "1"
+        run: python tools/shorts/smoke_test.py
+
+  # PR previews: committing a brief (or a scout request) to a PR searches footage and
+  # renders it on that PR. Nothing is merged, published or uploaded.
+  preview:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    env:
+      PIXABAY_API_KEY: ${{ secrets.PIXABAY_API_KEY }}
+    steps:
+      - name: Pixabay key visibility (no value printed)
+        env:
+          HAS_SECRET: ${{ secrets.PIXABAY_API_KEY != '' }}
+        run: echo "repository secret PIXABAY_API_KEY visible=$HAS_SECRET (store it as a secret, never a variable)"
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: What changed
+        id: changed
+        shell: bash
+        run: |
+          set -euo pipefail
+          # Only what this push changed (falls back to the whole PR on open/reopen).
+          before="${{ github.event.before }}"
+          if [ -n "$before" ] && git cat-file -e "$before" 2>/dev/null; then
+            files=$(git diff --name-only "$before" HEAD)
+          else
+            files=$(git diff --name-only "${{ github.event.pull_request.base.sha }}"...HEAD)
+          fi
+          prods=$(echo "$files" | grep -E '^productions/[a-z0-9-]+/(short|sources\.lock)\.json$' | cut -d/ -f2 | sort -u | tr '\n' ' ' || true)
+          scout=$(echo "$files" | grep -qx 'shorts-requests/scout.txt' && echo yes || echo no)
+          inspect=$(echo "$files" | grep -qx 'shorts-requests/inspect.txt' && echo yes || echo no)
+          echo "inspect=$inspect" >> "$GITHUB_OUTPUT"
+          echo "prods=$prods" >> "$GITHUB_OUTPUT"
+          echo "scout=$scout" >> "$GITHUB_OUTPUT"
+          echo "productions: $prods / scout: $scout"
+      - name: Media dependencies
+        if: steps.changed.outputs.prods != '' || steps.changed.outputs.scout == 'yes' || steps.changed.outputs.inspect == 'yes'
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg fonts-noto-cjk
+          pip install --quiet numpy pillow opencv-python-headless
+      - name: Scout request
+        if: steps.changed.outputs.scout == 'yes'
+        shell: bash
+        run: |
+          mapfile -t Q < <(grep -v '^\s*#' shorts-requests/scout.txt | sed '/^\s*$/d')
+          python tools/shorts/shorts.py scout "${Q[@]}"
+          mkdir -p artifact/scout && cp outputs/scout/candidates.* artifact/scout/
+      - name: Inspect request (download sources + filmstrips)
+        if: steps.changed.outputs.inspect == 'yes'
+        shell: bash
+        run: |
+          mapfile -t S < <(grep -v '^\s*#' shorts-requests/inspect.txt | sed '/^\s*$/d')
+          python tools/shorts/shorts.py inspect "${S[@]}"
+          mkdir -p artifact/inspect/media
+          cp outputs/inspect/* artifact/inspect/
+          cp outputs/shorts-sources/*.media artifact/inspect/media/ 2>/dev/null || true
+      - name: Start VOICEVOX engine
+        if: steps.changed.outputs.prods != ''
+        run: |
+          docker run -d --rm --name vv -p 127.0.0.1:50021:50021 voicevox/voicevox_engine:cpu-latest
+          for i in $(seq 1 120); do curl -fsS http://127.0.0.1:50021/version && exit 0; sleep 2; done; docker logs vv; exit 1
+      - name: Find, lock and render changed productions
+        if: steps.changed.outputs.prods != ''
+        shell: bash
+        run: |
+          set -uo pipefail
+          status=0
+          for id in ${{ steps.changed.outputs.prods }}; do
+            b="productions/$id/short.json"
+            [ -f "$b" ] || continue
+            mkdir -p "artifact/$id"
+            if python -c "import json,sys;b=json.load(open('$b'));sys.exit(0 if any(bt.get('search') for bt in b['beats']) else 1)"; then
+              python tools/shorts/shorts.py find "$b" && cp productions/$id/candidates.* "artifact/$id/" || status=1
+            fi
+            if grep -q '"pixabay:0"' "$b"; then echo "$id: shots not chosen yet (pixabay:0); skipping render"; continue; fi
+            if python tools/shorts/shorts.py lock "$b" && python tools/shorts/shorts.py check "$b" && \
+               python tools/shorts/shorts.py render "$b"; then
+              cp -r outputs/shorts/$id/. "artifact/$id/"
+              cp "$b" "productions/$id/sources.lock.json" "artifact/$id/"
+              rm -f "artifact/$id/mix-raw.wav"
+            else
+              status=1
+            fi
+          done
+          exit $status
+      - name: Upload preview artifacts (private)
+        if: always() && (steps.changed.outputs.prods != '' || steps.changed.outputs.scout == 'yes' || steps.changed.outputs.inspect == 'yes')
+        uses: actions/upload-artifact@v4
+        with:
+          name: shorts-preview-${{ github.event.pull_request.number }}-${{ github.run_attempt }}
+          path: artifact/
+          retention-days: 30
+
+  run:
+    if: github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    env:
+      PIXABAY_API_KEY: ${{ secrets.PIXABAY_API_KEY }}
+      MODE: ${{ github.event.inputs.mode }}
+      PRODUCTION: ${{ github.event.inputs.production }}
+      QUERIES: ${{ github.event.inputs.queries }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Validate inputs
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ "$MODE" != scout ]; then
+            [[ "$PRODUCTION" =~ ^[a-z0-9][a-z0-9-]{2,63}$ ]] || { echo "bad production id"; exit 2; }
+            test -f "productions/$PRODUCTION/short.json"
+          fi
+          [ -n "$PIXABAY_API_KEY" ] || echo "::warning::PIXABAY_API_KEY not set; Commons only"
+      - name: Media dependencies
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg fonts-noto-cjk
+          pip install --quiet numpy pillow opencv-python-headless
+      - name: Scout footage
+        if: env.MODE == 'scout'
+        shell: bash
+        run: |
+          IFS=';' read -ra Q <<< "$QUERIES"
+          python tools/shorts/shorts.py scout "${Q[@]}"
+          mkdir -p artifact && cp outputs/scout/candidates.* artifact/
+      - name: Find footage for brief
+        if: env.MODE == 'find'
+        run: |
+          python tools/shorts/shorts.py find "productions/$PRODUCTION/short.json"
+          mkdir -p artifact && cp productions/$PRODUCTION/candidates.* artifact/
+      - name: Start VOICEVOX engine
+        if: env.MODE == 'render'
+        run: |
+          docker run -d --rm --name vv -p 127.0.0.1:50021:50021 voicevox/voicevox_engine:cpu-latest
+          for i in $(seq 1 120); do curl -fsS http://127.0.0.1:50021/version && exit 0; sleep 2; done; docker logs vv; exit 1
+      - name: Lock sources and render
+        if: env.MODE == 'render'
+        run: |
+          python tools/shorts/shorts.py lock "productions/$PRODUCTION/short.json"
+          python tools/shorts/shorts.py render "productions/$PRODUCTION/short.json"
+          mkdir -p artifact
+          cp -r outputs/shorts/$PRODUCTION/. artifact/
+          cp productions/$PRODUCTION/short.json productions/$PRODUCTION/sources.lock.json artifact/
+          rm -f artifact/mix-raw.wav
+      - name: Upload artifact (private; never published from here)
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ env.MODE == 'render' && format('short-{0}', env.PRODUCTION) || format('{0}-{1}', env.MODE, github.run_id) }}
+          path: artifact/
+          retention-days: 30

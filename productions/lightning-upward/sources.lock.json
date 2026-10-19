@@ -1,0 +1,34 @@
+{
+ "commons:Lightning strikes in slow motion (240fps) in Muurame, Finland.webm": {
+  "src": "commons:Lightning strikes in slow motion (240fps) in Muurame, Finland.webm",
+  "provider": "commons",
+  "pageUrl": "https://commons.wikimedia.org/wiki/File:Lightning_strikes_in_slow_motion_(240fps)_in_Muurame,_Finland.webm",
+  "duration": 8.108,
+  "author": "MrNousia",
+  "width": 1080,
+  "height": 1920,
+  "downloadUrl": "https://upload.wikimedia.org/wikipedia/commons/1/1c/Lightning_strikes_in_slow_motion_%28240fps%29_in_Muurame%2C_Finland.webm?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+  "license": "CC BY 3.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+  "shareAlike": false,
+  "sha256": "0762f0f15ccc9d9c137d4ae2d103185c046004857939ae6104ccf1d3a680b86c",
+  "bytes": 724944,
+  "lockedAt": "2026-10-19T07:53:49Z"
+ },
+ "commons:Orage 4K SlowMotion 17072015 à TROYES.webm": {
+  "src": "commons:Orage 4K SlowMotion 17072015 à TROYES.webm",
+  "provider": "commons",
+  "pageUrl": "https://commons.wikimedia.org/wiki/File:Orage_4K_SlowMotion_17072015_%C3%A0_TROYES.webm",
+  "duration": 8.199,
+  "author": "EpeeForte",
+  "width": 3840,
+  "height": 2160,
+  "downloadUrl": "https://upload.wikimedia.org/wikipedia/commons/2/25/Orage_4K_SlowMotion_17072015_%C3%A0_TROYES.webm?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+  "license": "CC BY 3.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+  "shareAlike": false,
+  "sha256": "5f077b7e6837d6724d36d57ca2c24010c407e45b85a18445e5b076b8b8f23e0c",
+  "bytes": 13899688,
+  "lockedAt": "2026-10-19T07:53:49Z"
+ }
+}

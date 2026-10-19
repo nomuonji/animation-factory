@@ -1,0 +1,87 @@
+name: Shorts v3 upload (private only)
+
+# Manual only. Renders one production and uploads it to the connected channel as
+# PRIVATE. Making it public is a separate, human step in YouTube Studio after the
+# video (and its audio) has been watched. Nothing here retries an upload.
+on:
+  workflow_dispatch:
+    inputs:
+      production:
+        description: production folder under productions/
+        required: true
+      made_for_kids:
+        description: Is this video made for kids? (YouTube requires an explicit answer)
+        required: true
+        type: choice
+        options: ["false", "true"]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shorts-upload-${{ github.event.inputs.production }}
+  cancel-in-progress: false
+
+jobs:
+  upload:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    env:
+      PRODUCTION: ${{ github.event.inputs.production }}
+      PIXABAY_API_KEY: ${{ secrets.PIXABAY_API_KEY }}
+      YOUTUBE_CLIENT_ID: ${{ secrets.YOUTUBE_CLIENT_ID }}
+      YOUTUBE_CLIENT_SECRET: ${{ secrets.YOUTUBE_CLIENT_SECRET }}
+      YOUTUBE_REFRESH_TOKEN: ${{ secrets.YOUTUBE_REFRESH_TOKEN }}
+      YOUTUBE_CHANNEL_ID: ${{ secrets.YOUTUBE_CHANNEL_ID }}
+      YOUTUBE_MADE_FOR_KIDS: ${{ github.event.inputs.made_for_kids }}
+      MARKET_SHORTS_UPLOAD_MODE: private_only
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Credentials present? (names only, values are never printed)
+        shell: bash
+        run: |
+          [[ "$PRODUCTION" =~ ^[a-z0-9][a-z0-9-]{2,63}$ ]] || { echo "bad production id"; exit 2; }
+          test -f "productions/$PRODUCTION/short.json"
+          missing=0
+          for n in YOUTUBE_CLIENT_ID YOUTUBE_CLIENT_SECRET YOUTUBE_REFRESH_TOKEN YOUTUBE_CHANNEL_ID; do
+            if [ -z "${!n}" ]; then echo "::error::secret $n is not visible to this workflow (it must be a repository SECRET, not a variable)"; missing=1; fi
+          done
+          exit $missing
+      - name: Media dependencies
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg fonts-noto-cjk
+          pip install --quiet numpy pillow opencv-python-headless
+      - name: Start VOICEVOX engine
+        run: |
+          docker run -d --rm --name vv -p 127.0.0.1:50021:50021 voicevox/voicevox_engine:cpu-latest
+          for i in $(seq 1 120); do curl -fsS http://127.0.0.1:50021/version && exit 0; sleep 2; done; docker logs vv; exit 1
+      - name: Lock sources and render
+        run: |
+          python tools/shorts/shorts.py lock "productions/$PRODUCTION/short.json"
+          python tools/shorts/shorts.py render "productions/$PRODUCTION/short.json"
+      - name: Upload to YouTube as private
+        shell: bash
+        run: |
+          set -euo pipefail
+          out="outputs/shorts/$PRODUCTION"
+          python - <<'PY'
+          import json, os
+          b = json.load(open(f"productions/{os.environ['PRODUCTION']}/short.json", encoding="utf-8"))
+          rec = {"sourceIdeaId": b["id"], "title": b["title"], "experimentVariant": "shorts-v3",
+                 # Footage licences were checked by `lock` (CC0/PD/CC BY/CC BY-SA/Pixabay only) and
+                 # credited in description.txt; the facts come from the sources named in the brief.
+                 "rightsChecked": True, "evidenceChecked": True, "uploadStatus": "not_connected"}
+          json.dump(rec, open("upload-record.json", "w", encoding="utf-8"), ensure_ascii=False)
+          PY
+          # The receipt holds a sensitive resumable-session URL, so it is never uploaded anywhere.
+          node tools/market-shorts-upload.mjs --mp4 "$out/video.mp4" --description "$out/description.txt" \
+            --experiment upload-record.json --receipt "$RUNNER_TEMP/receipt.json" | tee "$RUNNER_TEMP/result.json"
+          vid=$(python -c "import json;print(json.load(open('$RUNNER_TEMP/result.json'))['videoId'])")
+          echo "Uploaded as PRIVATE: https://studio.youtube.com/video/$vid/edit" | tee -a "$GITHUB_STEP_SUMMARY"
