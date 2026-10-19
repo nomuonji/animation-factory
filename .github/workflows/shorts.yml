@@ -23,6 +23,9 @@ on:
     paths:
       - "tools/shorts/**"
       - ".github/workflows/shorts.yml"
+      - "productions/**/short.json"
+      - "productions/**/sources.lock.json"
+      - "shorts-requests/scout.txt"
 
 permissions:
   contents: read
@@ -54,6 +57,83 @@ jobs:
         env:
           SHORTS_TEST_VOICE: "1"
         run: python tools/shorts/smoke_test.py
+
+  # PR previews: committing a brief (or a scout request) to a PR searches footage and
+  # renders it on that PR. Nothing is merged, published or uploaded.
+  preview:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    env:
+      PIXABAY_API_KEY: ${{ secrets.PIXABAY_API_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: What changed
+        id: changed
+        shell: bash
+        run: |
+          set -euo pipefail
+          base="${{ github.event.pull_request.base.sha }}"
+          files=$(git diff --name-only "$base"...HEAD)
+          prods=$(echo "$files" | grep -E '^productions/[a-z0-9-]+/(short|sources\.lock)\.json$' | cut -d/ -f2 | sort -u | tr '\n' ' ' || true)
+          scout=$(echo "$files" | grep -qx 'shorts-requests/scout.txt' && echo yes || echo no)
+          echo "prods=$prods" >> "$GITHUB_OUTPUT"
+          echo "scout=$scout" >> "$GITHUB_OUTPUT"
+          echo "productions: $prods / scout: $scout"
+      - name: Media dependencies
+        if: steps.changed.outputs.prods != '' || steps.changed.outputs.scout == 'yes'
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg fonts-noto-cjk
+          pip install --quiet numpy pillow opencv-python-headless
+      - name: Scout request
+        if: steps.changed.outputs.scout == 'yes'
+        shell: bash
+        run: |
+          mapfile -t Q < <(grep -v '^\s*#' shorts-requests/scout.txt | sed '/^\s*$/d')
+          python tools/shorts/shorts.py scout "${Q[@]}"
+          mkdir -p artifact/scout && cp outputs/scout/candidates.* artifact/scout/
+      - name: Start VOICEVOX engine
+        if: steps.changed.outputs.prods != ''
+        run: |
+          docker run -d --rm --name vv -p 127.0.0.1:50021:50021 voicevox/voicevox_engine:cpu-latest
+          for i in $(seq 1 120); do curl -fsS http://127.0.0.1:50021/version && exit 0; sleep 2; done; docker logs vv; exit 1
+      - name: Find, lock and render changed productions
+        if: steps.changed.outputs.prods != ''
+        shell: bash
+        run: |
+          set -uo pipefail
+          status=0
+          for id in ${{ steps.changed.outputs.prods }}; do
+            b="productions/$id/short.json"
+            [ -f "$b" ] || continue
+            mkdir -p "artifact/$id"
+            if python -c "import json,sys;b=json.load(open('$b'));sys.exit(0 if any(bt.get('search') for bt in b['beats']) else 1)"; then
+              python tools/shorts/shorts.py find "$b" && cp productions/$id/candidates.* "artifact/$id/" || status=1
+            fi
+            if grep -q '"pixabay:0"' "$b"; then echo "$id: shots not chosen yet (pixabay:0); skipping render"; continue; fi
+            if python tools/shorts/shorts.py lock "$b" && python tools/shorts/shorts.py check "$b" && \
+               python tools/shorts/shorts.py render "$b"; then
+              cp -r outputs/shorts/$id/. "artifact/$id/"
+              cp "$b" "productions/$id/sources.lock.json" "artifact/$id/"
+              rm -f "artifact/$id/mix-raw.wav"
+            else
+              status=1
+            fi
+          done
+          exit $status
+      - name: Upload preview artifacts (private)
+        if: always() && (steps.changed.outputs.prods != '' || steps.changed.outputs.scout == 'yes')
+        uses: actions/upload-artifact@v4
+        with:
+          name: shorts-preview-${{ github.event.pull_request.number }}-${{ github.run_attempt }}
+          path: artifact/
+          retention-days: 30
 
   run:
     if: github.event_name == 'workflow_dispatch'
