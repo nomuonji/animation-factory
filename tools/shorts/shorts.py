@@ -29,6 +29,7 @@ TEMPLATE = {
     "topic": {"source": "manual", "ref": "", "summary": ""},
     "audience": "誰が、どんなスクロール中に止まるか",
     "reaction": "驚き",
+    "format": "transformation",
     "promise": {"firstFrame": "0秒で画面に見えているもの", "payoff": "最後のショットで回収するもの"},
     "references": [{"url": "", "watched": False, "note": "似たShortsを3本以上。実際に見たらwatched=true"}],
     "voice": {"engine": "voicevox", "speaker": "青山龍星", "style": "ノーマル", "speed": 1.15},
@@ -52,6 +53,7 @@ def cmd_new(a):
     t["id"], t["title"] = a.id, a.topic or a.id
     t["topic"]["summary"] = a.topic or ""
     t["topic"]["source"] = a.source
+    t["format"] = a.format
     (d / "short.json").write_text(json.dumps(t, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(d / "short.json")
 
@@ -59,6 +61,11 @@ def cmd_new(a):
 def _lock_for(b):
     p = pathlib.Path(b["_dir"]) / "sources.lock.json"
     return json.loads(p.read_text(encoding="utf-8")) if p.exists() else None
+
+
+def cmd_formats(a):
+    for k, f in B.FORMATS.items():
+        print(f"{k:<15} {f['label']}\n   roles: {' > '.join(f['roles'])}\n   hook : {f['hook']}\n   {f['note']}")
 
 
 def cmd_check(a):
@@ -121,7 +128,10 @@ def main():
     n.add_argument("id")
     n.add_argument("--topic", default="")
     n.add_argument("--source", default="manual", choices=["manual", "market-idea", "x-post", "other"])
+    n.add_argument("--format", default="transformation", choices=sorted(B.FORMATS))
     n.set_defaults(fn=cmd_new)
+    fm = sub.add_parser("formats")
+    fm.set_defaults(fn=cmd_formats)
     c = sub.add_parser("check")
     c.add_argument("brief")
     c.add_argument("--timing", action="store_true", help="synthesize voice to compute real beat timing")

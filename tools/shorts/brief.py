@@ -20,6 +20,42 @@ ID_RE = re.compile(r"^[a-z0-9][a-z0-9-]{2,63}$")
 BREAK = "／"
 
 
+# Story formats: reusable structures any topic can be poured into. Each lists the
+# role sequence a cut should follow and what the hook must put on screen.
+FORMATS = {
+    "transformation": {
+        "label": "変化を見せる",
+        "roles": ["hook", "setup", "evidence", "escalation", "turn", "payoff"],
+        "hook": "変化後（または変化の途中）の最も強い画を0秒に置く",
+        "note": "Aがこう変わる、だがそれだけでなく、だから…。後半に二段目の変化を必ず入れる",
+    },
+    "myth-flip": {
+        "label": "思い込みを覆す",
+        "roles": ["hook", "setup", "turn", "evidence", "escalation", "payoff"],
+        "hook": "皆が信じている姿を映しつつ『実は違う』を画で匂わせる",
+        "note": "思い込み→反証の映像→さらに意外な事実→最初の画の意味が変わる",
+    },
+    "guess-reveal": {
+        "label": "当ててから答え合わせ",
+        "roles": ["hook", "setup", "evidence", "turn", "payoff"],
+        "hook": "問いの対象を画面に出し、答えを隠す",
+        "note": "視聴者に予想させ、ヒント映像で揺さぶり、映像で答え合わせ",
+    },
+    "scale-ladder": {
+        "label": "スケールを上げていく",
+        "roles": ["hook", "evidence", "escalation", "escalation", "payoff"],
+        "hook": "最終段の規模を一瞬見せるか、出発点の小ささを強調",
+        "note": "段ごとに桁や強さが上がり、最後に一番上を見せる",
+    },
+    "process": {
+        "label": "工程の気持ちよさ",
+        "roles": ["hook", "evidence", "evidence", "escalation", "payoff"],
+        "hook": "完成形を先に見せる",
+        "note": "語りは最小。手元・変形・音が主役。最後は完成形に戻る",
+    },
+}
+
+
 class BriefError(ValueError):
     pass
 
@@ -44,6 +80,7 @@ def validate(b: dict) -> None:
     for k in ("title", "audience"):
         _req(isinstance(b.get(k), str) and b[k].strip() != "", f"{k} is required", e)
     _req(b.get("reaction") in REACTIONS, f"reaction must be one of {sorted(REACTIONS)}", e)
+    _req(b.get("format", "transformation") in FORMATS, f"format must be one of {sorted(FORMATS)}", e)
     pr = b.get("promise") or {}
     _req(bool(str(pr.get("firstFrame", "")).strip()), "promise.firstFrame is required (what is visible at 0s)", e)
     _req(bool(str(pr.get("payoff", "")).strip()), "promise.payoff is required (what the last shot delivers)", e)
@@ -116,6 +153,14 @@ def lint(b: dict, timeline: dict | None = None) -> list[str]:
     """Editorial warnings. These are prompts for a human/editor, not pass marks."""
     w: list[str] = []
     beats = b["beats"]
+    fmt = FORMATS.get(b.get("format", "transformation"))
+    roles = [bt["role"] for bt in beats if bt["role"] != "loop"]
+    expected = [r for r in fmt["roles"]]
+    it = iter(roles)
+    if not all(any(r == x for x in it) for r in ["hook", "payoff"]) or \
+            not all(r in roles for r in set(expected) - {"setup"}):
+        w.append(f"Beat roles {roles} drift from the '{b.get('format', 'transformation')}' format "
+                 f"{expected}: {fmt['note']}")
     if not any(r.get("watched") for r in b.get("references", [])):
         w.append("No reference Short marked watched=true; study at least 3 comparable Shorts before finalizing.")
     for bt in beats:
