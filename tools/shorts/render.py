@@ -36,11 +36,25 @@ CAPTION_Y = 0.635
 HEADLINE_Y = 0.15
 
 
+_FALLBACKS = [FONT_BOLD, "/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc",
+              "/usr/share/fonts/opentype/noto/NotoSansCJK-Medium.ttc"]
+
+
+def _has_cjk(font: ImageFont.FreeTypeFont) -> bool:
+    """A font that lacks Japanese draws the same empty box for every character (tofu)."""
+    return bytes(font.getmask("日")) != bytes(font.getmask("\ue000"))
+
+
 def _font(path: str, size: int) -> ImageFont.FreeTypeFont:
-    try:
-        return ImageFont.truetype(path, size, index=0)
-    except OSError:
-        return ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf", size)
+    # Never fall back to a non-CJK font: captions would silently become tofu boxes.
+    for cand in [path] + [c for c in _FALLBACKS if c != path]:
+        try:
+            f = ImageFont.truetype(cand, size, index=0)
+        except OSError:
+            continue
+        if _has_cjk(f):
+            return f
+    raise RuntimeError("No Japanese-capable font found (install fonts-noto-cjk); refusing to render tofu")
 
 
 # ---------------------------------------------------------------- timeline

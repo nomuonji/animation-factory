@@ -91,6 +91,10 @@ jobs:
             files=$(git diff --name-only "${{ github.event.pull_request.base.sha }}"...HEAD)
           fi
           prods=$(echo "$files" | grep -E '^productions/[a-z0-9-]+/(short|sources\.lock)\.json$' | cut -d/ -f2 | sort -u | tr '\n' ' ' || true)
+          # A renderer change must be seen on real productions, not only the synthetic smoke test.
+          if echo "$files" | grep -q '^tools/shorts/'; then
+            prods=$(ls productions/*/short.json 2>/dev/null | cut -d/ -f2 | sort -u | tr '\n' ' ')
+          fi
           scout=$(echo "$files" | grep -qx 'shorts-requests/scout.txt' && echo yes || echo no)
           inspect=$(echo "$files" | grep -qx 'shorts-requests/inspect.txt' && echo yes || echo no)
           echo "inspect=$inspect" >> "$GITHUB_OUTPUT"
