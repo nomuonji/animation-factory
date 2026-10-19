@@ -1,0 +1,44 @@
+name: Shorts delete public videos (manual)
+
+# Manual only. Lists every public video on the connected channel; deletes them only
+# when dry_run is false AND confirm is DELETE. Deletion is permanent.
+on:
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: true = only list, false = delete
+        required: true
+        type: choice
+        default: "true"
+        options: ["true", "false"]
+      confirm:
+        description: type DELETE to allow deletion
+        required: false
+
+permissions:
+  contents: read
+
+jobs:
+  run:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    env:
+      YOUTUBE_CLIENT_ID: ${{ secrets.YOUTUBE_CLIENT_ID }}
+      YOUTUBE_CLIENT_SECRET: ${{ secrets.YOUTUBE_CLIENT_SECRET }}
+      YOUTUBE_REFRESH_TOKEN: ${{ secrets.YOUTUBE_REFRESH_TOKEN }}
+      YOUTUBE_CHANNEL_ID: ${{ secrets.YOUTUBE_CHANNEL_ID }}
+      DRY: ${{ github.event.inputs.dry_run }}
+      CONFIRM: ${{ github.event.inputs.confirm }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: List or delete
+        shell: bash
+        run: |
+          if [ "$DRY" = "false" ] && [ "$CONFIRM" = "DELETE" ]; then
+            node tools/market-shorts-delete-public.mjs --delete
+          else
+            node tools/market-shorts-delete-public.mjs
+          fi
