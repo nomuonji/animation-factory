@@ -48,6 +48,12 @@ async function currentChannel(accessToken) {
   return actual;
 }
 async function main() {
+  // Channel-only handshake: no MP4 or upload session is created.
+  if (process.argv.includes('--verify-channel')) {
+    const channel=await currentChannel(await token());
+    console.log(JSON.stringify({stage:'channel_verified',channelId:channel}));
+    return;
+  }
   if (process.env.MARKET_SHORTS_UPLOAD_MODE!=='private_only')
     throw new Error('Upload locked: MARKET_SHORTS_UPLOAD_MODE must be private_only');
   const file=flag('--mp4'),experiment=flag('--experiment'),receiptFile=flag('--receipt');
