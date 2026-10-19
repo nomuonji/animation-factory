@@ -1,0 +1,141 @@
+name: Market Shorts YouTube channel (manual private-only)
+
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "Verify channel only, or upload ONE reviewed video privately"
+        type: choice
+        required: true
+        default: verify_channel
+        options: [verify_channel, private_upload]
+      preview_run_id:
+        description: "Successful Market Shorts preview run ID"
+        type: string
+        required: false
+      production:
+        description: "Exact approved production folder"
+        type: string
+        required: false
+      made_for_kids:
+        description: "Audience designation for the reviewed video"
+        type: choice
+        required: true
+        default: "false"
+        options: ["false", "true"]
+      confirm_review:
+        description: "I reviewed the real video, claims and usage rights"
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+  actions: read
+
+concurrency:
+  group: market-shorts-private-${{ inputs.preview_run_id || github.run_id }}-${{ inputs.production || 'verify' }}
+  cancel-in-progress: false
+
+jobs:
+  channel:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    env:
+      YOUTUBE_CLIENT_ID: ${{ secrets.YOUTUBE_CLIENT_ID }}
+      YOUTUBE_CLIENT_SECRET: ${{ secrets.YOUTUBE_CLIENT_SECRET }}
+      YOUTUBE_REFRESH_TOKEN: ${{ secrets.YOUTUBE_REFRESH_TOKEN }}
+      YOUTUBE_CHANNEL_ID: ${{ vars.YOUTUBE_CHANNEL_ID }}
+      PRODUCTION: ${{ inputs.production }}
+      SOURCE_RUN_ID: ${{ inputs.preview_run_id }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Verify intended posting channel without publishing
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -n "$YOUTUBE_CHANNEL_ID" || { echo "Configure YOUTUBE_CHANNEL_ID variable" >&2; exit 2; }
+          node tools/market-shorts-upload.mjs --verify-channel
+      - name: Require editorial approval and successful source run
+        if: inputs.mode == 'private_upload'
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REVIEW_CONFIRMED: ${{ inputs.confirm_review }}
+        run: |
+          set -euo pipefail
+          test "$REVIEW_CONFIRMED" = "true" || { echo "Editorial review confirmation required" >&2; exit 2; }
+          [[ "$PRODUCTION" =~ ^market-short-[a-f0-9]{12}$ ]] || { echo "Invalid production" >&2; exit 2; }
+          [[ "$SOURCE_RUN_ID" =~ ^[0-9]+$ ]] || { echo "Preview run ID required" >&2; exit 2; }
+          run_json="$(gh api "repos/$GITHUB_REPOSITORY/actions/runs/$SOURCE_RUN_ID")"
+          jq -e '.name == "Market Shorts preview (no publishing)" and .conclusion == "success" and .head_branch == "main"' <<< "$run_json" >/dev/null || {
+            echo "Source must be a successful main-branch Market Shorts preview" >&2
+            exit 2
+          }
+          echo "SOURCE_COMMIT_SHA=$(jq -r '.head_sha' <<< "$run_json")" >> "$GITHUB_ENV"
+      - name: Download exact video from the named render run
+        if: inputs.mode == 'private_upload'
+        uses: actions/download-artifact@v4
+        with:
+          name: market-shorts-preview-${{ inputs.production }}
+          path: upload-input
+          run-id: ${{ inputs.preview_run_id }}
+          github-token: ${{ github.token }}
+      - name: Validate video provenance and reviewed experiment
+        if: inputs.mode == 'private_upload'
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -s "upload-input/review-package/video.mp4"
+          test -s "upload-input/review-package/metadata.json"
+          test -s "upload-input/productions/$PRODUCTION/experiment.json"
+          node --input-type=module <<'NODE'
+          import {readFileSync} from 'node:fs';
+          import {join} from 'node:path';
+          const dir=process.env.PRODUCTION;
+          const meta=JSON.parse(readFileSync('upload-input/review-package/metadata.json','utf8'));
+          const exp=JSON.parse(readFileSync(join('upload-input','productions',dir,'experiment.json'),'utf8'));
+          if (meta.productionFolder!==dir || meta.productionId!==dir || exp.production!==dir ||
+              String(meta.runId)!==process.env.SOURCE_RUN_ID ||
+              meta.commitSha!==process.env.SOURCE_COMMIT_SHA ||
+              exp.demoOnly===true || exp.rightsChecked!==true || exp.evidenceChecked!==true ||
+              exp.uploadStatus!=='not_connected' || !exp.sourceIdeaId) {
+            throw new Error('Source/run metadata or editorial approval mismatch');
+          }
+          console.log('Exact reviewed source run validated');
+          NODE
+      - name: Upload ONE video as private, never publish automatically
+        if: inputs.mode == 'private_upload'
+        shell: bash
+        env:
+          MARKET_SHORTS_UPLOAD_MODE: private_only
+          YOUTUBE_MADE_FOR_KIDS: ${{ inputs.made_for_kids }}
+        run: |
+          set -euo pipefail
+          node tools/market-shorts-upload.mjs \
+            --mp4 upload-input/review-package/video.mp4 \
+            --experiment "upload-input/productions/$PRODUCTION/experiment.json" \
+            --receipt "$RUNNER_TEMP/youtube-private-receipt.json"
+      - name: Remove sensitive upload session URL from diagnostic receipt
+        if: always() && inputs.mode == 'private_upload'
+        shell: bash
+        run: |
+          node --input-type=module <<'NODE'
+          import {readFileSync,writeFileSync,existsSync} from 'node:fs';
+          import {join} from 'node:path';
+          const path=join(process.env.RUNNER_TEMP,'youtube-private-receipt.json');
+          const safe=existsSync(path)?JSON.parse(readFileSync(path,'utf8')):{stage:'not_started'};
+          delete safe.sessionUrl;
+          delete safe.error;
+          writeFileSync('youtube-upload-status.json',JSON.stringify(safe,null,2)+'\n');
+          NODE
+      - name: Save redacted receipt for manual reconciliation
+        if: always() && inputs.mode == 'private_upload'
+        uses: actions/upload-artifact@v4
+        with:
+          name: youtube-private-upload-status-${{ github.run_id }}
+          path: youtube-upload-status.json
+          if-no-files-found: warn
+          retention-days: 90
