@@ -331,7 +331,10 @@ def probe_duration(path: pathlib.Path) -> float:
     import subprocess
     r = subprocess.run(["ffprobe", "-v", "error", "-show_entries", "format=duration",
                         "-of", "default=nw=1:nk=1", str(path)], capture_output=True, text=True, check=True)
-    return round(float(r.stdout.strip()), 3)
+    try:
+        return round(float(r.stdout.strip()), 3)
+    except ValueError:  # still images have no duration; shots on them must use freeze
+        return 0.0
 
 
 # ---------------------------------------------------------------- inspect

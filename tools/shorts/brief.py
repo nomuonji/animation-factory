@@ -97,6 +97,10 @@ def validate(b: dict) -> None:
         seen.add(bt.get("id"))
         _req(bt.get("role") in ROLES, f"{where}.role must be one of {sorted(ROLES)}", e)
         _req(bool(str(bt.get("why", "")).strip()), f"{where}.why is required (what NEW thing the viewer sees)", e)
+        if bt.get("caption") and bt.get("say"):
+            _req(len(caption_chunks(bt)) == len(say_chunks(bt)),
+                 f"{where}: caption and say must have the same number of ／ chunks "
+                 f"({len(caption_chunks(bt))} vs {len(say_chunks(bt))})", e)
         clip = bt.get("clip")
         _req(bool(str(bt.get("say", "")).strip()) or float(bt.get("min", 0)) > 0 or bool(clip),
              f"{where} needs narration (say), a source clip, or an explicit min duration", e)
@@ -145,12 +149,20 @@ def clip_sources(b: dict) -> list[str]:
 
 
 def caption_chunks(beat: dict) -> list[str]:
-    """Caption units shown one at a time. Authors control breaks with ／."""
+    """Caption units shown one at a time. Authors control breaks with ／.
+
+    When a beat has both `caption` and `say`, only the ／ breaks are used so each
+    caption chunk lines up with the chunk that is read aloud."""
+    if beat.get("caption") and beat.get("say") and "exactBreaks" not in beat:
+        beat = {**beat, "exactBreaks": True}
     text = beat.get("caption") or beat.get("say") or ""
     parts: list[str] = []
     for piece in text.split(BREAK):
         piece = piece.strip()
         if not piece:
+            continue
+        if beat.get("exactBreaks"):  # caption/say pairs: only the author's ／ breaks count
+            parts.append(piece)
             continue
         # Fallback auto-split on sentence ends and long clauses.
         for sent in re.split(r"(?<=[。！？!?])", piece):
@@ -163,6 +175,11 @@ def caption_chunks(beat: dict) -> list[str]:
             else:
                 parts.append(sent)
     return parts
+
+
+def say_chunks(beat: dict) -> list[str]:
+    """Chunks of what VOICEVOX reads; aligned 1:1 with caption chunks when `caption` is set."""
+    return caption_chunks({"say": beat.get("say", ""), "exactBreaks": bool(beat.get("caption"))})
 
 
 def spoken_text(beat: dict) -> str:

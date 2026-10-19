@@ -68,7 +68,10 @@ def build_timeline(b: dict, lock: dict | None) -> dict:
         if bt.get("clip"):
             sp = clip_speech(bt["clip"], lock)
         elif text and vcfg.get("engine") == "voicevox":
-            sp = V.synthesize(text, chunks, vcfg)
+            spoken = B.say_chunks(bt)
+            sp = V.synthesize(text, spoken, vcfg)
+            if spoken != chunks:  # caption differs from what is read (e.g. English shown, katakana read)
+                sp = {**sp, "chunks": [(a, e, c) for (a, e, _), c in zip(sp["chunks"], chunks)]}
         elif text:
             sp = V.silent(chunks)
         else:
