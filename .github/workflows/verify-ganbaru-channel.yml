@@ -1,0 +1,82 @@
+name: Verify Today's Ganbaru YouTube destination
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/verify-ganbaru-channel.yml'
+      - 'tools/verify-ganbaru-channel.mjs'
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/verify-ganbaru-channel.yml'
+      - 'tools/verify-ganbaru-channel.mjs'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: verify-ganbaru-channel
+  cancel-in-progress: false
+
+jobs:
+  lint:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node --check tools/verify-ganbaru-channel.mjs
+      - name: Validate workflow YAML
+        run: |
+          python -m pip install --quiet PyYAML
+          python -c 'import yaml; yaml.safe_load(open(".github/workflows/verify-ganbaru-channel.yml", encoding="utf-8"))'
+
+  verify:
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    env:
+      YOUTUBE_CLIENT_ID: ${{ secrets.YOUTUBE_CLIENT_ID }}
+      YOUTUBE_CLIENT_SECRET: ${{ secrets.YOUTUBE_CLIENT_SECRET }}
+      YOUTUBE_REFRESH_TOKEN: ${{ secrets.YOUTUBE_REFRESH_TOKEN }}
+      YOUTUBE_CHANNEL_ID: ${{ vars.YOUTUBE_CHANNEL_ID }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify OAuth against channel's historic uploads (no publishing)
+        id: channel
+        continue-on-error: true
+        run: node tools/verify-ganbaru-channel.mjs
+      - name: Persist non-secret verification status for readback
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -s ops/youtube-channel-verification.json
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add ops/youtube-channel-verification.json
+          if ! git diff --staged --quiet; then
+            git commit -m "chore: record Ganbaru YouTube OAuth verification result [skip ci]"
+            git push origin HEAD:main
+          fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: ganbaru-channel-verification-${{ github.run_id }}
+          path: ops/youtube-channel-verification.json
+          retention-days: 14
+          if-no-files-found: warn
+      - name: Fail when authenticated destination is not ready
+        if: steps.channel.outcome != 'success'
+        run: exit 1
