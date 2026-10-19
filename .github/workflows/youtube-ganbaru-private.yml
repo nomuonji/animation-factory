@@ -1,0 +1,193 @@
+name: Animation Factory to Ganbaru (reviewed private video)
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/youtube-ganbaru-private.yml'
+      - 'tools/youtube-private-upload-production.mjs'
+  workflow_dispatch:
+    inputs:
+      production:
+        description: 'Real production folder under productions/ (never use a demo)'
+        type: string
+        required: true
+      format:
+        description: 'Production format'
+        type: choice
+        required: true
+        default: standard
+        options: [standard, footage-first]
+      made_for_kids:
+        description: 'YouTube audience declaration'
+        type: choice
+        required: true
+        default: 'false'
+        options: ['false','true']
+      confirm_review:
+        description: 'I reviewed the actual final video, its factual claims and use rights'
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+concurrency:
+  group: youtube-ganbaru-private-${{ inputs.production || github.run_id }}
+  cancel-in-progress: false
+
+jobs:
+  lint:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node --check tools/youtube-private-upload-production.mjs
+      - name: Validate workflow
+        run: |
+          python -m pip install --quiet PyYAML
+          python -c 'import yaml; yaml.safe_load(open(".github/workflows/youtube-ganbaru-private.yml", encoding="utf-8"))'
+
+  private:
+    if: github.event_name == 'workflow_dispatch'
+    name: Verify, render and upload ONE reviewed real video privately
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    env:
+      PRODUCTION: ${{ inputs.production }}
+      FORMAT: ${{ inputs.format }}
+      YOUTUBE_CLIENT_ID: ${{ secrets.YOUTUBE_CLIENT_ID }}
+      YOUTUBE_CLIENT_SECRET: ${{ secrets.YOUTUBE_CLIENT_SECRET }}
+      YOUTUBE_REFRESH_TOKEN: ${{ secrets.YOUTUBE_REFRESH_TOKEN }}
+      YOUTUBE_CHANNEL_ID: ${{ vars.YOUTUBE_CHANNEL_ID }}
+      ANIMATION_FACTORY_UPLOAD_MODE: private_only
+      ANIMATION_FACTORY_MADE_FOR_KIDS: ${{ inputs.made_for_kids }}
+      ANIMATION_FACTORY_REVIEW_CONFIRMED: ${{ inputs.confirm_review }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Require reviewed real production
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$ANIMATION_FACTORY_REVIEW_CONFIRMED" = "true" || { echo "Editorial approval required" >&2; exit 2; }
+          [[ "$PRODUCTION" =~ ^[a-z0-9][a-z0-9-]{1,79}$ ]] || { echo "Invalid production name" >&2; exit 2; }
+          [[ ! "$PRODUCTION" =~ ^(demo|test|fixture|smoke) ]] || { echo "No demos" >&2; exit 2; }
+          if [ "$FORMAT" = "standard" ]; then
+            test -s "productions/$PRODUCTION/production.json"
+          elif [ "$FORMAT" = "footage-first" ]; then
+            test -s "productions/$PRODUCTION/footage-first.json"
+          else
+            exit 2
+          fi
+      - name: Verify actual historical Ganbaru channel using transferred Secrets
+        run: node tools/verify-ganbaru-channel.mjs
+      - name: Install project and render dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm ci
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg fonts-noto-cjk espeak-ng
+      - name: Install Python footage-first renderer
+        if: inputs.format == 'footage-first'
+        run: python -m pip install numpy pillow opencv-python-headless
+      - name: Start VOICEVOX for the selected production if needed
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ "$FORMAT" = "standard" ]; then
+            provider="$(node -p 'require("./productions/" + process.env.PRODUCTION + "/production.json").audio?.tts?.provider || "none"')"
+          else
+            provider="$(node -p 'require("./productions/" + process.env.PRODUCTION + "/footage-first.json").voice?.provider || "none"')"
+          fi
+          if [ "$provider" = "none" ]; then exit 0; fi
+          if [ "$provider" != "voicevox" ] && [ "$provider" != "voicevox-nemo" ]; then
+            echo "Unsupported TTS in this private publisher: $provider" >&2
+            exit 2
+          fi
+          image=voicevox/voicevox_engine:cpu-latest
+          port=50021
+          if [ "$provider" = "voicevox-nemo" ]; then
+            image=voicevox/voicevox_nemo_engine:cpu-latest
+            port=50121
+          fi
+          docker pull "$image"
+          docker run -d --rm --name ganbaru-upload-tts -p "127.0.0.1:50021:$port" "$image"
+          for i in {1..90}; do
+            if curl -fsS http://127.0.0.1:50021/version >/dev/null; then exit 0; fi
+            sleep 1
+          done
+          docker logs ganbaru-upload-tts || true
+          exit 1
+      - name: Render a real footage-first production
+        if: inputs.format == 'footage-first'
+        shell: bash
+        run: |
+          set -euo pipefail
+          node tools/footage-first-validate.mjs "productions/$PRODUCTION/footage-first.json"
+          node -e 'const p=require("./productions/"+process.env.PRODUCTION+"/footage-first.json");if(p.demoOnly || p.publishStatus!=="draft")process.exit(2)'
+          python tools/footage-first-render.py "productions/$PRODUCTION/footage-first.json"
+          id="$(node -p 'require("./productions/" + process.env.PRODUCTION + "/footage-first.json").id')"
+          mkdir -p "$RUNNER_TEMP/ganbaru-upload"
+          cp "outputs/footage-first/$id/video.mp4" "$RUNNER_TEMP/ganbaru-upload/video.mp4"
+          echo "UPLOAD_METADATA=productions/$PRODUCTION/footage-first.json" >> "$GITHUB_ENV"
+      - name: Render standard animation production
+        if: inputs.format == 'standard'
+        shell: bash
+        run: |
+          set -euo pipefail
+          npx playwright install --with-deps chromium
+          node tools/validate-production.mjs "productions/$PRODUCTION/production.json"
+          node tools/validate-attention.mjs "productions/$PRODUCTION/production.json"
+          node tools/fetch-licensed-photos.mjs "$PRODUCTION"
+          npm run build
+          npm run render -- "$PRODUCTION"
+          id="$(node -p 'require("./productions/" + process.env.PRODUCTION + "/production.json").meta.id')"
+          mkdir -p "$RUNNER_TEMP/ganbaru-upload"
+          cp "outputs/$id.mp4" "$RUNNER_TEMP/ganbaru-upload/video.mp4"
+          echo "UPLOAD_METADATA=productions/$PRODUCTION/production.json" >> "$GITHUB_ENV"
+      - name: Validate final MP4 container
+        shell: bash
+        run: |
+          set -euo pipefail
+          file="$RUNNER_TEMP/ganbaru-upload/video.mp4"
+          test -s "$file"
+          test "$(ffprobe -v error -select_streams v:0 -show_entries stream=codec_name -of default=nk=1:nw=1 "$file")" = h264
+          test "$(ffprobe -v error -select_streams a:0 -show_entries stream=codec_name -of default=nk=1:nw=1 "$file")" = aac
+      - name: Upload private ONLY; never public or automatically scheduled
+        shell: bash
+        run: |
+          node tools/youtube-private-upload-production.mjs \
+            --mp4 "$RUNNER_TEMP/ganbaru-upload/video.mp4" \
+            --metadata "$UPLOAD_METADATA" \
+            --format "$FORMAT" \
+            --receipt "$RUNNER_TEMP/ganbaru-upload/receipt.json"
+      - name: Save safe, source-linked upload receipt
+        if: always()
+        shell: bash
+        run: |
+          mkdir -p "$RUNNER_TEMP/ganbaru-upload"
+          node --input-type=module <<'NODE'
+          import {readFileSync,writeFileSync,existsSync} from 'node:fs';
+          import {join} from 'node:path';
+          const folder=join(process.env.RUNNER_TEMP,'ganbaru-upload');
+          const source=join(folder,'receipt.json');
+          const receipt=existsSync(source)?JSON.parse(readFileSync(source,'utf8')):{stage:'not_started'};
+          delete receipt.sessionUrl;
+          delete receipt.error;
+          writeFileSync(join(folder,'redacted.json'),JSON.stringify(receipt,null,2)+'\n');
+          NODE
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: ganbaru-private-video-${{ github.run_id }}
+          path: ${{ runner.temp }}/ganbaru-upload/redacted.json
+          retention-days: 90
+          if-no-files-found: warn
