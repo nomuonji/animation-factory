@@ -26,6 +26,7 @@ on:
       - "productions/**/short.json"
       - "productions/**/sources.lock.json"
       - "shorts-requests/scout.txt"
+      - "shorts-requests/inspect.txt"
 
 permissions:
   contents: read
@@ -83,15 +84,22 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          base="${{ github.event.pull_request.base.sha }}"
-          files=$(git diff --name-only "$base"...HEAD)
+          # Only what this push changed (falls back to the whole PR on open/reopen).
+          before="${{ github.event.before }}"
+          if [ -n "$before" ] && git cat-file -e "$before" 2>/dev/null; then
+            files=$(git diff --name-only "$before" HEAD)
+          else
+            files=$(git diff --name-only "${{ github.event.pull_request.base.sha }}"...HEAD)
+          fi
           prods=$(echo "$files" | grep -E '^productions/[a-z0-9-]+/(short|sources\.lock)\.json$' | cut -d/ -f2 | sort -u | tr '\n' ' ' || true)
           scout=$(echo "$files" | grep -qx 'shorts-requests/scout.txt' && echo yes || echo no)
+          inspect=$(echo "$files" | grep -qx 'shorts-requests/inspect.txt' && echo yes || echo no)
+          echo "inspect=$inspect" >> "$GITHUB_OUTPUT"
           echo "prods=$prods" >> "$GITHUB_OUTPUT"
           echo "scout=$scout" >> "$GITHUB_OUTPUT"
           echo "productions: $prods / scout: $scout"
       - name: Media dependencies
-        if: steps.changed.outputs.prods != '' || steps.changed.outputs.scout == 'yes'
+        if: steps.changed.outputs.prods != '' || steps.changed.outputs.scout == 'yes' || steps.changed.outputs.inspect == 'yes'
         run: |
           sudo apt-get update -qq
           sudo apt-get install -y -qq ffmpeg fonts-noto-cjk
@@ -103,6 +111,15 @@ jobs:
           mapfile -t Q < <(grep -v '^\s*#' shorts-requests/scout.txt | sed '/^\s*$/d')
           python tools/shorts/shorts.py scout "${Q[@]}"
           mkdir -p artifact/scout && cp outputs/scout/candidates.* artifact/scout/
+      - name: Inspect request (download sources + filmstrips)
+        if: steps.changed.outputs.inspect == 'yes'
+        shell: bash
+        run: |
+          mapfile -t S < <(grep -v '^\s*#' shorts-requests/inspect.txt | sed '/^\s*$/d')
+          python tools/shorts/shorts.py inspect "${S[@]}"
+          mkdir -p artifact/inspect/media
+          cp outputs/inspect/* artifact/inspect/
+          cp outputs/shorts-sources/*.media artifact/inspect/media/ 2>/dev/null || true
       - name: Start VOICEVOX engine
         if: steps.changed.outputs.prods != ''
         run: |
@@ -133,7 +150,7 @@ jobs:
           done
           exit $status
       - name: Upload preview artifacts (private)
-        if: always() && (steps.changed.outputs.prods != '' || steps.changed.outputs.scout == 'yes')
+        if: always() && (steps.changed.outputs.prods != '' || steps.changed.outputs.scout == 'yes' || steps.changed.outputs.inspect == 'yes')
         uses: actions/upload-artifact@v4
         with:
           name: shorts-preview-${{ github.event.pull_request.number }}-${{ github.run_attempt }}

@@ -310,3 +310,51 @@ def probe_duration(path: pathlib.Path) -> float:
     r = subprocess.run(["ffprobe", "-v", "error", "-show_entries", "format=duration",
                         "-of", "default=nw=1:nk=1", str(path)], capture_output=True, text=True, check=True)
     return round(float(r.stdout.strip()), 3)
+
+
+# ---------------------------------------------------------------- inspect
+
+def inspect(srcs: list[str], out_dir: pathlib.Path, frames: int = 24) -> list[dict]:
+    """Download sources and make a timestamped filmstrip per source. Watch before writing."""
+    import subprocess
+    from PIL import Image, ImageDraw, ImageFont
+    out_dir.mkdir(parents=True, exist_ok=True)
+    font = ImageFont.truetype("/usr/share/fonts/opentype/noto/NotoSansCJK-Bold.ttc", 22)
+    results = []
+    for src in srcs:
+        try:
+            meta = _resolve(src, {}, out_dir)
+            path = _download(meta)
+            meta["duration"] = probe_duration(path)
+            meta["sha256"] = hashlib.sha256(path.read_bytes()).hexdigest()
+            meta["cacheFile"] = path.name
+            n = frames
+            step = meta["duration"] / n
+            tiles = []
+            for i in range(n):
+                t = i * step + step / 2
+                r = subprocess.run(["ffmpeg", "-v", "error", "-ss", f"{t:.2f}", "-i", str(path), "-frames:v", "1",
+                                    "-vf", "scale=320:-2", "-f", "image2pipe", "-vcodec", "png", "-"],
+                                   capture_output=True)
+                if r.stdout:
+                    tiles.append((t, Image.open(io.BytesIO(r.stdout)).convert("RGB")))
+            if tiles:
+                th = max(im.height for _, im in tiles)
+                cols = 6
+                rows = (len(tiles) + cols - 1) // cols
+                sheet = Image.new("RGB", (cols * 320, rows * (th + 30) + 40), (10, 10, 12))
+                d = ImageDraw.Draw(sheet)
+                d.text((8, 6), f"{src}  {meta['duration']:.1f}s {meta.get('width')}x{meta.get('height')} {meta.get('license')}",
+                       font=font, fill=(255, 220, 90))
+                for k, (t, im) in enumerate(tiles):
+                    x, y = (k % cols) * 320, 40 + (k // cols) * (th + 30)
+                    sheet.paste(im, (x, y))
+                    d.text((x + 4, y + th + 2), f"{t:5.1f}s", font=font, fill=(235, 235, 235))
+                name = re.sub(r"[^A-Za-z0-9._-]+", "_", src)[:80]
+                sheet.save(out_dir / f"{name}.jpg", quality=80)
+            meta.pop("query", None)
+            results.append(meta)
+        except Exception as ex:  # noqa: BLE001
+            results.append({"src": src, "error": str(ex)})
+    (out_dir / "inspect.json").write_text(json.dumps(results, ensure_ascii=False, indent=1), encoding="utf-8")
+    return results

@@ -104,6 +104,12 @@ def cmd_scout(a):
         print(f"{q}: {len(ok)} candidates")
 
 
+def cmd_inspect(a):
+    out = ROOT / "outputs" / "inspect"
+    for r in footage.inspect(a.srcs, out, a.frames):
+        print(r.get("src"), r.get("duration"), r.get("width"), r.get("height"), r.get("license"), r.get("error", ""))
+
+
 def cmd_lock(a):
     b = B.load(a.brief)
     out = footage.lock(b)
@@ -143,6 +149,10 @@ def main():
     sc = sub.add_parser("scout")
     sc.add_argument("queries", nargs="+")
     sc.set_defaults(fn=cmd_scout)
+    ins = sub.add_parser("inspect")
+    ins.add_argument("srcs", nargs="+")
+    ins.add_argument("--frames", type=int, default=24)
+    ins.set_defaults(fn=cmd_inspect)
     lk = sub.add_parser("lock")
     lk.add_argument("brief")
     lk.set_defaults(fn=cmd_lock)
