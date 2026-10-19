@@ -1,62 +1,16 @@
-# Market Shorts — experimental demand testing
+# Market Shorts → Shorts v3
 
-This is a preview-only independent workstream. It does not alter English YouTube or the canonical Keywords Idea Memory. No YouTube channel, OAuth, schedule, posting, metrics retrieval or live Keywords feed is configured here.
+2026-10-19 に Shorts の制作は **Shorts v3**（`tools/shorts/`、手順は `docs/shorts-v3.md`）へ一本化した。
 
-## Data flow
+退役したもの（git 履歴に残る）:
 
-Keywords Idea Memory -> independently reviewed short-form creative brief -> authenticated read-only JSON projection -> Animation Factory production -> VOICEVOX Nemo audio -> MP4 -> GitHub Actions review artifact.
+- `tools/market-shorts.mjs` と「実写真5枚必須」ルール、`market-shorts/photo-bank`、`market-shorts/briefs`
+- Keywords フィードを読む `market-shorts-preview` ワークフロー
+- `tools/footage-first-*`、`tools/chameleon-*` とそれぞれのワークフロー
+- 博物館ネタの試作（`museum-idea-shorts-20261017-*`。「ごみ動画」判定の経緯は `docs/shorts-editorial-postmortem-20261017.md`）
 
-GitHub Actions workflow: Market Shorts preview (no publishing). Manual mode "synthetic" runs a sample preview; "live" needs an explicit canonical idea ID, plus a read-only feed. A repository_dispatch with type market_shorts_preview and client_payload.idea_id also selects a real idea.
+市場アイデア（Keywords Idea Memory）は v3 のネタの入口の一つとして扱う。`shorts.py new <id> --source market-idea` で雛形を作り、`topic.ref` にアイデアIDを記録する。映像で見せられないアイデアは動画にしない。
 
-Repository variable: MARKET_IDEAS_FEED_URL. Repository secret: MARKET_IDEAS_FEED_TOKEN. Read-only HTTPS JSON with shape { "ideas": [ ... ] } or an array. Do not copy the entire idea collection into a public repo. The MCP tool is not directly callable from GitHub Actions, so an authenticated Keywords exporter/endpoint is a separate integration task.
+## 未接続のまま残しているもの
 
-## Canonical idea contract
-
-Each live idea needs id, title, revision, status, destinations containing youtube_shorts (or short_video), nonempty marketEvidenceRefs, and agentReview with rubricVersion idea-final-judge-v4, verdict pass, all six axes integer 4 or higher.
-
-videoExperiment must be a distinct editorial record with variant, evidenceChecked=true, rightsChecked=true, hook, hookVoice, exactly three beats with heading/body/voice, close and closeVoice. Review flags must come from actual independently reviewed evidence and rights, not model self-certification or synthetic scoring. The generator rejects absent inputs and rejected/deferred ideas.
-
-Output uses production ID hashed from canonical idea ID, a reversible experiment.json source reference, vertical 1080x1920 video, existing Animation Factory essay-card visual, and VOICEVOX Nemo narration. The synthetic fixture contains invented test scores and a sentinel evidence marker solely to exercise software; it is NEVER eligible for publication or demand conclusions.
-
-## Local rendering
-
-1. Install Node 22, npm dependencies, FFmpeg, Playwright browser and VOICEVOX Nemo engine on local port 50021.
-2. Run: node tools/market-shorts.mjs --input market-shorts/examples/synthetic-fixture.json
-3. Read the returned production id.
-4. Run: node tools/validate-production.mjs productions/<id>/production.json
-5. Run: node tools/validate-attention.mjs productions/<id>/production.json
-6. Run: npm run render -- <id>
-
-The Actions workflow performs these steps plus builds the review artifact. No upload happens from it.
-
-## Integration still required
-
-- Keywords: build an authenticated read-only exporter using existing canonical Idea Memory; do not create another idea DB. Add a per-idea/variant experiment inventory and dedupe.
-- Editorial: agent-generated video treatment must be independently checked for factual evidence, content rights, originality and speech/visual timing before feed publication.
-- Channel: connect a distinct experimental channel with OAuth; start uploads as private, verify channel ID and persist upload receipts, never blindly retry an unknown upload.
-- Measurement: pull YouTube Analytics checkpoints at 24h/72h/7d, compare normalized within-category data, distinguish topical attention from validated product demand, and attach experiment records back to Idea Memory.
-- Automation: cap at two Shorts/day only after creative, cost, credential and publishing checks. This workflow intentionally has no timer and cannot publicly post.
-
-Do not treat a merged PR or generated MP4 as evidence that the end-to-end live publishing system is running.
-
-## Read-only Keywords feed integration
-
-Keywords PR adds /api/market-shorts-feed?id=<canonical-id>. This is an exact one-idea projection. The route requires a dedicated MARKET_SHORTS_FEED_TOKEN in Vercel. In this video repo set repository variable MARKET_IDEAS_FEED_URL to the production HTTPS endpoint *without* query parameters and set MARKET_IDEAS_FEED_TOKEN to the same bearer secret. The pipeline adds the id query parameter itself; token and URL are never committed.
-
-The feed does not contain user-private idea lists or derivative narration. A version-pinned real brief must be present under market-shorts/briefs/<ideaId>.json with the author's reviewed claims, assets and licensing status. The pipeline rejects missing briefs or mismatched source revisions. No periodic discovery/publishing is enabled; a dispatch event must name the idea ID explicitly.
-
-## Unconnected upload and measurement adapters
-
-Tools market-shorts-upload.mjs and market-shorts-analytics.mjs are dormant; no GitHub workflow calls them. They need YOUTUBE_CLIENT_ID, YOUTUBE_CLIENT_SECRET, YOUTUBE_REFRESH_TOKEN and YOUTUBE_CHANNEL_ID for the new experimental channel. OAuth scopes must authorize channel inspection, upload and Analytics separately.
-
-Uploads require MARKET_SHORTS_UPLOAD_MODE=private_only and an explicitly reviewed YOUTUBE_MADE_FOR_KIDS=true/false selection. The uploader requires --mp4, --experiment and --receipt and attempts a resumable YouTube insert. It verifies the OAuth channel ID, creates private uploads only, and saves video ID or upload_unknown as a local receipt. That local receipt is *not* a cross-run idempotency store. Do not enable it in unattended Actions until a durable private receipt ledger is implemented, tested, and can reconcile ambiguous uploads.
-
-Analytics requires --receipt, --out, --checkpoint (24h, 72h or 7d), --start and --end UTC calendar dates. It only fetches read-only, daily aggregated performance (views, engaged views, average duration, likes, comments, shares); this is not equivalent to a precise 24-hour rolling window or proof of product purchase intent. No scheduled collection or Idea Memory feedback write exists yet.
-
-## Live Shorts image-first requirement (October 17 update)
-
-User feedback confirmed that the previous text-card animation is unsuitable for audience tests. **All real, non-demo Idea Memory video briefs MUST now contain** `videoExperiment.mediaPlan.shots` with exactly five source-labelled licensed-photo shots, each containing `assetId`, `caption`, and optional `zoom` (1.0–1.35). At least three distinct photo IDs must be selected. The assets must exist in a checked-in, reviewed manifest under `market-shorts/photo-bank/*.json`, with Wikimedia Commons source page, creator and approved commercial Creative Commons license. A real brief without an approved photo plan fails before creating any production. The renderer then refuses missing downloads and checks upstream license and source SHA before final MP4 generation. **There is no automatic fallback to abstract icons or text slides for real ideas.**
-
-The historic `synthetic-fixture.json` stays card-based as a software-only smoke test and is marked `demoOnly`; it must never be posted or interpreted as a live idea. Source photographs are illustrative photos of real historic objects or separately photographed replicas and **must not be misrepresented as photographs of the retail products themselves**. Attach complete creator, image license and official factual-source disclosures in the eventual YouTube description.
-
-To add another genre, first review and commit a new photo manifest in `market-shorts/photo-bank/` with verified creative commons source and filename, then author a source-revision-pinned brief and choose its five shots. CI refuses unlisted IDs. This requires actual human or independently verified editorial checks, not AI scoring alone.
+`tools/market-shorts-upload.mjs` と `tools/market-shorts-analytics.mjs` は、実験用チャンネルを接続するときの YouTube アップロード（非公開のみ）と分析取得のアダプター。どのワークフローからも呼ばれていない。接続時は `YOUTUBE_CLIENT_ID` / `YOUTUBE_CLIENT_SECRET` / `YOUTUBE_REFRESH_TOKEN` / `YOUTUBE_CHANNEL_ID` が必要で、耐久的なアップロード記録を作るまで無人実行しない。

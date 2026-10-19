@@ -146,12 +146,6 @@ jobs:
       - name: Validate attention design
         run: node tools/validate-attention.mjs "productions/$PRODUCTION/production.json"
 
-      - name: Fetch and verify licensed photos (fail closed on missing photo)
-        shell: bash
-        run: |
-          set -euo pipefail
-          node tools/fetch-licensed-photos.mjs "$PRODUCTION"
-
       - name: Typecheck and build
         run: npm run build
 

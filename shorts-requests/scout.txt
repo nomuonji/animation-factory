@@ -1,14 +1,6 @@
 # Footage scouting: one English query per line. Committing this file to a PR runs a
 # search on Pixabay + Wikimedia Commons and attaches a thumbnail sheet to the run.
 chameleon
-octopus camouflage
-cuttlefish color
 hummingbird slow motion
-salmon jumping waterfall
 lightning slow motion
-lava flow
-flower blooming time lapse
 butterfly emerging chrysalis
-starling murmuration
-glass blowing
-honey bee honeycomb
