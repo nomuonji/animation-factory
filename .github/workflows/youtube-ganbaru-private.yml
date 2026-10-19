@@ -45,11 +45,15 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - run: node --check tools/youtube-private-upload-production.mjs
+      - name: Check all channel-publisher scripts
+        run: |
+          node --check tools/youtube-private-upload-production.mjs
+          node --check tools/verify-ganbaru-channel.mjs
+          node --check tools/market-shorts-upload.mjs
       - name: Validate workflow
         run: |
           python -m pip install --quiet PyYAML
-          python -c 'import yaml; yaml.safe_load(open(".github/workflows/youtube-ganbaru-private.yml", encoding="utf-8"))'
+          python -c 'import yaml; [yaml.safe_load(open(p, encoding="utf-8")) for p in (".github/workflows/youtube-ganbaru-private.yml", ".github/workflows/market-shorts-youtube-private.yml")]'
 
   private:
     if: github.event_name == 'workflow_dispatch'
