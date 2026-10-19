@@ -1,10 +1,10 @@
 {
   "source": "nomuonji/animation-factory",
   "destination": "今日の頑張り",
-  "checkedAt": "2026-10-19T10:28:34.017Z",
-  "status": "needs_configuration",
+  "checkedAt": "2026-10-19T10:37:15.554Z",
+  "status": "verified",
   "channelId": "UCka8SDf1XsNGVccbyLTj8cA",
   "channelTitle": "今日の頑張り",
   "historicalVideoMatch": "xeoGIqyAY8I",
-  "configurationStatus": "channel_id_variable_missing"
+  "configurationStatus": "ready_via_historical_upload"
 }
