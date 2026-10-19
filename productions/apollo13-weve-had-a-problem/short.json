@@ -233,8 +233,8 @@
     {
       "id": "payoff",
       "role": "payoff",
-      "say": "このとき、機械船の側面は吹き飛んでいました。／起きた直後の報告は、ウィーブ・ハッド・ア・プロブレム。／聞き返すなら、セイ・アゲイン・プリーズ。",
-      "caption": "このとき、機械船の側面は吹き飛んでいた／起きた直後の報告は “We've had a problem.”／聞き返すなら “Say again, please.”",
+      "say": "このとき、機械船の側面は吹き飛んでいました。／起きた直後の報告は、／ウィーブ・ハッド・ア・プロブレム。／聞き返すなら、／セイ・アゲイン・プリーズ。",
+      "caption": "このとき、機械船の側面は吹き飛んでいた／起きた直後の報告は／We've had a problem.／聞き返すなら／Say again, please.",
       "emphasis": [
         "We've had a problem.",
         "Say again, please."
@@ -245,15 +245,15 @@
           "in": 0,
           "freeze": true,
           "zoom": [
-            1.25,
-            2.1
+            1.05,
+            1.45
           ],
           "focus": [
-            0.62,
+            0.6,
             0.45
           ],
           "motionJustified": true,
-          "label": "切り離した機械船。側面パネルが吹き飛んでいる（NASA）"
+          "label": "機械船。側面が吹き飛んでいる（NASA）"
         }
       ],
       "hold": 0.8,
