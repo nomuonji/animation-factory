@@ -210,11 +210,18 @@ def _contact_sheet(results: dict, out: pathlib.Path) -> None:
 # ---------------------------------------------------------------- lock / fetch
 
 def _candidate_index(d: pathlib.Path) -> dict:
-    p = d / "candidates.json"
-    if not p.exists():
-        return {}
-    data = json.loads(p.read_text(encoding="utf-8"))
-    return {c["src"]: c for lst in data["queries"].values() for c in lst if c.get("src")}
+    """Known source metadata from search results and inspection runs (no network)."""
+    idx: dict = {}
+    for p in (ROOT / "outputs" / "scout" / "candidates.json", d / "candidates.json"):
+        if p.exists():
+            data = json.loads(p.read_text(encoding="utf-8"))
+            idx.update({c["src"]: c for lst in data["queries"].values() for c in lst if c.get("src")})
+    p = ROOT / "outputs" / "inspect" / "inspect.json"
+    if p.exists():
+        for c in json.loads(p.read_text(encoding="utf-8")):
+            if c.get("src") and not c.get("error"):
+                idx[c["src"]] = c
+    return idx
 
 
 def _resolve(src: str, cands: dict, brief_dir: pathlib.Path) -> dict:
@@ -270,7 +277,7 @@ def lock(brief: dict) -> dict:
         meta["bytes"] = path.stat().st_size
         meta["duration"] = probe_duration(path)
         meta["lockedAt"] = time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
-        for k in ("query", "views", "downloads", "thumbnail"):
+        for k in ("query", "views", "downloads", "thumbnail", "cacheFile"):
             meta.pop(k, None)
         out[src] = meta
     lock_path.write_text(json.dumps(out, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")

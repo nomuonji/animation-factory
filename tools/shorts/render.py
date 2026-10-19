@@ -108,6 +108,19 @@ class TextCache:
             self.cache[key] = _render_headline(text)
         return self.cache[key]
 
+    def label(self, text: str) -> np.ndarray:
+        key = ("l", text)
+        if key not in self.cache:
+            font = _font(FONT_BOLD, 40)
+            probe = ImageDraw.Draw(Image.new("RGBA", (10, 10)))
+            w = int(probe.textlength(text, font=font)) + 36
+            img = Image.new("RGBA", (W, 72), (0, 0, 0, 0))
+            d = ImageDraw.Draw(img)
+            d.rounded_rectangle((SAFE_LEFT - 18, 4, SAFE_LEFT - 18 + w, 68), radius=12, fill=(0, 0, 0, 150))
+            d.text((SAFE_LEFT, 10), text, font=font, fill=(255, 255, 255))
+            self.cache[key] = np.array(img)
+        return self.cache[key]
+
     def title(self, text: str) -> np.ndarray:
         key = ("t", text)
         if key not in self.cache:
@@ -336,6 +349,15 @@ def _sfx(kind: str) -> np.ndarray:
             y += a * (n[i] - y)
             out[i] = y
         return (out * env * 0.9).astype(np.float32)
+    if kind == "thunder":
+        tt = np.arange(int(2.6 * RATE)) / RATE
+        n = rng.standard_normal(len(tt)).astype(np.float32)
+        brown = np.cumsum(n)
+        brown -= np.convolve(brown, np.ones(2400) / 2400, mode="same")
+        brown /= (np.max(np.abs(brown)) or 1)
+        crack = np.exp(-tt * 9) * rng.standard_normal(len(tt)) * 0.35
+        roll = (0.6 + 0.4 * np.sin(2 * np.pi * 1.7 * tt)) * np.exp(-tt * 1.3)
+        return ((brown * roll + crack) * 0.8).astype(np.float32)
     if kind == "rise":
         f = 220 + 660 * (t / t[-1]) ** 2
         return (0.18 * np.sin(2 * np.pi * np.cumsum(f) / RATE) * (t / t[-1])).astype(np.float32)
@@ -478,6 +500,8 @@ def render(brief_path: str, lock: dict, quick: bool = False) -> dict:
                 if bt.get("overlay"):
                     ov = texts.headline(bt["overlay"])
                     _blend(frame, ov, int(H * HEADLINE_Y))
+                if sh.get("label"):
+                    _blend(frame, texts.label(sh["label"]), 150)
                 if look.get("titleBar"):
                     _blend(frame, texts.title(look["titleBar"]), 40)
                 enc.stdin.write(frame.tobytes())

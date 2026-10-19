@@ -13,7 +13,7 @@ import re
 
 ROLES = {"hook", "setup", "evidence", "turn", "escalation", "payoff", "loop"}
 REACTIONS = {"驚き", "笑い", "気持ちよさ", "謎解き", "共感", "知りたい", "保存したい"}
-SFX = {"none", "whoosh", "hit", "pop", "tick", "rise"}
+SFX = {"none", "whoosh", "hit", "pop", "tick", "rise", "thunder"}
 FRAMES = {"fill", "fit"}
 SRC_RE = re.compile(r"^(pixabay|commons|local):.+$")
 ID_RE = re.compile(r"^[a-z0-9][a-z0-9-]{2,63}$")
