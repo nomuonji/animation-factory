@@ -4,7 +4,7 @@
  *
  * Safe status is persisted for independent GitHub connector readback.
  */
-import {mkdir, writeFile} from 'node:fs/promises';
+import {appendFile, mkdir, writeFile} from 'node:fs/promises';
 
 const output = 'ops/youtube-channel-verification.json';
 const history = ['xeoGIqyAY8I', 'GatfRfzaH3U', 'm_JwNRut4DU'];
@@ -56,11 +56,15 @@ async function check() {
   result.channelTitle = mine.items[0].snippet?.title || null;
   result.historicalVideoMatch = ownVideo.id;
   const expected = process.env.YOUTUBE_CHANNEL_ID?.trim();
-  result.configurationStatus = !expected ? 'channel_id_variable_missing' :
+  result.configurationStatus = !expected ? 'ready_via_historical_upload' :
     (expected === channelId ? 'ready' : 'configured_channel_id_mismatch');
-  if (result.configurationStatus !== 'ready') {
-    result.status = 'needs_configuration';
+  if (result.configurationStatus === 'configured_channel_id_mismatch') {
+    result.status = 'verification_failed';
+    result.reason = 'configured_channel_id_mismatch';
     process.exitCode = 1;
+  } else if (process.env.GITHUB_ENV) {
+    // Checked against the historic Ganbaru channel before exporting.
+    await appendFile(process.env.GITHUB_ENV, 'YOUTUBE_CHANNEL_ID=' + channelId + '\\n');
   }
 }
 try {
