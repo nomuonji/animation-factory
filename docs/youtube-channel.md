@@ -1,19 +1,17 @@
-# Animation Factory — YouTube destination: 今日の頑張り
+# Confirmed publishing channel: 今日の頑張り (2026-10-19)
 
-## Canonical destination (2026-10-19)
+The user transferred the OAuth Secrets to **this repository** and requested end-to-end setup. On 2026-10-19, a live refresh and YouTube lookup **succeeded**: channel title `今日の頑張り`, ID `UCka8SDf1XsNGVccbyLTj8cA`. It was independently matched with historically uploaded video `xeoGIqyAY8I` from the prior Ganbaru repository. The safe result is recorded in [ops/youtube-channel-verification.json](../ops/youtube-channel-verification.json). The uploader **does not require** the optional `YOUTUBE_CHANNEL_ID` repository variable: it derives the expected channel ID from authenticated ownership of historical uploads. If the variable exists and disagrees, verification fails closed.
 
-The user has explicitly selected their previously operated **「今日の頑張り」** YouTube channel for Animation Factory. The binding is tracked in [publishing/destinations.json](../publishing/destinations.json). The publisher is **nomuonji/ganbaru**, *not* Social Video Publisher or Kirinuki Generator.
+## Current destination
 
-This design reuses Ganbaru's existing GitHub Actions OAuth secrets **in place**; no API tokens are copied from one repository to another. Ganbaru's historical channel is identified by matching YouTube `channels.list(mine=true)` with video IDs in its historical `data/video-status.json`. Merely matching the channel name is NOT sufficient.
+- **Source and publisher:** `nomuonji/animation-factory` with this repository's `YOUTUBE_CLIENT_ID`, `YOUTUBE_CLIENT_SECRET`, `YOUTUBE_REFRESH_TOKEN` GitHub Actions Secrets. The old `nomuonji/ganbaru` publishing workflow is superseded; its secrets must not be copied back.
+- **Channel identity:** Live `channels.list(mine=true)`, historical ownership match and optional explicit ID match before upload; the target is always `今日の頑張り`.
+- **Channel check:** [Verify Today's Ganbaru YouTube destination](https://github.com/nomuonji/animation-factory/actions/workflows/verify-ganbaru-channel.yml). It checks auth without uploading and writes an auditable, nonsecret result.
+- **General standard/footage-first productions:** [Animation Factory to Ganbaru (reviewed private video)](https://github.com/nomuonji/animation-factory/actions/workflows/youtube-ganbaru-private.yml). Select a real `productions/<name>` source, format and YouTube audience. Review the actual finished content and rights before ticking confirmation. The selected production is then validated and rendered on GitHub Actions before upload as **private only**.
+- **Market Shorts experiments:** [Market Shorts YouTube channel (manual private-only)](https://github.com/nomuonji/animation-factory/actions/workflows/market-shorts-youtube-private.yml). Uses the same historically verified channel, plus an existing approved preview artifact.
+- **Automatic publishing:** Disabled. No cron, public or unlisted video posting is enabled. The Ganbaru morning/night/summary schedules remain inactive.
 
-**Use** [Ganbaru Actions](https://github.com/nomuonji/ganbaru/actions/workflows/animation-factory-channel.yml):
-- `mode=verify`: checks the existing OAuth refresh token and ownership of the historical channel; uploads nothing. The same verification runs on main when this publishing workflow is initially merged.
-- `mode=upload_private`: opt-in for one reviewed real `productions/<name>/footage-first.json` or `production.json` tracked in Animation Factory main. It checks the OAuth identity, checks source rights through the relevant existing validator, re-renders in the Ganbaru job, and uploads as **private**. No public posting, timer, or indefinite retry is enabled.
-- The old Ganbaru morning/night/summary schedules remain disabled; the history is preserved.
-
-If verification fails, inspect the Ganbaru repository secrets `YOUTUBE_CLIENT_ID`, `YOUTUBE_CLIENT_SECRET` and `YOUTUBE_REFRESH_TOKEN` via the repository settings. Do not paste secrets in chat or copy the refresh token into `animation-factory`. Renew the YouTube OAuth consent *for the historical channel* if necessary. Never use Kirinuki's watched-source IDs.
-
-The older direct Animation Factory private uploader below is retained for compatibility but **not selected as the publishing destination**.
+Do not rerun an upload after an uncertain response without checking YouTube Studio; the action records `upload_unknown` to prevent casual duplicate posting. GitHub workflow logs and public repo files must never contain OAuth tokens or upload session URLs. The account and old channel are confirmed, but **no new video has been uploaded as part of the connection-only verification**.
 
 ---
 
