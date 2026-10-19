@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "youtube": {
+    "defaultDestination": "ganbaru",
+    "destinations": {
+      "ganbaru": {
+        "channelName": "今日の頑張り",
+        "publisherRepository": "nomuonji/ganbaru",
+        "sourceRepository": "nomuonji/animation-factory",
+        "uploadWorkflow": ".github/workflows/animation-factory-channel.yml",
+        "credentialAuthority": "GitHub Actions secrets belonging to nomuonji/ganbaru; do not copy or echo them",
+        "channelIdentity": "verify owned channel against historical video IDs in Ganbaru's data/video-status.json",
+        "identityStatus": "pending-live-oauth-verification",
+        "allowedUploadPrivacy": "private",
+        "autoPublishEnabled": false,
+        "publicPublicationEnabled": false,
+        "legacyGanbaruSchedule": "disabled",
+        "notes": "Render from Animation Factory main within the Ganbaru runner; OAuth identity is verified before every private upload. Do not use Kirinuki source IDs."
+      }
+    }
+  }
+}
