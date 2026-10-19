@@ -64,7 +64,7 @@ async function check() {
     process.exitCode = 1;
   } else if (process.env.GITHUB_ENV) {
     // Checked against the historic Ganbaru channel before exporting.
-    await appendFile(process.env.GITHUB_ENV, 'YOUTUBE_CHANNEL_ID=' + channelId + '\\n');
+    await appendFile(process.env.GITHUB_ENV, 'YOUTUBE_CHANNEL_ID=' + channelId + '\n');
   }
 }
 try {
