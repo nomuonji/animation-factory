@@ -255,14 +255,14 @@ def _rich_line(draw, x, y, line, font, emphasis, stroke):
 
 def _render_bilingual(en: str, ja: str, emphasis: list[str]) -> np.ndarray:
     """Original English line (large) with a small Japanese gloss under it."""
-    size = 84 if len(en) <= 22 else 70 if len(en) <= 34 else 60
+    size = 88 if len(en) <= 22 else 78 if len(en) <= 34 else 70
     font = _font(FONT_BLACK, size)
-    jfont = _font(FONT_BOLD, 50)
+    jfont = _font(FONT_BOLD, 54)
     probe = ImageDraw.Draw(Image.new("RGBA", (10, 10)))
     lines = _wrap_words(en, font, SAFE_RIGHT - SAFE_LEFT, probe)
     jlines = _wrap(ja, jfont, SAFE_RIGHT - SAFE_LEFT, probe) if ja else []
     stroke = max(7, size // 10)
-    lh, jlh = int(size * 1.18), 64
+    lh, jlh = int(size * 1.16), 68
     hgt = lh * len(lines) + jlh * len(jlines) + stroke * 2 + 34
     img = Image.new("RGBA", (W, hgt), (0, 0, 0, 0))
     d = ImageDraw.Draw(img)

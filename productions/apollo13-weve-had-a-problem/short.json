@@ -51,11 +51,22 @@
     {
       "id": "hook",
       "role": "hook",
-      "overlay": "Houston,\nwe have a problem.",
+      "overlay": "Houston,\nwe have a problem.\n← 実は誰も言ってない",
       "say": "有名なこのセリフ、／実は誰も言っていません。",
-      "emphasis": ["誰も言っていません"],
+      "emphasis": [
+        "誰も言っていません"
+      ],
       "shots": [
-        {"src": "commons:Mission Control Center (MCC) View - Apollo 13 Oxygen Cell Failure - MSC (S70-35012).jpg", "in": 0, "freeze": true, "zoom": [1.0, 1.08], "label": "事故当時の管制室（NASA, 1970）"}
+        {
+          "src": "commons:Mission Control Center (MCC) View - Apollo 13 Oxygen Cell Failure - MSC (S70-35012).jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.15,
+            1.25
+          ],
+          "label": "事故当時の管制室（NASA, 1970）"
+        }
       ],
       "sfx": "whoosh",
       "why": "0秒で有名な英語と、それを否定する一言。画面は事故当夜の本物の管制室"
@@ -64,9 +75,39 @@
       "id": "setup",
       "role": "setup",
       "say": "1970年、アポロ13号。／月へ向かう途中、／船内に大きな音が響きました。",
-      "emphasis": ["大きな音"],
+      "emphasis": [
+        "大きな音"
+      ],
       "shots": [
-        {"src": "commons:Apollo 13 Crew before launch - S70-34767.jpg", "in": 0, "freeze": true, "zoom": [1.0, 1.1], "label": "アポロ13号の乗組員（NASA）"}
+        {
+          "src": "commons:The Actual Apollo 13 Prime Crew - GPN-2000-001167.jpg",
+          "in": 0,
+          "freeze": true,
+          "frame": "fill",
+          "focus": [
+            0.5,
+            0.62
+          ],
+          "zoom": [
+            1.0,
+            1.1
+          ],
+          "label": "アポロ13号の乗組員（NASA）"
+        },
+        {
+          "src": "commons:1970 Mission Control Apollo 13.jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.2,
+            1.32
+          ],
+          "focus": [
+            0.55,
+            0.5
+          ],
+          "label": "アポロ13号の管制室（NASA, 1970）"
+        }
       ],
       "sfx": "hit",
       "why": "誰が、どんな状況で言ったのか。この直後に本物の声が来る前振り"
@@ -74,18 +115,40 @@
     {
       "id": "real-call",
       "role": "turn",
-      "emphasis": ["we've had", "Say again"],
+      "emphasis": [
+        "we've had",
+        "Say again"
+      ],
       "clip": {
         "src": "commons:Apollo13-wehaveaproblem.ogg",
         "in": 1.6,
         "out": 6.6,
         "lines": [
-          {"at": 0.22, "to": 2.75, "en": "Okay, Houston, we've had a problem here.", "ja": "ヒューストン、問題が起きた"},
-          {"at": 2.8, "to": 5.0, "en": "This is Houston. Say again, please.", "ja": "こちらヒューストン、もう一度どうぞ"}
+          {
+            "at": 0.22,
+            "to": 2.75,
+            "en": "Okay, Houston, we've had a problem here.",
+            "ja": "ヒューストン、問題が起きた"
+          },
+          {
+            "at": 2.8,
+            "to": 5.0,
+            "en": "This is Houston. Say again, please.",
+            "ja": "こちらヒューストン、もう一度どうぞ"
+          }
         ]
       },
       "shots": [
-        {"src": "commons:View of Mission Control Center during the Apollo 13 oxygen cell failure.jpg", "in": 0, "freeze": true, "zoom": [1.04, 1.14], "label": "実際の交信音声（NASA, 1970年4月13日）"}
+        {
+          "src": "commons:View of Mission Control Center during the Apollo 13 oxygen cell failure.jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.15,
+            1.3
+          ],
+          "label": "実際の交信音声（NASA, 1970年4月13日）"
+        }
       ],
       "why": "思い込みを本物の声で覆す。have ではなく we've had と聞こえる"
     },
@@ -94,9 +157,35 @@
       "role": "evidence",
       "say": "言ったのは、ウィーブ・ハッド。／いま問題を抱えている、ではなく、／たった今、問題が起きた。／事故の直後の報告です。",
       "caption": "言ったのは “we've had”／「いま問題を抱えている」ではなく／「たった今、問題が起きた」／事故の直後の報告です",
-      "emphasis": ["we've had", "たった今、問題が起きた"],
+      "emphasis": [
+        "we've had",
+        "たった今、問題が起きた"
+      ],
       "shots": [
-        {"src": "commons:Apollo 13 - Mission Control Console (S70-35096).jpg", "in": 0, "freeze": true, "zoom": [1.0, 1.1], "label": "管制室のコンソール（NASA）"}
+        {
+          "src": "commons:Apollo 13 - Mission Control Console (S70-35096).jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.15,
+            1.28
+          ],
+          "label": "管制室のコンソール（NASA）"
+        },
+        {
+          "src": "commons:Mission Operations Control Room during Apollo 13.jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.2,
+            1.35
+          ],
+          "focus": [
+            0.6,
+            0.5
+          ],
+          "label": "アポロ13号の管制室（NASA, 1970）"
+        }
       ],
       "sfx": "pop",
       "why": "なぜ現在完了なのかを一つだけ。次に船長が同じ形でもう一度言うのを聞かせる"
@@ -104,18 +193,40 @@
     {
       "id": "lovell-repeats",
       "role": "escalation",
-      "emphasis": ["we've had", "We've had"],
+      "emphasis": [
+        "we've had",
+        "We've had"
+      ],
       "clip": {
         "src": "commons:Apollo13-wehaveaproblem.ogg",
         "in": 6.85,
         "out": 12.0,
         "lines": [
-          {"at": 0.15, "to": 2.3, "en": "Houston, we've had a problem.", "ja": "ヒューストン、問題が起きた"},
-          {"at": 2.7, "to": 5.15, "en": "We've had a MAIN B BUS UNDERVOLT.", "ja": "メインBの電圧が下がった"}
+          {
+            "at": 0.15,
+            "to": 2.3,
+            "en": "Houston, we've had a problem.",
+            "ja": "ヒューストン、問題が起きた"
+          },
+          {
+            "at": 2.7,
+            "to": 5.15,
+            "en": "We've had a MAIN B BUS UNDERVOLT.",
+            "ja": "メインBの電圧が下がった"
+          }
         ]
       },
       "shots": [
-        {"src": "commons:James Lovell apollo 13.jpg", "in": 0, "freeze": true, "zoom": [1.0, 1.1], "label": "船長ジム・ラヴェル（実際の音声）"}
+        {
+          "src": "commons:Apollo 13 Crew before launch - S70-34767.jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.2,
+            1.35
+          ],
+          "label": "船長ジム・ラヴェルの実際の音声（NASA）"
+        }
       ],
       "why": "同じ形を船長が繰り返し、続けて何が起きたかを報告する。耳が we've had を二度目で拾える"
     },
@@ -124,9 +235,26 @@
       "role": "payoff",
       "say": "このとき、機械船の側面は吹き飛んでいました。／起きた直後の報告は、ウィーブ・ハッド・ア・プロブレム。／聞き返すなら、セイ・アゲイン・プリーズ。",
       "caption": "このとき、機械船の側面は吹き飛んでいた／起きた直後の報告は “We've had a problem.”／聞き返すなら “Say again, please.”",
-      "emphasis": ["We've had a problem.", "Say again, please."],
+      "emphasis": [
+        "We've had a problem.",
+        "Say again, please."
+      ],
       "shots": [
-        {"src": "commons:View of damaged Apollo 13 Service Module from the Lunar-Command Modules (as13-59-8500).jpg", "in": 0, "freeze": true, "zoom": [1.0, 1.16], "label": "切り離した機械船。側面パネルが吹き飛んでいる（NASA）"}
+        {
+          "src": "commons:Apollo 13 SM.jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.25,
+            2.1
+          ],
+          "focus": [
+            0.62,
+            0.45
+          ],
+          "motionJustified": true,
+          "label": "切り離した機械船。側面パネルが吹き飛んでいる（NASA）"
+        }
       ],
       "hold": 0.8,
       "why": "冒頭の有名なセリフの裏にあった本物の事故の画で、学んだ2つの英語を回収する"
