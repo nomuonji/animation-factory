@@ -50,7 +50,7 @@ async function currentChannel(accessToken) {
 async function main() {
   if (process.env.MARKET_SHORTS_UPLOAD_MODE!=='private_only')
     throw new Error('Upload locked: MARKET_SHORTS_UPLOAD_MODE must be private_only');
-  const file=flag('--mp4'),experiment=flag('--experiment'),receiptFile=flag('--receipt');
+  const file=flag('--mp4'),experiment=flag('--experiment'),receiptFile=flag('--receipt'),descFile=flag('--description');
   if (!file || !experiment || !receiptFile) throw new Error('Require --mp4, --experiment, --receipt');
   const mp4=resolve(file), record=JSON.parse(await readFile(resolve(experiment),'utf8'));
   if (record.demoOnly) throw new Error('Synthetic fixtures are never uploadable');
@@ -63,6 +63,9 @@ async function main() {
   const receipt=resolve(receiptFile);
   try {await stat(receipt);throw new Error('Receipt already exists; reconcile the previous attempt first');}
   catch (e) {if (e.code!=='ENOENT') throw e;}
+  // Credits for CC BY / CC BY-SA footage must reach the public description, so a
+  // generated description file (with credits) replaces the fixed text when given.
+  const description=descFile ? (await readFile(resolve(descFile),'utf8')).slice(0,4900) : '';
   const size=(await stat(mp4)).size;
   if (!(size>0)) throw new Error('Empty video');
   const accessToken=await token();
@@ -70,8 +73,8 @@ async function main() {
   const metadata={
     snippet:{
       title:String(record.title || record.sourceIdeaId).slice(0,100),
-      description:'市場テーマの検証動画。VOICEVOX Nemo\nsourceIdeaId: '+record.sourceIdeaId+
-        '\nvariant: '+String(record.experimentVariant || 'baseline'),
+      description:description || ('市場テーマの検証動画。VOICEVOX Nemo\nsourceIdeaId: '+record.sourceIdeaId+
+        '\nvariant: '+String(record.experimentVariant || 'baseline')),
       categoryId:'22',defaultLanguage:'ja'
     },
     status:{privacyStatus:'private',selfDeclaredMadeForKids:process.env.YOUTUBE_MADE_FOR_KIDS==='true'}
