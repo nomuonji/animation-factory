@@ -61,8 +61,8 @@
   },
   "recapLead": "ハラハラしながら待つ時は、この一言。",
   "scenes": {
-    "hook": "smartphone",
-    "answer": "laptop-watch",
+    "hook": "phone-call",
+    "answer": "thinking",
     "meaning": "desk-flatlay"
   },
   "sources": [

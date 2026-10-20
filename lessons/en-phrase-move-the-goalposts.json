@@ -42,7 +42,7 @@
     },
     {
       "intro": "交渉の場面なら",
-      "scene": "office-clocks",
+      "scene": "meeting",
       "en": [
         "They moved the goalposts at the last minute."
       ],
@@ -65,9 +65,9 @@
   },
   "recapLead": "後から条件を変えられたら、この一言。",
   "scenes": {
-    "hook": "office-desk",
-    "answer": "desk-flatlay",
-    "meaning": "classroom"
+    "hook": "meeting",
+    "answer": "frustrated",
+    "meaning": "meeting"
   },
   "sources": [
     "https://dictionary.cambridge.org/dictionary/english/move-the-goalposts"

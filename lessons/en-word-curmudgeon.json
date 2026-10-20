@@ -25,7 +25,7 @@
   "examples": [
     {
       "intro": "家族のことを話すなら",
-      "scene": "living-room",
+      "scene": "elderly",
       "en": [
         "My grandfather is a lovable old curmudgeon."
       ],
@@ -70,8 +70,8 @@
     "answerJa": "あの人は本当に気難しい"
   },
   "scenes": {
-    "hook": "living-room",
-    "meaning": "office-desk"
+    "hook": "elderly",
+    "meaning": "frustrated"
   },
   "sources": [
     "https://dictionary.cambridge.org/dictionary/english/curmudgeon"

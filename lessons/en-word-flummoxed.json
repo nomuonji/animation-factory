@@ -70,8 +70,8 @@
     "answerJa": "説明書を読んでも、お手上げだった"
   },
   "scenes": {
-    "hook": "laptop-watch",
-    "meaning": "desk-flatlay"
+    "hook": "thinking",
+    "meaning": "frustrated"
   },
   "sources": [
     "https://dictionary.cambridge.org/dictionary/english/flummoxed"

@@ -51,12 +51,12 @@
       "why": "誰にでもある場面と問いを0秒で出す",
       "shots": [
         {
-          "src": "commons:Black smartphone in hand (Unsplash).jpg",
-          "in": 0,
-          "freeze": true,
+          "src": "pixabay:227112",
+          "in": 1.0,
+          "loop": true,
           "zoom": [
-            1.05,
-            1.11
+            1.12,
+            1.18
           ],
           "frame": "fit"
         }
@@ -75,18 +75,14 @@
       "why": "すぐ答えに入る",
       "shots": [
         {
-          "src": "commons:Woman using laptop and checking watch while sitting in living room.jpg",
-          "in": 0,
-          "freeze": true,
+          "src": "pixabay:203252",
+          "in": 0.8,
+          "loop": true,
           "zoom": [
-            1.15,
-            1.18
+            1.12,
+            1.15
           ],
-          "frame": "fit",
-          "focus": [
-            0.55,
-            0.5
-          ]
+          "frame": "fit"
         }
       ],
       "sfx": "pop",
@@ -98,18 +94,14 @@
       "why": "答えの英語（普通の速さ）",
       "shots": [
         {
-          "src": "commons:Woman using laptop and checking watch while sitting in living room.jpg",
-          "in": 0,
-          "freeze": true,
+          "src": "pixabay:203252",
+          "in": 4.8,
+          "loop": true,
           "zoom": [
-            1.18,
-            1.24
+            1.15,
+            1.21
           ],
-          "frame": "fit",
-          "focus": [
-            0.55,
-            0.5
-          ]
+          "frame": "fit"
         }
       ],
       "emphasis": [
@@ -131,18 +123,14 @@
       "why": "ゆっくり版の前振り",
       "shots": [
         {
-          "src": "commons:Woman using laptop and checking watch while sitting in living room.jpg",
-          "in": 0,
-          "freeze": true,
+          "src": "pixabay:203252",
+          "in": 1.8,
+          "loop": true,
           "zoom": [
-            1.24,
-            1.27
+            1.21,
+            1.24
           ],
-          "frame": "fit",
-          "focus": [
-            0.55,
-            0.5
-          ]
+          "frame": "fit"
         }
       ],
       "say": "もう一度、ゆっくり。"
@@ -153,18 +141,14 @@
       "why": "同じ英語をゆっくり（2回目）",
       "shots": [
         {
-          "src": "commons:Woman using laptop and checking watch while sitting in living room.jpg",
-          "in": 0,
-          "freeze": true,
+          "src": "pixabay:203252",
+          "in": 5.8,
+          "loop": true,
           "zoom": [
-            1.27,
-            1.33
+            1.24,
+            1.3
           ],
-          "frame": "fit",
-          "focus": [
-            0.55,
-            0.5
-          ]
+          "frame": "fit"
         }
       ],
       "emphasis": [
@@ -186,12 +170,12 @@
       "why": "意味を一つだけ",
       "shots": [
         {
-          "src": "commons:Books, pencils, laptop, and iphone on a desk (Unsplash).jpg",
-          "in": 0,
-          "freeze": true,
+          "src": "pixabay:1656",
+          "in": 1.0,
+          "loop": true,
           "zoom": [
-            1.05,
-            1.17
+            1.12,
+            1.24
           ],
           "frame": "fit"
         }
@@ -269,12 +253,12 @@
       "why": "例文の場面を一言で",
       "shots": [
         {
-          "src": "commons:Warm cup of coffee on a table at a cafe.jpg",
-          "in": 0,
-          "freeze": true,
+          "src": "pixabay:201947",
+          "in": 1.0,
+          "loop": true,
           "zoom": [
-            1.05,
-            1.11
+            1.12,
+            1.18
           ],
           "frame": "fit"
         }
@@ -287,12 +271,12 @@
       "why": "例文を英語で聞く",
       "shots": [
         {
-          "src": "commons:Warm cup of coffee on a table at a cafe.jpg",
-          "in": 0,
-          "freeze": true,
+          "src": "pixabay:201947",
+          "in": 5.0,
+          "loop": true,
           "zoom": [
-            1.11,
-            1.17
+            1.18,
+            1.24
           ],
           "frame": "fit"
         }
@@ -321,12 +305,12 @@
       "why": "自分で言う時間（考える間）",
       "shots": [
         {
-          "src": "commons:Black smartphone in hand (Unsplash).jpg",
-          "in": 0,
-          "freeze": true,
+          "src": "pixabay:183448",
+          "in": 1.0,
+          "loop": true,
           "zoom": [
-            1.11,
-            1.17
+            1.12,
+            1.18
           ],
           "frame": "fit"
         }
@@ -345,12 +329,12 @@
       "why": "答え合わせ",
       "shots": [
         {
-          "src": "commons:Black smartphone in hand (Unsplash).jpg",
-          "in": 0,
-          "freeze": true,
+          "src": "pixabay:183448",
+          "in": 5.0,
+          "loop": true,
           "zoom": [
-            1.17,
-            1.23
+            1.18,
+            1.24
           ],
           "frame": "fit"
         }
@@ -374,12 +358,12 @@
       "why": "冒頭の問いに戻って答えを言い切る",
       "shots": [
         {
-          "src": "commons:Black smartphone in hand (Unsplash).jpg",
-          "in": 0,
-          "freeze": true,
+          "src": "pixabay:227112",
+          "in": 5.0,
+          "loop": true,
           "zoom": [
-            1.23,
-            1.26
+            1.18,
+            1.21
           ],
           "frame": "fit"
         }
@@ -394,12 +378,12 @@
       "why": "最後にもう一度英語を聞いて終わる",
       "shots": [
         {
-          "src": "commons:Black smartphone in hand (Unsplash).jpg",
-          "in": 0,
-          "freeze": true,
+          "src": "pixabay:227112",
+          "in": 9.0,
+          "loop": true,
           "zoom": [
-            1.26,
-            1.29
+            1.21,
+            1.24
           ],
           "frame": "fit"
         }

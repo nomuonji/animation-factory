@@ -92,7 +92,7 @@ def build_timeline(b: dict, lock: dict | None) -> dict:
                 meta = lock.get(s["src"])
                 if not meta:
                     raise B.BriefError(f"{bt['id']}: {s['src']} not in sources.lock.json")
-                if meta.get("duration") and need > meta["duration"] + 0.05 and not s.get("freeze"):
+                if meta.get("duration") and need > meta["duration"] + 0.05 and not s.get("freeze") and not s.get("loop"):
                     raise B.BriefError(
                         f"{bt['id']}: shot needs footage until {need:.2f}s but {s['src']} is "
                         f"{meta['duration']:.2f}s. Lower `in`, add a shot or set speed.")
@@ -395,7 +395,7 @@ def _blend(frame: np.ndarray, ov: np.ndarray, y: int, scale: float = 1.0) -> Non
 
 # ---------------------------------------------------------------- footage decode
 
-def _segment_frames(path: pathlib.Path, start: float, n: int, speed: float, freeze: bool):
+def _segment_frames(path: pathlib.Path, start: float, n: int, speed: float, freeze: bool, loop: bool = False):
     """Yield n RGB frames (source resolution) starting at `start`, at FPS, time-scaled."""
     src_len = n / FPS * speed + 0.5
     vf = f"setpts=PTS/{speed},fps={FPS}" if speed != 1 else f"fps={FPS}"
@@ -407,7 +407,8 @@ def _segment_frames(path: pathlib.Path, start: float, n: int, speed: float, free
     # cap decode size for speed
     scale = min(1.0, 2200 / max(sw, sh))
     dw, dh = int(sw * scale) // 2 * 2, int(sh * scale) // 2 * 2
-    cmd = ["ffmpeg", "-v", "error", "-ss", f"{start:.3f}", "-t", f"{src_len:.3f}", "-i", str(path),
+    cmd = ["ffmpeg", "-v", "error", *(["-stream_loop", "-1"] if loop else []), "-ss", f"{start:.3f}",
+           "-t", f"{src_len:.3f}", "-i", str(path),
            "-an", "-vf", f"{vf},scale={dw}:{dh}:flags=bicubic", "-pix_fmt", "rgb24", "-f", "rawvideo", "-"]
     p = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.DEVNULL)
     size = dw * dh * 3
@@ -614,7 +615,8 @@ def render(brief_path: str, lock: dict, quick: bool = False) -> dict:
             focus = sh.get("focus", [0.5, 0.5])
             mode = sh.get("frame", frame_mode)
             for k, src in enumerate(_segment_frames(path, float(sh.get("in", 0)), n,
-                                                    float(sh.get("speed", 1)), bool(sh.get("freeze")))):
+                                                    float(sh.get("speed", 1)), bool(sh.get("freeze")),
+                                                    bool(sh.get("loop")))):
                 p = k / max(1, n - 1)
                 ease = p * p * (3 - 2 * p)
                 zoom = z0 + (z1 - z0) * ease

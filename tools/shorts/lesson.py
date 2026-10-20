@@ -20,6 +20,7 @@ Scenes come from catalog/lesson-scenes.json (vetted, licensed stills, by tag).
 """
 from __future__ import annotations
 
+import hashlib
 import json
 import pathlib
 import re
@@ -60,12 +61,28 @@ def _narr(items) -> dict:
 
 
 class _Shots:
-    """Assigns a scene still to each beat and keeps the push-in continuous within a scene."""
+    """Picks a scene for each beat from catalog/lesson-scenes.json.
+
+    A tag may hold several variants (stills or short videos). Each lesson gets one
+    variant per tag, chosen from its id, so different lessons look different while a
+    lesson stays consistent. Stills get a continuous slow push-in; videos advance their
+    start point between beats and loop if a beat is longer than the clip.
+    """
 
     def __init__(self, spec: dict):
         self.pool = _scenes()
         self.spec = spec
         self.zoom: dict[str, float] = {}
+        self.cursor: dict[str, float] = {}
+
+    def _variant(self, tag: str) -> dict:
+        v = self.pool[tag]
+        variants = v if isinstance(v, list) else [v]
+        pref = self.spec.get("sceneVariant", {}).get(tag)
+        if pref is not None:
+            return variants[int(pref) % len(variants)]
+        h = int(hashlib.sha1(f"{self.spec['id']}:{tag}".encode()).hexdigest(), 16)
+        return variants[h % len(variants)]
 
     def __call__(self, tag: str, step: float = 0.06) -> list[dict]:
         scenes = self.spec.get("scenes", {})
@@ -74,11 +91,17 @@ class _Shots:
         tag = scenes.get(tag, tag)
         if tag not in self.pool:
             raise LessonError(f"scene '{tag}' is not in catalog/lesson-scenes.json")
-        sc = self.pool[tag]
+        sc = self._variant(tag)
         z0 = self.zoom.get(tag, float(sc.get("zoom", 1.04)))
         z1 = min(2.4, z0 + step)
         self.zoom[tag] = z1
-        shot = {"src": sc["src"], "in": 0, "freeze": True, "zoom": [round(z0, 3), round(z1, 3)]}
+        if sc.get("kind") == "video":
+            dur = float(sc.get("duration") or 10)
+            start = self.cursor.get(tag, float(sc.get("in", min(1.0, dur * 0.1))))
+            self.cursor[tag] = (start + 4.0) % max(1.0, dur - 1.0)
+            shot = {"src": sc["src"], "in": round(start, 2), "loop": True, "zoom": [round(z0, 3), round(z1, 3)]}
+        else:
+            shot = {"src": sc["src"], "in": 0, "freeze": True, "zoom": [round(z0, 3), round(z1, 3)]}
         for k in ("frame", "focus"):
             if k in sc:
                 shot[k] = sc[k]
