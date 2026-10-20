@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "id": "replace-me",
+  "title": "Replace with the film title",
+  "audience": "Who watches and what they want to understand",
+  "question": "The concrete question the opening demonstrates",
+  "payoff": "What the ending actually shows or resolves",
+  "voice": {"engine": "voicevox", "speaker": "青山龍星", "style": "ノーマル", "speed": 1.08},
+  "music": {},
+  "descriptionLines": [],
+  "chapters": [
+    {"id": "opening", "title": "問いと現物", "purpose": "まず何を見る動画かを現物で示す",
+      "beats": [{"id": "opening-shot", "why": "見るべき現象と問いを提示する", "say": "ここに語りを入れる",
+        "shots": [{"src": "local:replace-with-owned-footage.mp4", "in": 0, "frame": "fit"}]}]},
+    {"id": "investigation", "title": "観察と展開", "purpose": "新しい証拠で最初の理解を更新する",
+      "beats": [{"id": "evidence", "why": "前章から新しく分かることを具体化する", "say": "現物の変化と対応する説明を入れる",
+        "shots": [{"src": "local:replace-with-owned-footage.mp4", "in": 10, "frame": "fit"}]}]},
+    {"id": "resolution", "title": "回収", "purpose": "最初の問いを映像で回収する",
+      "beats": [{"id": "answer", "why": "冒頭の約束を実際の映像で回収する", "say": "最初の問いに答えて終える",
+        "shots": [{"src": "local:replace-with-owned-footage.mp4", "in": 20, "frame": "fit"}]}]}
+  ]
+}

@@ -1,0 +1,117 @@
+name: Long-form production
+on:
+  pull_request:
+    paths:
+      - 'tools/longform/**'
+      - 'tools/shorts/**'
+      - 'templates/longform.json'
+      - 'productions/**/longform.json'
+      - 'productions/**/sources.lock.json'
+      - '.github/workflows/longform.yml'
+  workflow_dispatch:
+    inputs:
+      production:
+        description: Folder under productions/
+        required: true
+        type: string
+      profile:
+        description: Draft for editing; final for 1080p delivery
+        default: draft
+        type: choice
+        options: [draft, final]
+permissions:
+  contents: read
+concurrency:
+  group: longform-${{ github.event.inputs.production || github.ref }}
+  cancel-in-progress: false
+jobs:
+  verify:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Media dependencies
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg fonts-noto-cjk
+          pip install numpy pillow opencv-python-headless
+      - name: Start VOICEVOX
+        run: |
+          docker run -d --rm -p 127.0.0.1:50021:50021 voicevox/voicevox_engine:cpu-latest
+          for i in $(seq 1 120); do curl -fsS http://127.0.0.1:50021/version && exit 0; sleep 2; done
+          exit 1
+      - name: Join a 186-second film and verify resumability and speech
+        env:
+          LONGFORM_TEST_VOICE: '1'
+        run: python tools/longform/smoke_test.py --long
+      - name: Reviewable codec probe (synthetic; never publish)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: longform-integration-${{ github.run_id }}
+          path: outputs/longform/longform-smoke/draft/
+          retention-days: 14
+  render:
+    if: github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 180
+    env:
+      PRODUCTION: ${{ inputs.production }}
+      PROFILE: ${{ inputs.profile }}
+      PIXABAY_API_KEY: ${{ secrets.PIXABAY_API_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate production ID
+        shell: bash
+        run: |
+          [[ "$PRODUCTION" =~ ^[a-z0-9][a-z0-9-]{0,63}$ ]] || exit 2
+          test -f "productions/$PRODUCTION/longform.json"
+      - name: Media dependencies
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg fonts-noto-cjk
+          pip install numpy pillow opencv-python-headless kokoro-onnx==0.6.1 soundfile==0.14.0
+      - name: Restore chapter and speech cache
+        uses: actions/cache/restore@v4
+        with:
+          path: |
+            outputs/longform
+            outputs/shorts-voice
+            outputs/shorts-sources
+          key: longform-${{ runner.os }}-${{ inputs.production }}-${{ inputs.profile }}-${{ github.sha }}-${{ github.run_id }}
+          restore-keys: |
+            longform-${{ runner.os }}-${{ inputs.production }}-${{ inputs.profile }}-
+      - name: Start VOICEVOX
+        run: |
+          docker run -d --rm -p 127.0.0.1:50021:50021 voicevox/voicevox_engine:cpu-latest
+          for i in $(seq 1 120); do curl -fsS http://127.0.0.1:50021/version && exit 0; sleep 2; done
+          exit 1
+      - name: Check, lock and render chapters
+        run: |
+          python tools/longform/longform.py check "productions/$PRODUCTION/longform.json"
+          python tools/longform/longform.py lock "productions/$PRODUCTION/longform.json"
+          python tools/longform/longform.py render "productions/$PRODUCTION/longform.json" --profile "$PROFILE"
+      - name: Save resumable chapter cache even after a failed render
+        if: always()
+        uses: actions/cache/save@v4
+        with:
+          path: |
+            outputs/longform
+            outputs/shorts-voice
+            outputs/shorts-sources
+          key: longform-${{ runner.os }}-${{ inputs.production }}-${{ inputs.profile }}-${{ github.sha }}-${{ github.run_id }}
+      - name: Save intermediate chapters even if a later chapter fails
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: longform-${{ inputs.production }}-${{ inputs.profile }}-${{ github.run_id }}
+          path: outputs/longform/${{ inputs.production }}/${{ inputs.profile }}/
+          if-no-files-found: warn
+          retention-days: 30
