@@ -346,6 +346,11 @@ def _render_headline(text: str) -> np.ndarray:
     lines = text.split("\n")
     size = 104 if max(len(x) for x in lines) <= 8 else 88
     font = _font(FONT_BLACK, size)
+    probe = ImageDraw.Draw(Image.new("RGBA", (10, 10)))
+    # Shrink until the widest line (plus its red box padding) fits the safe area.
+    while size > 48 and max(probe.textlength(x, font=font) for x in lines) + 44 > SAFE_RIGHT - SAFE_LEFT + 60:
+        size -= 4
+        font = _font(FONT_BLACK, size)
     lh = int(size * 1.2)
     pad = 26
     img = Image.new("RGBA", (W, lh * len(lines) + pad * 2), (0, 0, 0, 0))

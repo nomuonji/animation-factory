@@ -83,5 +83,6 @@
   "sources": [
     "https://dictionary.cambridge.org/dictionary/english/disinterested",
     "https://dictionary.cambridge.org/dictionary/english/uninterested"
-  ]
+  ],
+  "overlayY": 0.4
 }
