@@ -13,6 +13,7 @@ import longform as L
 def main():
     duration = 62 if '--long' in sys.argv else 3
     root = L.ROOT / 'outputs' / 'longform-fixture'
+    shutil.rmtree(root, ignore_errors=True)
     root.mkdir(parents=True, exist_ok=True)
     source = root / 'owned.mp4'
     subprocess.run(['ffmpeg', '-v', 'error', '-y', '-f', 'lavfi', '-i',
