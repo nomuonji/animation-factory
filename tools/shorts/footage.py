@@ -230,6 +230,17 @@ def _candidate_index(d: pathlib.Path) -> dict:
         if p.exists():
             data = json.loads(p.read_text(encoding="utf-8"))
             idx.update({c["src"]: c for lst in data["queries"].values() for c in lst if c.get("src")})
+    # Vetted lesson scenes carry their own download metadata, so a lesson renders
+    # without a Pixabay API key (e.g. in the publishing repository).
+    scenes = ROOT / "catalog" / "lesson-scenes.json"
+    if scenes.exists():
+        for vs in json.loads(scenes.read_text(encoding="utf-8"))["scenes"].values():
+            for v in (vs if isinstance(vs, list) else [vs]):
+                if v.get("downloadUrl") and v["src"].startswith("pixabay:"):
+                    idx.setdefault(v["src"], {"src": v["src"], "provider": "pixabay", "pageUrl": v.get("pageUrl"),
+                                              "author": v.get("author"), "width": v.get("width"),
+                                              "height": v.get("height"), "duration": v.get("duration"),
+                                              "downloadUrl": v["downloadUrl"], **PIXABAY_LICENSE})
     p = ROOT / "outputs" / "inspect" / "inspect.json"
     if p.exists():
         for c in json.loads(p.read_text(encoding="utf-8")):
