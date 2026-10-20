@@ -29,18 +29,14 @@ jobs:
       YOUTUBE_CLIENT_SECRET: ${{ secrets.YOUTUBE_CLIENT_SECRET }}
       YOUTUBE_REFRESH_TOKEN: ${{ secrets.YOUTUBE_REFRESH_TOKEN }}
       PRODUCTION: ${{ inputs.production }}
-      FILM_URL: ${{ inputs.download_url }}
       FILM_SHA: ${{ inputs.sha256 }}
+      YOUTUBE_CHANNEL_ID: UCka8SDf1XsNGVccbyLTj8cA
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
       - run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
-      - name: Mask temporary download URL
-        run: echo "::add-mask::$FILM_URL"
-      - name: Verify existing channel ownership
-        run: node tools/verify-ganbaru-channel.mjs
       - name: Upload exact approved MP4 and verify public visibility
         run: node tools/longform/publish.mjs
       - uses: actions/upload-artifact@v4
