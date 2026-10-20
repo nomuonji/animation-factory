@@ -37,7 +37,7 @@
   "examples": [
     {
       "intro": "一日中働いた後に",
-      "scene": "living-room",
+      "scene": "laptop-watch",
       "en": [
         "I'm exhausted.",
         "I worked all day."
@@ -59,7 +59,7 @@
     }
   ],
   "quiz": {
-    "scene": "city-night",
+    "scene": "street-waiting",
     "prompt": [
       "マラソンの後、くたくただった",
       "英語で言ってみて"
@@ -72,9 +72,9 @@
   },
   "recapSay": "すごく疲れた、をもっと強く言うなら、",
   "scenes": {
-    "hook": "living-room",
-    "answer": "living-room",
-    "meaning": "stretch-desk"
+    "hook": "stretch-desk",
+    "answer": "stretch-desk",
+    "meaning": "living-room"
   },
   "sources": [
     "https://dictionary.cambridge.org/dictionary/english/exhausted"

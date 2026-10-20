@@ -90,8 +90,6 @@
           ]
         }
       ],
-      "overlay": "meticulous",
-      "overlayY": 0.4,
       "emphasis": [
         "meticulous"
       ],
@@ -125,8 +123,6 @@
           ]
         }
       ],
-      "overlay": "meticulous",
-      "overlayY": 0.4,
       "emphasis": [
         "meticulous"
       ],

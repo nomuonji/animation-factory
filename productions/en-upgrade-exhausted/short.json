@@ -51,14 +51,18 @@
       "why": "いつもの言い方を0秒で出す",
       "shots": [
         {
-          "src": "commons:Cozy living room with a gray sofa.jpg",
+          "src": "commons:Woman stretches at home office desk while working on laptop.jpg",
           "in": 0,
           "freeze": true,
           "zoom": [
-            1.05,
-            1.11
+            1.1,
+            1.16
           ],
-          "frame": "fit"
+          "frame": "fit",
+          "focus": [
+            0.5,
+            0.5
+          ]
         }
       ],
       "overlay": "very tired\nもっと強く言うと？",
@@ -73,14 +77,18 @@
       "why": "すぐ答えに入る",
       "shots": [
         {
-          "src": "commons:Cozy living room with a gray sofa.jpg",
+          "src": "commons:Woman stretches at home office desk while working on laptop.jpg",
           "in": 0,
           "freeze": true,
           "zoom": [
-            1.11,
-            1.14
+            1.16,
+            1.19
           ],
-          "frame": "fit"
+          "frame": "fit",
+          "focus": [
+            0.5,
+            0.5
+          ]
         }
       ],
       "sfx": "pop",
@@ -92,14 +100,18 @@
       "why": "答えの英語（普通の速さ）",
       "shots": [
         {
-          "src": "commons:Cozy living room with a gray sofa.jpg",
+          "src": "commons:Woman stretches at home office desk while working on laptop.jpg",
           "in": 0,
           "freeze": true,
           "zoom": [
-            1.14,
-            1.2
+            1.19,
+            1.25
           ],
-          "frame": "fit"
+          "frame": "fit",
+          "focus": [
+            0.5,
+            0.5
+          ]
         }
       ],
       "emphasis": [
@@ -121,14 +133,18 @@
       "why": "ゆっくり版の前振り",
       "shots": [
         {
-          "src": "commons:Cozy living room with a gray sofa.jpg",
+          "src": "commons:Woman stretches at home office desk while working on laptop.jpg",
           "in": 0,
           "freeze": true,
           "zoom": [
-            1.2,
-            1.23
+            1.25,
+            1.28
           ],
-          "frame": "fit"
+          "frame": "fit",
+          "focus": [
+            0.5,
+            0.5
+          ]
         }
       ],
       "say": "もう一度、ゆっくり。"
@@ -139,14 +155,18 @@
       "why": "同じ英語をゆっくり（2回目）",
       "shots": [
         {
-          "src": "commons:Cozy living room with a gray sofa.jpg",
+          "src": "commons:Woman stretches at home office desk while working on laptop.jpg",
           "in": 0,
           "freeze": true,
           "zoom": [
-            1.23,
-            1.29
+            1.28,
+            1.34
           ],
-          "frame": "fit"
+          "frame": "fit",
+          "focus": [
+            0.5,
+            0.5
+          ]
         }
       ],
       "emphasis": [
@@ -168,18 +188,14 @@
       "why": "very との違いを一つ",
       "shots": [
         {
-          "src": "commons:Woman stretches at home office desk while working on laptop.jpg",
+          "src": "commons:Cozy living room with a gray sofa.jpg",
           "in": 0,
           "freeze": true,
           "zoom": [
-            1.1,
-            1.22
+            1.05,
+            1.17
           ],
-          "frame": "fit",
-          "focus": [
-            0.5,
-            0.5
-          ]
+          "frame": "fit"
         }
       ],
       "sfx": "pop",
@@ -196,14 +212,18 @@
       "why": "例文の場面を一言で",
       "shots": [
         {
-          "src": "commons:Cozy living room with a gray sofa.jpg",
+          "src": "commons:Woman using laptop and checking watch while sitting in living room.jpg",
           "in": 0,
           "freeze": true,
           "zoom": [
-            1.29,
-            1.35
+            1.15,
+            1.21
           ],
-          "frame": "fit"
+          "frame": "fit",
+          "focus": [
+            0.55,
+            0.5
+          ]
         }
       ],
       "say": "一日中働いた後に"
@@ -214,14 +234,18 @@
       "why": "例文を英語で聞く",
       "shots": [
         {
-          "src": "commons:Cozy living room with a gray sofa.jpg",
+          "src": "commons:Woman using laptop and checking watch while sitting in living room.jpg",
           "in": 0,
           "freeze": true,
           "zoom": [
-            1.35,
-            1.41
+            1.21,
+            1.27
           ],
-          "frame": "fit"
+          "frame": "fit",
+          "focus": [
+            0.55,
+            0.5
+          ]
         }
       ],
       "emphasis": [
@@ -304,18 +328,14 @@
       "why": "自分で言う時間（考える間）",
       "shots": [
         {
-          "src": "commons:Dotonbori, Osaka, at night, November 2016.jpg",
+          "src": "commons:Street view of Sarphatistraat with a woman, waiting and looking; free photo Amsterdam, Fons Heijnsbroek 10-2021.jpg",
           "in": 0,
           "freeze": true,
           "zoom": [
-            1.0,
-            1.06
+            1.05,
+            1.11
           ],
-          "frame": "fill",
-          "focus": [
-            0.5,
-            0.5
-          ]
+          "frame": "fit"
         }
       ],
       "overlay": "言ってみよう",
@@ -332,18 +352,14 @@
       "why": "答え合わせ",
       "shots": [
         {
-          "src": "commons:Dotonbori, Osaka, at night, November 2016.jpg",
+          "src": "commons:Street view of Sarphatistraat with a woman, waiting and looking; free photo Amsterdam, Fons Heijnsbroek 10-2021.jpg",
           "in": 0,
           "freeze": true,
           "zoom": [
-            1.06,
-            1.12
+            1.11,
+            1.17
           ],
-          "frame": "fill",
-          "focus": [
-            0.5,
-            0.5
-          ]
+          "frame": "fit"
         }
       ],
       "emphasis": [
@@ -365,14 +381,18 @@
       "why": "冒頭の問いに戻って答えを言い切る",
       "shots": [
         {
-          "src": "commons:Cozy living room with a gray sofa.jpg",
+          "src": "commons:Woman stretches at home office desk while working on laptop.jpg",
           "in": 0,
           "freeze": true,
           "zoom": [
-            1.41,
-            1.44
+            1.34,
+            1.37
           ],
-          "frame": "fit"
+          "frame": "fit",
+          "focus": [
+            0.5,
+            0.5
+          ]
         }
       ],
       "overlay": "今日の一言",
@@ -386,14 +406,18 @@
       "why": "最後にもう一度英語を聞いて終わる",
       "shots": [
         {
-          "src": "commons:Cozy living room with a gray sofa.jpg",
+          "src": "commons:Woman stretches at home office desk while working on laptop.jpg",
           "in": 0,
           "freeze": true,
           "zoom": [
-            1.44,
-            1.47
+            1.37,
+            1.4
           ],
-          "frame": "fit"
+          "frame": "fit",
+          "focus": [
+            0.5,
+            0.5
+          ]
         }
       ],
       "overlay": "今日の一言",

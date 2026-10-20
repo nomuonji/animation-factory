@@ -25,11 +25,11 @@
   ],
   "rule": [
     {
-      "cap": "affect は「影響する」= 動詞",
+      "cap": "affect ＝ 影響する（動詞）",
       "say": "アフェクトは、影響する、という動詞。"
     },
     {
-      "cap": "effect は「影響・効果」= 名詞",
+      "cap": "effect ＝ 影響・効果（名詞）",
       "say": "イフェクトは、影響や効果、という名詞です。"
     },
     {
@@ -43,7 +43,7 @@
     "a / the が付けば effect"
   ],
   "quiz": {
-    "scene": "classroom",
+    "scene": "office-desk",
     "prompt": [
       {
         "cap": "The new rule will ___ everyone.",
@@ -65,17 +65,17 @@
   },
   "recap": [
     {
-      "cap": "affect は「影響する」（動詞）",
+      "cap": "affect ＝ 影響する（動詞）",
       "say": "アフェクトは、影響する。"
     },
     {
-      "cap": "effect は「影響・効果」（名詞）",
+      "cap": "effect ＝ 影響・効果（名詞）",
       "say": "イフェクトは、影響、効果。"
     }
   ],
   "scenes": {
-    "hook": "notebook-writing",
-    "meaning": "classroom"
+    "hook": "classroom",
+    "meaning": "notebook-writing"
   },
   "sources": [
     "https://dictionary.cambridge.org/dictionary/english/affect",

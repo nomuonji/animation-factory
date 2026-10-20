@@ -56,12 +56,12 @@
       "why": "二択を0秒で見せる",
       "shots": [
         {
-          "src": "commons:Person writing in a notebook while sitting at a desk.jpg",
+          "src": "commons:Student Listening During Study Session.jpg",
           "in": 0,
           "freeze": true,
           "zoom": [
-            1.08,
-            1.14
+            1.05,
+            1.11
           ],
           "frame": "fit"
         }
@@ -77,12 +77,12 @@
       "why": "見分け方を一言で",
       "shots": [
         {
-          "src": "commons:Student Listening During Study Session.jpg",
+          "src": "commons:Person writing in a notebook while sitting at a desk.jpg",
           "in": 0,
           "freeze": true,
           "zoom": [
-            1.05,
-            1.15
+            1.08,
+            1.18
           ],
           "frame": "fit"
         }
@@ -94,7 +94,7 @@
         "a / the が付けば effect"
       ],
       "say": "アフェクトは、影響する、という動詞。／イフェクトは、影響や効果、という名詞です。／前に、アやザが付いていたら、イフェクトです。",
-      "caption": "affect は「影響する」= 動詞／effect は「影響・効果」= 名詞／a / the が付けば effect"
+      "caption": "affect ＝ 影響する（動詞）／effect ＝ 影響・効果（名詞）／a / the が付けば effect"
     },
     {
       "id": "a-en",
@@ -166,14 +166,18 @@
       "why": "自分で言う時間（考える間）",
       "shots": [
         {
-          "src": "commons:Student Listening During Study Session.jpg",
+          "src": "commons:Woman sits at desk working on laptop in home office.jpg",
           "in": 0,
           "freeze": true,
           "zoom": [
-            1.15,
-            1.21
+            1.16,
+            1.22
           ],
-          "frame": "fit"
+          "frame": "fit",
+          "focus": [
+            0.5,
+            0.5
+          ]
         }
       ],
       "overlay": "言ってみよう",
@@ -188,14 +192,18 @@
       "why": "答え合わせ",
       "shots": [
         {
-          "src": "commons:Student Listening During Study Session.jpg",
+          "src": "commons:Woman sits at desk working on laptop in home office.jpg",
           "in": 0,
           "freeze": true,
           "zoom": [
-            1.21,
-            1.27
+            1.22,
+            1.28
           ],
-          "frame": "fit"
+          "frame": "fit",
+          "focus": [
+            0.5,
+            0.5
+          ]
         }
       ],
       "emphasis": [
@@ -218,14 +226,18 @@
       "why": "答えの形を一言で整理",
       "shots": [
         {
-          "src": "commons:Student Listening During Study Session.jpg",
+          "src": "commons:Woman sits at desk working on laptop in home office.jpg",
           "in": 0,
           "freeze": true,
           "zoom": [
-            1.27,
-            1.33
+            1.28,
+            1.34
           ],
-          "frame": "fit"
+          "frame": "fit",
+          "focus": [
+            0.5,
+            0.5
+          ]
         }
       ],
       "say": "ウィルの後は動詞なので、アフェクトです。",
@@ -237,12 +249,12 @@
       "why": "見分け方に戻って締める",
       "shots": [
         {
-          "src": "commons:Person writing in a notebook while sitting at a desk.jpg",
+          "src": "commons:Student Listening During Study Session.jpg",
           "in": 0,
           "freeze": true,
           "zoom": [
-            1.14,
-            1.17
+            1.11,
+            1.14
           ],
           "frame": "fit"
         }
@@ -256,7 +268,7 @@
       ],
       "hold": 1.2,
       "say": "アフェクトは、影響する。／イフェクトは、影響、効果。",
-      "caption": "affect は「影響する」（動詞）／effect は「影響・効果」（名詞）"
+      "caption": "affect ＝ 影響する（動詞）／effect ＝ 影響・効果（名詞）"
     }
   ]
 }

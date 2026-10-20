@@ -170,10 +170,8 @@ def _word(spec, shot):
     beats = [
         _beat("hook", "hook", "単語そのものを0秒で見せて問う", shot("hook"), overlay=w, overlayY=spec.get("overlayY", 0.40),
               sfx="whoosh", **_narr(spec.get("hookLines") or ["この単語、", "意味わかりますか？"])),
-        _beat("answer-en", "evidence", "発音（普通の速さ）", shot("hook", 0.03), overlay=w,
-              overlayY=spec.get("overlayY", 0.40), emphasis=emph, hold=0.6, clip=_tts(w, spec["ja"], VOICE_A, 1.0)),
-        _beat("answer-en-slow", "evidence", "発音（ゆっくり）", shot("hook", 0.03), overlay=w,
-              overlayY=spec.get("overlayY", 0.40), emphasis=emph, hold=0.8, clip=_tts(w, spec["ja"], VOICE_A, 0.7)),
+        _beat("answer-en", "evidence", "発音（普通の速さ）", shot("hook", 0.03), emphasis=emph, hold=0.6, clip=_tts(w, spec["ja"], VOICE_A, 1.0)),
+        _beat("answer-en-slow", "evidence", "発音（ゆっくり）", shot("hook", 0.03), emphasis=emph, hold=0.8, clip=_tts(w, spec["ja"], VOICE_A, 0.7)),
         _beat("meaning", "turn", "意味とイメージを一つ", shot("meaning", 0.12), sfx="pop",
               emphasis=spec.get("meaningEmphasis"),
               **_narr([{"cap": f"{spec['pos']}「{spec['ja']}」", "say": f"意味は、{spec['ja']}。"}, *spec["meaning"]])),
