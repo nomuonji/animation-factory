@@ -363,8 +363,18 @@ def run(path, profile_name='draft', force=False, profile_override=None):
     (out / 'captions.srt').write_text('\n'.join(
         f'{i}\n{timestamp(a)} --> {timestamp(e)}\n{text}\n'
         for i, (a, e, text) in enumerate(captions, 1)), encoding='utf-8')
-    chapter_lines = []
+    # Chapters may share a "listGroup" so the description's chapter list keeps every
+    # entry >= 10 s (YouTube requirement) while the film keeps fine-grained chapters.
+    groups = {ch['id']: ch.get('listGroup') for ch in b['chapters']}
+    listing = []
     for ch in rows:
+        g = groups.get(ch['id'])
+        if g and listing and listing[-1].get('group') == g:
+            listing[-1]['duration'] += ch['duration']
+            continue
+        listing.append({'title': g or ch['title'], 'start': ch['start'], 'duration': ch['duration'], 'group': g})
+    chapter_lines = []
+    for ch in listing:
         secs = int(ch['start'])
         h, rem = divmod(secs, 3600)
         m, s = divmod(rem, 60)

@@ -410,8 +410,10 @@ def compile_review(spec: dict) -> dict:
                                             [{"en": ex["en"], "ja": ex["ja"]}])))
         beats.append(_lf_beat(f"w{i}-repeat", "お手本の後に言う時間", s(sc), headline=hl, headlineY=.40,
                               hold=1.4, lead=0.02, clip=_tts(w["word"], w["ja"], VOICE_A, 0.95)))
+        g0 = (i - 1) // 5 * 5
+        group = f"{g0 + 1}〜{min(g0 + 5, n)}：" + " / ".join(x["word"] for x in words[g0:g0 + 5])
         chapters.append({"id": f"w{i}", "title": f"{i}. {w['word']}（{w['ja']}）", "purpose": "1語を使えるようにする",
-                         "beats": beats})
+                         "beats": beats, "listGroup": group})
         if i % 10 == 0 or i == n:
             first = (i - 1) // 10 * 10
             block = words[first:i]
@@ -419,7 +421,9 @@ def compile_review(spec: dict) -> dict:
                 chapters.append(recall_chapter(f"check-{first + 1}-{i}", f"確認テスト {first + 1}〜{i}", block,
                                                [f"{first + 1}から{i}まで、", "日本語を見て、英語で言ってみてください。"],
                                                first))
-    chapters.append({"id": "ending", "title": "まとめ", "purpose": "今日の語を振り返って終える", "beats": [
+    chapters[0]["listGroup"] = chapters[1]["listGroup"]  # short intro joins the first word block
+    chapters[-1]["listGroup"] = chapters[-1]["title"]
+    chapters.append({"id": "ending", "title": "まとめ", "listGroup": chapters[-1]["title"], "purpose": "今日の語を振り返って終える", "beats": [
         _lf_beat("ending", "締め", s(words[0]["scene"]), headline=spec["headline"], headlineY=.42, hold=1.2,
                  **_narr(spec.get("outro") or [f"今日の{n}語でした。", "何度か見て、声に出すと定着します。"]))]})
 

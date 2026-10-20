@@ -138,7 +138,8 @@
           "say": "シーツーレベルの英単語を、30語。／発音、意味、例文をテンポよく確認して、／最後にテストします。",
           "caption": "C2レベルの英単語 30語／発音、意味、例文をテンポよく確認して、／最後にテストします。"
         }
-      ]
+      ],
+      "listGroup": "1〜5：nonchalant / knack / mull over / idiosyncratic / hindsight"
     },
     {
       "id": "w1",
@@ -295,7 +296,8 @@
             "ja": "平然とした・無頓着な"
           }
         }
-      ]
+      ],
+      "listGroup": "1〜5：nonchalant / knack / mull over / idiosyncratic / hindsight"
     },
     {
       "id": "w2",
@@ -452,7 +454,8 @@
             "ja": "コツ・才能"
           }
         }
-      ]
+      ],
+      "listGroup": "1〜5：nonchalant / knack / mull over / idiosyncratic / hindsight"
     },
     {
       "id": "w3",
@@ -609,7 +612,8 @@
             "ja": "じっくり考える"
           }
         }
-      ]
+      ],
+      "listGroup": "1〜5：nonchalant / knack / mull over / idiosyncratic / hindsight"
     },
     {
       "id": "w4",
@@ -766,7 +770,8 @@
             "ja": "独特の・その人特有の"
           }
         }
-      ]
+      ],
+      "listGroup": "1〜5：nonchalant / knack / mull over / idiosyncratic / hindsight"
     },
     {
       "id": "w5",
@@ -923,7 +928,8 @@
             "ja": "後になって分かること"
           }
         }
-      ]
+      ],
+      "listGroup": "1〜5：nonchalant / knack / mull over / idiosyncratic / hindsight"
     },
     {
       "id": "w6",
@@ -1080,7 +1086,8 @@
             "ja": "なだめすかして〜させる"
           }
         }
-      ]
+      ],
+      "listGroup": "6〜10：coax / ephemeral / qualm / uncanny / eke out"
     },
     {
       "id": "w7",
@@ -1237,7 +1244,8 @@
             "ja": "はかない・つかの間の"
           }
         }
-      ]
+      ],
+      "listGroup": "6〜10：coax / ephemeral / qualm / uncanny / eke out"
     },
     {
       "id": "w8",
@@ -1394,7 +1402,8 @@
             "ja": "ためらい・良心のとがめ"
           }
         }
-      ]
+      ],
+      "listGroup": "6〜10：coax / ephemeral / qualm / uncanny / eke out"
     },
     {
       "id": "w9",
@@ -1551,7 +1560,8 @@
             "ja": "不気味なほどの・驚くほどの"
           }
         }
-      ]
+      ],
+      "listGroup": "6〜10：coax / ephemeral / qualm / uncanny / eke out"
     },
     {
       "id": "w10",
@@ -1708,7 +1718,8 @@
             "ja": "なんとかやりくりする"
           }
         }
-      ]
+      ],
+      "listGroup": "6〜10：coax / ephemeral / qualm / uncanny / eke out"
     },
     {
       "id": "check-1-10",
@@ -2391,7 +2402,8 @@
             "ja": "行き当たりばったりの"
           }
         }
-      ]
+      ],
+      "listGroup": "11〜15：haphazard / drudgery / wallow / tacit / innuendo"
     },
     {
       "id": "w12",
@@ -2548,7 +2560,8 @@
             "ja": "退屈な骨折り仕事"
           }
         }
-      ]
+      ],
+      "listGroup": "11〜15：haphazard / drudgery / wallow / tacit / innuendo"
     },
     {
       "id": "w13",
@@ -2705,7 +2718,8 @@
             "ja": "（感情に）浸る"
           }
         }
-      ]
+      ],
+      "listGroup": "11〜15：haphazard / drudgery / wallow / tacit / innuendo"
     },
     {
       "id": "w14",
@@ -2862,7 +2876,8 @@
             "ja": "暗黙の"
           }
         }
-      ]
+      ],
+      "listGroup": "11〜15：haphazard / drudgery / wallow / tacit / innuendo"
     },
     {
       "id": "w15",
@@ -3019,7 +3034,8 @@
             "ja": "ほのめかし・当てこすり"
           }
         }
-      ]
+      ],
+      "listGroup": "11〜15：haphazard / drudgery / wallow / tacit / innuendo"
     },
     {
       "id": "w16",
@@ -3176,7 +3192,8 @@
             "ja": "こっそりした"
           }
         }
-      ]
+      ],
+      "listGroup": "16〜20：surreptitious / clinch / wistful / smattering / superfluous"
     },
     {
       "id": "w17",
@@ -3333,7 +3350,8 @@
             "ja": "（勝利・契約を）決める"
           }
         }
-      ]
+      ],
+      "listGroup": "16〜20：surreptitious / clinch / wistful / smattering / superfluous"
     },
     {
       "id": "w18",
@@ -3490,7 +3508,8 @@
             "ja": "懐かしそうな・もの悲しげな"
           }
         }
-      ]
+      ],
+      "listGroup": "16〜20：surreptitious / clinch / wistful / smattering / superfluous"
     },
     {
       "id": "w19",
@@ -3647,7 +3666,8 @@
             "ja": "少しばかりの知識"
           }
         }
-      ]
+      ],
+      "listGroup": "16〜20：surreptitious / clinch / wistful / smattering / superfluous"
     },
     {
       "id": "w20",
@@ -3804,7 +3824,8 @@
             "ja": "余計な・不必要な"
           }
         }
-      ]
+      ],
+      "listGroup": "16〜20：surreptitious / clinch / wistful / smattering / superfluous"
     },
     {
       "id": "check-11-20",
@@ -4487,7 +4508,8 @@
             "ja": "目を細めて見る"
           }
         }
-      ]
+      ],
+      "listGroup": "21〜25：squint / inscrutable / gambit / rife / loiter"
     },
     {
       "id": "w22",
@@ -4644,7 +4666,8 @@
             "ja": "何を考えているか分からない"
           }
         }
-      ]
+      ],
+      "listGroup": "21〜25：squint / inscrutable / gambit / rife / loiter"
     },
     {
       "id": "w23",
@@ -4801,7 +4824,8 @@
             "ja": "先手を打つ作戦"
           }
         }
-      ]
+      ],
+      "listGroup": "21〜25：squint / inscrutable / gambit / rife / loiter"
     },
     {
       "id": "w24",
@@ -4958,7 +4982,8 @@
             "ja": "（悪いものが）はびこっている"
           }
         }
-      ]
+      ],
+      "listGroup": "21〜25：squint / inscrutable / gambit / rife / loiter"
     },
     {
       "id": "w25",
@@ -5115,7 +5140,8 @@
             "ja": "うろつく・ぶらぶらする"
           }
         }
-      ]
+      ],
+      "listGroup": "21〜25：squint / inscrutable / gambit / rife / loiter"
     },
     {
       "id": "w26",
@@ -5272,7 +5298,8 @@
             "ja": "ませた・早熟な"
           }
         }
-      ]
+      ],
+      "listGroup": "26〜30：precocious / truism / jarring / patronizing / happenstance"
     },
     {
       "id": "w27",
@@ -5429,7 +5456,8 @@
             "ja": "分かりきった真理"
           }
         }
-      ]
+      ],
+      "listGroup": "26〜30：precocious / truism / jarring / patronizing / happenstance"
     },
     {
       "id": "w28",
@@ -5586,7 +5614,8 @@
             "ja": "違和感のある・耳障りな"
           }
         }
-      ]
+      ],
+      "listGroup": "26〜30：precocious / truism / jarring / patronizing / happenstance"
     },
     {
       "id": "w29",
@@ -5743,7 +5772,8 @@
             "ja": "上から目線の"
           }
         }
-      ]
+      ],
+      "listGroup": "26〜30：precocious / truism / jarring / patronizing / happenstance"
     },
     {
       "id": "w30",
@@ -5900,7 +5930,8 @@
             "ja": "偶然・たまたま"
           }
         }
-      ]
+      ],
+      "listGroup": "26〜30：precocious / truism / jarring / patronizing / happenstance"
     },
     {
       "id": "check-21-30",
@@ -6426,11 +6457,13 @@
             "ja": "偶然・たまたま"
           }
         }
-      ]
+      ],
+      "listGroup": "確認テスト 21〜30"
     },
     {
       "id": "ending",
       "title": "まとめ",
+      "listGroup": "確認テスト 21〜30",
       "purpose": "今日の語を振り返って終える",
       "beats": [
         {
