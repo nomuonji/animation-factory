@@ -221,7 +221,8 @@ def render_chapter(b, lock, out, profile):
                         raise ValueError('shot shorter than one frame')
                     z0, z1 = sh.get('zoom', [1, 1])
                     frames = R._segment_frames(paths[sh['src']], float(sh.get('in', 0)), n,
-                                               float(sh.get('speed', 1)), bool(sh.get('freeze')))
+                                               float(sh.get('speed', 1)), bool(sh.get('freeze')),
+                                               bool(sh.get('loop')))
                     for k, src in enumerate(frames):
                         zoom = z0 + (z1 - z0) * k / max(n - 1, 1)
                         if sh.get('frame', 'fit') == 'fill':
@@ -242,6 +243,12 @@ def render_chapter(b, lock, out, profile):
                                 ov = text_cache[text]
                                 R._blend(fr, ov, R.H - ov.shape[0] - round(R.H * .055))
                                 break
+                        if bt.get('headline'):
+                            key = 'headline:' + bt['headline']
+                            if key not in text_cache:
+                                text_cache[key] = R._render_headline(bt['headline'])
+                            hv = text_cache[key]
+                            R._blend(fr, hv, round(R.H * float(bt.get('headlineY', .30))) - hv.shape[0] // 2)
                         label = sh.get('label') or bt.get('overlay')
                         if label:
                             key = 'label:' + label

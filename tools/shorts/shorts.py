@@ -115,7 +115,12 @@ def cmd_lesson(a):
     import lesson
     for spec in a.specs:
         out = lesson.write(spec)
-        B.load(out)  # must be a valid brief
+        if out.name == "longform.json":
+            sys.path.insert(0, str(ROOT / "tools" / "longform"))
+            import longform
+            longform.load(out)
+        else:
+            B.load(out)  # must be a valid brief
         print(out)
 
 

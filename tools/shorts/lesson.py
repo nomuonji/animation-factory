@@ -320,8 +320,113 @@ def _description(spec: dict) -> list[str]:
 
 def write(spec_path: str) -> pathlib.Path:
     spec = json.loads(pathlib.Path(spec_path).read_text(encoding="utf-8"))
+    if spec.get("pattern") == "review":
+        out = ROOT / "productions" / spec["id"] / "longform.json"
+        out.parent.mkdir(parents=True, exist_ok=True)
+        out.write_text(json.dumps(compile_review(spec), ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+        return out
     brief = compile_lesson(spec)
     out = ROOT / "productions" / spec["id"] / "short.json"
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(json.dumps(brief, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     return out
+
+
+# ------------------------------------------------------------------ long-form review
+
+def _lf_beat(id_, why, shots, **kw) -> dict:
+    b = {"id": id_, "why": why, "shots": shots}
+    b.update({k: v for k, v in kw.items() if v is not None})
+    return b
+
+
+def compile_review(spec: dict) -> dict:
+    """Long-form (16:9) vocabulary episode: N words, each heard, explained, used and
+    repeated; a recall test halfway and a full recall test at the end.
+
+    spec: id, title, number, intro (narration items), words[]:
+      {word, pos, ja, scene, nuance: [narration items], examples: [{en, ja}] x2}
+    """
+    shot = _Shots({**spec, "scenes": {}})
+    words = spec["words"]
+
+    def s(tag, step=0.05):
+        sh = shot(tag, step)
+        for x in sh:
+            x["frame"] = "fill"
+            x.pop("focus", None)
+        return sh
+
+    chapters = []
+    n = len(words)
+    intro = spec.get("intro") or [
+        "英検1級の、その先へ。",
+        {"cap": f"ネイティブは使うのに、試験には出ない{n}語", "say": f"ネイティブは普通に使うのに、試験にはまず出てこない、{n}語です。"},
+        "一語ずつ、発音、意味、例文を確認して、",
+        "声に出してから、最後にテストします。",
+    ]
+    chapters.append({"id": "opening", "title": "はじめに", "purpose": "何を覚える動画かを示す", "beats": [
+        _lf_beat("opening", "今日の語数と進め方を示す", s(words[0]["scene"]), headline=spec["headline"],
+                 headlineY=.42, **_narr(intro))]})
+
+    def recall_chapter(cid, title, items, lead):
+        beats = [_lf_beat(f"{cid}-lead", "思い出すテストの説明", s(items[0]["scene"]), headline="思い出せる？",
+                          headlineY=.42, **_narr(lead))]
+        for i, w in enumerate(items):
+            beats.append(_lf_beat(f"{cid}-q{i}", "日本語から英単語を思い出す（考える間）", s(w["scene"]),
+                                  headline=f"「{w['ja']}」", headlineY=.40, hold=2.6,
+                                  **_narr([{"cap": f"「{w['ja']}」は？", "say": f"{w['ja']}は？"}])))
+            beats.append(_lf_beat(f"{cid}-a{i}", "答え合わせ（英語音声）", s(w["scene"]), headline=w["word"],
+                                  headlineY=.40, hold=0.8, clip=_tts(w["word"], w["ja"], VOICE_A, 0.9)))
+        return {"id": cid, "title": title, "purpose": "覚えたかを確かめる", "beats": beats}
+
+    for i, w in enumerate(words, 1):
+        sc = w["scene"]
+        hl = w["word"]
+        beats = [
+            _lf_beat(f"w{i}-intro", "番号と単語を示す", s(sc), headline=hl, headlineY=.40,
+                     **_narr([f"{i}つ目。"])),
+            _lf_beat(f"w{i}-say", "発音（普通の速さ）", s(sc), headline=hl, headlineY=.40, hold=0.5,
+                     clip=_tts(w["word"], "", VOICE_A, 1.0, [{"en": w["word"], "ja": ""}])),
+            _lf_beat(f"w{i}-slow", "発音（ゆっくり）", s(sc), headline=hl, headlineY=.40, hold=0.6,
+                     clip=_tts(w["word"], "", VOICE_A, 0.7, [{"en": w["word"], "ja": ""}])),
+            _lf_beat(f"w{i}-meaning", "意味とニュアンス", s(sc, .08), headline=hl, headlineY=.30,
+                     **_narr([{"cap": f"{w['pos']}「{w['ja']}」", "say": f"意味は、{w['ja']}。"}, *w["nuance"]])),
+        ]
+        for k, ex in enumerate(w["examples"], 1):
+            beats.append(_lf_beat(f"w{i}-ex{k}", "例文を英語で聞く", s(sc), headline=hl, headlineY=.30, hold=0.7,
+                                  clip=_tts(ex["en"], "", VOICE_A if k % 2 else VOICE_B, 0.92,
+                                            [{"en": ex["en"], "ja": ex["ja"]}])))
+        beats.append(_lf_beat(f"w{i}-repeat", "声に出す（間をとる）", s(sc), headline=hl, headlineY=.40,
+                              **_narr(["リピートしてみましょう。"])))
+        beats.append(_lf_beat(f"w{i}-repeat-en", "発音のお手本の後に言う時間", s(sc), headline=hl, headlineY=.40,
+                              hold=2.4, clip=_tts(w["word"], w["ja"], VOICE_A, 0.9)))
+        chapters.append({"id": f"w{i}", "title": f"{i}. {w['word']}（{w['ja']}）", "purpose": "1語を使えるようにする",
+                         "beats": beats})
+        if i == (n + 1) // 2 and n >= 6:
+            chapters.append(recall_chapter("check-half", "ここまでの確認テスト", words[:i],
+                                           [f"ここまでの{i}語、", "思い出せますか？", "日本語を見て、英語で言ってみてください。"]))
+    chapters.append(recall_chapter("check-final", f"全{n}語の確認テスト", words,
+                                   [f"最後に、全部の{n}語。", "日本語を見て、", "英語で言ってみてください。"]))
+    chapters.append({"id": "ending", "title": "まとめ", "purpose": "今日の語を振り返って終える", "beats": [
+        _lf_beat("ending", "締め", s(words[0]["scene"]), headline=spec["headline"], headlineY=.42, hold=1.5,
+                 **_narr(spec.get("outro") or [f"今日の{n}語でした。", "何度か見て、", "声に出すと定着します。"]))]})
+
+    for ch in chapters:
+        _check_spoken_japanese(ch["beats"])
+    title = spec["title"] + (f"【まとめて覚える #{spec['number']}】" if spec.get("number") else "")
+    desc = [f"・{w['word']}（{w['pos']}）＝ {w['ja']}" for w in words]
+    for w in words:
+        for ex in w["examples"]:
+            desc.append(f"　{ex['en']} ＝ {ex['ja']}")
+    desc += [f"意味の確認: {r}" for r in spec.get("sources", [])]
+    return {
+        "version": 1, "id": spec["id"], "title": title[:100],
+        "audience": "英検1級レベルを超える語彙を増やしたい日本語話者",
+        "question": f"ネイティブは使うのに試験には出ない{n}語を、発音・意味・例文で覚えられるか",
+        "payoff": "最後の確認テストで全部の語を英語で言える",
+        "voice": {"engine": "voicevox", "speaker": "青山龍星", "style": "ノーマル", "speed": 1.08},
+        "music": {"asset": "safe-space-loop", "gain": 0.06, "duck": 0.3},
+        "descriptionLines": spec.get("descriptionLines") or desc,
+        "chapters": chapters,
+    }
