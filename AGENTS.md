@@ -43,3 +43,7 @@ Expected stable URL:
 `https://nomuonji.github.io/animation-factory/review/<production-folder>/`
 
 When changing a reviewed production, re-render it so the Review Pages workflow can replace that production's gallery entry with the latest successful artifact.
+
+## Long-form films
+
+Read `docs/longform.md` before making a chapter-based landscape film. Use `productions/<id>/longform.json` and `tools/longform/longform.py`; keep narration, chapter purpose and shot choices in data. The Shorts source/voice engine is shared, but long-form output and workflow are separate. Technical pass is not editorial approval. Review the full MP4 and sound; do not send long-form artifacts into Shorts auto-publication.

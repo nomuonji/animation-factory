@@ -4,6 +4,10 @@ An agent-native 2D animation factory for reusable pixel-art productions.
 
 The repository is designed so an AI agent can behave like a director: choose actors, actions, dialogue, effects, props and camera moves from a catalog, then express a video as structured timeline data instead of writing arbitrary rendering code.
 
+## Long-form video
+
+Chapter-based landscape films now use `productions/<id>/longform.json`. The pipeline reuses the Shorts v3 source/voice engine, renders resumable chapters, and exports a full MP4, synchronized subtitles, chapters, credits and a browser review pack. Draft: 960×540; final: 1920×1080. Run **Long-form production** in Actions or use the local CLI. See [long-form authoring and rendering](docs/longform.md).
+
 ## Current stack
 
 - Phaser 4 renderer
