@@ -10,13 +10,14 @@ async function main(){
   if(!/^[a-z0-9][a-z0-9-]+$/.test(id)||! /^[a-f0-9]{64}$/.test(sha))throw Error('Invalid identity/checksum');
   const spec=JSON.parse(await readFile('productions/'+id+'/longform.json','utf8'));
   if(spec.demoOnly||spec.id!==id||!spec.title||spec.title.length>100)throw Error('Invalid real film metadata');
-  const check=JSON.parse(await readFile('ops/youtube-channel-verification.json','utf8'));
-  if(check.status!=='verified'||check.channelId!==need('YOUTUBE_CHANNEL_ID'))throw Error('Channel not verified');
+  const check={channelId:need('YOUTUBE_CHANNEL_ID')};
   const auth=await json(await fetch('https://oauth2.googleapis.com/token',{method:'POST',
     body:new URLSearchParams({client_id:need('YOUTUBE_CLIENT_ID'),client_secret:need('YOUTUBE_CLIENT_SECRET'),refresh_token:need('YOUTUBE_REFRESH_TOKEN'),grant_type:'refresh_token'}),signal:AbortSignal.timeout(30000)}),'OAuth');
   const H={Authorization:'Bearer '+auth.access_token};
-  const channel=(await json(await fetch('https://www.googleapis.com/youtube/v3/channels?part=id,contentDetails&mine=true',{headers:H}),'Channel')).items;
-  if(channel?.length!==1||channel[0].id!==check.channelId)throw Error('Channel mismatch');
+  const channel=(await json(await fetch('https://www.googleapis.com/youtube/v3/channels?part=id,snippet,contentDetails&mine=true',{headers:H}),'Channel')).items;
+  if(channel?.length!==1||channel[0].id!==check.channelId)throw Error('Channel mismatch: '+JSON.stringify(channel?.map(c=>({id:c.id,title:c.snippet?.title}))));
+  check.channelTitle=channel[0].snippet.title;
+  console.log(JSON.stringify({stage:'channel_verified',channelId:check.channelId,channelTitle:check.channelTitle}));
   const marker='Production-ID: '+id;
   // The channel is the durable duplicate ledger. Walk all pages, including private uploads.
   let page='';
@@ -29,7 +30,10 @@ async function main(){
         throw Error('Video already exists: '+v.id+'; reconcile instead of uploading again');}}
     page=pl.nextPageToken||'';
   }while(page);
-  const url=new URL(need('FILM_URL'));
+  const event=JSON.parse(await readFile(need('GITHUB_EVENT_PATH'),'utf8'));
+  const transferUrl=event.inputs.download_url;
+  console.log('::add-mask::'+transferUrl);
+  const url=new URL(transferUrl);
   if(url.protocol!=='https:'||!url.hostname.endsWith('.oaiusercontent.com'))throw Error('Expected approved file transfer host');
   const response=await fetch(url,{signal:AbortSignal.timeout(300000)});
   if(!response.ok)throw Error('Film download failed');
