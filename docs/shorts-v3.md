@@ -88,7 +88,7 @@ python tools/shorts/shorts.py render productions/<id>/short.json
 
 ## 素材とライセンス
 
-- 資格情報（APIキー）は必ず Actions の **Secrets** に置く。**Variables はログに平文で出る**ので使わない。ワークフローも secrets 以外からは読まない。
+- 資格情報（APIキー）は原則 Actions の **Secrets** に置く（Variables はログに平文で出る）。例外として `PIXABAY_API_KEY` は Variables でもよい（2026-10-20 チャンネル主の判断：重要度の低いキーのため）。ワークフローは Secrets を優先し、なければ Variables を読む。
 
 - Pixabay（`PIXABAY_API_KEY` を Actions シークレットに登録済み）: 商用無料・表記不要。ただし無加工の再配布・販売は不可、写っている人物やブランドの推奨と誤解させない。説明欄には作者を載せる。
 - Wikimedia Commons: CC0 / PD / CC BY / CC BY-SA のみ。BY-SA を使った動画は同ライセンス表記が必要（`description.txt` に自動で入る）。

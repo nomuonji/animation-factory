@@ -68,12 +68,12 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 180
     env:
-      PIXABAY_API_KEY: ${{ secrets.PIXABAY_API_KEY }}
+      PIXABAY_API_KEY: ${{ secrets.PIXABAY_API_KEY || vars.PIXABAY_API_KEY }}
     steps:
       - name: Pixabay key visibility (no value printed)
         env:
-          HAS_SECRET: ${{ secrets.PIXABAY_API_KEY != '' }}
-        run: echo "repository secret PIXABAY_API_KEY visible=$HAS_SECRET (store it as a secret, never a variable)"
+          HAS_SECRET: ${{ (secrets.PIXABAY_API_KEY || vars.PIXABAY_API_KEY) != '' }}
+        run: echo "PIXABAY_API_KEY visible=$HAS_SECRET (secret preferred; a variable is accepted by owner decision 2026-10-20)"
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
@@ -179,7 +179,7 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 45
     env:
-      PIXABAY_API_KEY: ${{ secrets.PIXABAY_API_KEY }}
+      PIXABAY_API_KEY: ${{ secrets.PIXABAY_API_KEY || vars.PIXABAY_API_KEY }}
       MODE: ${{ github.event.inputs.mode }}
       PRODUCTION: ${{ github.event.inputs.production }}
       QUERIES: ${{ github.event.inputs.queries }}

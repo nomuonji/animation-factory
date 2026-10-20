@@ -62,7 +62,7 @@ jobs:
     env:
       PRODUCTION: ${{ inputs.production }}
       PROFILE: ${{ inputs.profile }}
-      PIXABAY_API_KEY: ${{ secrets.PIXABAY_API_KEY }}
+      PIXABAY_API_KEY: ${{ secrets.PIXABAY_API_KEY || vars.PIXABAY_API_KEY }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
