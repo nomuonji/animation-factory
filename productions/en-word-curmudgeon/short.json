@@ -1,0 +1,432 @@
+{
+  "version": 3,
+  "id": "en-word-curmudgeon",
+  "title": "curmudgeon の意味わかる？｜何にでも文句を言う人【ちょっと難しい英単語】",
+  "status": "draft",
+  "channel": "error-english (エラーで学ぶ英語) — ちょっと難しい英単語",
+  "topic": {
+    "source": "manual",
+    "ref": "lessons/en-word-curmudgeon.json (pattern=word, level=英検1級超)",
+    "summary": ""
+  },
+  "audience": "英語を勉強している日本語話者",
+  "reaction": "知りたい",
+  "format": "guess-reveal",
+  "promise": {
+    "firstFrame": "問いの見出しと場面の写真",
+    "payoff": "冒頭の問いに戻って答えの英語を音声と字幕で言い切る"
+  },
+  "references": [
+    {
+      "url": "https://dictionary.cambridge.org/dictionary/english/curmudgeon",
+      "watched": false,
+      "note": "意味の根拠（辞書）"
+    }
+  ],
+  "voice": {
+    "engine": "voicevox",
+    "speaker": "青山龍星",
+    "style": "ノーマル",
+    "speed": 1.08
+  },
+  "music": {
+    "asset": "safe-space-loop",
+    "gain": 0.08,
+    "duck": 0.3
+  },
+  "look": {
+    "frame": "fit"
+  },
+  "descriptionLines": [
+    "・curmudgeon（名詞）＝ 気難しい頑固者",
+    "・My grandfather is a lovable old curmudgeon. ＝ 祖父は憎めない頑固じいさんだ",
+    "・Don't be such a curmudgeon. ＝ そんなに不機嫌にならないで",
+    "・He's a curmudgeon about modern music. ＝ 彼は最近の音楽にいちいち文句を言う",
+    "・He's a real curmudgeon. ＝ あの人は本当に気難しい",
+    "意味の確認: https://dictionary.cambridge.org/dictionary/english/curmudgeon"
+  ],
+  "beats": [
+    {
+      "id": "hook",
+      "role": "hook",
+      "why": "単語そのものを0秒で見せて問う",
+      "shots": [
+        {
+          "src": "commons:Cozy living room with a gray sofa.jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.05,
+            1.11
+          ],
+          "frame": "fit"
+        }
+      ],
+      "overlay": "curmudgeon",
+      "overlayY": 0.4,
+      "sfx": "whoosh",
+      "say": "この単語、／意味わかりますか？"
+    },
+    {
+      "id": "answer-en",
+      "role": "evidence",
+      "why": "発音（普通の速さ）",
+      "shots": [
+        {
+          "src": "commons:Cozy living room with a gray sofa.jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.11,
+            1.14
+          ],
+          "frame": "fit"
+        }
+      ],
+      "emphasis": [
+        "curmudgeon"
+      ],
+      "hold": 0.6,
+      "clip": {
+        "tts": {
+          "text": "curmudgeon",
+          "voice": "af_heart",
+          "speed": 1.0
+        },
+        "ja": "気難しい頑固者"
+      }
+    },
+    {
+      "id": "answer-en-slow",
+      "role": "evidence",
+      "why": "発音（ゆっくり）",
+      "shots": [
+        {
+          "src": "commons:Cozy living room with a gray sofa.jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.14,
+            1.17
+          ],
+          "frame": "fit"
+        }
+      ],
+      "emphasis": [
+        "curmudgeon"
+      ],
+      "hold": 0.8,
+      "clip": {
+        "tts": {
+          "text": "curmudgeon",
+          "voice": "af_heart",
+          "speed": 0.7
+        },
+        "ja": "気難しい頑固者"
+      }
+    },
+    {
+      "id": "meaning",
+      "role": "turn",
+      "why": "意味とイメージを一つ",
+      "shots": [
+        {
+          "src": "commons:Woman sits at desk working on laptop in home office.jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.1,
+            1.22
+          ],
+          "frame": "fit",
+          "focus": [
+            0.5,
+            0.5
+          ]
+        }
+      ],
+      "sfx": "pop",
+      "say": "意味は、気難しい頑固者。／いつも不機嫌で、何にでも文句を言う人のことです。",
+      "caption": "名詞「気難しい頑固者」／いつも不機嫌で、何にでも文句"
+    },
+    {
+      "id": "memo",
+      "role": "escalation",
+      "why": "覚え方・使う場面（ニュアンス）",
+      "shots": [
+        {
+          "src": "commons:Cozy living room with a gray sofa.jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.17,
+            1.23
+          ],
+          "frame": "fit"
+        }
+      ],
+      "sfx": "pop",
+      "say": "年配の人に使うことが多く、／少し愛嬌をこめて言うこともあります。",
+      "caption": "年配の人に使うことが多い／愛嬌をこめて言うことも"
+    },
+    {
+      "id": "ex1-intro",
+      "role": "evidence",
+      "why": "例文の場面を一言で",
+      "shots": [
+        {
+          "src": "commons:Cozy living room with a gray sofa.jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.23,
+            1.29
+          ],
+          "frame": "fit"
+        }
+      ],
+      "say": "家族のことを話すなら"
+    },
+    {
+      "id": "ex1-en",
+      "role": "evidence",
+      "why": "例文を英語で聞く",
+      "shots": [
+        {
+          "src": "commons:Cozy living room with a gray sofa.jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.29,
+            1.35
+          ],
+          "frame": "fit"
+        }
+      ],
+      "emphasis": [
+        "curmudgeon"
+      ],
+      "hold": 0.7,
+      "clip": {
+        "tts": {
+          "text": "My grandfather is a lovable old curmudgeon.",
+          "voice": "af_heart",
+          "speed": 0.92
+        },
+        "lines": [
+          {
+            "en": "My grandfather is a lovable old curmudgeon.",
+            "ja": "祖父は憎めない頑固じいさんだ"
+          }
+        ]
+      }
+    },
+    {
+      "id": "ex2-intro",
+      "role": "evidence",
+      "why": "例文の場面を一言で",
+      "shots": [
+        {
+          "src": "commons:Warm cup of coffee on a table at a cafe.jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.05,
+            1.11
+          ],
+          "frame": "fit"
+        }
+      ],
+      "say": "相手をたしなめるなら"
+    },
+    {
+      "id": "ex2-en",
+      "role": "escalation",
+      "why": "例文を英語で聞く",
+      "shots": [
+        {
+          "src": "commons:Warm cup of coffee on a table at a cafe.jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.11,
+            1.17
+          ],
+          "frame": "fit"
+        }
+      ],
+      "emphasis": [
+        "curmudgeon"
+      ],
+      "hold": 0.7,
+      "clip": {
+        "tts": {
+          "text": "Don't be such a curmudgeon.",
+          "voice": "am_michael",
+          "speed": 0.92
+        },
+        "lines": [
+          {
+            "en": "Don't be such a curmudgeon.",
+            "ja": "そんなに不機嫌にならないで"
+          }
+        ]
+      }
+    },
+    {
+      "id": "ex3-intro",
+      "role": "evidence",
+      "why": "例文の場面を一言で",
+      "shots": [
+        {
+          "src": "commons:Kisosaki Town Library reading seats ac.jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.05,
+            1.11
+          ],
+          "frame": "fit"
+        }
+      ],
+      "say": "こだわりの強い人に"
+    },
+    {
+      "id": "ex3-en",
+      "role": "escalation",
+      "why": "例文を英語で聞く",
+      "shots": [
+        {
+          "src": "commons:Kisosaki Town Library reading seats ac.jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.11,
+            1.17
+          ],
+          "frame": "fit"
+        }
+      ],
+      "emphasis": [
+        "curmudgeon"
+      ],
+      "hold": 0.7,
+      "clip": {
+        "tts": {
+          "text": "He's a curmudgeon about modern music.",
+          "voice": "af_heart",
+          "speed": 0.92
+        },
+        "lines": [
+          {
+            "en": "He's a curmudgeon about modern music.",
+            "ja": "彼は最近の音楽にいちいち文句を言う"
+          }
+        ]
+      }
+    },
+    {
+      "id": "quiz",
+      "role": "evidence",
+      "why": "自分で言う時間（考える間）",
+      "shots": [
+        {
+          "src": "commons:Street view of Sarphatistraat with a woman, waiting and looking; free photo Amsterdam, Fons Heijnsbroek 10-2021.jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.05,
+            1.11
+          ],
+          "frame": "fit"
+        }
+      ],
+      "overlay": "言ってみよう",
+      "hold": 3.0,
+      "sfx": "tick",
+      "say": "では問題／何にでも文句を言う人。一語で言うと？／空欄に入る単語は？",
+      "caption": "では問題／He complains about everything. He's a real ___.／空欄に入る単語は？"
+    },
+    {
+      "id": "quiz-answer",
+      "role": "turn",
+      "why": "答え合わせ",
+      "shots": [
+        {
+          "src": "commons:Street view of Sarphatistraat with a woman, waiting and looking; free photo Amsterdam, Fons Heijnsbroek 10-2021.jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.11,
+            1.17
+          ],
+          "frame": "fit"
+        }
+      ],
+      "emphasis": [
+        "curmudgeon"
+      ],
+      "hold": 0.6,
+      "clip": {
+        "tts": {
+          "text": "He's a real curmudgeon.",
+          "voice": "af_heart",
+          "speed": 0.9
+        },
+        "ja": "あの人は本当に気難しい"
+      }
+    },
+    {
+      "id": "recap",
+      "role": "payoff",
+      "why": "冒頭の問いに戻って答えを言い切る",
+      "shots": [
+        {
+          "src": "commons:Cozy living room with a gray sofa.jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.35,
+            1.38
+          ],
+          "frame": "fit"
+        }
+      ],
+      "overlay": "今日の単語",
+      "overlayY": 0.4,
+      "say": "気難しい頑固者は、",
+      "caption": "「気難しい頑固者」は"
+    },
+    {
+      "id": "recap-en",
+      "role": "loop",
+      "why": "最後にもう一度英語を聞いて終わる",
+      "shots": [
+        {
+          "src": "commons:Cozy living room with a gray sofa.jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.38,
+            1.41
+          ],
+          "frame": "fit"
+        }
+      ],
+      "overlay": "今日の単語",
+      "overlayY": 0.4,
+      "emphasis": [
+        "curmudgeon"
+      ],
+      "hold": 1.4,
+      "clip": {
+        "tts": {
+          "text": "curmudgeon",
+          "voice": "af_heart",
+          "speed": 0.95
+        },
+        "ja": "気難しい頑固者"
+      }
+    }
+  ]
+}

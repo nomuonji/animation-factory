@@ -1,0 +1,460 @@
+{
+  "version": 3,
+  "id": "en-word-flummoxed",
+  "title": "flummoxed の意味わかる？｜confused より「お手上げ」【ちょっと難しい英単語】",
+  "status": "draft",
+  "channel": "error-english (エラーで学ぶ英語) — ちょっと難しい英単語",
+  "topic": {
+    "source": "manual",
+    "ref": "lessons/en-word-flummoxed.json (pattern=word, level=英検1級超)",
+    "summary": ""
+  },
+  "audience": "英語を勉強している日本語話者",
+  "reaction": "知りたい",
+  "format": "guess-reveal",
+  "promise": {
+    "firstFrame": "問いの見出しと場面の写真",
+    "payoff": "冒頭の問いに戻って答えの英語を音声と字幕で言い切る"
+  },
+  "references": [
+    {
+      "url": "https://dictionary.cambridge.org/dictionary/english/flummoxed",
+      "watched": false,
+      "note": "意味の根拠（辞書）"
+    }
+  ],
+  "voice": {
+    "engine": "voicevox",
+    "speaker": "青山龍星",
+    "style": "ノーマル",
+    "speed": 1.08
+  },
+  "music": {
+    "asset": "safe-space-loop",
+    "gain": 0.08,
+    "duck": 0.3
+  },
+  "look": {
+    "frame": "fit"
+  },
+  "descriptionLines": [
+    "・flummoxed（形容詞）＝ すっかり困惑した・お手上げの",
+    "・I was completely flummoxed by the question. ＝ その質問にすっかり困ってしまった",
+    "・The new TV remote has me flummoxed. ＝ 新しいテレビのリモコン、お手上げだ",
+    "・Even the teacher looked flummoxed. ＝ 先生でさえ困った顔をしていた",
+    "・The instructions left me flummoxed. ＝ 説明書を読んでも、お手上げだった",
+    "意味の確認: https://dictionary.cambridge.org/dictionary/english/flummoxed"
+  ],
+  "beats": [
+    {
+      "id": "hook",
+      "role": "hook",
+      "why": "単語そのものを0秒で見せて問う",
+      "shots": [
+        {
+          "src": "commons:Woman using laptop and checking watch while sitting in living room.jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.15,
+            1.21
+          ],
+          "frame": "fit",
+          "focus": [
+            0.55,
+            0.5
+          ]
+        }
+      ],
+      "overlay": "flummoxed",
+      "overlayY": 0.4,
+      "sfx": "whoosh",
+      "say": "この単語、／意味わかりますか？"
+    },
+    {
+      "id": "answer-en",
+      "role": "evidence",
+      "why": "発音（普通の速さ）",
+      "shots": [
+        {
+          "src": "commons:Woman using laptop and checking watch while sitting in living room.jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.21,
+            1.24
+          ],
+          "frame": "fit",
+          "focus": [
+            0.55,
+            0.5
+          ]
+        }
+      ],
+      "emphasis": [
+        "flummoxed"
+      ],
+      "hold": 0.6,
+      "clip": {
+        "tts": {
+          "text": "flummoxed",
+          "voice": "af_heart",
+          "speed": 1.0
+        },
+        "ja": "すっかり困惑した・お手上げの"
+      }
+    },
+    {
+      "id": "answer-en-slow",
+      "role": "evidence",
+      "why": "発音（ゆっくり）",
+      "shots": [
+        {
+          "src": "commons:Woman using laptop and checking watch while sitting in living room.jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.24,
+            1.27
+          ],
+          "frame": "fit",
+          "focus": [
+            0.55,
+            0.5
+          ]
+        }
+      ],
+      "emphasis": [
+        "flummoxed"
+      ],
+      "hold": 0.8,
+      "clip": {
+        "tts": {
+          "text": "flummoxed",
+          "voice": "af_heart",
+          "speed": 0.7
+        },
+        "ja": "すっかり困惑した・お手上げの"
+      }
+    },
+    {
+      "id": "meaning",
+      "role": "turn",
+      "why": "意味とイメージを一つ",
+      "shots": [
+        {
+          "src": "commons:Books, pencils, laptop, and iphone on a desk (Unsplash).jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.05,
+            1.17
+          ],
+          "frame": "fit"
+        }
+      ],
+      "sfx": "pop",
+      "say": "意味は、すっかり困惑した・お手上げの。／どうしていいか分からず、頭が真っ白な状態です。",
+      "caption": "形容詞「すっかり困惑した・お手上げの」／どうしていいか分からず、頭が真っ白"
+    },
+    {
+      "id": "memo",
+      "role": "escalation",
+      "why": "覚え方・使う場面（ニュアンス）",
+      "shots": [
+        {
+          "src": "commons:Woman using laptop and checking watch while sitting in living room.jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.27,
+            1.33
+          ],
+          "frame": "fit",
+          "focus": [
+            0.55,
+            0.5
+          ]
+        }
+      ],
+      "sfx": "pop",
+      "say": "コンフューズドより強く、／少しユーモラスな響きがあります。",
+      "caption": "confused より強い／ちょっとユーモラスな響き"
+    },
+    {
+      "id": "ex1-intro",
+      "role": "evidence",
+      "why": "例文の場面を一言で",
+      "shots": [
+        {
+          "src": "commons:Student Listening During Study Session.jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.05,
+            1.11
+          ],
+          "frame": "fit"
+        }
+      ],
+      "say": "難しい質問をされて"
+    },
+    {
+      "id": "ex1-en",
+      "role": "evidence",
+      "why": "例文を英語で聞く",
+      "shots": [
+        {
+          "src": "commons:Student Listening During Study Session.jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.11,
+            1.17
+          ],
+          "frame": "fit"
+        }
+      ],
+      "emphasis": [
+        "flummoxed"
+      ],
+      "hold": 0.7,
+      "clip": {
+        "tts": {
+          "text": "I was completely flummoxed by the question.",
+          "voice": "af_heart",
+          "speed": 0.92
+        },
+        "lines": [
+          {
+            "en": "I was completely flummoxed by the question.",
+            "ja": "その質問にすっかり困ってしまった"
+          }
+        ]
+      }
+    },
+    {
+      "id": "ex2-intro",
+      "role": "evidence",
+      "why": "例文の場面を一言で",
+      "shots": [
+        {
+          "src": "commons:Black smartphone in hand (Unsplash).jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.05,
+            1.11
+          ],
+          "frame": "fit"
+        }
+      ],
+      "say": "新しい機械に"
+    },
+    {
+      "id": "ex2-en",
+      "role": "escalation",
+      "why": "例文を英語で聞く",
+      "shots": [
+        {
+          "src": "commons:Black smartphone in hand (Unsplash).jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.11,
+            1.17
+          ],
+          "frame": "fit"
+        }
+      ],
+      "emphasis": [
+        "flummoxed"
+      ],
+      "hold": 0.7,
+      "clip": {
+        "tts": {
+          "text": "The new TV remote has me flummoxed.",
+          "voice": "am_michael",
+          "speed": 0.92
+        },
+        "lines": [
+          {
+            "en": "The new TV remote has me flummoxed.",
+            "ja": "新しいテレビのリモコン、お手上げだ"
+          }
+        ]
+      }
+    },
+    {
+      "id": "ex3-intro",
+      "role": "evidence",
+      "why": "例文の場面を一言で",
+      "shots": [
+        {
+          "src": "commons:Woman sits at desk working on laptop in home office.jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.1,
+            1.16
+          ],
+          "frame": "fit",
+          "focus": [
+            0.5,
+            0.5
+          ]
+        }
+      ],
+      "say": "周りの様子にも"
+    },
+    {
+      "id": "ex3-en",
+      "role": "escalation",
+      "why": "例文を英語で聞く",
+      "shots": [
+        {
+          "src": "commons:Woman sits at desk working on laptop in home office.jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.16,
+            1.22
+          ],
+          "frame": "fit",
+          "focus": [
+            0.5,
+            0.5
+          ]
+        }
+      ],
+      "emphasis": [
+        "flummoxed"
+      ],
+      "hold": 0.7,
+      "clip": {
+        "tts": {
+          "text": "Even the teacher looked flummoxed.",
+          "voice": "af_heart",
+          "speed": 0.92
+        },
+        "lines": [
+          {
+            "en": "Even the teacher looked flummoxed.",
+            "ja": "先生でさえ困った顔をしていた"
+          }
+        ]
+      }
+    },
+    {
+      "id": "quiz",
+      "role": "evidence",
+      "why": "自分で言う時間（考える間）",
+      "shots": [
+        {
+          "src": "commons:Person writing in a notebook while sitting at a desk.jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.08,
+            1.14
+          ],
+          "frame": "fit"
+        }
+      ],
+      "overlay": "言ってみよう",
+      "hold": 3.0,
+      "sfx": "tick",
+      "say": "では問題／説明書を読んでも、さっぱり分からなかった。／空欄に入る単語は？",
+      "caption": "では問題／The instructions left me ___.／空欄に入る単語は？"
+    },
+    {
+      "id": "quiz-answer",
+      "role": "turn",
+      "why": "答え合わせ",
+      "shots": [
+        {
+          "src": "commons:Person writing in a notebook while sitting at a desk.jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.14,
+            1.2
+          ],
+          "frame": "fit"
+        }
+      ],
+      "emphasis": [
+        "flummoxed"
+      ],
+      "hold": 0.6,
+      "clip": {
+        "tts": {
+          "text": "The instructions left me flummoxed.",
+          "voice": "af_heart",
+          "speed": 0.9
+        },
+        "ja": "説明書を読んでも、お手上げだった"
+      }
+    },
+    {
+      "id": "recap",
+      "role": "payoff",
+      "why": "冒頭の問いに戻って答えを言い切る",
+      "shots": [
+        {
+          "src": "commons:Woman using laptop and checking watch while sitting in living room.jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.33,
+            1.36
+          ],
+          "frame": "fit",
+          "focus": [
+            0.55,
+            0.5
+          ]
+        }
+      ],
+      "overlay": "今日の単語",
+      "overlayY": 0.4,
+      "say": "すっかり困惑した・お手上げのは、",
+      "caption": "「すっかり困惑した・お手上げの」は"
+    },
+    {
+      "id": "recap-en",
+      "role": "loop",
+      "why": "最後にもう一度英語を聞いて終わる",
+      "shots": [
+        {
+          "src": "commons:Woman using laptop and checking watch while sitting in living room.jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.36,
+            1.39
+          ],
+          "frame": "fit",
+          "focus": [
+            0.55,
+            0.5
+          ]
+        }
+      ],
+      "overlay": "今日の単語",
+      "overlayY": 0.4,
+      "emphasis": [
+        "flummoxed"
+      ],
+      "hold": 1.4,
+      "clip": {
+        "tts": {
+          "text": "flummoxed",
+          "voice": "af_heart",
+          "speed": 0.95
+        },
+        "ja": "すっかり困惑した・お手上げの"
+      }
+    }
+  ]
+}

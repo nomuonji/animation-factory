@@ -1,0 +1,75 @@
+{
+  "id": "en-phrase-move-the-goalposts",
+  "pattern": "phrase",
+  "level": "英検1級超",
+  "title": "「後から条件を変えないで」を英語で｜move the goalposts",
+  "jp": "後から条件を変えないで",
+  "situation": "途中で、急に条件を変えられた。",
+  "answer": {
+    "en": "Stop moving the goalposts.",
+    "ja": "後から条件を変えないで"
+  },
+  "emphasis": [
+    "moving the goalposts"
+  ],
+  "meaning": [
+    {
+      "cap": "ゴールポストを動かす",
+      "say": "直訳すると、ゴールポストを動かす。"
+    },
+    {
+      "cap": "シュートしようとしたら、ゴールが動く",
+      "say": "シュートしようとしたら、ゴールの位置を変えられる。"
+    },
+    {
+      "cap": "後から基準を変える、ずるさ",
+      "say": "後から基準を変える、ずるさを表します。"
+    }
+  ],
+  "meaningEmphasis": [
+    "後から基準を変える"
+  ],
+  "examples": [
+    {
+      "intro": "上司の話なら",
+      "scene": "office-desk",
+      "en": [
+        "My boss keeps moving the goalposts."
+      ],
+      "ja": [
+        "上司が後から条件をどんどん変える"
+      ]
+    },
+    {
+      "intro": "交渉の場面なら",
+      "scene": "office-clocks",
+      "en": [
+        "They moved the goalposts at the last minute."
+      ],
+      "ja": [
+        "土壇場で条件を変えられた"
+      ]
+    }
+  ],
+  "quiz": {
+    "scene": "laptop-watch",
+    "prompt": [
+      "また後から条件を変えるの？",
+      "英語で言ってみて"
+    ],
+    "emphasis": [
+      "後から条件を変える"
+    ],
+    "answer": "Are you moving the goalposts again?",
+    "answerJa": "また後から条件を変えるの？"
+  },
+  "recapLead": "後から条件を変えられたら、この一言。",
+  "scenes": {
+    "hook": "office-desk",
+    "answer": "desk-flatlay",
+    "meaning": "classroom"
+  },
+  "sources": [
+    "https://dictionary.cambridge.org/dictionary/english/move-the-goalposts"
+  ]
+}

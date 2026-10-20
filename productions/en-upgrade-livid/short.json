@@ -1,0 +1,439 @@
+{
+  "version": 3,
+  "id": "en-upgrade-livid",
+  "title": "very angry より強い「激怒」｜livid【very から卒業】",
+  "status": "draft",
+  "channel": "error-english (エラーで学ぶ英語) — very から卒業",
+  "topic": {
+    "source": "manual",
+    "ref": "lessons/en-upgrade-livid.json (pattern=upgrade, level=英検1級超)",
+    "summary": ""
+  },
+  "audience": "英語を勉強している日本語話者",
+  "reaction": "知りたい",
+  "format": "guess-reveal",
+  "promise": {
+    "firstFrame": "問いの見出しと場面の写真",
+    "payoff": "冒頭の問いに戻って答えの英語を音声と字幕で言い切る"
+  },
+  "references": [
+    {
+      "url": "https://dictionary.cambridge.org/dictionary/english/livid",
+      "watched": false,
+      "note": "意味の根拠（辞書）"
+    }
+  ],
+  "voice": {
+    "engine": "voicevox",
+    "speaker": "青山龍星",
+    "style": "ノーマル",
+    "speed": 1.08
+  },
+  "music": {
+    "asset": "safe-space-loop",
+    "gain": 0.08,
+    "duck": 0.3
+  },
+  "look": {
+    "frame": "fit"
+  },
+  "descriptionLines": [
+    "・very angry → livid ＝ 激怒している",
+    "・My boss was livid. ＝ 上司はカンカンだった",
+    "・She was livid about the delay. ＝ 彼女は遅れに激怒していた",
+    "・He was livid about the mistake. ＝ 彼はそのミスに激怒していた",
+    "意味の確認: https://dictionary.cambridge.org/dictionary/english/livid"
+  ],
+  "beats": [
+    {
+      "id": "hook",
+      "role": "hook",
+      "why": "いつもの言い方を0秒で出す",
+      "shots": [
+        {
+          "src": "commons:Woman sits at desk working on laptop in home office.jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.1,
+            1.16
+          ],
+          "frame": "fit",
+          "focus": [
+            0.5,
+            0.5
+          ]
+        }
+      ],
+      "overlay": "very angry\nもっと強く言うと？",
+      "overlayY": 0.4,
+      "sfx": "whoosh",
+      "say": "すごく怒っている。ベリー・アングリーでも通じますが、／もっと強く言えますか？",
+      "caption": "すごく怒っている = very angry／もっと強く言えますか？"
+    },
+    {
+      "id": "answer",
+      "role": "setup",
+      "why": "すぐ答えに入る",
+      "shots": [
+        {
+          "src": "commons:Woman sits at desk working on laptop in home office.jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.16,
+            1.19
+          ],
+          "frame": "fit",
+          "focus": [
+            0.5,
+            0.5
+          ]
+        }
+      ],
+      "sfx": "pop",
+      "say": "答えは、これです。"
+    },
+    {
+      "id": "answer-en",
+      "role": "evidence",
+      "why": "答えの英語（普通の速さ）",
+      "shots": [
+        {
+          "src": "commons:Woman sits at desk working on laptop in home office.jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.19,
+            1.25
+          ],
+          "frame": "fit",
+          "focus": [
+            0.5,
+            0.5
+          ]
+        }
+      ],
+      "emphasis": [
+        "livid"
+      ],
+      "hold": 0.6,
+      "clip": {
+        "tts": {
+          "text": "livid",
+          "voice": "af_heart",
+          "speed": 1.0
+        },
+        "ja": "激怒している"
+      }
+    },
+    {
+      "id": "answer-slow",
+      "role": "evidence",
+      "why": "ゆっくり版の前振り",
+      "shots": [
+        {
+          "src": "commons:Woman sits at desk working on laptop in home office.jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.25,
+            1.28
+          ],
+          "frame": "fit",
+          "focus": [
+            0.5,
+            0.5
+          ]
+        }
+      ],
+      "say": "もう一度、ゆっくり。"
+    },
+    {
+      "id": "answer-en-slow",
+      "role": "evidence",
+      "why": "同じ英語をゆっくり（2回目）",
+      "shots": [
+        {
+          "src": "commons:Woman sits at desk working on laptop in home office.jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.28,
+            1.34
+          ],
+          "frame": "fit",
+          "focus": [
+            0.5,
+            0.5
+          ]
+        }
+      ],
+      "emphasis": [
+        "livid"
+      ],
+      "hold": 0.8,
+      "clip": {
+        "tts": {
+          "text": "livid",
+          "voice": "af_heart",
+          "speed": 0.72
+        },
+        "ja": "激怒している"
+      }
+    },
+    {
+      "id": "meaning",
+      "role": "turn",
+      "why": "very との違いを一つ",
+      "shots": [
+        {
+          "src": "commons:WMUK office - clocks.jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.05,
+            1.17
+          ],
+          "frame": "fit"
+        }
+      ],
+      "sfx": "pop",
+      "say": "顔色が変わるほど、怒っている状態です。／それだけで強い言葉なので、／ベリーは付けなくて大丈夫です。",
+      "caption": "顔色が変わるほど怒っている／それだけで強いので／very は付けなくてOK"
+    },
+    {
+      "id": "ex1-intro",
+      "role": "evidence",
+      "why": "例文の場面を一言で",
+      "shots": [
+        {
+          "src": "commons:Woman sits at desk working on laptop in home office.jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.34,
+            1.4
+          ],
+          "frame": "fit",
+          "focus": [
+            0.5,
+            0.5
+          ]
+        }
+      ],
+      "say": "職場の話なら"
+    },
+    {
+      "id": "ex1-en",
+      "role": "evidence",
+      "why": "例文を英語で聞く",
+      "shots": [
+        {
+          "src": "commons:Woman sits at desk working on laptop in home office.jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.4,
+            1.46
+          ],
+          "frame": "fit",
+          "focus": [
+            0.5,
+            0.5
+          ]
+        }
+      ],
+      "emphasis": [
+        "livid"
+      ],
+      "hold": 0.7,
+      "clip": {
+        "tts": {
+          "text": "My boss was livid.",
+          "voice": "af_heart",
+          "speed": 0.92
+        },
+        "lines": [
+          {
+            "en": "My boss was livid.",
+            "ja": "上司はカンカンだった"
+          }
+        ]
+      }
+    },
+    {
+      "id": "ex2-intro",
+      "role": "evidence",
+      "why": "例文の場面を一言で",
+      "shots": [
+        {
+          "src": "commons:Umeda Station Osaka metro platform rush hour queues 2022-04-25.jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.05,
+            1.11
+          ],
+          "frame": "fit"
+        }
+      ],
+      "say": "理由も言うなら"
+    },
+    {
+      "id": "ex2-en",
+      "role": "escalation",
+      "why": "例文を英語で聞く",
+      "shots": [
+        {
+          "src": "commons:Umeda Station Osaka metro platform rush hour queues 2022-04-25.jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.11,
+            1.17
+          ],
+          "frame": "fit"
+        }
+      ],
+      "emphasis": [
+        "livid"
+      ],
+      "hold": 0.7,
+      "clip": {
+        "tts": {
+          "text": "She was livid about the delay.",
+          "voice": "am_michael",
+          "speed": 0.92
+        },
+        "lines": [
+          {
+            "en": "She was livid about the delay.",
+            "ja": "彼女は遅れに激怒していた"
+          }
+        ]
+      }
+    },
+    {
+      "id": "quiz",
+      "role": "evidence",
+      "why": "自分で言う時間（考える間）",
+      "shots": [
+        {
+          "src": "commons:Woman using laptop and checking watch while sitting in living room.jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.15,
+            1.21
+          ],
+          "frame": "fit",
+          "focus": [
+            0.55,
+            0.5
+          ]
+        }
+      ],
+      "overlay": "言ってみよう",
+      "hold": 3.0,
+      "sfx": "tick",
+      "emphasis": [
+        "激怒"
+      ],
+      "say": "では問題／彼は、そのミスに激怒していた／英語で言ってみて"
+    },
+    {
+      "id": "quiz-answer",
+      "role": "turn",
+      "why": "答え合わせ",
+      "shots": [
+        {
+          "src": "commons:Woman using laptop and checking watch while sitting in living room.jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.21,
+            1.27
+          ],
+          "frame": "fit",
+          "focus": [
+            0.55,
+            0.5
+          ]
+        }
+      ],
+      "emphasis": [
+        "livid"
+      ],
+      "hold": 0.6,
+      "clip": {
+        "tts": {
+          "text": "He was livid about the mistake.",
+          "voice": "af_heart",
+          "speed": 0.9
+        },
+        "ja": "彼はそのミスに激怒していた"
+      }
+    },
+    {
+      "id": "recap",
+      "role": "payoff",
+      "why": "冒頭の問いに戻って答えを言い切る",
+      "shots": [
+        {
+          "src": "commons:Woman sits at desk working on laptop in home office.jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.46,
+            1.49
+          ],
+          "frame": "fit",
+          "focus": [
+            0.5,
+            0.5
+          ]
+        }
+      ],
+      "overlay": "今日の一言",
+      "overlayY": 0.4,
+      "say": "すごく怒っている、をもっと強く言うなら、",
+      "caption": "very angry の代わりに"
+    },
+    {
+      "id": "recap-en",
+      "role": "loop",
+      "why": "最後にもう一度英語を聞いて終わる",
+      "shots": [
+        {
+          "src": "commons:Woman sits at desk working on laptop in home office.jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.49,
+            1.52
+          ],
+          "frame": "fit",
+          "focus": [
+            0.5,
+            0.5
+          ]
+        }
+      ],
+      "overlay": "今日の一言",
+      "overlayY": 0.4,
+      "emphasis": [
+        "livid"
+      ],
+      "hold": 1.4,
+      "clip": {
+        "tts": {
+          "text": "livid",
+          "voice": "af_heart",
+          "speed": 0.95
+        },
+        "ja": "激怒している"
+      }
+    }
+  ]
+}

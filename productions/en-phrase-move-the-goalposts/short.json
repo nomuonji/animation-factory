@@ -1,0 +1,427 @@
+{
+  "version": 3,
+  "id": "en-phrase-move-the-goalposts",
+  "title": "「後から条件を変えないで」を英語で｜move the goalposts【言えそうで言えない一言】",
+  "status": "draft",
+  "channel": "error-english (エラーで学ぶ英語) — 言えそうで言えない一言",
+  "topic": {
+    "source": "manual",
+    "ref": "lessons/en-phrase-move-the-goalposts.json (pattern=phrase, level=英検1級超)",
+    "summary": ""
+  },
+  "audience": "英語を勉強している日本語話者",
+  "reaction": "知りたい",
+  "format": "guess-reveal",
+  "promise": {
+    "firstFrame": "問いの見出しと場面の写真",
+    "payoff": "冒頭の問いに戻って答えの英語を音声と字幕で言い切る"
+  },
+  "references": [
+    {
+      "url": "https://dictionary.cambridge.org/dictionary/english/move-the-goalposts",
+      "watched": false,
+      "note": "意味の根拠（辞書）"
+    }
+  ],
+  "voice": {
+    "engine": "voicevox",
+    "speaker": "青山龍星",
+    "style": "ノーマル",
+    "speed": 1.08
+  },
+  "music": {
+    "asset": "safe-space-loop",
+    "gain": 0.08,
+    "duck": 0.3
+  },
+  "look": {
+    "frame": "fit"
+  },
+  "descriptionLines": [
+    "・Stop moving the goalposts. ＝ 後から条件を変えないで",
+    "・My boss keeps moving the goalposts. ＝ 上司が後から条件をどんどん変える",
+    "・They moved the goalposts at the last minute. ＝ 土壇場で条件を変えられた",
+    "・Are you moving the goalposts again? ＝ また後から条件を変えるの？",
+    "意味の確認: https://dictionary.cambridge.org/dictionary/english/move-the-goalposts"
+  ],
+  "beats": [
+    {
+      "id": "hook",
+      "role": "hook",
+      "why": "誰にでもある場面と問いを0秒で出す",
+      "shots": [
+        {
+          "src": "commons:Woman sits at desk working on laptop in home office.jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.1,
+            1.16
+          ],
+          "frame": "fit",
+          "focus": [
+            0.5,
+            0.5
+          ]
+        }
+      ],
+      "overlay": "「後から条件を変えないで」\n英語で言える？",
+      "overlayY": 0.4,
+      "sfx": "whoosh",
+      "emphasis": [
+        "後から条件を変えないで"
+      ],
+      "say": "途中で、急に条件を変えられた。／英語で、パッと言えますか？"
+    },
+    {
+      "id": "answer",
+      "role": "setup",
+      "why": "すぐ答えに入る",
+      "shots": [
+        {
+          "src": "commons:Books, pencils, laptop, and iphone on a desk (Unsplash).jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.05,
+            1.08
+          ],
+          "frame": "fit"
+        }
+      ],
+      "sfx": "pop",
+      "say": "答えは、これです。"
+    },
+    {
+      "id": "answer-en",
+      "role": "evidence",
+      "why": "答えの英語（普通の速さ）",
+      "shots": [
+        {
+          "src": "commons:Books, pencils, laptop, and iphone on a desk (Unsplash).jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.08,
+            1.14
+          ],
+          "frame": "fit"
+        }
+      ],
+      "emphasis": [
+        "moving the goalposts"
+      ],
+      "hold": 0.6,
+      "clip": {
+        "tts": {
+          "text": "Stop moving the goalposts.",
+          "voice": "af_heart",
+          "speed": 1.0
+        },
+        "ja": "後から条件を変えないで"
+      }
+    },
+    {
+      "id": "answer-slow",
+      "role": "evidence",
+      "why": "ゆっくり版の前振り",
+      "shots": [
+        {
+          "src": "commons:Books, pencils, laptop, and iphone on a desk (Unsplash).jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.14,
+            1.17
+          ],
+          "frame": "fit"
+        }
+      ],
+      "say": "もう一度、ゆっくり。"
+    },
+    {
+      "id": "answer-en-slow",
+      "role": "evidence",
+      "why": "同じ英語をゆっくり（2回目）",
+      "shots": [
+        {
+          "src": "commons:Books, pencils, laptop, and iphone on a desk (Unsplash).jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.17,
+            1.23
+          ],
+          "frame": "fit"
+        }
+      ],
+      "emphasis": [
+        "moving the goalposts"
+      ],
+      "hold": 0.8,
+      "clip": {
+        "tts": {
+          "text": "Stop moving the goalposts.",
+          "voice": "af_heart",
+          "speed": 0.72
+        },
+        "ja": "後から条件を変えないで"
+      }
+    },
+    {
+      "id": "meaning",
+      "role": "turn",
+      "why": "意味を一つだけ",
+      "shots": [
+        {
+          "src": "commons:Student Listening During Study Session.jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.05,
+            1.17
+          ],
+          "frame": "fit"
+        }
+      ],
+      "sfx": "pop",
+      "emphasis": [
+        "後から基準を変える"
+      ],
+      "say": "直訳すると、ゴールポストを動かす。／シュートしようとしたら、ゴールの位置を変えられる。／後から基準を変える、ずるさを表します。",
+      "caption": "ゴールポストを動かす／シュートしようとしたら、ゴールが動く／後から基準を変える、ずるさ"
+    },
+    {
+      "id": "ex1-intro",
+      "role": "evidence",
+      "why": "例文の場面を一言で",
+      "shots": [
+        {
+          "src": "commons:Woman sits at desk working on laptop in home office.jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.16,
+            1.22
+          ],
+          "frame": "fit",
+          "focus": [
+            0.5,
+            0.5
+          ]
+        }
+      ],
+      "say": "上司の話なら"
+    },
+    {
+      "id": "ex1-en",
+      "role": "evidence",
+      "why": "例文を英語で聞く",
+      "shots": [
+        {
+          "src": "commons:Woman sits at desk working on laptop in home office.jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.22,
+            1.28
+          ],
+          "frame": "fit",
+          "focus": [
+            0.5,
+            0.5
+          ]
+        }
+      ],
+      "emphasis": [
+        "moving the goalposts"
+      ],
+      "hold": 0.7,
+      "clip": {
+        "tts": {
+          "text": "My boss keeps moving the goalposts.",
+          "voice": "af_heart",
+          "speed": 0.92
+        },
+        "lines": [
+          {
+            "en": "My boss keeps moving the goalposts.",
+            "ja": "上司が後から条件をどんどん変える"
+          }
+        ]
+      }
+    },
+    {
+      "id": "ex2-intro",
+      "role": "evidence",
+      "why": "例文の場面を一言で",
+      "shots": [
+        {
+          "src": "commons:WMUK office - clocks.jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.05,
+            1.11
+          ],
+          "frame": "fit"
+        }
+      ],
+      "say": "交渉の場面なら"
+    },
+    {
+      "id": "ex2-en",
+      "role": "escalation",
+      "why": "例文を英語で聞く",
+      "shots": [
+        {
+          "src": "commons:WMUK office - clocks.jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.11,
+            1.17
+          ],
+          "frame": "fit"
+        }
+      ],
+      "emphasis": [
+        "moving the goalposts"
+      ],
+      "hold": 0.7,
+      "clip": {
+        "tts": {
+          "text": "They moved the goalposts at the last minute.",
+          "voice": "am_michael",
+          "speed": 0.92
+        },
+        "lines": [
+          {
+            "en": "They moved the goalposts at the last minute.",
+            "ja": "土壇場で条件を変えられた"
+          }
+        ]
+      }
+    },
+    {
+      "id": "quiz",
+      "role": "evidence",
+      "why": "自分で言う時間（考える間）",
+      "shots": [
+        {
+          "src": "commons:Woman using laptop and checking watch while sitting in living room.jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.15,
+            1.21
+          ],
+          "frame": "fit",
+          "focus": [
+            0.55,
+            0.5
+          ]
+        }
+      ],
+      "overlay": "言ってみよう",
+      "hold": 3.0,
+      "sfx": "tick",
+      "emphasis": [
+        "後から条件を変える"
+      ],
+      "say": "では問題／また後から条件を変えるの？／英語で言ってみて"
+    },
+    {
+      "id": "quiz-answer",
+      "role": "turn",
+      "why": "答え合わせ",
+      "shots": [
+        {
+          "src": "commons:Woman using laptop and checking watch while sitting in living room.jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.21,
+            1.27
+          ],
+          "frame": "fit",
+          "focus": [
+            0.55,
+            0.5
+          ]
+        }
+      ],
+      "emphasis": [
+        "moving the goalposts"
+      ],
+      "hold": 0.6,
+      "clip": {
+        "tts": {
+          "text": "Are you moving the goalposts again?",
+          "voice": "af_heart",
+          "speed": 0.9
+        },
+        "ja": "また後から条件を変えるの？"
+      }
+    },
+    {
+      "id": "recap",
+      "role": "payoff",
+      "why": "冒頭の問いに戻って答えを言い切る",
+      "shots": [
+        {
+          "src": "commons:Woman sits at desk working on laptop in home office.jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.28,
+            1.31
+          ],
+          "frame": "fit",
+          "focus": [
+            0.5,
+            0.5
+          ]
+        }
+      ],
+      "overlay": "今日の一言",
+      "overlayY": 0.4,
+      "say": "後から条件を変えられたら、この一言。"
+    },
+    {
+      "id": "recap-en",
+      "role": "loop",
+      "why": "最後にもう一度英語を聞いて終わる",
+      "shots": [
+        {
+          "src": "commons:Woman sits at desk working on laptop in home office.jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.31,
+            1.34
+          ],
+          "frame": "fit",
+          "focus": [
+            0.5,
+            0.5
+          ]
+        }
+      ],
+      "overlay": "今日の一言",
+      "overlayY": 0.4,
+      "emphasis": [
+        "moving the goalposts"
+      ],
+      "hold": 1.4,
+      "clip": {
+        "tts": {
+          "text": "Stop moving the goalposts.",
+          "voice": "af_heart",
+          "speed": 0.95
+        },
+        "ja": "後から条件を変えないで"
+      }
+    }
+  ]
+}

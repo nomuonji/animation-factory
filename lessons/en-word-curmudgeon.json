@@ -1,0 +1,79 @@
+{
+  "id": "en-word-curmudgeon",
+  "pattern": "word",
+  "level": "英検1級超",
+  "title": "curmudgeon の意味わかる？｜何にでも文句を言う人",
+  "word": "curmudgeon",
+  "pos": "名詞",
+  "ja": "気難しい頑固者",
+  "meaning": [
+    {
+      "cap": "いつも不機嫌で、何にでも文句",
+      "say": "いつも不機嫌で、何にでも文句を言う人のことです。"
+    }
+  ],
+  "memo": [
+    {
+      "cap": "年配の人に使うことが多い",
+      "say": "年配の人に使うことが多く、"
+    },
+    {
+      "cap": "愛嬌をこめて言うことも",
+      "say": "少し愛嬌をこめて言うこともあります。"
+    }
+  ],
+  "examples": [
+    {
+      "intro": "家族のことを話すなら",
+      "scene": "living-room",
+      "en": [
+        "My grandfather is a lovable old curmudgeon."
+      ],
+      "ja": [
+        "祖父は憎めない頑固じいさんだ"
+      ]
+    },
+    {
+      "intro": "相手をたしなめるなら",
+      "scene": "cafe",
+      "en": [
+        "Don't be such a curmudgeon."
+      ],
+      "ja": [
+        "そんなに不機嫌にならないで"
+      ]
+    },
+    {
+      "intro": "こだわりの強い人に",
+      "scene": "library",
+      "en": [
+        "He's a curmudgeon about modern music."
+      ],
+      "ja": [
+        "彼は最近の音楽にいちいち文句を言う"
+      ]
+    }
+  ],
+  "quiz": {
+    "scene": "street-waiting",
+    "prompt": [
+      {
+        "cap": "He complains about everything. He's a real ___.",
+        "say": "何にでも文句を言う人。一語で言うと？"
+      },
+      {
+        "cap": "空欄に入る単語は？",
+        "say": "空欄に入る単語は？"
+      }
+    ],
+    "answer": "He's a real curmudgeon.",
+    "answerJa": "あの人は本当に気難しい"
+  },
+  "scenes": {
+    "hook": "living-room",
+    "meaning": "office-desk"
+  },
+  "sources": [
+    "https://dictionary.cambridge.org/dictionary/english/curmudgeon"
+  ]
+}

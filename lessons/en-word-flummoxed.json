@@ -1,0 +1,79 @@
+{
+  "id": "en-word-flummoxed",
+  "pattern": "word",
+  "level": "英検1級超",
+  "title": "flummoxed の意味わかる？｜confused より「お手上げ」",
+  "word": "flummoxed",
+  "pos": "形容詞",
+  "ja": "すっかり困惑した・お手上げの",
+  "meaning": [
+    {
+      "cap": "どうしていいか分からず、頭が真っ白",
+      "say": "どうしていいか分からず、頭が真っ白な状態です。"
+    }
+  ],
+  "memo": [
+    {
+      "cap": "confused より強い",
+      "say": "コンフューズドより強く、"
+    },
+    {
+      "cap": "ちょっとユーモラスな響き",
+      "say": "少しユーモラスな響きがあります。"
+    }
+  ],
+  "examples": [
+    {
+      "intro": "難しい質問をされて",
+      "scene": "classroom",
+      "en": [
+        "I was completely flummoxed by the question."
+      ],
+      "ja": [
+        "その質問にすっかり困ってしまった"
+      ]
+    },
+    {
+      "intro": "新しい機械に",
+      "scene": "smartphone",
+      "en": [
+        "The new TV remote has me flummoxed."
+      ],
+      "ja": [
+        "新しいテレビのリモコン、お手上げだ"
+      ]
+    },
+    {
+      "intro": "周りの様子にも",
+      "scene": "office-desk",
+      "en": [
+        "Even the teacher looked flummoxed."
+      ],
+      "ja": [
+        "先生でさえ困った顔をしていた"
+      ]
+    }
+  ],
+  "quiz": {
+    "scene": "notebook-writing",
+    "prompt": [
+      {
+        "cap": "The instructions left me ___.",
+        "say": "説明書を読んでも、さっぱり分からなかった。"
+      },
+      {
+        "cap": "空欄に入る単語は？",
+        "say": "空欄に入る単語は？"
+      }
+    ],
+    "answer": "The instructions left me flummoxed.",
+    "answerJa": "説明書を読んでも、お手上げだった"
+  },
+  "scenes": {
+    "hook": "laptop-watch",
+    "meaning": "desk-flatlay"
+  },
+  "sources": [
+    "https://dictionary.cambridge.org/dictionary/english/flummoxed"
+  ]
+}

@@ -22,6 +22,7 @@ from __future__ import annotations
 
 import json
 import pathlib
+import re
 
 ROOT = pathlib.Path(__file__).resolve().parents[2]
 SCENES = ROOT / "catalog" / "lesson-scenes.json"
@@ -67,7 +68,10 @@ class _Shots:
         self.zoom: dict[str, float] = {}
 
     def __call__(self, tag: str, step: float = 0.06) -> list[dict]:
-        tag = self.spec.get("scenes", {}).get(tag, tag)
+        scenes = self.spec.get("scenes", {})
+        if tag == "memo" and "memo" not in scenes:
+            tag = "hook"
+        tag = scenes.get(tag, tag)
         if tag not in self.pool:
             raise LessonError(f"scene '{tag}' is not in catalog/lesson-scenes.json")
         sc = self.pool[tag]
@@ -175,6 +179,8 @@ def _word(spec, shot):
         _beat("meaning", "turn", "意味とイメージを一つ", shot("meaning", 0.12), sfx="pop",
               emphasis=spec.get("meaningEmphasis"),
               **_narr([{"cap": f"{spec['pos']}「{spec['ja']}」", "say": f"意味は、{spec['ja']}。"}, *spec["meaning"]])),
+        *([_beat("memo", "escalation", "覚え方・使う場面（ニュアンス）", shot("memo"), sfx="pop",
+                 emphasis=spec.get("memoEmphasis"), **_narr(spec["memo"]))] if spec.get("memo") else []),
         *_examples(spec, shot, emph),
         *_quiz(spec, shot, emph),
         *_recap(spec, shot, emph, w, spec["ja"], {"cap": f"「{spec['ja']}」は", "say": f"{spec['ja']}は、"}),
@@ -221,12 +227,22 @@ def _upgrade(spec, shot):
 BUILDERS = {"phrase": _phrase, "word": _word, "vs": _vs, "upgrade": _upgrade}
 
 
+def _check_spoken_japanese(beats: list[dict]) -> None:
+    """VOICEVOX reads Japanese only: Latin letters in `say` come out as garbage."""
+    for bt in beats:
+        say = bt.get("say") or ""
+        if re.search(r"[A-Za-z]", say):
+            raise LessonError(f"{bt['id']}: narration (say) contains Latin letters; put English in cap "
+                              f"and katakana/Japanese in say: {say}")
+
+
 def compile_lesson(spec: dict) -> dict:
     p = spec.get("pattern")
     if p not in BUILDERS:
         raise LessonError(f"pattern must be one of {PATTERNS}")
     shot = _Shots(spec)
     beats = BUILDERS[p](spec, shot)
+    _check_spoken_japanese(beats)
     for bt in beats:  # drop empty optional keys the brief validator does not expect
         if bt.get("emphasis") is None:
             bt.pop("emphasis", None)

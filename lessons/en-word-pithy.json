@@ -1,0 +1,79 @@
+{
+  "id": "en-word-pithy",
+  "pattern": "word",
+  "level": "英検1級超",
+  "title": "pithy の意味わかる？｜短くて、核心をつく",
+  "word": "pithy",
+  "pos": "形容詞",
+  "ja": "短くて要点をついた",
+  "meaning": [
+    {
+      "cap": "言葉は少ないのに、核心をついている",
+      "say": "言葉は少ないのに、核心をついている、という意味です。"
+    }
+  ],
+  "memo": [
+    {
+      "cap": "ほめ言葉",
+      "say": "ほめ言葉で、"
+    },
+    {
+      "cap": "スピーチ・名言・コメントに",
+      "say": "スピーチや名言、コメントによく使います。"
+    }
+  ],
+  "examples": [
+    {
+      "intro": "答え方をほめるなら",
+      "scene": "classroom",
+      "en": [
+        "She gave a pithy answer."
+      ],
+      "ja": [
+        "彼女は短く的確に答えた"
+      ]
+    },
+    {
+      "intro": "好きな書き手について",
+      "scene": "smartphone",
+      "en": [
+        "I love his pithy comments."
+      ],
+      "ja": [
+        "彼の短くて鋭いコメントが好きだ"
+      ]
+    },
+    {
+      "intro": "名言を紹介するなら",
+      "scene": "library",
+      "en": [
+        "It's a pithy quote."
+      ],
+      "ja": [
+        "短くて要点をついた名言だ"
+      ]
+    }
+  ],
+  "quiz": {
+    "scene": "notebook-writing",
+    "prompt": [
+      {
+        "cap": "Keep your speech short and ___.",
+        "say": "スピーチは、短く、要点をついて。"
+      },
+      {
+        "cap": "空欄に入る単語は？",
+        "say": "空欄に入る単語は？"
+      }
+    ],
+    "answer": "Keep your speech short and pithy.",
+    "answerJa": "スピーチは短く、要点をついて"
+  },
+  "scenes": {
+    "hook": "notebook-writing",
+    "meaning": "library"
+  },
+  "sources": [
+    "https://dictionary.cambridge.org/dictionary/english/pithy"
+  ]
+}

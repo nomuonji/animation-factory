@@ -1,0 +1,87 @@
+{
+  "id": "en-vs-disinterested-uninterested",
+  "pattern": "vs",
+  "level": "英検1級超",
+  "title": "disinterested と uninterested の違い｜「興味がない」はどっち？",
+  "a": {
+    "word": "disinterested",
+    "ja": "利害関係のない・公平な",
+    "scene": "classroom",
+    "example": "We need a disinterested judge.",
+    "exampleJa": "公平な審判が必要だ"
+  },
+  "b": {
+    "word": "uninterested",
+    "ja": "興味がない",
+    "scene": "living-room",
+    "example": "He seemed uninterested in the movie.",
+    "exampleJa": "彼は映画に興味がなさそうだった"
+  },
+  "hookLines": [
+    {
+      "cap": "「興味がない」はどっち？",
+      "say": "興味がない、と言いたい時、どっちを使いますか？"
+    }
+  ],
+  "rule": [
+    {
+      "cap": "disinterested ＝ 利害がない → 公平",
+      "say": "ディスインタレステッドは、利害関係がない、つまり公平。"
+    },
+    {
+      "cap": "uninterested ＝ 興味がない",
+      "say": "アンインタレステッドが、興味がない、です。"
+    },
+    {
+      "cap": "ネイティブでも混同する",
+      "say": "ネイティブでも混同しますが、"
+    },
+    {
+      "cap": "きちんとした文章では区別する",
+      "say": "きちんとした文章では区別します。"
+    }
+  ],
+  "ruleEmphasis": [
+    "公平",
+    "興味がない"
+  ],
+  "quiz": {
+    "scene": "office-desk",
+    "prompt": [
+      {
+        "cap": "We want a ___ third party.",
+        "say": "公平な第三者の意見が欲しい。"
+      },
+      {
+        "cap": "dis？ un？",
+        "say": "空欄はどっち？"
+      }
+    ],
+    "answer": "We want a disinterested third party.",
+    "answerJa": "公平な第三者に入ってほしい",
+    "why": [
+      {
+        "cap": "公平 → disinterested",
+        "say": "公平という意味なので、ディスインタレステッドです。"
+      }
+    ]
+  },
+  "recap": [
+    {
+      "cap": "disinterested ＝ 公平",
+      "say": "ディスインタレステッドは、公平。"
+    },
+    {
+      "cap": "uninterested ＝ 興味がない",
+      "say": "アンインタレステッドは、興味がない。"
+    }
+  ],
+  "scenes": {
+    "hook": "classroom",
+    "meaning": "library"
+  },
+  "sources": [
+    "https://dictionary.cambridge.org/dictionary/english/disinterested",
+    "https://dictionary.cambridge.org/dictionary/english/uninterested"
+  ]
+}

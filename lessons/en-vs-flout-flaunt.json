@@ -1,0 +1,82 @@
+{
+  "id": "en-vs-flout-flaunt",
+  "pattern": "vs",
+  "level": "英検1級超",
+  "title": "flout と flaunt の違い、言える？｜ネイティブも間違える",
+  "a": {
+    "word": "flout",
+    "ja": "（ルールを）堂々と無視する",
+    "scene": "station-platform",
+    "example": "He flouted the rules.",
+    "exampleJa": "彼はルールを堂々と破った"
+  },
+  "b": {
+    "word": "flaunt",
+    "ja": "見せびらかす",
+    "scene": "city-night",
+    "example": "She flaunted her new car.",
+    "exampleJa": "彼女は新車を見せびらかした"
+  },
+  "hookLines": [
+    "つづりも発音もそっくり。",
+    "ネイティブでも、よく間違えます。"
+  ],
+  "rule": [
+    {
+      "cap": "flout ＝ ルールを堂々と無視する",
+      "say": "フラウトは、ルールを堂々と無視する。"
+    },
+    {
+      "cap": "flaunt ＝ 見せびらかす",
+      "say": "フローントは、見せびらかす。"
+    },
+    {
+      "cap": "後ろがルールなら flout",
+      "say": "後ろにルールが来たら、フラウトです。"
+    }
+  ],
+  "ruleEmphasis": [
+    "無視する",
+    "見せびらかす",
+    "後ろがルールなら flout"
+  ],
+  "quiz": {
+    "scene": "office-clocks",
+    "prompt": [
+      {
+        "cap": "They ___ the speed limit.",
+        "say": "彼らは、制限速度を堂々と無視した。"
+      },
+      {
+        "cap": "flout？ flaunt？",
+        "say": "空欄はどっち？"
+      }
+    ],
+    "answer": "They flouted the speed limit.",
+    "answerJa": "彼らは制限速度を堂々と無視した",
+    "why": [
+      {
+        "cap": "ルールを無視する → flout",
+        "say": "ルールを無視するので、フラウトです。"
+      }
+    ]
+  },
+  "recap": [
+    {
+      "cap": "flout ＝ ルールを無視する",
+      "say": "フラウトは、ルールを無視する。"
+    },
+    {
+      "cap": "flaunt ＝ 見せびらかす",
+      "say": "フローントは、見せびらかす。"
+    }
+  ],
+  "scenes": {
+    "hook": "street-waiting",
+    "meaning": "notebook-writing"
+  },
+  "sources": [
+    "https://dictionary.cambridge.org/dictionary/english/flout",
+    "https://dictionary.cambridge.org/dictionary/english/flaunt"
+  ]
+}

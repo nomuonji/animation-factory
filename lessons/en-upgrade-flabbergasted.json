@@ -1,0 +1,69 @@
+{
+  "id": "en-upgrade-flabbergasted",
+  "pattern": "upgrade",
+  "level": "英検1級超",
+  "title": "very surprised より強い「仰天」｜flabbergasted",
+  "basic": "very surprised",
+  "word": "flabbergasted",
+  "ja": "仰天した・あっけにとられた",
+  "hookLines": [
+    {
+      "cap": "すごく驚いた = very surprised",
+      "say": "すごく驚いた。ベリー・サプライズドでも通じますが、"
+    },
+    "もっと強く言えますか？"
+  ],
+  "meaning": [
+    {
+      "cap": "信じられなくて、口がぽかん",
+      "say": "信じられなくて、口をぽかんと開けている感じです。"
+    },
+    {
+      "cap": "響きも大げさで、少しユーモラス",
+      "say": "響きも大げさで、少しユーモラスです。"
+    }
+  ],
+  "examples": [
+    {
+      "intro": "ニュースを見て",
+      "scene": "smartphone",
+      "en": [
+        "I was flabbergasted by the news."
+      ],
+      "ja": [
+        "そのニュースに仰天した"
+      ]
+    },
+    {
+      "intro": "まわりの反応なら",
+      "scene": "office-desk",
+      "en": [
+        "Everyone was flabbergasted when she quit."
+      ],
+      "ja": [
+        "彼女が辞めた時、みんな唖然とした"
+      ]
+    }
+  ],
+  "quiz": {
+    "scene": "cafe",
+    "prompt": [
+      "その値段に、仰天した",
+      "英語で言ってみて"
+    ],
+    "emphasis": [
+      "仰天"
+    ],
+    "answer": "I was flabbergasted by the price.",
+    "answerJa": "その値段に仰天した"
+  },
+  "recapSay": "すごく驚いた、をもっと強く言うなら、",
+  "scenes": {
+    "hook": "laptop-watch",
+    "answer": "laptop-watch",
+    "meaning": "texting-street"
+  },
+  "sources": [
+    "https://dictionary.cambridge.org/dictionary/english/flabbergasted"
+  ]
+}

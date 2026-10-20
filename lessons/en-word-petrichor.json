@@ -1,0 +1,69 @@
+{
+  "id": "en-word-petrichor",
+  "pattern": "word",
+  "level": "英検1級超",
+  "title": "petrichor の意味わかる？｜雨の降り始めの、あの匂い",
+  "word": "petrichor",
+  "pos": "名詞",
+  "ja": "雨が降り始めた時の土の匂い",
+  "meaning": [
+    {
+      "cap": "乾いた地面に雨が落ちた時の、あの匂い",
+      "say": "乾いた地面に雨が落ちた時の、あの独特の匂いです。"
+    }
+  ],
+  "memo": [
+    {
+      "cap": "1964年、オーストラリアの研究者が命名",
+      "say": "千九百六十四年に、オーストラリアの研究者が名付けた、"
+    },
+    {
+      "cap": "比較的新しい言葉",
+      "say": "比較的新しい言葉です。"
+    }
+  ],
+  "examples": [
+    {
+      "intro": "好きなものを話すなら",
+      "scene": "rain-street",
+      "en": [
+        "I love the smell of petrichor."
+      ],
+      "ja": [
+        "雨の降り始めの匂いが好きだ"
+      ]
+    },
+    {
+      "intro": "嵐の後の描写に",
+      "scene": "city-night",
+      "en": [
+        "After the storm, the air was full of petrichor."
+      ],
+      "ja": [
+        "嵐の後、雨の匂いが立ちこめていた"
+      ]
+    }
+  ],
+  "quiz": {
+    "scene": "cafe",
+    "prompt": [
+      {
+        "cap": "That smell after rain is called ___.",
+        "say": "雨が降り始めた時の、あの匂い。一語で言うと？"
+      },
+      {
+        "cap": "空欄に入る単語は？",
+        "say": "空欄に入る単語は？"
+      }
+    ],
+    "answer": "That smell after rain is called petrichor.",
+    "answerJa": "雨のあの匂いを petrichor と言う"
+  },
+  "scenes": {
+    "hook": "rain-street",
+    "meaning": "rain-street"
+  },
+  "sources": [
+    "https://dictionary.cambridge.org/dictionary/english/petrichor"
+  ]
+}

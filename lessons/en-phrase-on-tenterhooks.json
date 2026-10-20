@@ -1,0 +1,71 @@
+{
+  "id": "en-phrase-on-tenterhooks",
+  "pattern": "phrase",
+  "level": "英検1級超",
+  "title": "「ハラハラしながら待つ」を英語で｜on tenterhooks",
+  "jp": "ハラハラしながら待ってる",
+  "situation": "試験の結果を、ドキドキしながら待っている。",
+  "answer": {
+    "en": "I'm on tenterhooks.",
+    "ja": "ハラハラしながら待ってる"
+  },
+  "emphasis": [
+    "on tenterhooks"
+  ],
+  "meaning": [
+    {
+      "cap": "tenterhook ＝ 布をピンと張るかぎ",
+      "say": "テンターフックは、昔、布をピンと張るために使ったかぎ。"
+    },
+    {
+      "cap": "引っぱられたまま、落ち着かない",
+      "say": "引っぱられたまま、落ち着かない状態です。"
+    }
+  ],
+  "meaningEmphasis": [
+    "落ち着かない"
+  ],
+  "examples": [
+    {
+      "intro": "待っていた時間のことなら",
+      "scene": "city-night",
+      "en": [
+        "We were on tenterhooks all night."
+      ],
+      "ja": [
+        "一晩中ハラハラしていた"
+      ]
+    },
+    {
+      "intro": "じらされている時に",
+      "scene": "cafe",
+      "en": [
+        "Don't keep me on tenterhooks!"
+      ],
+      "ja": [
+        "じらさないで教えて！"
+      ]
+    }
+  ],
+  "quiz": {
+    "scene": "smartphone",
+    "prompt": [
+      "合否の連絡を、ハラハラして待っている",
+      "英語で言ってみて"
+    ],
+    "emphasis": [
+      "ハラハラ"
+    ],
+    "answer": "I'm on tenterhooks waiting for the results.",
+    "answerJa": "結果をハラハラしながら待っている"
+  },
+  "recapLead": "ハラハラしながら待つ時は、この一言。",
+  "scenes": {
+    "hook": "smartphone",
+    "answer": "laptop-watch",
+    "meaning": "desk-flatlay"
+  },
+  "sources": [
+    "https://dictionary.cambridge.org/dictionary/english/be-on-tenterhooks"
+  ]
+}

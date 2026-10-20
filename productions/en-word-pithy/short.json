@@ -1,0 +1,428 @@
+{
+  "version": 3,
+  "id": "en-word-pithy",
+  "title": "pithy の意味わかる？｜短くて、核心をつく【ちょっと難しい英単語】",
+  "status": "draft",
+  "channel": "error-english (エラーで学ぶ英語) — ちょっと難しい英単語",
+  "topic": {
+    "source": "manual",
+    "ref": "lessons/en-word-pithy.json (pattern=word, level=英検1級超)",
+    "summary": ""
+  },
+  "audience": "英語を勉強している日本語話者",
+  "reaction": "知りたい",
+  "format": "guess-reveal",
+  "promise": {
+    "firstFrame": "問いの見出しと場面の写真",
+    "payoff": "冒頭の問いに戻って答えの英語を音声と字幕で言い切る"
+  },
+  "references": [
+    {
+      "url": "https://dictionary.cambridge.org/dictionary/english/pithy",
+      "watched": false,
+      "note": "意味の根拠（辞書）"
+    }
+  ],
+  "voice": {
+    "engine": "voicevox",
+    "speaker": "青山龍星",
+    "style": "ノーマル",
+    "speed": 1.08
+  },
+  "music": {
+    "asset": "safe-space-loop",
+    "gain": 0.08,
+    "duck": 0.3
+  },
+  "look": {
+    "frame": "fit"
+  },
+  "descriptionLines": [
+    "・pithy（形容詞）＝ 短くて要点をついた",
+    "・She gave a pithy answer. ＝ 彼女は短く的確に答えた",
+    "・I love his pithy comments. ＝ 彼の短くて鋭いコメントが好きだ",
+    "・It's a pithy quote. ＝ 短くて要点をついた名言だ",
+    "・Keep your speech short and pithy. ＝ スピーチは短く、要点をついて",
+    "意味の確認: https://dictionary.cambridge.org/dictionary/english/pithy"
+  ],
+  "beats": [
+    {
+      "id": "hook",
+      "role": "hook",
+      "why": "単語そのものを0秒で見せて問う",
+      "shots": [
+        {
+          "src": "commons:Person writing in a notebook while sitting at a desk.jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.08,
+            1.14
+          ],
+          "frame": "fit"
+        }
+      ],
+      "overlay": "pithy",
+      "overlayY": 0.4,
+      "sfx": "whoosh",
+      "say": "この単語、／意味わかりますか？"
+    },
+    {
+      "id": "answer-en",
+      "role": "evidence",
+      "why": "発音（普通の速さ）",
+      "shots": [
+        {
+          "src": "commons:Person writing in a notebook while sitting at a desk.jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.14,
+            1.17
+          ],
+          "frame": "fit"
+        }
+      ],
+      "emphasis": [
+        "pithy"
+      ],
+      "hold": 0.6,
+      "clip": {
+        "tts": {
+          "text": "pithy",
+          "voice": "af_heart",
+          "speed": 1.0
+        },
+        "ja": "短くて要点をついた"
+      }
+    },
+    {
+      "id": "answer-en-slow",
+      "role": "evidence",
+      "why": "発音（ゆっくり）",
+      "shots": [
+        {
+          "src": "commons:Person writing in a notebook while sitting at a desk.jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.17,
+            1.2
+          ],
+          "frame": "fit"
+        }
+      ],
+      "emphasis": [
+        "pithy"
+      ],
+      "hold": 0.8,
+      "clip": {
+        "tts": {
+          "text": "pithy",
+          "voice": "af_heart",
+          "speed": 0.7
+        },
+        "ja": "短くて要点をついた"
+      }
+    },
+    {
+      "id": "meaning",
+      "role": "turn",
+      "why": "意味とイメージを一つ",
+      "shots": [
+        {
+          "src": "commons:Kisosaki Town Library reading seats ac.jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.05,
+            1.17
+          ],
+          "frame": "fit"
+        }
+      ],
+      "sfx": "pop",
+      "say": "意味は、短くて要点をついた。／言葉は少ないのに、核心をついている、という意味です。",
+      "caption": "形容詞「短くて要点をついた」／言葉は少ないのに、核心をついている"
+    },
+    {
+      "id": "memo",
+      "role": "escalation",
+      "why": "覚え方・使う場面（ニュアンス）",
+      "shots": [
+        {
+          "src": "commons:Person writing in a notebook while sitting at a desk.jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.2,
+            1.26
+          ],
+          "frame": "fit"
+        }
+      ],
+      "sfx": "pop",
+      "say": "ほめ言葉で、／スピーチや名言、コメントによく使います。",
+      "caption": "ほめ言葉／スピーチ・名言・コメントに"
+    },
+    {
+      "id": "ex1-intro",
+      "role": "evidence",
+      "why": "例文の場面を一言で",
+      "shots": [
+        {
+          "src": "commons:Student Listening During Study Session.jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.05,
+            1.11
+          ],
+          "frame": "fit"
+        }
+      ],
+      "say": "答え方をほめるなら"
+    },
+    {
+      "id": "ex1-en",
+      "role": "evidence",
+      "why": "例文を英語で聞く",
+      "shots": [
+        {
+          "src": "commons:Student Listening During Study Session.jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.11,
+            1.17
+          ],
+          "frame": "fit"
+        }
+      ],
+      "emphasis": [
+        "pithy"
+      ],
+      "hold": 0.7,
+      "clip": {
+        "tts": {
+          "text": "She gave a pithy answer.",
+          "voice": "af_heart",
+          "speed": 0.92
+        },
+        "lines": [
+          {
+            "en": "She gave a pithy answer.",
+            "ja": "彼女は短く的確に答えた"
+          }
+        ]
+      }
+    },
+    {
+      "id": "ex2-intro",
+      "role": "evidence",
+      "why": "例文の場面を一言で",
+      "shots": [
+        {
+          "src": "commons:Black smartphone in hand (Unsplash).jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.05,
+            1.11
+          ],
+          "frame": "fit"
+        }
+      ],
+      "say": "好きな書き手について"
+    },
+    {
+      "id": "ex2-en",
+      "role": "escalation",
+      "why": "例文を英語で聞く",
+      "shots": [
+        {
+          "src": "commons:Black smartphone in hand (Unsplash).jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.11,
+            1.17
+          ],
+          "frame": "fit"
+        }
+      ],
+      "emphasis": [
+        "pithy"
+      ],
+      "hold": 0.7,
+      "clip": {
+        "tts": {
+          "text": "I love his pithy comments.",
+          "voice": "am_michael",
+          "speed": 0.92
+        },
+        "lines": [
+          {
+            "en": "I love his pithy comments.",
+            "ja": "彼の短くて鋭いコメントが好きだ"
+          }
+        ]
+      }
+    },
+    {
+      "id": "ex3-intro",
+      "role": "evidence",
+      "why": "例文の場面を一言で",
+      "shots": [
+        {
+          "src": "commons:Kisosaki Town Library reading seats ac.jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.17,
+            1.23
+          ],
+          "frame": "fit"
+        }
+      ],
+      "say": "名言を紹介するなら"
+    },
+    {
+      "id": "ex3-en",
+      "role": "escalation",
+      "why": "例文を英語で聞く",
+      "shots": [
+        {
+          "src": "commons:Kisosaki Town Library reading seats ac.jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.23,
+            1.29
+          ],
+          "frame": "fit"
+        }
+      ],
+      "emphasis": [
+        "pithy"
+      ],
+      "hold": 0.7,
+      "clip": {
+        "tts": {
+          "text": "It's a pithy quote.",
+          "voice": "af_heart",
+          "speed": 0.92
+        },
+        "lines": [
+          {
+            "en": "It's a pithy quote.",
+            "ja": "短くて要点をついた名言だ"
+          }
+        ]
+      }
+    },
+    {
+      "id": "quiz",
+      "role": "evidence",
+      "why": "自分で言う時間（考える間）",
+      "shots": [
+        {
+          "src": "commons:Person writing in a notebook while sitting at a desk.jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.26,
+            1.32
+          ],
+          "frame": "fit"
+        }
+      ],
+      "overlay": "言ってみよう",
+      "hold": 3.0,
+      "sfx": "tick",
+      "say": "では問題／スピーチは、短く、要点をついて。／空欄に入る単語は？",
+      "caption": "では問題／Keep your speech short and ___.／空欄に入る単語は？"
+    },
+    {
+      "id": "quiz-answer",
+      "role": "turn",
+      "why": "答え合わせ",
+      "shots": [
+        {
+          "src": "commons:Person writing in a notebook while sitting at a desk.jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.32,
+            1.38
+          ],
+          "frame": "fit"
+        }
+      ],
+      "emphasis": [
+        "pithy"
+      ],
+      "hold": 0.6,
+      "clip": {
+        "tts": {
+          "text": "Keep your speech short and pithy.",
+          "voice": "af_heart",
+          "speed": 0.9
+        },
+        "ja": "スピーチは短く、要点をついて"
+      }
+    },
+    {
+      "id": "recap",
+      "role": "payoff",
+      "why": "冒頭の問いに戻って答えを言い切る",
+      "shots": [
+        {
+          "src": "commons:Person writing in a notebook while sitting at a desk.jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.38,
+            1.41
+          ],
+          "frame": "fit"
+        }
+      ],
+      "overlay": "今日の単語",
+      "overlayY": 0.4,
+      "say": "短くて要点をついたは、",
+      "caption": "「短くて要点をついた」は"
+    },
+    {
+      "id": "recap-en",
+      "role": "loop",
+      "why": "最後にもう一度英語を聞いて終わる",
+      "shots": [
+        {
+          "src": "commons:Person writing in a notebook while sitting at a desk.jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.41,
+            1.44
+          ],
+          "frame": "fit"
+        }
+      ],
+      "overlay": "今日の単語",
+      "overlayY": 0.4,
+      "emphasis": [
+        "pithy"
+      ],
+      "hold": 1.4,
+      "clip": {
+        "tts": {
+          "text": "pithy",
+          "voice": "af_heart",
+          "speed": 0.95
+        },
+        "ja": "短くて要点をついた"
+      }
+    }
+  ]
+}
