@@ -12,12 +12,14 @@
         "channelIdentity": "OAuth channels.list(mine=true), matched with historical Ganbaru video xeoGIqyAY8I on 2026-10-19",
         "identityStatus": "verified-2026-10-19",
         "allowedUploadPrivacy": "private",
-        "autoPublishEnabled": false,
-        "publicPublicationEnabled": false,
+        "autoPublishEnabled": true,
+        "publicPublicationEnabled": true,
         "legacyGanbaruSchedule": "disabled",
         "notes": "Verified live against historical video xeoGIqyAY8I on 2026-10-19 using moved Animation Factory OAuth secrets. Derived owned channel ID at runtime; GitHub YOUTUBE_CHANNEL_ID variable optional. Manual private-only workflows for standard/footage-first productions and Market Shorts; no public posting, no automatic retry.",
         "channelId": "UCka8SDf1XsNGVccbyLTj8cA",
-        "alternateMarketShortsWorkflow": ".github/workflows/market-shorts-youtube-private.yml"
+        "alternateMarketShortsWorkflow": ".github/workflows/market-shorts-youtube-private.yml",
+        "autoPublishWorkflow": ".github/workflows/shorts-auto-publish.yml",
+        "autoPublishGuards": "variable AUTO_PUBLISH_ENABLED kill switch; AUTO_PUBLISH_MAX_PER_DAY (default 3); duplicate Production-ID; editorial_pass brief only"
       }
     }
   }

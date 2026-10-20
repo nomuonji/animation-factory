@@ -54,8 +54,14 @@ async function main() {
     console.log(JSON.stringify({stage:'channel_verified',channelId:channel}));
     return;
   }
-  if (process.env.MARKET_SHORTS_UPLOAD_MODE!=='private_only')
-    throw new Error('Upload locked: MARKET_SHORTS_UPLOAD_MODE must be private_only');
+  const mode=process.env.MARKET_SHORTS_UPLOAD_MODE;
+  if (mode!=='private_only' && mode!=='public_auto')
+    throw new Error('Upload locked: MARKET_SHORTS_UPLOAD_MODE must be private_only or public_auto');
+  const privacy=mode==='public_auto' ? 'public' : 'private';
+  // Public upload is only for the guarded auto-publish workflow, and only for a brief a
+  // reviewer has marked editorial_pass (see docs/auto-production.md).
+  if (privacy==='public' && process.env.AUTO_PUBLISH_CONFIRM!=='editorial_pass')
+    throw new Error('Public upload needs AUTO_PUBLISH_CONFIRM=editorial_pass');
   const file=flag('--mp4'),experiment=flag('--experiment'),receiptFile=flag('--receipt'),descFile=flag('--description');
   if (!file || !experiment || !receiptFile) throw new Error('Require --mp4, --experiment, --receipt');
   const mp4=resolve(file), record=JSON.parse(await readFile(resolve(experiment),'utf8'));
@@ -83,7 +89,7 @@ async function main() {
         '\nvariant: '+String(record.experimentVariant || 'baseline')),
       categoryId:'22',defaultLanguage:'ja'
     },
-    status:{privacyStatus:'private',selfDeclaredMadeForKids:process.env.YOUTUBE_MADE_FOR_KIDS==='true'}
+    status:{privacyStatus:privacy,selfDeclaredMadeForKids:process.env.YOUTUBE_MADE_FOR_KIDS==='true'}
   };
   const start=await fetch('https://www.googleapis.com/upload/youtube/v3/videos?uploadType=resumable&part=snippet,status',{
     method:'POST',headers:{
@@ -113,11 +119,11 @@ async function main() {
     });
     const checked=await jsonOrFail(verify,'Uploaded-video verification');
     const item=checked.items?.[0];
-    if (item?.snippet?.channelId!==channel || item?.status?.privacyStatus!=='private')
+    if (item?.snippet?.channelId!==channel || item?.status?.privacyStatus!==privacy)
       throw new Error('Video uploaded but verification failed; check it manually before any retry');
     const finished={sourceIdeaId:record.sourceIdeaId,variant:record.experimentVariant || 'baseline',
-      channelId:channel,videoId:result.id,privacyStatus:'private',
-      stage:'uploaded_private',finishedAt:new Date().toISOString()};
+      channelId:channel,videoId:result.id,privacyStatus:privacy,
+      stage:'uploaded_'+privacy,finishedAt:new Date().toISOString()};
     await writeFile(receipt,JSON.stringify(finished,null,2),{mode:0o600});
     console.log(JSON.stringify({stage:finished.stage,videoId:finished.videoId}));
   } catch (e) {
