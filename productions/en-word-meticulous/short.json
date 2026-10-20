@@ -1,0 +1,406 @@
+{
+  "version": 3,
+  "id": "en-word-meticulous",
+  "title": "meticulous の意味わかる？｜仕事ができる人をほめる単語【ちょっと難しい英単語 #1】",
+  "status": "draft",
+  "channel": "error-english (エラーで学ぶ英語) — ちょっと難しい英単語",
+  "topic": {
+    "source": "manual",
+    "ref": "lessons/en-word-meticulous.json (pattern=word, level=C1)",
+    "summary": "meticulous = 細部まで念入りな。人の仕事ぶりや準備をほめる形容詞"
+  },
+  "audience": "英語を勉強している日本語話者",
+  "reaction": "知りたい",
+  "format": "guess-reveal",
+  "promise": {
+    "firstFrame": "問いの見出しと場面の写真",
+    "payoff": "冒頭の問いに戻って答えの英語を音声と字幕で言い切る"
+  },
+  "references": [
+    {
+      "url": "https://dictionary.cambridge.org/dictionary/english/meticulous",
+      "watched": false,
+      "note": "意味の根拠（辞書）"
+    }
+  ],
+  "voice": {
+    "engine": "voicevox",
+    "speaker": "青山龍星",
+    "style": "ノーマル",
+    "speed": 1.08
+  },
+  "music": {
+    "asset": "safe-space-loop",
+    "gain": 0.08,
+    "duck": 0.3
+  },
+  "look": {
+    "frame": "fit"
+  },
+  "descriptionLines": [
+    "・meticulous（形容詞）＝ 細部まで念入りな",
+    "・She is meticulous about her work. ＝ 彼女は仕事にとても几帳面だ",
+    "・He keeps meticulous notes. ＝ 彼は細かくきちんと記録している",
+    "・He is meticulous about details. ＝ 彼は細部にとてもこだわる",
+    "意味の確認: https://dictionary.cambridge.org/dictionary/english/meticulous"
+  ],
+  "beats": [
+    {
+      "id": "hook",
+      "role": "hook",
+      "why": "単語そのものを0秒で見せて問う",
+      "shots": [
+        {
+          "src": "commons:Woman sits at desk working on laptop in home office.jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.1,
+            1.16
+          ],
+          "frame": "fit",
+          "focus": [
+            0.5,
+            0.5
+          ]
+        }
+      ],
+      "overlay": "meticulous",
+      "overlayY": 0.4,
+      "sfx": "whoosh",
+      "say": "この単語、／意味わかりますか？"
+    },
+    {
+      "id": "answer-en",
+      "role": "evidence",
+      "why": "発音（普通の速さ）",
+      "shots": [
+        {
+          "src": "commons:Woman sits at desk working on laptop in home office.jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.16,
+            1.19
+          ],
+          "frame": "fit",
+          "focus": [
+            0.5,
+            0.5
+          ]
+        }
+      ],
+      "emphasis": [
+        "meticulous"
+      ],
+      "hold": 0.6,
+      "clip": {
+        "tts": {
+          "text": "meticulous",
+          "voice": "af_heart",
+          "speed": 1.0
+        },
+        "ja": "細部まで念入りな"
+      }
+    },
+    {
+      "id": "answer-en-slow",
+      "role": "evidence",
+      "why": "発音（ゆっくり）",
+      "shots": [
+        {
+          "src": "commons:Woman sits at desk working on laptop in home office.jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.19,
+            1.22
+          ],
+          "frame": "fit",
+          "focus": [
+            0.5,
+            0.5
+          ]
+        }
+      ],
+      "emphasis": [
+        "meticulous"
+      ],
+      "hold": 0.8,
+      "clip": {
+        "tts": {
+          "text": "meticulous",
+          "voice": "af_heart",
+          "speed": 0.7
+        },
+        "ja": "細部まで念入りな"
+      }
+    },
+    {
+      "id": "meaning",
+      "role": "turn",
+      "why": "意味とイメージを一つ",
+      "shots": [
+        {
+          "src": "commons:Person writing in a notebook while sitting at a desk.jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.08,
+            1.2
+          ],
+          "frame": "fit"
+        }
+      ],
+      "sfx": "pop",
+      "emphasis": [
+        "一つ一つ確認する",
+        "ほめ言葉"
+      ],
+      "say": "意味は、細部まで念入りな。／細かいところまで、一つ一つ確認する感じです。／人の仕事ぶりを、ほめる時によく使います。",
+      "caption": "形容詞「細部まで念入りな」／細かいところまで、一つ一つ確認する／ほめ言葉で使うことが多い"
+    },
+    {
+      "id": "ex1-intro",
+      "role": "evidence",
+      "why": "例文の場面を一言で",
+      "shots": [
+        {
+          "src": "commons:Person writing in a notebook while sitting at a desk.jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.2,
+            1.26
+          ],
+          "frame": "fit"
+        }
+      ],
+      "say": "仕事ぶりをほめるなら"
+    },
+    {
+      "id": "ex1-en",
+      "role": "evidence",
+      "why": "例文を英語で聞く",
+      "shots": [
+        {
+          "src": "commons:Person writing in a notebook while sitting at a desk.jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.26,
+            1.32
+          ],
+          "frame": "fit"
+        }
+      ],
+      "emphasis": [
+        "meticulous"
+      ],
+      "hold": 0.7,
+      "clip": {
+        "tts": {
+          "text": "She is meticulous about her work.",
+          "voice": "af_heart",
+          "speed": 0.92
+        },
+        "lines": [
+          {
+            "en": "She is meticulous about her work.",
+            "ja": "彼女は仕事にとても几帳面だ"
+          }
+        ]
+      }
+    },
+    {
+      "id": "ex2-intro",
+      "role": "evidence",
+      "why": "例文の場面を一言で",
+      "shots": [
+        {
+          "src": "commons:Woman sits at desk working on laptop in home office.jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.22,
+            1.28
+          ],
+          "frame": "fit",
+          "focus": [
+            0.5,
+            0.5
+          ]
+        }
+      ],
+      "say": "準備や記録にも"
+    },
+    {
+      "id": "ex2-en",
+      "role": "escalation",
+      "why": "例文を英語で聞く",
+      "shots": [
+        {
+          "src": "commons:Woman sits at desk working on laptop in home office.jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.28,
+            1.34
+          ],
+          "frame": "fit",
+          "focus": [
+            0.5,
+            0.5
+          ]
+        }
+      ],
+      "emphasis": [
+        "meticulous"
+      ],
+      "hold": 0.7,
+      "clip": {
+        "tts": {
+          "text": "He keeps meticulous notes.",
+          "voice": "am_michael",
+          "speed": 0.92
+        },
+        "lines": [
+          {
+            "en": "He keeps meticulous notes.",
+            "ja": "彼は細かくきちんと記録している"
+          }
+        ]
+      }
+    },
+    {
+      "id": "quiz",
+      "role": "evidence",
+      "why": "自分で言う時間（考える間）",
+      "shots": [
+        {
+          "src": "commons:Kisosaki Town Library reading seats ac.jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.05,
+            1.11
+          ],
+          "frame": "fit"
+        }
+      ],
+      "overlay": "言ってみよう",
+      "hold": 3.0,
+      "sfx": "tick",
+      "say": "では問題／細かいことに、とてもこだわる人。／空欄に入る単語は？",
+      "caption": "では問題／He is ___ about details.／空欄に入る単語は？"
+    },
+    {
+      "id": "quiz-answer",
+      "role": "turn",
+      "why": "答え合わせ",
+      "shots": [
+        {
+          "src": "commons:Kisosaki Town Library reading seats ac.jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.11,
+            1.17
+          ],
+          "frame": "fit"
+        }
+      ],
+      "emphasis": [
+        "meticulous"
+      ],
+      "hold": 0.6,
+      "clip": {
+        "tts": {
+          "text": "He is meticulous about details.",
+          "voice": "af_heart",
+          "speed": 0.9
+        },
+        "ja": "彼は細部にとてもこだわる"
+      }
+    },
+    {
+      "id": "quiz-why",
+      "role": "evidence",
+      "why": "答えの形を一言で整理",
+      "shots": [
+        {
+          "src": "commons:Kisosaki Town Library reading seats ac.jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.17,
+            1.23
+          ],
+          "frame": "fit"
+        }
+      ],
+      "say": "何について几帳面かは、アバウトで続けます。／〜について念入り、という形です。",
+      "caption": "be meticulous about 〜／「〜について念入り」"
+    },
+    {
+      "id": "recap",
+      "role": "payoff",
+      "why": "冒頭の問いに戻って答えを言い切る",
+      "shots": [
+        {
+          "src": "commons:Woman sits at desk working on laptop in home office.jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.34,
+            1.37
+          ],
+          "frame": "fit",
+          "focus": [
+            0.5,
+            0.5
+          ]
+        }
+      ],
+      "overlay": "今日の単語",
+      "overlayY": 0.4,
+      "say": "細部まで念入りなは、",
+      "caption": "「細部まで念入りな」は"
+    },
+    {
+      "id": "recap-en",
+      "role": "loop",
+      "why": "最後にもう一度英語を聞いて終わる",
+      "shots": [
+        {
+          "src": "commons:Woman sits at desk working on laptop in home office.jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.37,
+            1.4
+          ],
+          "frame": "fit",
+          "focus": [
+            0.5,
+            0.5
+          ]
+        }
+      ],
+      "overlay": "今日の単語",
+      "overlayY": 0.4,
+      "emphasis": [
+        "meticulous"
+      ],
+      "hold": 1.4,
+      "clip": {
+        "tts": {
+          "text": "meticulous",
+          "voice": "af_heart",
+          "speed": 0.95
+        },
+        "ja": "細部まで念入りな"
+      }
+    }
+  ]
+}

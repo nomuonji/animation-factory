@@ -1,0 +1,458 @@
+{
+  "version": 3,
+  "id": "en-running-late",
+  "title": "「遅れそう」を英語で言える？｜I'm running late",
+  "status": "draft",
+  "channel": "error-english (エラーで学ぶ英語) — 言えそうで言えない一言 #1",
+  "topic": {
+    "source": "manual",
+    "ref": "My Portal context sYc4YfteomqM7QC1qGNq（1本1フレーズ・日常で使える・繰り返し・例文・冒頭に戻って締める）",
+    "summary": "遅れそうな時・遅れている時の定番 “I'm running late.” を、意味→例文2つ→自分で言うクイズ→まとめで使えるようにする"
+  },
+  "audience": "英語を勉強している日本語話者。待ち合わせに遅れそうな場面は誰でもあり、『英語で言える？』で止まる",
+  "reaction": "知りたい",
+  "format": "guess-reveal",
+  "promise": {
+    "firstFrame": "腕時計を見る女性の写真に『「遅れそう」英語で言える？』",
+    "payoff": "冒頭の問いに戻り『遅れそうな時は I'm running late.』を音声と字幕で言い切って終わる"
+  },
+  "references": [
+    {
+      "url": "https://dictionary.cambridge.org/dictionary/english/run-late",
+      "watched": false,
+      "note": "意味の根拠: run late = to be later than expected / behind schedule。人にも予定（会議など）にも使う。参照Shortsではない"
+    }
+  ],
+  "voice": {
+    "engine": "voicevox",
+    "speaker": "青山龍星",
+    "style": "ノーマル",
+    "speed": 1.08
+  },
+  "music": {
+    "asset": "safe-space-loop",
+    "gain": 0.08,
+    "duck": 0.3
+  },
+  "look": {
+    "frame": "fit"
+  },
+  "descriptionLines": [
+    "言えそうで言えない一言 #1：遅れそうなときの “I'm running late.”",
+    "",
+    "・I'm running late. ＝ 予定より遅れている（遅れそう／もう遅れている、どちらにも使える）",
+    "・Sorry, I'm running late. I'll be there in ten minutes. ＝ ごめん、遅れてる。あと10分で着く",
+    "・The meeting is running late. ＝ 会議が押している",
+    "・I'm running five minutes late. ＝ 5分遅れそう",
+    "",
+    "意味の確認: Cambridge Dictionary “run late” https://dictionary.cambridge.org/dictionary/english/run-late"
+  ],
+  "beats": [
+    {
+      "id": "hook",
+      "role": "hook",
+      "overlay": "「遅れそう」\n英語で言える？",
+      "say": "待ち合わせに、遅れそう。／英語で、パッと言えますか？",
+      "emphasis": [
+        "遅れそう"
+      ],
+      "shots": [
+        {
+          "src": "commons:Woman with curly blonde hair and stylish suit coat looking at her wrist watch.jpg",
+          "in": 0,
+          "freeze": true,
+          "frame": "fill",
+          "focus": [
+            0.5,
+            0.35
+          ],
+          "zoom": [
+            1.0,
+            1.08
+          ]
+        }
+      ],
+      "sfx": "whoosh",
+      "why": "誰にでもある場面と問いを0秒で出す",
+      "overlayY": 0.4
+    },
+    {
+      "id": "answer",
+      "role": "setup",
+      "say": "答えは、これです。",
+      "emphasis": [],
+      "shots": [
+        {
+          "src": "commons:Woman using laptop and checking watch while sitting in living room.jpg",
+          "in": 0,
+          "freeze": true,
+          "focus": [
+            0.55,
+            0.5
+          ],
+          "zoom": [
+            1.15,
+            1.22
+          ]
+        }
+      ],
+      "sfx": "pop",
+      "why": "すぐ答えに入ると宣言する（引っ張らない）"
+    },
+    {
+      "id": "answer-en",
+      "role": "evidence",
+      "emphasis": [
+        "running late"
+      ],
+      "clip": {
+        "tts": {
+          "text": "I'm running late.",
+          "voice": "af_heart",
+          "speed": 1.0
+        },
+        "ja": "遅れそう・遅れてる"
+      },
+      "hold": 0.6,
+      "shots": [
+        {
+          "src": "commons:Woman using laptop and checking watch while sitting in living room.jpg",
+          "in": 0,
+          "freeze": true,
+          "focus": [
+            0.55,
+            0.5
+          ],
+          "zoom": [
+            1.22,
+            1.3
+          ]
+        }
+      ],
+      "why": "答えの英語を自然な速さで聞く（1回目）"
+    },
+    {
+      "id": "answer-slow",
+      "role": "evidence",
+      "say": "もう一度、ゆっくり。",
+      "shots": [
+        {
+          "src": "commons:Woman using laptop and checking watch while sitting in living room.jpg",
+          "in": 0,
+          "freeze": true,
+          "focus": [
+            0.55,
+            0.5
+          ],
+          "zoom": [
+            1.3,
+            1.34
+          ]
+        }
+      ],
+      "why": "聞き取れなかった人のために、ゆっくり版の前振り"
+    },
+    {
+      "id": "answer-en-slow",
+      "role": "evidence",
+      "emphasis": [
+        "running late"
+      ],
+      "clip": {
+        "tts": {
+          "text": "I'm running late.",
+          "voice": "af_heart",
+          "speed": 0.72
+        },
+        "ja": "遅れそう・遅れてる"
+      },
+      "hold": 0.8,
+      "shots": [
+        {
+          "src": "commons:Woman using laptop and checking watch while sitting in living room.jpg",
+          "in": 0,
+          "freeze": true,
+          "focus": [
+            0.55,
+            0.5
+          ],
+          "zoom": [
+            1.34,
+            1.42
+          ]
+        }
+      ],
+      "why": "同じ英語をゆっくり聞く（2回目）。音と字幕が一致する"
+    },
+    {
+      "id": "meaning",
+      "role": "turn",
+      "say": "ランニングと言っても、走っているわけではありません。／予定より遅れて進んでいる、という意味です。／だから、遅れそうな時にも、／もう遅れている時にも使えます。",
+      "caption": "running でも、走ってはいない／「予定より遅れて進んでいる」／遅れそうな時にも／もう遅れている時にも使える",
+      "emphasis": [
+        "走ってはいない",
+        "予定より遅れて進んでいる"
+      ],
+      "shots": [
+        {
+          "src": "commons:Rushing onto a train.jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.05,
+            1.18
+          ],
+          "focus": [
+            0.5,
+            0.5
+          ]
+        }
+      ],
+      "sfx": "pop",
+      "why": "意味を一つだけ、誤解しやすい点（走る？）から説明する"
+    },
+    {
+      "id": "ex1-intro",
+      "role": "evidence",
+      "say": "例えば、友達にメッセージするなら。",
+      "caption": "友達にメッセージするなら",
+      "shots": [
+        {
+          "src": "commons:Texting in the crosswalk.jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.05,
+            1.12
+          ]
+        }
+      ],
+      "why": "使う場面を一つ目に設定"
+    },
+    {
+      "id": "ex1-en",
+      "role": "evidence",
+      "emphasis": [
+        "running late"
+      ],
+      "clip": {
+        "tts": {
+          "text": "Sorry, I'm running late. I'll be there in ten minutes.",
+          "voice": "af_heart",
+          "speed": 0.92
+        },
+        "lines": [
+          {
+            "en": "Sorry, I'm running late.",
+            "ja": "ごめん、遅れてる"
+          },
+          {
+            "en": "I'll be there in ten minutes.",
+            "ja": "あと10分で着く"
+          }
+        ]
+      },
+      "hold": 0.7,
+      "shots": [
+        {
+          "src": "commons:Texting in the crosswalk.jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.12,
+            1.22
+          ]
+        }
+      ],
+      "why": "そのまま送れる文。後ろに『あと10分』を足す形も一緒に覚える"
+    },
+    {
+      "id": "ex2-intro",
+      "role": "escalation",
+      "say": "人だけじゃなく、予定にも使えます。／会議が長引いている時は、",
+      "caption": "人だけじゃなく、予定にも使える／会議が長引いている時は",
+      "emphasis": [
+        "予定にも"
+      ],
+      "shots": [
+        {
+          "src": "commons:WMUK office - clocks.jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.05,
+            1.15
+          ]
+        }
+      ],
+      "why": "同じ形が『物・予定』にも広がる二段目の発見"
+    },
+    {
+      "id": "ex2-en",
+      "role": "escalation",
+      "emphasis": [
+        "running late"
+      ],
+      "clip": {
+        "tts": {
+          "text": "The meeting is running late.",
+          "voice": "am_michael",
+          "speed": 0.92
+        },
+        "ja": "会議が押してる"
+      },
+      "hold": 0.7,
+      "shots": [
+        {
+          "src": "commons:WMUK office - clocks.jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.15,
+            1.24
+          ]
+        }
+      ],
+      "why": "主語を変えた例文。別の声で聞くことで形だけが残る"
+    },
+    {
+      "id": "quiz",
+      "role": "evidence",
+      "overlay": "言ってみよう",
+      "say": "では問題。／電車が遅れて、待ち合わせに5分遅れそう。／英語で言ってみてください。",
+      "caption": "では問題／電車が遅れて、5分遅れそう／英語で言ってみて",
+      "emphasis": [
+        "5分遅れそう"
+      ],
+      "hold": 3.0,
+      "shots": [
+        {
+          "src": "commons:Umeda Station Osaka metro platform rush hour queues 2022-04-25.jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.05,
+            1.2
+          ],
+          "focus": [
+            0.5,
+            0.5
+          ]
+        }
+      ],
+      "sfx": "tick",
+      "why": "自分で口に出す時間（約3秒）。覚えたかを試す"
+    },
+    {
+      "id": "quiz-answer",
+      "role": "turn",
+      "emphasis": [
+        "running five minutes late"
+      ],
+      "clip": {
+        "tts": {
+          "text": "I'm running five minutes late.",
+          "voice": "af_heart",
+          "speed": 0.9
+        },
+        "ja": "5分遅れそう"
+      },
+      "hold": 0.6,
+      "shots": [
+        {
+          "src": "commons:Street view of Sarphatistraat with a woman, waiting and looking; free photo Amsterdam, Fons Heijnsbroek 10-2021.jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.05,
+            1.15
+          ]
+        }
+      ],
+      "why": "答え合わせ。running と late の間に時間を入れるだけ"
+    },
+    {
+      "id": "quiz-why",
+      "role": "evidence",
+      "say": "ランニングとレイトの間に、／時間を入れるだけです。",
+      "caption": "running と late の間に／時間を入れるだけ",
+      "emphasis": [
+        "時間を入れるだけ"
+      ],
+      "shots": [
+        {
+          "src": "commons:Street view of Sarphatistraat with a woman, waiting and looking; free photo Amsterdam, Fons Heijnsbroek 10-2021.jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.15,
+            1.2
+          ]
+        }
+      ],
+      "why": "クイズで出た形を一言で整理"
+    },
+    {
+      "id": "recap",
+      "role": "payoff",
+      "overlay": "今日の一言",
+      "say": "遅れそうな時は、この一言。",
+      "emphasis": [
+        "遅れそうな時"
+      ],
+      "shots": [
+        {
+          "src": "commons:Woman with curly blonde hair and stylish suit coat looking at her wrist watch.jpg",
+          "in": 0,
+          "freeze": true,
+          "frame": "fill",
+          "focus": [
+            0.5,
+            0.35
+          ],
+          "zoom": [
+            1.08,
+            1.12
+          ]
+        }
+      ],
+      "why": "冒頭と同じ画に戻り、問いに答えて締める",
+      "overlayY": 0.4
+    },
+    {
+      "id": "recap-en",
+      "role": "loop",
+      "overlay": "今日の一言",
+      "emphasis": [
+        "running late"
+      ],
+      "clip": {
+        "tts": {
+          "text": "I'm running late.",
+          "voice": "af_heart",
+          "speed": 0.95
+        },
+        "ja": "遅れそう・遅れてる"
+      },
+      "hold": 1.4,
+      "shots": [
+        {
+          "src": "commons:Woman with curly blonde hair and stylish suit coat looking at her wrist watch.jpg",
+          "in": 0,
+          "freeze": true,
+          "frame": "fill",
+          "focus": [
+            0.5,
+            0.35
+          ],
+          "zoom": [
+            1.12,
+            1.16
+          ]
+        }
+      ],
+      "why": "最後にもう一度、答えの英語を聞いて終わる（3回目）",
+      "overlayY": 0.4
+    }
+  ]
+}

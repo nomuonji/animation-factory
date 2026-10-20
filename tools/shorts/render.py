@@ -103,14 +103,40 @@ def build_timeline(b: dict, lock: dict | None) -> dict:
             caps[-1][1] = t + dur  # keep last caption until the cut
         beats.append({"id": bt["id"], "role": bt["role"], "start": t, "duration": dur, "lead": lead,
                       "speech": sp, "captions": caps, "shots": sh_out, "sfx": bt.get("sfx", "none"),
-                      "overlay": bt.get("overlay"), "emphasis": bt.get("emphasis", []),
+                      "overlay": bt.get("overlay"), "overlayY": bt.get("overlayY", HEADLINE_Y), "emphasis": bt.get("emphasis", []),
                       "moraRate": (sp["moras"] / sp["duration"]) if sp["duration"] else 0})
         t += dur
     return {"beats": beats, "total": t}
 
 
+def tts_speech(clip: dict) -> dict:
+    """English lesson line spoken by Kokoro, captioned in English (+ Japanese gloss)."""
+    import en_voice
+    tts = clip["tts"]
+    pcm = en_voice.synthesize(tts["text"], tts.get("voice", "af_heart"), float(tts.get("speed", 1.0)), RATE)
+    pcm = pcm / (np.max(np.abs(pcm)) or 1) * 0.6
+    dur = len(pcm) / RATE
+    lines = clip.get("lines") or [{"en": tts["text"], "ja": clip.get("ja", "")}]
+    chunks = []
+    if all("at" in ln for ln in lines):
+        for ln in lines:
+            text = ln["en"] + (f"\n{ln['ja']}" if str(ln.get("ja", "")).strip() else "")
+            chunks.append((float(ln["at"]), float(ln.get("to", dur)), text))
+    else:  # split the spoken duration by character share
+        total = sum(len(ln["en"]) for ln in lines) or 1
+        t = 0.0
+        for ln in lines:
+            d = dur * len(ln["en"]) / total
+            text = ln["en"] + (f"\n{ln['ja']}" if str(ln.get("ja", "")).strip() else "")
+            chunks.append((t, t + d, text))
+            t += d
+    return {"duration": dur, "chunks": chunks, "moras": 0, "pcm": pcm.astype(np.float32)}
+
+
 def clip_speech(clip: dict, lock: dict | None) -> dict:
     """Real source audio standing in for narration: the original voice is the content."""
+    if clip.get("tts"):
+        return tts_speech(clip)
     a, b = float(clip.get("in", 0)), float(clip["out"])
     dur = b - a
     chunks = []
@@ -255,11 +281,13 @@ def _rich_line(draw, x, y, line, font, emphasis, stroke):
 
 def _render_bilingual(en: str, ja: str, emphasis: list[str]) -> np.ndarray:
     """Original English line (large) with a small Japanese gloss under it."""
-    size = 88 if len(en) <= 22 else 78 if len(en) <= 34 else 70
+    size = 100 if len(en) <= 18 else 88 if len(en) <= 26 else 78 if len(en) <= 34 else 70
     font = _font(FONT_BLACK, size)
     jfont = _font(FONT_BOLD, 54)
     probe = ImageDraw.Draw(Image.new("RGBA", (10, 10)))
     lines = _wrap_words(en, font, SAFE_RIGHT - SAFE_LEFT, probe)
+    # Emphasis must survive a line wrap: colour each word of a multi-word phrase.
+    emphasis = sorted({w for e in emphasis for w in ([e] + e.split()) if w}, key=len, reverse=True)
     jlines = _wrap(ja, jfont, SAFE_RIGHT - SAFE_LEFT, probe) if ja else []
     stroke = max(7, size // 10)
     lh, jlh = int(size * 1.16), 68
@@ -598,7 +626,7 @@ def render(brief_path: str, lock: dict, quick: bool = False) -> dict:
                         break
                 if bt.get("overlay"):
                     ov = texts.headline(bt["overlay"])
-                    _blend(frame, ov, int(H * HEADLINE_Y))
+                    _blend(frame, ov, int(H * float(bt.get("overlayY", HEADLINE_Y))))
                 if sh.get("label"):
                     _blend(frame, texts.label(sh["label"]), 150)
                 if look.get("titleBar"):

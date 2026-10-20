@@ -49,7 +49,7 @@ jobs:
         run: |
           sudo apt-get update -qq
           sudo apt-get install -y -qq ffmpeg fonts-noto-cjk
-          pip install --quiet numpy pillow opencv-python-headless
+          pip install --quiet numpy pillow opencv-python-headless kokoro-onnx==0.6.1 soundfile==0.14.0
       - name: Start VOICEVOX engine
         run: |
           docker run -d --rm --name vv -p 127.0.0.1:50021:50021 voicevox/voicevox_engine:cpu-latest
@@ -106,7 +106,7 @@ jobs:
         run: |
           sudo apt-get update -qq
           sudo apt-get install -y -qq ffmpeg fonts-noto-cjk
-          pip install --quiet numpy pillow opencv-python-headless
+          pip install --quiet numpy pillow opencv-python-headless kokoro-onnx==0.6.1 soundfile==0.14.0
       - name: Scout request
         if: steps.changed.outputs.scout == 'yes'
         shell: bash
@@ -187,7 +187,7 @@ jobs:
         run: |
           sudo apt-get update -qq
           sudo apt-get install -y -qq ffmpeg fonts-noto-cjk
-          pip install --quiet numpy pillow opencv-python-headless
+          pip install --quiet numpy pillow opencv-python-headless kokoro-onnx==0.6.1 soundfile==0.14.0
       - name: Scout footage
         if: env.MODE == 'scout'
         shell: bash

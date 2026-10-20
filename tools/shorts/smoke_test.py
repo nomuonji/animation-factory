@@ -59,6 +59,11 @@ BRIEF = {
                              "ja": "ヒューストン、問題が起きた"},
                             {"at": 1.8, "to": 3.5, "en": "Say again, please.", "ja": "もう一度どうぞ"}]},
          "shots": [{"src": "local:a.mp4", "in": 1, "label": "実際の交信音声"}]},
+        {"id": "lesson", "role": "evidence", "why": "pipeline: English lesson line via Kokoro",
+         "emphasis": ["running late"],
+         "clip": {"tts": {"text": "Sorry, I'm running late.", "voice": "af_heart", "speed": 0.9},
+                  "ja": "ごめん、遅れそう"},
+         "shots": [{"src": "local:b.mp4", "in": 1}]},
         {"id": "end", "role": "payoff", "say": "最後です。", "min": 1.5,
          "shots": [{"src": "local:b.mp4", "in": 2, "speed": 2}], "why": "pipeline"},
     ],
@@ -104,6 +109,11 @@ def main():
     assert float(abs(call["speech"]["pcm"]).max()) > 0.05, "clip audio is silent"
     assert "\n" in call["captions"][0][2], "clip caption should be bilingual"
     print("ok: clip beat timing and audio")
+    if os.environ.get("SHORTS_TEST_EN_TTS", "1") == "1":
+        les = next(bt for bt in tl["beats"] if bt["id"] == "lesson")
+        assert 0.8 < les["speech"]["duration"] < 4, les["speech"]["duration"]
+        assert "running late" in les["captions"][0][2]
+        print("ok: English TTS lesson beat")
     rep = render.render(str(D / "short.json"), lock, quick=True)
     out = ROOT / "outputs" / "shorts" / "shorts-smoke"
     probe = json.loads(subprocess.run(["ffprobe", "-v", "error", "-show_streams", "-of", "json",

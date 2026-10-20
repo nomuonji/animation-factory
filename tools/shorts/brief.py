@@ -106,6 +106,7 @@ def validate(b: dict) -> None:
              f"{where} needs narration (say), a source clip, or an explicit min duration", e)
         if clip is not None:
             _validate_clip(clip, where, bt, e)
+        _req(0.05 <= float(bt.get("overlayY", 0.15)) <= 0.55, f"{where}.overlayY must be within 0.05..0.55", e)
         _req(bt.get("sfx", "none") in SFX, f"{where}.sfx must be one of {sorted(SFX)}", e)
         shots = bt.get("shots")
         _req(isinstance(shots, list) and len(shots) >= 1, f"{where}.shots needs at least one shot", e)
@@ -129,6 +130,14 @@ def validate(b: dict) -> None:
 def _validate_clip(clip: dict, where: str, bt: dict, e: list[str]) -> None:
     """A clip plays the source's own audio (e.g. a real radio call) instead of narration."""
     _req(not str(bt.get("say", "")).strip(), f"{where}: a clip beat cannot also have narration (say)", e)
+    if clip.get("tts"):
+        tts = clip["tts"]
+        _req(bool(str(tts.get("text", "")).strip()), f"{where}.clip.tts.text is required", e)
+        _req(0.5 <= float(tts.get("speed", 1)) <= 1.5, f"{where}.clip.tts.speed out of range", e)
+        _req(not clip.get("src"), f"{where}.clip: use either src (real audio) or tts, not both", e)
+        for k, ln in enumerate(clip.get("lines") or []):
+            _req(bool(str(ln.get("en", "")).strip()), f"{where}.clip.lines[{k}].en is required", e)
+        return
     _req(isinstance(clip.get("src"), str) and bool(SRC_RE.match(clip.get("src", ""))),
          f"{where}.clip.src must be pixabay:<id>, commons:<File name> or local:<path>", e)
     a, b = float(clip.get("in", 0)), float(clip.get("out", 0))
@@ -145,7 +154,7 @@ def _validate_clip(clip: dict, where: str, bt: dict, e: list[str]) -> None:
 
 
 def clip_sources(b: dict) -> list[str]:
-    return [bt["clip"]["src"] for bt in b["beats"] if bt.get("clip")]
+    return [bt["clip"]["src"] for bt in b["beats"] if bt.get("clip") and bt["clip"].get("src")]
 
 
 def caption_chunks(beat: dict) -> list[str]:

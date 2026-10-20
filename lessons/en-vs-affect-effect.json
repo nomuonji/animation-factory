@@ -1,0 +1,84 @@
+{
+  "id": "en-vs-affect-effect",
+  "pattern": "vs",
+  "number": 1,
+  "level": "B2",
+  "title": "affect と effect の違い、言える？｜3秒で見分ける方法",
+  "summary": "affect は動詞（影響する）、effect は名詞（影響・効果）",
+  "a": {
+    "word": "affect",
+    "ja": "（動詞）影響する",
+    "scene": "rain-street",
+    "example": "The weather affects my mood.",
+    "exampleJa": "天気は私の気分に影響する"
+  },
+  "b": {
+    "word": "effect",
+    "ja": "（名詞）影響・効果",
+    "scene": "office-desk",
+    "example": "The new app had a big effect.",
+    "exampleJa": "新しいアプリは大きな効果があった"
+  },
+  "hookLines": [
+    "発音も、つづりもそっくり。",
+    "どっちを使うか、迷いませんか？"
+  ],
+  "rule": [
+    {
+      "cap": "affect ＝ 影響する（動詞）",
+      "say": "アフェクトは、影響する、という動詞。"
+    },
+    {
+      "cap": "effect ＝ 影響・効果（名詞）",
+      "say": "イフェクトは、影響や効果、という名詞です。"
+    },
+    {
+      "cap": "a / the が付けば effect",
+      "say": "前に、アやザが付いていたら、イフェクトです。"
+    }
+  ],
+  "ruleEmphasis": [
+    "動詞",
+    "名詞",
+    "a / the が付けば effect"
+  ],
+  "quiz": {
+    "scene": "office-desk",
+    "prompt": [
+      {
+        "cap": "The new rule will ___ everyone.",
+        "say": "新しいルールは、みんなに影響する。"
+      },
+      {
+        "cap": "affect？ effect？",
+        "say": "空欄はどっち？"
+      }
+    ],
+    "answer": "The new rule will affect everyone.",
+    "answerJa": "新しいルールはみんなに影響する",
+    "why": [
+      {
+        "cap": "will の後は動詞 → affect",
+        "say": "ウィルの後は動詞なので、アフェクトです。"
+      }
+    ]
+  },
+  "recap": [
+    {
+      "cap": "affect ＝ 影響する（動詞）",
+      "say": "アフェクトは、影響する。"
+    },
+    {
+      "cap": "effect ＝ 影響・効果（名詞）",
+      "say": "イフェクトは、影響、効果。"
+    }
+  ],
+  "scenes": {
+    "hook": "classroom",
+    "meaning": "notebook-writing"
+  },
+  "sources": [
+    "https://dictionary.cambridge.org/dictionary/english/affect",
+    "https://dictionary.cambridge.org/dictionary/english/effect"
+  ]
+}

@@ -6,6 +6,7 @@
   python tools/shorts/shorts.py find <brief>             search footage -> candidates.json/.jpg
   python tools/shorts/shorts.py lock <brief>             download + checksum used sources
   python tools/shorts/shorts.py render <brief> [--quick] render MP4 + review pack
+  python tools/shorts/shorts.py lesson lessons/<id>.json compile an English lesson spec into a brief
 """
 from __future__ import annotations
 
@@ -110,6 +111,14 @@ def cmd_inspect(a):
         print(r.get("src"), r.get("duration"), r.get("width"), r.get("height"), r.get("license"), r.get("error", ""))
 
 
+def cmd_lesson(a):
+    import lesson
+    for spec in a.specs:
+        out = lesson.write(spec)
+        B.load(out)  # must be a valid brief
+        print(out)
+
+
 def cmd_lock(a):
     b = B.load(a.brief)
     out = footage.lock(b)
@@ -153,6 +162,9 @@ def main():
     ins.add_argument("srcs", nargs="+")
     ins.add_argument("--frames", type=int, default=24)
     ins.set_defaults(fn=cmd_inspect)
+    ls_ = sub.add_parser("lesson", help="compile lessons/<id>.json into productions/<id>/short.json")
+    ls_.add_argument("specs", nargs="+")
+    ls_.set_defaults(fn=cmd_lesson)
     lk = sub.add_parser("lock")
     lk.add_argument("brief")
     lk.set_defaults(fn=cmd_lock)

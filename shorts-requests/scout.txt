@@ -1,11 +1,15 @@
 # Footage scouting: one English query per line. Committing this file to a PR runs a
 # search on Pixabay + Wikimedia Commons and attaches a thumbnail sheet to the run.
 # Prefix image: / audio: to search Commons stills or audio (default: video).
-image: Apollo 13 service module damage
-image: Apollo 13 mission control
-image: Apollo 13 crew
-image: Apollo 13 lunar module Aquarius
-video: Apollo 13 launch
-video: Apollo 13
-audio: Apollo 13
-audio: Apollo 11 landing
+image: laptop on office desk
+image: smartphone in hand
+image: coffee cup on cafe table
+image: classroom students studying
+image: cooking in home kitchen
+image: umbrella rain city street
+image: library bookshelves reading
+image: city street at night
+image: airport terminal travelers
+image: two people talking conversation
+image: writing in notebook with pen
+image: living room sofa

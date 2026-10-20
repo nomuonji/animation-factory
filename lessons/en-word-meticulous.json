@@ -1,0 +1,31 @@
+{
+  "id": "en-word-meticulous",
+  "pattern": "word",
+  "number": 1,
+  "level": "C1",
+  "title": "meticulous の意味わかる？｜仕事ができる人をほめる単語",
+  "summary": "meticulous = 細部まで念入りな。人の仕事ぶりや準備をほめる形容詞",
+  "word": "meticulous",
+  "pos": "形容詞",
+  "ja": "細部まで念入りな",
+  "emphasis": [],
+  "meaning": [
+    {"cap": "細かいところまで、一つ一つ確認する", "say": "細かいところまで、一つ一つ確認する感じです。"},
+    {"cap": "ほめ言葉で使うことが多い", "say": "人の仕事ぶりを、ほめる時によく使います。"}
+  ],
+  "meaningEmphasis": ["一つ一つ確認する", "ほめ言葉"],
+  "examples": [
+    {"intro": "仕事ぶりをほめるなら", "scene": "notebook-writing",
+     "en": ["She is meticulous about her work."], "ja": ["彼女は仕事にとても几帳面だ"]},
+    {"intro": "準備や記録にも", "scene": "office-desk",
+     "en": ["He keeps meticulous notes."], "ja": ["彼は細かくきちんと記録している"]}
+  ],
+  "quiz": {
+    "scene": "library",
+    "prompt": [{"cap": "He is ___ about details.", "say": "細かいことに、とてもこだわる人。"}, {"cap": "空欄に入る単語は？", "say": "空欄に入る単語は？"}],
+    "answer": "He is meticulous about details.", "answerJa": "彼は細部にとてもこだわる",
+    "why": [{"cap": "be meticulous about 〜", "say": "何について几帳面かは、アバウトで続けます。"}, {"cap": "「〜について念入り」", "say": "〜について念入り、という形です。"}]
+  },
+  "scenes": {"hook": "office-desk", "meaning": "notebook-writing"},
+  "sources": ["https://dictionary.cambridge.org/dictionary/english/meticulous"]
+}

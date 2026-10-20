@@ -1,0 +1,165 @@
+{
+ "note": "Vetted stills for auto-generated English lessons. All from Wikimedia Commons; licenses are re-checked when a production is locked. Add a scene only after looking at it (no faces cut, nothing that misrepresents real people).",
+ "scenes": {
+  "office-desk": {
+   "src": "commons:Woman sits at desk working on laptop in home office.jpg",
+   "license": "CC BY 2.0",
+   "about": "在宅で机に向かってノートPCで作業する女性",
+   "frame": "fit",
+   "zoom": 1.1,
+   "focus": [
+    0.5,
+    0.5
+   ]
+  },
+  "desk-flatlay": {
+   "src": "commons:Books, pencils, laptop, and iphone on a desk (Unsplash).jpg",
+   "license": "CC0",
+   "about": "机の上の本・鉛筆・PC・スマホ",
+   "frame": "fit",
+   "zoom": 1.05
+  },
+  "smartphone": {
+   "src": "commons:Black smartphone in hand (Unsplash).jpg",
+   "license": "CC0",
+   "about": "スマホを持つ手",
+   "frame": "fit",
+   "zoom": 1.05
+  },
+  "cafe": {
+   "src": "commons:Warm cup of coffee on a table at a cafe.jpg",
+   "license": "CC BY 2.0",
+   "about": "カフェのテーブルのコーヒー",
+   "frame": "fit",
+   "zoom": 1.05
+  },
+  "classroom": {
+   "src": "commons:Student Listening During Study Session.jpg",
+   "license": "CC BY 4.0",
+   "about": "授業を聞く学生",
+   "frame": "fit",
+   "zoom": 1.05
+  },
+  "kitchen": {
+   "src": "commons:Home kitchen details June 2023 - Range with pot and kettle.jpg",
+   "license": "CC BY-SA 4.0",
+   "about": "家庭のキッチン（コンロとやかん）",
+   "frame": "fit",
+   "zoom": 1.05
+  },
+  "rain-street": {
+   "src": "commons:Walking in the Rain New Orleans.jpg",
+   "license": "CC BY 2.0",
+   "about": "雨の街を歩く人",
+   "frame": "fit",
+   "zoom": 1.05
+  },
+  "library": {
+   "src": "commons:Kisosaki Town Library reading seats ac.jpg",
+   "license": "CC BY-SA 4.0",
+   "about": "図書館の閲覧席",
+   "frame": "fit",
+   "zoom": 1.05
+  },
+  "city-night": {
+   "src": "commons:Dotonbori, Osaka, at night, November 2016.jpg",
+   "license": "CC BY-SA 4.0",
+   "about": "夜の繁華街（大阪・道頓堀、縦長）",
+   "frame": "fill",
+   "zoom": 1.0,
+   "focus": [
+    0.5,
+    0.5
+   ]
+  },
+  "stretch-desk": {
+   "src": "commons:Woman stretches at home office desk while working on laptop.jpg",
+   "license": "CC BY 2.0",
+   "about": "机で伸びをする女性（疲れ）",
+   "frame": "fit",
+   "zoom": 1.1,
+   "focus": [
+    0.5,
+    0.5
+   ]
+  },
+  "airport": {
+   "src": "commons:Narita International Airport - Terminal 2 security gate.jpg",
+   "license": "CC BY 2.0",
+   "about": "空港の保安検査場",
+   "frame": "fit",
+   "zoom": 1.05
+  },
+  "notebook-writing": {
+   "src": "commons:Person writing in a notebook while sitting at a desk.jpg",
+   "license": "CC BY 2.0",
+   "about": "机でノートに書き込む人",
+   "frame": "fit",
+   "zoom": 1.08
+  },
+  "living-room": {
+   "src": "commons:Cozy living room with a gray sofa.jpg",
+   "license": "CC BY 2.0",
+   "about": "グレーのソファのリビング",
+   "frame": "fit",
+   "zoom": 1.05
+  },
+  "watch-woman": {
+   "src": "commons:Woman with curly blonde hair and stylish suit coat looking at her wrist watch.jpg",
+   "license": "CC BY 2.0",
+   "about": "腕時計を見る女性（縦長、顔は上部）",
+   "frame": "fill",
+   "zoom": 1.0,
+   "focus": [
+    0.5,
+    0.35
+   ]
+  },
+  "laptop-watch": {
+   "src": "commons:Woman using laptop and checking watch while sitting in living room.jpg",
+   "license": "CC BY 2.0",
+   "about": "PCを前に腕時計を見る女性",
+   "frame": "fit",
+   "zoom": 1.15,
+   "focus": [
+    0.55,
+    0.5
+   ]
+  },
+  "train-rush": {
+   "src": "commons:Rushing onto a train.jpg",
+   "license": "CC BY-SA 4.0",
+   "about": "電車に駆け込む人",
+   "frame": "fit",
+   "zoom": 1.05
+  },
+  "texting-street": {
+   "src": "commons:Texting in the crosswalk.jpg",
+   "license": "CC BY-SA 2.0",
+   "about": "横断歩道でスマホを打つ人々",
+   "frame": "fit",
+   "zoom": 1.05
+  },
+  "office-clocks": {
+   "src": "commons:WMUK office - clocks.jpg",
+   "license": "CC BY-SA 4.0",
+   "about": "オフィスの壁の時計",
+   "frame": "fit",
+   "zoom": 1.05
+  },
+  "station-platform": {
+   "src": "commons:Umeda Station Osaka metro platform rush hour queues 2022-04-25.jpg",
+   "license": "CC BY 2.0",
+   "about": "ラッシュ時の駅ホームの行列",
+   "frame": "fit",
+   "zoom": 1.05
+  },
+  "street-waiting": {
+   "src": "commons:Street view of Sarphatistraat with a woman, waiting and looking; free photo Amsterdam, Fons Heijnsbroek 10-2021.jpg",
+   "license": "CC0",
+   "about": "通りで待つ女性",
+   "frame": "fit",
+   "zoom": 1.05
+  }
+ }
+}

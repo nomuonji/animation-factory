@@ -1,0 +1,82 @@
+{
+  "id": "en-upgrade-exhausted",
+  "pattern": "upgrade",
+  "number": 1,
+  "level": "B2",
+  "title": "very tired より強い「くたくた」｜exhausted",
+  "summary": "very tired → exhausted（くたくた・疲れ切った）",
+  "basic": "very tired",
+  "word": "exhausted",
+  "ja": "くたくた・疲れ切った",
+  "hookLines": [
+    {
+      "cap": "すごく疲れた = very tired",
+      "say": "すごく疲れた。ベリー・タイアードでも通じますが、"
+    },
+    "もっと強く言えますか？"
+  ],
+  "emphasis": [],
+  "meaning": [
+    {
+      "cap": "力を使い切って、もう動けない",
+      "say": "力を全部使い切って、もう動けない状態です。"
+    },
+    {
+      "cap": "それだけで強い言葉なので",
+      "say": "それだけで強い言葉なので、"
+    },
+    {
+      "cap": "very は付けなくてOK",
+      "say": "ベリーは付けなくて大丈夫です。"
+    }
+  ],
+  "meaningEmphasis": [
+    "使い切って",
+    "very は付けなくてOK"
+  ],
+  "examples": [
+    {
+      "intro": "一日中働いた後に",
+      "scene": "laptop-watch",
+      "en": [
+        "I'm exhausted.",
+        "I worked all day."
+      ],
+      "ja": [
+        "もうくたくた",
+        "一日中働いたから"
+      ]
+    },
+    {
+      "intro": "旅行から帰ってきて",
+      "scene": "airport",
+      "en": [
+        "After the trip, we were exhausted."
+      ],
+      "ja": [
+        "旅行の後、みんな疲れ切っていた"
+      ]
+    }
+  ],
+  "quiz": {
+    "scene": "street-waiting",
+    "prompt": [
+      "マラソンの後、くたくただった",
+      "英語で言ってみて"
+    ],
+    "emphasis": [
+      "くたくた"
+    ],
+    "answer": "I was exhausted after the marathon.",
+    "answerJa": "マラソンの後、くたくただった"
+  },
+  "recapSay": "すごく疲れた、をもっと強く言うなら、",
+  "scenes": {
+    "hook": "stretch-desk",
+    "answer": "stretch-desk",
+    "meaning": "living-room"
+  },
+  "sources": [
+    "https://dictionary.cambridge.org/dictionary/english/exhausted"
+  ]
+}

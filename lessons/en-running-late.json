@@ -1,0 +1,35 @@
+{
+  "id": "en-running-late",
+  "pattern": "phrase",
+  "number": 1,
+  "level": "B1",
+  "title": "「遅れそう」を英語で言える？｜I'm running late",
+  "summary": "遅れそうな時・遅れている時の定番 I'm running late.",
+  "jp": "遅れそう",
+  "situation": "待ち合わせに、遅れそう。",
+  "answer": {"en": "I'm running late.", "ja": "遅れそう・遅れてる"},
+  "emphasis": ["running late"],
+  "meaning": [
+    {"cap": "running でも、走ってはいない", "say": "ランニングと言っても、走っているわけではありません。"},
+    {"cap": "「予定より遅れて進んでいる」", "say": "予定より遅れて進んでいる、という意味です。"},
+    {"cap": "遅れそうな時にも", "say": "だから、遅れそうな時にも、"},
+    {"cap": "もう遅れている時にも使える", "say": "もう遅れている時にも使えます。"}
+  ],
+  "meaningEmphasis": ["走ってはいない", "予定より遅れて進んでいる"],
+  "examples": [
+    {"intro": "友達にメッセージするなら", "scene": "texting-street",
+     "en": ["Sorry, I'm running late.", "I'll be there in ten minutes."], "ja": ["ごめん、遅れてる", "あと10分で着く"]},
+    {"intro": {"cap": "予定にも使える。会議が長引いている時は", "say": "人だけじゃなく、予定にも使えます。会議が長引いている時は、"}, "scene": "office-clocks",
+     "en": ["The meeting is running late."], "ja": ["会議が押してる"]}
+  ],
+  "quiz": {
+    "scene": "street-waiting",
+    "prompt": ["電車が遅れて、5分遅れそう", "英語で言ってみて"],
+    "emphasis": ["5分遅れそう"],
+    "answer": "I'm running five minutes late.", "answerJa": "5分遅れそう",
+    "why": [{"cap": "running と late の間に", "say": "ランニングとレイトの間に、"}, {"cap": "時間を入れるだけ", "say": "時間を入れるだけです。"}]
+  },
+  "recapLead": "遅れそうな時は、この一言。",
+  "scenes": {"hook": "watch-woman", "answer": "laptop-watch", "meaning": "train-rush"},
+  "sources": ["https://dictionary.cambridge.org/dictionary/english/run-late"]
+}
