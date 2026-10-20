@@ -1,11 +1,12 @@
 # Footage scouting: one English query per line. Committing this file to a PR runs a
 # search on Pixabay + Wikimedia Commons and attaches a thumbnail sheet to the run.
 # Prefix image: / audio: to search Commons stills or audio (default: video).
-man checking watch late
-woman running late street
-running to catch train
-typing message phone hurry
-traffic jam city
-waiting cafe friend
-business meeting office
-clock ticking
+image: man looking at wristwatch
+image: woman looking at watch
+image: running to catch bus
+image: people rushing train station platform
+image: woman texting smartphone street
+image: waiting alone cafe
+image: business meeting conference room people
+image: wall clock office
+image: traffic jam cars
