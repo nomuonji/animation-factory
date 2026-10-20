@@ -1,0 +1,69 @@
+{
+  "id": "en-word-schadenfreude",
+  "pattern": "word",
+  "level": "英検1級超",
+  "title": "schadenfreude の意味わかる？｜人の不幸がちょっと嬉しい気持ち",
+  "word": "schadenfreude",
+  "pos": "名詞",
+  "ja": "他人の不幸を喜ぶ気持ち",
+  "meaning": [
+    {
+      "cap": "人の失敗を見て、ちょっとスッとする",
+      "say": "人の失敗を見て、ちょっとスッとする、あの気持ちです。"
+    }
+  ],
+  "memo": [
+    {
+      "cap": "ドイツ語の「損害」＋「喜び」",
+      "say": "もとはドイツ語で、損害と、喜び、を合わせた言葉。"
+    },
+    {
+      "cap": "英語でもそのまま使う",
+      "say": "英語でも、そのまま使われています。"
+    }
+  ],
+  "examples": [
+    {
+      "intro": "ちょっと意地悪な本音",
+      "scene": "street-waiting",
+      "en": [
+        "I felt a little schadenfreude when he missed the bus."
+      ],
+      "ja": [
+        "彼がバスに乗り遅れて、ちょっとスッとした"
+      ]
+    },
+    {
+      "intro": "ネットの空気を表すなら",
+      "scene": "smartphone",
+      "en": [
+        "There's a lot of schadenfreude on social media."
+      ],
+      "ja": [
+        "ＳＮＳは他人の不幸を喜ぶ空気であふれている"
+      ]
+    }
+  ],
+  "quiz": {
+    "scene": "office-desk",
+    "prompt": [
+      {
+        "cap": "That feeling is called ___.",
+        "say": "ライバルが失敗して、ちょっと嬉しい。その気持ちを一語で。"
+      },
+      {
+        "cap": "空欄に入る単語は？",
+        "say": "空欄に入る単語は？"
+      }
+    ],
+    "answer": "That feeling is called schadenfreude.",
+    "answerJa": "その気持ちを schadenfreude と言う"
+  },
+  "scenes": {
+    "hook": "office-desk",
+    "meaning": "texting-street"
+  },
+  "sources": [
+    "https://dictionary.cambridge.org/dictionary/english/schadenfreude"
+  ]
+}

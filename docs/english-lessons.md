@@ -36,6 +36,20 @@ python tools/shorts/shorts.py lesson lessons/<id>.json   # ブリーフを生成
 
 各パターンの見本は `lessons/` にある（`en-running-late.json` は公開済み #1 と同じ中身。#1 の動画そのものは手で調整したブリーフから作った）。
 
+## 難易度（2026-10-20 チャンネル主の指示）
+
+英検1級より上。英検1級の単語集の頻出語は避ける。ネイティブは普通に使うが試験には出にくい語（口語・イディオム・ネイティブも混同する組・強い言い換え）を選ぶ。詳しくは `lessons/BACKLOG.md`。
+
+## 量産の流れ
+
+1. `lessons/BACKLOG.md` から選び、`lessons/<id>.json` を書く（`word` には `memo`＝覚え方・使う場面を入れる。例文は2〜3）。
+2. 何本かまとめて PR にコミットする。Actions「Shorts v3」が `lessons/*.json` の変更を見て台本を自動生成し、まとめてレンダリングする（1本約3分）。
+3. 成果物の `review/contact-sheet.jpg` と `first-frame-phone.png` を見る。英語の誤り、字幕のはみ出し、場面と写真のずれを直す。
+4. 合格した動画を error-english の `publish-queue/pending/NNNN-<id>.request.json` と `<id>.mp4` に入れて main に push する。
+5. error-english の「Publish queued English lessons」が 11:47 / 19:47 JST に順番に公開する（`publish-queue/config.json` の `enabled` / `maxPerDayJst` で制御。公開記録は `publish-queue/published/log.json`）。
+
+日本語ナレーション（`say`）に英字があると生成時にエラーになる（VOICEVOX は英語を読めない）。英単語はカタカナで書くか、字幕（`cap`）だけに出す。
+
 ## ネタ帳
 
 `lessons/BACKLOG.md`

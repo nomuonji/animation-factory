@@ -27,6 +27,8 @@ on:
       - "productions/**/sources.lock.json"
       - "shorts-requests/scout.txt"
       - "shorts-requests/inspect.txt"
+      - "lessons/*.json"
+      - "catalog/lesson-scenes.json"
 
 permissions:
   contents: read
@@ -64,7 +66,7 @@ jobs:
   preview:
     if: github.event_name == 'pull_request'
     runs-on: ubuntu-24.04
-    timeout-minutes: 60
+    timeout-minutes: 180
     env:
       PIXABAY_API_KEY: ${{ secrets.PIXABAY_API_KEY }}
     steps:
@@ -91,10 +93,16 @@ jobs:
             files=$(git diff --name-only "${{ github.event.pull_request.base.sha }}"...HEAD)
           fi
           prods=$(echo "$files" | grep -E '^productions/[a-z0-9-]+/(short|sources\.lock)\.json$' | cut -d/ -f2 | sort -u | tr '\n' ' ' || true)
-          # A renderer change must be seen on real productions, not only the synthetic smoke test.
+          # English lesson specs: compile lessons/<id>.json -> productions/<id>/short.json and render.
+          lessons=$(echo "$files" | grep -E '^lessons/[a-z0-9-]+\.json$' | sed 's#lessons/##; s#\.json$##' | sort -u | tr '\n' ' ' || true)
+          if echo "$files" | grep -qx 'catalog/lesson-scenes.json'; then lessons="$lessons en-word-meticulous"; fi
+          echo "lessons=$lessons" >> "$GITHUB_OUTPUT"
+          prods="$prods $lessons"
+          # A renderer change must be seen on real productions (canaries), not only the synthetic smoke test.
           if echo "$files" | grep -q '^tools/shorts/'; then
-            prods=$(ls productions/*/short.json 2>/dev/null | cut -d/ -f2 | sort -u | tr '\n' ' ')
+            prods="$prods en-running-late chameleon-signal"
           fi
+          prods=$(echo $prods | tr ' ' '\n' | sed '/^$/d' | sort -u | tr '\n' ' ')
           scout=$(echo "$files" | grep -qx 'shorts-requests/scout.txt' && echo yes || echo no)
           inspect=$(echo "$files" | grep -qx 'shorts-requests/inspect.txt' && echo yes || echo no)
           echo "inspect=$inspect" >> "$GITHUB_OUTPUT"
@@ -128,6 +136,12 @@ jobs:
         run: |
           docker run -d --rm --name vv -p 127.0.0.1:50021:50021 voicevox/voicevox_engine:cpu-latest
           for i in $(seq 1 120); do curl -fsS http://127.0.0.1:50021/version && exit 0; sleep 2; done; docker logs vv; exit 1
+      - name: Compile changed English lessons into briefs
+        if: steps.changed.outputs.lessons != ''
+        run: |
+          for id in ${{ steps.changed.outputs.lessons }}; do
+            [ -f "lessons/$id.json" ] && python tools/shorts/shorts.py lesson "lessons/$id.json"
+          done
       - name: Find, lock and render changed productions
         if: steps.changed.outputs.prods != ''
         shell: bash

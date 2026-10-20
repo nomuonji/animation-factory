@@ -1,0 +1,69 @@
+{
+  "id": "en-word-lackadaisical",
+  "pattern": "word",
+  "level": "英検1級超",
+  "title": "lackadaisical の意味わかる？｜やる気のない、だらっとした",
+  "word": "lackadaisical",
+  "pos": "形容詞",
+  "ja": "気の抜けた・いい加減な",
+  "meaning": [
+    {
+      "cap": "やる気がなく、だらっとしている",
+      "say": "やる気がなくて、だらっとしている様子です。"
+    }
+  ],
+  "memo": [
+    {
+      "cap": "怠け者というより",
+      "say": "怠け者というより、"
+    },
+    {
+      "cap": "熱意が足りない感じ",
+      "say": "熱意が足りない、という感じです。"
+    }
+  ],
+  "examples": [
+    {
+      "intro": "チームのことを話すなら",
+      "scene": "classroom",
+      "en": [
+        "His lackadaisical attitude annoyed the coach."
+      ],
+      "ja": [
+        "彼のやる気のない態度に、コーチはいら立った"
+      ]
+    },
+    {
+      "intro": "お店の感想なら",
+      "scene": "cafe",
+      "en": [
+        "The service was a bit lackadaisical."
+      ],
+      "ja": [
+        "サービスがちょっといい加減だった"
+      ]
+    }
+  ],
+  "quiz": {
+    "scene": "desk-flatlay",
+    "prompt": [
+      {
+        "cap": "Don't be so ___ about your homework.",
+        "say": "宿題に、そんなにやる気をなくさないで。"
+      },
+      {
+        "cap": "空欄に入る単語は？",
+        "say": "空欄に入る単語は？"
+      }
+    ],
+    "answer": "Don't be so lackadaisical about your homework.",
+    "answerJa": "宿題にそんなにいい加減にならないで"
+  },
+  "scenes": {
+    "hook": "living-room",
+    "meaning": "stretch-desk"
+  },
+  "sources": [
+    "https://dictionary.cambridge.org/dictionary/english/lackadaisical"
+  ]
+}

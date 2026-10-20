@@ -1,0 +1,262 @@
+{
+  "version": 3,
+  "id": "en-vs-flout-flaunt",
+  "title": "flout と flaunt の違い、言える？｜ネイティブも間違える【どっちを使う？】",
+  "status": "draft",
+  "channel": "error-english (エラーで学ぶ英語) — どっちを使う？",
+  "topic": {
+    "source": "manual",
+    "ref": "lessons/en-vs-flout-flaunt.json (pattern=vs, level=英検1級超)",
+    "summary": ""
+  },
+  "audience": "英語を勉強している日本語話者",
+  "reaction": "知りたい",
+  "format": "guess-reveal",
+  "promise": {
+    "firstFrame": "問いの見出しと場面の写真",
+    "payoff": "冒頭の問いに戻って答えの英語を音声と字幕で言い切る"
+  },
+  "references": [
+    {
+      "url": "https://dictionary.cambridge.org/dictionary/english/flout",
+      "watched": false,
+      "note": "意味の根拠（辞書）"
+    },
+    {
+      "url": "https://dictionary.cambridge.org/dictionary/english/flaunt",
+      "watched": false,
+      "note": "意味の根拠（辞書）"
+    }
+  ],
+  "voice": {
+    "engine": "voicevox",
+    "speaker": "青山龍星",
+    "style": "ノーマル",
+    "speed": 1.08
+  },
+  "music": {
+    "asset": "safe-space-loop",
+    "gain": 0.08,
+    "duck": 0.3
+  },
+  "look": {
+    "frame": "fit"
+  },
+  "descriptionLines": [
+    "・flout ＝ （ルールを）堂々と無視する　例: He flouted the rules.（彼はルールを堂々と破った）",
+    "・flaunt ＝ 見せびらかす　例: She flaunted her new car.（彼女は新車を見せびらかした）",
+    "・They flouted the speed limit. ＝ 彼らは制限速度を堂々と無視した",
+    "意味の確認: https://dictionary.cambridge.org/dictionary/english/flout",
+    "意味の確認: https://dictionary.cambridge.org/dictionary/english/flaunt"
+  ],
+  "beats": [
+    {
+      "id": "hook",
+      "role": "hook",
+      "why": "二択を0秒で見せる",
+      "shots": [
+        {
+          "src": "commons:Street view of Sarphatistraat with a woman, waiting and looking; free photo Amsterdam, Fons Heijnsbroek 10-2021.jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.05,
+            1.11
+          ],
+          "frame": "fit"
+        }
+      ],
+      "overlay": "flout  /  flaunt\nどっち？",
+      "overlayY": 0.4,
+      "sfx": "whoosh",
+      "say": "つづりも発音もそっくり。／ネイティブでも、よく間違えます。"
+    },
+    {
+      "id": "rule",
+      "role": "setup",
+      "why": "見分け方を一言で",
+      "shots": [
+        {
+          "src": "commons:Person writing in a notebook while sitting at a desk.jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.08,
+            1.18
+          ],
+          "frame": "fit"
+        }
+      ],
+      "sfx": "pop",
+      "emphasis": [
+        "無視する",
+        "見せびらかす",
+        "後ろがルールなら flout"
+      ],
+      "say": "フラウトは、ルールを堂々と無視する。／フローントは、見せびらかす。／後ろにルールが来たら、フラウトです。",
+      "caption": "flout ＝ ルールを堂々と無視する／flaunt ＝ 見せびらかす／後ろがルールなら flout"
+    },
+    {
+      "id": "a-en",
+      "role": "evidence",
+      "why": "Aの例文",
+      "shots": [
+        {
+          "src": "commons:Umeda Station Osaka metro platform rush hour queues 2022-04-25.jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.05,
+            1.11
+          ],
+          "frame": "fit"
+        }
+      ],
+      "emphasis": [
+        "flout",
+        "flaunt"
+      ],
+      "hold": 0.7,
+      "clip": {
+        "tts": {
+          "text": "He flouted the rules.",
+          "voice": "af_heart",
+          "speed": 0.92
+        },
+        "ja": "彼はルールを堂々と破った"
+      }
+    },
+    {
+      "id": "b-en",
+      "role": "evidence",
+      "why": "Bの例文",
+      "shots": [
+        {
+          "src": "commons:Dotonbori, Osaka, at night, November 2016.jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.0,
+            1.06
+          ],
+          "frame": "fill",
+          "focus": [
+            0.5,
+            0.5
+          ]
+        }
+      ],
+      "emphasis": [
+        "flout",
+        "flaunt"
+      ],
+      "hold": 0.7,
+      "clip": {
+        "tts": {
+          "text": "She flaunted her new car.",
+          "voice": "am_michael",
+          "speed": 0.92
+        },
+        "ja": "彼女は新車を見せびらかした"
+      }
+    },
+    {
+      "id": "quiz",
+      "role": "evidence",
+      "why": "自分で言う時間（考える間）",
+      "shots": [
+        {
+          "src": "commons:WMUK office - clocks.jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.05,
+            1.11
+          ],
+          "frame": "fit"
+        }
+      ],
+      "overlay": "言ってみよう",
+      "hold": 3.0,
+      "sfx": "tick",
+      "say": "では問題／彼らは、制限速度を堂々と無視した。／空欄はどっち？",
+      "caption": "では問題／They ___ the speed limit.／flout？ flaunt？"
+    },
+    {
+      "id": "quiz-answer",
+      "role": "turn",
+      "why": "答え合わせ",
+      "shots": [
+        {
+          "src": "commons:WMUK office - clocks.jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.11,
+            1.17
+          ],
+          "frame": "fit"
+        }
+      ],
+      "emphasis": [
+        "flout",
+        "flaunt"
+      ],
+      "hold": 0.6,
+      "clip": {
+        "tts": {
+          "text": "They flouted the speed limit.",
+          "voice": "af_heart",
+          "speed": 0.9
+        },
+        "ja": "彼らは制限速度を堂々と無視した"
+      }
+    },
+    {
+      "id": "quiz-why",
+      "role": "evidence",
+      "why": "答えの形を一言で整理",
+      "shots": [
+        {
+          "src": "commons:WMUK office - clocks.jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.17,
+            1.23
+          ],
+          "frame": "fit"
+        }
+      ],
+      "say": "ルールを無視するので、フラウトです。",
+      "caption": "ルールを無視する → flout"
+    },
+    {
+      "id": "recap",
+      "role": "payoff",
+      "why": "見分け方に戻って締める",
+      "shots": [
+        {
+          "src": "commons:Street view of Sarphatistraat with a woman, waiting and looking; free photo Amsterdam, Fons Heijnsbroek 10-2021.jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.11,
+            1.14
+          ],
+          "frame": "fit"
+        }
+      ],
+      "overlay": "今日のポイント",
+      "overlayY": 0.4,
+      "emphasis": [
+        "無視する",
+        "見せびらかす",
+        "後ろがルールなら flout"
+      ],
+      "hold": 1.2,
+      "say": "フラウトは、ルールを無視する。／フローントは、見せびらかす。",
+      "caption": "flout ＝ ルールを無視する／flaunt ＝ 見せびらかす"
+    }
+  ]
+}

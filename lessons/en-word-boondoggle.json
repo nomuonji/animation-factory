@@ -1,0 +1,69 @@
+{
+  "id": "en-word-boondoggle",
+  "pattern": "word",
+  "level": "英検1級超",
+  "title": "boondoggle の意味わかる？｜お金と時間のムダな計画",
+  "word": "boondoggle",
+  "pos": "名詞",
+  "ja": "お金と時間ばかりかかるムダな事業",
+  "meaning": [
+    {
+      "cap": "役に立たないのに、お金と時間ばかりかかる",
+      "say": "役に立たないのに、お金と時間ばかりかかる計画のことです。"
+    }
+  ],
+  "memo": [
+    {
+      "cap": "主にアメリカ英語",
+      "say": "主にアメリカで、"
+    },
+    {
+      "cap": "税金のムダづかいを批判する時に",
+      "say": "税金のムダづかいを批判する時によく使います。"
+    }
+  ],
+  "examples": [
+    {
+      "intro": "大きな事業を批判するなら",
+      "scene": "airport",
+      "en": [
+        "The new stadium turned out to be a boondoggle."
+      ],
+      "ja": [
+        "新スタジアムは結局ムダな事業だった"
+      ]
+    },
+    {
+      "intro": "会社の計画にも",
+      "scene": "office-desk",
+      "en": [
+        "This project is a total boondoggle."
+      ],
+      "ja": [
+        "この計画は完全にムダだ"
+      ]
+    }
+  ],
+  "quiz": {
+    "scene": "station-platform",
+    "prompt": [
+      {
+        "cap": "It cost millions and nobody uses it. What a ___!",
+        "say": "何億もかけたのに、誰も使わない。一語で言うと？"
+      },
+      {
+        "cap": "空欄に入る単語は？",
+        "say": "空欄に入る単語は？"
+      }
+    ],
+    "answer": "What a boondoggle!",
+    "answerJa": "なんてムダな事業だ"
+  },
+  "scenes": {
+    "hook": "airport",
+    "meaning": "office-clocks"
+  },
+  "sources": [
+    "https://dictionary.cambridge.org/dictionary/english/boondoggle"
+  ]
+}

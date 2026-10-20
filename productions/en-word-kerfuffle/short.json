@@ -1,0 +1,436 @@
+{
+  "version": 3,
+  "id": "en-word-kerfuffle",
+  "title": "kerfuffle の意味わかる？｜ネイティブがよく使う「ゴタゴタ」【ちょっと難しい英単語】",
+  "status": "draft",
+  "channel": "error-english (エラーで学ぶ英語) — ちょっと難しい英単語",
+  "topic": {
+    "source": "manual",
+    "ref": "lessons/en-word-kerfuffle.json (pattern=word, level=英検1級超)",
+    "summary": ""
+  },
+  "audience": "英語を勉強している日本語話者",
+  "reaction": "知りたい",
+  "format": "guess-reveal",
+  "promise": {
+    "firstFrame": "問いの見出しと場面の写真",
+    "payoff": "冒頭の問いに戻って答えの英語を音声と字幕で言い切る"
+  },
+  "references": [
+    {
+      "url": "https://dictionary.cambridge.org/dictionary/english/kerfuffle",
+      "watched": false,
+      "note": "意味の根拠（辞書）"
+    }
+  ],
+  "voice": {
+    "engine": "voicevox",
+    "speaker": "青山龍星",
+    "style": "ノーマル",
+    "speed": 1.08
+  },
+  "music": {
+    "asset": "safe-space-loop",
+    "gain": 0.08,
+    "duck": 0.3
+  },
+  "look": {
+    "frame": "fit"
+  },
+  "descriptionLines": [
+    "・kerfuffle（名詞）＝ ちょっとした騒ぎ・ゴタゴタ",
+    "・What's all the kerfuffle about? ＝ 何をそんなに騒いでるの？",
+    "・There was a bit of a kerfuffle at the airport. ＝ 空港でちょっとした騒ぎがあった",
+    "・The new rule caused a huge kerfuffle online. ＝ 新しいルールがネットで大騒ぎになった",
+    "・Sorry about the kerfuffle earlier. ＝ さっきはバタバタしてごめん",
+    "意味の確認: https://dictionary.cambridge.org/dictionary/english/kerfuffle"
+  ],
+  "beats": [
+    {
+      "id": "hook",
+      "role": "hook",
+      "why": "単語そのものを0秒で見せて問う",
+      "shots": [
+        {
+          "src": "commons:WMUK office - clocks.jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.05,
+            1.11
+          ],
+          "frame": "fit"
+        }
+      ],
+      "overlay": "kerfuffle",
+      "overlayY": 0.4,
+      "sfx": "whoosh",
+      "say": "この単語、／意味わかりますか？"
+    },
+    {
+      "id": "answer-en",
+      "role": "evidence",
+      "why": "発音（普通の速さ）",
+      "shots": [
+        {
+          "src": "commons:WMUK office - clocks.jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.11,
+            1.14
+          ],
+          "frame": "fit"
+        }
+      ],
+      "emphasis": [
+        "kerfuffle"
+      ],
+      "hold": 0.6,
+      "clip": {
+        "tts": {
+          "text": "kerfuffle",
+          "voice": "af_heart",
+          "speed": 1.0
+        },
+        "ja": "ちょっとした騒ぎ・ゴタゴタ"
+      }
+    },
+    {
+      "id": "answer-en-slow",
+      "role": "evidence",
+      "why": "発音（ゆっくり）",
+      "shots": [
+        {
+          "src": "commons:WMUK office - clocks.jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.14,
+            1.17
+          ],
+          "frame": "fit"
+        }
+      ],
+      "emphasis": [
+        "kerfuffle"
+      ],
+      "hold": 0.8,
+      "clip": {
+        "tts": {
+          "text": "kerfuffle",
+          "voice": "af_heart",
+          "speed": 0.7
+        },
+        "ja": "ちょっとした騒ぎ・ゴタゴタ"
+      }
+    },
+    {
+      "id": "meaning",
+      "role": "turn",
+      "why": "意味とイメージを一つ",
+      "shots": [
+        {
+          "src": "commons:Umeda Station Osaka metro platform rush hour queues 2022-04-25.jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.05,
+            1.17
+          ],
+          "frame": "fit"
+        }
+      ],
+      "sfx": "pop",
+      "say": "意味は、ちょっとした騒ぎ・ゴタゴタ。／大したことじゃないのに、周りがバタバタ騒いでいる状態です。",
+      "caption": "名詞「ちょっとした騒ぎ・ゴタゴタ」／大したことないのに、周りがバタバタ"
+    },
+    {
+      "id": "memo",
+      "role": "escalation",
+      "why": "覚え方・使う場面（ニュアンス）",
+      "shots": [
+        {
+          "src": "commons:WMUK office - clocks.jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.17,
+            1.23
+          ],
+          "frame": "fit"
+        }
+      ],
+      "sfx": "pop",
+      "say": "響きからして、ドタバタしていますよね。／主にイギリスでよく使う、くだけた言葉です。",
+      "caption": "響きもドタバタしている／主にイギリスの、くだけた言葉"
+    },
+    {
+      "id": "ex1-intro",
+      "role": "evidence",
+      "why": "例文の場面を一言で",
+      "shots": [
+        {
+          "src": "commons:Woman sits at desk working on laptop in home office.jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.1,
+            1.16
+          ],
+          "frame": "fit",
+          "focus": [
+            0.5,
+            0.5
+          ]
+        }
+      ],
+      "say": "騒ぎの理由を聞くなら"
+    },
+    {
+      "id": "ex1-en",
+      "role": "evidence",
+      "why": "例文を英語で聞く",
+      "shots": [
+        {
+          "src": "commons:Woman sits at desk working on laptop in home office.jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.16,
+            1.22
+          ],
+          "frame": "fit",
+          "focus": [
+            0.5,
+            0.5
+          ]
+        }
+      ],
+      "emphasis": [
+        "kerfuffle"
+      ],
+      "hold": 0.7,
+      "clip": {
+        "tts": {
+          "text": "What's all the kerfuffle about?",
+          "voice": "af_heart",
+          "speed": 0.92
+        },
+        "lines": [
+          {
+            "en": "What's all the kerfuffle about?",
+            "ja": "何をそんなに騒いでるの？"
+          }
+        ]
+      }
+    },
+    {
+      "id": "ex2-intro",
+      "role": "evidence",
+      "why": "例文の場面を一言で",
+      "shots": [
+        {
+          "src": "commons:Narita International Airport - Terminal 2 security gate.jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.05,
+            1.11
+          ],
+          "frame": "fit"
+        }
+      ],
+      "say": "出来事を話すなら"
+    },
+    {
+      "id": "ex2-en",
+      "role": "escalation",
+      "why": "例文を英語で聞く",
+      "shots": [
+        {
+          "src": "commons:Narita International Airport - Terminal 2 security gate.jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.11,
+            1.17
+          ],
+          "frame": "fit"
+        }
+      ],
+      "emphasis": [
+        "kerfuffle"
+      ],
+      "hold": 0.7,
+      "clip": {
+        "tts": {
+          "text": "There was a bit of a kerfuffle at the airport.",
+          "voice": "am_michael",
+          "speed": 0.92
+        },
+        "lines": [
+          {
+            "en": "There was a bit of a kerfuffle at the airport.",
+            "ja": "空港でちょっとした騒ぎがあった"
+          }
+        ]
+      }
+    },
+    {
+      "id": "ex3-intro",
+      "role": "evidence",
+      "why": "例文の場面を一言で",
+      "shots": [
+        {
+          "src": "commons:Black smartphone in hand (Unsplash).jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.05,
+            1.11
+          ],
+          "frame": "fit"
+        }
+      ],
+      "say": "ネットの炎上にも"
+    },
+    {
+      "id": "ex3-en",
+      "role": "escalation",
+      "why": "例文を英語で聞く",
+      "shots": [
+        {
+          "src": "commons:Black smartphone in hand (Unsplash).jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.11,
+            1.17
+          ],
+          "frame": "fit"
+        }
+      ],
+      "emphasis": [
+        "kerfuffle"
+      ],
+      "hold": 0.7,
+      "clip": {
+        "tts": {
+          "text": "The new rule caused a huge kerfuffle online.",
+          "voice": "af_heart",
+          "speed": 0.92
+        },
+        "lines": [
+          {
+            "en": "The new rule caused a huge kerfuffle online.",
+            "ja": "新しいルールがネットで大騒ぎになった"
+          }
+        ]
+      }
+    },
+    {
+      "id": "quiz",
+      "role": "evidence",
+      "why": "自分で言う時間（考える間）",
+      "shots": [
+        {
+          "src": "commons:Warm cup of coffee on a table at a cafe.jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.05,
+            1.11
+          ],
+          "frame": "fit"
+        }
+      ],
+      "overlay": "言ってみよう",
+      "hold": 3.0,
+      "sfx": "tick",
+      "say": "では問題／さっきはバタバタしてごめんね。／空欄に入る単語は？",
+      "caption": "では問題／Sorry about the ___ earlier.／空欄に入る単語は？"
+    },
+    {
+      "id": "quiz-answer",
+      "role": "turn",
+      "why": "答え合わせ",
+      "shots": [
+        {
+          "src": "commons:Warm cup of coffee on a table at a cafe.jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.11,
+            1.17
+          ],
+          "frame": "fit"
+        }
+      ],
+      "emphasis": [
+        "kerfuffle"
+      ],
+      "hold": 0.6,
+      "clip": {
+        "tts": {
+          "text": "Sorry about the kerfuffle earlier.",
+          "voice": "af_heart",
+          "speed": 0.9
+        },
+        "ja": "さっきはバタバタしてごめん"
+      }
+    },
+    {
+      "id": "recap",
+      "role": "payoff",
+      "why": "冒頭の問いに戻って答えを言い切る",
+      "shots": [
+        {
+          "src": "commons:WMUK office - clocks.jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.23,
+            1.26
+          ],
+          "frame": "fit"
+        }
+      ],
+      "overlay": "今日の単語",
+      "overlayY": 0.4,
+      "say": "ちょっとした騒ぎ・ゴタゴタは、",
+      "caption": "「ちょっとした騒ぎ・ゴタゴタ」は"
+    },
+    {
+      "id": "recap-en",
+      "role": "loop",
+      "why": "最後にもう一度英語を聞いて終わる",
+      "shots": [
+        {
+          "src": "commons:WMUK office - clocks.jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.26,
+            1.29
+          ],
+          "frame": "fit"
+        }
+      ],
+      "overlay": "今日の単語",
+      "overlayY": 0.4,
+      "emphasis": [
+        "kerfuffle"
+      ],
+      "hold": 1.4,
+      "clip": {
+        "tts": {
+          "text": "kerfuffle",
+          "voice": "af_heart",
+          "speed": 0.95
+        },
+        "ja": "ちょっとした騒ぎ・ゴタゴタ"
+      }
+    }
+  ]
+}

@@ -1,0 +1,431 @@
+{
+  "version": 3,
+  "id": "en-upgrade-flabbergasted",
+  "title": "very surprised より強い「仰天」｜flabbergasted【very から卒業】",
+  "status": "draft",
+  "channel": "error-english (エラーで学ぶ英語) — very から卒業",
+  "topic": {
+    "source": "manual",
+    "ref": "lessons/en-upgrade-flabbergasted.json (pattern=upgrade, level=英検1級超)",
+    "summary": ""
+  },
+  "audience": "英語を勉強している日本語話者",
+  "reaction": "知りたい",
+  "format": "guess-reveal",
+  "promise": {
+    "firstFrame": "問いの見出しと場面の写真",
+    "payoff": "冒頭の問いに戻って答えの英語を音声と字幕で言い切る"
+  },
+  "references": [
+    {
+      "url": "https://dictionary.cambridge.org/dictionary/english/flabbergasted",
+      "watched": false,
+      "note": "意味の根拠（辞書）"
+    }
+  ],
+  "voice": {
+    "engine": "voicevox",
+    "speaker": "青山龍星",
+    "style": "ノーマル",
+    "speed": 1.08
+  },
+  "music": {
+    "asset": "safe-space-loop",
+    "gain": 0.08,
+    "duck": 0.3
+  },
+  "look": {
+    "frame": "fit"
+  },
+  "descriptionLines": [
+    "・very surprised → flabbergasted ＝ 仰天した・あっけにとられた",
+    "・I was flabbergasted by the news. ＝ そのニュースに仰天した",
+    "・Everyone was flabbergasted when she quit. ＝ 彼女が辞めた時、みんな唖然とした",
+    "・I was flabbergasted by the price. ＝ その値段に仰天した",
+    "意味の確認: https://dictionary.cambridge.org/dictionary/english/flabbergasted"
+  ],
+  "beats": [
+    {
+      "id": "hook",
+      "role": "hook",
+      "why": "いつもの言い方を0秒で出す",
+      "shots": [
+        {
+          "src": "commons:Woman using laptop and checking watch while sitting in living room.jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.15,
+            1.21
+          ],
+          "frame": "fit",
+          "focus": [
+            0.55,
+            0.5
+          ]
+        }
+      ],
+      "overlay": "very surprised\nもっと強く言うと？",
+      "overlayY": 0.4,
+      "sfx": "whoosh",
+      "say": "すごく驚いた。ベリー・サプライズドでも通じますが、／もっと強く言えますか？",
+      "caption": "すごく驚いた = very surprised／もっと強く言えますか？"
+    },
+    {
+      "id": "answer",
+      "role": "setup",
+      "why": "すぐ答えに入る",
+      "shots": [
+        {
+          "src": "commons:Woman using laptop and checking watch while sitting in living room.jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.21,
+            1.24
+          ],
+          "frame": "fit",
+          "focus": [
+            0.55,
+            0.5
+          ]
+        }
+      ],
+      "sfx": "pop",
+      "say": "答えは、これです。"
+    },
+    {
+      "id": "answer-en",
+      "role": "evidence",
+      "why": "答えの英語（普通の速さ）",
+      "shots": [
+        {
+          "src": "commons:Woman using laptop and checking watch while sitting in living room.jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.24,
+            1.3
+          ],
+          "frame": "fit",
+          "focus": [
+            0.55,
+            0.5
+          ]
+        }
+      ],
+      "emphasis": [
+        "flabbergasted"
+      ],
+      "hold": 0.6,
+      "clip": {
+        "tts": {
+          "text": "flabbergasted",
+          "voice": "af_heart",
+          "speed": 1.0
+        },
+        "ja": "仰天した・あっけにとられた"
+      }
+    },
+    {
+      "id": "answer-slow",
+      "role": "evidence",
+      "why": "ゆっくり版の前振り",
+      "shots": [
+        {
+          "src": "commons:Woman using laptop and checking watch while sitting in living room.jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.3,
+            1.33
+          ],
+          "frame": "fit",
+          "focus": [
+            0.55,
+            0.5
+          ]
+        }
+      ],
+      "say": "もう一度、ゆっくり。"
+    },
+    {
+      "id": "answer-en-slow",
+      "role": "evidence",
+      "why": "同じ英語をゆっくり（2回目）",
+      "shots": [
+        {
+          "src": "commons:Woman using laptop and checking watch while sitting in living room.jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.33,
+            1.39
+          ],
+          "frame": "fit",
+          "focus": [
+            0.55,
+            0.5
+          ]
+        }
+      ],
+      "emphasis": [
+        "flabbergasted"
+      ],
+      "hold": 0.8,
+      "clip": {
+        "tts": {
+          "text": "flabbergasted",
+          "voice": "af_heart",
+          "speed": 0.72
+        },
+        "ja": "仰天した・あっけにとられた"
+      }
+    },
+    {
+      "id": "meaning",
+      "role": "turn",
+      "why": "very との違いを一つ",
+      "shots": [
+        {
+          "src": "commons:Texting in the crosswalk.jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.05,
+            1.17
+          ],
+          "frame": "fit"
+        }
+      ],
+      "sfx": "pop",
+      "say": "信じられなくて、口をぽかんと開けている感じです。／響きも大げさで、少しユーモラスです。",
+      "caption": "信じられなくて、口がぽかん／響きも大げさで、少しユーモラス"
+    },
+    {
+      "id": "ex1-intro",
+      "role": "evidence",
+      "why": "例文の場面を一言で",
+      "shots": [
+        {
+          "src": "commons:Black smartphone in hand (Unsplash).jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.05,
+            1.11
+          ],
+          "frame": "fit"
+        }
+      ],
+      "say": "ニュースを見て"
+    },
+    {
+      "id": "ex1-en",
+      "role": "evidence",
+      "why": "例文を英語で聞く",
+      "shots": [
+        {
+          "src": "commons:Black smartphone in hand (Unsplash).jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.11,
+            1.17
+          ],
+          "frame": "fit"
+        }
+      ],
+      "emphasis": [
+        "flabbergasted"
+      ],
+      "hold": 0.7,
+      "clip": {
+        "tts": {
+          "text": "I was flabbergasted by the news.",
+          "voice": "af_heart",
+          "speed": 0.92
+        },
+        "lines": [
+          {
+            "en": "I was flabbergasted by the news.",
+            "ja": "そのニュースに仰天した"
+          }
+        ]
+      }
+    },
+    {
+      "id": "ex2-intro",
+      "role": "evidence",
+      "why": "例文の場面を一言で",
+      "shots": [
+        {
+          "src": "commons:Woman sits at desk working on laptop in home office.jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.1,
+            1.16
+          ],
+          "frame": "fit",
+          "focus": [
+            0.5,
+            0.5
+          ]
+        }
+      ],
+      "say": "まわりの反応なら"
+    },
+    {
+      "id": "ex2-en",
+      "role": "escalation",
+      "why": "例文を英語で聞く",
+      "shots": [
+        {
+          "src": "commons:Woman sits at desk working on laptop in home office.jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.16,
+            1.22
+          ],
+          "frame": "fit",
+          "focus": [
+            0.5,
+            0.5
+          ]
+        }
+      ],
+      "emphasis": [
+        "flabbergasted"
+      ],
+      "hold": 0.7,
+      "clip": {
+        "tts": {
+          "text": "Everyone was flabbergasted when she quit.",
+          "voice": "am_michael",
+          "speed": 0.92
+        },
+        "lines": [
+          {
+            "en": "Everyone was flabbergasted when she quit.",
+            "ja": "彼女が辞めた時、みんな唖然とした"
+          }
+        ]
+      }
+    },
+    {
+      "id": "quiz",
+      "role": "evidence",
+      "why": "自分で言う時間（考える間）",
+      "shots": [
+        {
+          "src": "commons:Warm cup of coffee on a table at a cafe.jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.05,
+            1.11
+          ],
+          "frame": "fit"
+        }
+      ],
+      "overlay": "言ってみよう",
+      "hold": 3.0,
+      "sfx": "tick",
+      "emphasis": [
+        "仰天"
+      ],
+      "say": "では問題／その値段に、仰天した／英語で言ってみて"
+    },
+    {
+      "id": "quiz-answer",
+      "role": "turn",
+      "why": "答え合わせ",
+      "shots": [
+        {
+          "src": "commons:Warm cup of coffee on a table at a cafe.jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.11,
+            1.17
+          ],
+          "frame": "fit"
+        }
+      ],
+      "emphasis": [
+        "flabbergasted"
+      ],
+      "hold": 0.6,
+      "clip": {
+        "tts": {
+          "text": "I was flabbergasted by the price.",
+          "voice": "af_heart",
+          "speed": 0.9
+        },
+        "ja": "その値段に仰天した"
+      }
+    },
+    {
+      "id": "recap",
+      "role": "payoff",
+      "why": "冒頭の問いに戻って答えを言い切る",
+      "shots": [
+        {
+          "src": "commons:Woman using laptop and checking watch while sitting in living room.jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.39,
+            1.42
+          ],
+          "frame": "fit",
+          "focus": [
+            0.55,
+            0.5
+          ]
+        }
+      ],
+      "overlay": "今日の一言",
+      "overlayY": 0.4,
+      "say": "すごく驚いた、をもっと強く言うなら、",
+      "caption": "very surprised の代わりに"
+    },
+    {
+      "id": "recap-en",
+      "role": "loop",
+      "why": "最後にもう一度英語を聞いて終わる",
+      "shots": [
+        {
+          "src": "commons:Woman using laptop and checking watch while sitting in living room.jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.42,
+            1.45
+          ],
+          "frame": "fit",
+          "focus": [
+            0.55,
+            0.5
+          ]
+        }
+      ],
+      "overlay": "今日の一言",
+      "overlayY": 0.4,
+      "emphasis": [
+        "flabbergasted"
+      ],
+      "hold": 1.4,
+      "clip": {
+        "tts": {
+          "text": "flabbergasted",
+          "voice": "af_heart",
+          "speed": 0.95
+        },
+        "ja": "仰天した・あっけにとられた"
+      }
+    }
+  ]
+}

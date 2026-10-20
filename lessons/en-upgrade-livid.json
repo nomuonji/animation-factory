@@ -1,0 +1,73 @@
+{
+  "id": "en-upgrade-livid",
+  "pattern": "upgrade",
+  "level": "英検1級超",
+  "title": "very angry より強い「激怒」｜livid",
+  "basic": "very angry",
+  "word": "livid",
+  "ja": "激怒している",
+  "hookLines": [
+    {
+      "cap": "すごく怒っている = very angry",
+      "say": "すごく怒っている。ベリー・アングリーでも通じますが、"
+    },
+    "もっと強く言えますか？"
+  ],
+  "meaning": [
+    {
+      "cap": "顔色が変わるほど怒っている",
+      "say": "顔色が変わるほど、怒っている状態です。"
+    },
+    {
+      "cap": "それだけで強いので",
+      "say": "それだけで強い言葉なので、"
+    },
+    {
+      "cap": "very は付けなくてOK",
+      "say": "ベリーは付けなくて大丈夫です。"
+    }
+  ],
+  "examples": [
+    {
+      "intro": "職場の話なら",
+      "scene": "office-desk",
+      "en": [
+        "My boss was livid."
+      ],
+      "ja": [
+        "上司はカンカンだった"
+      ]
+    },
+    {
+      "intro": "理由も言うなら",
+      "scene": "station-platform",
+      "en": [
+        "She was livid about the delay."
+      ],
+      "ja": [
+        "彼女は遅れに激怒していた"
+      ]
+    }
+  ],
+  "quiz": {
+    "scene": "laptop-watch",
+    "prompt": [
+      "彼は、そのミスに激怒していた",
+      "英語で言ってみて"
+    ],
+    "emphasis": [
+      "激怒"
+    ],
+    "answer": "He was livid about the mistake.",
+    "answerJa": "彼はそのミスに激怒していた"
+  },
+  "recapSay": "すごく怒っている、をもっと強く言うなら、",
+  "scenes": {
+    "hook": "office-desk",
+    "answer": "office-desk",
+    "meaning": "office-clocks"
+  },
+  "sources": [
+    "https://dictionary.cambridge.org/dictionary/english/livid"
+  ]
+}

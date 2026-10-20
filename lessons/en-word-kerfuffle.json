@@ -1,0 +1,79 @@
+{
+  "id": "en-word-kerfuffle",
+  "pattern": "word",
+  "level": "英検1級超",
+  "title": "kerfuffle の意味わかる？｜ネイティブがよく使う「ゴタゴタ」",
+  "word": "kerfuffle",
+  "pos": "名詞",
+  "ja": "ちょっとした騒ぎ・ゴタゴタ",
+  "meaning": [
+    {
+      "cap": "大したことないのに、周りがバタバタ",
+      "say": "大したことじゃないのに、周りがバタバタ騒いでいる状態です。"
+    }
+  ],
+  "memo": [
+    {
+      "cap": "響きもドタバタしている",
+      "say": "響きからして、ドタバタしていますよね。"
+    },
+    {
+      "cap": "主にイギリスの、くだけた言葉",
+      "say": "主にイギリスでよく使う、くだけた言葉です。"
+    }
+  ],
+  "examples": [
+    {
+      "intro": "騒ぎの理由を聞くなら",
+      "scene": "office-desk",
+      "en": [
+        "What's all the kerfuffle about?"
+      ],
+      "ja": [
+        "何をそんなに騒いでるの？"
+      ]
+    },
+    {
+      "intro": "出来事を話すなら",
+      "scene": "airport",
+      "en": [
+        "There was a bit of a kerfuffle at the airport."
+      ],
+      "ja": [
+        "空港でちょっとした騒ぎがあった"
+      ]
+    },
+    {
+      "intro": "ネットの炎上にも",
+      "scene": "smartphone",
+      "en": [
+        "The new rule caused a huge kerfuffle online."
+      ],
+      "ja": [
+        "新しいルールがネットで大騒ぎになった"
+      ]
+    }
+  ],
+  "quiz": {
+    "scene": "cafe",
+    "prompt": [
+      {
+        "cap": "Sorry about the ___ earlier.",
+        "say": "さっきはバタバタしてごめんね。"
+      },
+      {
+        "cap": "空欄に入る単語は？",
+        "say": "空欄に入る単語は？"
+      }
+    ],
+    "answer": "Sorry about the kerfuffle earlier.",
+    "answerJa": "さっきはバタバタしてごめん"
+  },
+  "scenes": {
+    "hook": "office-clocks",
+    "meaning": "station-platform"
+  },
+  "sources": [
+    "https://dictionary.cambridge.org/dictionary/english/kerfuffle"
+  ]
+}
