@@ -1,0 +1,50 @@
+[
+  {
+    "file": "media/liftoff.mpg",
+    "url": "https://apollojournals.org/alsj/a17/a17v_1880127.mpg",
+    "sha256": "993eaede384b7514eb61e425fe7f8ff355e42718abf5be77672685ecf51bcdca",
+    "author": "NASA / ALSJ; digitization: Kipp Teague",
+    "license": "Public domain (NASA mission footage)",
+    "pageUrl": "https://apollojournals.org/alsj/a17/video17.html"
+  },
+  {
+    "file": "media/after.mpg",
+    "url": "https://apollojournals.org/alsj/a17/a17v_1880403.mpg",
+    "sha256": "044cab32d6bad73e9836b69b8ab9ca0a29ddfb277f32b046b523cafb197a96f3",
+    "author": "NASA / ALSJ; digitization: Kipp Teague",
+    "license": "Public domain (NASA mission footage)",
+    "pageUrl": "https://apollojournals.org/alsj/a17/video17.html"
+  },
+  {
+    "file": "media/pan.mov",
+    "url": "https://apollojournals.org/alsj/a17/a17v.1183854.mov",
+    "sha256": "de61e105e7cf2070bc719e9cf46ef33b50ce2abecb3a2b8e4a0053e1bde2fe4b",
+    "author": "NASA / ALSJ; digitization: Peter Dayton",
+    "license": "Public domain (NASA mission footage)",
+    "pageUrl": "https://apollojournals.org/alsj/a17/video17.html"
+  },
+  {
+    "file": "media/park.mpg",
+    "url": "https://apollojournals.org/alsj/a17/a17v1695942.mpg",
+    "sha256": "7ee2ca6f63700e7b1a4596d7cbf295770a1d61754e4c6daa970e91f303eb6e40",
+    "author": "NASA / ALSJ; digitization: Kipp Teague",
+    "license": "Public domain (NASA mission footage)",
+    "pageUrl": "https://apollojournals.org/alsj/a17/video17.html"
+  },
+  {
+    "file": "media/hammer.mpg",
+    "url": "https://apollojournals.org/alsj/a17/a17v_1702944.mpg",
+    "sha256": "38cfa99422ee2d2905b01e67c5d600b1ad7f08c739c7d23084dcbaeb05dbbad6",
+    "author": "NASA / ALSJ; digitization: Kipp Teague",
+    "license": "Public domain (NASA mission footage)",
+    "pageUrl": "https://apollojournals.org/alsj/a17/video17.html"
+  },
+  {
+    "file": "media/work.mpg",
+    "url": "https://apollojournals.org/alsj/a17/a17v.1183433.mpg",
+    "sha256": "9d6c395258b76dddce64408218a8e04fd2edc7bcd806df4f2b462fd477870154",
+    "author": "NASA / ALSJ; digitization: Ken Glover",
+    "license": "Public domain (NASA mission footage)",
+    "pageUrl": "https://apollojournals.org/alsj/a17/video17.html"
+  }
+]
