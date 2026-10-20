@@ -24,6 +24,7 @@ def render(spec,root):
     enc=subprocess.Popen(['ffmpeg','-v','error','-y','-f','rawvideo','-pix_fmt','rgb24','-s',f'{w}x{h}','-r',str(fps),'-i','-',
         '-an','-c:v','libx264','-threads','2','-preset','veryfast','-crf','19','-pix_fmt','yuv420p',str(path)],stdin=subprocess.PIPE)
     fonts={}
+    text_images={}
     try:
         for n in range(round(spec['duration']*fps)):
             t=n/fps
@@ -35,7 +36,14 @@ def render(spec,root):
                 if l['type']=='text':
                     size=l.get('size',30)
                     if size not in fonts:fonts[size]=ImageFont.truetype(FONT,size)
-                    d.text((x,y),l['text'],font=fonts[size],fill=col,anchor=l.get('anchor','lt'),spacing=14)
+                    key=(l['text'],size,col)
+                    if key not in text_images:
+                        bbox=d.multiline_textbbox((0,0),l['text'],font=fonts[size],anchor='lt',spacing=14)
+                        tile=Image.new('RGBA',(bbox[2]-bbox[0]+4,bbox[3]-bbox[1]+4),(0,0,0,0))
+                        ImageDraw.Draw(tile).multiline_text((2-bbox[0],2-bbox[1]),l['text'],font=fonts[size],fill=col,anchor='lt',spacing=14)
+                        text_images[key]=tile
+                    tile=text_images[key]
+                    im.paste(tile,(round(x)-2,round(y)-2),tile)
                 elif l['type']=='ellipse':
                     r=value(l.get('r',10),t);d.ellipse((x-r,y-r,x+r,y+r),fill=col)
                 elif l['type']=='rect':
