@@ -2,19 +2,19 @@
   "version": 1,
   "id": "en-review-vol1",
   "title": "英検1級のその先｜ネイティブは使うのに試験に出ない英単語10選【まとめて覚える #1】",
-  "audience": "英検1級レベルを超える語彙を増やしたい日本語話者",
-  "question": "ネイティブは使うのに試験には出ない10語を、発音・意味・例文で覚えられるか",
-  "payoff": "最後の確認テストで全部の語を英語で言える",
+  "audience": "C1〜C2レベルの語彙を増やしたい日本語話者",
+  "question": "上級レベルの10語を、発音・意味・例文で覚えられるか",
+  "payoff": "確認テストで全部の語を英語で言える",
   "voice": {
     "engine": "voicevox",
     "speaker": "青山龍星",
     "style": "ノーマル",
-    "speed": 1.08
+    "speed": 1.2
   },
   "music": {
     "asset": "safe-space-loop",
-    "gain": 0.06,
-    "duck": 0.3
+    "gain": 0.14,
+    "duck": 0.4
   },
   "descriptionLines": [
     "・shenanigans（名詞）＝ いたずら・ごまかし",
@@ -27,6 +27,8 @@
     "・comeuppance（名詞）＝ 当然の報い",
     "・rigmarole（名詞）＝ 面倒な手続き",
     "・wheelhouse（名詞）＝ 得意分野",
+    "",
+    "例文",
     "　No more shenanigans, kids. ＝ いたずらはもうおしまいだよ",
     "　There were some financial shenanigans at the company. ＝ その会社では、お金のごまかしがあった",
     "　I felt discombobulated after the long flight. ＝ 長いフライトの後、頭がぼんやりしていた",
@@ -66,7 +68,7 @@
       "beats": [
         {
           "id": "opening",
-          "why": "今日の語数と進め方を示す",
+          "why": "語数とレベルと進め方を示す",
           "shots": [
             {
               "src": "pixabay:232496",
@@ -74,15 +76,15 @@
               "loop": true,
               "zoom": [
                 1.12,
-                1.17
+                1.16
               ],
               "frame": "fill"
             }
           ],
           "headline": "英検1級のその先\nまとめて覚える10語",
           "headlineY": 0.42,
-          "say": "英検1級の、その先へ。／ネイティブは普通に使うのに、試験にはまず出てこない、10語です。／一語ずつ、発音、意味、例文を確認して、／声に出してから、最後にテストします。",
-          "caption": "英検1級の、その先へ。／ネイティブは使うのに、試験には出ない10語／一語ずつ、発音、意味、例文を確認して、／声に出してから、最後にテストします。"
+          "say": "上級レベルの英単語を、10語。／発音、意味、例文をテンポよく確認して、／最後にテストします。",
+          "caption": "上級レベルの英単語 10語／発音、意味、例文をテンポよく確認して、／最後にテストします。"
         }
       ]
     },
@@ -92,42 +94,25 @@
       "purpose": "1語を使えるようにする",
       "beats": [
         {
-          "id": "w1-intro",
-          "why": "番号と単語を示す",
-          "shots": [
-            {
-              "src": "pixabay:232496",
-              "in": 0.5,
-              "loop": true,
-              "zoom": [
-                1.17,
-                1.22
-              ],
-              "frame": "fill"
-            }
-          ],
-          "headline": "shenanigans",
-          "headlineY": 0.4,
-          "say": "1つ目。"
-        },
-        {
           "id": "w1-say",
-          "why": "発音（普通の速さ）",
+          "why": "単語と発音（普通の速さ）",
           "shots": [
             {
               "src": "pixabay:232496",
               "in": 0.5,
               "loop": true,
               "zoom": [
-                1.22,
-                1.27
+                1.16,
+                1.2
               ],
               "frame": "fill"
             }
           ],
-          "headline": "shenanigans",
+          "headline": "1. shenanigans",
           "headlineY": 0.4,
-          "hold": 0.5,
+          "hold": 0.25,
+          "lead": 0.02,
+          "sfx": "pop",
           "clip": {
             "tts": {
               "text": "shenanigans",
@@ -151,20 +136,21 @@
               "in": 0.5,
               "loop": true,
               "zoom": [
-                1.27,
-                1.32
+                1.2,
+                1.24
               ],
               "frame": "fill"
             }
           ],
-          "headline": "shenanigans",
+          "headline": "1. shenanigans",
           "headlineY": 0.4,
-          "hold": 0.6,
+          "hold": 0.3,
+          "lead": 0.02,
           "clip": {
             "tts": {
               "text": "shenanigans",
               "voice": "af_heart",
-              "speed": 0.7
+              "speed": 0.75
             },
             "lines": [
               {
@@ -176,23 +162,25 @@
         },
         {
           "id": "w1-meaning",
-          "why": "意味とニュアンス",
+          "why": "意味（とニュアンス一言）",
           "shots": [
             {
               "src": "pixabay:232496",
               "in": 0.5,
               "loop": true,
               "zoom": [
-                1.32,
-                1.4
+                1.24,
+                1.3
               ],
               "frame": "fill"
             }
           ],
-          "headline": "shenanigans",
+          "headline": "1. shenanigans",
           "headlineY": 0.3,
-          "say": "意味は、いたずら・ごまかし。／子どものいたずらから、お金のごまかしまで使えます。／ふつうは、複数形で使います。",
-          "caption": "名詞「いたずら・ごまかし」／ふざけた悪さから、ずるいごまかしまで／ふつう複数形で使う"
+          "hold": 0.15,
+          "lead": 0.02,
+          "say": "いたずら・ごまかし。／子どものいたずらから、お金のごまかしまで使えます。",
+          "caption": "名詞「いたずら・ごまかし」／ふざけた悪さから、ずるいごまかしまで"
         },
         {
           "id": "w1-ex1",
@@ -203,20 +191,21 @@
               "in": 0.5,
               "loop": true,
               "zoom": [
-                1.4,
-                1.45
+                1.3,
+                1.34
               ],
               "frame": "fill"
             }
           ],
-          "headline": "shenanigans",
+          "headline": "1. shenanigans",
           "headlineY": 0.3,
-          "hold": 0.7,
+          "hold": 0.35,
+          "lead": 0.02,
           "clip": {
             "tts": {
               "text": "No more shenanigans, kids.",
               "voice": "af_heart",
-              "speed": 0.92
+              "speed": 1.0
             },
             "lines": [
               {
@@ -235,20 +224,21 @@
               "in": 0.5,
               "loop": true,
               "zoom": [
-                1.45,
-                1.5
+                1.34,
+                1.38
               ],
               "frame": "fill"
             }
           ],
-          "headline": "shenanigans",
+          "headline": "1. shenanigans",
           "headlineY": 0.3,
-          "hold": 0.7,
+          "hold": 0.35,
+          "lead": 0.02,
           "clip": {
             "tts": {
               "text": "There were some financial shenanigans at the company.",
               "voice": "am_michael",
-              "speed": 0.92
+              "speed": 1.0
             },
             "lines": [
               {
@@ -260,46 +250,28 @@
         },
         {
           "id": "w1-repeat",
-          "why": "声に出す（間をとる）",
+          "why": "お手本の後に言う時間",
           "shots": [
             {
               "src": "pixabay:232496",
               "in": 0.5,
               "loop": true,
               "zoom": [
-                1.5,
-                1.55
+                1.38,
+                1.42
               ],
               "frame": "fill"
             }
           ],
-          "headline": "shenanigans",
+          "headline": "1. shenanigans",
           "headlineY": 0.4,
-          "say": "リピートしてみましょう。"
-        },
-        {
-          "id": "w1-repeat-en",
-          "why": "発音のお手本の後に言う時間",
-          "shots": [
-            {
-              "src": "pixabay:232496",
-              "in": 0.5,
-              "loop": true,
-              "zoom": [
-                1.55,
-                1.6
-              ],
-              "frame": "fill"
-            }
-          ],
-          "headline": "shenanigans",
-          "headlineY": 0.4,
-          "hold": 2.4,
+          "hold": 1.4,
+          "lead": 0.02,
           "clip": {
             "tts": {
               "text": "shenanigans",
               "voice": "af_heart",
-              "speed": 0.9
+              "speed": 0.95
             },
             "ja": "いたずら・ごまかし"
           }
@@ -312,8 +284,8 @@
       "purpose": "1語を使えるようにする",
       "beats": [
         {
-          "id": "w2-intro",
-          "why": "番号と単語を示す",
+          "id": "w2-say",
+          "why": "単語と発音（普通の速さ）",
           "shots": [
             {
               "src": "pixabay:345611",
@@ -321,33 +293,16 @@
               "loop": true,
               "zoom": [
                 1.12,
-                1.17
+                1.16
               ],
               "frame": "fill"
             }
           ],
-          "headline": "discombobulated",
+          "headline": "2. discombobulated",
           "headlineY": 0.4,
-          "say": "2つ目。"
-        },
-        {
-          "id": "w2-say",
-          "why": "発音（普通の速さ）",
-          "shots": [
-            {
-              "src": "pixabay:345611",
-              "in": 5.0,
-              "loop": true,
-              "zoom": [
-                1.17,
-                1.22
-              ],
-              "frame": "fill"
-            }
-          ],
-          "headline": "discombobulated",
-          "headlineY": 0.4,
-          "hold": 0.5,
+          "hold": 0.25,
+          "lead": 0.02,
+          "sfx": "pop",
           "clip": {
             "tts": {
               "text": "discombobulated",
@@ -368,23 +323,24 @@
           "shots": [
             {
               "src": "pixabay:345611",
-              "in": 0.0,
+              "in": 5.0,
               "loop": true,
               "zoom": [
-                1.22,
-                1.27
+                1.16,
+                1.2
               ],
               "frame": "fill"
             }
           ],
-          "headline": "discombobulated",
+          "headline": "2. discombobulated",
           "headlineY": 0.4,
-          "hold": 0.6,
+          "hold": 0.3,
+          "lead": 0.02,
           "clip": {
             "tts": {
               "text": "discombobulated",
               "voice": "af_heart",
-              "speed": 0.7
+              "speed": 0.75
             },
             "lines": [
               {
@@ -396,23 +352,25 @@
         },
         {
           "id": "w2-meaning",
-          "why": "意味とニュアンス",
+          "why": "意味（とニュアンス一言）",
           "shots": [
             {
               "src": "pixabay:345611",
-              "in": 4.0,
+              "in": 0.0,
               "loop": true,
               "zoom": [
-                1.27,
-                1.35
+                1.2,
+                1.26
               ],
               "frame": "fill"
             }
           ],
-          "headline": "discombobulated",
+          "headline": "2. discombobulated",
           "headlineY": 0.3,
-          "say": "意味は、すっかり混乱した。／頭がこんがらがって、調子が狂った感じです。／少しおどけた響きの言葉です。",
-          "caption": "形容詞「すっかり混乱した」／頭がこんがらがって、調子が狂った／少しおどけた響き"
+          "hold": 0.15,
+          "lead": 0.02,
+          "say": "すっかり混乱した。／頭がこんがらがって、調子が狂った感じです。",
+          "caption": "形容詞「すっかり混乱した」／頭がこんがらがって、調子が狂った"
         },
         {
           "id": "w2-ex1",
@@ -420,23 +378,24 @@
           "shots": [
             {
               "src": "pixabay:345611",
-              "in": 8.0,
+              "in": 4.0,
               "loop": true,
               "zoom": [
-                1.35,
-                1.4
+                1.26,
+                1.3
               ],
               "frame": "fill"
             }
           ],
-          "headline": "discombobulated",
+          "headline": "2. discombobulated",
           "headlineY": 0.3,
-          "hold": 0.7,
+          "hold": 0.35,
+          "lead": 0.02,
           "clip": {
             "tts": {
               "text": "I felt discombobulated after the long flight.",
               "voice": "af_heart",
-              "speed": 0.92
+              "speed": 1.0
             },
             "lines": [
               {
@@ -452,23 +411,24 @@
           "shots": [
             {
               "src": "pixabay:345611",
-              "in": 3.0,
+              "in": 8.0,
               "loop": true,
               "zoom": [
-                1.4,
-                1.45
+                1.3,
+                1.34
               ],
               "frame": "fill"
             }
           ],
-          "headline": "discombobulated",
+          "headline": "2. discombobulated",
           "headlineY": 0.3,
-          "hold": 0.7,
+          "hold": 0.35,
+          "lead": 0.02,
           "clip": {
             "tts": {
               "text": "The sudden change left everyone discombobulated.",
               "voice": "am_michael",
-              "speed": 0.92
+              "speed": 1.0
             },
             "lines": [
               {
@@ -480,46 +440,28 @@
         },
         {
           "id": "w2-repeat",
-          "why": "声に出す（間をとる）",
+          "why": "お手本の後に言う時間",
           "shots": [
             {
               "src": "pixabay:345611",
-              "in": 7.0,
+              "in": 3.0,
               "loop": true,
               "zoom": [
-                1.45,
-                1.5
+                1.34,
+                1.38
               ],
               "frame": "fill"
             }
           ],
-          "headline": "discombobulated",
+          "headline": "2. discombobulated",
           "headlineY": 0.4,
-          "say": "リピートしてみましょう。"
-        },
-        {
-          "id": "w2-repeat-en",
-          "why": "発音のお手本の後に言う時間",
-          "shots": [
-            {
-              "src": "pixabay:345611",
-              "in": 2.0,
-              "loop": true,
-              "zoom": [
-                1.5,
-                1.55
-              ],
-              "frame": "fill"
-            }
-          ],
-          "headline": "discombobulated",
-          "headlineY": 0.4,
-          "hold": 2.4,
+          "hold": 1.4,
+          "lead": 0.02,
           "clip": {
             "tts": {
               "text": "discombobulated",
               "voice": "af_heart",
-              "speed": 0.9
+              "speed": 0.95
             },
             "ja": "すっかり混乱した"
           }
@@ -532,8 +474,8 @@
       "purpose": "1語を使えるようにする",
       "beats": [
         {
-          "id": "w3-intro",
-          "why": "番号と単語を示す",
+          "id": "w3-say",
+          "why": "単語と発音（普通の速さ）",
           "shots": [
             {
               "src": "commons:Woman sits at desk working on laptop in home office.jpg",
@@ -541,33 +483,16 @@
               "freeze": true,
               "zoom": [
                 1.1,
-                1.15
+                1.14
               ],
               "frame": "fill"
             }
           ],
-          "headline": "persnickety",
+          "headline": "3. persnickety",
           "headlineY": 0.4,
-          "say": "3つ目。"
-        },
-        {
-          "id": "w3-say",
-          "why": "発音（普通の速さ）",
-          "shots": [
-            {
-              "src": "commons:Woman sits at desk working on laptop in home office.jpg",
-              "in": 0,
-              "freeze": true,
-              "zoom": [
-                1.15,
-                1.2
-              ],
-              "frame": "fill"
-            }
-          ],
-          "headline": "persnickety",
-          "headlineY": 0.4,
-          "hold": 0.5,
+          "hold": 0.25,
+          "lead": 0.02,
+          "sfx": "pop",
           "clip": {
             "tts": {
               "text": "persnickety",
@@ -591,20 +516,21 @@
               "in": 0,
               "freeze": true,
               "zoom": [
-                1.2,
-                1.25
+                1.14,
+                1.18
               ],
               "frame": "fill"
             }
           ],
-          "headline": "persnickety",
+          "headline": "3. persnickety",
           "headlineY": 0.4,
-          "hold": 0.6,
+          "hold": 0.3,
+          "lead": 0.02,
           "clip": {
             "tts": {
               "text": "persnickety",
               "voice": "af_heart",
-              "speed": 0.7
+              "speed": 0.75
             },
             "lines": [
               {
@@ -616,23 +542,25 @@
         },
         {
           "id": "w3-meaning",
-          "why": "意味とニュアンス",
+          "why": "意味（とニュアンス一言）",
           "shots": [
             {
               "src": "commons:Woman sits at desk working on laptop in home office.jpg",
               "in": 0,
               "freeze": true,
               "zoom": [
-                1.25,
-                1.33
+                1.18,
+                1.24
               ],
               "frame": "fill"
             }
           ],
-          "headline": "persnickety",
+          "headline": "3. persnickety",
           "headlineY": 0.3,
-          "say": "意味は、細かいことにうるさい。／どうでもいい細かいところに、こだわる人に使います。／主にアメリカ英語です。",
-          "caption": "形容詞「細かいことにうるさい」／どうでもいい細部にこだわる／主にアメリカ英語"
+          "hold": 0.15,
+          "lead": 0.02,
+          "say": "細かいことにうるさい。／どうでもいい細かいところに、こだわる人に使います。",
+          "caption": "形容詞「細かいことにうるさい」／どうでもいい細部にこだわる"
         },
         {
           "id": "w3-ex1",
@@ -643,20 +571,21 @@
               "in": 0,
               "freeze": true,
               "zoom": [
-                1.33,
-                1.38
+                1.24,
+                1.28
               ],
               "frame": "fill"
             }
           ],
-          "headline": "persnickety",
+          "headline": "3. persnickety",
           "headlineY": 0.3,
-          "hold": 0.7,
+          "hold": 0.35,
+          "lead": 0.02,
           "clip": {
             "tts": {
               "text": "My boss is persnickety about fonts.",
               "voice": "af_heart",
-              "speed": 0.92
+              "speed": 1.0
             },
             "lines": [
               {
@@ -675,20 +604,21 @@
               "in": 0,
               "freeze": true,
               "zoom": [
-                1.38,
-                1.43
+                1.28,
+                1.32
               ],
               "frame": "fill"
             }
           ],
-          "headline": "persnickety",
+          "headline": "3. persnickety",
           "headlineY": 0.3,
-          "hold": 0.7,
+          "hold": 0.35,
+          "lead": 0.02,
           "clip": {
             "tts": {
               "text": "Don't be so persnickety.",
               "voice": "am_michael",
-              "speed": 0.92
+              "speed": 1.0
             },
             "lines": [
               {
@@ -700,46 +630,28 @@
         },
         {
           "id": "w3-repeat",
-          "why": "声に出す（間をとる）",
+          "why": "お手本の後に言う時間",
           "shots": [
             {
               "src": "commons:Woman sits at desk working on laptop in home office.jpg",
               "in": 0,
               "freeze": true,
               "zoom": [
-                1.43,
-                1.48
+                1.32,
+                1.36
               ],
               "frame": "fill"
             }
           ],
-          "headline": "persnickety",
+          "headline": "3. persnickety",
           "headlineY": 0.4,
-          "say": "リピートしてみましょう。"
-        },
-        {
-          "id": "w3-repeat-en",
-          "why": "発音のお手本の後に言う時間",
-          "shots": [
-            {
-              "src": "commons:Woman sits at desk working on laptop in home office.jpg",
-              "in": 0,
-              "freeze": true,
-              "zoom": [
-                1.48,
-                1.53
-              ],
-              "frame": "fill"
-            }
-          ],
-          "headline": "persnickety",
-          "headlineY": 0.4,
-          "hold": 2.4,
+          "hold": 1.4,
+          "lead": 0.02,
           "clip": {
             "tts": {
               "text": "persnickety",
               "voice": "af_heart",
-              "speed": 0.9
+              "speed": 0.95
             },
             "ja": "細かいことにうるさい"
           }
@@ -752,8 +664,8 @@
       "purpose": "1語を使えるようにする",
       "beats": [
         {
-          "id": "w4-intro",
-          "why": "番号と単語を示す",
+          "id": "w4-say",
+          "why": "単語と発音（普通の速さ）",
           "shots": [
             {
               "src": "pixabay:3965",
@@ -761,33 +673,16 @@
               "loop": true,
               "zoom": [
                 1.12,
-                1.17
+                1.16
               ],
               "frame": "fill"
             }
           ],
-          "headline": "humdrum",
+          "headline": "4. humdrum",
           "headlineY": 0.4,
-          "say": "4つ目。"
-        },
-        {
-          "id": "w4-say",
-          "why": "発音（普通の速さ）",
-          "shots": [
-            {
-              "src": "pixabay:3965",
-              "in": 5.0,
-              "loop": true,
-              "zoom": [
-                1.17,
-                1.22
-              ],
-              "frame": "fill"
-            }
-          ],
-          "headline": "humdrum",
-          "headlineY": 0.4,
-          "hold": 0.5,
+          "hold": 0.25,
+          "lead": 0.02,
+          "sfx": "pop",
           "clip": {
             "tts": {
               "text": "humdrum",
@@ -808,23 +703,24 @@
           "shots": [
             {
               "src": "pixabay:3965",
-              "in": 9.0,
+              "in": 5.0,
               "loop": true,
               "zoom": [
-                1.22,
-                1.27
+                1.16,
+                1.2
               ],
               "frame": "fill"
             }
           ],
-          "headline": "humdrum",
+          "headline": "4. humdrum",
           "headlineY": 0.4,
-          "hold": 0.6,
+          "hold": 0.3,
+          "lead": 0.02,
           "clip": {
             "tts": {
               "text": "humdrum",
               "voice": "af_heart",
-              "speed": 0.7
+              "speed": 0.75
             },
             "lines": [
               {
@@ -836,22 +732,24 @@
         },
         {
           "id": "w4-meaning",
-          "why": "意味とニュアンス",
+          "why": "意味（とニュアンス一言）",
           "shots": [
             {
               "src": "pixabay:3965",
-              "in": 3.0,
+              "in": 9.0,
               "loop": true,
               "zoom": [
-                1.27,
-                1.35
+                1.2,
+                1.26
               ],
               "frame": "fill"
             }
           ],
-          "headline": "humdrum",
+          "headline": "4. humdrum",
           "headlineY": 0.3,
-          "say": "意味は、単調な・平凡な。／毎日同じことの繰り返しで、変化がない感じです。",
+          "hold": 0.15,
+          "lead": 0.02,
+          "say": "単調な・平凡な。／毎日同じことの繰り返しで、変化がない感じです。",
           "caption": "形容詞「単調な・平凡な」／毎日同じで、変化がない"
         },
         {
@@ -860,23 +758,24 @@
           "shots": [
             {
               "src": "pixabay:3965",
-              "in": 7.0,
+              "in": 3.0,
               "loop": true,
               "zoom": [
-                1.35,
-                1.4
+                1.26,
+                1.3
               ],
               "frame": "fill"
             }
           ],
-          "headline": "humdrum",
+          "headline": "4. humdrum",
           "headlineY": 0.3,
-          "hold": 0.7,
+          "hold": 0.35,
+          "lead": 0.02,
           "clip": {
             "tts": {
               "text": "I needed a break from my humdrum routine.",
               "voice": "af_heart",
-              "speed": 0.92
+              "speed": 1.0
             },
             "lines": [
               {
@@ -892,23 +791,24 @@
           "shots": [
             {
               "src": "pixabay:3965",
-              "in": 1.0,
+              "in": 7.0,
               "loop": true,
               "zoom": [
-                1.4,
-                1.45
+                1.3,
+                1.34
               ],
               "frame": "fill"
             }
           ],
-          "headline": "humdrum",
+          "headline": "4. humdrum",
           "headlineY": 0.3,
-          "hold": 0.7,
+          "hold": 0.35,
+          "lead": 0.02,
           "clip": {
             "tts": {
               "text": "It was a humdrum little town.",
               "voice": "am_michael",
-              "speed": 0.92
+              "speed": 1.0
             },
             "lines": [
               {
@@ -920,46 +820,28 @@
         },
         {
           "id": "w4-repeat",
-          "why": "声に出す（間をとる）",
+          "why": "お手本の後に言う時間",
           "shots": [
             {
               "src": "pixabay:3965",
-              "in": 5.0,
+              "in": 1.0,
               "loop": true,
               "zoom": [
-                1.45,
-                1.5
+                1.34,
+                1.38
               ],
               "frame": "fill"
             }
           ],
-          "headline": "humdrum",
+          "headline": "4. humdrum",
           "headlineY": 0.4,
-          "say": "リピートしてみましょう。"
-        },
-        {
-          "id": "w4-repeat-en",
-          "why": "発音のお手本の後に言う時間",
-          "shots": [
-            {
-              "src": "pixabay:3965",
-              "in": 9.0,
-              "loop": true,
-              "zoom": [
-                1.5,
-                1.55
-              ],
-              "frame": "fill"
-            }
-          ],
-          "headline": "humdrum",
-          "headlineY": 0.4,
-          "hold": 2.4,
+          "hold": 1.4,
+          "lead": 0.02,
           "clip": {
             "tts": {
               "text": "humdrum",
               "voice": "af_heart",
-              "speed": 0.9
+              "speed": 0.95
             },
             "ja": "単調な・平凡な"
           }
@@ -972,8 +854,8 @@
       "purpose": "1語を使えるようにする",
       "beats": [
         {
-          "id": "w5-intro",
-          "why": "番号と単語を示す",
+          "id": "w5-say",
+          "why": "単語と発音（普通の速さ）",
           "shots": [
             {
               "src": "pixabay:137265",
@@ -981,33 +863,16 @@
               "loop": true,
               "zoom": [
                 1.12,
-                1.17
+                1.16
               ],
               "frame": "fill"
             }
           ],
-          "headline": "gumption",
+          "headline": "5. gumption",
           "headlineY": 0.4,
-          "say": "5つ目。"
-        },
-        {
-          "id": "w5-say",
-          "why": "発音（普通の速さ）",
-          "shots": [
-            {
-              "src": "pixabay:137265",
-              "in": 5.0,
-              "loop": true,
-              "zoom": [
-                1.17,
-                1.22
-              ],
-              "frame": "fill"
-            }
-          ],
-          "headline": "gumption",
-          "headlineY": 0.4,
-          "hold": 0.5,
+          "hold": 0.25,
+          "lead": 0.02,
+          "sfx": "pop",
           "clip": {
             "tts": {
               "text": "gumption",
@@ -1028,23 +893,24 @@
           "shots": [
             {
               "src": "pixabay:137265",
-              "in": 9.0,
+              "in": 5.0,
               "loop": true,
               "zoom": [
-                1.22,
-                1.27
+                1.16,
+                1.2
               ],
               "frame": "fill"
             }
           ],
-          "headline": "gumption",
+          "headline": "5. gumption",
           "headlineY": 0.4,
-          "hold": 0.6,
+          "hold": 0.3,
+          "lead": 0.02,
           "clip": {
             "tts": {
               "text": "gumption",
               "voice": "af_heart",
-              "speed": 0.7
+              "speed": 0.75
             },
             "lines": [
               {
@@ -1056,23 +922,25 @@
         },
         {
           "id": "w5-meaning",
-          "why": "意味とニュアンス",
+          "why": "意味（とニュアンス一言）",
           "shots": [
             {
               "src": "pixabay:137265",
-              "in": 0.0,
+              "in": 9.0,
               "loop": true,
               "zoom": [
-                1.27,
-                1.35
+                1.2,
+                1.26
               ],
               "frame": "fill"
             }
           ],
-          "headline": "gumption",
+          "headline": "5. gumption",
           "headlineY": 0.3,
-          "say": "意味は、度胸・やる気・機転。／思い切って行動する力や、とっさの機転のことです。／ほめ言葉として使います。",
-          "caption": "名詞「度胸・やる気・機転」／思い切って行動する力／ほめ言葉として使う"
+          "hold": 0.15,
+          "lead": 0.02,
+          "say": "度胸・やる気・機転。／思い切って行動する力や、とっさの機転のことです。",
+          "caption": "名詞「度胸・やる気・機転」／思い切って行動する力"
         },
         {
           "id": "w5-ex1",
@@ -1080,23 +948,24 @@
           "shots": [
             {
               "src": "pixabay:137265",
-              "in": 4.0,
+              "in": 0.0,
               "loop": true,
               "zoom": [
-                1.35,
-                1.4
+                1.26,
+                1.3
               ],
               "frame": "fill"
             }
           ],
-          "headline": "gumption",
+          "headline": "5. gumption",
           "headlineY": 0.3,
-          "hold": 0.7,
+          "hold": 0.35,
+          "lead": 0.02,
           "clip": {
             "tts": {
               "text": "She had the gumption to ask for a raise.",
               "voice": "af_heart",
-              "speed": 0.92
+              "speed": 1.0
             },
             "lines": [
               {
@@ -1112,23 +981,24 @@
           "shots": [
             {
               "src": "pixabay:137265",
-              "in": 8.0,
+              "in": 4.0,
               "loop": true,
               "zoom": [
-                1.4,
-                1.45
+                1.3,
+                1.34
               ],
               "frame": "fill"
             }
           ],
-          "headline": "gumption",
+          "headline": "5. gumption",
           "headlineY": 0.3,
-          "hold": 0.7,
+          "hold": 0.35,
+          "lead": 0.02,
           "clip": {
             "tts": {
               "text": "It takes gumption to start your own business.",
               "voice": "am_michael",
-              "speed": 0.92
+              "speed": 1.0
             },
             "lines": [
               {
@@ -1140,312 +1010,28 @@
         },
         {
           "id": "w5-repeat",
-          "why": "声に出す（間をとる）",
+          "why": "お手本の後に言う時間",
           "shots": [
             {
               "src": "pixabay:137265",
-              "in": 12.0,
+              "in": 8.0,
               "loop": true,
               "zoom": [
-                1.45,
-                1.5
+                1.34,
+                1.38
               ],
               "frame": "fill"
             }
           ],
-          "headline": "gumption",
+          "headline": "5. gumption",
           "headlineY": 0.4,
-          "say": "リピートしてみましょう。"
-        },
-        {
-          "id": "w5-repeat-en",
-          "why": "発音のお手本の後に言う時間",
-          "shots": [
-            {
-              "src": "pixabay:137265",
-              "in": 3.0,
-              "loop": true,
-              "zoom": [
-                1.5,
-                1.55
-              ],
-              "frame": "fill"
-            }
-          ],
-          "headline": "gumption",
-          "headlineY": 0.4,
-          "hold": 2.4,
+          "hold": 1.4,
+          "lead": 0.02,
           "clip": {
             "tts": {
               "text": "gumption",
               "voice": "af_heart",
-              "speed": 0.9
-            },
-            "ja": "度胸・やる気・機転"
-          }
-        }
-      ]
-    },
-    {
-      "id": "check-half",
-      "title": "ここまでの確認テスト",
-      "purpose": "覚えたかを確かめる",
-      "beats": [
-        {
-          "id": "check-half-lead",
-          "why": "思い出すテストの説明",
-          "shots": [
-            {
-              "src": "pixabay:232496",
-              "in": 0.5,
-              "loop": true,
-              "zoom": [
-                1.6,
-                1.65
-              ],
-              "frame": "fill"
-            }
-          ],
-          "headline": "思い出せる？",
-          "headlineY": 0.42,
-          "say": "ここまでの5語、／思い出せますか？／日本語を見て、英語で言ってみてください。"
-        },
-        {
-          "id": "check-half-q0",
-          "why": "日本語から英単語を思い出す（考える間）",
-          "shots": [
-            {
-              "src": "pixabay:232496",
-              "in": 0.5,
-              "loop": true,
-              "zoom": [
-                1.65,
-                1.7
-              ],
-              "frame": "fill"
-            }
-          ],
-          "headline": "「いたずら・ごまかし」",
-          "headlineY": 0.4,
-          "hold": 2.6,
-          "say": "いたずら・ごまかしは？",
-          "caption": "「いたずら・ごまかし」は？"
-        },
-        {
-          "id": "check-half-a0",
-          "why": "答え合わせ（英語音声）",
-          "shots": [
-            {
-              "src": "pixabay:232496",
-              "in": 0.5,
-              "loop": true,
-              "zoom": [
-                1.7,
-                1.75
-              ],
-              "frame": "fill"
-            }
-          ],
-          "headline": "shenanigans",
-          "headlineY": 0.4,
-          "hold": 0.8,
-          "clip": {
-            "tts": {
-              "text": "shenanigans",
-              "voice": "af_heart",
-              "speed": 0.9
-            },
-            "ja": "いたずら・ごまかし"
-          }
-        },
-        {
-          "id": "check-half-q1",
-          "why": "日本語から英単語を思い出す（考える間）",
-          "shots": [
-            {
-              "src": "pixabay:345611",
-              "in": 6.0,
-              "loop": true,
-              "zoom": [
-                1.55,
-                1.6
-              ],
-              "frame": "fill"
-            }
-          ],
-          "headline": "「すっかり混乱した」",
-          "headlineY": 0.4,
-          "hold": 2.6,
-          "say": "すっかり混乱したは？",
-          "caption": "「すっかり混乱した」は？"
-        },
-        {
-          "id": "check-half-a1",
-          "why": "答え合わせ（英語音声）",
-          "shots": [
-            {
-              "src": "pixabay:345611",
-              "in": 1.0,
-              "loop": true,
-              "zoom": [
-                1.6,
-                1.65
-              ],
-              "frame": "fill"
-            }
-          ],
-          "headline": "discombobulated",
-          "headlineY": 0.4,
-          "hold": 0.8,
-          "clip": {
-            "tts": {
-              "text": "discombobulated",
-              "voice": "af_heart",
-              "speed": 0.9
-            },
-            "ja": "すっかり混乱した"
-          }
-        },
-        {
-          "id": "check-half-q2",
-          "why": "日本語から英単語を思い出す（考える間）",
-          "shots": [
-            {
-              "src": "commons:Woman sits at desk working on laptop in home office.jpg",
-              "in": 0,
-              "freeze": true,
-              "zoom": [
-                1.53,
-                1.58
-              ],
-              "frame": "fill"
-            }
-          ],
-          "headline": "「細かいことにうるさい」",
-          "headlineY": 0.4,
-          "hold": 2.6,
-          "say": "細かいことにうるさいは？",
-          "caption": "「細かいことにうるさい」は？"
-        },
-        {
-          "id": "check-half-a2",
-          "why": "答え合わせ（英語音声）",
-          "shots": [
-            {
-              "src": "commons:Woman sits at desk working on laptop in home office.jpg",
-              "in": 0,
-              "freeze": true,
-              "zoom": [
-                1.58,
-                1.63
-              ],
-              "frame": "fill"
-            }
-          ],
-          "headline": "persnickety",
-          "headlineY": 0.4,
-          "hold": 0.8,
-          "clip": {
-            "tts": {
-              "text": "persnickety",
-              "voice": "af_heart",
-              "speed": 0.9
-            },
-            "ja": "細かいことにうるさい"
-          }
-        },
-        {
-          "id": "check-half-q3",
-          "why": "日本語から英単語を思い出す（考える間）",
-          "shots": [
-            {
-              "src": "pixabay:3965",
-              "in": 3.0,
-              "loop": true,
-              "zoom": [
-                1.55,
-                1.6
-              ],
-              "frame": "fill"
-            }
-          ],
-          "headline": "「単調な・平凡な」",
-          "headlineY": 0.4,
-          "hold": 2.6,
-          "say": "単調な・平凡なは？",
-          "caption": "「単調な・平凡な」は？"
-        },
-        {
-          "id": "check-half-a3",
-          "why": "答え合わせ（英語音声）",
-          "shots": [
-            {
-              "src": "pixabay:3965",
-              "in": 7.0,
-              "loop": true,
-              "zoom": [
-                1.6,
-                1.65
-              ],
-              "frame": "fill"
-            }
-          ],
-          "headline": "humdrum",
-          "headlineY": 0.4,
-          "hold": 0.8,
-          "clip": {
-            "tts": {
-              "text": "humdrum",
-              "voice": "af_heart",
-              "speed": 0.9
-            },
-            "ja": "単調な・平凡な"
-          }
-        },
-        {
-          "id": "check-half-q4",
-          "why": "日本語から英単語を思い出す（考える間）",
-          "shots": [
-            {
-              "src": "pixabay:137265",
-              "in": 7.0,
-              "loop": true,
-              "zoom": [
-                1.55,
-                1.6
-              ],
-              "frame": "fill"
-            }
-          ],
-          "headline": "「度胸・やる気・機転」",
-          "headlineY": 0.4,
-          "hold": 2.6,
-          "say": "度胸・やる気・機転は？",
-          "caption": "「度胸・やる気・機転」は？"
-        },
-        {
-          "id": "check-half-a4",
-          "why": "答え合わせ（英語音声）",
-          "shots": [
-            {
-              "src": "pixabay:137265",
-              "in": 11.0,
-              "loop": true,
-              "zoom": [
-                1.6,
-                1.65
-              ],
-              "frame": "fill"
-            }
-          ],
-          "headline": "gumption",
-          "headlineY": 0.4,
-          "hold": 0.8,
-          "clip": {
-            "tts": {
-              "text": "gumption",
-              "voice": "af_heart",
-              "speed": 0.9
+              "speed": 0.95
             },
             "ja": "度胸・やる気・機転"
           }
@@ -1458,8 +1044,8 @@
       "purpose": "1語を使えるようにする",
       "beats": [
         {
-          "id": "w6-intro",
-          "why": "番号と単語を示す",
+          "id": "w6-say",
+          "why": "単語と発音（普通の速さ）",
           "shots": [
             {
               "src": "pixabay:50312",
@@ -1467,33 +1053,16 @@
               "loop": true,
               "zoom": [
                 1.12,
-                1.17
+                1.16
               ],
               "frame": "fill"
             }
           ],
-          "headline": "chutzpah",
+          "headline": "6. chutzpah",
           "headlineY": 0.4,
-          "say": "6つ目。"
-        },
-        {
-          "id": "w6-say",
-          "why": "発音（普通の速さ）",
-          "shots": [
-            {
-              "src": "pixabay:50312",
-              "in": 5.0,
-              "loop": true,
-              "zoom": [
-                1.17,
-                1.22
-              ],
-              "frame": "fill"
-            }
-          ],
-          "headline": "chutzpah",
-          "headlineY": 0.4,
-          "hold": 0.5,
+          "hold": 0.25,
+          "lead": 0.02,
+          "sfx": "pop",
           "clip": {
             "tts": {
               "text": "chutzpah",
@@ -1514,23 +1083,24 @@
           "shots": [
             {
               "src": "pixabay:50312",
-              "in": 9.0,
+              "in": 5.0,
               "loop": true,
               "zoom": [
-                1.22,
-                1.27
+                1.16,
+                1.2
               ],
               "frame": "fill"
             }
           ],
-          "headline": "chutzpah",
+          "headline": "6. chutzpah",
           "headlineY": 0.4,
-          "hold": 0.6,
+          "hold": 0.3,
+          "lead": 0.02,
           "clip": {
             "tts": {
               "text": "chutzpah",
               "voice": "af_heart",
-              "speed": 0.7
+              "speed": 0.75
             },
             "lines": [
               {
@@ -1542,23 +1112,25 @@
         },
         {
           "id": "w6-meaning",
-          "why": "意味とニュアンス",
+          "why": "意味（とニュアンス一言）",
           "shots": [
             {
               "src": "pixabay:50312",
-              "in": 13.0,
+              "in": 9.0,
               "loop": true,
               "zoom": [
-                1.27,
-                1.35
+                1.2,
+                1.26
               ],
               "frame": "fill"
             }
           ],
-          "headline": "chutzpah",
+          "headline": "6. chutzpah",
           "headlineY": 0.3,
-          "say": "意味は、図々しさ・大胆さ。／ふつうは遠慮するところを、平気でやってのける図々しさです。／感心と、呆れの、両方の意味で使います。",
-          "caption": "名詞「図々しさ・大胆さ」／ふつうは遠慮するところで、平気でやる／感心と呆れの両方"
+          "hold": 0.15,
+          "lead": 0.02,
+          "say": "図々しさ・大胆さ。／ふつうは遠慮するところを、平気でやってのける図々しさです。",
+          "caption": "名詞「図々しさ・大胆さ」／ふつうは遠慮するところで、平気でやる"
         },
         {
           "id": "w6-ex1",
@@ -1566,23 +1138,24 @@
           "shots": [
             {
               "src": "pixabay:50312",
-              "in": 17.0,
+              "in": 13.0,
               "loop": true,
               "zoom": [
-                1.35,
-                1.4
+                1.26,
+                1.3
               ],
               "frame": "fill"
             }
           ],
-          "headline": "chutzpah",
+          "headline": "6. chutzpah",
           "headlineY": 0.3,
-          "hold": 0.7,
+          "hold": 0.35,
+          "lead": 0.02,
           "clip": {
             "tts": {
               "text": "He had the chutzpah to ask me for money again.",
               "voice": "af_heart",
-              "speed": 0.92
+              "speed": 1.0
             },
             "lines": [
               {
@@ -1598,23 +1171,24 @@
           "shots": [
             {
               "src": "pixabay:50312",
-              "in": 2.0,
+              "in": 17.0,
               "loop": true,
               "zoom": [
-                1.4,
-                1.45
+                1.3,
+                1.34
               ],
               "frame": "fill"
             }
           ],
-          "headline": "chutzpah",
+          "headline": "6. chutzpah",
           "headlineY": 0.3,
-          "hold": 0.7,
+          "hold": 0.35,
+          "lead": 0.02,
           "clip": {
             "tts": {
               "text": "It took real chutzpah to pitch the idea to the CEO.",
               "voice": "am_michael",
-              "speed": 0.92
+              "speed": 1.0
             },
             "lines": [
               {
@@ -1626,46 +1200,28 @@
         },
         {
           "id": "w6-repeat",
-          "why": "声に出す（間をとる）",
+          "why": "お手本の後に言う時間",
           "shots": [
             {
               "src": "pixabay:50312",
-              "in": 6.0,
+              "in": 2.0,
               "loop": true,
               "zoom": [
-                1.45,
-                1.5
+                1.34,
+                1.38
               ],
               "frame": "fill"
             }
           ],
-          "headline": "chutzpah",
+          "headline": "6. chutzpah",
           "headlineY": 0.4,
-          "say": "リピートしてみましょう。"
-        },
-        {
-          "id": "w6-repeat-en",
-          "why": "発音のお手本の後に言う時間",
-          "shots": [
-            {
-              "src": "pixabay:50312",
-              "in": 10.0,
-              "loop": true,
-              "zoom": [
-                1.5,
-                1.55
-              ],
-              "frame": "fill"
-            }
-          ],
-          "headline": "chutzpah",
-          "headlineY": 0.4,
-          "hold": 2.4,
+          "hold": 1.4,
+          "lead": 0.02,
           "clip": {
             "tts": {
               "text": "chutzpah",
               "voice": "af_heart",
-              "speed": 0.9
+              "speed": 0.95
             },
             "ja": "図々しさ・大胆さ"
           }
@@ -1678,8 +1234,8 @@
       "purpose": "1語を使えるようにする",
       "beats": [
         {
-          "id": "w7-intro",
-          "why": "番号と単語を示す",
+          "id": "w7-say",
+          "why": "単語と発音（普通の速さ）",
           "shots": [
             {
               "src": "pixabay:227112",
@@ -1687,33 +1243,16 @@
               "loop": true,
               "zoom": [
                 1.12,
-                1.17
+                1.16
               ],
               "frame": "fill"
             }
           ],
-          "headline": "bugbear",
+          "headline": "7. bugbear",
           "headlineY": 0.4,
-          "say": "7つ目。"
-        },
-        {
-          "id": "w7-say",
-          "why": "発音（普通の速さ）",
-          "shots": [
-            {
-              "src": "pixabay:227112",
-              "in": 5.0,
-              "loop": true,
-              "zoom": [
-                1.17,
-                1.22
-              ],
-              "frame": "fill"
-            }
-          ],
-          "headline": "bugbear",
-          "headlineY": 0.4,
-          "hold": 0.5,
+          "hold": 0.25,
+          "lead": 0.02,
+          "sfx": "pop",
           "clip": {
             "tts": {
               "text": "bugbear",
@@ -1734,23 +1273,24 @@
           "shots": [
             {
               "src": "pixabay:227112",
-              "in": 9.0,
+              "in": 5.0,
               "loop": true,
               "zoom": [
-                1.22,
-                1.27
+                1.16,
+                1.2
               ],
               "frame": "fill"
             }
           ],
-          "headline": "bugbear",
+          "headline": "7. bugbear",
           "headlineY": 0.4,
-          "hold": 0.6,
+          "hold": 0.3,
+          "lead": 0.02,
           "clip": {
             "tts": {
               "text": "bugbear",
               "voice": "af_heart",
-              "speed": 0.7
+              "speed": 0.75
             },
             "lines": [
               {
@@ -1762,22 +1302,24 @@
         },
         {
           "id": "w7-meaning",
-          "why": "意味とニュアンス",
+          "why": "意味（とニュアンス一言）",
           "shots": [
             {
               "src": "pixabay:227112",
-              "in": 13.0,
+              "in": 9.0,
               "loop": true,
               "zoom": [
-                1.27,
-                1.35
+                1.2,
+                1.26
               ],
               "frame": "fill"
             }
           ],
-          "headline": "bugbear",
+          "headline": "7. bugbear",
           "headlineY": 0.3,
-          "say": "意味は、悩みの種・苦手なもの。／いつもイライラさせられる、悩みの種です。",
+          "hold": 0.15,
+          "lead": 0.02,
+          "say": "悩みの種・苦手なもの。／いつもイライラさせられる、悩みの種です。",
           "caption": "名詞「悩みの種・苦手なもの」／いつもイライラさせられるもの"
         },
         {
@@ -1786,23 +1328,24 @@
           "shots": [
             {
               "src": "pixabay:227112",
-              "in": 17.0,
+              "in": 13.0,
               "loop": true,
               "zoom": [
-                1.35,
-                1.4
+                1.26,
+                1.3
               ],
               "frame": "fill"
             }
           ],
-          "headline": "bugbear",
+          "headline": "7. bugbear",
           "headlineY": 0.3,
-          "hold": 0.7,
+          "hold": 0.35,
+          "lead": 0.02,
           "clip": {
             "tts": {
               "text": "Noise is my biggest bugbear.",
               "voice": "af_heart",
-              "speed": 0.92
+              "speed": 1.0
             },
             "lines": [
               {
@@ -1818,23 +1361,24 @@
           "shots": [
             {
               "src": "pixabay:227112",
-              "in": 2.0,
+              "in": 17.0,
               "loop": true,
               "zoom": [
-                1.4,
-                1.45
+                1.3,
+                1.34
               ],
               "frame": "fill"
             }
           ],
-          "headline": "bugbear",
+          "headline": "7. bugbear",
           "headlineY": 0.3,
-          "hold": 0.7,
+          "hold": 0.35,
+          "lead": 0.02,
           "clip": {
             "tts": {
               "text": "Slow internet is a real bugbear for remote workers.",
               "voice": "am_michael",
-              "speed": 0.92
+              "speed": 1.0
             },
             "lines": [
               {
@@ -1846,46 +1390,28 @@
         },
         {
           "id": "w7-repeat",
-          "why": "声に出す（間をとる）",
+          "why": "お手本の後に言う時間",
           "shots": [
             {
               "src": "pixabay:227112",
-              "in": 6.0,
+              "in": 2.0,
               "loop": true,
               "zoom": [
-                1.45,
-                1.5
+                1.34,
+                1.38
               ],
               "frame": "fill"
             }
           ],
-          "headline": "bugbear",
+          "headline": "7. bugbear",
           "headlineY": 0.4,
-          "say": "リピートしてみましょう。"
-        },
-        {
-          "id": "w7-repeat-en",
-          "why": "発音のお手本の後に言う時間",
-          "shots": [
-            {
-              "src": "pixabay:227112",
-              "in": 10.0,
-              "loop": true,
-              "zoom": [
-                1.5,
-                1.55
-              ],
-              "frame": "fill"
-            }
-          ],
-          "headline": "bugbear",
-          "headlineY": 0.4,
-          "hold": 2.4,
+          "hold": 1.4,
+          "lead": 0.02,
           "clip": {
             "tts": {
               "text": "bugbear",
               "voice": "af_heart",
-              "speed": 0.9
+              "speed": 0.95
             },
             "ja": "悩みの種・苦手なもの"
           }
@@ -1898,8 +1424,8 @@
       "purpose": "1語を使えるようにする",
       "beats": [
         {
-          "id": "w8-intro",
-          "why": "番号と単語を示す",
+          "id": "w8-say",
+          "why": "単語と発音（普通の速さ）",
           "shots": [
             {
               "src": "pixabay:31961",
@@ -1907,33 +1433,16 @@
               "loop": true,
               "zoom": [
                 1.12,
-                1.17
+                1.16
               ],
               "frame": "fill"
             }
           ],
-          "headline": "comeuppance",
+          "headline": "8. comeuppance",
           "headlineY": 0.4,
-          "say": "8つ目。"
-        },
-        {
-          "id": "w8-say",
-          "why": "発音（普通の速さ）",
-          "shots": [
-            {
-              "src": "pixabay:31961",
-              "in": 5.0,
-              "loop": true,
-              "zoom": [
-                1.17,
-                1.22
-              ],
-              "frame": "fill"
-            }
-          ],
-          "headline": "comeuppance",
-          "headlineY": 0.4,
-          "hold": 0.5,
+          "hold": 0.25,
+          "lead": 0.02,
+          "sfx": "pop",
           "clip": {
             "tts": {
               "text": "comeuppance",
@@ -1954,23 +1463,24 @@
           "shots": [
             {
               "src": "pixabay:31961",
-              "in": 9.0,
+              "in": 5.0,
               "loop": true,
               "zoom": [
-                1.22,
-                1.27
+                1.16,
+                1.2
               ],
               "frame": "fill"
             }
           ],
-          "headline": "comeuppance",
+          "headline": "8. comeuppance",
           "headlineY": 0.4,
-          "hold": 0.6,
+          "hold": 0.3,
+          "lead": 0.02,
           "clip": {
             "tts": {
               "text": "comeuppance",
               "voice": "af_heart",
-              "speed": 0.7
+              "speed": 0.75
             },
             "lines": [
               {
@@ -1982,23 +1492,25 @@
         },
         {
           "id": "w8-meaning",
-          "why": "意味とニュアンス",
+          "why": "意味（とニュアンス一言）",
           "shots": [
             {
               "src": "pixabay:31961",
-              "in": 1.0,
+              "in": 9.0,
               "loop": true,
               "zoom": [
-                1.27,
-                1.35
+                1.2,
+                1.26
               ],
               "frame": "fill"
             }
           ],
-          "headline": "comeuppance",
+          "headline": "8. comeuppance",
           "headlineY": 0.3,
-          "say": "意味は、当然の報い。／悪いことをした人に、返ってくる罰のことです。／ゲット、ワンズ、カムアップンス、の形でよく使います。",
-          "caption": "名詞「当然の報い」／悪いことをした人に返ってくる罰／get one's comeuppance の形で"
+          "hold": 0.15,
+          "lead": 0.02,
+          "say": "当然の報い。／悪いことをした人に、返ってくる罰のことです。",
+          "caption": "名詞「当然の報い」／悪いことをした人に返ってくる罰"
         },
         {
           "id": "w8-ex1",
@@ -2006,23 +1518,24 @@
           "shots": [
             {
               "src": "pixabay:31961",
-              "in": 5.0,
+              "in": 1.0,
               "loop": true,
               "zoom": [
-                1.35,
-                1.4
+                1.26,
+                1.3
               ],
               "frame": "fill"
             }
           ],
-          "headline": "comeuppance",
+          "headline": "8. comeuppance",
           "headlineY": 0.3,
-          "hold": 0.7,
+          "hold": 0.35,
+          "lead": 0.02,
           "clip": {
             "tts": {
               "text": "The bully finally got his comeuppance.",
               "voice": "af_heart",
-              "speed": 0.92
+              "speed": 1.0
             },
             "lines": [
               {
@@ -2038,23 +1551,24 @@
           "shots": [
             {
               "src": "pixabay:31961",
-              "in": 9.0,
+              "in": 5.0,
               "loop": true,
               "zoom": [
-                1.4,
-                1.45
+                1.3,
+                1.34
               ],
               "frame": "fill"
             }
           ],
-          "headline": "comeuppance",
+          "headline": "8. comeuppance",
           "headlineY": 0.3,
-          "hold": 0.7,
+          "hold": 0.35,
+          "lead": 0.02,
           "clip": {
             "tts": {
               "text": "Sooner or later, cheaters get their comeuppance.",
               "voice": "am_michael",
-              "speed": 0.92
+              "speed": 1.0
             },
             "lines": [
               {
@@ -2066,46 +1580,28 @@
         },
         {
           "id": "w8-repeat",
-          "why": "声に出す（間をとる）",
+          "why": "お手本の後に言う時間",
           "shots": [
             {
               "src": "pixabay:31961",
-              "in": 1.0,
+              "in": 9.0,
               "loop": true,
               "zoom": [
-                1.45,
-                1.5
+                1.34,
+                1.38
               ],
               "frame": "fill"
             }
           ],
-          "headline": "comeuppance",
+          "headline": "8. comeuppance",
           "headlineY": 0.4,
-          "say": "リピートしてみましょう。"
-        },
-        {
-          "id": "w8-repeat-en",
-          "why": "発音のお手本の後に言う時間",
-          "shots": [
-            {
-              "src": "pixabay:31961",
-              "in": 5.0,
-              "loop": true,
-              "zoom": [
-                1.5,
-                1.55
-              ],
-              "frame": "fill"
-            }
-          ],
-          "headline": "comeuppance",
-          "headlineY": 0.4,
-          "hold": 2.4,
+          "hold": 1.4,
+          "lead": 0.02,
           "clip": {
             "tts": {
               "text": "comeuppance",
               "voice": "af_heart",
-              "speed": 0.9
+              "speed": 0.95
             },
             "ja": "当然の報い"
           }
@@ -2118,8 +1614,8 @@
       "purpose": "1語を使えるようにする",
       "beats": [
         {
-          "id": "w9-intro",
-          "why": "番号と単語を示す",
+          "id": "w9-say",
+          "why": "単語と発音（普通の速さ）",
           "shots": [
             {
               "src": "pixabay:43559",
@@ -2127,33 +1623,16 @@
               "loop": true,
               "zoom": [
                 1.12,
-                1.17
+                1.16
               ],
               "frame": "fill"
             }
           ],
-          "headline": "rigmarole",
+          "headline": "9. rigmarole",
           "headlineY": 0.4,
-          "say": "9つ目。"
-        },
-        {
-          "id": "w9-say",
-          "why": "発音（普通の速さ）",
-          "shots": [
-            {
-              "src": "pixabay:43559",
-              "in": 5.0,
-              "loop": true,
-              "zoom": [
-                1.17,
-                1.22
-              ],
-              "frame": "fill"
-            }
-          ],
-          "headline": "rigmarole",
-          "headlineY": 0.4,
-          "hold": 0.5,
+          "hold": 0.25,
+          "lead": 0.02,
+          "sfx": "pop",
           "clip": {
             "tts": {
               "text": "rigmarole",
@@ -2174,23 +1653,24 @@
           "shots": [
             {
               "src": "pixabay:43559",
-              "in": 9.0,
+              "in": 5.0,
               "loop": true,
               "zoom": [
-                1.22,
-                1.27
+                1.16,
+                1.2
               ],
               "frame": "fill"
             }
           ],
-          "headline": "rigmarole",
+          "headline": "9. rigmarole",
           "headlineY": 0.4,
-          "hold": 0.6,
+          "hold": 0.3,
+          "lead": 0.02,
           "clip": {
             "tts": {
               "text": "rigmarole",
               "voice": "af_heart",
-              "speed": 0.7
+              "speed": 0.75
             },
             "lines": [
               {
@@ -2202,22 +1682,24 @@
         },
         {
           "id": "w9-meaning",
-          "why": "意味とニュアンス",
+          "why": "意味（とニュアンス一言）",
           "shots": [
             {
               "src": "pixabay:43559",
-              "in": 13.0,
+              "in": 9.0,
               "loop": true,
               "zoom": [
-                1.27,
-                1.35
+                1.2,
+                1.26
               ],
               "frame": "fill"
             }
           ],
-          "headline": "rigmarole",
+          "headline": "9. rigmarole",
           "headlineY": 0.3,
-          "say": "意味は、面倒な手続き。／長くて、ややこしくて、無駄が多い手続きのことです。",
+          "hold": 0.15,
+          "lead": 0.02,
+          "say": "面倒な手続き。／長くて、ややこしくて、無駄が多い手続きのことです。",
           "caption": "名詞「面倒な手続き」／長くて、ややこしくて、無駄が多い"
         },
         {
@@ -2226,23 +1708,24 @@
           "shots": [
             {
               "src": "pixabay:43559",
-              "in": 0.0,
+              "in": 13.0,
               "loop": true,
               "zoom": [
-                1.35,
-                1.4
+                1.26,
+                1.3
               ],
               "frame": "fill"
             }
           ],
-          "headline": "rigmarole",
+          "headline": "9. rigmarole",
           "headlineY": 0.3,
-          "hold": 0.7,
+          "hold": 0.35,
+          "lead": 0.02,
           "clip": {
             "tts": {
               "text": "Renewing my passport was such a rigmarole.",
               "voice": "af_heart",
-              "speed": 0.92
+              "speed": 1.0
             },
             "lines": [
               {
@@ -2258,23 +1741,24 @@
           "shots": [
             {
               "src": "pixabay:43559",
-              "in": 4.0,
+              "in": 0.0,
               "loop": true,
               "zoom": [
-                1.4,
-                1.45
+                1.3,
+                1.34
               ],
               "frame": "fill"
             }
           ],
-          "headline": "rigmarole",
+          "headline": "9. rigmarole",
           "headlineY": 0.3,
-          "hold": 0.7,
+          "hold": 0.35,
+          "lead": 0.02,
           "clip": {
             "tts": {
               "text": "I can't face the whole rigmarole of moving again.",
               "voice": "am_michael",
-              "speed": 0.92
+              "speed": 1.0
             },
             "lines": [
               {
@@ -2286,46 +1770,28 @@
         },
         {
           "id": "w9-repeat",
-          "why": "声に出す（間をとる）",
+          "why": "お手本の後に言う時間",
           "shots": [
             {
               "src": "pixabay:43559",
-              "in": 8.0,
+              "in": 4.0,
               "loop": true,
               "zoom": [
-                1.45,
-                1.5
+                1.34,
+                1.38
               ],
               "frame": "fill"
             }
           ],
-          "headline": "rigmarole",
+          "headline": "9. rigmarole",
           "headlineY": 0.4,
-          "say": "リピートしてみましょう。"
-        },
-        {
-          "id": "w9-repeat-en",
-          "why": "発音のお手本の後に言う時間",
-          "shots": [
-            {
-              "src": "pixabay:43559",
-              "in": 12.0,
-              "loop": true,
-              "zoom": [
-                1.5,
-                1.55
-              ],
-              "frame": "fill"
-            }
-          ],
-          "headline": "rigmarole",
-          "headlineY": 0.4,
-          "hold": 2.4,
+          "hold": 1.4,
+          "lead": 0.02,
           "clip": {
             "tts": {
               "text": "rigmarole",
               "voice": "af_heart",
-              "speed": 0.9
+              "speed": 0.95
             },
             "ja": "面倒な手続き"
           }
@@ -2338,8 +1804,8 @@
       "purpose": "1語を使えるようにする",
       "beats": [
         {
-          "id": "w10-intro",
-          "why": "番号と単語を示す",
+          "id": "w10-say",
+          "why": "単語と発音（普通の速さ）",
           "shots": [
             {
               "src": "pixabay:130645",
@@ -2347,33 +1813,16 @@
               "loop": true,
               "zoom": [
                 1.12,
-                1.17
+                1.16
               ],
               "frame": "fill"
             }
           ],
-          "headline": "wheelhouse",
+          "headline": "10. wheelhouse",
           "headlineY": 0.4,
-          "say": "10つ目。"
-        },
-        {
-          "id": "w10-say",
-          "why": "発音（普通の速さ）",
-          "shots": [
-            {
-              "src": "pixabay:130645",
-              "in": 5.0,
-              "loop": true,
-              "zoom": [
-                1.17,
-                1.22
-              ],
-              "frame": "fill"
-            }
-          ],
-          "headline": "wheelhouse",
-          "headlineY": 0.4,
-          "hold": 0.5,
+          "hold": 0.25,
+          "lead": 0.02,
+          "sfx": "pop",
           "clip": {
             "tts": {
               "text": "wheelhouse",
@@ -2394,23 +1843,24 @@
           "shots": [
             {
               "src": "pixabay:130645",
-              "in": 9.0,
+              "in": 5.0,
               "loop": true,
               "zoom": [
-                1.22,
-                1.27
+                1.16,
+                1.2
               ],
               "frame": "fill"
             }
           ],
-          "headline": "wheelhouse",
+          "headline": "10. wheelhouse",
           "headlineY": 0.4,
-          "hold": 0.6,
+          "hold": 0.3,
+          "lead": 0.02,
           "clip": {
             "tts": {
               "text": "wheelhouse",
               "voice": "af_heart",
-              "speed": 0.7
+              "speed": 0.75
             },
             "lines": [
               {
@@ -2422,23 +1872,25 @@
         },
         {
           "id": "w10-meaning",
-          "why": "意味とニュアンス",
+          "why": "意味（とニュアンス一言）",
           "shots": [
             {
               "src": "pixabay:130645",
-              "in": 13.0,
+              "in": 9.0,
               "loop": true,
               "zoom": [
-                1.27,
-                1.35
+                1.2,
+                1.26
               ],
               "frame": "fill"
             }
           ],
-          "headline": "wheelhouse",
+          "headline": "10. wheelhouse",
           "headlineY": 0.3,
-          "say": "意味は、得意分野。／自分がいちばん力を発揮できる範囲のことです。／主にアメリカ英語です。",
-          "caption": "名詞「得意分野」／いちばん力を発揮できる範囲／主にアメリカ英語"
+          "hold": 0.15,
+          "lead": 0.02,
+          "say": "得意分野。／自分がいちばん力を発揮できる範囲のことです。",
+          "caption": "名詞「得意分野」／いちばん力を発揮できる範囲"
         },
         {
           "id": "w10-ex1",
@@ -2446,23 +1898,24 @@
           "shots": [
             {
               "src": "pixabay:130645",
-              "in": 3.0,
+              "in": 13.0,
               "loop": true,
               "zoom": [
-                1.35,
-                1.4
+                1.26,
+                1.3
               ],
               "frame": "fill"
             }
           ],
-          "headline": "wheelhouse",
+          "headline": "10. wheelhouse",
           "headlineY": 0.3,
-          "hold": 0.7,
+          "hold": 0.35,
+          "lead": 0.02,
           "clip": {
             "tts": {
               "text": "Data analysis is right in her wheelhouse.",
               "voice": "af_heart",
-              "speed": 0.92
+              "speed": 1.0
             },
             "lines": [
               {
@@ -2478,23 +1931,24 @@
           "shots": [
             {
               "src": "pixabay:130645",
-              "in": 7.0,
+              "in": 3.0,
               "loop": true,
               "zoom": [
-                1.4,
-                1.45
+                1.3,
+                1.34
               ],
               "frame": "fill"
             }
           ],
-          "headline": "wheelhouse",
+          "headline": "10. wheelhouse",
           "headlineY": 0.3,
-          "hold": 0.7,
+          "hold": 0.35,
+          "lead": 0.02,
           "clip": {
             "tts": {
               "text": "That's not really in my wheelhouse.",
               "voice": "am_michael",
-              "speed": 0.92
+              "speed": 1.0
             },
             "lines": [
               {
@@ -2506,46 +1960,28 @@
         },
         {
           "id": "w10-repeat",
-          "why": "声に出す（間をとる）",
+          "why": "お手本の後に言う時間",
           "shots": [
             {
               "src": "pixabay:130645",
-              "in": 11.0,
+              "in": 7.0,
               "loop": true,
               "zoom": [
-                1.45,
-                1.5
+                1.34,
+                1.38
               ],
               "frame": "fill"
             }
           ],
-          "headline": "wheelhouse",
+          "headline": "10. wheelhouse",
           "headlineY": 0.4,
-          "say": "リピートしてみましょう。"
-        },
-        {
-          "id": "w10-repeat-en",
-          "why": "発音のお手本の後に言う時間",
-          "shots": [
-            {
-              "src": "pixabay:130645",
-              "in": 1.0,
-              "loop": true,
-              "zoom": [
-                1.5,
-                1.55
-              ],
-              "frame": "fill"
-            }
-          ],
-          "headline": "wheelhouse",
-          "headlineY": 0.4,
-          "hold": 2.4,
+          "hold": 1.4,
+          "lead": 0.02,
           "clip": {
             "tts": {
               "text": "wheelhouse",
               "voice": "af_heart",
-              "speed": 0.9
+              "speed": 0.95
             },
             "ja": "得意分野"
           }
@@ -2553,12 +1989,12 @@
       ]
     },
     {
-      "id": "check-final",
-      "title": "全10語の確認テスト",
+      "id": "check-1-10",
+      "title": "確認テスト 1〜10",
       "purpose": "覚えたかを確かめる",
       "beats": [
         {
-          "id": "check-final-lead",
+          "id": "check-1-10-lead",
           "why": "思い出すテストの説明",
           "shots": [
             {
@@ -2566,18 +2002,18 @@
               "in": 0.5,
               "loop": true,
               "zoom": [
-                1.75,
-                1.8
+                1.42,
+                1.46
               ],
               "frame": "fill"
             }
           ],
           "headline": "思い出せる？",
           "headlineY": 0.42,
-          "say": "最後に、全部の10語。／日本語を見て、／英語で言ってみてください。"
+          "say": "1から10まで、／日本語を見て、英語で言ってみてください。"
         },
         {
-          "id": "check-final-q0",
+          "id": "check-1-10-q0",
           "why": "日本語から英単語を思い出す（考える間）",
           "shots": [
             {
@@ -2585,20 +2021,21 @@
               "in": 0.5,
               "loop": true,
               "zoom": [
-                1.8,
-                1.85
+                1.46,
+                1.5
               ],
               "frame": "fill"
             }
           ],
           "headline": "「いたずら・ごまかし」",
           "headlineY": 0.4,
-          "hold": 2.6,
-          "say": "いたずら・ごまかしは？",
-          "caption": "「いたずら・ごまかし」は？"
+          "hold": 2.0,
+          "lead": 0.02,
+          "say": "いたずら・ごまかし。",
+          "caption": "1. 「いたずら・ごまかし」"
         },
         {
-          "id": "check-final-a0",
+          "id": "check-1-10-a0",
           "why": "答え合わせ（英語音声）",
           "shots": [
             {
@@ -2606,74 +2043,77 @@
               "in": 0.5,
               "loop": true,
               "zoom": [
-                1.85,
-                1.9
+                1.5,
+                1.54
               ],
               "frame": "fill"
             }
           ],
           "headline": "shenanigans",
           "headlineY": 0.4,
-          "hold": 0.8,
+          "hold": 0.35,
+          "lead": 0.02,
           "clip": {
             "tts": {
               "text": "shenanigans",
               "voice": "af_heart",
-              "speed": 0.9
+              "speed": 1.0
             },
             "ja": "いたずら・ごまかし"
           }
         },
         {
-          "id": "check-final-q1",
+          "id": "check-1-10-q1",
           "why": "日本語から英単語を思い出す（考える間）",
           "shots": [
             {
               "src": "pixabay:345611",
-              "in": 5.0,
+              "in": 7.0,
               "loop": true,
               "zoom": [
-                1.65,
-                1.7
+                1.38,
+                1.42
               ],
               "frame": "fill"
             }
           ],
           "headline": "「すっかり混乱した」",
           "headlineY": 0.4,
-          "hold": 2.6,
-          "say": "すっかり混乱したは？",
-          "caption": "「すっかり混乱した」は？"
+          "hold": 2.0,
+          "lead": 0.02,
+          "say": "すっかり混乱した。",
+          "caption": "2. 「すっかり混乱した」"
         },
         {
-          "id": "check-final-a1",
+          "id": "check-1-10-a1",
           "why": "答え合わせ（英語音声）",
           "shots": [
             {
               "src": "pixabay:345611",
-              "in": 0.0,
+              "in": 2.0,
               "loop": true,
               "zoom": [
-                1.7,
-                1.75
+                1.42,
+                1.46
               ],
               "frame": "fill"
             }
           ],
           "headline": "discombobulated",
           "headlineY": 0.4,
-          "hold": 0.8,
+          "hold": 0.35,
+          "lead": 0.02,
           "clip": {
             "tts": {
               "text": "discombobulated",
               "voice": "af_heart",
-              "speed": 0.9
+              "speed": 1.0
             },
             "ja": "すっかり混乱した"
           }
         },
         {
-          "id": "check-final-q2",
+          "id": "check-1-10-q2",
           "why": "日本語から英単語を思い出す（考える間）",
           "shots": [
             {
@@ -2681,20 +2121,21 @@
               "in": 0,
               "freeze": true,
               "zoom": [
-                1.63,
-                1.68
+                1.36,
+                1.4
               ],
               "frame": "fill"
             }
           ],
           "headline": "「細かいことにうるさい」",
           "headlineY": 0.4,
-          "hold": 2.6,
-          "say": "細かいことにうるさいは？",
-          "caption": "「細かいことにうるさい」は？"
+          "hold": 2.0,
+          "lead": 0.02,
+          "say": "細かいことにうるさい。",
+          "caption": "3. 「細かいことにうるさい」"
         },
         {
-          "id": "check-final-a2",
+          "id": "check-1-10-a2",
           "why": "答え合わせ（英語音声）",
           "shots": [
             {
@@ -2702,356 +2143,371 @@
               "in": 0,
               "freeze": true,
               "zoom": [
-                1.68,
-                1.73
+                1.4,
+                1.44
               ],
               "frame": "fill"
             }
           ],
           "headline": "persnickety",
           "headlineY": 0.4,
-          "hold": 0.8,
+          "hold": 0.35,
+          "lead": 0.02,
           "clip": {
             "tts": {
               "text": "persnickety",
               "voice": "af_heart",
-              "speed": 0.9
+              "speed": 1.0
             },
             "ja": "細かいことにうるさい"
           }
         },
         {
-          "id": "check-final-q3",
+          "id": "check-1-10-q3",
           "why": "日本語から英単語を思い出す（考える間）",
           "shots": [
             {
               "src": "pixabay:3965",
-              "in": 1.0,
+              "in": 5.0,
               "loop": true,
               "zoom": [
-                1.65,
-                1.7
+                1.38,
+                1.42
               ],
               "frame": "fill"
             }
           ],
           "headline": "「単調な・平凡な」",
           "headlineY": 0.4,
-          "hold": 2.6,
-          "say": "単調な・平凡なは？",
-          "caption": "「単調な・平凡な」は？"
+          "hold": 2.0,
+          "lead": 0.02,
+          "say": "単調な・平凡な。",
+          "caption": "4. 「単調な・平凡な」"
         },
         {
-          "id": "check-final-a3",
+          "id": "check-1-10-a3",
           "why": "答え合わせ（英語音声）",
           "shots": [
             {
               "src": "pixabay:3965",
-              "in": 5.0,
+              "in": 9.0,
               "loop": true,
               "zoom": [
-                1.7,
-                1.75
+                1.42,
+                1.46
               ],
               "frame": "fill"
             }
           ],
           "headline": "humdrum",
           "headlineY": 0.4,
-          "hold": 0.8,
+          "hold": 0.35,
+          "lead": 0.02,
           "clip": {
             "tts": {
               "text": "humdrum",
               "voice": "af_heart",
-              "speed": 0.9
+              "speed": 1.0
             },
             "ja": "単調な・平凡な"
           }
         },
         {
-          "id": "check-final-q4",
+          "id": "check-1-10-q4",
           "why": "日本語から英単語を思い出す（考える間）",
           "shots": [
             {
               "src": "pixabay:137265",
-              "in": 2.0,
+              "in": 12.0,
               "loop": true,
               "zoom": [
-                1.65,
-                1.7
+                1.38,
+                1.42
               ],
               "frame": "fill"
             }
           ],
           "headline": "「度胸・やる気・機転」",
           "headlineY": 0.4,
-          "hold": 2.6,
-          "say": "度胸・やる気・機転は？",
-          "caption": "「度胸・やる気・機転」は？"
+          "hold": 2.0,
+          "lead": 0.02,
+          "say": "度胸・やる気・機転。",
+          "caption": "5. 「度胸・やる気・機転」"
         },
         {
-          "id": "check-final-a4",
+          "id": "check-1-10-a4",
           "why": "答え合わせ（英語音声）",
           "shots": [
             {
               "src": "pixabay:137265",
-              "in": 6.0,
+              "in": 3.0,
               "loop": true,
               "zoom": [
-                1.7,
-                1.75
+                1.42,
+                1.46
               ],
               "frame": "fill"
             }
           ],
           "headline": "gumption",
           "headlineY": 0.4,
-          "hold": 0.8,
+          "hold": 0.35,
+          "lead": 0.02,
           "clip": {
             "tts": {
               "text": "gumption",
               "voice": "af_heart",
-              "speed": 0.9
+              "speed": 1.0
             },
             "ja": "度胸・やる気・機転"
           }
         },
         {
-          "id": "check-final-q5",
+          "id": "check-1-10-q5",
           "why": "日本語から英単語を思い出す（考える間）",
           "shots": [
             {
               "src": "pixabay:50312",
-              "in": 14.0,
+              "in": 6.0,
               "loop": true,
               "zoom": [
-                1.55,
-                1.6
+                1.38,
+                1.42
               ],
               "frame": "fill"
             }
           ],
           "headline": "「図々しさ・大胆さ」",
           "headlineY": 0.4,
-          "hold": 2.6,
-          "say": "図々しさ・大胆さは？",
-          "caption": "「図々しさ・大胆さ」は？"
+          "hold": 2.0,
+          "lead": 0.02,
+          "say": "図々しさ・大胆さ。",
+          "caption": "6. 「図々しさ・大胆さ」"
         },
         {
-          "id": "check-final-a5",
+          "id": "check-1-10-a5",
           "why": "答え合わせ（英語音声）",
           "shots": [
             {
               "src": "pixabay:50312",
-              "in": 18.0,
+              "in": 10.0,
               "loop": true,
               "zoom": [
-                1.6,
-                1.65
+                1.42,
+                1.46
               ],
               "frame": "fill"
             }
           ],
           "headline": "chutzpah",
           "headlineY": 0.4,
-          "hold": 0.8,
+          "hold": 0.35,
+          "lead": 0.02,
           "clip": {
             "tts": {
               "text": "chutzpah",
               "voice": "af_heart",
-              "speed": 0.9
+              "speed": 1.0
             },
             "ja": "図々しさ・大胆さ"
           }
         },
         {
-          "id": "check-final-q6",
+          "id": "check-1-10-q6",
           "why": "日本語から英単語を思い出す（考える間）",
           "shots": [
             {
               "src": "pixabay:227112",
-              "in": 14.0,
+              "in": 6.0,
               "loop": true,
               "zoom": [
-                1.55,
-                1.6
+                1.38,
+                1.42
               ],
               "frame": "fill"
             }
           ],
           "headline": "「悩みの種・苦手なもの」",
           "headlineY": 0.4,
-          "hold": 2.6,
-          "say": "悩みの種・苦手なものは？",
-          "caption": "「悩みの種・苦手なもの」は？"
+          "hold": 2.0,
+          "lead": 0.02,
+          "say": "悩みの種・苦手なもの。",
+          "caption": "7. 「悩みの種・苦手なもの」"
         },
         {
-          "id": "check-final-a6",
+          "id": "check-1-10-a6",
           "why": "答え合わせ（英語音声）",
           "shots": [
             {
               "src": "pixabay:227112",
-              "in": 18.0,
+              "in": 10.0,
               "loop": true,
               "zoom": [
-                1.6,
-                1.65
+                1.42,
+                1.46
               ],
               "frame": "fill"
             }
           ],
           "headline": "bugbear",
           "headlineY": 0.4,
-          "hold": 0.8,
+          "hold": 0.35,
+          "lead": 0.02,
           "clip": {
             "tts": {
               "text": "bugbear",
               "voice": "af_heart",
-              "speed": 0.9
+              "speed": 1.0
             },
             "ja": "悩みの種・苦手なもの"
           }
         },
         {
-          "id": "check-final-q7",
+          "id": "check-1-10-q7",
           "why": "日本語から英単語を思い出す（考える間）",
-          "shots": [
-            {
-              "src": "pixabay:31961",
-              "in": 9.0,
-              "loop": true,
-              "zoom": [
-                1.55,
-                1.6
-              ],
-              "frame": "fill"
-            }
-          ],
-          "headline": "「当然の報い」",
-          "headlineY": 0.4,
-          "hold": 2.6,
-          "say": "当然の報いは？",
-          "caption": "「当然の報い」は？"
-        },
-        {
-          "id": "check-final-a7",
-          "why": "答え合わせ（英語音声）",
           "shots": [
             {
               "src": "pixabay:31961",
               "in": 1.0,
               "loop": true,
               "zoom": [
-                1.6,
-                1.65
+                1.38,
+                1.42
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "「当然の報い」",
+          "headlineY": 0.4,
+          "hold": 2.0,
+          "lead": 0.02,
+          "say": "当然の報い。",
+          "caption": "8. 「当然の報い」"
+        },
+        {
+          "id": "check-1-10-a7",
+          "why": "答え合わせ（英語音声）",
+          "shots": [
+            {
+              "src": "pixabay:31961",
+              "in": 5.0,
+              "loop": true,
+              "zoom": [
+                1.42,
+                1.46
               ],
               "frame": "fill"
             }
           ],
           "headline": "comeuppance",
           "headlineY": 0.4,
-          "hold": 0.8,
+          "hold": 0.35,
+          "lead": 0.02,
           "clip": {
             "tts": {
               "text": "comeuppance",
               "voice": "af_heart",
-              "speed": 0.9
+              "speed": 1.0
             },
             "ja": "当然の報い"
           }
         },
         {
-          "id": "check-final-q8",
+          "id": "check-1-10-q8",
           "why": "日本語から英単語を思い出す（考える間）",
           "shots": [
             {
               "src": "pixabay:43559",
-              "in": 16.0,
+              "in": 8.0,
               "loop": true,
               "zoom": [
-                1.55,
-                1.6
+                1.38,
+                1.42
               ],
               "frame": "fill"
             }
           ],
           "headline": "「面倒な手続き」",
           "headlineY": 0.4,
-          "hold": 2.6,
-          "say": "面倒な手続きは？",
-          "caption": "「面倒な手続き」は？"
+          "hold": 2.0,
+          "lead": 0.02,
+          "say": "面倒な手続き。",
+          "caption": "9. 「面倒な手続き」"
         },
         {
-          "id": "check-final-a8",
+          "id": "check-1-10-a8",
           "why": "答え合わせ（英語音声）",
           "shots": [
             {
               "src": "pixabay:43559",
-              "in": 3.0,
+              "in": 12.0,
               "loop": true,
               "zoom": [
-                1.6,
-                1.65
+                1.42,
+                1.46
               ],
               "frame": "fill"
             }
           ],
           "headline": "rigmarole",
           "headlineY": 0.4,
-          "hold": 0.8,
+          "hold": 0.35,
+          "lead": 0.02,
           "clip": {
             "tts": {
               "text": "rigmarole",
               "voice": "af_heart",
-              "speed": 0.9
+              "speed": 1.0
             },
             "ja": "面倒な手続き"
           }
         },
         {
-          "id": "check-final-q9",
+          "id": "check-1-10-q9",
           "why": "日本語から英単語を思い出す（考える間）",
           "shots": [
             {
               "src": "pixabay:130645",
-              "in": 5.0,
+              "in": 11.0,
               "loop": true,
               "zoom": [
-                1.55,
-                1.6
+                1.38,
+                1.42
               ],
               "frame": "fill"
             }
           ],
           "headline": "「得意分野」",
           "headlineY": 0.4,
-          "hold": 2.6,
-          "say": "得意分野は？",
-          "caption": "「得意分野」は？"
+          "hold": 2.0,
+          "lead": 0.02,
+          "say": "得意分野。",
+          "caption": "10. 「得意分野」"
         },
         {
-          "id": "check-final-a9",
+          "id": "check-1-10-a9",
           "why": "答え合わせ（英語音声）",
           "shots": [
             {
               "src": "pixabay:130645",
-              "in": 9.0,
+              "in": 1.0,
               "loop": true,
               "zoom": [
-                1.6,
-                1.65
+                1.42,
+                1.46
               ],
               "frame": "fill"
             }
           ],
           "headline": "wheelhouse",
           "headlineY": 0.4,
-          "hold": 0.8,
+          "hold": 0.35,
+          "lead": 0.02,
           "clip": {
             "tts": {
               "text": "wheelhouse",
               "voice": "af_heart",
-              "speed": 0.9
+              "speed": 1.0
             },
             "ja": "得意分野"
           }
@@ -3072,16 +2528,16 @@
               "in": 0.5,
               "loop": true,
               "zoom": [
-                1.9,
-                1.95
+                1.54,
+                1.58
               ],
               "frame": "fill"
             }
           ],
           "headline": "英検1級のその先\nまとめて覚える10語",
           "headlineY": 0.42,
-          "hold": 1.5,
-          "say": "今日の10語でした。／何度か見て、／声に出すと定着します。"
+          "hold": 1.2,
+          "say": "今日の10語でした。／何度か見て、声に出すと定着します。"
         }
       ]
     }
