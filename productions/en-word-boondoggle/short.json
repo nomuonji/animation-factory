@@ -51,12 +51,12 @@
       "why": "単語そのものを0秒で見せて問う",
       "shots": [
         {
-          "src": "commons:Narita International Airport - Terminal 2 security gate.jpg",
-          "in": 0,
-          "freeze": true,
+          "src": "pixabay:206315",
+          "in": 1.0,
+          "loop": true,
           "zoom": [
-            1.05,
-            1.11
+            1.12,
+            1.18
           ],
           "frame": "fit"
         }
@@ -72,12 +72,12 @@
       "why": "発音（普通の速さ）",
       "shots": [
         {
-          "src": "commons:Narita International Airport - Terminal 2 security gate.jpg",
-          "in": 0,
-          "freeze": true,
+          "src": "pixabay:206315",
+          "in": 5.0,
+          "loop": true,
           "zoom": [
-            1.11,
-            1.14
+            1.18,
+            1.21
           ],
           "frame": "fit"
         }
@@ -101,12 +101,12 @@
       "why": "発音（ゆっくり）",
       "shots": [
         {
-          "src": "commons:Narita International Airport - Terminal 2 security gate.jpg",
-          "in": 0,
-          "freeze": true,
+          "src": "pixabay:206315",
+          "in": 9.0,
+          "loop": true,
           "zoom": [
-            1.14,
-            1.17
+            1.21,
+            1.24
           ],
           "frame": "fit"
         }
@@ -130,12 +130,12 @@
       "why": "意味とイメージを一つ",
       "shots": [
         {
-          "src": "commons:WMUK office - clocks.jpg",
-          "in": 0,
-          "freeze": true,
+          "src": "pixabay:206315",
+          "in": 13.0,
+          "loop": true,
           "zoom": [
-            1.05,
-            1.17
+            1.24,
+            1.36
           ],
           "frame": "fit"
         }
@@ -150,12 +150,12 @@
       "why": "覚え方・使う場面（ニュアンス）",
       "shots": [
         {
-          "src": "commons:Narita International Airport - Terminal 2 security gate.jpg",
-          "in": 0,
-          "freeze": true,
+          "src": "pixabay:206315",
+          "in": 17.0,
+          "loop": true,
           "zoom": [
-            1.17,
-            1.23
+            1.36,
+            1.42
           ],
           "frame": "fit"
         }
@@ -170,12 +170,12 @@
       "why": "例文の場面を一言で",
       "shots": [
         {
-          "src": "commons:Narita International Airport - Terminal 2 security gate.jpg",
-          "in": 0,
-          "freeze": true,
+          "src": "pixabay:206315",
+          "in": 3.0,
+          "loop": true,
           "zoom": [
-            1.23,
-            1.29
+            1.42,
+            1.48
           ],
           "frame": "fit"
         }
@@ -188,12 +188,12 @@
       "why": "例文を英語で聞く",
       "shots": [
         {
-          "src": "commons:Narita International Airport - Terminal 2 security gate.jpg",
-          "in": 0,
-          "freeze": true,
+          "src": "pixabay:206315",
+          "in": 7.0,
+          "loop": true,
           "zoom": [
-            1.29,
-            1.35
+            1.48,
+            1.54
           ],
           "frame": "fit"
         }
@@ -222,18 +222,14 @@
       "why": "例文の場面を一言で",
       "shots": [
         {
-          "src": "commons:Woman sits at desk working on laptop in home office.jpg",
-          "in": 0,
-          "freeze": true,
+          "src": "pixabay:273927",
+          "in": 1.0,
+          "loop": true,
           "zoom": [
-            1.1,
-            1.16
+            1.12,
+            1.18
           ],
-          "frame": "fit",
-          "focus": [
-            0.5,
-            0.5
-          ]
+          "frame": "fit"
         }
       ],
       "say": "会社の計画にも"
@@ -244,18 +240,14 @@
       "why": "例文を英語で聞く",
       "shots": [
         {
-          "src": "commons:Woman sits at desk working on laptop in home office.jpg",
-          "in": 0,
-          "freeze": true,
+          "src": "pixabay:273927",
+          "in": 5.0,
+          "loop": true,
           "zoom": [
-            1.16,
-            1.22
+            1.18,
+            1.24
           ],
-          "frame": "fit",
-          "focus": [
-            0.5,
-            0.5
-          ]
+          "frame": "fit"
         }
       ],
       "emphasis": [
@@ -333,12 +325,12 @@
       "why": "冒頭の問いに戻って答えを言い切る",
       "shots": [
         {
-          "src": "commons:Narita International Airport - Terminal 2 security gate.jpg",
-          "in": 0,
-          "freeze": true,
+          "src": "pixabay:206315",
+          "in": 11.0,
+          "loop": true,
           "zoom": [
-            1.35,
-            1.38
+            1.54,
+            1.57
           ],
           "frame": "fit"
         }
@@ -354,12 +346,12 @@
       "why": "最後にもう一度英語を聞いて終わる",
       "shots": [
         {
-          "src": "commons:Narita International Airport - Terminal 2 security gate.jpg",
-          "in": 0,
-          "freeze": true,
+          "src": "pixabay:206315",
+          "in": 15.0,
+          "loop": true,
           "zoom": [
-            1.38,
-            1.41
+            1.57,
+            1.6
           ],
           "frame": "fit"
         }

@@ -1,165 +1,1033 @@
 {
- "note": "Vetted stills for auto-generated English lessons. All from Wikimedia Commons; licenses are re-checked when a production is locked. Add a scene only after looking at it (no faces cut, nothing that misrepresents real people).",
+ "note": "Vetted stills for auto-generated English lessons. All from Wikimedia Commons; licenses are re-checked when a production is locked. Add a scene only after looking at it (no faces cut, nothing that misrepresents real people). Tags may hold several variants: Commons stills and Pixabay videos (vetted by thumbnail and filmstrip). Each lesson picks one variant per tag from its id.",
  "scenes": {
-  "office-desk": {
-   "src": "commons:Woman sits at desk working on laptop in home office.jpg",
-   "license": "CC BY 2.0",
-   "about": "在宅で机に向かってノートPCで作業する女性",
-   "frame": "fit",
-   "zoom": 1.1,
-   "focus": [
-    0.5,
-    0.5
-   ]
-  },
-  "desk-flatlay": {
-   "src": "commons:Books, pencils, laptop, and iphone on a desk (Unsplash).jpg",
-   "license": "CC0",
-   "about": "机の上の本・鉛筆・PC・スマホ",
-   "frame": "fit",
-   "zoom": 1.05
-  },
-  "smartphone": {
-   "src": "commons:Black smartphone in hand (Unsplash).jpg",
-   "license": "CC0",
-   "about": "スマホを持つ手",
-   "frame": "fit",
-   "zoom": 1.05
-  },
-  "cafe": {
-   "src": "commons:Warm cup of coffee on a table at a cafe.jpg",
-   "license": "CC BY 2.0",
-   "about": "カフェのテーブルのコーヒー",
-   "frame": "fit",
-   "zoom": 1.05
-  },
-  "classroom": {
-   "src": "commons:Student Listening During Study Session.jpg",
-   "license": "CC BY 4.0",
-   "about": "授業を聞く学生",
-   "frame": "fit",
-   "zoom": 1.05
-  },
-  "kitchen": {
-   "src": "commons:Home kitchen details June 2023 - Range with pot and kettle.jpg",
-   "license": "CC BY-SA 4.0",
-   "about": "家庭のキッチン（コンロとやかん）",
-   "frame": "fit",
-   "zoom": 1.05
-  },
-  "rain-street": {
-   "src": "commons:Walking in the Rain New Orleans.jpg",
-   "license": "CC BY 2.0",
-   "about": "雨の街を歩く人",
-   "frame": "fit",
-   "zoom": 1.05
-  },
-  "library": {
-   "src": "commons:Kisosaki Town Library reading seats ac.jpg",
-   "license": "CC BY-SA 4.0",
-   "about": "図書館の閲覧席",
-   "frame": "fit",
-   "zoom": 1.05
-  },
-  "city-night": {
-   "src": "commons:Dotonbori, Osaka, at night, November 2016.jpg",
-   "license": "CC BY-SA 4.0",
-   "about": "夜の繁華街（大阪・道頓堀、縦長）",
-   "frame": "fill",
-   "zoom": 1.0,
-   "focus": [
-    0.5,
-    0.5
-   ]
-  },
-  "stretch-desk": {
-   "src": "commons:Woman stretches at home office desk while working on laptop.jpg",
-   "license": "CC BY 2.0",
-   "about": "机で伸びをする女性（疲れ）",
-   "frame": "fit",
-   "zoom": 1.1,
-   "focus": [
-    0.5,
-    0.5
-   ]
-  },
-  "airport": {
-   "src": "commons:Narita International Airport - Terminal 2 security gate.jpg",
-   "license": "CC BY 2.0",
-   "about": "空港の保安検査場",
-   "frame": "fit",
-   "zoom": 1.05
-  },
-  "notebook-writing": {
-   "src": "commons:Person writing in a notebook while sitting at a desk.jpg",
-   "license": "CC BY 2.0",
-   "about": "机でノートに書き込む人",
-   "frame": "fit",
-   "zoom": 1.08
-  },
-  "living-room": {
-   "src": "commons:Cozy living room with a gray sofa.jpg",
-   "license": "CC BY 2.0",
-   "about": "グレーのソファのリビング",
-   "frame": "fit",
-   "zoom": 1.05
-  },
-  "watch-woman": {
-   "src": "commons:Woman with curly blonde hair and stylish suit coat looking at her wrist watch.jpg",
-   "license": "CC BY 2.0",
-   "about": "腕時計を見る女性（縦長、顔は上部）",
-   "frame": "fill",
-   "zoom": 1.0,
-   "focus": [
-    0.5,
-    0.35
-   ]
-  },
-  "laptop-watch": {
-   "src": "commons:Woman using laptop and checking watch while sitting in living room.jpg",
-   "license": "CC BY 2.0",
-   "about": "PCを前に腕時計を見る女性",
-   "frame": "fit",
-   "zoom": 1.15,
-   "focus": [
-    0.55,
-    0.5
-   ]
-  },
-  "train-rush": {
-   "src": "commons:Rushing onto a train.jpg",
-   "license": "CC BY-SA 4.0",
-   "about": "電車に駆け込む人",
-   "frame": "fit",
-   "zoom": 1.05
-  },
-  "texting-street": {
-   "src": "commons:Texting in the crosswalk.jpg",
-   "license": "CC BY-SA 2.0",
-   "about": "横断歩道でスマホを打つ人々",
-   "frame": "fit",
-   "zoom": 1.05
-  },
-  "office-clocks": {
-   "src": "commons:WMUK office - clocks.jpg",
-   "license": "CC BY-SA 4.0",
-   "about": "オフィスの壁の時計",
-   "frame": "fit",
-   "zoom": 1.05
-  },
-  "station-platform": {
-   "src": "commons:Umeda Station Osaka metro platform rush hour queues 2022-04-25.jpg",
-   "license": "CC BY 2.0",
-   "about": "ラッシュ時の駅ホームの行列",
-   "frame": "fit",
-   "zoom": 1.05
-  },
-  "street-waiting": {
-   "src": "commons:Street view of Sarphatistraat with a woman, waiting and looking; free photo Amsterdam, Fons Heijnsbroek 10-2021.jpg",
-   "license": "CC0",
-   "about": "通りで待つ女性",
-   "frame": "fit",
-   "zoom": 1.05
-  }
+  "office-desk": [
+   {
+    "src": "commons:Woman sits at desk working on laptop in home office.jpg",
+    "license": "CC BY 2.0",
+    "about": "在宅で机に向かってノートPCで作業する女性",
+    "frame": "fit",
+    "zoom": 1.1,
+    "focus": [
+     0.5,
+     0.5
+    ]
+   },
+   {
+    "src": "pixabay:273927",
+    "kind": "video",
+    "duration": 18,
+    "license": "Pixabay Content License",
+    "about": "reading, education, laptop, technology, work, office, keyboard",
+    "frame": "fit",
+    "zoom": 1.12
+   },
+   {
+    "src": "pixabay:39892",
+    "kind": "video",
+    "duration": 15,
+    "license": "Pixabay Content License",
+    "about": "office, laptop, business, computer, notebook, work, the internet, table, technol",
+    "frame": "fit",
+    "zoom": 1.12
+   },
+   {
+    "src": "pixabay:92480",
+    "kind": "video",
+    "duration": 13,
+    "license": "Pixabay Content License",
+    "about": "laptop, work, internet, business, occupation, sitting, social media, typing, hom",
+    "frame": "fit",
+    "zoom": 1.12
+   },
+   {
+    "src": "pixabay:27092",
+    "kind": "video",
+    "duration": 21,
+    "license": "Pixabay Content License",
+    "about": "girl, office, w, computer, work, business, laptop, woman, young, professional, f",
+    "frame": "fit",
+    "zoom": 1.12
+   }
+  ],
+  "desk-flatlay": [
+   {
+    "src": "commons:Books, pencils, laptop, and iphone on a desk (Unsplash).jpg",
+    "license": "CC0",
+    "about": "机の上の本・鉛筆・PC・スマホ",
+    "frame": "fit",
+    "zoom": 1.05
+   },
+   {
+    "src": "pixabay:43558",
+    "kind": "video",
+    "duration": 30,
+    "license": "Pixabay Content License",
+    "about": "keyboard, laptop, computer, technology, work, typing, desk, student, workplace, ",
+    "frame": "fit",
+    "zoom": 1.12
+   },
+   {
+    "src": "pixabay:43559",
+    "kind": "video",
+    "duration": 18,
+    "license": "Pixabay Content License",
+    "about": "keyboard, laptop, computer, technology, work, typing, desk, student, workplace, ",
+    "frame": "fit",
+    "zoom": 1.12
+   },
+   {
+    "src": "pixabay:1656",
+    "kind": "video",
+    "duration": 10,
+    "license": "Pixabay Content License",
+    "about": "fast typing, fingers, hand, wireless, modern, writing, keyboard, computer, techn",
+    "frame": "fit",
+    "zoom": 1.12
+   }
+  ],
+  "smartphone": [
+   {
+    "src": "commons:Black smartphone in hand (Unsplash).jpg",
+    "license": "CC0",
+    "about": "スマホを持つ手",
+    "frame": "fit",
+    "zoom": 1.05
+   },
+   {
+    "src": "pixabay:3135",
+    "kind": "video",
+    "duration": 24,
+    "license": "Pixabay Content License",
+    "about": "smartphone, businessman, mobile, people, phone, technology, person, communicatio",
+    "frame": "fit",
+    "zoom": 1.12
+   },
+   {
+    "src": "pixabay:183448",
+    "kind": "video",
+    "duration": 26,
+    "license": "Pixabay Content License",
+    "about": "man, smartphone, screen, texting, youth, fun, social media",
+    "frame": "fit",
+    "zoom": 1.12
+   },
+   {
+    "src": "pixabay:142641",
+    "kind": "video",
+    "duration": 8,
+    "license": "Pixabay Content License",
+    "about": "man, phone, smartphone, mobile",
+    "frame": "fit",
+    "zoom": 1.12
+   },
+   {
+    "src": "pixabay:130720",
+    "kind": "video",
+    "duration": 15,
+    "license": "Pixabay Content License",
+    "about": "girl, model, smartphone, technology, young, lifestyle, freedom",
+    "frame": "fit",
+    "zoom": 1.12
+   }
+  ],
+  "cafe": [
+   {
+    "src": "commons:Warm cup of coffee on a table at a cafe.jpg",
+    "license": "CC BY 2.0",
+    "about": "カフェのテーブルのコーヒー",
+    "frame": "fit",
+    "zoom": 1.05
+   },
+   {
+    "src": "pixabay:32246",
+    "kind": "video",
+    "duration": 19,
+    "license": "Pixabay Content License",
+    "about": "coffee, coffee shop, cafe, drink, espresso, mug, tea, cup, people, shop, beverag",
+    "frame": "fit",
+    "zoom": 1.12
+   },
+   {
+    "src": "pixabay:201947",
+    "kind": "video",
+    "duration": 30,
+    "license": "Pixabay Content License",
+    "about": "coffee, restaurant, rain, relaxing, ambience, seamless loop, cozy, cafe, interio",
+    "frame": "fit",
+    "zoom": 1.12
+   },
+   {
+    "src": "pixabay:15484",
+    "kind": "video",
+    "duration": 14,
+    "license": "Pixabay Content License",
+    "about": "coffee, powder, coffee powder, instant coffee, powder coffee, quick coffee, natu",
+    "frame": "fit",
+    "zoom": 1.12
+   },
+   {
+    "src": "pixabay:6409",
+    "kind": "video",
+    "duration": 20,
+    "license": "Pixabay Content License",
+    "about": "restaurant, couple, bokeh, blur, background, talking, relaxed, beautiful wallpap",
+    "frame": "fit",
+    "zoom": 1.12
+   }
+  ],
+  "classroom": [
+   {
+    "src": "commons:Student Listening During Study Session.jpg",
+    "license": "CC BY 4.0",
+    "about": "授業を聞く学生",
+    "frame": "fit",
+    "zoom": 1.05
+   },
+   {
+    "src": "pixabay:215471",
+    "kind": "video",
+    "duration": 9,
+    "license": "Pixabay Content License",
+    "about": "students, classroom, education, school, learning, children, books",
+    "frame": "fit",
+    "zoom": 1.12
+   },
+   {
+    "src": "pixabay:364427",
+    "kind": "video",
+    "duration": 5,
+    "license": "Pixabay Content License",
+    "about": "ai generated, teacher, school, education, training, teaching, man, lecture, stud",
+    "frame": "fit",
+    "zoom": 1.12
+   },
+   {
+    "src": "pixabay:106705",
+    "kind": "video",
+    "duration": 21,
+    "license": "Pixabay Content License",
+    "about": "school, kids, the teacher, lesson, class, desks, textbooks, students, girls, boy",
+    "frame": "fit",
+    "zoom": 1.12
+   }
+  ],
+  "kitchen": [
+   {
+    "src": "commons:Home kitchen details June 2023 - Range with pot and kettle.jpg",
+    "license": "CC BY-SA 4.0",
+    "about": "家庭のキッチン（コンロとやかん）",
+    "frame": "fit",
+    "zoom": 1.05
+   },
+   {
+    "src": "pixabay:1498",
+    "kind": "video",
+    "duration": 14,
+    "license": "Pixabay Content License",
+    "about": "cooking, wok, squid, kitchen, food, food preparation",
+    "frame": "fit",
+    "zoom": 1.12
+   },
+   {
+    "src": "pixabay:14421",
+    "kind": "video",
+    "duration": 72,
+    "license": "Pixabay Content License",
+    "about": "cook, potato, potatoes, food, vegetables, cut potatoes, kitchen, prepare, taste,",
+    "frame": "fit",
+    "zoom": 1.12
+   },
+   {
+    "src": "pixabay:1490",
+    "kind": "video",
+    "duration": 14,
+    "license": "Pixabay Content License",
+    "about": "cooking, onions, cutting, vegetables, herbs, spices, knife, kitchen, food, food ",
+    "frame": "fit",
+    "zoom": 1.12
+   }
+  ],
+  "rain-street": [
+   {
+    "src": "commons:Walking in the Rain New Orleans.jpg",
+    "license": "CC BY 2.0",
+    "about": "雨の街を歩く人",
+    "frame": "fit",
+    "zoom": 1.05
+   },
+   {
+    "src": "pixabay:74388",
+    "kind": "video",
+    "duration": 13,
+    "license": "Pixabay Content License",
+    "about": "rain, raindrops, window, relaxing, night, rain on window, cozy, ambience",
+    "frame": "fit",
+    "zoom": 1.12
+   },
+   {
+    "src": "pixabay:108595",
+    "kind": "video",
+    "duration": 30,
+    "license": "Pixabay Content License",
+    "about": "rain, glass, raindrops on glass, wet glass in water, wet glass background, glass",
+    "frame": "fit",
+    "zoom": 1.12
+   },
+   {
+    "src": "pixabay:262125",
+    "kind": "video",
+    "duration": 35,
+    "license": "Pixabay Content License",
+    "about": "rain, rain on window, dark weather, storm, cozy room, rain view, cloudy",
+    "frame": "fit",
+    "zoom": 1.12
+   }
+  ],
+  "library": [
+   {
+    "src": "commons:Kisosaki Town Library reading seats ac.jpg",
+    "license": "CC BY-SA 4.0",
+    "about": "図書館の閲覧席",
+    "frame": "fit",
+    "zoom": 1.05
+   },
+   {
+    "src": "pixabay:140587",
+    "kind": "video",
+    "duration": 30,
+    "license": "Pixabay Content License",
+    "about": "books, book store, library, reading, knowledge, education, learning, berkley",
+    "frame": "fit",
+    "zoom": 1.12
+   },
+   {
+    "src": "pixabay:145428",
+    "kind": "video",
+    "duration": 13,
+    "license": "Pixabay Content License",
+    "about": "student, read, write, library, book, read a book",
+    "frame": "fit",
+    "zoom": 1.12
+   },
+   {
+    "src": "pixabay:140591",
+    "kind": "video",
+    "duration": 12,
+    "license": "Pixabay Content License",
+    "about": "books, book store, library, reading, knowledge, education, learning, berkley",
+    "frame": "fit",
+    "zoom": 1.12
+   },
+   {
+    "src": "pixabay:122232",
+    "kind": "video",
+    "duration": 12,
+    "license": "Pixabay Content License",
+    "about": "reading list at library, library, book, man, young, literary, read the book, rea",
+    "frame": "fit",
+    "zoom": 1.12
+   }
+  ],
+  "city-night": [
+   {
+    "src": "commons:Dotonbori, Osaka, at night, November 2016.jpg",
+    "license": "CC BY-SA 4.0",
+    "about": "夜の繁華街（大阪・道頓堀、縦長）",
+    "frame": "fill",
+    "zoom": 1.0,
+    "focus": [
+     0.5,
+     0.5
+    ]
+   },
+   {
+    "src": "pixabay:12126",
+    "kind": "video",
+    "duration": 30,
+    "license": "Pixabay Content License",
+    "about": "city, movement, night, at home, building, street, light, window, community, ligh",
+    "frame": "fit",
+    "zoom": 1.12
+   },
+   {
+    "src": "pixabay:206637",
+    "kind": "video",
+    "duration": 14,
+    "license": "Pixabay Content License",
+    "about": "city, tram, transport, night tram, night, night city, travel at night, subway ni",
+    "frame": "fit",
+    "zoom": 1.12
+   },
+   {
+    "src": "pixabay:318786",
+    "kind": "video",
+    "duration": 5,
+    "license": "Pixabay Content License",
+    "about": "cinematic city at night, city lights reflection, neon glow, urban skyline, night",
+    "frame": "fit",
+    "zoom": 1.12
+   }
+  ],
+  "stretch-desk": [
+   {
+    "src": "commons:Woman stretches at home office desk while working on laptop.jpg",
+    "license": "CC BY 2.0",
+    "about": "机で伸びをする女性（疲れ）",
+    "frame": "fit",
+    "zoom": 1.1,
+    "focus": [
+     0.5,
+     0.5
+    ]
+   },
+   {
+    "src": "pixabay:44647",
+    "kind": "video",
+    "duration": 8,
+    "license": "Pixabay Content License",
+    "about": "yawn, woman, sleep, night, fatigue, depression, sleepy, face, mouth, open, perso",
+    "frame": "fit",
+    "zoom": 1.12
+   },
+   {
+    "src": "pixabay:83875",
+    "kind": "video",
+    "duration": 15,
+    "license": "Pixabay Content License",
+    "about": "woman, office, notebook, overworked, pain, people, person, preparation suffer, p",
+    "frame": "fit",
+    "zoom": 1.12
+   },
+   {
+    "src": "pixabay:83874",
+    "kind": "video",
+    "duration": 16,
+    "license": "Pixabay Content License",
+    "about": "woman, office, notebook, overworked, pain, people, person, preparation suffer, p",
+    "frame": "fit",
+    "zoom": 1.12
+   },
+   {
+    "src": "pixabay:215751",
+    "kind": "video",
+    "duration": 18,
+    "license": "Pixabay Content License",
+    "about": "man, office work, business, payroll, payroll management, working late night, com",
+    "frame": "fit",
+    "zoom": 1.12
+   }
+  ],
+  "airport": [
+   {
+    "src": "commons:Narita International Airport - Terminal 2 security gate.jpg",
+    "license": "CC BY 2.0",
+    "about": "空港の保安検査場",
+    "frame": "fit",
+    "zoom": 1.05
+   },
+   {
+    "src": "pixabay:30872",
+    "kind": "video",
+    "duration": 20,
+    "license": "Pixabay Content License",
+    "about": "thailand, bangkok, airport, aircraft, travel, aviation, departure, passenger, ho",
+    "frame": "fit",
+    "zoom": 1.12
+   },
+   {
+    "src": "pixabay:30876",
+    "kind": "video",
+    "duration": 13,
+    "license": "Pixabay Content License",
+    "about": "thailand, bangkok, airport, aircraft, travel, aviation, departure, passenger, ho",
+    "frame": "fit",
+    "zoom": 1.12
+   },
+   {
+    "src": "pixabay:30875",
+    "kind": "video",
+    "duration": 43,
+    "license": "Pixabay Content License",
+    "about": "thailand, bangkok, airport, aircraft, travel, aviation, departure, passenger, ho",
+    "frame": "fit",
+    "zoom": 1.12
+   }
+  ],
+  "notebook-writing": [
+   {
+    "src": "commons:Person writing in a notebook while sitting at a desk.jpg",
+    "license": "CC BY 2.0",
+    "about": "机でノートに書き込む人",
+    "frame": "fit",
+    "zoom": 1.08
+   },
+   {
+    "src": "pixabay:12040",
+    "kind": "video",
+    "duration": 10,
+    "license": "Pixabay Content License",
+    "about": "on the table lies a thick textbook, homework, textbook, tutorial, pen, notebook,",
+    "frame": "fit",
+    "zoom": 1.12
+   },
+   {
+    "src": "pixabay:130645",
+    "kind": "video",
+    "duration": 15,
+    "license": "Pixabay Content License",
+    "about": "woman, model, notebook, book, creator, desk, businesswoman, young, writing, work",
+    "frame": "fit",
+    "zoom": 1.12
+   },
+   {
+    "src": "pixabay:34258",
+    "kind": "video",
+    "duration": 20,
+    "license": "Pixabay Content License",
+    "about": "writing, journal, notes, diary, typewriter, desk, office, write, notebook, note,",
+    "frame": "fit",
+    "zoom": 1.12
+   },
+   {
+    "src": "pixabay:43869",
+    "kind": "video",
+    "duration": 11,
+    "license": "Pixabay Content License",
+    "about": "writing, journal, desk, typewriter, notebook, notepad, pen, work, paper, diary",
+    "frame": "fit",
+    "zoom": 1.12
+   }
+  ],
+  "living-room": [
+   {
+    "src": "commons:Cozy living room with a gray sofa.jpg",
+    "license": "CC BY 2.0",
+    "about": "グレーのソファのリビング",
+    "frame": "fit",
+    "zoom": 1.05
+   },
+   {
+    "src": "pixabay:83875",
+    "kind": "video",
+    "duration": 15,
+    "license": "Pixabay Content License",
+    "about": "woman, office, notebook, overworked, pain, people, person, preparation suffer, p",
+    "frame": "fit",
+    "zoom": 1.12
+   },
+   {
+    "src": "pixabay:86866",
+    "kind": "video",
+    "duration": 10,
+    "license": "Pixabay Content License",
+    "about": "man, home office, laptop, call, phone, comfortable, relax, home",
+    "frame": "fit",
+    "zoom": 1.12
+   }
+  ],
+  "watch-woman": [
+   {
+    "src": "commons:Woman with curly blonde hair and stylish suit coat looking at her wrist watch.jpg",
+    "license": "CC BY 2.0",
+    "about": "腕時計を見る女性（縦長、顔は上部）",
+    "frame": "fill",
+    "zoom": 1.0,
+    "focus": [
+     0.5,
+     0.35
+    ]
+   },
+   {
+    "src": "pixabay:45132",
+    "kind": "video",
+    "duration": 19,
+    "license": "Pixabay Content License",
+    "about": "girl, young, woman, pose, face, model, female, person, beauty, portrait, smile",
+    "frame": "fit",
+    "zoom": 1.12
+   }
+  ],
+  "laptop-watch": [
+   {
+    "src": "commons:Woman using laptop and checking watch while sitting in living room.jpg",
+    "license": "CC BY 2.0",
+    "about": "PCを前に腕時計を見る女性",
+    "frame": "fit",
+    "zoom": 1.15,
+    "focus": [
+     0.55,
+     0.5
+    ]
+   },
+   {
+    "src": "pixabay:39892",
+    "kind": "video",
+    "duration": 15,
+    "license": "Pixabay Content License",
+    "about": "office, laptop, business, computer, notebook, work, the internet, table, technol",
+    "frame": "fit",
+    "zoom": 1.12
+   },
+   {
+    "src": "pixabay:215751",
+    "kind": "video",
+    "duration": 18,
+    "license": "Pixabay Content License",
+    "about": "man, office work, business, payroll, payroll management, working late night, com",
+    "frame": "fit",
+    "zoom": 1.12
+   }
+  ],
+  "train-rush": [
+   {
+    "src": "commons:Rushing onto a train.jpg",
+    "license": "CC BY-SA 4.0",
+    "about": "電車に駆け込む人",
+    "frame": "fit",
+    "zoom": 1.05
+   },
+   {
+    "src": "pixabay:68809",
+    "kind": "video",
+    "duration": 31,
+    "license": "Pixabay Content License",
+    "about": "escalators, stairs, subway, metro, station, underground, train station, steps, p",
+    "frame": "fit",
+    "zoom": 1.12
+   },
+   {
+    "src": "pixabay:104326",
+    "kind": "video",
+    "duration": 46,
+    "license": "Pixabay Content License",
+    "about": "liverpool, train, subway, rail, passengers, railway, merseyrail, commuter, under",
+    "frame": "fit",
+    "zoom": 1.12
+   },
+   {
+    "src": "pixabay:15748",
+    "kind": "video",
+    "duration": 29,
+    "license": "Pixabay Content License",
+    "about": "running, marathon, zurich, run, sports, runner, athletic, sportiness, competitio",
+    "frame": "fit",
+    "zoom": 1.12
+   }
+  ],
+  "texting-street": [
+   {
+    "src": "commons:Texting in the crosswalk.jpg",
+    "license": "CC BY-SA 2.0",
+    "about": "横断歩道でスマホを打つ人々",
+    "frame": "fit",
+    "zoom": 1.05
+   },
+   {
+    "src": "pixabay:204421",
+    "kind": "video",
+    "duration": 22,
+    "license": "Pixabay Content License",
+    "about": "man, call, smartphone, anger, to speak, yell, discuss, unhappy",
+    "frame": "fit",
+    "zoom": 1.12
+   },
+   {
+    "src": "pixabay:3630",
+    "kind": "video",
+    "duration": 15,
+    "license": "Pixabay Content License",
+    "about": "crosswalk, crowd, people, many, crowded, city, street, pedestrians, urban, busy,",
+    "frame": "fit",
+    "zoom": 1.12
+   }
+  ],
+  "office-clocks": [
+   {
+    "src": "commons:WMUK office - clocks.jpg",
+    "license": "CC BY-SA 4.0",
+    "about": "オフィスの壁の時計",
+    "frame": "fit",
+    "zoom": 1.05
+   },
+   {
+    "src": "pixabay:3965",
+    "kind": "video",
+    "duration": 11,
+    "license": "Pixabay Content License",
+    "about": "time, clocks, ticking, future, past, window, watch, wind, interior, mechanism, v",
+    "frame": "fit",
+    "zoom": 1.12
+   },
+   {
+    "src": "pixabay:7998",
+    "kind": "video",
+    "duration": 25,
+    "license": "Pixabay Content License",
+    "about": "clock, time, time display, clock face, wait, clockwork, pointer, hours, dial, ti",
+    "frame": "fit",
+    "zoom": 1.12
+   },
+   {
+    "src": "pixabay:7549",
+    "kind": "video",
+    "duration": 10,
+    "license": "Pixabay Content License",
+    "about": "clock, clockwork, time, time display, clock face, pointer, analog clock",
+    "frame": "fit",
+    "zoom": 1.12
+   },
+   {
+    "src": "pixabay:15629",
+    "kind": "video",
+    "duration": 11,
+    "license": "Pixabay Content License",
+    "about": "alarm, clock, watch, time, retro, vintage",
+    "frame": "fit",
+    "zoom": 1.12
+   }
+  ],
+  "station-platform": [
+   {
+    "src": "commons:Umeda Station Osaka metro platform rush hour queues 2022-04-25.jpg",
+    "license": "CC BY 2.0",
+    "about": "ラッシュ時の駅ホームの行列",
+    "frame": "fit",
+    "zoom": 1.05
+   },
+   {
+    "src": "pixabay:3608",
+    "kind": "video",
+    "duration": 9,
+    "license": "Pixabay Content License",
+    "about": "reading, comics, subway, subway station, train, passenger, waiting, asian, man, ",
+    "frame": "fit",
+    "zoom": 1.12
+   },
+   {
+    "src": "pixabay:138271",
+    "kind": "video",
+    "duration": 35,
+    "license": "Pixabay Content License",
+    "about": "nyc, new york, new york city, trains, subways, grand central, commuter, tourist,",
+    "frame": "fit",
+    "zoom": 1.12
+   },
+   {
+    "src": "pixabay:119826",
+    "kind": "video",
+    "duration": 58,
+    "license": "Pixabay Content License",
+    "about": "station, subway, train, transport, railroad, people, move, commute, work, to tra",
+    "frame": "fit",
+    "zoom": 1.12
+   },
+   {
+    "src": "pixabay:3178",
+    "kind": "video",
+    "duration": 12,
+    "license": "Pixabay Content License",
+    "about": "train, railway, railway station, departure, travel, transportation, station, rai",
+    "frame": "fit",
+    "zoom": 1.12
+   }
+  ],
+  "street-waiting": [
+   {
+    "src": "commons:Street view of Sarphatistraat with a woman, waiting and looking; free photo Amsterdam, Fons Heijnsbroek 10-2021.jpg",
+    "license": "CC0",
+    "about": "通りで待つ女性",
+    "frame": "fit",
+    "zoom": 1.05
+   },
+   {
+    "src": "pixabay:23796",
+    "kind": "video",
+    "duration": 10,
+    "license": "Pixabay Content License",
+    "about": "legs, walking, city, street, movement, people",
+    "frame": "fit",
+    "zoom": 1.12
+   },
+   {
+    "src": "pixabay:1694",
+    "kind": "video",
+    "duration": 20,
+    "license": "Pixabay Content License",
+    "about": "street, walking, crowd, people, urban, city, blurred, walking people, women, mot",
+    "frame": "fit",
+    "zoom": 1.12
+   },
+   {
+    "src": "pixabay:24333",
+    "kind": "video",
+    "duration": 18,
+    "license": "Pixabay Content License",
+    "about": "walking, street, city, people, urban, road, walk, person, wall, town, lonely, sh",
+    "frame": "fit",
+    "zoom": 1.12
+   },
+   {
+    "src": "pixabay:31961",
+    "kind": "video",
+    "duration": 13,
+    "license": "Pixabay Content License",
+    "about": "taxi, bangkok, thailand, transport, vehicle, traffic, road, travel, sidewalk, wa",
+    "frame": "fit",
+    "zoom": 1.12
+   }
+  ],
+  "thinking": [
+   {
+    "src": "pixabay:122389",
+    "kind": "video",
+    "duration": 16,
+    "license": "Pixabay Content License",
+    "about": "man, surprise, thinking, idea",
+    "frame": "fit",
+    "zoom": 1.12
+   },
+   {
+    "src": "pixabay:203252",
+    "kind": "video",
+    "duration": 8,
+    "license": "Pixabay Content License",
+    "about": "man, think, guess, expression, face, reflection",
+    "frame": "fit",
+    "zoom": 1.12
+   },
+   {
+    "src": "pixabay:203251",
+    "kind": "video",
+    "duration": 15,
+    "license": "Pixabay Content License",
+    "about": "man, think, beard, thoughtful, expression",
+    "frame": "fit",
+    "zoom": 1.12
+   },
+   {
+    "src": "pixabay:126557",
+    "kind": "video",
+    "duration": 9,
+    "license": "Pixabay Content License",
+    "about": "man, person, reflection, thinking, think, lifestyle",
+    "frame": "fit",
+    "zoom": 1.12
+   }
+  ],
+  "frustrated": [
+   {
+    "src": "pixabay:232663",
+    "kind": "video",
+    "duration": 9,
+    "license": "Pixabay Content License",
+    "about": "ai generated, man, glasses, computer, interest, frustrated, challenge, screen, i",
+    "frame": "fit",
+    "zoom": 1.12
+   },
+   {
+    "src": "pixabay:243460",
+    "kind": "video",
+    "duration": 9,
+    "license": "Pixabay Content License",
+    "about": "ai generated, man, glasses, computer, interest, frustrated, challenge, screen, i",
+    "frame": "fit",
+    "zoom": 1.12
+   },
+   {
+    "src": "pixabay:345611",
+    "kind": "video",
+    "duration": 10,
+    "license": "Pixabay Content License",
+    "about": "man, tired, exhausted, stress, loop, seamless, office, work, night, computer, ey",
+    "frame": "fit",
+    "zoom": 1.12
+   },
+   {
+    "src": "pixabay:215751",
+    "kind": "video",
+    "duration": 18,
+    "license": "Pixabay Content License",
+    "about": "man, office work, business, payroll, payroll management, working late night, com",
+    "frame": "fit",
+    "zoom": 1.12
+   }
+  ],
+  "meeting": [
+   {
+    "src": "pixabay:268230",
+    "kind": "video",
+    "duration": 12,
+    "license": "Pixabay Content License",
+    "about": "business, office, computer, man, laptop, company, corporate, meeting, work, mark",
+    "frame": "fit",
+    "zoom": 1.12
+   },
+   {
+    "src": "pixabay:137265",
+    "kind": "video",
+    "duration": 14,
+    "license": "Pixabay Content License",
+    "about": "office, business, contemporary, computer, work, desk, table, technology, special",
+    "frame": "fit",
+    "zoom": 1.12
+   },
+   {
+    "src": "pixabay:8252",
+    "kind": "video",
+    "duration": 18,
+    "license": "Pixabay Content License",
+    "about": "discussion, desk, people, office, team, meeting, business, businessman, brainsto",
+    "frame": "fit",
+    "zoom": 1.12
+   }
+  ],
+  "hurry": [
+   {
+    "src": "pixabay:15748",
+    "kind": "video",
+    "duration": 29,
+    "license": "Pixabay Content License",
+    "about": "running, marathon, zurich, run, sports, runner, athletic, sportiness, competitio",
+    "frame": "fit",
+    "zoom": 1.12
+   },
+   {
+    "src": "pixabay:120450",
+    "kind": "video",
+    "duration": 41,
+    "license": "Pixabay Content License",
+    "about": "people, running, sprinting, sport, event, race, running race, speed, daylight, h",
+    "frame": "fit",
+    "zoom": 1.12
+   },
+   {
+    "src": "pixabay:215751",
+    "kind": "video",
+    "duration": 18,
+    "license": "Pixabay Content License",
+    "about": "man, office work, business, payroll, payroll management, working late night, com",
+    "frame": "fit",
+    "zoom": 1.12
+   }
+  ],
+  "argument": [
+   {
+    "src": "pixabay:50311",
+    "kind": "video",
+    "duration": 9,
+    "license": "Pixabay Content License",
+    "about": "couple, arguing, domestic violence, angry, divorce, fighting, infidelity, confli",
+    "frame": "fit",
+    "zoom": 1.12
+   },
+   {
+    "src": "pixabay:50312",
+    "kind": "video",
+    "duration": 20,
+    "license": "Pixabay Content License",
+    "about": "couple, arguing, fight, fighting, crying, conflict, problem, anger, argument, ar",
+    "frame": "fit",
+    "zoom": 1.12
+   }
+  ],
+  "construction": [
+   {
+    "src": "pixabay:42923",
+    "kind": "video",
+    "duration": 15,
+    "license": "Pixabay Content License",
+    "about": "construction site, construction workers, construction, worker, site, builder, bu",
+    "frame": "fit",
+    "zoom": 1.12
+   },
+   {
+    "src": "pixabay:206315",
+    "kind": "video",
+    "duration": 19,
+    "license": "Pixabay Content License",
+    "about": "construction crane, construction site, oostende, skyline, sea, skyscraper",
+    "frame": "fit",
+    "zoom": 1.12
+   },
+   {
+    "src": "pixabay:10877",
+    "kind": "video",
+    "duration": 25,
+    "license": "Pixabay Content License",
+    "about": "construction site, excavator, digging, industry, machinery, excavation, machine,",
+    "frame": "fit",
+    "zoom": 1.12
+   }
+  ],
+  "elderly": [
+   {
+    "src": "pixabay:125430",
+    "kind": "video",
+    "duration": 11,
+    "license": "Pixabay Content License",
+    "about": "man, adult, beard, elderly, face, glasses, caucasian, closeup, grandfather, hair",
+    "frame": "fit",
+    "zoom": 1.12
+   },
+   {
+    "src": "pixabay:159908",
+    "kind": "video",
+    "duration": 14,
+    "license": "Pixabay Content License",
+    "about": "couple, people, woman, man, park, young, adult, outdoors, walk, old, lifestyle, ",
+    "frame": "fit",
+    "zoom": 1.12
+   }
+  ],
+  "laughing": [
+   {
+    "src": "pixabay:232496",
+    "kind": "video",
+    "duration": 5,
+    "license": "Pixabay Content License",
+    "about": "ai generated, friends, group, people, bar, restaurant, party, smiling, chatting,",
+    "frame": "fit",
+    "zoom": 1.12
+   },
+   {
+    "src": "pixabay:32938",
+    "kind": "video",
+    "duration": 34,
+    "license": "Pixabay Content License",
+    "about": "dance, celebrate, fun, celebration, happy, dancing, girl, festive, colorful, lau",
+    "frame": "fit",
+    "zoom": 1.12
+   }
+  ],
+  "phone-call": [
+   {
+    "src": "pixabay:86866",
+    "kind": "video",
+    "duration": 10,
+    "license": "Pixabay Content License",
+    "about": "man, home office, laptop, call, phone, comfortable, relax, home",
+    "frame": "fit",
+    "zoom": 1.12
+   },
+   {
+    "src": "pixabay:204421",
+    "kind": "video",
+    "duration": 22,
+    "license": "Pixabay Content License",
+    "about": "man, call, smartphone, anger, to speak, yell, discuss, unhappy",
+    "frame": "fit",
+    "zoom": 1.12
+   },
+   {
+    "src": "pixabay:227112",
+    "kind": "video",
+    "duration": 20,
+    "license": "Pixabay Content License",
+    "about": "phone calling, calling, phone, telephone, mobile, communication, talking, call, ",
+    "frame": "fit",
+    "zoom": 1.12
+   }
+  ]
  }
 }

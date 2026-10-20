@@ -59,9 +59,9 @@
   },
   "recapSay": "すごく驚いた、をもっと強く言うなら、",
   "scenes": {
-    "hook": "laptop-watch",
-    "answer": "laptop-watch",
-    "meaning": "texting-street"
+    "hook": "watch-woman",
+    "answer": "thinking",
+    "meaning": "smartphone"
   },
   "sources": [
     "https://dictionary.cambridge.org/dictionary/english/flabbergasted"

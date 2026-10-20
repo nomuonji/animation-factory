@@ -30,7 +30,7 @@
   "examples": [
     {
       "intro": "職場の話なら",
-      "scene": "office-desk",
+      "scene": "meeting",
       "en": [
         "My boss was livid."
       ],
@@ -63,9 +63,9 @@
   },
   "recapSay": "すごく怒っている、をもっと強く言うなら、",
   "scenes": {
-    "hook": "office-desk",
-    "answer": "office-desk",
-    "meaning": "office-clocks"
+    "hook": "frustrated",
+    "answer": "frustrated",
+    "meaning": "argument"
   },
   "sources": [
     "https://dictionary.cambridge.org/dictionary/english/livid"

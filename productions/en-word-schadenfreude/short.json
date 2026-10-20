@@ -51,18 +51,14 @@
       "why": "単語そのものを0秒で見せて問う",
       "shots": [
         {
-          "src": "commons:Woman sits at desk working on laptop in home office.jpg",
-          "in": 0,
-          "freeze": true,
+          "src": "pixabay:32938",
+          "in": 1.0,
+          "loop": true,
           "zoom": [
-            1.1,
-            1.16
+            1.12,
+            1.18
           ],
-          "frame": "fit",
-          "focus": [
-            0.5,
-            0.5
-          ]
+          "frame": "fit"
         }
       ],
       "overlay": "schadenfreude",
@@ -76,18 +72,14 @@
       "why": "発音（普通の速さ）",
       "shots": [
         {
-          "src": "commons:Woman sits at desk working on laptop in home office.jpg",
-          "in": 0,
-          "freeze": true,
+          "src": "pixabay:32938",
+          "in": 5.0,
+          "loop": true,
           "zoom": [
-            1.16,
-            1.19
+            1.18,
+            1.21
           ],
-          "frame": "fit",
-          "focus": [
-            0.5,
-            0.5
-          ]
+          "frame": "fit"
         }
       ],
       "emphasis": [
@@ -109,18 +101,14 @@
       "why": "発音（ゆっくり）",
       "shots": [
         {
-          "src": "commons:Woman sits at desk working on laptop in home office.jpg",
-          "in": 0,
-          "freeze": true,
+          "src": "pixabay:32938",
+          "in": 9.0,
+          "loop": true,
           "zoom": [
-            1.19,
-            1.22
+            1.21,
+            1.24
           ],
-          "frame": "fit",
-          "focus": [
-            0.5,
-            0.5
-          ]
+          "frame": "fit"
         }
       ],
       "emphasis": [
@@ -142,12 +130,12 @@
       "why": "意味とイメージを一つ",
       "shots": [
         {
-          "src": "commons:Texting in the crosswalk.jpg",
-          "in": 0,
-          "freeze": true,
+          "src": "pixabay:32938",
+          "in": 13.0,
+          "loop": true,
           "zoom": [
-            1.05,
-            1.17
+            1.24,
+            1.36
           ],
           "frame": "fit"
         }
@@ -162,18 +150,14 @@
       "why": "覚え方・使う場面（ニュアンス）",
       "shots": [
         {
-          "src": "commons:Woman sits at desk working on laptop in home office.jpg",
-          "in": 0,
-          "freeze": true,
+          "src": "pixabay:32938",
+          "in": 17.0,
+          "loop": true,
           "zoom": [
-            1.22,
-            1.28
+            1.36,
+            1.42
           ],
-          "frame": "fit",
-          "focus": [
-            0.5,
-            0.5
-          ]
+          "frame": "fit"
         }
       ],
       "sfx": "pop",
@@ -186,12 +170,12 @@
       "why": "例文の場面を一言で",
       "shots": [
         {
-          "src": "commons:Street view of Sarphatistraat with a woman, waiting and looking; free photo Amsterdam, Fons Heijnsbroek 10-2021.jpg",
-          "in": 0,
-          "freeze": true,
+          "src": "pixabay:24333",
+          "in": 1.0,
+          "loop": true,
           "zoom": [
-            1.05,
-            1.11
+            1.12,
+            1.18
           ],
           "frame": "fit"
         }
@@ -204,12 +188,12 @@
       "why": "例文を英語で聞く",
       "shots": [
         {
-          "src": "commons:Street view of Sarphatistraat with a woman, waiting and looking; free photo Amsterdam, Fons Heijnsbroek 10-2021.jpg",
-          "in": 0,
-          "freeze": true,
+          "src": "pixabay:24333",
+          "in": 5.0,
+          "loop": true,
           "zoom": [
-            1.11,
-            1.17
+            1.18,
+            1.24
           ],
           "frame": "fit"
         }
@@ -238,12 +222,12 @@
       "why": "例文の場面を一言で",
       "shots": [
         {
-          "src": "commons:Black smartphone in hand (Unsplash).jpg",
-          "in": 0,
-          "freeze": true,
+          "src": "pixabay:3135",
+          "in": 1.0,
+          "loop": true,
           "zoom": [
-            1.05,
-            1.11
+            1.12,
+            1.18
           ],
           "frame": "fit"
         }
@@ -256,12 +240,12 @@
       "why": "例文を英語で聞く",
       "shots": [
         {
-          "src": "commons:Black smartphone in hand (Unsplash).jpg",
-          "in": 0,
-          "freeze": true,
+          "src": "pixabay:3135",
+          "in": 5.0,
+          "loop": true,
           "zoom": [
-            1.11,
-            1.17
+            1.18,
+            1.24
           ],
           "frame": "fit"
         }
@@ -290,18 +274,14 @@
       "why": "自分で言う時間（考える間）",
       "shots": [
         {
-          "src": "commons:Woman sits at desk working on laptop in home office.jpg",
-          "in": 0,
-          "freeze": true,
+          "src": "pixabay:39892",
+          "in": 1.0,
+          "loop": true,
           "zoom": [
-            1.28,
-            1.34
+            1.12,
+            1.18
           ],
-          "frame": "fit",
-          "focus": [
-            0.5,
-            0.5
-          ]
+          "frame": "fit"
         }
       ],
       "overlay": "言ってみよう",
@@ -316,18 +296,14 @@
       "why": "答え合わせ",
       "shots": [
         {
-          "src": "commons:Woman sits at desk working on laptop in home office.jpg",
-          "in": 0,
-          "freeze": true,
+          "src": "pixabay:39892",
+          "in": 5.0,
+          "loop": true,
           "zoom": [
-            1.34,
-            1.4
+            1.18,
+            1.24
           ],
-          "frame": "fit",
-          "focus": [
-            0.5,
-            0.5
-          ]
+          "frame": "fit"
         }
       ],
       "emphasis": [
@@ -349,18 +325,14 @@
       "why": "冒頭の問いに戻って答えを言い切る",
       "shots": [
         {
-          "src": "commons:Woman sits at desk working on laptop in home office.jpg",
-          "in": 0,
-          "freeze": true,
+          "src": "pixabay:32938",
+          "in": 21.0,
+          "loop": true,
           "zoom": [
-            1.4,
-            1.43
+            1.42,
+            1.45
           ],
-          "frame": "fit",
-          "focus": [
-            0.5,
-            0.5
-          ]
+          "frame": "fit"
         }
       ],
       "overlay": "今日の単語",
@@ -374,18 +346,14 @@
       "why": "最後にもう一度英語を聞いて終わる",
       "shots": [
         {
-          "src": "commons:Woman sits at desk working on laptop in home office.jpg",
-          "in": 0,
-          "freeze": true,
+          "src": "pixabay:32938",
+          "in": 25.0,
+          "loop": true,
           "zoom": [
-            1.43,
-            1.46
+            1.45,
+            1.48
           ],
-          "frame": "fit",
-          "focus": [
-            0.5,
-            0.5
-          ]
+          "frame": "fit"
         }
       ],
       "overlay": "今日の単語",

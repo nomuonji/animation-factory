@@ -51,18 +51,14 @@
       "why": "いつもの言い方を0秒で出す",
       "shots": [
         {
-          "src": "commons:Woman stretches at home office desk while working on laptop.jpg",
-          "in": 0,
-          "freeze": true,
+          "src": "pixabay:83875",
+          "in": 1.0,
+          "loop": true,
           "zoom": [
-            1.1,
-            1.16
+            1.12,
+            1.18
           ],
-          "frame": "fit",
-          "focus": [
-            0.5,
-            0.5
-          ]
+          "frame": "fit"
         }
       ],
       "overlay": "very tired\nもっと強く言うと？",
@@ -77,18 +73,14 @@
       "why": "すぐ答えに入る",
       "shots": [
         {
-          "src": "commons:Woman stretches at home office desk while working on laptop.jpg",
-          "in": 0,
-          "freeze": true,
+          "src": "pixabay:83875",
+          "in": 5.0,
+          "loop": true,
           "zoom": [
-            1.16,
-            1.19
+            1.18,
+            1.21
           ],
-          "frame": "fit",
-          "focus": [
-            0.5,
-            0.5
-          ]
+          "frame": "fit"
         }
       ],
       "sfx": "pop",
@@ -100,18 +92,14 @@
       "why": "答えの英語（普通の速さ）",
       "shots": [
         {
-          "src": "commons:Woman stretches at home office desk while working on laptop.jpg",
-          "in": 0,
-          "freeze": true,
+          "src": "pixabay:83875",
+          "in": 9.0,
+          "loop": true,
           "zoom": [
-            1.19,
-            1.25
+            1.21,
+            1.27
           ],
-          "frame": "fit",
-          "focus": [
-            0.5,
-            0.5
-          ]
+          "frame": "fit"
         }
       ],
       "emphasis": [
@@ -133,18 +121,14 @@
       "why": "ゆっくり版の前振り",
       "shots": [
         {
-          "src": "commons:Woman stretches at home office desk while working on laptop.jpg",
-          "in": 0,
-          "freeze": true,
+          "src": "pixabay:83875",
+          "in": 13.0,
+          "loop": true,
           "zoom": [
-            1.25,
-            1.28
+            1.27,
+            1.3
           ],
-          "frame": "fit",
-          "focus": [
-            0.5,
-            0.5
-          ]
+          "frame": "fit"
         }
       ],
       "say": "もう一度、ゆっくり。"
@@ -155,18 +139,14 @@
       "why": "同じ英語をゆっくり（2回目）",
       "shots": [
         {
-          "src": "commons:Woman stretches at home office desk while working on laptop.jpg",
-          "in": 0,
-          "freeze": true,
+          "src": "pixabay:83875",
+          "in": 3.0,
+          "loop": true,
           "zoom": [
-            1.28,
-            1.34
+            1.3,
+            1.36
           ],
-          "frame": "fit",
-          "focus": [
-            0.5,
-            0.5
-          ]
+          "frame": "fit"
         }
       ],
       "emphasis": [
@@ -188,12 +168,12 @@
       "why": "very との違いを一つ",
       "shots": [
         {
-          "src": "commons:Cozy living room with a gray sofa.jpg",
-          "in": 0,
-          "freeze": true,
+          "src": "pixabay:83875",
+          "in": 1.0,
+          "loop": true,
           "zoom": [
-            1.05,
-            1.17
+            1.12,
+            1.24
           ],
           "frame": "fit"
         }
@@ -276,12 +256,12 @@
       "why": "例文の場面を一言で",
       "shots": [
         {
-          "src": "commons:Narita International Airport - Terminal 2 security gate.jpg",
-          "in": 0,
-          "freeze": true,
+          "src": "pixabay:30875",
+          "in": 1.0,
+          "loop": true,
           "zoom": [
-            1.05,
-            1.11
+            1.12,
+            1.18
           ],
           "frame": "fit"
         }
@@ -294,12 +274,12 @@
       "why": "例文を英語で聞く",
       "shots": [
         {
-          "src": "commons:Narita International Airport - Terminal 2 security gate.jpg",
-          "in": 0,
-          "freeze": true,
+          "src": "pixabay:30875",
+          "in": 5.0,
+          "loop": true,
           "zoom": [
-            1.11,
-            1.17
+            1.18,
+            1.24
           ],
           "frame": "fit"
         }
@@ -328,12 +308,12 @@
       "why": "自分で言う時間（考える間）",
       "shots": [
         {
-          "src": "commons:Street view of Sarphatistraat with a woman, waiting and looking; free photo Amsterdam, Fons Heijnsbroek 10-2021.jpg",
-          "in": 0,
-          "freeze": true,
+          "src": "pixabay:1694",
+          "in": 1.0,
+          "loop": true,
           "zoom": [
-            1.05,
-            1.11
+            1.12,
+            1.18
           ],
           "frame": "fit"
         }
@@ -352,12 +332,12 @@
       "why": "答え合わせ",
       "shots": [
         {
-          "src": "commons:Street view of Sarphatistraat with a woman, waiting and looking; free photo Amsterdam, Fons Heijnsbroek 10-2021.jpg",
-          "in": 0,
-          "freeze": true,
+          "src": "pixabay:1694",
+          "in": 5.0,
+          "loop": true,
           "zoom": [
-            1.11,
-            1.17
+            1.18,
+            1.24
           ],
           "frame": "fit"
         }
@@ -381,18 +361,14 @@
       "why": "冒頭の問いに戻って答えを言い切る",
       "shots": [
         {
-          "src": "commons:Woman stretches at home office desk while working on laptop.jpg",
-          "in": 0,
-          "freeze": true,
+          "src": "pixabay:83875",
+          "in": 7.0,
+          "loop": true,
           "zoom": [
-            1.34,
-            1.37
+            1.36,
+            1.39
           ],
-          "frame": "fit",
-          "focus": [
-            0.5,
-            0.5
-          ]
+          "frame": "fit"
         }
       ],
       "overlay": "今日の一言",
@@ -406,18 +382,14 @@
       "why": "最後にもう一度英語を聞いて終わる",
       "shots": [
         {
-          "src": "commons:Woman stretches at home office desk while working on laptop.jpg",
-          "in": 0,
-          "freeze": true,
+          "src": "pixabay:83875",
+          "in": 11.0,
+          "loop": true,
           "zoom": [
-            1.37,
-            1.4
+            1.39,
+            1.42
           ],
-          "frame": "fit",
-          "focus": [
-            0.5,
-            0.5
-          ]
+          "frame": "fit"
         }
       ],
       "overlay": "今日の一言",

@@ -32,7 +32,8 @@ python tools/shorts/shorts.py lesson lessons/<id>.json   # ブリーフを生成
 
 - ナレーション（日本語・VOICEVOX）は文字列、または `{"cap": 字幕, "say": 読み上げ}`。英語を字幕に出すときは必ず `say` を日本語にする（VOICEVOX は英語を読めない）。
 - 英語の音声は Kokoro（`af_heart` / `am_michael`）で自動生成。例文は1文ずつ `en` と `ja` を対で書く。
-- 画面の写真は `catalog/lesson-scenes.json` のタグで指定する（`scene`、`scenes.hook/answer/meaning`）。プールにない写真は使わない。足すときは実物を見てから登録する。
+- 画面の素材は `catalog/lesson-scenes.json` のタグで指定する（`scene`、`scenes.hook/answer/meaning`）。1つのタグに複数の候補（Commons の写真、Pixabay の動画）があり、レッスンの id から1つが選ばれる（`sceneVariant: {タグ: 番号}` で固定も可）。動画は場面ごとに再生位置をずらし、短ければ繰り返す。プールにない素材は使わない。足すときは実物を見てから登録する。
+- 主なタグ：office-desk, desk-flatlay, smartphone, texting-street, cafe, street-waiting, rain-street, station-platform, train-rush, airport, classroom, library, kitchen, thinking, frustrated, stretch-desk, office-clocks, meeting, city-night, notebook-writing, hurry, argument, construction, elderly, laughing, phone-call, living-room, laptop-watch, watch-woman
 
 各パターンの見本は `lessons/` にある（`en-running-late.json` は公開済み #1 と同じ中身。#1 の動画そのものは手で調整したブリーフから作った）。
 

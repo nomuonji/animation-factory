@@ -70,7 +70,7 @@
     "answerJa": "さっきはバタバタしてごめん"
   },
   "scenes": {
-    "hook": "office-clocks",
+    "hook": "argument",
     "meaning": "station-platform"
   },
   "sources": [

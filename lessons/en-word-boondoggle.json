@@ -25,7 +25,7 @@
   "examples": [
     {
       "intro": "大きな事業を批判するなら",
-      "scene": "airport",
+      "scene": "construction",
       "en": [
         "The new stadium turned out to be a boondoggle."
       ],
@@ -60,8 +60,8 @@
     "answerJa": "なんてムダな事業だ"
   },
   "scenes": {
-    "hook": "airport",
-    "meaning": "office-clocks"
+    "hook": "construction",
+    "meaning": "construction"
   },
   "sources": [
     "https://dictionary.cambridge.org/dictionary/english/boondoggle"
