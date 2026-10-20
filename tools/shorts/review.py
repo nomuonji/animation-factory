@@ -48,16 +48,25 @@ def loudness(video: pathlib.Path) -> dict:
 def credits(b: dict, lock: dict) -> list[str]:
     lines = []
     used = []
+    clips = []
     for bt in b["beats"]:
         for s in bt["shots"]:
             if s["src"] not in used:
                 used.append(s["src"])
-    for src in used:
+        if bt.get("clip") and bt["clip"]["src"] not in clips:
+            clips.append(bt["clip"]["src"])
+    for src in clips:
         m = lock[src]
+        lines.append(f"音声（原音）: {m.get('author')} / Wikimedia Commons {m.get('pageUrl')} ({m.get('license')})"
+                     if m["provider"] == "commons" else f"音声（原音）: {m.get('author')} ({m.get('license')})")
+    used += [c for c in clips if c not in used]
+    for src in [u for u in used if u not in clips]:
+        m = lock[src]
+        kind = "画像" if str(m.get("downloadUrl", "")).lower().endswith((".jpg", ".jpeg", ".png", ".tif", ".tiff")) else "映像"
         if m["provider"] == "pixabay":
             lines.append(f"映像: {m.get('author')} / Pixabay {m.get('pageUrl')} (Pixabay Content License)")
         elif m["provider"] == "commons":
-            lines.append(f"映像: {m.get('author')} / Wikimedia Commons {m.get('pageUrl')} ({m.get('license')})")
+            lines.append(f"{kind}: {m.get('author')} / Wikimedia Commons {m.get('pageUrl')} ({m.get('license')})")
         else:
             lines.append(f"映像: {m.get('author')} (own footage)")
     v = b.get("voice", {})

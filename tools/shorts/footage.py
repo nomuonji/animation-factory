@@ -65,6 +65,9 @@ def _json(url: str) -> dict:
 # ---------------------------------------------------------------- search
 
 def pixabay_search(query: str, per_page: int = 12) -> list[dict]:
+    kind, query = _split_kind(query)
+    if kind != "video":
+        return []
     key = os.environ.get("PIXABAY_API_KEY")
     if not key:
         return []
@@ -104,10 +107,20 @@ def _pick_pixabay_rendition(v: dict) -> dict | None:
     return None
 
 
+COMMONS_KINDS = {"video": "video", "image": "bitmap", "audio": "audio"}
+
+
+def _split_kind(query: str) -> tuple[str, str]:
+    """`image: apollo 13` / `audio: apollo 13` pick the Commons file type; default video."""
+    m = re.match(r"^(video|image|audio):\s*(.+)$", query.strip())
+    return (m.group(1), m.group(2)) if m else ("video", query)
+
+
 def commons_search(query: str, limit: int = 10) -> list[dict]:
+    kind, text = _split_kind(query)
     q = urllib.parse.urlencode({
         "action": "query", "format": "json", "generator": "search",
-        "gsrsearch": f"{query} filetype:video", "gsrnamespace": 6, "gsrlimit": limit,
+        "gsrsearch": f"{text} filetype:{COMMONS_KINDS[kind]}", "gsrnamespace": 6, "gsrlimit": limit,
         "prop": "imageinfo", "iiprop": "url|size|extmetadata|mediatype|sha1",
         "iiurlwidth": 320,
     })
@@ -124,6 +137,7 @@ def commons_search(query: str, limit: int = 10) -> list[dict]:
         out.append({
             "src": f"commons:{title}",
             "provider": "commons",
+            "kind": kind,
             "query": query,
             "pageUrl": info.get("descriptionurl"),
             "duration": info.get("duration"),
@@ -265,7 +279,8 @@ def lock(brief: dict) -> dict:
     lock_path = d / "sources.lock.json"
     current = json.loads(lock_path.read_text(encoding="utf-8")) if lock_path.exists() else {}
     cands = _candidate_index(d)
-    used = sorted({s["src"] for bt in brief["beats"] for s in bt["shots"]})
+    used = sorted({s["src"] for bt in brief["beats"] for s in bt["shots"]} |
+                  {bt["clip"]["src"] for bt in brief["beats"] if bt.get("clip")})
     out = {}
     for src in used:
         if src in current and current[src].get("sha256"):
@@ -316,7 +331,10 @@ def probe_duration(path: pathlib.Path) -> float:
     import subprocess
     r = subprocess.run(["ffprobe", "-v", "error", "-show_entries", "format=duration",
                         "-of", "default=nw=1:nk=1", str(path)], capture_output=True, text=True, check=True)
-    return round(float(r.stdout.strip()), 3)
+    try:
+        return round(float(r.stdout.strip()), 3)
+    except ValueError:  # still images have no duration; shots on them must use freeze
+        return 0.0
 
 
 # ---------------------------------------------------------------- inspect
@@ -335,6 +353,17 @@ def inspect(srcs: list[str], out_dir: pathlib.Path, frames: int = 24) -> list[di
             meta["duration"] = probe_duration(path)
             meta["sha256"] = hashlib.sha256(path.read_bytes()).hexdigest()
             meta["cacheFile"] = path.name
+            name = re.sub(r"[^A-Za-z0-9._-]+", "_", src)[:80]
+            if src.startswith("commons:"):
+                srt = _commons_timed_text(src.split(":", 1)[1])
+                if srt:
+                    (out_dir / f"{name}.en.srt").write_text(srt, encoding="utf-8")
+                    meta["timedText"] = f"{name}.en.srt"
+            if not has_video(path):
+                _waveform_sheet(path, meta, out_dir / f"{name}.jpg", font)
+                meta.pop("query", None)
+                results.append(meta)
+                continue
             n = frames
             step = meta["duration"] / n
             tiles = []
@@ -357,7 +386,6 @@ def inspect(srcs: list[str], out_dir: pathlib.Path, frames: int = 24) -> list[di
                     x, y = (k % cols) * 320, 40 + (k // cols) * (th + 30)
                     sheet.paste(im, (x, y))
                     d.text((x + 4, y + th + 2), f"{t:5.1f}s", font=font, fill=(235, 235, 235))
-                name = re.sub(r"[^A-Za-z0-9._-]+", "_", src)[:80]
                 sheet.save(out_dir / f"{name}.jpg", quality=80)
             meta.pop("query", None)
             results.append(meta)
@@ -365,3 +393,53 @@ def inspect(srcs: list[str], out_dir: pathlib.Path, frames: int = 24) -> list[di
             results.append({"src": src, "error": str(ex)})
     (out_dir / "inspect.json").write_text(json.dumps(results, ensure_ascii=False, indent=1), encoding="utf-8")
     return results
+
+
+def has_video(path: pathlib.Path) -> bool:
+    """False for audio-only files; still images count as video (one frame)."""
+    import subprocess
+    r = subprocess.run(["ffprobe", "-v", "error", "-select_streams", "v", "-show_entries", "stream=codec_type",
+                        "-of", "csv=p=0", str(path)], capture_output=True, text=True)
+    return "video" in r.stdout
+
+
+def _commons_timed_text(title: str) -> str | None:
+    """English subtitles stored on Commons (TimedText namespace), if any. Used to time real audio."""
+    url = ("https://commons.wikimedia.org/w/index.php?" +
+           urllib.parse.urlencode({"title": f"TimedText:{title}.en.srt", "action": "raw"}))
+    try:
+        txt = _get(url, timeout=30, limit=2_000_000).decode("utf-8", "replace")
+    except Exception:  # noqa: BLE001 - subtitles are optional
+        return None
+    return txt if "-->" in txt else None
+
+
+def _waveform_sheet(path: pathlib.Path, meta: dict, out: pathlib.Path, font) -> None:
+    """Audio-only source: waveform rows with a seconds ruler, so speech can be located by eye."""
+    import subprocess
+    from PIL import Image, ImageDraw
+    rate = 8000
+    r = subprocess.run(["ffmpeg", "-v", "error", "-i", str(path), "-ac", "1", "-ar", str(rate), "-f", "f32le", "-"],
+                       capture_output=True, check=True)
+    import numpy as np
+    pcm = np.frombuffer(r.stdout, np.float32)
+    row_sec, width, rh = 20, 2000, 120
+    rows = max(1, int(np.ceil(len(pcm) / rate / row_sec)))
+    sheet = Image.new("RGB", (width, 40 + rows * (rh + 30)), (10, 10, 12))
+    d = ImageDraw.Draw(sheet)
+    d.text((8, 6), f"{meta['src']}  {meta['duration']:.1f}s audio {meta.get('license')}", font=font, fill=(255, 220, 90))
+    peak = float(np.max(np.abs(pcm))) or 1.0
+    for k in range(rows):
+        seg = pcm[k * row_sec * rate:(k + 1) * row_sec * rate]
+        y0 = 40 + k * (rh + 30)
+        px = width / (row_sec * rate)
+        cols = np.array_split(seg, max(1, int(len(seg) * px))) if len(seg) else []
+        for x, c in enumerate(cols):
+            a = float(np.max(np.abs(c))) / peak if len(c) else 0
+            d.line([(x, y0 + rh / 2 - a * rh / 2), (x, y0 + rh / 2 + a * rh / 2)], fill=(120, 200, 255))
+        for sec in range(row_sec + 1):
+            x = int(sec / row_sec * (width - 1))
+            d.line([(x, y0 + rh), (x, y0 + rh + 6)], fill=(200, 200, 200))
+            if sec % 2 == 0:
+                d.text((x + 2, y0 + rh + 4), f"{k * row_sec + sec}s", font=font, fill=(220, 220, 220))
+    sheet.save(out, quality=85)

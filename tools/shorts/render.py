@@ -65,8 +65,13 @@ def build_timeline(b: dict, lock: dict | None) -> dict:
     for i, bt in enumerate(b["beats"]):
         chunks = B.caption_chunks(bt)
         text = B.spoken_text(bt)
-        if text and vcfg.get("engine") == "voicevox":
-            sp = V.synthesize(text, chunks, vcfg)
+        if bt.get("clip"):
+            sp = clip_speech(bt["clip"], lock)
+        elif text and vcfg.get("engine") == "voicevox":
+            spoken = B.say_chunks(bt)
+            sp = V.synthesize(text, spoken, vcfg)
+            if spoken != chunks:  # caption differs from what is read (e.g. English shown, katakana read)
+                sp = {**sp, "chunks": [(a, e, c) for (a, e, _), c in zip(sp["chunks"], chunks)]}
         elif text:
             sp = V.silent(chunks)
         else:
@@ -104,6 +109,42 @@ def build_timeline(b: dict, lock: dict | None) -> dict:
     return {"beats": beats, "total": t}
 
 
+def clip_speech(clip: dict, lock: dict | None) -> dict:
+    """Real source audio standing in for narration: the original voice is the content."""
+    a, b = float(clip.get("in", 0)), float(clip["out"])
+    dur = b - a
+    chunks = []
+    for ln in clip["lines"]:
+        text = ln["en"] + (f"\n{ln['ja']}" if str(ln.get("ja", "")).strip() else "")
+        chunks.append((float(ln["at"]), float(ln["to"]), text))
+    pcm = np.zeros(int(dur * RATE), np.float32)
+    if lock is not None:
+        meta = lock.get(clip["src"])
+        if not meta:
+            raise B.BriefError(f"clip {clip['src']} not in sources.lock.json")
+        if meta.get("duration") and b > meta["duration"] + 0.05:
+            raise B.BriefError(f"clip {clip['src']} ends at {b:.2f}s but the source is {meta['duration']:.2f}s")
+        path = footage.fetch(clip["src"], lock)
+        r = subprocess.run(["ffmpeg", "-v", "error", "-ss", f"{a:.3f}", "-t", f"{dur:.3f}", "-i", str(path),
+                            "-vn", "-ac", "1", "-ar", str(RATE), "-af", "highpass=f=90", "-f", "f32le", "-"],
+                           capture_output=True, check=True)
+        raw = np.frombuffer(r.stdout, np.float32).copy()[:len(pcm)]
+        # Level-match old radio/field audio to the narration: RMS of the louder half -> ~-17 dBFS.
+        if len(raw):
+            frames = raw[: len(raw) // 400 * 400].reshape(-1, 400)
+            rms = np.sqrt((frames ** 2).mean(axis=1)) if len(frames) else np.array([0.0])
+            loud = np.sort(rms)[len(rms) // 2:]
+            ref = float(np.sqrt((loud ** 2).mean())) if len(loud) else 0.0
+            if ref > 1e-5:
+                raw = raw * (0.14 / ref)
+            raw = np.tanh(raw * float(clip.get("gain", 1))) * 0.95  # soft-limit crackle peaks
+            fade = int(0.03 * RATE)
+            raw[:fade] *= np.linspace(0, 1, min(fade, len(raw)))
+            raw[-fade:] *= np.linspace(1, 0, min(fade, len(raw)))
+        pcm[:len(raw)] = raw
+    return {"duration": dur, "chunks": chunks, "moras": 0, "pcm": pcm}
+
+
 # ---------------------------------------------------------------- text overlays
 
 class TextCache:
@@ -113,7 +154,7 @@ class TextCache:
     def caption(self, text: str, emphasis: list[str]) -> np.ndarray:
         key = ("c", text, tuple(emphasis))
         if key not in self.cache:
-            self.cache[key] = _render_caption(B.display_text(text), emphasis)
+            self.cache[key] = _render_caption(text if "\n" in text else B.display_text(text), emphasis)
         return self.cache[key]
 
     def headline(self, text: str) -> np.ndarray:
@@ -212,7 +253,51 @@ def _rich_line(draw, x, y, line, font, emphasis, stroke):
     del spans
 
 
+def _render_bilingual(en: str, ja: str, emphasis: list[str]) -> np.ndarray:
+    """Original English line (large) with a small Japanese gloss under it."""
+    size = 88 if len(en) <= 22 else 78 if len(en) <= 34 else 70
+    font = _font(FONT_BLACK, size)
+    jfont = _font(FONT_BOLD, 54)
+    probe = ImageDraw.Draw(Image.new("RGBA", (10, 10)))
+    lines = _wrap_words(en, font, SAFE_RIGHT - SAFE_LEFT, probe)
+    jlines = _wrap(ja, jfont, SAFE_RIGHT - SAFE_LEFT, probe) if ja else []
+    stroke = max(7, size // 10)
+    lh, jlh = int(size * 1.16), 68
+    hgt = lh * len(lines) + jlh * len(jlines) + stroke * 2 + 34
+    img = Image.new("RGBA", (W, hgt), (0, 0, 0, 0))
+    d = ImageDraw.Draw(img)
+    y = stroke + 6
+    for line in lines:
+        lw = d.textlength(line, font=font)
+        _rich_line(d, (SAFE_LEFT + SAFE_RIGHT) / 2 - lw / 2, y, line, font, emphasis, stroke)
+        y += lh
+    y += 12
+    for line in jlines:
+        lw = d.textlength(line, font=jfont)
+        d.text(((SAFE_LEFT + SAFE_RIGHT) / 2 - lw / 2, y), line, font=jfont, fill=(225, 235, 245),
+               stroke_width=6, stroke_fill=(0, 0, 0))
+        y += jlh
+    return np.array(img)
+
+
+def _wrap_words(text: str, font, maxw: int, draw) -> list[str]:
+    words, lines, cur = text.split(), [], ""
+    for w_ in words:
+        cand = (cur + " " + w_).strip()
+        if cur and draw.textlength(cand, font=font) > maxw:
+            lines.append(cur)
+            cur = w_
+        else:
+            cur = cand
+    if cur:
+        lines.append(cur)
+    return lines
+
+
 def _render_caption(text: str, emphasis: list[str]) -> np.ndarray:
+    if "\n" in text or (text and all(ord(c) < 0x3000 for c in text)):
+        en, _, ja = text.partition("\n")
+        return _render_bilingual(en, ja, emphasis)
     size = 96 if len(text) <= 7 else 84 if len(text) <= 11 else 74
     font = _font(FONT_BLACK, size)
     probe = ImageDraw.Draw(Image.new("RGBA", (10, 10)))
