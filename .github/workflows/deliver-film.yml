@@ -1,0 +1,61 @@
+name: Deliver rendered film
+on:
+  pull_request:
+    paths: ['delivery-requests/*.json', '.github/workflows/deliver-film.yml']
+permissions:
+  contents: read
+  actions: read
+jobs:
+  deliver:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Select delivery request
+        id: request
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+        run: |
+          python - <<'PY'
+          import json,subprocess,pathlib,os,re
+          paths=subprocess.check_output(['git','diff','--name-only',os.environ['BASE_SHA']+'...HEAD'],text=True).splitlines()
+          paths=[p for p in paths if re.fullmatch(r'delivery-requests/[a-z0-9-]+\.json',p)]
+          if len(paths)!=1:raise SystemExit('one delivery request required')
+          r=json.loads(pathlib.Path(paths[0]).read_text())
+          if not re.fullmatch(r'[a-z0-9-]+',r['production']):raise SystemExit('bad production')
+          if not re.fullmatch(r'[A-Za-z0-9_-]+',r['artifact']):raise SystemExit('bad artifact')
+          with open(os.environ['GITHUB_OUTPUT'],'a') as f:
+              f.write(f"run={int(r['runId'])}\nartifact={r['artifact']}\nproduction={r['production']}\n")
+          PY
+      - uses: actions/download-artifact@v4
+        with:
+          github-token: ${{ github.token }}
+          run-id: ${{ steps.request.outputs.run }}
+          name: ${{ steps.request.outputs.artifact }}
+          path: rendered
+      - name: Package only final film and small review files
+        env:
+          PRODUCTION: ${{ steps.request.outputs.production }}
+        run: |
+          python - <<'PY'
+          import pathlib,shutil,os,zipfile,json
+          root=pathlib.Path('rendered/film-artifact')/os.environ['PRODUCTION']
+          report=json.loads((root/'report.json').read_text())
+          if report['status']!='technical_pass':raise SystemExit('render did not pass')
+          out=pathlib.Path('delivery');out.mkdir()
+          shutil.copy2(root/'video.mp4',out/(os.environ['PRODUCTION']+'-longform.mp4'))
+          shutil.copy2(root/'captions.srt',out/(os.environ['PRODUCTION']+'-captions.srt'))
+          with zipfile.ZipFile(out/(os.environ['PRODUCTION']+'-review.zip'),'w',zipfile.ZIP_DEFLATED) as z:
+              for p in root.rglob('*'):
+                  if p.is_file() and p.suffix.lower()!='.mp4':
+                      z.write(p,p.relative_to(root))
+          print(json.dumps(report),flush=True)
+          print('Final film bytes:',(root/'video.mp4').stat().st_size,flush=True)
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: film-delivery-${{ steps.request.outputs.production }}
+          path: delivery/
+          retention-days: 30
