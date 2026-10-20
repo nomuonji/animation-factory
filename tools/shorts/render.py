@@ -109,8 +109,34 @@ def build_timeline(b: dict, lock: dict | None) -> dict:
     return {"beats": beats, "total": t}
 
 
+def tts_speech(clip: dict) -> dict:
+    """English lesson line spoken by Kokoro, captioned in English (+ Japanese gloss)."""
+    import en_voice
+    tts = clip["tts"]
+    pcm = en_voice.synthesize(tts["text"], tts.get("voice", "af_heart"), float(tts.get("speed", 1.0)), RATE)
+    pcm = pcm / (np.max(np.abs(pcm)) or 1) * 0.6
+    dur = len(pcm) / RATE
+    lines = clip.get("lines") or [{"en": tts["text"], "ja": clip.get("ja", "")}]
+    chunks = []
+    if all("at" in ln for ln in lines):
+        for ln in lines:
+            text = ln["en"] + (f"\n{ln['ja']}" if str(ln.get("ja", "")).strip() else "")
+            chunks.append((float(ln["at"]), float(ln.get("to", dur)), text))
+    else:  # split the spoken duration by character share
+        total = sum(len(ln["en"]) for ln in lines) or 1
+        t = 0.0
+        for ln in lines:
+            d = dur * len(ln["en"]) / total
+            text = ln["en"] + (f"\n{ln['ja']}" if str(ln.get("ja", "")).strip() else "")
+            chunks.append((t, t + d, text))
+            t += d
+    return {"duration": dur, "chunks": chunks, "moras": 0, "pcm": pcm.astype(np.float32)}
+
+
 def clip_speech(clip: dict, lock: dict | None) -> dict:
     """Real source audio standing in for narration: the original voice is the content."""
+    if clip.get("tts"):
+        return tts_speech(clip)
     a, b = float(clip.get("in", 0)), float(clip["out"])
     dur = b - a
     chunks = []

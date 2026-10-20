@@ -53,7 +53,7 @@ def credits(b: dict, lock: dict) -> list[str]:
         for s in bt["shots"]:
             if s["src"] not in used:
                 used.append(s["src"])
-        if bt.get("clip") and bt["clip"]["src"] not in clips:
+        if bt.get("clip") and bt["clip"].get("src") and bt["clip"]["src"] not in clips:
             clips.append(bt["clip"]["src"])
     for src in clips:
         m = lock[src]
@@ -69,6 +69,8 @@ def credits(b: dict, lock: dict) -> list[str]:
             lines.append(f"{kind}: {m.get('author')} / Wikimedia Commons {m.get('pageUrl')} ({m.get('license')})")
         else:
             lines.append(f"映像: {m.get('author')} (own footage)")
+    if any((bt.get("clip") or {}).get("tts") for bt in b["beats"]):
+        lines.append("英語音声: Kokoro-82M (Apache-2.0) による合成音声")
     v = b.get("voice", {})
     if v.get("engine") == "voicevox":
         lines.append(f"音声: VOICEVOX:{v.get('speaker', '青山龍星')}")

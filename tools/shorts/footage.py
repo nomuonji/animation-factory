@@ -280,7 +280,7 @@ def lock(brief: dict) -> dict:
     current = json.loads(lock_path.read_text(encoding="utf-8")) if lock_path.exists() else {}
     cands = _candidate_index(d)
     used = sorted({s["src"] for bt in brief["beats"] for s in bt["shots"]} |
-                  {bt["clip"]["src"] for bt in brief["beats"] if bt.get("clip")})
+                  {bt["clip"]["src"] for bt in brief["beats"] if bt.get("clip") and bt["clip"].get("src")})
     out = {}
     for src in used:
         if src in current and current[src].get("sha256"):
