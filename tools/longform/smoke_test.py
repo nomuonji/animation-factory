@@ -75,7 +75,7 @@ def main():
     if os.environ.get('LONGFORM_TEST_VOICE'):
         vb = copy.deepcopy(cb)
         vb['voice'] = {'engine': 'voicevox', 'speaker': '青山龍星', 'speed': 1.08}
-        vb['beats'] = [{'id': 'spoken', 'why': 'Check real speech timing',
+        vb['beats'] = [{'id': 'spoken', 'role': 'develop', 'why': 'Check real speech timing',
                         'say': '長い動画も／章ごとに作れます。',
                         'shots': [{'src': src, 'in': 0}]}]
         # Voice test uses the longer fixture to leave sufficient footage.
@@ -83,6 +83,10 @@ def main():
             tl = R.build_timeline(vb, lock)
         assert tl['beats'][0]['speech']['pcm'].any()
         assert len(tl['beats'][0]['captions']) == 2
+    silence = root / 'silence.wav'
+    subprocess.run(['ffmpeg', '-v', 'error', '-y', '-f', 'lavfi', '-i', 'anullsrc=r=48000:cl=mono',
+                    '-t', '1', str(silence)], check=True)
+    assert L.whole_film_audio_filter(silence) == 'anull'
     print('PASS: join, 48k stereo, Japanese captions, chapter offsets, resume, invalidation, safe source mismatch')
 
 

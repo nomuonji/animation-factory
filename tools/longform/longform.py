@@ -279,6 +279,14 @@ def render_chapter(b, lock, out, profile):
                 'captions': [cap for bt in tl['beats'] for cap in bt['captions']]}
 
 
+def whole_film_audio_filter(path):
+    import render as R
+    value = R._loudnorm_filter(path, -16)
+    measured = re.findall(r'(?:measured_I|measured_TP|offset)=([^:]+)', value)
+    # Completely silent observation cuts have undefined LUFS; preserve their silence.
+    return value if all(math.isfinite(float(x)) for x in measured) else 'anull'
+
+
 def timestamp(t):
     n = round(t * 1000)
     h, n = divmod(n, 3600000)
@@ -334,7 +342,7 @@ def run(path, profile_name='draft', force=False, profile_override=None):
     # One loudness measurement across the whole film, not separate chapter targets.
     subprocess.run(['ffmpeg', '-v', 'error', '-y', '-i', str(joined), '-i', str(metadata), '-map', '0:v:0', '-map', '0:a:0',
                     '-map_metadata', '1', '-map_chapters', '1', '-c:v', 'copy', '-c:a', 'aac',
-                    '-b:a', '192k', '-ar', '48000', '-ac', '2', '-af', R._loudnorm_filter(joined, -16),
+                    '-b:a', '192k', '-ar', '48000', '-ac', '2', '-af', whole_film_audio_filter(joined),
                     '-t', f'{offset:.6f}', '-movflags', '+faststart', str(final)], check=True)
     joined.unlink()
     probe = json.loads(subprocess.check_output(['ffprobe', '-v', 'error', '-show_streams', '-show_format',
