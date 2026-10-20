@@ -1,0 +1,262 @@
+{
+  "version": 3,
+  "id": "en-vs-affect-effect",
+  "title": "affect と effect の違い、言える？｜3秒で見分ける方法【どっちを使う？ #1】",
+  "status": "draft",
+  "channel": "error-english (エラーで学ぶ英語) — どっちを使う？",
+  "topic": {
+    "source": "manual",
+    "ref": "lessons/en-vs-affect-effect.json (pattern=vs, level=B2)",
+    "summary": "affect は動詞（影響する）、effect は名詞（影響・効果）"
+  },
+  "audience": "英語を勉強している日本語話者",
+  "reaction": "知りたい",
+  "format": "guess-reveal",
+  "promise": {
+    "firstFrame": "問いの見出しと場面の写真",
+    "payoff": "冒頭の問いに戻って答えの英語を音声と字幕で言い切る"
+  },
+  "references": [
+    {
+      "url": "https://dictionary.cambridge.org/dictionary/english/affect",
+      "watched": false,
+      "note": "意味の根拠（辞書）"
+    },
+    {
+      "url": "https://dictionary.cambridge.org/dictionary/english/effect",
+      "watched": false,
+      "note": "意味の根拠（辞書）"
+    }
+  ],
+  "voice": {
+    "engine": "voicevox",
+    "speaker": "青山龍星",
+    "style": "ノーマル",
+    "speed": 1.08
+  },
+  "music": {
+    "asset": "safe-space-loop",
+    "gain": 0.08,
+    "duck": 0.3
+  },
+  "look": {
+    "frame": "fit"
+  },
+  "descriptionLines": [
+    "・affect ＝ （動詞）影響する　例: The weather affects my mood.（天気は私の気分に影響する）",
+    "・effect ＝ （名詞）影響・効果　例: The new app had a big effect.（新しいアプリは大きな効果があった）",
+    "・The new rule will affect everyone. ＝ 新しいルールはみんなに影響する",
+    "意味の確認: https://dictionary.cambridge.org/dictionary/english/affect",
+    "意味の確認: https://dictionary.cambridge.org/dictionary/english/effect"
+  ],
+  "beats": [
+    {
+      "id": "hook",
+      "role": "hook",
+      "why": "二択を0秒で見せる",
+      "shots": [
+        {
+          "src": "commons:Person writing in a notebook while sitting at a desk.jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.08,
+            1.14
+          ],
+          "frame": "fit"
+        }
+      ],
+      "overlay": "affect  /  effect\nどっち？",
+      "overlayY": 0.4,
+      "sfx": "whoosh",
+      "say": "発音も、つづりもそっくり。／どっちを使うか、迷いませんか？"
+    },
+    {
+      "id": "rule",
+      "role": "setup",
+      "why": "見分け方を一言で",
+      "shots": [
+        {
+          "src": "commons:Student Listening During Study Session.jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.05,
+            1.15
+          ],
+          "frame": "fit"
+        }
+      ],
+      "sfx": "pop",
+      "emphasis": [
+        "動詞",
+        "名詞",
+        "a / the が付けば effect"
+      ],
+      "say": "アフェクトは、影響する、という動詞。／イフェクトは、影響や効果、という名詞です。／前に、アやザが付いていたら、イフェクトです。",
+      "caption": "affect は「影響する」= 動詞／effect は「影響・効果」= 名詞／a / the が付けば effect"
+    },
+    {
+      "id": "a-en",
+      "role": "evidence",
+      "why": "Aの例文",
+      "shots": [
+        {
+          "src": "commons:Walking in the Rain New Orleans.jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.05,
+            1.11
+          ],
+          "frame": "fit"
+        }
+      ],
+      "emphasis": [
+        "affect",
+        "effect"
+      ],
+      "hold": 0.7,
+      "clip": {
+        "tts": {
+          "text": "The weather affects my mood.",
+          "voice": "af_heart",
+          "speed": 0.92
+        },
+        "ja": "天気は私の気分に影響する"
+      }
+    },
+    {
+      "id": "b-en",
+      "role": "evidence",
+      "why": "Bの例文",
+      "shots": [
+        {
+          "src": "commons:Woman sits at desk working on laptop in home office.jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.1,
+            1.16
+          ],
+          "frame": "fit",
+          "focus": [
+            0.5,
+            0.5
+          ]
+        }
+      ],
+      "emphasis": [
+        "affect",
+        "effect"
+      ],
+      "hold": 0.7,
+      "clip": {
+        "tts": {
+          "text": "The new app had a big effect.",
+          "voice": "am_michael",
+          "speed": 0.92
+        },
+        "ja": "新しいアプリは大きな効果があった"
+      }
+    },
+    {
+      "id": "quiz",
+      "role": "evidence",
+      "why": "自分で言う時間（考える間）",
+      "shots": [
+        {
+          "src": "commons:Student Listening During Study Session.jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.15,
+            1.21
+          ],
+          "frame": "fit"
+        }
+      ],
+      "overlay": "言ってみよう",
+      "hold": 3.0,
+      "sfx": "tick",
+      "say": "では問題／新しいルールは、みんなに影響する。／空欄はどっち？",
+      "caption": "では問題／The new rule will ___ everyone.／affect？ effect？"
+    },
+    {
+      "id": "quiz-answer",
+      "role": "turn",
+      "why": "答え合わせ",
+      "shots": [
+        {
+          "src": "commons:Student Listening During Study Session.jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.21,
+            1.27
+          ],
+          "frame": "fit"
+        }
+      ],
+      "emphasis": [
+        "affect",
+        "effect"
+      ],
+      "hold": 0.6,
+      "clip": {
+        "tts": {
+          "text": "The new rule will affect everyone.",
+          "voice": "af_heart",
+          "speed": 0.9
+        },
+        "ja": "新しいルールはみんなに影響する"
+      }
+    },
+    {
+      "id": "quiz-why",
+      "role": "evidence",
+      "why": "答えの形を一言で整理",
+      "shots": [
+        {
+          "src": "commons:Student Listening During Study Session.jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.27,
+            1.33
+          ],
+          "frame": "fit"
+        }
+      ],
+      "say": "ウィルの後は動詞なので、アフェクトです。",
+      "caption": "will の後は動詞 → affect"
+    },
+    {
+      "id": "recap",
+      "role": "payoff",
+      "why": "見分け方に戻って締める",
+      "shots": [
+        {
+          "src": "commons:Person writing in a notebook while sitting at a desk.jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.14,
+            1.17
+          ],
+          "frame": "fit"
+        }
+      ],
+      "overlay": "今日のポイント",
+      "overlayY": 0.4,
+      "emphasis": [
+        "動詞",
+        "名詞",
+        "a / the が付けば effect"
+      ],
+      "hold": 1.2,
+      "say": "アフェクトは、影響する。／イフェクトは、影響、効果。",
+      "caption": "affect は「影響する」（動詞）／effect は「影響・効果」（名詞）"
+    }
+  ]
+}

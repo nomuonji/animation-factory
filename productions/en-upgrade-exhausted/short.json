@@ -1,0 +1,415 @@
+{
+  "version": 3,
+  "id": "en-upgrade-exhausted",
+  "title": "very tired より強い「くたくた」｜exhausted【very から卒業 #1】",
+  "status": "draft",
+  "channel": "error-english (エラーで学ぶ英語) — very から卒業",
+  "topic": {
+    "source": "manual",
+    "ref": "lessons/en-upgrade-exhausted.json (pattern=upgrade, level=B2)",
+    "summary": "very tired → exhausted（くたくた・疲れ切った）"
+  },
+  "audience": "英語を勉強している日本語話者",
+  "reaction": "知りたい",
+  "format": "guess-reveal",
+  "promise": {
+    "firstFrame": "問いの見出しと場面の写真",
+    "payoff": "冒頭の問いに戻って答えの英語を音声と字幕で言い切る"
+  },
+  "references": [
+    {
+      "url": "https://dictionary.cambridge.org/dictionary/english/exhausted",
+      "watched": false,
+      "note": "意味の根拠（辞書）"
+    }
+  ],
+  "voice": {
+    "engine": "voicevox",
+    "speaker": "青山龍星",
+    "style": "ノーマル",
+    "speed": 1.08
+  },
+  "music": {
+    "asset": "safe-space-loop",
+    "gain": 0.08,
+    "duck": 0.3
+  },
+  "look": {
+    "frame": "fit"
+  },
+  "descriptionLines": [
+    "・very tired → exhausted ＝ くたくた・疲れ切った",
+    "・I'm exhausted. I worked all day. ＝ もうくたくた、一日中働いたから",
+    "・After the trip, we were exhausted. ＝ 旅行の後、みんな疲れ切っていた",
+    "・I was exhausted after the marathon. ＝ マラソンの後、くたくただった",
+    "意味の確認: https://dictionary.cambridge.org/dictionary/english/exhausted"
+  ],
+  "beats": [
+    {
+      "id": "hook",
+      "role": "hook",
+      "why": "いつもの言い方を0秒で出す",
+      "shots": [
+        {
+          "src": "commons:Cozy living room with a gray sofa.jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.05,
+            1.11
+          ],
+          "frame": "fit"
+        }
+      ],
+      "overlay": "very tired\nもっと強く言うと？",
+      "overlayY": 0.4,
+      "sfx": "whoosh",
+      "say": "すごく疲れた。ベリー・タイアードでも通じますが、／もっと強く言えますか？",
+      "caption": "すごく疲れた = very tired／もっと強く言えますか？"
+    },
+    {
+      "id": "answer",
+      "role": "setup",
+      "why": "すぐ答えに入る",
+      "shots": [
+        {
+          "src": "commons:Cozy living room with a gray sofa.jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.11,
+            1.14
+          ],
+          "frame": "fit"
+        }
+      ],
+      "sfx": "pop",
+      "say": "答えは、これです。"
+    },
+    {
+      "id": "answer-en",
+      "role": "evidence",
+      "why": "答えの英語（普通の速さ）",
+      "shots": [
+        {
+          "src": "commons:Cozy living room with a gray sofa.jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.14,
+            1.2
+          ],
+          "frame": "fit"
+        }
+      ],
+      "emphasis": [
+        "exhausted"
+      ],
+      "hold": 0.6,
+      "clip": {
+        "tts": {
+          "text": "exhausted",
+          "voice": "af_heart",
+          "speed": 1.0
+        },
+        "ja": "くたくた・疲れ切った"
+      }
+    },
+    {
+      "id": "answer-slow",
+      "role": "evidence",
+      "why": "ゆっくり版の前振り",
+      "shots": [
+        {
+          "src": "commons:Cozy living room with a gray sofa.jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.2,
+            1.23
+          ],
+          "frame": "fit"
+        }
+      ],
+      "say": "もう一度、ゆっくり。"
+    },
+    {
+      "id": "answer-en-slow",
+      "role": "evidence",
+      "why": "同じ英語をゆっくり（2回目）",
+      "shots": [
+        {
+          "src": "commons:Cozy living room with a gray sofa.jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.23,
+            1.29
+          ],
+          "frame": "fit"
+        }
+      ],
+      "emphasis": [
+        "exhausted"
+      ],
+      "hold": 0.8,
+      "clip": {
+        "tts": {
+          "text": "exhausted",
+          "voice": "af_heart",
+          "speed": 0.72
+        },
+        "ja": "くたくた・疲れ切った"
+      }
+    },
+    {
+      "id": "meaning",
+      "role": "turn",
+      "why": "very との違いを一つ",
+      "shots": [
+        {
+          "src": "commons:Woman stretches at home office desk while working on laptop.jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.1,
+            1.22
+          ],
+          "frame": "fit",
+          "focus": [
+            0.5,
+            0.5
+          ]
+        }
+      ],
+      "sfx": "pop",
+      "emphasis": [
+        "使い切って",
+        "very は付けなくてOK"
+      ],
+      "say": "力を全部使い切って、もう動けない状態です。／それだけで強い言葉なので、／ベリーは付けなくて大丈夫です。",
+      "caption": "力を使い切って、もう動けない／それだけで強い言葉なので／very は付けなくてOK"
+    },
+    {
+      "id": "ex1-intro",
+      "role": "evidence",
+      "why": "例文の場面を一言で",
+      "shots": [
+        {
+          "src": "commons:Cozy living room with a gray sofa.jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.29,
+            1.35
+          ],
+          "frame": "fit"
+        }
+      ],
+      "say": "一日中働いた後に"
+    },
+    {
+      "id": "ex1-en",
+      "role": "evidence",
+      "why": "例文を英語で聞く",
+      "shots": [
+        {
+          "src": "commons:Cozy living room with a gray sofa.jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.35,
+            1.41
+          ],
+          "frame": "fit"
+        }
+      ],
+      "emphasis": [
+        "exhausted"
+      ],
+      "hold": 0.7,
+      "clip": {
+        "tts": {
+          "text": "I'm exhausted. I worked all day.",
+          "voice": "af_heart",
+          "speed": 0.92
+        },
+        "lines": [
+          {
+            "en": "I'm exhausted.",
+            "ja": "もうくたくた"
+          },
+          {
+            "en": "I worked all day.",
+            "ja": "一日中働いたから"
+          }
+        ]
+      }
+    },
+    {
+      "id": "ex2-intro",
+      "role": "evidence",
+      "why": "例文の場面を一言で",
+      "shots": [
+        {
+          "src": "commons:Narita International Airport - Terminal 2 security gate.jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.05,
+            1.11
+          ],
+          "frame": "fit"
+        }
+      ],
+      "say": "旅行から帰ってきて"
+    },
+    {
+      "id": "ex2-en",
+      "role": "escalation",
+      "why": "例文を英語で聞く",
+      "shots": [
+        {
+          "src": "commons:Narita International Airport - Terminal 2 security gate.jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.11,
+            1.17
+          ],
+          "frame": "fit"
+        }
+      ],
+      "emphasis": [
+        "exhausted"
+      ],
+      "hold": 0.7,
+      "clip": {
+        "tts": {
+          "text": "After the trip, we were exhausted.",
+          "voice": "am_michael",
+          "speed": 0.92
+        },
+        "lines": [
+          {
+            "en": "After the trip, we were exhausted.",
+            "ja": "旅行の後、みんな疲れ切っていた"
+          }
+        ]
+      }
+    },
+    {
+      "id": "quiz",
+      "role": "evidence",
+      "why": "自分で言う時間（考える間）",
+      "shots": [
+        {
+          "src": "commons:Dotonbori, Osaka, at night, November 2016.jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.0,
+            1.06
+          ],
+          "frame": "fill",
+          "focus": [
+            0.5,
+            0.5
+          ]
+        }
+      ],
+      "overlay": "言ってみよう",
+      "hold": 3.0,
+      "sfx": "tick",
+      "emphasis": [
+        "くたくた"
+      ],
+      "say": "では問題／マラソンの後、くたくただった／英語で言ってみて"
+    },
+    {
+      "id": "quiz-answer",
+      "role": "turn",
+      "why": "答え合わせ",
+      "shots": [
+        {
+          "src": "commons:Dotonbori, Osaka, at night, November 2016.jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.06,
+            1.12
+          ],
+          "frame": "fill",
+          "focus": [
+            0.5,
+            0.5
+          ]
+        }
+      ],
+      "emphasis": [
+        "exhausted"
+      ],
+      "hold": 0.6,
+      "clip": {
+        "tts": {
+          "text": "I was exhausted after the marathon.",
+          "voice": "af_heart",
+          "speed": 0.9
+        },
+        "ja": "マラソンの後、くたくただった"
+      }
+    },
+    {
+      "id": "recap",
+      "role": "payoff",
+      "why": "冒頭の問いに戻って答えを言い切る",
+      "shots": [
+        {
+          "src": "commons:Cozy living room with a gray sofa.jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.41,
+            1.44
+          ],
+          "frame": "fit"
+        }
+      ],
+      "overlay": "今日の一言",
+      "overlayY": 0.4,
+      "say": "すごく疲れた、をもっと強く言うなら、",
+      "caption": "very tired の代わりに"
+    },
+    {
+      "id": "recap-en",
+      "role": "loop",
+      "why": "最後にもう一度英語を聞いて終わる",
+      "shots": [
+        {
+          "src": "commons:Cozy living room with a gray sofa.jpg",
+          "in": 0,
+          "freeze": true,
+          "zoom": [
+            1.44,
+            1.47
+          ],
+          "frame": "fit"
+        }
+      ],
+      "overlay": "今日の一言",
+      "overlayY": 0.4,
+      "emphasis": [
+        "exhausted"
+      ],
+      "hold": 1.4,
+      "clip": {
+        "tts": {
+          "text": "exhausted",
+          "voice": "af_heart",
+          "speed": 0.95
+        },
+        "ja": "くたくた・疲れ切った"
+      }
+    }
+  ]
+}
