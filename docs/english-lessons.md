@@ -40,13 +40,17 @@ python tools/shorts/shorts.py lesson lessons/<id>.json   # ブリーフを生成
 
 英検1級より上。英検1級の単語集の頻出語は避ける。ネイティブは普通に使うが試験には出にくい語（口語・イディオム・ネイティブも混同する組・強い言い換え）を選ぶ。詳しくは `lessons/BACKLOG.md`。
 
-## 量産の流れ
+## 量産の流れ（2026-10-20〜 全自動）
 
-1. `lessons/BACKLOG.md` から選び、`lessons/<id>.json` を書く（`word` には `memo`＝覚え方・使う場面を入れる。例文は2〜3）。
-2. 何本かまとめて PR にコミットする。Actions「Shorts v3」が `lessons/*.json` の変更を見て台本を自動生成し、まとめてレンダリングする（1本約3分）。
-3. 成果物の `review/contact-sheet.jpg` と `first-frame-phone.png` を見る。英語の誤り、字幕のはみ出し、場面と写真のずれを直す。
-4. 合格した動画を error-english の `publish-queue/pending/NNNN-<id>.request.json` と `<id>.mp4` に入れて main に push する。
-5. error-english の「Publish queued English lessons」が 11:47 / 19:47 JST に順番に公開する（`publish-queue/config.json` の `enabled` / `maxPerDayJst` で制御。公開記録は `publish-queue/published/log.json`）。
+チャンネル主の指示により、人の確認なしで公開まで自動で回る。
+
+1. `lessons/BACKLOG.md` から選び、レッスンの台本（このリポジトリの `lessons/<id>.json` と同じ形式）を書く。
+2. **error-english** の `publish-queue/scripts/NNNN-<id>.json` に置いて main に push する（番号は既存の続き。パターンが連続しないよう並べる）。
+3. error-english の「Publish queued English lessons」が 11:47 / 19:47 JST に次の1本を取り、このリポジトリ（main）の制作ツールでその場で動画を作り、自動チェック（尺20〜120秒、音量、描画の成否）を通ったら公開する。1日最大2本。
+4. 描画やチェックに失敗した台本は `publish-queue/failed/` に理由付きで移る（自動で再挑戦しない）。公開記録は `publish-queue/published/log.json`。
+5. 止めるときは error-english の `publish-queue/config.json` の `enabled` を `false` にする。
+
+台本は公開前に人が見ないので、書く段階で品質を担保する。新しい台本は、まずこのリポジトリの `lessons/` に入れて PR のプレビュー描画で確認してから error-english に送るのが安全。
 
 日本語ナレーション（`say`）に英字があると生成時にエラーになる（VOICEVOX は英語を読めない）。英単語はカタカナで書くか、字幕（`cap`）だけに出す。
 
