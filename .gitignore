@@ -7,3 +7,6 @@ review-package
 *.log
 __pycache__/
 *.pyc
+
+productions/lunar-camera/media/
+productions/lunar-camera/sources.lock.json

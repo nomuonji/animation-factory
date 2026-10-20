@@ -1,0 +1,1868 @@
+[
+  {
+    "file": "media/question.mp4",
+    "duration": 45,
+    "layers": [
+      {
+        "type": "text",
+        "text": "THE CAMERA LEFT ON THE MOON",
+        "x": 50,
+        "y": 27,
+        "size": 17,
+        "color": "#96a7bf"
+      },
+      {
+        "type": "text",
+        "text": "最後の2人が飛び立った。では、撮影者は？",
+        "x": 50,
+        "y": 72,
+        "size": 37,
+        "color": "#edf2f9"
+      },
+      {
+        "type": "line",
+        "x": 50,
+        "y": 132,
+        "x2": 910,
+        "y2": 132,
+        "color": "#96a7bf",
+        "width": 1
+      },
+      {
+        "type": "line",
+        "x": 95,
+        "y": 390,
+        "x2": 865,
+        "y2": 390,
+        "color": "#96a7bf",
+        "width": 3
+      },
+      {
+        "type": "rect",
+        "x": 620,
+        "y": 310,
+        "w": 70,
+        "h": 60,
+        "color": "#f2c774"
+      },
+      {
+        "type": "ellipse",
+        "x": 240,
+        "y": 372,
+        "r": 14,
+        "color": "#54dadd"
+      },
+      {
+        "type": "line",
+        "x": 240,
+        "y": 357,
+        "x2": 240,
+        "y2": 280,
+        "color": "#54dadd",
+        "width": 5
+      },
+      {
+        "type": "rect",
+        "x": 222,
+        "y": 260,
+        "w": 45,
+        "h": 25,
+        "color": "#54dadd"
+      },
+      {
+        "type": "text",
+        "text": "月面に残ったカメラ",
+        "x": 105,
+        "y": 420,
+        "size": 25,
+        "color": "#54dadd"
+      },
+      {
+        "type": "text",
+        "text": "宇宙船の中に2人",
+        "x": 590,
+        "y": 420,
+        "size": 25,
+        "color": "#f2c774"
+      },
+      {
+        "type": "line",
+        "x": 660,
+        "y": 300,
+        "x2": 660,
+        "y2": [
+          [
+            0,
+            300
+          ],
+          [
+            8,
+            190
+          ],
+          [
+            18,
+            150
+          ]
+        ],
+        "color": "#f2c774",
+        "width": 4
+      },
+      {
+        "type": "ellipse",
+        "x": 660,
+        "y": [
+          [
+            0,
+            300
+          ],
+          [
+            8,
+            190
+          ],
+          [
+            18,
+            150
+          ]
+        ],
+        "r": 12,
+        "color": "#f2c774"
+      },
+      {
+        "type": "text",
+        "text": "撮影地点と、帰る人は別の場所",
+        "x": 300,
+        "y": 185,
+        "size": 28,
+        "color": "#edf2f9",
+        "from": 12
+      },
+      {
+        "type": "text",
+        "text": "解説用の模式図 ／ 距離・大きさ・運動は縮尺どおりではありません",
+        "x": 50,
+        "y": 485,
+        "size": 18,
+        "color": "#96a7bf"
+      }
+    ]
+  },
+  {
+    "file": "media/system.mp4",
+    "duration": 45,
+    "layers": [
+      {
+        "type": "text",
+        "text": "THE CAMERA LEFT ON THE MOON",
+        "x": 50,
+        "y": 27,
+        "size": 17,
+        "color": "#96a7bf"
+      },
+      {
+        "type": "text",
+        "text": "月面のテレビは、車の上に載っていた",
+        "x": 50,
+        "y": 72,
+        "size": 37,
+        "color": "#edf2f9"
+      },
+      {
+        "type": "line",
+        "x": 50,
+        "y": 132,
+        "x2": 910,
+        "y2": 132,
+        "color": "#96a7bf",
+        "width": 1
+      },
+      {
+        "type": "line",
+        "x": 80,
+        "y": 400,
+        "x2": 880,
+        "y2": 400,
+        "color": "#96a7bf",
+        "width": 3
+      },
+      {
+        "type": "rect",
+        "x": 340,
+        "y": 325,
+        "w": 245,
+        "h": 28,
+        "color": "#96a7bf"
+      },
+      {
+        "type": "ellipse",
+        "x": 380,
+        "y": 375,
+        "r": 30,
+        "color": "#96a7bf"
+      },
+      {
+        "type": "ellipse",
+        "x": 540,
+        "y": 375,
+        "r": 30,
+        "color": "#96a7bf"
+      },
+      {
+        "type": "line",
+        "x": 400,
+        "y": 325,
+        "x2": 400,
+        "y2": 245,
+        "color": "#54dadd",
+        "width": 5
+      },
+      {
+        "type": "rect",
+        "x": 382,
+        "y": 210,
+        "w": 65,
+        "h": 35,
+        "color": "#54dadd"
+      },
+      {
+        "type": "line",
+        "x": 447,
+        "y": 225,
+        "x2": 490,
+        "y2": 210,
+        "color": "#54dadd",
+        "width": 4
+      },
+      {
+        "type": "line",
+        "x": 550,
+        "y": 325,
+        "x2": 550,
+        "y2": 195,
+        "color": "#f2c774",
+        "width": 4
+      },
+      {
+        "type": "line",
+        "x": 525,
+        "y": 190,
+        "x2": 575,
+        "y2": 190,
+        "color": "#f2c774",
+        "width": 6
+      },
+      {
+        "type": "text",
+        "text": "TVカメラ",
+        "x": 230,
+        "y": 180,
+        "size": 26,
+        "color": "#54dadd"
+      },
+      {
+        "type": "text",
+        "text": "高利得アンテナ",
+        "x": 580,
+        "y": 190,
+        "size": 26,
+        "color": "#f2c774"
+      },
+      {
+        "type": "text",
+        "text": "月面車（ローバー）",
+        "x": 335,
+        "y": 420,
+        "size": 27,
+        "color": "#edf2f9"
+      },
+      {
+        "type": "ellipse",
+        "x": [
+          [
+            0,
+            570
+          ],
+          [
+            4,
+            850
+          ],
+          [
+            5,
+            570
+          ],
+          [
+            9,
+            850
+          ],
+          [
+            10,
+            570
+          ],
+          [
+            14,
+            850
+          ],
+          [
+            15,
+            570
+          ],
+          [
+            19,
+            850
+          ]
+        ],
+        "y": 165,
+        "r": 6,
+        "color": "#f2c774"
+      },
+      {
+        "type": "text",
+        "text": "解説用の模式図 ／ 距離・大きさ・運動は縮尺どおりではありません",
+        "x": 50,
+        "y": 485,
+        "size": 18,
+        "color": "#96a7bf"
+      }
+    ]
+  },
+  {
+    "file": "media/controls.mp4",
+    "duration": 45,
+    "layers": [
+      {
+        "type": "text",
+        "text": "THE CAMERA LEFT ON THE MOON",
+        "x": 50,
+        "y": 27,
+        "size": 17,
+        "color": "#96a7bf"
+      },
+      {
+        "type": "text",
+        "text": "地球から動かせたのは、向きだけではない",
+        "x": 50,
+        "y": 72,
+        "size": 37,
+        "color": "#edf2f9"
+      },
+      {
+        "type": "line",
+        "x": 50,
+        "y": 132,
+        "x2": 910,
+        "y2": 132,
+        "color": "#96a7bf",
+        "width": 1
+      },
+      {
+        "type": "text",
+        "text": "横を向く",
+        "x": 80,
+        "y": 185,
+        "size": 28,
+        "color": "#54dadd"
+      },
+      {
+        "type": "line",
+        "x": 80,
+        "y": 245,
+        "x2": 400,
+        "y2": 245,
+        "color": "#96a7bf",
+        "width": 3
+      },
+      {
+        "type": "ellipse",
+        "x": [
+          [
+            0,
+            100
+          ],
+          [
+            5,
+            370
+          ],
+          [
+            10,
+            100
+          ],
+          [
+            15,
+            370
+          ]
+        ],
+        "y": 245,
+        "r": 8,
+        "color": "#54dadd"
+      },
+      {
+        "type": "text",
+        "text": "上下を向く",
+        "x": 540,
+        "y": 185,
+        "size": 28,
+        "color": "#f2c774"
+      },
+      {
+        "type": "line",
+        "x": 580,
+        "y": 230,
+        "x2": 580,
+        "y2": 385,
+        "color": "#96a7bf",
+        "width": 3
+      },
+      {
+        "type": "ellipse",
+        "x": 580,
+        "y": [
+          [
+            0,
+            240
+          ],
+          [
+            5,
+            375
+          ],
+          [
+            10,
+            240
+          ],
+          [
+            15,
+            375
+          ]
+        ],
+        "r": 8,
+        "color": "#f2c774"
+      },
+      {
+        "type": "text",
+        "text": "ズーム・明るさ・電源も遠隔操作",
+        "x": 90,
+        "y": 410,
+        "size": 30,
+        "color": "#edf2f9",
+        "from": 8
+      },
+      {
+        "type": "text",
+        "text": "解説用の模式図 ／ 距離・大きさ・運動は縮尺どおりではありません",
+        "x": 50,
+        "y": 485,
+        "size": 18,
+        "color": "#96a7bf"
+      }
+    ]
+  },
+  {
+    "file": "media/outbound.mp4",
+    "duration": 45,
+    "layers": [
+      {
+        "type": "text",
+        "text": "THE CAMERA LEFT ON THE MOON",
+        "x": 50,
+        "y": 27,
+        "size": 17,
+        "color": "#96a7bf"
+      },
+      {
+        "type": "text",
+        "text": "操作した瞬間には、まだ月に届いていない",
+        "x": 50,
+        "y": 72,
+        "size": 37,
+        "color": "#edf2f9"
+      },
+      {
+        "type": "line",
+        "x": 50,
+        "y": 132,
+        "x2": 910,
+        "y2": 132,
+        "color": "#96a7bf",
+        "width": 1
+      },
+      {
+        "type": "ellipse",
+        "x": 170,
+        "y": 280,
+        "r": 55,
+        "color": "#54dadd"
+      },
+      {
+        "type": "ellipse",
+        "x": 790,
+        "y": 280,
+        "r": 36,
+        "color": "#96a7bf"
+      },
+      {
+        "type": "text",
+        "text": "地球",
+        "x": 132,
+        "y": 355,
+        "size": 30,
+        "color": "#54dadd"
+      },
+      {
+        "type": "text",
+        "text": "月",
+        "x": 773,
+        "y": 355,
+        "size": 30,
+        "color": "#edf2f9"
+      },
+      {
+        "type": "line",
+        "x": 245,
+        "y": 280,
+        "x2": 725,
+        "y2": 280,
+        "color": "#96a7bf",
+        "width": 3
+      },
+      {
+        "type": "ellipse",
+        "x": [
+          [
+            0,
+            245
+          ],
+          [
+            2.6,
+            725
+          ],
+          [
+            6,
+            725
+          ],
+          [
+            6.01,
+            245
+          ],
+          [
+            8.61,
+            725
+          ],
+          [
+            12,
+            725
+          ],
+          [
+            12.01,
+            245
+          ],
+          [
+            14.61,
+            725
+          ]
+        ],
+        "y": 280,
+        "r": 10,
+        "color": "#f2c774"
+      },
+      {
+        "type": "text",
+        "text": "操作命令 →",
+        "x": 385,
+        "y": 205,
+        "size": 30,
+        "color": "#f2c774"
+      },
+      {
+        "type": "text",
+        "text": "電波も無限には速くない",
+        "x": 290,
+        "y": 415,
+        "size": 28,
+        "color": "#edf2f9"
+      },
+      {
+        "type": "text",
+        "text": "解説用の模式図 ／ 距離・大きさ・運動は縮尺どおりではありません",
+        "x": 50,
+        "y": 485,
+        "size": 18,
+        "color": "#96a7bf"
+      }
+    ]
+  },
+  {
+    "file": "media/roundtrip.mp4",
+    "duration": 45,
+    "layers": [
+      {
+        "type": "text",
+        "text": "THE CAMERA LEFT ON THE MOON",
+        "x": 50,
+        "y": 27,
+        "size": 17,
+        "color": "#96a7bf"
+      },
+      {
+        "type": "text",
+        "text": "見てから直すと、往復の遅れになる",
+        "x": 50,
+        "y": 72,
+        "size": 37,
+        "color": "#edf2f9"
+      },
+      {
+        "type": "line",
+        "x": 50,
+        "y": 132,
+        "x2": 910,
+        "y2": 132,
+        "color": "#96a7bf",
+        "width": 1
+      },
+      {
+        "type": "text",
+        "text": "月面で起きる",
+        "x": 80,
+        "y": 190,
+        "size": 26,
+        "color": "#f2c774"
+      },
+      {
+        "type": "text",
+        "text": "地球で見る",
+        "x": 600,
+        "y": 190,
+        "size": 26,
+        "color": "#54dadd"
+      },
+      {
+        "type": "line",
+        "x": 180,
+        "y": 270,
+        "x2": 760,
+        "y2": 270,
+        "color": "#96a7bf",
+        "width": 3
+      },
+      {
+        "type": "ellipse",
+        "x": [
+          [
+            0,
+            180
+          ],
+          [
+            3,
+            760
+          ],
+          [
+            6,
+            180
+          ],
+          [
+            9,
+            760
+          ],
+          [
+            12,
+            180
+          ],
+          [
+            15,
+            760
+          ]
+        ],
+        "y": 270,
+        "r": 12,
+        "color": "#f2c774"
+      },
+      {
+        "type": "text",
+        "text": "映像が届く → 判断する → 命令が戻る",
+        "x": 125,
+        "y": 365,
+        "size": 29,
+        "color": "#edf2f9"
+      },
+      {
+        "type": "text",
+        "text": "片道の遅れ × 2 ＋ 人・機器の応答時間",
+        "x": 125,
+        "y": 415,
+        "size": 26,
+        "color": "#96a7bf"
+      },
+      {
+        "type": "text",
+        "text": "解説用の模式図 ／ 距離・大きさ・運動は縮尺どおりではありません",
+        "x": 50,
+        "y": 485,
+        "size": 18,
+        "color": "#96a7bf"
+      }
+    ]
+  },
+  {
+    "file": "media/delay.mp4",
+    "duration": 45,
+    "layers": [
+      {
+        "type": "text",
+        "text": "THE CAMERA LEFT ON THE MOON",
+        "x": 50,
+        "y": 27,
+        "size": 17,
+        "color": "#96a7bf"
+      },
+      {
+        "type": "text",
+        "text": "遅れて届く画面は、「今」ではない",
+        "x": 50,
+        "y": 72,
+        "size": 37,
+        "color": "#edf2f9"
+      },
+      {
+        "type": "line",
+        "x": 50,
+        "y": 132,
+        "x2": 910,
+        "y2": 132,
+        "color": "#96a7bf",
+        "width": 1
+      },
+      {
+        "type": "rect",
+        "x": 80,
+        "y": 195,
+        "w": 325,
+        "h": 200,
+        "color": "#96a7bf"
+      },
+      {
+        "type": "rect",
+        "x": 550,
+        "y": 195,
+        "w": 325,
+        "h": 200,
+        "color": "#96a7bf"
+      },
+      {
+        "type": "text",
+        "text": "月面：現在",
+        "x": 105,
+        "y": 210,
+        "size": 25,
+        "color": "#edf2f9"
+      },
+      {
+        "type": "text",
+        "text": "地球の画面：過去",
+        "x": 575,
+        "y": 210,
+        "size": 25,
+        "color": "#edf2f9"
+      },
+      {
+        "type": "ellipse",
+        "x": [
+          [
+            0,
+            120
+          ],
+          [
+            8,
+            370
+          ],
+          [
+            16,
+            120
+          ],
+          [
+            24,
+            370
+          ]
+        ],
+        "y": 325,
+        "r": 15,
+        "color": "#f2c774"
+      },
+      {
+        "type": "ellipse",
+        "x": [
+          [
+            0,
+            590
+          ],
+          [
+            2,
+            590
+          ],
+          [
+            10,
+            840
+          ],
+          [
+            18,
+            590
+          ],
+          [
+            26,
+            840
+          ]
+        ],
+        "y": 325,
+        "r": 15,
+        "color": "#f2c774"
+      },
+      {
+        "type": "text",
+        "text": "追いかける操作ほど、ずれが積み重なる",
+        "x": 140,
+        "y": 430,
+        "size": 28,
+        "color": "#54dadd"
+      },
+      {
+        "type": "text",
+        "text": "解説用の模式図 ／ 距離・大きさ・運動は縮尺どおりではありません",
+        "x": 50,
+        "y": 485,
+        "size": 18,
+        "color": "#96a7bf"
+      }
+    ]
+  },
+  {
+    "file": "media/zoom.mp4",
+    "duration": 45,
+    "layers": [
+      {
+        "type": "text",
+        "text": "THE CAMERA LEFT ON THE MOON",
+        "x": 50,
+        "y": 27,
+        "size": 17,
+        "color": "#96a7bf"
+      },
+      {
+        "type": "text",
+        "text": "追いかける前に、まず画角を広げる",
+        "x": 50,
+        "y": 72,
+        "size": 37,
+        "color": "#edf2f9"
+      },
+      {
+        "type": "line",
+        "x": 50,
+        "y": 132,
+        "x2": 910,
+        "y2": 132,
+        "color": "#96a7bf",
+        "width": 1
+      },
+      {
+        "type": "rect",
+        "x": [
+          [
+            0,
+            330
+          ],
+          [
+            7,
+            160
+          ],
+          [
+            20,
+            160
+          ]
+        ],
+        "y": [
+          [
+            0,
+            200
+          ],
+          [
+            7,
+            175
+          ],
+          [
+            20,
+            175
+          ]
+        ],
+        "w": [
+          [
+            0,
+            300
+          ],
+          [
+            7,
+            640
+          ],
+          [
+            20,
+            640
+          ]
+        ],
+        "h": [
+          [
+            0,
+            200
+          ],
+          [
+            7,
+            245
+          ],
+          [
+            20,
+            245
+          ]
+        ],
+        "color": "#96a7bf"
+      },
+      {
+        "type": "ellipse",
+        "x": [
+          [
+            0,
+            420
+          ],
+          [
+            5,
+            550
+          ],
+          [
+            10,
+            730
+          ],
+          [
+            15,
+            650
+          ],
+          [
+            23,
+            340
+          ]
+        ],
+        "y": 310,
+        "r": 15,
+        "color": "#f2c774"
+      },
+      {
+        "type": "text",
+        "text": "動き始めた人",
+        "x": 620,
+        "y": 160,
+        "size": 25,
+        "color": "#f2c774"
+      },
+      {
+        "type": "text",
+        "text": "狭い画角：すぐ外れる",
+        "x": 80,
+        "y": 440,
+        "size": 25,
+        "color": "#edf2f9",
+        "until": 7
+      },
+      {
+        "type": "text",
+        "text": "広い画角：次の動きを待てる",
+        "x": 80,
+        "y": 440,
+        "size": 25,
+        "color": "#54dadd",
+        "from": 7
+      },
+      {
+        "type": "text",
+        "text": "解説用の模式図 ／ 距離・大きさ・運動は縮尺どおりではありません",
+        "x": 50,
+        "y": 485,
+        "size": 18,
+        "color": "#96a7bf"
+      }
+    ]
+  },
+  {
+    "file": "media/geometry.mp4",
+    "duration": 45,
+    "layers": [
+      {
+        "type": "text",
+        "text": "THE CAMERA LEFT ON THE MOON",
+        "x": 50,
+        "y": 27,
+        "size": 17,
+        "color": "#96a7bf"
+      },
+      {
+        "type": "text",
+        "text": "駐車位置が変わると、必要な角度も変わる",
+        "x": 50,
+        "y": 72,
+        "size": 37,
+        "color": "#edf2f9"
+      },
+      {
+        "type": "line",
+        "x": 50,
+        "y": 132,
+        "x2": 910,
+        "y2": 132,
+        "color": "#96a7bf",
+        "width": 1
+      },
+      {
+        "type": "line",
+        "x": 100,
+        "y": 400,
+        "x2": 875,
+        "y2": 400,
+        "color": "#96a7bf",
+        "width": 3
+      },
+      {
+        "type": "rect",
+        "x": 735,
+        "y": 335,
+        "w": 48,
+        "h": 50,
+        "color": "#f2c774"
+      },
+      {
+        "type": "ellipse",
+        "x": 200,
+        "y": 385,
+        "r": 10,
+        "color": "#54dadd"
+      },
+      {
+        "type": "ellipse",
+        "x": 540,
+        "y": 385,
+        "r": 10,
+        "color": "#ef8e89"
+      },
+      {
+        "type": "line",
+        "x": 200,
+        "y": 385,
+        "x2": 760,
+        "y2": [
+          [
+            0,
+            335
+          ],
+          [
+            20,
+            160
+          ]
+        ],
+        "color": "#54dadd",
+        "width": 3
+      },
+      {
+        "type": "line",
+        "x": 540,
+        "y": 385,
+        "x2": 760,
+        "y2": [
+          [
+            0,
+            335
+          ],
+          [
+            20,
+            160
+          ]
+        ],
+        "color": "#ef8e89",
+        "width": 3
+      },
+      {
+        "type": "ellipse",
+        "x": 760,
+        "y": [
+          [
+            0,
+            335
+          ],
+          [
+            20,
+            160
+          ]
+        ],
+        "r": 12,
+        "color": "#f2c774"
+      },
+      {
+        "type": "text",
+        "text": "遠いカメラ",
+        "x": 80,
+        "y": 420,
+        "size": 26,
+        "color": "#54dadd"
+      },
+      {
+        "type": "text",
+        "text": "近いカメラ",
+        "x": 430,
+        "y": 420,
+        "size": 26,
+        "color": "#ef8e89"
+      },
+      {
+        "type": "text",
+        "text": "同じ高さでも、近いほうが大きく上を向く",
+        "x": 100,
+        "y": 190,
+        "size": 26,
+        "color": "#edf2f9"
+      },
+      {
+        "type": "text",
+        "text": "解説用の模式図 ／ 距離・大きさ・運動は縮尺どおりではありません",
+        "x": 50,
+        "y": 485,
+        "size": 18,
+        "color": "#96a7bf"
+      }
+    ]
+  },
+  {
+    "file": "media/distance.mp4",
+    "duration": 45,
+    "layers": [
+      {
+        "type": "text",
+        "text": "THE CAMERA LEFT ON THE MOON",
+        "x": 50,
+        "y": 27,
+        "size": 17,
+        "color": "#96a7bf"
+      },
+      {
+        "type": "text",
+        "text": "位置合わせも、撮影の準備だった",
+        "x": 50,
+        "y": 72,
+        "size": 37,
+        "color": "#edf2f9"
+      },
+      {
+        "type": "line",
+        "x": 50,
+        "y": 132,
+        "x2": 910,
+        "y2": 132,
+        "color": "#96a7bf",
+        "width": 1
+      },
+      {
+        "type": "line",
+        "x": 130,
+        "y": 345,
+        "x2": 830,
+        "y2": 345,
+        "color": "#96a7bf",
+        "width": 3
+      },
+      {
+        "type": "rect",
+        "x": 690,
+        "y": 270,
+        "w": 65,
+        "h": 65,
+        "color": "#f2c774"
+      },
+      {
+        "type": "rect",
+        "x": 180,
+        "y": 300,
+        "w": 70,
+        "h": 35,
+        "color": "#54dadd"
+      },
+      {
+        "type": "text",
+        "text": "カメラ",
+        "x": 155,
+        "y": 385,
+        "size": 26,
+        "color": "#54dadd"
+      },
+      {
+        "type": "text",
+        "text": "月着陸船",
+        "x": 660,
+        "y": 385,
+        "size": 26,
+        "color": "#f2c774"
+      },
+      {
+        "type": "line",
+        "x": 250,
+        "y": 365,
+        "x2": 690,
+        "y2": 365,
+        "color": "#96a7bf",
+        "width": 3
+      },
+      {
+        "type": "text",
+        "text": "離陸の軌道 ＋ ローバーの位置 ＋ カメラの角度",
+        "x": 90,
+        "y": 175,
+        "size": 28,
+        "color": "#edf2f9"
+      },
+      {
+        "type": "text",
+        "text": "画面の外にも、撮影条件がある",
+        "x": 235,
+        "y": 430,
+        "size": 29,
+        "color": "#54dadd",
+        "from": 7
+      },
+      {
+        "type": "text",
+        "text": "解説用の模式図 ／ 距離・大きさ・運動は縮尺どおりではありません",
+        "x": 50,
+        "y": 485,
+        "size": 18,
+        "color": "#96a7bf"
+      }
+    ]
+  },
+  {
+    "file": "media/history.mp4",
+    "duration": 45,
+    "layers": [
+      {
+        "type": "text",
+        "text": "THE CAMERA LEFT ON THE MOON",
+        "x": 50,
+        "y": 27,
+        "size": 17,
+        "color": "#96a7bf"
+      },
+      {
+        "type": "text",
+        "text": "離陸を追う撮影は、最初から簡単ではなかった",
+        "x": 50,
+        "y": 72,
+        "size": 37,
+        "color": "#edf2f9"
+      },
+      {
+        "type": "line",
+        "x": 50,
+        "y": 132,
+        "x2": 910,
+        "y2": 132,
+        "color": "#96a7bf",
+        "width": 1
+      },
+      {
+        "type": "line",
+        "x": 130,
+        "y": 280,
+        "x2": 830,
+        "y2": 280,
+        "color": "#96a7bf",
+        "width": 3
+      },
+      {
+        "type": "ellipse",
+        "x": 170,
+        "y": 280,
+        "r": 14,
+        "color": "#96a7bf"
+      },
+      {
+        "type": "ellipse",
+        "x": 480,
+        "y": 280,
+        "r": 14,
+        "color": "#f2c774"
+      },
+      {
+        "type": "ellipse",
+        "x": 790,
+        "y": 280,
+        "r": 14,
+        "color": "#54dadd"
+      },
+      {
+        "type": "text",
+        "text": "APOLLO 15",
+        "x": 90,
+        "y": 195,
+        "size": 26,
+        "color": "#96a7bf"
+      },
+      {
+        "type": "text",
+        "text": "APOLLO 16",
+        "x": 400,
+        "y": 195,
+        "size": 26,
+        "color": "#f2c774"
+      },
+      {
+        "type": "text",
+        "text": "APOLLO 17",
+        "x": 710,
+        "y": 195,
+        "size": 26,
+        "color": "#54dadd"
+      },
+      {
+        "type": "text",
+        "text": "首振り機構の問題",
+        "x": 65,
+        "y": 325,
+        "size": 24,
+        "color": "#96a7bf"
+      },
+      {
+        "type": "text",
+        "text": "追跡に苦戦",
+        "x": 410,
+        "y": 325,
+        "size": 24,
+        "color": "#f2c774"
+      },
+      {
+        "type": "text",
+        "text": "時刻で先回り",
+        "x": 710,
+        "y": 325,
+        "size": 24,
+        "color": "#54dadd"
+      },
+      {
+        "type": "line",
+        "x": 170,
+        "y": 280,
+        "x2": [
+          [
+            0,
+            170
+          ],
+          [
+            22,
+            790
+          ]
+        ],
+        "y2": 280,
+        "color": "#54dadd",
+        "width": 5
+      },
+      {
+        "type": "text",
+        "text": "解説用の模式図 ／ 距離・大きさ・運動は縮尺どおりではありません",
+        "x": 50,
+        "y": 485,
+        "size": 18,
+        "color": "#96a7bf"
+      }
+    ]
+  },
+  {
+    "file": "media/clock.mp4",
+    "duration": 45,
+    "layers": [
+      {
+        "type": "text",
+        "text": "THE CAMERA LEFT ON THE MOON",
+        "x": 50,
+        "y": 27,
+        "size": 17,
+        "color": "#96a7bf"
+      },
+      {
+        "type": "text",
+        "text": "本番で見ていたのは、画面ではなく時計",
+        "x": 50,
+        "y": 72,
+        "size": 37,
+        "color": "#edf2f9"
+      },
+      {
+        "type": "line",
+        "x": 50,
+        "y": 132,
+        "x2": 910,
+        "y2": 132,
+        "color": "#96a7bf",
+        "width": 1
+      },
+      {
+        "type": "clock",
+        "x": 80,
+        "y": 185,
+        "seconds": [
+          [
+            0,
+            -10
+          ],
+          [
+            10,
+            0
+          ],
+          [
+            25,
+            15
+          ]
+        ],
+        "size": 80,
+        "color": "#f2c774"
+      },
+      {
+        "type": "line",
+        "x": 80,
+        "y": 350,
+        "x2": 875,
+        "y2": 350,
+        "color": "#96a7bf",
+        "width": 3
+      },
+      {
+        "type": "ellipse",
+        "x": 470,
+        "y": 350,
+        "r": 10,
+        "color": "#ef8e89"
+      },
+      {
+        "type": "text",
+        "text": "離陸",
+        "x": 440,
+        "y": 380,
+        "size": 25,
+        "color": "#ef8e89"
+      },
+      {
+        "type": "ellipse",
+        "x": [
+          [
+            0,
+            120
+          ],
+          [
+            25,
+            840
+          ]
+        ],
+        "y": 350,
+        "r": 12,
+        "color": "#54dadd"
+      },
+      {
+        "type": "text",
+        "text": "最初の命令",
+        "x": 80,
+        "y": 420,
+        "size": 27,
+        "color": "#54dadd",
+        "from": 7
+      },
+      {
+        "type": "text",
+        "text": "担当者の回想：離陸3秒前に送信",
+        "x": 490,
+        "y": 220,
+        "size": 26,
+        "color": "#edf2f9",
+        "from": 7
+      },
+      {
+        "type": "text",
+        "text": "解説用の模式図 ／ 距離・大きさ・運動は縮尺どおりではありません",
+        "x": 50,
+        "y": 485,
+        "size": 18,
+        "color": "#96a7bf"
+      }
+    ]
+  },
+  {
+    "file": "media/commands.mp4",
+    "duration": 45,
+    "layers": [
+      {
+        "type": "text",
+        "text": "THE CAMERA LEFT ON THE MOON",
+        "x": 50,
+        "y": 27,
+        "size": 17,
+        "color": "#96a7bf"
+      },
+      {
+        "type": "text",
+        "text": "「今見えたもの」への反応ではなく、先の予定",
+        "x": 50,
+        "y": 72,
+        "size": 37,
+        "color": "#edf2f9"
+      },
+      {
+        "type": "line",
+        "x": 50,
+        "y": 132,
+        "x2": 910,
+        "y2": 132,
+        "color": "#96a7bf",
+        "width": 1
+      },
+      {
+        "type": "text",
+        "text": "時計",
+        "x": 90,
+        "y": 180,
+        "size": 27,
+        "color": "#f2c774"
+      },
+      {
+        "type": "text",
+        "text": "決めた操作を送る",
+        "x": 395,
+        "y": 180,
+        "size": 27,
+        "color": "#54dadd"
+      },
+      {
+        "type": "text",
+        "text": "月面で動く",
+        "x": 690,
+        "y": 180,
+        "size": 27,
+        "color": "#edf2f9"
+      },
+      {
+        "type": "line",
+        "x": 150,
+        "y": 280,
+        "x2": 800,
+        "y2": 280,
+        "color": "#96a7bf",
+        "width": 3
+      },
+      {
+        "type": "ellipse",
+        "x": [
+          [
+            0,
+            150
+          ],
+          [
+            6,
+            460
+          ],
+          [
+            12,
+            800
+          ],
+          [
+            13,
+            150
+          ],
+          [
+            19,
+            460
+          ],
+          [
+            25,
+            800
+          ]
+        ],
+        "y": 280,
+        "r": 12,
+        "color": "#f2c774"
+      },
+      {
+        "type": "text",
+        "text": "カメラの運動を、上昇する船に重ねる",
+        "x": 145,
+        "y": 365,
+        "size": 31,
+        "color": "#edf2f9"
+      },
+      {
+        "type": "text",
+        "text": "この図は原理の説明。実際の操作ログの再現ではありません",
+        "x": 85,
+        "y": 430,
+        "size": 22,
+        "color": "#96a7bf"
+      },
+      {
+        "type": "text",
+        "text": "解説用の模式図 ／ 距離・大きさ・運動は縮尺どおりではありません",
+        "x": 50,
+        "y": 485,
+        "size": 18,
+        "color": "#96a7bf"
+      }
+    ]
+  },
+  {
+    "file": "media/stages.mp4",
+    "duration": 45,
+    "layers": [
+      {
+        "type": "text",
+        "text": "THE CAMERA LEFT ON THE MOON",
+        "x": 50,
+        "y": 27,
+        "size": 17,
+        "color": "#96a7bf"
+      },
+      {
+        "type": "text",
+        "text": "飛び立つのは上半分。下半分は月に残る",
+        "x": 50,
+        "y": 72,
+        "size": 37,
+        "color": "#edf2f9"
+      },
+      {
+        "type": "line",
+        "x": 50,
+        "y": 132,
+        "x2": 910,
+        "y2": 132,
+        "color": "#96a7bf",
+        "width": 1
+      },
+      {
+        "type": "rect",
+        "x": 510,
+        "y": 330,
+        "w": 200,
+        "h": 65,
+        "color": "#96a7bf"
+      },
+      {
+        "type": "rect",
+        "x": 540,
+        "y": [
+          [
+            0,
+            260
+          ],
+          [
+            18,
+            160
+          ]
+        ],
+        "w": 140,
+        "h": 60,
+        "color": "#f2c774"
+      },
+      {
+        "type": "line",
+        "x": 400,
+        "y": 400,
+        "x2": 830,
+        "y2": 400,
+        "color": "#96a7bf",
+        "width": 3
+      },
+      {
+        "type": "text",
+        "text": "上昇段",
+        "x": 170,
+        "y": 220,
+        "size": 32,
+        "color": "#f2c774"
+      },
+      {
+        "type": "line",
+        "x": 300,
+        "y": 245,
+        "x2": 540,
+        "y2": [
+          [
+            0,
+            290
+          ],
+          [
+            18,
+            190
+          ]
+        ],
+        "color": "#f2c774",
+        "width": 3
+      },
+      {
+        "type": "text",
+        "text": "下降段",
+        "x": 170,
+        "y": 345,
+        "size": 32,
+        "color": "#96a7bf"
+      },
+      {
+        "type": "line",
+        "x": 300,
+        "y": 370,
+        "x2": 510,
+        "y2": 370,
+        "color": "#96a7bf",
+        "width": 3
+      },
+      {
+        "type": "text",
+        "text": "カメラは帰る船の外にある",
+        "x": 170,
+        "y": 440,
+        "size": 28,
+        "color": "#54dadd"
+      },
+      {
+        "type": "text",
+        "text": "解説用の模式図 ／ 距離・大きさ・運動は縮尺どおりではありません",
+        "x": 50,
+        "y": 485,
+        "size": 18,
+        "color": "#96a7bf"
+      }
+    ]
+  },
+  {
+    "file": "media/ending.mp4",
+    "duration": 45,
+    "layers": [
+      {
+        "type": "text",
+        "text": "THE CAMERA LEFT ON THE MOON",
+        "x": 50,
+        "y": 27,
+        "size": 17,
+        "color": "#96a7bf"
+      },
+      {
+        "type": "text",
+        "text": "帰る人を見送って、カメラだけが残った",
+        "x": 50,
+        "y": 72,
+        "size": 37,
+        "color": "#edf2f9"
+      },
+      {
+        "type": "line",
+        "x": 50,
+        "y": 132,
+        "x2": 910,
+        "y2": 132,
+        "color": "#96a7bf",
+        "width": 1
+      },
+      {
+        "type": "line",
+        "x": 100,
+        "y": 400,
+        "x2": 870,
+        "y2": 400,
+        "color": "#96a7bf",
+        "width": 3
+      },
+      {
+        "type": "rect",
+        "x": 220,
+        "y": 350,
+        "w": 55,
+        "h": 30,
+        "color": "#54dadd"
+      },
+      {
+        "type": "line",
+        "x": 245,
+        "y": 350,
+        "x2": 245,
+        "y2": 300,
+        "color": "#54dadd",
+        "width": 4
+      },
+      {
+        "type": "ellipse",
+        "x": 720,
+        "y": [
+          [
+            0,
+            300
+          ],
+          [
+            20,
+            160
+          ]
+        ],
+        "r": [
+          [
+            0,
+            10
+          ],
+          [
+            20,
+            3
+          ]
+        ],
+        "color": "#f2c774"
+      },
+      {
+        "type": "line",
+        "x": 245,
+        "y": 310,
+        "x2": 720,
+        "y2": [
+          [
+            0,
+            300
+          ],
+          [
+            20,
+            160
+          ]
+        ],
+        "color": "#96a7bf",
+        "width": 2
+      },
+      {
+        "type": "text",
+        "text": "月面のカメラ",
+        "x": 140,
+        "y": 430,
+        "size": 27,
+        "color": "#54dadd"
+      },
+      {
+        "type": "text",
+        "text": "地球からの操作",
+        "x": 510,
+        "y": 430,
+        "size": 27,
+        "color": "#f2c774"
+      },
+      {
+        "type": "text",
+        "text": "誰かが月に残ったわけではない",
+        "x": 150,
+        "y": 180,
+        "size": 33,
+        "color": "#edf2f9"
+      },
+      {
+        "type": "text",
+        "text": "解説用の模式図 ／ 距離・大きさ・運動は縮尺どおりではありません",
+        "x": 50,
+        "y": 485,
+        "size": 18,
+        "color": "#96a7bf"
+      }
+    ]
+  }
+]

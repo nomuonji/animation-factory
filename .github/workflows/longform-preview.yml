@@ -1,0 +1,74 @@
+name: Long-form film preview
+on:
+  pull_request:
+    paths:
+      - 'productions/**/longform.json'
+      - 'productions/**/graphics.json'
+      - 'productions/**/media-manifest.json'
+      - '.github/workflows/longform-preview.yml'
+permissions:
+  contents: read
+concurrency:
+  group: longform-film-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  film:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Media dependencies
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg fonts-noto-cjk
+          pip install numpy pillow opencv-python-headless
+      - name: Start VOICEVOX
+        run: |
+          docker run -d --rm -p 127.0.0.1:50021:50021 voicevox/voicevox_engine:cpu-latest
+          for i in $(seq 1 120); do curl -fsS http://127.0.0.1:50021/version && exit 0; sleep 2; done
+          exit 1
+      - name: Render changed long-form films
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p film-artifact
+          mapfile -t SPECS < <(git diff --name-only "$BASE_SHA"...HEAD | grep -E '^productions/[a-z0-9-]+/longform.json$' || true)
+          for spec in "${SPECS[@]}"; do
+            [ -f "$spec" ] || continue
+            python tools/longform/prepare.py "$spec"
+            python - "$spec" <<'PY'
+          import sys
+          sys.path.insert(0,'tools/longform')
+          import longform as L
+          import json,pathlib
+          b=L.load(sys.argv[1]);lock=json.loads((pathlib.Path(b['_dir'])/'sources.lock.json').read_text())
+          total=0
+          with L.landscape(L.PROFILES['final']) as R:
+              for ch in b['chapters']:
+                  tl=R.build_timeline(L.chapter_brief(b,ch),lock)
+                  print(ch['id'],round(tl['total'],2),flush=True)
+                  total+=tl['total']
+          print('TOTAL_SECONDS',total,flush=True)
+          if b.get('minimumDuration') and total < b['minimumDuration']:
+              raise SystemExit('Film below declared minimum duration; revise the content, do not pad it')
+          PY
+            python tools/longform/longform.py render "$spec" --profile final
+            id=$(basename "$(dirname "$spec")")
+            cp -r "outputs/longform/$id/final" "film-artifact/$id"
+          done
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: longform-film-${{ github.event.pull_request.number }}-${{ github.run_attempt }}
+          path: |
+            film-artifact/
+            outputs/longform/
+          if-no-files-found: warn
+          retention-days: 30

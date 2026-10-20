@@ -80,7 +80,8 @@ def load(path):
                 errors = []
                 # Reuse transcription validation; long-form source moments can exceed 20s.
                 B._validate_clip(clip, cid, bt, errors)
-                errors = [e for e in errors if 'keep a real-audio moment under 20s' not in e]
+                errors = [e for e in errors if 'keep a real-audio moment under 20s' not in e
+                          and not (clip.get('captionMode') == 'none' and '.clip.lines: transcribe' in e)]
                 if errors:
                     raise ValueError('\n'.join(errors))
             for sh in bt['shots']:
@@ -364,7 +365,12 @@ def run(path, profile_name='draft', force=False, profile_override=None):
     (out / 'chapters.txt').write_text('\n'.join(chapter_lines) + '\n', encoding='utf-8')
     credits = []
     for ch in b['chapters']:
-        credits.extend(review.credits(chapter_brief(b, ch), lock))
+        cb = chapter_brief(b, ch)
+        credits.extend(line for line in review.credits(cb, lock) if '(own footage)' not in line)
+        for src in sources(cb):
+            m = lock[src]
+            if m['provider'] == 'local':
+                credits.append(f"素材: {m.get('author')} / {m.get('pageUrl', src)} ({m.get('license')})")
     (out / 'description.txt').write_text('\n'.join([b['title'], *b.get('descriptionLines', []), '',
         *chapter_lines, '', *dict.fromkeys(credits)]) + '\n', encoding='utf-8')
     write_json(out / 'sources.lock.json', lock)
