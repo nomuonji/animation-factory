@@ -103,7 +103,7 @@ def build_timeline(b: dict, lock: dict | None) -> dict:
             caps[-1][1] = t + dur  # keep last caption until the cut
         beats.append({"id": bt["id"], "role": bt["role"], "start": t, "duration": dur, "lead": lead,
                       "speech": sp, "captions": caps, "shots": sh_out, "sfx": bt.get("sfx", "none"),
-                      "overlay": bt.get("overlay"), "emphasis": bt.get("emphasis", []),
+                      "overlay": bt.get("overlay"), "overlayY": bt.get("overlayY", HEADLINE_Y), "emphasis": bt.get("emphasis", []),
                       "moraRate": (sp["moras"] / sp["duration"]) if sp["duration"] else 0})
         t += dur
     return {"beats": beats, "total": t}
@@ -281,7 +281,7 @@ def _rich_line(draw, x, y, line, font, emphasis, stroke):
 
 def _render_bilingual(en: str, ja: str, emphasis: list[str]) -> np.ndarray:
     """Original English line (large) with a small Japanese gloss under it."""
-    size = 88 if len(en) <= 22 else 78 if len(en) <= 34 else 70
+    size = 112 if len(en) <= 18 else 88 if len(en) <= 26 else 78 if len(en) <= 34 else 70
     font = _font(FONT_BLACK, size)
     jfont = _font(FONT_BOLD, 54)
     probe = ImageDraw.Draw(Image.new("RGBA", (10, 10)))
@@ -624,7 +624,7 @@ def render(brief_path: str, lock: dict, quick: bool = False) -> dict:
                         break
                 if bt.get("overlay"):
                     ov = texts.headline(bt["overlay"])
-                    _blend(frame, ov, int(H * HEADLINE_Y))
+                    _blend(frame, ov, int(H * float(bt.get("overlayY", HEADLINE_Y))))
                 if sh.get("label"):
                     _blend(frame, texts.label(sh["label"]), 150)
                 if look.get("titleBar"):

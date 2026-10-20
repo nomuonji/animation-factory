@@ -106,6 +106,7 @@ def validate(b: dict) -> None:
              f"{where} needs narration (say), a source clip, or an explicit min duration", e)
         if clip is not None:
             _validate_clip(clip, where, bt, e)
+        _req(0.05 <= float(bt.get("overlayY", 0.15)) <= 0.55, f"{where}.overlayY must be within 0.05..0.55", e)
         _req(bt.get("sfx", "none") in SFX, f"{where}.sfx must be one of {sorted(SFX)}", e)
         shots = bt.get("shots")
         _req(isinstance(shots, list) and len(shots) >= 1, f"{where}.shots needs at least one shot", e)
