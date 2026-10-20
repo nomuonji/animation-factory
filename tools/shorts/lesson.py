@@ -271,7 +271,8 @@ def compile_lesson(spec: dict) -> dict:
             bt.pop("emphasis", None)
     n = spec.get("number")
     series = SERIES[p]
-    title = spec["title"] + (f"【{series} #{n}】" if n else f"【{series}】")
+    lv = f"[{spec['cefr']}] " if spec.get("cefr") else ""
+    title = lv + spec["title"] + (f"【{series} #{n}】" if n else f"【{series}】")
     return {
         "version": 3,
         "id": spec["id"],
@@ -287,7 +288,7 @@ def compile_lesson(spec: dict) -> dict:
                     "payoff": "冒頭の問いに戻って答えの英語を音声と字幕で言い切る"},
         "references": [{"url": r, "watched": False, "note": "意味の根拠（辞書）"} for r in spec.get("sources", [])],
         "voice": {"engine": "voicevox", "speaker": "青山龍星", "style": "ノーマル", "speed": 1.08},
-        "music": {"asset": "safe-space-loop", "gain": 0.08, "duck": 0.3},
+        "music": {"asset": spec.get("music", "flowerbed-fields"), "gain": 0.13, "duck": 0.35},
         "look": {"frame": "fit"},
         "descriptionLines": spec.get("descriptionLines") or _description(spec),
         "beats": beats,
@@ -320,8 +321,130 @@ def _description(spec: dict) -> list[str]:
 
 def write(spec_path: str) -> pathlib.Path:
     spec = json.loads(pathlib.Path(spec_path).read_text(encoding="utf-8"))
+    if spec.get("pattern") == "review":
+        out = ROOT / "productions" / spec["id"] / "longform.json"
+        out.parent.mkdir(parents=True, exist_ok=True)
+        out.write_text(json.dumps(compile_review(spec), ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+        return out
     brief = compile_lesson(spec)
     out = ROOT / "productions" / spec["id"] / "short.json"
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(json.dumps(brief, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     return out
+
+
+# ------------------------------------------------------------------ long-form review
+
+def _lf_beat(id_, why, shots, **kw) -> dict:
+    b = {"id": id_, "why": why, "shots": shots}
+    b.update({k: v for k, v in kw.items() if v is not None})
+    return b
+
+
+KANA_LEVEL = {"A1": "エーワン", "A2": "エーツー", "B1": "ビーワン", "B2": "ビーツー", "C1": "シーワン", "C2": "シーツー"}
+
+
+def compile_review(spec: dict) -> dict:
+    """Long-form (16:9) vocabulary episode, dense tempo (owner feedback 2026-10-20).
+
+    Per word (~15-20 s): number + word + CEFR level on screen, word at normal speed and
+    slowly, one-line meaning (+ optional one-line nuance), examples at natural speed,
+    model pronunciation then a short repeat gap. Recall tests in blocks of 10.
+
+    spec: id, title, number, headline, words[]:
+      {word, pos, ja, cefr, scene, nuance: [items] (optional, keep to one), examples: [{en, ja}]}
+    """
+    shot = _Shots({**spec, "scenes": {}})
+    words = spec["words"]
+    n = len(words)
+
+    def s(tag, step=0.04):
+        sh = shot(tag, step)
+        for x in sh:
+            x["frame"] = "fill"
+            x.pop("focus", None)
+        return sh
+
+    def label(i, w):
+        lv = f"  [{w['cefr']}]" if w.get("cefr") else ""
+        return f"{i}. {w['word']}{lv}"
+
+    chapters = []
+    levels = sorted({w["cefr"] for w in words if w.get("cefr")})
+    intro = spec.get("intro") or [
+        {"cap": f"{'/'.join(levels) or '上級'}レベルの英単語 {n}語",
+         "say": f"{'、'.join(KANA_LEVEL.get(x, x) for x in levels) or '上級'}レベルの英単語を、{n}語。"},
+        "発音、意味、例文をテンポよく確認して、",
+        "最後にテストします。",
+    ]
+    chapters.append({"id": "opening", "title": "はじめに", "purpose": "何を覚える動画かを示す", "beats": [
+        _lf_beat("opening", "語数とレベルと進め方を示す", s(words[0]["scene"]), headline=spec["headline"],
+                 headlineY=.42, **_narr(intro))]})
+
+    def recall_chapter(cid, title, items, lead, offset=0):
+        beats = [_lf_beat(f"{cid}-lead", "思い出すテストの説明", s(items[0]["scene"]), headline="思い出せる？",
+                          headlineY=.42, **_narr(lead))]
+        for i, w in enumerate(items):
+            beats.append(_lf_beat(f"{cid}-q{i}", "日本語から英単語を思い出す（考える間）", s(w["scene"]),
+                                  headline=f"「{w['ja']}」", headlineY=.40, hold=2.0, lead=0.02,
+                                  **_narr([{"cap": f"{offset + i + 1}. 「{w['ja']}」", "say": f"{w['ja']}。"}])))
+            beats.append(_lf_beat(f"{cid}-a{i}", "答え合わせ（英語音声）", s(w["scene"]), headline=w["word"],
+                                  headlineY=.40, hold=0.35, lead=0.02, clip=_tts(w["word"], w["ja"], VOICE_A, 1.0)))
+        return {"id": cid, "title": title, "purpose": "覚えたかを確かめる", "beats": beats}
+
+    for i, w in enumerate(words, 1):
+        sc = w["scene"]
+        hl = label(i, w)
+        nuance = (w.get("nuance") or [])[:1]
+        beats = [
+            _lf_beat(f"w{i}-say", "単語と発音（普通の速さ）", s(sc), headline=hl, headlineY=.40, hold=0.25, lead=0.02,
+                     sfx="pop", clip=_tts(w["word"], "", VOICE_A, 1.0, [{"en": w["word"], "ja": ""}])),
+            _lf_beat(f"w{i}-slow", "発音（ゆっくり）", s(sc), headline=hl, headlineY=.40, hold=0.3, lead=0.02,
+                     clip=_tts(w["word"], "", VOICE_A, 0.75, [{"en": w["word"], "ja": ""}])),
+            _lf_beat(f"w{i}-meaning", "意味（とニュアンス一言）", s(sc, .06), headline=hl, headlineY=.30, hold=0.15, lead=0.02,
+                     **_narr([{"cap": f"{w['pos']}「{w['ja']}」", "say": f"{w['ja']}。"}, *nuance])),
+        ]
+        for k, ex in enumerate(w["examples"], 1):
+            beats.append(_lf_beat(f"w{i}-ex{k}", "例文を英語で聞く", s(sc), headline=hl, headlineY=.30, hold=0.35, lead=0.02,
+                                  clip=_tts(ex["en"], "", VOICE_A if k % 2 else VOICE_B, 1.0,
+                                            [{"en": ex["en"], "ja": ex["ja"]}])))
+        beats.append(_lf_beat(f"w{i}-repeat", "お手本の後に言う時間", s(sc), headline=hl, headlineY=.40,
+                              hold=1.4, lead=0.02, clip=_tts(w["word"], w["ja"], VOICE_A, 0.95)))
+        g0 = (i - 1) // 5 * 5
+        group = f"{g0 + 1}〜{min(g0 + 5, n)}：" + " / ".join(x["word"] for x in words[g0:g0 + 5])
+        chapters.append({"id": f"w{i}", "title": f"{i}. {w['word']}（{w['ja']}）", "purpose": "1語を使えるようにする",
+                         "beats": beats, "listGroup": group})
+        if i % 10 == 0 or i == n:
+            first = (i - 1) // 10 * 10
+            block = words[first:i]
+            if len(block) >= 3:
+                chapters.append(recall_chapter(f"check-{first + 1}-{i}", f"確認テスト {first + 1}〜{i}", block,
+                                               [f"{first + 1}から{i}まで、", "日本語を見て、英語で言ってみてください。"],
+                                               first))
+    chapters[0]["listGroup"] = chapters[1]["listGroup"]  # short intro joins the first word block
+    chapters[-1]["listGroup"] = chapters[-1]["title"]
+    chapters.append({"id": "ending", "title": "まとめ", "listGroup": chapters[-1]["title"], "purpose": "今日の語を振り返って終える", "beats": [
+        _lf_beat("ending", "締め", s(words[0]["scene"]), headline=spec["headline"], headlineY=.42, hold=1.2,
+                 **_narr(spec.get("outro") or [f"今日の{n}語でした。", "何度か見て、声に出すと定着します。"]))]})
+
+    for ch in chapters:
+        _check_spoken_japanese(ch["beats"])
+    title = spec["title"] + (f"【まとめて覚える #{spec['number']}】" if spec.get("number") else "")
+    desc = [f"・{w['word']}（{w['pos']}{'・' + w['cefr'] if w.get('cefr') else ''}）＝ {w['ja']}" for w in words]
+    desc += ["", "例文"]
+    for w in words:
+        for ex in w["examples"]:
+            desc.append(f"　{ex['en']} ＝ {ex['ja']}")
+    if levels:
+        desc += ["", "単語のレベル（CEFR）: Octanove Vocabulary Profile C1/C2 ver1.0（Octanove Labs, CC BY-SA 4.0）を参照"]
+    desc += [f"意味の確認: {r}" for r in spec.get("sources", [])]
+    return {
+        "version": 1, "id": spec["id"], "title": title[:100],
+        "audience": "C1〜C2レベルの語彙を増やしたい日本語話者",
+        "question": f"{'/'.join(levels) or '上級'}レベルの{n}語を、発音・意味・例文で覚えられるか",
+        "payoff": "確認テストで全部の語を英語で言える",
+        "voice": {"engine": "voicevox", "speaker": "青山龍星", "style": "ノーマル", "speed": 1.2},
+        "music": {"asset": spec.get("music", "safe-space-loop"), "gain": 0.14, "duck": 0.4},
+        "descriptionLines": spec.get("descriptionLines") or desc,
+        "chapters": chapters,
+    }

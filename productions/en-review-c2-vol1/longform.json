@@ -1,0 +1,6492 @@
+{
+  "version": 1,
+  "id": "en-review-c2-vol1",
+  "title": "C2レベルの英単語30｜ネイティブは普通に使う上級語彙を一気に覚える【まとめて覚える #2】",
+  "audience": "C1〜C2レベルの語彙を増やしたい日本語話者",
+  "question": "C2レベルの30語を、発音・意味・例文で覚えられるか",
+  "payoff": "確認テストで全部の語を英語で言える",
+  "voice": {
+    "engine": "voicevox",
+    "speaker": "青山龍星",
+    "style": "ノーマル",
+    "speed": 1.2
+  },
+  "music": {
+    "asset": "safe-space-loop",
+    "gain": 0.14,
+    "duck": 0.4
+  },
+  "descriptionLines": [
+    "・nonchalant（形容詞・C2）＝ 平然とした・無頓着な",
+    "・knack（名詞・C2）＝ コツ・才能",
+    "・mull over（動詞・C2）＝ じっくり考える",
+    "・idiosyncratic（形容詞・C2）＝ 独特の・その人特有の",
+    "・hindsight（名詞・C2）＝ 後になって分かること",
+    "・coax（動詞・C2）＝ なだめすかして〜させる",
+    "・ephemeral（形容詞・C2）＝ はかない・つかの間の",
+    "・qualm（名詞・C2）＝ ためらい・良心のとがめ",
+    "・uncanny（形容詞・C2）＝ 不気味なほどの・驚くほどの",
+    "・eke out（動詞・C2）＝ なんとかやりくりする",
+    "・haphazard（形容詞・C2）＝ 行き当たりばったりの",
+    "・drudgery（名詞・C2）＝ 退屈な骨折り仕事",
+    "・wallow（動詞・C2）＝ （感情に）浸る",
+    "・tacit（形容詞・C2）＝ 暗黙の",
+    "・innuendo（名詞・C2）＝ ほのめかし・当てこすり",
+    "・surreptitious（形容詞・C2）＝ こっそりした",
+    "・clinch（動詞・C2）＝ （勝利・契約を）決める",
+    "・wistful（形容詞・C2）＝ 懐かしそうな・もの悲しげな",
+    "・smattering（名詞・C2）＝ 少しばかりの知識",
+    "・superfluous（形容詞・C2）＝ 余計な・不必要な",
+    "・squint（動詞・C2）＝ 目を細めて見る",
+    "・inscrutable（形容詞・C2）＝ 何を考えているか分からない",
+    "・gambit（名詞・C2）＝ 先手を打つ作戦",
+    "・rife（形容詞・C2）＝ （悪いものが）はびこっている",
+    "・loiter（動詞・C2）＝ うろつく・ぶらぶらする",
+    "・precocious（形容詞・C2）＝ ませた・早熟な",
+    "・truism（名詞・C2）＝ 分かりきった真理",
+    "・jarring（形容詞・C2）＝ 違和感のある・耳障りな",
+    "・patronizing（形容詞・C2）＝ 上から目線の",
+    "・happenstance（名詞・C2）＝ 偶然・たまたま",
+    "",
+    "例文",
+    "　She looked nonchalant, but she was nervous. ＝ 平然として見えたが、彼女は緊張していた",
+    "　He has a knack for making people laugh. ＝ 彼は人を笑わせるのが得意だ",
+    "　Let me mull it over and get back to you. ＝ じっくり考えてから返事するね",
+    "　His writing style is wonderfully idiosyncratic. ＝ 彼の文体は見事に独特だ",
+    "　In hindsight, I should have left earlier. ＝ 今思えば、もっと早く出るべきだった",
+    "　I coaxed my cat out from under the bed. ＝ なだめて猫をベッドの下から出した",
+    "　Fame on social media is often ephemeral. ＝ ＳＮＳでの人気は、たいていつかの間だ",
+    "　She had no qualms about telling him the truth. ＝ 彼女は平気で彼に本当のことを言った",
+    "　There's an uncanny resemblance between them. ＝ 二人は驚くほどよく似ている",
+    "　They eked out a living selling vegetables. ＝ 彼らは野菜を売って、なんとか暮らしていた",
+    "　The project was planned in a haphazard way. ＝ その計画は行き当たりばったりだった",
+    "　Automation takes the drudgery out of data entry. ＝ 自動化で、データ入力の退屈な作業がなくなる",
+    "　Stop wallowing in self-pity. ＝ いつまでも自分をあわれむのはやめなよ",
+    "　There was a tacit agreement not to discuss it. ＝ その話はしないという暗黙の了解があった",
+    "　The article was full of innuendo. ＝ その記事は当てこすりだらけだった",
+    "　He took a surreptitious glance at his phone. ＝ 彼はこっそりスマホに目をやった",
+    "　That last goal clinched the title. ＝ 最後のゴールで優勝が決まった",
+    "　She gave a wistful smile. ＝ 彼女はどこか寂しげに微笑んだ",
+    "　I speak a smattering of French. ＝ フランス語は少しだけ話せる",
+    "　Cut any superfluous words from your essay. ＝ 作文から余計な言葉は全部削って",
+    "　I had to squint to read the sign. ＝ 目を細めないと標識が読めなかった",
+    "　His face was completely inscrutable. ＝ 彼の表情からは、何も読み取れなかった",
+    "　Her opening gambit was a joke about the weather. ＝ 彼女はまず天気の冗談で切り出した",
+    "　The internet is rife with rumors. ＝ ネットはうわさであふれている",
+    "　Teenagers were loitering outside the shop. ＝ 十代の若者が店の前でたむろしていた",
+    "　She was a precocious child who read at three. ＝ 彼女は三歳で字が読める早熟な子だった",
+    "　It's a truism that practice makes perfect. ＝ 練習が大事なのは、分かりきったことだ",
+    "　The sudden change in tone was jarring. ＝ 急に口調が変わって、違和感があった",
+    "　Don't be so patronizing. ＝ そんなに上から目線で言わないで",
+    "　We met by happenstance at the airport. ＝ 私たちは空港でたまたま出会った",
+    "",
+    "単語のレベル（CEFR）: Octanove Vocabulary Profile C1/C2 ver1.0（Octanove Labs, CC BY-SA 4.0）を参照",
+    "意味の確認: https://dictionary.cambridge.org/dictionary/english/nonchalant",
+    "意味の確認: https://dictionary.cambridge.org/dictionary/english/knack",
+    "意味の確認: https://dictionary.cambridge.org/dictionary/english/mull-sth-over",
+    "意味の確認: https://dictionary.cambridge.org/dictionary/english/idiosyncratic",
+    "意味の確認: https://dictionary.cambridge.org/dictionary/english/hindsight",
+    "意味の確認: https://dictionary.cambridge.org/dictionary/english/coax",
+    "意味の確認: https://dictionary.cambridge.org/dictionary/english/ephemeral",
+    "意味の確認: https://dictionary.cambridge.org/dictionary/english/qualm",
+    "意味の確認: https://dictionary.cambridge.org/dictionary/english/uncanny",
+    "意味の確認: https://dictionary.cambridge.org/dictionary/english/eke-out-sth",
+    "意味の確認: https://dictionary.cambridge.org/dictionary/english/haphazard",
+    "意味の確認: https://dictionary.cambridge.org/dictionary/english/drudgery",
+    "意味の確認: https://dictionary.cambridge.org/dictionary/english/wallow",
+    "意味の確認: https://dictionary.cambridge.org/dictionary/english/tacit",
+    "意味の確認: https://dictionary.cambridge.org/dictionary/english/innuendo",
+    "意味の確認: https://dictionary.cambridge.org/dictionary/english/surreptitious",
+    "意味の確認: https://dictionary.cambridge.org/dictionary/english/clinch",
+    "意味の確認: https://dictionary.cambridge.org/dictionary/english/wistful",
+    "意味の確認: https://dictionary.cambridge.org/dictionary/english/smattering",
+    "意味の確認: https://dictionary.cambridge.org/dictionary/english/superfluous",
+    "意味の確認: https://dictionary.cambridge.org/dictionary/english/squint",
+    "意味の確認: https://dictionary.cambridge.org/dictionary/english/inscrutable",
+    "意味の確認: https://dictionary.cambridge.org/dictionary/english/gambit",
+    "意味の確認: https://dictionary.cambridge.org/dictionary/english/rife",
+    "意味の確認: https://dictionary.cambridge.org/dictionary/english/loiter",
+    "意味の確認: https://dictionary.cambridge.org/dictionary/english/precocious",
+    "意味の確認: https://dictionary.cambridge.org/dictionary/english/truism",
+    "意味の確認: https://dictionary.cambridge.org/dictionary/english/jarring",
+    "意味の確認: https://dictionary.cambridge.org/dictionary/english/patronizing",
+    "意味の確認: https://dictionary.cambridge.org/dictionary/english/happenstance"
+  ],
+  "chapters": [
+    {
+      "id": "opening",
+      "title": "はじめに",
+      "purpose": "何を覚える動画かを示す",
+      "beats": [
+        {
+          "id": "opening",
+          "why": "語数とレベルと進め方を示す",
+          "shots": [
+            {
+              "src": "pixabay:32938",
+              "in": 1.0,
+              "loop": true,
+              "zoom": [
+                1.12,
+                1.16
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "C2レベル\n英単語30",
+          "headlineY": 0.42,
+          "say": "シーツーレベルの英単語を、30語。／発音、意味、例文をテンポよく確認して、／最後にテストします。",
+          "caption": "C2レベルの英単語 30語／発音、意味、例文をテンポよく確認して、／最後にテストします。"
+        }
+      ],
+      "listGroup": "1〜5：nonchalant / knack / mull over / idiosyncratic / hindsight"
+    },
+    {
+      "id": "w1",
+      "title": "1. nonchalant（平然とした・無頓着な）",
+      "purpose": "1語を使えるようにする",
+      "beats": [
+        {
+          "id": "w1-say",
+          "why": "単語と発音（普通の速さ）",
+          "shots": [
+            {
+              "src": "pixabay:32938",
+              "in": 5.0,
+              "loop": true,
+              "zoom": [
+                1.16,
+                1.2
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "1. nonchalant  [C2]",
+          "headlineY": 0.4,
+          "hold": 0.25,
+          "lead": 0.02,
+          "sfx": "pop",
+          "clip": {
+            "tts": {
+              "text": "nonchalant",
+              "voice": "af_heart",
+              "speed": 1.0
+            },
+            "lines": [
+              {
+                "en": "nonchalant",
+                "ja": ""
+              }
+            ]
+          }
+        },
+        {
+          "id": "w1-slow",
+          "why": "発音（ゆっくり）",
+          "shots": [
+            {
+              "src": "pixabay:32938",
+              "in": 9.0,
+              "loop": true,
+              "zoom": [
+                1.2,
+                1.24
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "1. nonchalant  [C2]",
+          "headlineY": 0.4,
+          "hold": 0.3,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "nonchalant",
+              "voice": "af_heart",
+              "speed": 0.75
+            },
+            "lines": [
+              {
+                "en": "nonchalant",
+                "ja": ""
+              }
+            ]
+          }
+        },
+        {
+          "id": "w1-meaning",
+          "why": "意味（とニュアンス一言）",
+          "shots": [
+            {
+              "src": "pixabay:32938",
+              "in": 13.0,
+              "loop": true,
+              "zoom": [
+                1.24,
+                1.3
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "1. nonchalant  [C2]",
+          "headlineY": 0.3,
+          "hold": 0.15,
+          "lead": 0.02,
+          "say": "平然とした・無頓着な。／気にしていないふりをする時にも使います。",
+          "caption": "形容詞「平然とした・無頓着な」／気にしていないふりも含む"
+        },
+        {
+          "id": "w1-ex1",
+          "why": "例文を英語で聞く",
+          "shots": [
+            {
+              "src": "pixabay:32938",
+              "in": 17.0,
+              "loop": true,
+              "zoom": [
+                1.3,
+                1.34
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "1. nonchalant  [C2]",
+          "headlineY": 0.3,
+          "hold": 0.35,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "She looked nonchalant, but she was nervous.",
+              "voice": "af_heart",
+              "speed": 1.0
+            },
+            "lines": [
+              {
+                "en": "She looked nonchalant, but she was nervous.",
+                "ja": "平然として見えたが、彼女は緊張していた"
+              }
+            ]
+          }
+        },
+        {
+          "id": "w1-repeat",
+          "why": "お手本の後に言う時間",
+          "shots": [
+            {
+              "src": "pixabay:32938",
+              "in": 21.0,
+              "loop": true,
+              "zoom": [
+                1.34,
+                1.38
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "1. nonchalant  [C2]",
+          "headlineY": 0.4,
+          "hold": 1.4,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "nonchalant",
+              "voice": "af_heart",
+              "speed": 0.95
+            },
+            "ja": "平然とした・無頓着な"
+          }
+        }
+      ],
+      "listGroup": "1〜5：nonchalant / knack / mull over / idiosyncratic / hindsight"
+    },
+    {
+      "id": "w2",
+      "title": "2. knack（コツ・才能）",
+      "purpose": "1語を使えるようにする",
+      "beats": [
+        {
+          "id": "w2-say",
+          "why": "単語と発音（普通の速さ）",
+          "shots": [
+            {
+              "src": "commons:Person writing in a notebook while sitting at a desk.jpg",
+              "in": 0,
+              "freeze": true,
+              "zoom": [
+                1.08,
+                1.12
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "2. knack  [C2]",
+          "headlineY": 0.4,
+          "hold": 0.25,
+          "lead": 0.02,
+          "sfx": "pop",
+          "clip": {
+            "tts": {
+              "text": "knack",
+              "voice": "af_heart",
+              "speed": 1.0
+            },
+            "lines": [
+              {
+                "en": "knack",
+                "ja": ""
+              }
+            ]
+          }
+        },
+        {
+          "id": "w2-slow",
+          "why": "発音（ゆっくり）",
+          "shots": [
+            {
+              "src": "commons:Person writing in a notebook while sitting at a desk.jpg",
+              "in": 0,
+              "freeze": true,
+              "zoom": [
+                1.12,
+                1.16
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "2. knack  [C2]",
+          "headlineY": 0.4,
+          "hold": 0.3,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "knack",
+              "voice": "af_heart",
+              "speed": 0.75
+            },
+            "lines": [
+              {
+                "en": "knack",
+                "ja": ""
+              }
+            ]
+          }
+        },
+        {
+          "id": "w2-meaning",
+          "why": "意味（とニュアンス一言）",
+          "shots": [
+            {
+              "src": "commons:Person writing in a notebook while sitting at a desk.jpg",
+              "in": 0,
+              "freeze": true,
+              "zoom": [
+                1.16,
+                1.22
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "2. knack  [C2]",
+          "headlineY": 0.3,
+          "hold": 0.15,
+          "lead": 0.02,
+          "say": "コツ・才能。／ハブ・ア・ナック・フォー、で、得意だ、という意味です。",
+          "caption": "名詞「コツ・才能」／have a knack for 〜 で「〜が得意」"
+        },
+        {
+          "id": "w2-ex1",
+          "why": "例文を英語で聞く",
+          "shots": [
+            {
+              "src": "commons:Person writing in a notebook while sitting at a desk.jpg",
+              "in": 0,
+              "freeze": true,
+              "zoom": [
+                1.22,
+                1.26
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "2. knack  [C2]",
+          "headlineY": 0.3,
+          "hold": 0.35,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "He has a knack for making people laugh.",
+              "voice": "af_heart",
+              "speed": 1.0
+            },
+            "lines": [
+              {
+                "en": "He has a knack for making people laugh.",
+                "ja": "彼は人を笑わせるのが得意だ"
+              }
+            ]
+          }
+        },
+        {
+          "id": "w2-repeat",
+          "why": "お手本の後に言う時間",
+          "shots": [
+            {
+              "src": "commons:Person writing in a notebook while sitting at a desk.jpg",
+              "in": 0,
+              "freeze": true,
+              "zoom": [
+                1.26,
+                1.3
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "2. knack  [C2]",
+          "headlineY": 0.4,
+          "hold": 1.4,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "knack",
+              "voice": "af_heart",
+              "speed": 0.95
+            },
+            "ja": "コツ・才能"
+          }
+        }
+      ],
+      "listGroup": "1〜5：nonchalant / knack / mull over / idiosyncratic / hindsight"
+    },
+    {
+      "id": "w3",
+      "title": "3. mull over（じっくり考える）",
+      "purpose": "1語を使えるようにする",
+      "beats": [
+        {
+          "id": "w3-say",
+          "why": "単語と発音（普通の速さ）",
+          "shots": [
+            {
+              "src": "pixabay:203252",
+              "in": 0.8,
+              "loop": true,
+              "zoom": [
+                1.12,
+                1.16
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "3. mull over  [C2]",
+          "headlineY": 0.4,
+          "hold": 0.25,
+          "lead": 0.02,
+          "sfx": "pop",
+          "clip": {
+            "tts": {
+              "text": "mull over",
+              "voice": "af_heart",
+              "speed": 1.0
+            },
+            "lines": [
+              {
+                "en": "mull over",
+                "ja": ""
+              }
+            ]
+          }
+        },
+        {
+          "id": "w3-slow",
+          "why": "発音（ゆっくり）",
+          "shots": [
+            {
+              "src": "pixabay:203252",
+              "in": 4.8,
+              "loop": true,
+              "zoom": [
+                1.16,
+                1.2
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "3. mull over  [C2]",
+          "headlineY": 0.4,
+          "hold": 0.3,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "mull over",
+              "voice": "af_heart",
+              "speed": 0.75
+            },
+            "lines": [
+              {
+                "en": "mull over",
+                "ja": ""
+              }
+            ]
+          }
+        },
+        {
+          "id": "w3-meaning",
+          "why": "意味（とニュアンス一言）",
+          "shots": [
+            {
+              "src": "pixabay:203252",
+              "in": 1.8,
+              "loop": true,
+              "zoom": [
+                1.2,
+                1.26
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "3. mull over  [C2]",
+          "headlineY": 0.3,
+          "hold": 0.15,
+          "lead": 0.02,
+          "say": "じっくり考える。",
+          "caption": "動詞「じっくり考える」"
+        },
+        {
+          "id": "w3-ex1",
+          "why": "例文を英語で聞く",
+          "shots": [
+            {
+              "src": "pixabay:203252",
+              "in": 5.8,
+              "loop": true,
+              "zoom": [
+                1.26,
+                1.3
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "3. mull over  [C2]",
+          "headlineY": 0.3,
+          "hold": 0.35,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "Let me mull it over and get back to you.",
+              "voice": "af_heart",
+              "speed": 1.0
+            },
+            "lines": [
+              {
+                "en": "Let me mull it over and get back to you.",
+                "ja": "じっくり考えてから返事するね"
+              }
+            ]
+          }
+        },
+        {
+          "id": "w3-repeat",
+          "why": "お手本の後に言う時間",
+          "shots": [
+            {
+              "src": "pixabay:203252",
+              "in": 2.8,
+              "loop": true,
+              "zoom": [
+                1.3,
+                1.34
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "3. mull over  [C2]",
+          "headlineY": 0.4,
+          "hold": 1.4,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "mull over",
+              "voice": "af_heart",
+              "speed": 0.95
+            },
+            "ja": "じっくり考える"
+          }
+        }
+      ],
+      "listGroup": "1〜5：nonchalant / knack / mull over / idiosyncratic / hindsight"
+    },
+    {
+      "id": "w4",
+      "title": "4. idiosyncratic（独特の・その人特有の）",
+      "purpose": "1語を使えるようにする",
+      "beats": [
+        {
+          "id": "w4-say",
+          "why": "単語と発音（普通の速さ）",
+          "shots": [
+            {
+              "src": "pixabay:159908",
+              "in": 1.0,
+              "loop": true,
+              "zoom": [
+                1.12,
+                1.16
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "4. idiosyncratic  [C2]",
+          "headlineY": 0.4,
+          "hold": 0.25,
+          "lead": 0.02,
+          "sfx": "pop",
+          "clip": {
+            "tts": {
+              "text": "idiosyncratic",
+              "voice": "af_heart",
+              "speed": 1.0
+            },
+            "lines": [
+              {
+                "en": "idiosyncratic",
+                "ja": ""
+              }
+            ]
+          }
+        },
+        {
+          "id": "w4-slow",
+          "why": "発音（ゆっくり）",
+          "shots": [
+            {
+              "src": "pixabay:159908",
+              "in": 5.0,
+              "loop": true,
+              "zoom": [
+                1.16,
+                1.2
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "4. idiosyncratic  [C2]",
+          "headlineY": 0.4,
+          "hold": 0.3,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "idiosyncratic",
+              "voice": "af_heart",
+              "speed": 0.75
+            },
+            "lines": [
+              {
+                "en": "idiosyncratic",
+                "ja": ""
+              }
+            ]
+          }
+        },
+        {
+          "id": "w4-meaning",
+          "why": "意味（とニュアンス一言）",
+          "shots": [
+            {
+              "src": "pixabay:159908",
+              "in": 9.0,
+              "loop": true,
+              "zoom": [
+                1.2,
+                1.26
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "4. idiosyncratic  [C2]",
+          "headlineY": 0.3,
+          "hold": 0.15,
+          "lead": 0.02,
+          "say": "独特の・その人特有の。",
+          "caption": "形容詞「独特の・その人特有の」"
+        },
+        {
+          "id": "w4-ex1",
+          "why": "例文を英語で聞く",
+          "shots": [
+            {
+              "src": "pixabay:159908",
+              "in": 0.0,
+              "loop": true,
+              "zoom": [
+                1.26,
+                1.3
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "4. idiosyncratic  [C2]",
+          "headlineY": 0.3,
+          "hold": 0.35,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "His writing style is wonderfully idiosyncratic.",
+              "voice": "af_heart",
+              "speed": 1.0
+            },
+            "lines": [
+              {
+                "en": "His writing style is wonderfully idiosyncratic.",
+                "ja": "彼の文体は見事に独特だ"
+              }
+            ]
+          }
+        },
+        {
+          "id": "w4-repeat",
+          "why": "お手本の後に言う時間",
+          "shots": [
+            {
+              "src": "pixabay:159908",
+              "in": 4.0,
+              "loop": true,
+              "zoom": [
+                1.3,
+                1.34
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "4. idiosyncratic  [C2]",
+          "headlineY": 0.4,
+          "hold": 1.4,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "idiosyncratic",
+              "voice": "af_heart",
+              "speed": 0.95
+            },
+            "ja": "独特の・その人特有の"
+          }
+        }
+      ],
+      "listGroup": "1〜5：nonchalant / knack / mull over / idiosyncratic / hindsight"
+    },
+    {
+      "id": "w5",
+      "title": "5. hindsight（後になって分かること）",
+      "purpose": "1語を使えるようにする",
+      "beats": [
+        {
+          "id": "w5-say",
+          "why": "単語と発音（普通の速さ）",
+          "shots": [
+            {
+              "src": "commons:Street view of Sarphatistraat with a woman, waiting and looking; free photo Amsterdam, Fons Heijnsbroek 10-2021.jpg",
+              "in": 0,
+              "freeze": true,
+              "zoom": [
+                1.05,
+                1.09
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "5. hindsight  [C2]",
+          "headlineY": 0.4,
+          "hold": 0.25,
+          "lead": 0.02,
+          "sfx": "pop",
+          "clip": {
+            "tts": {
+              "text": "hindsight",
+              "voice": "af_heart",
+              "speed": 1.0
+            },
+            "lines": [
+              {
+                "en": "hindsight",
+                "ja": ""
+              }
+            ]
+          }
+        },
+        {
+          "id": "w5-slow",
+          "why": "発音（ゆっくり）",
+          "shots": [
+            {
+              "src": "commons:Street view of Sarphatistraat with a woman, waiting and looking; free photo Amsterdam, Fons Heijnsbroek 10-2021.jpg",
+              "in": 0,
+              "freeze": true,
+              "zoom": [
+                1.09,
+                1.13
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "5. hindsight  [C2]",
+          "headlineY": 0.4,
+          "hold": 0.3,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "hindsight",
+              "voice": "af_heart",
+              "speed": 0.75
+            },
+            "lines": [
+              {
+                "en": "hindsight",
+                "ja": ""
+              }
+            ]
+          }
+        },
+        {
+          "id": "w5-meaning",
+          "why": "意味（とニュアンス一言）",
+          "shots": [
+            {
+              "src": "commons:Street view of Sarphatistraat with a woman, waiting and looking; free photo Amsterdam, Fons Heijnsbroek 10-2021.jpg",
+              "in": 0,
+              "freeze": true,
+              "zoom": [
+                1.13,
+                1.19
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "5. hindsight  [C2]",
+          "headlineY": 0.3,
+          "hold": 0.15,
+          "lead": 0.02,
+          "say": "後になって分かること。／イン・ハインドサイトで、今思えば。",
+          "caption": "名詞「後になって分かること」／in hindsight ＝ 今思えば"
+        },
+        {
+          "id": "w5-ex1",
+          "why": "例文を英語で聞く",
+          "shots": [
+            {
+              "src": "commons:Street view of Sarphatistraat with a woman, waiting and looking; free photo Amsterdam, Fons Heijnsbroek 10-2021.jpg",
+              "in": 0,
+              "freeze": true,
+              "zoom": [
+                1.19,
+                1.23
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "5. hindsight  [C2]",
+          "headlineY": 0.3,
+          "hold": 0.35,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "In hindsight, I should have left earlier.",
+              "voice": "af_heart",
+              "speed": 1.0
+            },
+            "lines": [
+              {
+                "en": "In hindsight, I should have left earlier.",
+                "ja": "今思えば、もっと早く出るべきだった"
+              }
+            ]
+          }
+        },
+        {
+          "id": "w5-repeat",
+          "why": "お手本の後に言う時間",
+          "shots": [
+            {
+              "src": "commons:Street view of Sarphatistraat with a woman, waiting and looking; free photo Amsterdam, Fons Heijnsbroek 10-2021.jpg",
+              "in": 0,
+              "freeze": true,
+              "zoom": [
+                1.23,
+                1.27
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "5. hindsight  [C2]",
+          "headlineY": 0.4,
+          "hold": 1.4,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "hindsight",
+              "voice": "af_heart",
+              "speed": 0.95
+            },
+            "ja": "後になって分かること"
+          }
+        }
+      ],
+      "listGroup": "1〜5：nonchalant / knack / mull over / idiosyncratic / hindsight"
+    },
+    {
+      "id": "w6",
+      "title": "6. coax（なだめすかして〜させる）",
+      "purpose": "1語を使えるようにする",
+      "beats": [
+        {
+          "id": "w6-say",
+          "why": "単語と発音（普通の速さ）",
+          "shots": [
+            {
+              "src": "pixabay:15484",
+              "in": 1.0,
+              "loop": true,
+              "zoom": [
+                1.12,
+                1.16
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "6. coax  [C2]",
+          "headlineY": 0.4,
+          "hold": 0.25,
+          "lead": 0.02,
+          "sfx": "pop",
+          "clip": {
+            "tts": {
+              "text": "coax",
+              "voice": "af_heart",
+              "speed": 1.0
+            },
+            "lines": [
+              {
+                "en": "coax",
+                "ja": ""
+              }
+            ]
+          }
+        },
+        {
+          "id": "w6-slow",
+          "why": "発音（ゆっくり）",
+          "shots": [
+            {
+              "src": "pixabay:15484",
+              "in": 5.0,
+              "loop": true,
+              "zoom": [
+                1.16,
+                1.2
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "6. coax  [C2]",
+          "headlineY": 0.4,
+          "hold": 0.3,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "coax",
+              "voice": "af_heart",
+              "speed": 0.75
+            },
+            "lines": [
+              {
+                "en": "coax",
+                "ja": ""
+              }
+            ]
+          }
+        },
+        {
+          "id": "w6-meaning",
+          "why": "意味（とニュアンス一言）",
+          "shots": [
+            {
+              "src": "pixabay:15484",
+              "in": 9.0,
+              "loop": true,
+              "zoom": [
+                1.2,
+                1.26
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "6. coax  [C2]",
+          "headlineY": 0.3,
+          "hold": 0.15,
+          "lead": 0.02,
+          "say": "なだめすかして〜させる。",
+          "caption": "動詞「なだめすかして〜させる」"
+        },
+        {
+          "id": "w6-ex1",
+          "why": "例文を英語で聞く",
+          "shots": [
+            {
+              "src": "pixabay:15484",
+              "in": 0.0,
+              "loop": true,
+              "zoom": [
+                1.26,
+                1.3
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "6. coax  [C2]",
+          "headlineY": 0.3,
+          "hold": 0.35,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "I coaxed my cat out from under the bed.",
+              "voice": "af_heart",
+              "speed": 1.0
+            },
+            "lines": [
+              {
+                "en": "I coaxed my cat out from under the bed.",
+                "ja": "なだめて猫をベッドの下から出した"
+              }
+            ]
+          }
+        },
+        {
+          "id": "w6-repeat",
+          "why": "お手本の後に言う時間",
+          "shots": [
+            {
+              "src": "pixabay:15484",
+              "in": 4.0,
+              "loop": true,
+              "zoom": [
+                1.3,
+                1.34
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "6. coax  [C2]",
+          "headlineY": 0.4,
+          "hold": 1.4,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "coax",
+              "voice": "af_heart",
+              "speed": 0.95
+            },
+            "ja": "なだめすかして〜させる"
+          }
+        }
+      ],
+      "listGroup": "6〜10：coax / ephemeral / qualm / uncanny / eke out"
+    },
+    {
+      "id": "w7",
+      "title": "7. ephemeral（はかない・つかの間の）",
+      "purpose": "1語を使えるようにする",
+      "beats": [
+        {
+          "id": "w7-say",
+          "why": "単語と発音（普通の速さ）",
+          "shots": [
+            {
+              "src": "pixabay:12126",
+              "in": 1.0,
+              "loop": true,
+              "zoom": [
+                1.12,
+                1.16
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "7. ephemeral  [C2]",
+          "headlineY": 0.4,
+          "hold": 0.25,
+          "lead": 0.02,
+          "sfx": "pop",
+          "clip": {
+            "tts": {
+              "text": "ephemeral",
+              "voice": "af_heart",
+              "speed": 1.0
+            },
+            "lines": [
+              {
+                "en": "ephemeral",
+                "ja": ""
+              }
+            ]
+          }
+        },
+        {
+          "id": "w7-slow",
+          "why": "発音（ゆっくり）",
+          "shots": [
+            {
+              "src": "pixabay:12126",
+              "in": 5.0,
+              "loop": true,
+              "zoom": [
+                1.16,
+                1.2
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "7. ephemeral  [C2]",
+          "headlineY": 0.4,
+          "hold": 0.3,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "ephemeral",
+              "voice": "af_heart",
+              "speed": 0.75
+            },
+            "lines": [
+              {
+                "en": "ephemeral",
+                "ja": ""
+              }
+            ]
+          }
+        },
+        {
+          "id": "w7-meaning",
+          "why": "意味（とニュアンス一言）",
+          "shots": [
+            {
+              "src": "pixabay:12126",
+              "in": 9.0,
+              "loop": true,
+              "zoom": [
+                1.2,
+                1.26
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "7. ephemeral  [C2]",
+          "headlineY": 0.3,
+          "hold": 0.15,
+          "lead": 0.02,
+          "say": "はかない・つかの間の。",
+          "caption": "形容詞「はかない・つかの間の」"
+        },
+        {
+          "id": "w7-ex1",
+          "why": "例文を英語で聞く",
+          "shots": [
+            {
+              "src": "pixabay:12126",
+              "in": 13.0,
+              "loop": true,
+              "zoom": [
+                1.26,
+                1.3
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "7. ephemeral  [C2]",
+          "headlineY": 0.3,
+          "hold": 0.35,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "Fame on social media is often ephemeral.",
+              "voice": "af_heart",
+              "speed": 1.0
+            },
+            "lines": [
+              {
+                "en": "Fame on social media is often ephemeral.",
+                "ja": "ＳＮＳでの人気は、たいていつかの間だ"
+              }
+            ]
+          }
+        },
+        {
+          "id": "w7-repeat",
+          "why": "お手本の後に言う時間",
+          "shots": [
+            {
+              "src": "pixabay:12126",
+              "in": 17.0,
+              "loop": true,
+              "zoom": [
+                1.3,
+                1.34
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "7. ephemeral  [C2]",
+          "headlineY": 0.4,
+          "hold": 1.4,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "ephemeral",
+              "voice": "af_heart",
+              "speed": 0.95
+            },
+            "ja": "はかない・つかの間の"
+          }
+        }
+      ],
+      "listGroup": "6〜10：coax / ephemeral / qualm / uncanny / eke out"
+    },
+    {
+      "id": "w8",
+      "title": "8. qualm（ためらい・良心のとがめ）",
+      "purpose": "1語を使えるようにする",
+      "beats": [
+        {
+          "id": "w8-say",
+          "why": "単語と発音（普通の速さ）",
+          "shots": [
+            {
+              "src": "commons:Woman sits at desk working on laptop in home office.jpg",
+              "in": 0,
+              "freeze": true,
+              "zoom": [
+                1.1,
+                1.14
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "8. qualm  [C2]",
+          "headlineY": 0.4,
+          "hold": 0.25,
+          "lead": 0.02,
+          "sfx": "pop",
+          "clip": {
+            "tts": {
+              "text": "qualm",
+              "voice": "af_heart",
+              "speed": 1.0
+            },
+            "lines": [
+              {
+                "en": "qualm",
+                "ja": ""
+              }
+            ]
+          }
+        },
+        {
+          "id": "w8-slow",
+          "why": "発音（ゆっくり）",
+          "shots": [
+            {
+              "src": "commons:Woman sits at desk working on laptop in home office.jpg",
+              "in": 0,
+              "freeze": true,
+              "zoom": [
+                1.14,
+                1.18
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "8. qualm  [C2]",
+          "headlineY": 0.4,
+          "hold": 0.3,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "qualm",
+              "voice": "af_heart",
+              "speed": 0.75
+            },
+            "lines": [
+              {
+                "en": "qualm",
+                "ja": ""
+              }
+            ]
+          }
+        },
+        {
+          "id": "w8-meaning",
+          "why": "意味（とニュアンス一言）",
+          "shots": [
+            {
+              "src": "commons:Woman sits at desk working on laptop in home office.jpg",
+              "in": 0,
+              "freeze": true,
+              "zoom": [
+                1.18,
+                1.24
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "8. qualm  [C2]",
+          "headlineY": 0.3,
+          "hold": 0.15,
+          "lead": 0.02,
+          "say": "ためらい・良心のとがめ。／ハブ・ノー・クォームズ・アバウトで、平気でする、です。",
+          "caption": "名詞「ためらい・良心のとがめ」／have no qualms about 〜 で「平気で〜する」"
+        },
+        {
+          "id": "w8-ex1",
+          "why": "例文を英語で聞く",
+          "shots": [
+            {
+              "src": "commons:Woman sits at desk working on laptop in home office.jpg",
+              "in": 0,
+              "freeze": true,
+              "zoom": [
+                1.24,
+                1.28
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "8. qualm  [C2]",
+          "headlineY": 0.3,
+          "hold": 0.35,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "She had no qualms about telling him the truth.",
+              "voice": "af_heart",
+              "speed": 1.0
+            },
+            "lines": [
+              {
+                "en": "She had no qualms about telling him the truth.",
+                "ja": "彼女は平気で彼に本当のことを言った"
+              }
+            ]
+          }
+        },
+        {
+          "id": "w8-repeat",
+          "why": "お手本の後に言う時間",
+          "shots": [
+            {
+              "src": "commons:Woman sits at desk working on laptop in home office.jpg",
+              "in": 0,
+              "freeze": true,
+              "zoom": [
+                1.28,
+                1.32
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "8. qualm  [C2]",
+          "headlineY": 0.4,
+          "hold": 1.4,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "qualm",
+              "voice": "af_heart",
+              "speed": 0.95
+            },
+            "ja": "ためらい・良心のとがめ"
+          }
+        }
+      ],
+      "listGroup": "6〜10：coax / ephemeral / qualm / uncanny / eke out"
+    },
+    {
+      "id": "w9",
+      "title": "9. uncanny（不気味なほどの・驚くほどの）",
+      "purpose": "1語を使えるようにする",
+      "beats": [
+        {
+          "id": "w9-say",
+          "why": "単語と発音（普通の速さ）",
+          "shots": [
+            {
+              "src": "pixabay:203252",
+              "in": 6.8,
+              "loop": true,
+              "zoom": [
+                1.34,
+                1.38
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "9. uncanny  [C2]",
+          "headlineY": 0.4,
+          "hold": 0.25,
+          "lead": 0.02,
+          "sfx": "pop",
+          "clip": {
+            "tts": {
+              "text": "uncanny",
+              "voice": "af_heart",
+              "speed": 1.0
+            },
+            "lines": [
+              {
+                "en": "uncanny",
+                "ja": ""
+              }
+            ]
+          }
+        },
+        {
+          "id": "w9-slow",
+          "why": "発音（ゆっくり）",
+          "shots": [
+            {
+              "src": "pixabay:203252",
+              "in": 3.8,
+              "loop": true,
+              "zoom": [
+                1.38,
+                1.42
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "9. uncanny  [C2]",
+          "headlineY": 0.4,
+          "hold": 0.3,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "uncanny",
+              "voice": "af_heart",
+              "speed": 0.75
+            },
+            "lines": [
+              {
+                "en": "uncanny",
+                "ja": ""
+              }
+            ]
+          }
+        },
+        {
+          "id": "w9-meaning",
+          "why": "意味（とニュアンス一言）",
+          "shots": [
+            {
+              "src": "pixabay:203252",
+              "in": 0.8,
+              "loop": true,
+              "zoom": [
+                1.42,
+                1.48
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "9. uncanny  [C2]",
+          "headlineY": 0.3,
+          "hold": 0.15,
+          "lead": 0.02,
+          "say": "不気味なほどの・驚くほどの。",
+          "caption": "形容詞「不気味なほどの・驚くほどの」"
+        },
+        {
+          "id": "w9-ex1",
+          "why": "例文を英語で聞く",
+          "shots": [
+            {
+              "src": "pixabay:203252",
+              "in": 4.8,
+              "loop": true,
+              "zoom": [
+                1.48,
+                1.52
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "9. uncanny  [C2]",
+          "headlineY": 0.3,
+          "hold": 0.35,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "There's an uncanny resemblance between them.",
+              "voice": "af_heart",
+              "speed": 1.0
+            },
+            "lines": [
+              {
+                "en": "There's an uncanny resemblance between them.",
+                "ja": "二人は驚くほどよく似ている"
+              }
+            ]
+          }
+        },
+        {
+          "id": "w9-repeat",
+          "why": "お手本の後に言う時間",
+          "shots": [
+            {
+              "src": "pixabay:203252",
+              "in": 1.8,
+              "loop": true,
+              "zoom": [
+                1.52,
+                1.56
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "9. uncanny  [C2]",
+          "headlineY": 0.4,
+          "hold": 1.4,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "uncanny",
+              "voice": "af_heart",
+              "speed": 0.95
+            },
+            "ja": "不気味なほどの・驚くほどの"
+          }
+        }
+      ],
+      "listGroup": "6〜10：coax / ephemeral / qualm / uncanny / eke out"
+    },
+    {
+      "id": "w10",
+      "title": "10. eke out（なんとかやりくりする）",
+      "purpose": "1語を使えるようにする",
+      "beats": [
+        {
+          "id": "w10-say",
+          "why": "単語と発音（普通の速さ）",
+          "shots": [
+            {
+              "src": "pixabay:14421",
+              "in": 1.0,
+              "loop": true,
+              "zoom": [
+                1.12,
+                1.16
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "10. eke out  [C2]",
+          "headlineY": 0.4,
+          "hold": 0.25,
+          "lead": 0.02,
+          "sfx": "pop",
+          "clip": {
+            "tts": {
+              "text": "eke out",
+              "voice": "af_heart",
+              "speed": 1.0
+            },
+            "lines": [
+              {
+                "en": "eke out",
+                "ja": ""
+              }
+            ]
+          }
+        },
+        {
+          "id": "w10-slow",
+          "why": "発音（ゆっくり）",
+          "shots": [
+            {
+              "src": "pixabay:14421",
+              "in": 5.0,
+              "loop": true,
+              "zoom": [
+                1.16,
+                1.2
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "10. eke out  [C2]",
+          "headlineY": 0.4,
+          "hold": 0.3,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "eke out",
+              "voice": "af_heart",
+              "speed": 0.75
+            },
+            "lines": [
+              {
+                "en": "eke out",
+                "ja": ""
+              }
+            ]
+          }
+        },
+        {
+          "id": "w10-meaning",
+          "why": "意味（とニュアンス一言）",
+          "shots": [
+            {
+              "src": "pixabay:14421",
+              "in": 9.0,
+              "loop": true,
+              "zoom": [
+                1.2,
+                1.26
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "10. eke out  [C2]",
+          "headlineY": 0.3,
+          "hold": 0.15,
+          "lead": 0.02,
+          "say": "なんとかやりくりする。／イーク・アウト・ア・リビングで、かつかつで暮らす。",
+          "caption": "動詞「なんとかやりくりする」／eke out a living ＝ かつかつで暮らす"
+        },
+        {
+          "id": "w10-ex1",
+          "why": "例文を英語で聞く",
+          "shots": [
+            {
+              "src": "pixabay:14421",
+              "in": 13.0,
+              "loop": true,
+              "zoom": [
+                1.26,
+                1.3
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "10. eke out  [C2]",
+          "headlineY": 0.3,
+          "hold": 0.35,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "They eked out a living selling vegetables.",
+              "voice": "af_heart",
+              "speed": 1.0
+            },
+            "lines": [
+              {
+                "en": "They eked out a living selling vegetables.",
+                "ja": "彼らは野菜を売って、なんとか暮らしていた"
+              }
+            ]
+          }
+        },
+        {
+          "id": "w10-repeat",
+          "why": "お手本の後に言う時間",
+          "shots": [
+            {
+              "src": "pixabay:14421",
+              "in": 17.0,
+              "loop": true,
+              "zoom": [
+                1.3,
+                1.34
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "10. eke out  [C2]",
+          "headlineY": 0.4,
+          "hold": 1.4,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "eke out",
+              "voice": "af_heart",
+              "speed": 0.95
+            },
+            "ja": "なんとかやりくりする"
+          }
+        }
+      ],
+      "listGroup": "6〜10：coax / ephemeral / qualm / uncanny / eke out"
+    },
+    {
+      "id": "check-1-10",
+      "title": "確認テスト 1〜10",
+      "purpose": "覚えたかを確かめる",
+      "beats": [
+        {
+          "id": "check-1-10-lead",
+          "why": "思い出すテストの説明",
+          "shots": [
+            {
+              "src": "pixabay:32938",
+              "in": 25.0,
+              "loop": true,
+              "zoom": [
+                1.38,
+                1.42
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "思い出せる？",
+          "headlineY": 0.42,
+          "say": "1から10まで、／日本語を見て、英語で言ってみてください。"
+        },
+        {
+          "id": "check-1-10-q0",
+          "why": "日本語から英単語を思い出す（考える間）",
+          "shots": [
+            {
+              "src": "pixabay:32938",
+              "in": 29.0,
+              "loop": true,
+              "zoom": [
+                1.42,
+                1.46
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "「平然とした・無頓着な」",
+          "headlineY": 0.4,
+          "hold": 2.0,
+          "lead": 0.02,
+          "say": "平然とした・無頓着な。",
+          "caption": "1. 「平然とした・無頓着な」"
+        },
+        {
+          "id": "check-1-10-a0",
+          "why": "答え合わせ（英語音声）",
+          "shots": [
+            {
+              "src": "pixabay:32938",
+              "in": 0.0,
+              "loop": true,
+              "zoom": [
+                1.46,
+                1.5
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "nonchalant",
+          "headlineY": 0.4,
+          "hold": 0.35,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "nonchalant",
+              "voice": "af_heart",
+              "speed": 1.0
+            },
+            "ja": "平然とした・無頓着な"
+          }
+        },
+        {
+          "id": "check-1-10-q1",
+          "why": "日本語から英単語を思い出す（考える間）",
+          "shots": [
+            {
+              "src": "commons:Person writing in a notebook while sitting at a desk.jpg",
+              "in": 0,
+              "freeze": true,
+              "zoom": [
+                1.3,
+                1.34
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "「コツ・才能」",
+          "headlineY": 0.4,
+          "hold": 2.0,
+          "lead": 0.02,
+          "say": "コツ・才能。",
+          "caption": "2. 「コツ・才能」"
+        },
+        {
+          "id": "check-1-10-a1",
+          "why": "答え合わせ（英語音声）",
+          "shots": [
+            {
+              "src": "commons:Person writing in a notebook while sitting at a desk.jpg",
+              "in": 0,
+              "freeze": true,
+              "zoom": [
+                1.34,
+                1.38
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "knack",
+          "headlineY": 0.4,
+          "hold": 0.35,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "knack",
+              "voice": "af_heart",
+              "speed": 1.0
+            },
+            "ja": "コツ・才能"
+          }
+        },
+        {
+          "id": "check-1-10-q2",
+          "why": "日本語から英単語を思い出す（考える間）",
+          "shots": [
+            {
+              "src": "pixabay:203252",
+              "in": 5.8,
+              "loop": true,
+              "zoom": [
+                1.56,
+                1.6
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "「じっくり考える」",
+          "headlineY": 0.4,
+          "hold": 2.0,
+          "lead": 0.02,
+          "say": "じっくり考える。",
+          "caption": "3. 「じっくり考える」"
+        },
+        {
+          "id": "check-1-10-a2",
+          "why": "答え合わせ（英語音声）",
+          "shots": [
+            {
+              "src": "pixabay:203252",
+              "in": 2.8,
+              "loop": true,
+              "zoom": [
+                1.6,
+                1.64
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "mull over",
+          "headlineY": 0.4,
+          "hold": 0.35,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "mull over",
+              "voice": "af_heart",
+              "speed": 1.0
+            },
+            "ja": "じっくり考える"
+          }
+        },
+        {
+          "id": "check-1-10-q3",
+          "why": "日本語から英単語を思い出す（考える間）",
+          "shots": [
+            {
+              "src": "pixabay:159908",
+              "in": 8.0,
+              "loop": true,
+              "zoom": [
+                1.34,
+                1.38
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "「独特の・その人特有の」",
+          "headlineY": 0.4,
+          "hold": 2.0,
+          "lead": 0.02,
+          "say": "独特の・その人特有の。",
+          "caption": "4. 「独特の・その人特有の」"
+        },
+        {
+          "id": "check-1-10-a3",
+          "why": "答え合わせ（英語音声）",
+          "shots": [
+            {
+              "src": "pixabay:159908",
+              "in": 12.0,
+              "loop": true,
+              "zoom": [
+                1.38,
+                1.42
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "idiosyncratic",
+          "headlineY": 0.4,
+          "hold": 0.35,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "idiosyncratic",
+              "voice": "af_heart",
+              "speed": 1.0
+            },
+            "ja": "独特の・その人特有の"
+          }
+        },
+        {
+          "id": "check-1-10-q4",
+          "why": "日本語から英単語を思い出す（考える間）",
+          "shots": [
+            {
+              "src": "commons:Street view of Sarphatistraat with a woman, waiting and looking; free photo Amsterdam, Fons Heijnsbroek 10-2021.jpg",
+              "in": 0,
+              "freeze": true,
+              "zoom": [
+                1.27,
+                1.31
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "「後になって分かること」",
+          "headlineY": 0.4,
+          "hold": 2.0,
+          "lead": 0.02,
+          "say": "後になって分かること。",
+          "caption": "5. 「後になって分かること」"
+        },
+        {
+          "id": "check-1-10-a4",
+          "why": "答え合わせ（英語音声）",
+          "shots": [
+            {
+              "src": "commons:Street view of Sarphatistraat with a woman, waiting and looking; free photo Amsterdam, Fons Heijnsbroek 10-2021.jpg",
+              "in": 0,
+              "freeze": true,
+              "zoom": [
+                1.31,
+                1.35
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "hindsight",
+          "headlineY": 0.4,
+          "hold": 0.35,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "hindsight",
+              "voice": "af_heart",
+              "speed": 1.0
+            },
+            "ja": "後になって分かること"
+          }
+        },
+        {
+          "id": "check-1-10-q5",
+          "why": "日本語から英単語を思い出す（考える間）",
+          "shots": [
+            {
+              "src": "pixabay:15484",
+              "in": 8.0,
+              "loop": true,
+              "zoom": [
+                1.34,
+                1.38
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "「なだめすかして〜させる」",
+          "headlineY": 0.4,
+          "hold": 2.0,
+          "lead": 0.02,
+          "say": "なだめすかして〜させる。",
+          "caption": "6. 「なだめすかして〜させる」"
+        },
+        {
+          "id": "check-1-10-a5",
+          "why": "答え合わせ（英語音声）",
+          "shots": [
+            {
+              "src": "pixabay:15484",
+              "in": 12.0,
+              "loop": true,
+              "zoom": [
+                1.38,
+                1.42
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "coax",
+          "headlineY": 0.4,
+          "hold": 0.35,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "coax",
+              "voice": "af_heart",
+              "speed": 1.0
+            },
+            "ja": "なだめすかして〜させる"
+          }
+        },
+        {
+          "id": "check-1-10-q6",
+          "why": "日本語から英単語を思い出す（考える間）",
+          "shots": [
+            {
+              "src": "pixabay:12126",
+              "in": 21.0,
+              "loop": true,
+              "zoom": [
+                1.34,
+                1.38
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "「はかない・つかの間の」",
+          "headlineY": 0.4,
+          "hold": 2.0,
+          "lead": 0.02,
+          "say": "はかない・つかの間の。",
+          "caption": "7. 「はかない・つかの間の」"
+        },
+        {
+          "id": "check-1-10-a6",
+          "why": "答え合わせ（英語音声）",
+          "shots": [
+            {
+              "src": "pixabay:12126",
+              "in": 25.0,
+              "loop": true,
+              "zoom": [
+                1.38,
+                1.42
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "ephemeral",
+          "headlineY": 0.4,
+          "hold": 0.35,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "ephemeral",
+              "voice": "af_heart",
+              "speed": 1.0
+            },
+            "ja": "はかない・つかの間の"
+          }
+        },
+        {
+          "id": "check-1-10-q7",
+          "why": "日本語から英単語を思い出す（考える間）",
+          "shots": [
+            {
+              "src": "commons:Woman sits at desk working on laptop in home office.jpg",
+              "in": 0,
+              "freeze": true,
+              "zoom": [
+                1.32,
+                1.36
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "「ためらい・良心のとがめ」",
+          "headlineY": 0.4,
+          "hold": 2.0,
+          "lead": 0.02,
+          "say": "ためらい・良心のとがめ。",
+          "caption": "8. 「ためらい・良心のとがめ」"
+        },
+        {
+          "id": "check-1-10-a7",
+          "why": "答え合わせ（英語音声）",
+          "shots": [
+            {
+              "src": "commons:Woman sits at desk working on laptop in home office.jpg",
+              "in": 0,
+              "freeze": true,
+              "zoom": [
+                1.36,
+                1.4
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "qualm",
+          "headlineY": 0.4,
+          "hold": 0.35,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "qualm",
+              "voice": "af_heart",
+              "speed": 1.0
+            },
+            "ja": "ためらい・良心のとがめ"
+          }
+        },
+        {
+          "id": "check-1-10-q8",
+          "why": "日本語から英単語を思い出す（考える間）",
+          "shots": [
+            {
+              "src": "pixabay:203252",
+              "in": 6.8,
+              "loop": true,
+              "zoom": [
+                1.64,
+                1.68
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "「不気味なほどの・驚くほどの」",
+          "headlineY": 0.4,
+          "hold": 2.0,
+          "lead": 0.02,
+          "say": "不気味なほどの・驚くほどの。",
+          "caption": "9. 「不気味なほどの・驚くほどの」"
+        },
+        {
+          "id": "check-1-10-a8",
+          "why": "答え合わせ（英語音声）",
+          "shots": [
+            {
+              "src": "pixabay:203252",
+              "in": 3.8,
+              "loop": true,
+              "zoom": [
+                1.68,
+                1.72
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "uncanny",
+          "headlineY": 0.4,
+          "hold": 0.35,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "uncanny",
+              "voice": "af_heart",
+              "speed": 1.0
+            },
+            "ja": "不気味なほどの・驚くほどの"
+          }
+        },
+        {
+          "id": "check-1-10-q9",
+          "why": "日本語から英単語を思い出す（考える間）",
+          "shots": [
+            {
+              "src": "pixabay:14421",
+              "in": 21.0,
+              "loop": true,
+              "zoom": [
+                1.34,
+                1.38
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "「なんとかやりくりする」",
+          "headlineY": 0.4,
+          "hold": 2.0,
+          "lead": 0.02,
+          "say": "なんとかやりくりする。",
+          "caption": "10. 「なんとかやりくりする」"
+        },
+        {
+          "id": "check-1-10-a9",
+          "why": "答え合わせ（英語音声）",
+          "shots": [
+            {
+              "src": "pixabay:14421",
+              "in": 25.0,
+              "loop": true,
+              "zoom": [
+                1.38,
+                1.42
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "eke out",
+          "headlineY": 0.4,
+          "hold": 0.35,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "eke out",
+              "voice": "af_heart",
+              "speed": 1.0
+            },
+            "ja": "なんとかやりくりする"
+          }
+        }
+      ]
+    },
+    {
+      "id": "w11",
+      "title": "11. haphazard（行き当たりばったりの）",
+      "purpose": "1語を使えるようにする",
+      "beats": [
+        {
+          "id": "w11-say",
+          "why": "単語と発音（普通の速さ）",
+          "shots": [
+            {
+              "src": "pixabay:1656",
+              "in": 1.0,
+              "loop": true,
+              "zoom": [
+                1.12,
+                1.16
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "11. haphazard  [C2]",
+          "headlineY": 0.4,
+          "hold": 0.25,
+          "lead": 0.02,
+          "sfx": "pop",
+          "clip": {
+            "tts": {
+              "text": "haphazard",
+              "voice": "af_heart",
+              "speed": 1.0
+            },
+            "lines": [
+              {
+                "en": "haphazard",
+                "ja": ""
+              }
+            ]
+          }
+        },
+        {
+          "id": "w11-slow",
+          "why": "発音（ゆっくり）",
+          "shots": [
+            {
+              "src": "pixabay:1656",
+              "in": 5.0,
+              "loop": true,
+              "zoom": [
+                1.16,
+                1.2
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "11. haphazard  [C2]",
+          "headlineY": 0.4,
+          "hold": 0.3,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "haphazard",
+              "voice": "af_heart",
+              "speed": 0.75
+            },
+            "lines": [
+              {
+                "en": "haphazard",
+                "ja": ""
+              }
+            ]
+          }
+        },
+        {
+          "id": "w11-meaning",
+          "why": "意味（とニュアンス一言）",
+          "shots": [
+            {
+              "src": "pixabay:1656",
+              "in": 0.0,
+              "loop": true,
+              "zoom": [
+                1.2,
+                1.26
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "11. haphazard  [C2]",
+          "headlineY": 0.3,
+          "hold": 0.15,
+          "lead": 0.02,
+          "say": "行き当たりばったりの。",
+          "caption": "形容詞「行き当たりばったりの」"
+        },
+        {
+          "id": "w11-ex1",
+          "why": "例文を英語で聞く",
+          "shots": [
+            {
+              "src": "pixabay:1656",
+              "in": 4.0,
+              "loop": true,
+              "zoom": [
+                1.26,
+                1.3
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "11. haphazard  [C2]",
+          "headlineY": 0.3,
+          "hold": 0.35,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "The project was planned in a haphazard way.",
+              "voice": "af_heart",
+              "speed": 1.0
+            },
+            "lines": [
+              {
+                "en": "The project was planned in a haphazard way.",
+                "ja": "その計画は行き当たりばったりだった"
+              }
+            ]
+          }
+        },
+        {
+          "id": "w11-repeat",
+          "why": "お手本の後に言う時間",
+          "shots": [
+            {
+              "src": "pixabay:1656",
+              "in": 8.0,
+              "loop": true,
+              "zoom": [
+                1.3,
+                1.34
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "11. haphazard  [C2]",
+          "headlineY": 0.4,
+          "hold": 1.4,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "haphazard",
+              "voice": "af_heart",
+              "speed": 0.95
+            },
+            "ja": "行き当たりばったりの"
+          }
+        }
+      ],
+      "listGroup": "11〜15：haphazard / drudgery / wallow / tacit / innuendo"
+    },
+    {
+      "id": "w12",
+      "title": "12. drudgery（退屈な骨折り仕事）",
+      "purpose": "1語を使えるようにする",
+      "beats": [
+        {
+          "id": "w12-say",
+          "why": "単語と発音（普通の速さ）",
+          "shots": [
+            {
+              "src": "commons:WMUK office - clocks.jpg",
+              "in": 0,
+              "freeze": true,
+              "zoom": [
+                1.05,
+                1.09
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "12. drudgery  [C2]",
+          "headlineY": 0.4,
+          "hold": 0.25,
+          "lead": 0.02,
+          "sfx": "pop",
+          "clip": {
+            "tts": {
+              "text": "drudgery",
+              "voice": "af_heart",
+              "speed": 1.0
+            },
+            "lines": [
+              {
+                "en": "drudgery",
+                "ja": ""
+              }
+            ]
+          }
+        },
+        {
+          "id": "w12-slow",
+          "why": "発音（ゆっくり）",
+          "shots": [
+            {
+              "src": "commons:WMUK office - clocks.jpg",
+              "in": 0,
+              "freeze": true,
+              "zoom": [
+                1.09,
+                1.13
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "12. drudgery  [C2]",
+          "headlineY": 0.4,
+          "hold": 0.3,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "drudgery",
+              "voice": "af_heart",
+              "speed": 0.75
+            },
+            "lines": [
+              {
+                "en": "drudgery",
+                "ja": ""
+              }
+            ]
+          }
+        },
+        {
+          "id": "w12-meaning",
+          "why": "意味（とニュアンス一言）",
+          "shots": [
+            {
+              "src": "commons:WMUK office - clocks.jpg",
+              "in": 0,
+              "freeze": true,
+              "zoom": [
+                1.13,
+                1.19
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "12. drudgery  [C2]",
+          "headlineY": 0.3,
+          "hold": 0.15,
+          "lead": 0.02,
+          "say": "退屈な骨折り仕事。",
+          "caption": "名詞「退屈な骨折り仕事」"
+        },
+        {
+          "id": "w12-ex1",
+          "why": "例文を英語で聞く",
+          "shots": [
+            {
+              "src": "commons:WMUK office - clocks.jpg",
+              "in": 0,
+              "freeze": true,
+              "zoom": [
+                1.19,
+                1.23
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "12. drudgery  [C2]",
+          "headlineY": 0.3,
+          "hold": 0.35,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "Automation takes the drudgery out of data entry.",
+              "voice": "af_heart",
+              "speed": 1.0
+            },
+            "lines": [
+              {
+                "en": "Automation takes the drudgery out of data entry.",
+                "ja": "自動化で、データ入力の退屈な作業がなくなる"
+              }
+            ]
+          }
+        },
+        {
+          "id": "w12-repeat",
+          "why": "お手本の後に言う時間",
+          "shots": [
+            {
+              "src": "commons:WMUK office - clocks.jpg",
+              "in": 0,
+              "freeze": true,
+              "zoom": [
+                1.23,
+                1.27
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "12. drudgery  [C2]",
+          "headlineY": 0.4,
+          "hold": 1.4,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "drudgery",
+              "voice": "af_heart",
+              "speed": 0.95
+            },
+            "ja": "退屈な骨折り仕事"
+          }
+        }
+      ],
+      "listGroup": "11〜15：haphazard / drudgery / wallow / tacit / innuendo"
+    },
+    {
+      "id": "w13",
+      "title": "13. wallow（（感情に）浸る）",
+      "purpose": "1語を使えるようにする",
+      "beats": [
+        {
+          "id": "w13-say",
+          "why": "単語と発音（普通の速さ）",
+          "shots": [
+            {
+              "src": "commons:Cozy living room with a gray sofa.jpg",
+              "in": 0,
+              "freeze": true,
+              "zoom": [
+                1.05,
+                1.09
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "13. wallow  [C2]",
+          "headlineY": 0.4,
+          "hold": 0.25,
+          "lead": 0.02,
+          "sfx": "pop",
+          "clip": {
+            "tts": {
+              "text": "wallow",
+              "voice": "af_heart",
+              "speed": 1.0
+            },
+            "lines": [
+              {
+                "en": "wallow",
+                "ja": ""
+              }
+            ]
+          }
+        },
+        {
+          "id": "w13-slow",
+          "why": "発音（ゆっくり）",
+          "shots": [
+            {
+              "src": "commons:Cozy living room with a gray sofa.jpg",
+              "in": 0,
+              "freeze": true,
+              "zoom": [
+                1.09,
+                1.13
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "13. wallow  [C2]",
+          "headlineY": 0.4,
+          "hold": 0.3,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "wallow",
+              "voice": "af_heart",
+              "speed": 0.75
+            },
+            "lines": [
+              {
+                "en": "wallow",
+                "ja": ""
+              }
+            ]
+          }
+        },
+        {
+          "id": "w13-meaning",
+          "why": "意味（とニュアンス一言）",
+          "shots": [
+            {
+              "src": "commons:Cozy living room with a gray sofa.jpg",
+              "in": 0,
+              "freeze": true,
+              "zoom": [
+                1.13,
+                1.19
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "13. wallow  [C2]",
+          "headlineY": 0.3,
+          "hold": 0.15,
+          "lead": 0.02,
+          "say": "（感情に）浸る。／ワロー・イン・セルフピティで、自分をあわれんで浸る。",
+          "caption": "動詞「（感情に）浸る」／wallow in self-pity ＝ 自己憐憫に浸る"
+        },
+        {
+          "id": "w13-ex1",
+          "why": "例文を英語で聞く",
+          "shots": [
+            {
+              "src": "commons:Cozy living room with a gray sofa.jpg",
+              "in": 0,
+              "freeze": true,
+              "zoom": [
+                1.19,
+                1.23
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "13. wallow  [C2]",
+          "headlineY": 0.3,
+          "hold": 0.35,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "Stop wallowing in self-pity.",
+              "voice": "af_heart",
+              "speed": 1.0
+            },
+            "lines": [
+              {
+                "en": "Stop wallowing in self-pity.",
+                "ja": "いつまでも自分をあわれむのはやめなよ"
+              }
+            ]
+          }
+        },
+        {
+          "id": "w13-repeat",
+          "why": "お手本の後に言う時間",
+          "shots": [
+            {
+              "src": "commons:Cozy living room with a gray sofa.jpg",
+              "in": 0,
+              "freeze": true,
+              "zoom": [
+                1.23,
+                1.27
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "13. wallow  [C2]",
+          "headlineY": 0.4,
+          "hold": 1.4,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "wallow",
+              "voice": "af_heart",
+              "speed": 0.95
+            },
+            "ja": "（感情に）浸る"
+          }
+        }
+      ],
+      "listGroup": "11〜15：haphazard / drudgery / wallow / tacit / innuendo"
+    },
+    {
+      "id": "w14",
+      "title": "14. tacit（暗黙の）",
+      "purpose": "1語を使えるようにする",
+      "beats": [
+        {
+          "id": "w14-say",
+          "why": "単語と発音（普通の速さ）",
+          "shots": [
+            {
+              "src": "pixabay:8252",
+              "in": 1.0,
+              "loop": true,
+              "zoom": [
+                1.12,
+                1.16
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "14. tacit  [C2]",
+          "headlineY": 0.4,
+          "hold": 0.25,
+          "lead": 0.02,
+          "sfx": "pop",
+          "clip": {
+            "tts": {
+              "text": "tacit",
+              "voice": "af_heart",
+              "speed": 1.0
+            },
+            "lines": [
+              {
+                "en": "tacit",
+                "ja": ""
+              }
+            ]
+          }
+        },
+        {
+          "id": "w14-slow",
+          "why": "発音（ゆっくり）",
+          "shots": [
+            {
+              "src": "pixabay:8252",
+              "in": 5.0,
+              "loop": true,
+              "zoom": [
+                1.16,
+                1.2
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "14. tacit  [C2]",
+          "headlineY": 0.4,
+          "hold": 0.3,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "tacit",
+              "voice": "af_heart",
+              "speed": 0.75
+            },
+            "lines": [
+              {
+                "en": "tacit",
+                "ja": ""
+              }
+            ]
+          }
+        },
+        {
+          "id": "w14-meaning",
+          "why": "意味（とニュアンス一言）",
+          "shots": [
+            {
+              "src": "pixabay:8252",
+              "in": 9.0,
+              "loop": true,
+              "zoom": [
+                1.2,
+                1.26
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "14. tacit  [C2]",
+          "headlineY": 0.3,
+          "hold": 0.15,
+          "lead": 0.02,
+          "say": "暗黙の。",
+          "caption": "形容詞「暗黙の」"
+        },
+        {
+          "id": "w14-ex1",
+          "why": "例文を英語で聞く",
+          "shots": [
+            {
+              "src": "pixabay:8252",
+              "in": 13.0,
+              "loop": true,
+              "zoom": [
+                1.26,
+                1.3
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "14. tacit  [C2]",
+          "headlineY": 0.3,
+          "hold": 0.35,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "There was a tacit agreement not to discuss it.",
+              "voice": "af_heart",
+              "speed": 1.0
+            },
+            "lines": [
+              {
+                "en": "There was a tacit agreement not to discuss it.",
+                "ja": "その話はしないという暗黙の了解があった"
+              }
+            ]
+          }
+        },
+        {
+          "id": "w14-repeat",
+          "why": "お手本の後に言う時間",
+          "shots": [
+            {
+              "src": "pixabay:8252",
+              "in": 0.0,
+              "loop": true,
+              "zoom": [
+                1.3,
+                1.34
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "14. tacit  [C2]",
+          "headlineY": 0.4,
+          "hold": 1.4,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "tacit",
+              "voice": "af_heart",
+              "speed": 0.95
+            },
+            "ja": "暗黙の"
+          }
+        }
+      ],
+      "listGroup": "11〜15：haphazard / drudgery / wallow / tacit / innuendo"
+    },
+    {
+      "id": "w15",
+      "title": "15. innuendo（ほのめかし・当てこすり）",
+      "purpose": "1語を使えるようにする",
+      "beats": [
+        {
+          "id": "w15-say",
+          "why": "単語と発音（普通の速さ）",
+          "shots": [
+            {
+              "src": "pixabay:50312",
+              "in": 1.0,
+              "loop": true,
+              "zoom": [
+                1.12,
+                1.16
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "15. innuendo  [C2]",
+          "headlineY": 0.4,
+          "hold": 0.25,
+          "lead": 0.02,
+          "sfx": "pop",
+          "clip": {
+            "tts": {
+              "text": "innuendo",
+              "voice": "af_heart",
+              "speed": 1.0
+            },
+            "lines": [
+              {
+                "en": "innuendo",
+                "ja": ""
+              }
+            ]
+          }
+        },
+        {
+          "id": "w15-slow",
+          "why": "発音（ゆっくり）",
+          "shots": [
+            {
+              "src": "pixabay:50312",
+              "in": 5.0,
+              "loop": true,
+              "zoom": [
+                1.16,
+                1.2
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "15. innuendo  [C2]",
+          "headlineY": 0.4,
+          "hold": 0.3,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "innuendo",
+              "voice": "af_heart",
+              "speed": 0.75
+            },
+            "lines": [
+              {
+                "en": "innuendo",
+                "ja": ""
+              }
+            ]
+          }
+        },
+        {
+          "id": "w15-meaning",
+          "why": "意味（とニュアンス一言）",
+          "shots": [
+            {
+              "src": "pixabay:50312",
+              "in": 9.0,
+              "loop": true,
+              "zoom": [
+                1.2,
+                1.26
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "15. innuendo  [C2]",
+          "headlineY": 0.3,
+          "hold": 0.15,
+          "lead": 0.02,
+          "say": "ほのめかし・当てこすり。",
+          "caption": "名詞「ほのめかし・当てこすり」"
+        },
+        {
+          "id": "w15-ex1",
+          "why": "例文を英語で聞く",
+          "shots": [
+            {
+              "src": "pixabay:50312",
+              "in": 13.0,
+              "loop": true,
+              "zoom": [
+                1.26,
+                1.3
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "15. innuendo  [C2]",
+          "headlineY": 0.3,
+          "hold": 0.35,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "The article was full of innuendo.",
+              "voice": "af_heart",
+              "speed": 1.0
+            },
+            "lines": [
+              {
+                "en": "The article was full of innuendo.",
+                "ja": "その記事は当てこすりだらけだった"
+              }
+            ]
+          }
+        },
+        {
+          "id": "w15-repeat",
+          "why": "お手本の後に言う時間",
+          "shots": [
+            {
+              "src": "pixabay:50312",
+              "in": 17.0,
+              "loop": true,
+              "zoom": [
+                1.3,
+                1.34
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "15. innuendo  [C2]",
+          "headlineY": 0.4,
+          "hold": 1.4,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "innuendo",
+              "voice": "af_heart",
+              "speed": 0.95
+            },
+            "ja": "ほのめかし・当てこすり"
+          }
+        }
+      ],
+      "listGroup": "11〜15：haphazard / drudgery / wallow / tacit / innuendo"
+    },
+    {
+      "id": "w16",
+      "title": "16. surreptitious（こっそりした）",
+      "purpose": "1語を使えるようにする",
+      "beats": [
+        {
+          "id": "w16-say",
+          "why": "単語と発音（普通の速さ）",
+          "shots": [
+            {
+              "src": "pixabay:142641",
+              "in": 0.8,
+              "loop": true,
+              "zoom": [
+                1.12,
+                1.16
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "16. surreptitious  [C2]",
+          "headlineY": 0.4,
+          "hold": 0.25,
+          "lead": 0.02,
+          "sfx": "pop",
+          "clip": {
+            "tts": {
+              "text": "surreptitious",
+              "voice": "af_heart",
+              "speed": 1.0
+            },
+            "lines": [
+              {
+                "en": "surreptitious",
+                "ja": ""
+              }
+            ]
+          }
+        },
+        {
+          "id": "w16-slow",
+          "why": "発音（ゆっくり）",
+          "shots": [
+            {
+              "src": "pixabay:142641",
+              "in": 4.8,
+              "loop": true,
+              "zoom": [
+                1.16,
+                1.2
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "16. surreptitious  [C2]",
+          "headlineY": 0.4,
+          "hold": 0.3,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "surreptitious",
+              "voice": "af_heart",
+              "speed": 0.75
+            },
+            "lines": [
+              {
+                "en": "surreptitious",
+                "ja": ""
+              }
+            ]
+          }
+        },
+        {
+          "id": "w16-meaning",
+          "why": "意味（とニュアンス一言）",
+          "shots": [
+            {
+              "src": "pixabay:142641",
+              "in": 1.8,
+              "loop": true,
+              "zoom": [
+                1.2,
+                1.26
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "16. surreptitious  [C2]",
+          "headlineY": 0.3,
+          "hold": 0.15,
+          "lead": 0.02,
+          "say": "こっそりした。",
+          "caption": "形容詞「こっそりした」"
+        },
+        {
+          "id": "w16-ex1",
+          "why": "例文を英語で聞く",
+          "shots": [
+            {
+              "src": "pixabay:142641",
+              "in": 5.8,
+              "loop": true,
+              "zoom": [
+                1.26,
+                1.3
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "16. surreptitious  [C2]",
+          "headlineY": 0.3,
+          "hold": 0.35,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "He took a surreptitious glance at his phone.",
+              "voice": "af_heart",
+              "speed": 1.0
+            },
+            "lines": [
+              {
+                "en": "He took a surreptitious glance at his phone.",
+                "ja": "彼はこっそりスマホに目をやった"
+              }
+            ]
+          }
+        },
+        {
+          "id": "w16-repeat",
+          "why": "お手本の後に言う時間",
+          "shots": [
+            {
+              "src": "pixabay:142641",
+              "in": 2.8,
+              "loop": true,
+              "zoom": [
+                1.3,
+                1.34
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "16. surreptitious  [C2]",
+          "headlineY": 0.4,
+          "hold": 1.4,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "surreptitious",
+              "voice": "af_heart",
+              "speed": 0.95
+            },
+            "ja": "こっそりした"
+          }
+        }
+      ],
+      "listGroup": "16〜20：surreptitious / clinch / wistful / smattering / superfluous"
+    },
+    {
+      "id": "w17",
+      "title": "17. clinch（（勝利・契約を）決める）",
+      "purpose": "1語を使えるようにする",
+      "beats": [
+        {
+          "id": "w17-say",
+          "why": "単語と発音（普通の速さ）",
+          "shots": [
+            {
+              "src": "pixabay:8252",
+              "in": 4.0,
+              "loop": true,
+              "zoom": [
+                1.34,
+                1.38
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "17. clinch  [C2]",
+          "headlineY": 0.4,
+          "hold": 0.25,
+          "lead": 0.02,
+          "sfx": "pop",
+          "clip": {
+            "tts": {
+              "text": "clinch",
+              "voice": "af_heart",
+              "speed": 1.0
+            },
+            "lines": [
+              {
+                "en": "clinch",
+                "ja": ""
+              }
+            ]
+          }
+        },
+        {
+          "id": "w17-slow",
+          "why": "発音（ゆっくり）",
+          "shots": [
+            {
+              "src": "pixabay:8252",
+              "in": 8.0,
+              "loop": true,
+              "zoom": [
+                1.38,
+                1.42
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "17. clinch  [C2]",
+          "headlineY": 0.4,
+          "hold": 0.3,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "clinch",
+              "voice": "af_heart",
+              "speed": 0.75
+            },
+            "lines": [
+              {
+                "en": "clinch",
+                "ja": ""
+              }
+            ]
+          }
+        },
+        {
+          "id": "w17-meaning",
+          "why": "意味（とニュアンス一言）",
+          "shots": [
+            {
+              "src": "pixabay:8252",
+              "in": 12.0,
+              "loop": true,
+              "zoom": [
+                1.42,
+                1.48
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "17. clinch  [C2]",
+          "headlineY": 0.3,
+          "hold": 0.15,
+          "lead": 0.02,
+          "say": "（勝利・契約を）決める。",
+          "caption": "動詞「（勝利・契約を）決める」"
+        },
+        {
+          "id": "w17-ex1",
+          "why": "例文を英語で聞く",
+          "shots": [
+            {
+              "src": "pixabay:8252",
+              "in": 16.0,
+              "loop": true,
+              "zoom": [
+                1.48,
+                1.52
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "17. clinch  [C2]",
+          "headlineY": 0.3,
+          "hold": 0.35,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "That last goal clinched the title.",
+              "voice": "af_heart",
+              "speed": 1.0
+            },
+            "lines": [
+              {
+                "en": "That last goal clinched the title.",
+                "ja": "最後のゴールで優勝が決まった"
+              }
+            ]
+          }
+        },
+        {
+          "id": "w17-repeat",
+          "why": "お手本の後に言う時間",
+          "shots": [
+            {
+              "src": "pixabay:8252",
+              "in": 3.0,
+              "loop": true,
+              "zoom": [
+                1.52,
+                1.56
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "17. clinch  [C2]",
+          "headlineY": 0.4,
+          "hold": 1.4,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "clinch",
+              "voice": "af_heart",
+              "speed": 0.95
+            },
+            "ja": "（勝利・契約を）決める"
+          }
+        }
+      ],
+      "listGroup": "16〜20：surreptitious / clinch / wistful / smattering / superfluous"
+    },
+    {
+      "id": "w18",
+      "title": "18. wistful（懐かしそうな・もの悲しげな）",
+      "purpose": "1語を使えるようにする",
+      "beats": [
+        {
+          "id": "w18-say",
+          "why": "単語と発音（普通の速さ）",
+          "shots": [
+            {
+              "src": "pixabay:262125",
+              "in": 1.0,
+              "loop": true,
+              "zoom": [
+                1.12,
+                1.16
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "18. wistful  [C2]",
+          "headlineY": 0.4,
+          "hold": 0.25,
+          "lead": 0.02,
+          "sfx": "pop",
+          "clip": {
+            "tts": {
+              "text": "wistful",
+              "voice": "af_heart",
+              "speed": 1.0
+            },
+            "lines": [
+              {
+                "en": "wistful",
+                "ja": ""
+              }
+            ]
+          }
+        },
+        {
+          "id": "w18-slow",
+          "why": "発音（ゆっくり）",
+          "shots": [
+            {
+              "src": "pixabay:262125",
+              "in": 5.0,
+              "loop": true,
+              "zoom": [
+                1.16,
+                1.2
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "18. wistful  [C2]",
+          "headlineY": 0.4,
+          "hold": 0.3,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "wistful",
+              "voice": "af_heart",
+              "speed": 0.75
+            },
+            "lines": [
+              {
+                "en": "wistful",
+                "ja": ""
+              }
+            ]
+          }
+        },
+        {
+          "id": "w18-meaning",
+          "why": "意味（とニュアンス一言）",
+          "shots": [
+            {
+              "src": "pixabay:262125",
+              "in": 9.0,
+              "loop": true,
+              "zoom": [
+                1.2,
+                1.26
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "18. wistful  [C2]",
+          "headlineY": 0.3,
+          "hold": 0.15,
+          "lead": 0.02,
+          "say": "懐かしそうな・もの悲しげな。",
+          "caption": "形容詞「懐かしそうな・もの悲しげな」"
+        },
+        {
+          "id": "w18-ex1",
+          "why": "例文を英語で聞く",
+          "shots": [
+            {
+              "src": "pixabay:262125",
+              "in": 13.0,
+              "loop": true,
+              "zoom": [
+                1.26,
+                1.3
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "18. wistful  [C2]",
+          "headlineY": 0.3,
+          "hold": 0.35,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "She gave a wistful smile.",
+              "voice": "af_heart",
+              "speed": 1.0
+            },
+            "lines": [
+              {
+                "en": "She gave a wistful smile.",
+                "ja": "彼女はどこか寂しげに微笑んだ"
+              }
+            ]
+          }
+        },
+        {
+          "id": "w18-repeat",
+          "why": "お手本の後に言う時間",
+          "shots": [
+            {
+              "src": "pixabay:262125",
+              "in": 17.0,
+              "loop": true,
+              "zoom": [
+                1.3,
+                1.34
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "18. wistful  [C2]",
+          "headlineY": 0.4,
+          "hold": 1.4,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "wistful",
+              "voice": "af_heart",
+              "speed": 0.95
+            },
+            "ja": "懐かしそうな・もの悲しげな"
+          }
+        }
+      ],
+      "listGroup": "16〜20：surreptitious / clinch / wistful / smattering / superfluous"
+    },
+    {
+      "id": "w19",
+      "title": "19. smattering（少しばかりの知識）",
+      "purpose": "1語を使えるようにする",
+      "beats": [
+        {
+          "id": "w19-say",
+          "why": "単語と発音（普通の速さ）",
+          "shots": [
+            {
+              "src": "pixabay:145428",
+              "in": 1.0,
+              "loop": true,
+              "zoom": [
+                1.12,
+                1.16
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "19. smattering  [C2]",
+          "headlineY": 0.4,
+          "hold": 0.25,
+          "lead": 0.02,
+          "sfx": "pop",
+          "clip": {
+            "tts": {
+              "text": "smattering",
+              "voice": "af_heart",
+              "speed": 1.0
+            },
+            "lines": [
+              {
+                "en": "smattering",
+                "ja": ""
+              }
+            ]
+          }
+        },
+        {
+          "id": "w19-slow",
+          "why": "発音（ゆっくり）",
+          "shots": [
+            {
+              "src": "pixabay:145428",
+              "in": 5.0,
+              "loop": true,
+              "zoom": [
+                1.16,
+                1.2
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "19. smattering  [C2]",
+          "headlineY": 0.4,
+          "hold": 0.3,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "smattering",
+              "voice": "af_heart",
+              "speed": 0.75
+            },
+            "lines": [
+              {
+                "en": "smattering",
+                "ja": ""
+              }
+            ]
+          }
+        },
+        {
+          "id": "w19-meaning",
+          "why": "意味（とニュアンス一言）",
+          "shots": [
+            {
+              "src": "pixabay:145428",
+              "in": 9.0,
+              "loop": true,
+              "zoom": [
+                1.2,
+                1.26
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "19. smattering  [C2]",
+          "headlineY": 0.3,
+          "hold": 0.15,
+          "lead": 0.02,
+          "say": "少しばかりの知識。／ア・スマタリング・オブで、少しだけ。",
+          "caption": "名詞「少しばかりの知識」／a smattering of 〜 ＝ 〜を少しだけ"
+        },
+        {
+          "id": "w19-ex1",
+          "why": "例文を英語で聞く",
+          "shots": [
+            {
+              "src": "pixabay:145428",
+              "in": 1.0,
+              "loop": true,
+              "zoom": [
+                1.26,
+                1.3
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "19. smattering  [C2]",
+          "headlineY": 0.3,
+          "hold": 0.35,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "I speak a smattering of French.",
+              "voice": "af_heart",
+              "speed": 1.0
+            },
+            "lines": [
+              {
+                "en": "I speak a smattering of French.",
+                "ja": "フランス語は少しだけ話せる"
+              }
+            ]
+          }
+        },
+        {
+          "id": "w19-repeat",
+          "why": "お手本の後に言う時間",
+          "shots": [
+            {
+              "src": "pixabay:145428",
+              "in": 5.0,
+              "loop": true,
+              "zoom": [
+                1.3,
+                1.34
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "19. smattering  [C2]",
+          "headlineY": 0.4,
+          "hold": 1.4,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "smattering",
+              "voice": "af_heart",
+              "speed": 0.95
+            },
+            "ja": "少しばかりの知識"
+          }
+        }
+      ],
+      "listGroup": "16〜20：surreptitious / clinch / wistful / smattering / superfluous"
+    },
+    {
+      "id": "w20",
+      "title": "20. superfluous（余計な・不必要な）",
+      "purpose": "1語を使えるようにする",
+      "beats": [
+        {
+          "id": "w20-say",
+          "why": "単語と発音（普通の速さ）",
+          "shots": [
+            {
+              "src": "commons:Person writing in a notebook while sitting at a desk.jpg",
+              "in": 0,
+              "freeze": true,
+              "zoom": [
+                1.38,
+                1.42
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "20. superfluous  [C2]",
+          "headlineY": 0.4,
+          "hold": 0.25,
+          "lead": 0.02,
+          "sfx": "pop",
+          "clip": {
+            "tts": {
+              "text": "superfluous",
+              "voice": "af_heart",
+              "speed": 1.0
+            },
+            "lines": [
+              {
+                "en": "superfluous",
+                "ja": ""
+              }
+            ]
+          }
+        },
+        {
+          "id": "w20-slow",
+          "why": "発音（ゆっくり）",
+          "shots": [
+            {
+              "src": "commons:Person writing in a notebook while sitting at a desk.jpg",
+              "in": 0,
+              "freeze": true,
+              "zoom": [
+                1.42,
+                1.46
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "20. superfluous  [C2]",
+          "headlineY": 0.4,
+          "hold": 0.3,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "superfluous",
+              "voice": "af_heart",
+              "speed": 0.75
+            },
+            "lines": [
+              {
+                "en": "superfluous",
+                "ja": ""
+              }
+            ]
+          }
+        },
+        {
+          "id": "w20-meaning",
+          "why": "意味（とニュアンス一言）",
+          "shots": [
+            {
+              "src": "commons:Person writing in a notebook while sitting at a desk.jpg",
+              "in": 0,
+              "freeze": true,
+              "zoom": [
+                1.46,
+                1.52
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "20. superfluous  [C2]",
+          "headlineY": 0.3,
+          "hold": 0.15,
+          "lead": 0.02,
+          "say": "余計な・不必要な。",
+          "caption": "形容詞「余計な・不必要な」"
+        },
+        {
+          "id": "w20-ex1",
+          "why": "例文を英語で聞く",
+          "shots": [
+            {
+              "src": "commons:Person writing in a notebook while sitting at a desk.jpg",
+              "in": 0,
+              "freeze": true,
+              "zoom": [
+                1.52,
+                1.56
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "20. superfluous  [C2]",
+          "headlineY": 0.3,
+          "hold": 0.35,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "Cut any superfluous words from your essay.",
+              "voice": "af_heart",
+              "speed": 1.0
+            },
+            "lines": [
+              {
+                "en": "Cut any superfluous words from your essay.",
+                "ja": "作文から余計な言葉は全部削って"
+              }
+            ]
+          }
+        },
+        {
+          "id": "w20-repeat",
+          "why": "お手本の後に言う時間",
+          "shots": [
+            {
+              "src": "commons:Person writing in a notebook while sitting at a desk.jpg",
+              "in": 0,
+              "freeze": true,
+              "zoom": [
+                1.56,
+                1.6
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "20. superfluous  [C2]",
+          "headlineY": 0.4,
+          "hold": 1.4,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "superfluous",
+              "voice": "af_heart",
+              "speed": 0.95
+            },
+            "ja": "余計な・不必要な"
+          }
+        }
+      ],
+      "listGroup": "16〜20：surreptitious / clinch / wistful / smattering / superfluous"
+    },
+    {
+      "id": "check-11-20",
+      "title": "確認テスト 11〜20",
+      "purpose": "覚えたかを確かめる",
+      "beats": [
+        {
+          "id": "check-11-20-lead",
+          "why": "思い出すテストの説明",
+          "shots": [
+            {
+              "src": "pixabay:1656",
+              "in": 3.0,
+              "loop": true,
+              "zoom": [
+                1.34,
+                1.38
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "思い出せる？",
+          "headlineY": 0.42,
+          "say": "11から20まで、／日本語を見て、英語で言ってみてください。"
+        },
+        {
+          "id": "check-11-20-q0",
+          "why": "日本語から英単語を思い出す（考える間）",
+          "shots": [
+            {
+              "src": "pixabay:1656",
+              "in": 7.0,
+              "loop": true,
+              "zoom": [
+                1.38,
+                1.42
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "「行き当たりばったりの」",
+          "headlineY": 0.4,
+          "hold": 2.0,
+          "lead": 0.02,
+          "say": "行き当たりばったりの。",
+          "caption": "11. 「行き当たりばったりの」"
+        },
+        {
+          "id": "check-11-20-a0",
+          "why": "答え合わせ（英語音声）",
+          "shots": [
+            {
+              "src": "pixabay:1656",
+              "in": 2.0,
+              "loop": true,
+              "zoom": [
+                1.42,
+                1.46
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "haphazard",
+          "headlineY": 0.4,
+          "hold": 0.35,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "haphazard",
+              "voice": "af_heart",
+              "speed": 1.0
+            },
+            "ja": "行き当たりばったりの"
+          }
+        },
+        {
+          "id": "check-11-20-q1",
+          "why": "日本語から英単語を思い出す（考える間）",
+          "shots": [
+            {
+              "src": "commons:WMUK office - clocks.jpg",
+              "in": 0,
+              "freeze": true,
+              "zoom": [
+                1.27,
+                1.31
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "「退屈な骨折り仕事」",
+          "headlineY": 0.4,
+          "hold": 2.0,
+          "lead": 0.02,
+          "say": "退屈な骨折り仕事。",
+          "caption": "12. 「退屈な骨折り仕事」"
+        },
+        {
+          "id": "check-11-20-a1",
+          "why": "答え合わせ（英語音声）",
+          "shots": [
+            {
+              "src": "commons:WMUK office - clocks.jpg",
+              "in": 0,
+              "freeze": true,
+              "zoom": [
+                1.31,
+                1.35
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "drudgery",
+          "headlineY": 0.4,
+          "hold": 0.35,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "drudgery",
+              "voice": "af_heart",
+              "speed": 1.0
+            },
+            "ja": "退屈な骨折り仕事"
+          }
+        },
+        {
+          "id": "check-11-20-q2",
+          "why": "日本語から英単語を思い出す（考える間）",
+          "shots": [
+            {
+              "src": "commons:Cozy living room with a gray sofa.jpg",
+              "in": 0,
+              "freeze": true,
+              "zoom": [
+                1.27,
+                1.31
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "「（感情に）浸る」",
+          "headlineY": 0.4,
+          "hold": 2.0,
+          "lead": 0.02,
+          "say": "（感情に）浸る。",
+          "caption": "13. 「（感情に）浸る」"
+        },
+        {
+          "id": "check-11-20-a2",
+          "why": "答え合わせ（英語音声）",
+          "shots": [
+            {
+              "src": "commons:Cozy living room with a gray sofa.jpg",
+              "in": 0,
+              "freeze": true,
+              "zoom": [
+                1.31,
+                1.35
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "wallow",
+          "headlineY": 0.4,
+          "hold": 0.35,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "wallow",
+              "voice": "af_heart",
+              "speed": 1.0
+            },
+            "ja": "（感情に）浸る"
+          }
+        },
+        {
+          "id": "check-11-20-q3",
+          "why": "日本語から英単語を思い出す（考える間）",
+          "shots": [
+            {
+              "src": "pixabay:8252",
+              "in": 7.0,
+              "loop": true,
+              "zoom": [
+                1.56,
+                1.6
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "「暗黙の」",
+          "headlineY": 0.4,
+          "hold": 2.0,
+          "lead": 0.02,
+          "say": "暗黙の。",
+          "caption": "14. 「暗黙の」"
+        },
+        {
+          "id": "check-11-20-a3",
+          "why": "答え合わせ（英語音声）",
+          "shots": [
+            {
+              "src": "pixabay:8252",
+              "in": 11.0,
+              "loop": true,
+              "zoom": [
+                1.6,
+                1.64
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "tacit",
+          "headlineY": 0.4,
+          "hold": 0.35,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "tacit",
+              "voice": "af_heart",
+              "speed": 1.0
+            },
+            "ja": "暗黙の"
+          }
+        },
+        {
+          "id": "check-11-20-q4",
+          "why": "日本語から英単語を思い出す（考える間）",
+          "shots": [
+            {
+              "src": "pixabay:50312",
+              "in": 2.0,
+              "loop": true,
+              "zoom": [
+                1.34,
+                1.38
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "「ほのめかし・当てこすり」",
+          "headlineY": 0.4,
+          "hold": 2.0,
+          "lead": 0.02,
+          "say": "ほのめかし・当てこすり。",
+          "caption": "15. 「ほのめかし・当てこすり」"
+        },
+        {
+          "id": "check-11-20-a4",
+          "why": "答え合わせ（英語音声）",
+          "shots": [
+            {
+              "src": "pixabay:50312",
+              "in": 6.0,
+              "loop": true,
+              "zoom": [
+                1.38,
+                1.42
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "innuendo",
+          "headlineY": 0.4,
+          "hold": 0.35,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "innuendo",
+              "voice": "af_heart",
+              "speed": 1.0
+            },
+            "ja": "ほのめかし・当てこすり"
+          }
+        },
+        {
+          "id": "check-11-20-q5",
+          "why": "日本語から英単語を思い出す（考える間）",
+          "shots": [
+            {
+              "src": "pixabay:142641",
+              "in": 6.8,
+              "loop": true,
+              "zoom": [
+                1.34,
+                1.38
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "「こっそりした」",
+          "headlineY": 0.4,
+          "hold": 2.0,
+          "lead": 0.02,
+          "say": "こっそりした。",
+          "caption": "16. 「こっそりした」"
+        },
+        {
+          "id": "check-11-20-a5",
+          "why": "答え合わせ（英語音声）",
+          "shots": [
+            {
+              "src": "pixabay:142641",
+              "in": 3.8,
+              "loop": true,
+              "zoom": [
+                1.38,
+                1.42
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "surreptitious",
+          "headlineY": 0.4,
+          "hold": 0.35,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "surreptitious",
+              "voice": "af_heart",
+              "speed": 1.0
+            },
+            "ja": "こっそりした"
+          }
+        },
+        {
+          "id": "check-11-20-q6",
+          "why": "日本語から英単語を思い出す（考える間）",
+          "shots": [
+            {
+              "src": "pixabay:8252",
+              "in": 15.0,
+              "loop": true,
+              "zoom": [
+                1.64,
+                1.68
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "「（勝利・契約を）決める」",
+          "headlineY": 0.4,
+          "hold": 2.0,
+          "lead": 0.02,
+          "say": "（勝利・契約を）決める。",
+          "caption": "17. 「（勝利・契約を）決める」"
+        },
+        {
+          "id": "check-11-20-a6",
+          "why": "答え合わせ（英語音声）",
+          "shots": [
+            {
+              "src": "pixabay:8252",
+              "in": 2.0,
+              "loop": true,
+              "zoom": [
+                1.68,
+                1.72
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "clinch",
+          "headlineY": 0.4,
+          "hold": 0.35,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "clinch",
+              "voice": "af_heart",
+              "speed": 1.0
+            },
+            "ja": "（勝利・契約を）決める"
+          }
+        },
+        {
+          "id": "check-11-20-q7",
+          "why": "日本語から英単語を思い出す（考える間）",
+          "shots": [
+            {
+              "src": "pixabay:262125",
+              "in": 21.0,
+              "loop": true,
+              "zoom": [
+                1.34,
+                1.38
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "「懐かしそうな・もの悲しげな」",
+          "headlineY": 0.4,
+          "hold": 2.0,
+          "lead": 0.02,
+          "say": "懐かしそうな・もの悲しげな。",
+          "caption": "18. 「懐かしそうな・もの悲しげな」"
+        },
+        {
+          "id": "check-11-20-a7",
+          "why": "答え合わせ（英語音声）",
+          "shots": [
+            {
+              "src": "pixabay:262125",
+              "in": 25.0,
+              "loop": true,
+              "zoom": [
+                1.38,
+                1.42
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "wistful",
+          "headlineY": 0.4,
+          "hold": 0.35,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "wistful",
+              "voice": "af_heart",
+              "speed": 1.0
+            },
+            "ja": "懐かしそうな・もの悲しげな"
+          }
+        },
+        {
+          "id": "check-11-20-q8",
+          "why": "日本語から英単語を思い出す（考える間）",
+          "shots": [
+            {
+              "src": "pixabay:145428",
+              "in": 9.0,
+              "loop": true,
+              "zoom": [
+                1.34,
+                1.38
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "「少しばかりの知識」",
+          "headlineY": 0.4,
+          "hold": 2.0,
+          "lead": 0.02,
+          "say": "少しばかりの知識。",
+          "caption": "19. 「少しばかりの知識」"
+        },
+        {
+          "id": "check-11-20-a8",
+          "why": "答え合わせ（英語音声）",
+          "shots": [
+            {
+              "src": "pixabay:145428",
+              "in": 1.0,
+              "loop": true,
+              "zoom": [
+                1.38,
+                1.42
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "smattering",
+          "headlineY": 0.4,
+          "hold": 0.35,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "smattering",
+              "voice": "af_heart",
+              "speed": 1.0
+            },
+            "ja": "少しばかりの知識"
+          }
+        },
+        {
+          "id": "check-11-20-q9",
+          "why": "日本語から英単語を思い出す（考える間）",
+          "shots": [
+            {
+              "src": "commons:Person writing in a notebook while sitting at a desk.jpg",
+              "in": 0,
+              "freeze": true,
+              "zoom": [
+                1.6,
+                1.64
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "「余計な・不必要な」",
+          "headlineY": 0.4,
+          "hold": 2.0,
+          "lead": 0.02,
+          "say": "余計な・不必要な。",
+          "caption": "20. 「余計な・不必要な」"
+        },
+        {
+          "id": "check-11-20-a9",
+          "why": "答え合わせ（英語音声）",
+          "shots": [
+            {
+              "src": "commons:Person writing in a notebook while sitting at a desk.jpg",
+              "in": 0,
+              "freeze": true,
+              "zoom": [
+                1.64,
+                1.68
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "superfluous",
+          "headlineY": 0.4,
+          "hold": 0.35,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "superfluous",
+              "voice": "af_heart",
+              "speed": 1.0
+            },
+            "ja": "余計な・不必要な"
+          }
+        }
+      ]
+    },
+    {
+      "id": "w21",
+      "title": "21. squint（目を細めて見る）",
+      "purpose": "1語を使えるようにする",
+      "beats": [
+        {
+          "id": "w21-say",
+          "why": "単語と発音（普通の速さ）",
+          "shots": [
+            {
+              "src": "commons:Street view of Sarphatistraat with a woman, waiting and looking; free photo Amsterdam, Fons Heijnsbroek 10-2021.jpg",
+              "in": 0,
+              "freeze": true,
+              "zoom": [
+                1.35,
+                1.39
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "21. squint  [C2]",
+          "headlineY": 0.4,
+          "hold": 0.25,
+          "lead": 0.02,
+          "sfx": "pop",
+          "clip": {
+            "tts": {
+              "text": "squint",
+              "voice": "af_heart",
+              "speed": 1.0
+            },
+            "lines": [
+              {
+                "en": "squint",
+                "ja": ""
+              }
+            ]
+          }
+        },
+        {
+          "id": "w21-slow",
+          "why": "発音（ゆっくり）",
+          "shots": [
+            {
+              "src": "commons:Street view of Sarphatistraat with a woman, waiting and looking; free photo Amsterdam, Fons Heijnsbroek 10-2021.jpg",
+              "in": 0,
+              "freeze": true,
+              "zoom": [
+                1.39,
+                1.43
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "21. squint  [C2]",
+          "headlineY": 0.4,
+          "hold": 0.3,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "squint",
+              "voice": "af_heart",
+              "speed": 0.75
+            },
+            "lines": [
+              {
+                "en": "squint",
+                "ja": ""
+              }
+            ]
+          }
+        },
+        {
+          "id": "w21-meaning",
+          "why": "意味（とニュアンス一言）",
+          "shots": [
+            {
+              "src": "commons:Street view of Sarphatistraat with a woman, waiting and looking; free photo Amsterdam, Fons Heijnsbroek 10-2021.jpg",
+              "in": 0,
+              "freeze": true,
+              "zoom": [
+                1.43,
+                1.49
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "21. squint  [C2]",
+          "headlineY": 0.3,
+          "hold": 0.15,
+          "lead": 0.02,
+          "say": "目を細めて見る。",
+          "caption": "動詞「目を細めて見る」"
+        },
+        {
+          "id": "w21-ex1",
+          "why": "例文を英語で聞く",
+          "shots": [
+            {
+              "src": "commons:Street view of Sarphatistraat with a woman, waiting and looking; free photo Amsterdam, Fons Heijnsbroek 10-2021.jpg",
+              "in": 0,
+              "freeze": true,
+              "zoom": [
+                1.49,
+                1.53
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "21. squint  [C2]",
+          "headlineY": 0.3,
+          "hold": 0.35,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "I had to squint to read the sign.",
+              "voice": "af_heart",
+              "speed": 1.0
+            },
+            "lines": [
+              {
+                "en": "I had to squint to read the sign.",
+                "ja": "目を細めないと標識が読めなかった"
+              }
+            ]
+          }
+        },
+        {
+          "id": "w21-repeat",
+          "why": "お手本の後に言う時間",
+          "shots": [
+            {
+              "src": "commons:Street view of Sarphatistraat with a woman, waiting and looking; free photo Amsterdam, Fons Heijnsbroek 10-2021.jpg",
+              "in": 0,
+              "freeze": true,
+              "zoom": [
+                1.53,
+                1.57
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "21. squint  [C2]",
+          "headlineY": 0.4,
+          "hold": 1.4,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "squint",
+              "voice": "af_heart",
+              "speed": 0.95
+            },
+            "ja": "目を細めて見る"
+          }
+        }
+      ],
+      "listGroup": "21〜25：squint / inscrutable / gambit / rife / loiter"
+    },
+    {
+      "id": "w22",
+      "title": "22. inscrutable（何を考えているか分からない）",
+      "purpose": "1語を使えるようにする",
+      "beats": [
+        {
+          "id": "w22-say",
+          "why": "単語と発音（普通の速さ）",
+          "shots": [
+            {
+              "src": "pixabay:203252",
+              "in": 0.8,
+              "loop": true,
+              "zoom": [
+                1.72,
+                1.76
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "22. inscrutable  [C2]",
+          "headlineY": 0.4,
+          "hold": 0.25,
+          "lead": 0.02,
+          "sfx": "pop",
+          "clip": {
+            "tts": {
+              "text": "inscrutable",
+              "voice": "af_heart",
+              "speed": 1.0
+            },
+            "lines": [
+              {
+                "en": "inscrutable",
+                "ja": ""
+              }
+            ]
+          }
+        },
+        {
+          "id": "w22-slow",
+          "why": "発音（ゆっくり）",
+          "shots": [
+            {
+              "src": "pixabay:203252",
+              "in": 4.8,
+              "loop": true,
+              "zoom": [
+                1.76,
+                1.8
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "22. inscrutable  [C2]",
+          "headlineY": 0.4,
+          "hold": 0.3,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "inscrutable",
+              "voice": "af_heart",
+              "speed": 0.75
+            },
+            "lines": [
+              {
+                "en": "inscrutable",
+                "ja": ""
+              }
+            ]
+          }
+        },
+        {
+          "id": "w22-meaning",
+          "why": "意味（とニュアンス一言）",
+          "shots": [
+            {
+              "src": "pixabay:203252",
+              "in": 1.8,
+              "loop": true,
+              "zoom": [
+                1.8,
+                1.86
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "22. inscrutable  [C2]",
+          "headlineY": 0.3,
+          "hold": 0.15,
+          "lead": 0.02,
+          "say": "何を考えているか分からない。",
+          "caption": "形容詞「何を考えているか分からない」"
+        },
+        {
+          "id": "w22-ex1",
+          "why": "例文を英語で聞く",
+          "shots": [
+            {
+              "src": "pixabay:203252",
+              "in": 5.8,
+              "loop": true,
+              "zoom": [
+                1.86,
+                1.9
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "22. inscrutable  [C2]",
+          "headlineY": 0.3,
+          "hold": 0.35,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "His face was completely inscrutable.",
+              "voice": "af_heart",
+              "speed": 1.0
+            },
+            "lines": [
+              {
+                "en": "His face was completely inscrutable.",
+                "ja": "彼の表情からは、何も読み取れなかった"
+              }
+            ]
+          }
+        },
+        {
+          "id": "w22-repeat",
+          "why": "お手本の後に言う時間",
+          "shots": [
+            {
+              "src": "pixabay:203252",
+              "in": 2.8,
+              "loop": true,
+              "zoom": [
+                1.9,
+                1.94
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "22. inscrutable  [C2]",
+          "headlineY": 0.4,
+          "hold": 1.4,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "inscrutable",
+              "voice": "af_heart",
+              "speed": 0.95
+            },
+            "ja": "何を考えているか分からない"
+          }
+        }
+      ],
+      "listGroup": "21〜25：squint / inscrutable / gambit / rife / loiter"
+    },
+    {
+      "id": "w23",
+      "title": "23. gambit（先手を打つ作戦）",
+      "purpose": "1語を使えるようにする",
+      "beats": [
+        {
+          "id": "w23-say",
+          "why": "単語と発音（普通の速さ）",
+          "shots": [
+            {
+              "src": "pixabay:8252",
+              "in": 6.0,
+              "loop": true,
+              "zoom": [
+                1.72,
+                1.76
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "23. gambit  [C2]",
+          "headlineY": 0.4,
+          "hold": 0.25,
+          "lead": 0.02,
+          "sfx": "pop",
+          "clip": {
+            "tts": {
+              "text": "gambit",
+              "voice": "af_heart",
+              "speed": 1.0
+            },
+            "lines": [
+              {
+                "en": "gambit",
+                "ja": ""
+              }
+            ]
+          }
+        },
+        {
+          "id": "w23-slow",
+          "why": "発音（ゆっくり）",
+          "shots": [
+            {
+              "src": "pixabay:8252",
+              "in": 10.0,
+              "loop": true,
+              "zoom": [
+                1.76,
+                1.8
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "23. gambit  [C2]",
+          "headlineY": 0.4,
+          "hold": 0.3,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "gambit",
+              "voice": "af_heart",
+              "speed": 0.75
+            },
+            "lines": [
+              {
+                "en": "gambit",
+                "ja": ""
+              }
+            ]
+          }
+        },
+        {
+          "id": "w23-meaning",
+          "why": "意味（とニュアンス一言）",
+          "shots": [
+            {
+              "src": "pixabay:8252",
+              "in": 14.0,
+              "loop": true,
+              "zoom": [
+                1.8,
+                1.86
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "23. gambit  [C2]",
+          "headlineY": 0.3,
+          "hold": 0.15,
+          "lead": 0.02,
+          "say": "先手を打つ作戦。／オープニング・ギャンビットで、話の切り出し方。",
+          "caption": "名詞「先手を打つ作戦」／opening gambit ＝ 話の切り出し"
+        },
+        {
+          "id": "w23-ex1",
+          "why": "例文を英語で聞く",
+          "shots": [
+            {
+              "src": "pixabay:8252",
+              "in": 1.0,
+              "loop": true,
+              "zoom": [
+                1.86,
+                1.9
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "23. gambit  [C2]",
+          "headlineY": 0.3,
+          "hold": 0.35,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "Her opening gambit was a joke about the weather.",
+              "voice": "af_heart",
+              "speed": 1.0
+            },
+            "lines": [
+              {
+                "en": "Her opening gambit was a joke about the weather.",
+                "ja": "彼女はまず天気の冗談で切り出した"
+              }
+            ]
+          }
+        },
+        {
+          "id": "w23-repeat",
+          "why": "お手本の後に言う時間",
+          "shots": [
+            {
+              "src": "pixabay:8252",
+              "in": 5.0,
+              "loop": true,
+              "zoom": [
+                1.9,
+                1.94
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "23. gambit  [C2]",
+          "headlineY": 0.4,
+          "hold": 1.4,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "gambit",
+              "voice": "af_heart",
+              "speed": 0.95
+            },
+            "ja": "先手を打つ作戦"
+          }
+        }
+      ],
+      "listGroup": "21〜25：squint / inscrutable / gambit / rife / loiter"
+    },
+    {
+      "id": "w24",
+      "title": "24. rife（（悪いものが）はびこっている）",
+      "purpose": "1語を使えるようにする",
+      "beats": [
+        {
+          "id": "w24-say",
+          "why": "単語と発音（普通の速さ）",
+          "shots": [
+            {
+              "src": "pixabay:142641",
+              "in": 0.8,
+              "loop": true,
+              "zoom": [
+                1.42,
+                1.46
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "24. rife  [C2]",
+          "headlineY": 0.4,
+          "hold": 0.25,
+          "lead": 0.02,
+          "sfx": "pop",
+          "clip": {
+            "tts": {
+              "text": "rife",
+              "voice": "af_heart",
+              "speed": 1.0
+            },
+            "lines": [
+              {
+                "en": "rife",
+                "ja": ""
+              }
+            ]
+          }
+        },
+        {
+          "id": "w24-slow",
+          "why": "発音（ゆっくり）",
+          "shots": [
+            {
+              "src": "pixabay:142641",
+              "in": 4.8,
+              "loop": true,
+              "zoom": [
+                1.46,
+                1.5
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "24. rife  [C2]",
+          "headlineY": 0.4,
+          "hold": 0.3,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "rife",
+              "voice": "af_heart",
+              "speed": 0.75
+            },
+            "lines": [
+              {
+                "en": "rife",
+                "ja": ""
+              }
+            ]
+          }
+        },
+        {
+          "id": "w24-meaning",
+          "why": "意味（とニュアンス一言）",
+          "shots": [
+            {
+              "src": "pixabay:142641",
+              "in": 1.8,
+              "loop": true,
+              "zoom": [
+                1.5,
+                1.56
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "24. rife  [C2]",
+          "headlineY": 0.3,
+          "hold": 0.15,
+          "lead": 0.02,
+          "say": "（悪いものが）はびこっている。",
+          "caption": "形容詞「（悪いものが）はびこっている」"
+        },
+        {
+          "id": "w24-ex1",
+          "why": "例文を英語で聞く",
+          "shots": [
+            {
+              "src": "pixabay:142641",
+              "in": 5.8,
+              "loop": true,
+              "zoom": [
+                1.56,
+                1.6
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "24. rife  [C2]",
+          "headlineY": 0.3,
+          "hold": 0.35,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "The internet is rife with rumors.",
+              "voice": "af_heart",
+              "speed": 1.0
+            },
+            "lines": [
+              {
+                "en": "The internet is rife with rumors.",
+                "ja": "ネットはうわさであふれている"
+              }
+            ]
+          }
+        },
+        {
+          "id": "w24-repeat",
+          "why": "お手本の後に言う時間",
+          "shots": [
+            {
+              "src": "pixabay:142641",
+              "in": 2.8,
+              "loop": true,
+              "zoom": [
+                1.6,
+                1.64
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "24. rife  [C2]",
+          "headlineY": 0.4,
+          "hold": 1.4,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "rife",
+              "voice": "af_heart",
+              "speed": 0.95
+            },
+            "ja": "（悪いものが）はびこっている"
+          }
+        }
+      ],
+      "listGroup": "21〜25：squint / inscrutable / gambit / rife / loiter"
+    },
+    {
+      "id": "w25",
+      "title": "25. loiter（うろつく・ぶらぶらする）",
+      "purpose": "1語を使えるようにする",
+      "beats": [
+        {
+          "id": "w25-say",
+          "why": "単語と発音（普通の速さ）",
+          "shots": [
+            {
+              "src": "pixabay:204421",
+              "in": 1.0,
+              "loop": true,
+              "zoom": [
+                1.12,
+                1.16
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "25. loiter  [C2]",
+          "headlineY": 0.4,
+          "hold": 0.25,
+          "lead": 0.02,
+          "sfx": "pop",
+          "clip": {
+            "tts": {
+              "text": "loiter",
+              "voice": "af_heart",
+              "speed": 1.0
+            },
+            "lines": [
+              {
+                "en": "loiter",
+                "ja": ""
+              }
+            ]
+          }
+        },
+        {
+          "id": "w25-slow",
+          "why": "発音（ゆっくり）",
+          "shots": [
+            {
+              "src": "pixabay:204421",
+              "in": 5.0,
+              "loop": true,
+              "zoom": [
+                1.16,
+                1.2
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "25. loiter  [C2]",
+          "headlineY": 0.4,
+          "hold": 0.3,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "loiter",
+              "voice": "af_heart",
+              "speed": 0.75
+            },
+            "lines": [
+              {
+                "en": "loiter",
+                "ja": ""
+              }
+            ]
+          }
+        },
+        {
+          "id": "w25-meaning",
+          "why": "意味（とニュアンス一言）",
+          "shots": [
+            {
+              "src": "pixabay:204421",
+              "in": 9.0,
+              "loop": true,
+              "zoom": [
+                1.2,
+                1.26
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "25. loiter  [C2]",
+          "headlineY": 0.3,
+          "hold": 0.15,
+          "lead": 0.02,
+          "say": "うろつく・ぶらぶらする。",
+          "caption": "動詞「うろつく・ぶらぶらする」"
+        },
+        {
+          "id": "w25-ex1",
+          "why": "例文を英語で聞く",
+          "shots": [
+            {
+              "src": "pixabay:204421",
+              "in": 13.0,
+              "loop": true,
+              "zoom": [
+                1.26,
+                1.3
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "25. loiter  [C2]",
+          "headlineY": 0.3,
+          "hold": 0.35,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "Teenagers were loitering outside the shop.",
+              "voice": "af_heart",
+              "speed": 1.0
+            },
+            "lines": [
+              {
+                "en": "Teenagers were loitering outside the shop.",
+                "ja": "十代の若者が店の前でたむろしていた"
+              }
+            ]
+          }
+        },
+        {
+          "id": "w25-repeat",
+          "why": "お手本の後に言う時間",
+          "shots": [
+            {
+              "src": "pixabay:204421",
+              "in": 17.0,
+              "loop": true,
+              "zoom": [
+                1.3,
+                1.34
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "25. loiter  [C2]",
+          "headlineY": 0.4,
+          "hold": 1.4,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "loiter",
+              "voice": "af_heart",
+              "speed": 0.95
+            },
+            "ja": "うろつく・ぶらぶらする"
+          }
+        }
+      ],
+      "listGroup": "21〜25：squint / inscrutable / gambit / rife / loiter"
+    },
+    {
+      "id": "w26",
+      "title": "26. precocious（ませた・早熟な）",
+      "purpose": "1語を使えるようにする",
+      "beats": [
+        {
+          "id": "w26-say",
+          "why": "単語と発音（普通の速さ）",
+          "shots": [
+            {
+              "src": "pixabay:215471",
+              "in": 0.9,
+              "loop": true,
+              "zoom": [
+                1.12,
+                1.16
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "26. precocious  [C2]",
+          "headlineY": 0.4,
+          "hold": 0.25,
+          "lead": 0.02,
+          "sfx": "pop",
+          "clip": {
+            "tts": {
+              "text": "precocious",
+              "voice": "af_heart",
+              "speed": 1.0
+            },
+            "lines": [
+              {
+                "en": "precocious",
+                "ja": ""
+              }
+            ]
+          }
+        },
+        {
+          "id": "w26-slow",
+          "why": "発音（ゆっくり）",
+          "shots": [
+            {
+              "src": "pixabay:215471",
+              "in": 4.9,
+              "loop": true,
+              "zoom": [
+                1.16,
+                1.2
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "26. precocious  [C2]",
+          "headlineY": 0.4,
+          "hold": 0.3,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "precocious",
+              "voice": "af_heart",
+              "speed": 0.75
+            },
+            "lines": [
+              {
+                "en": "precocious",
+                "ja": ""
+              }
+            ]
+          }
+        },
+        {
+          "id": "w26-meaning",
+          "why": "意味（とニュアンス一言）",
+          "shots": [
+            {
+              "src": "pixabay:215471",
+              "in": 0.9,
+              "loop": true,
+              "zoom": [
+                1.2,
+                1.26
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "26. precocious  [C2]",
+          "headlineY": 0.3,
+          "hold": 0.15,
+          "lead": 0.02,
+          "say": "ませた・早熟な。",
+          "caption": "形容詞「ませた・早熟な」"
+        },
+        {
+          "id": "w26-ex1",
+          "why": "例文を英語で聞く",
+          "shots": [
+            {
+              "src": "pixabay:215471",
+              "in": 4.9,
+              "loop": true,
+              "zoom": [
+                1.26,
+                1.3
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "26. precocious  [C2]",
+          "headlineY": 0.3,
+          "hold": 0.35,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "She was a precocious child who read at three.",
+              "voice": "af_heart",
+              "speed": 1.0
+            },
+            "lines": [
+              {
+                "en": "She was a precocious child who read at three.",
+                "ja": "彼女は三歳で字が読める早熟な子だった"
+              }
+            ]
+          }
+        },
+        {
+          "id": "w26-repeat",
+          "why": "お手本の後に言う時間",
+          "shots": [
+            {
+              "src": "pixabay:215471",
+              "in": 0.9,
+              "loop": true,
+              "zoom": [
+                1.3,
+                1.34
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "26. precocious  [C2]",
+          "headlineY": 0.4,
+          "hold": 1.4,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "precocious",
+              "voice": "af_heart",
+              "speed": 0.95
+            },
+            "ja": "ませた・早熟な"
+          }
+        }
+      ],
+      "listGroup": "26〜30：precocious / truism / jarring / patronizing / happenstance"
+    },
+    {
+      "id": "w27",
+      "title": "27. truism（分かりきった真理）",
+      "purpose": "1語を使えるようにする",
+      "beats": [
+        {
+          "id": "w27-say",
+          "why": "単語と発音（普通の速さ）",
+          "shots": [
+            {
+              "src": "pixabay:145428",
+              "in": 5.0,
+              "loop": true,
+              "zoom": [
+                1.42,
+                1.46
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "27. truism  [C2]",
+          "headlineY": 0.4,
+          "hold": 0.25,
+          "lead": 0.02,
+          "sfx": "pop",
+          "clip": {
+            "tts": {
+              "text": "truism",
+              "voice": "af_heart",
+              "speed": 1.0
+            },
+            "lines": [
+              {
+                "en": "truism",
+                "ja": ""
+              }
+            ]
+          }
+        },
+        {
+          "id": "w27-slow",
+          "why": "発音（ゆっくり）",
+          "shots": [
+            {
+              "src": "pixabay:145428",
+              "in": 9.0,
+              "loop": true,
+              "zoom": [
+                1.46,
+                1.5
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "27. truism  [C2]",
+          "headlineY": 0.4,
+          "hold": 0.3,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "truism",
+              "voice": "af_heart",
+              "speed": 0.75
+            },
+            "lines": [
+              {
+                "en": "truism",
+                "ja": ""
+              }
+            ]
+          }
+        },
+        {
+          "id": "w27-meaning",
+          "why": "意味（とニュアンス一言）",
+          "shots": [
+            {
+              "src": "pixabay:145428",
+              "in": 1.0,
+              "loop": true,
+              "zoom": [
+                1.5,
+                1.56
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "27. truism  [C2]",
+          "headlineY": 0.3,
+          "hold": 0.15,
+          "lead": 0.02,
+          "say": "分かりきった真理。",
+          "caption": "名詞「分かりきった真理」"
+        },
+        {
+          "id": "w27-ex1",
+          "why": "例文を英語で聞く",
+          "shots": [
+            {
+              "src": "pixabay:145428",
+              "in": 5.0,
+              "loop": true,
+              "zoom": [
+                1.56,
+                1.6
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "27. truism  [C2]",
+          "headlineY": 0.3,
+          "hold": 0.35,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "It's a truism that practice makes perfect.",
+              "voice": "af_heart",
+              "speed": 1.0
+            },
+            "lines": [
+              {
+                "en": "It's a truism that practice makes perfect.",
+                "ja": "練習が大事なのは、分かりきったことだ"
+              }
+            ]
+          }
+        },
+        {
+          "id": "w27-repeat",
+          "why": "お手本の後に言う時間",
+          "shots": [
+            {
+              "src": "pixabay:145428",
+              "in": 9.0,
+              "loop": true,
+              "zoom": [
+                1.6,
+                1.64
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "27. truism  [C2]",
+          "headlineY": 0.4,
+          "hold": 1.4,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "truism",
+              "voice": "af_heart",
+              "speed": 0.95
+            },
+            "ja": "分かりきった真理"
+          }
+        }
+      ],
+      "listGroup": "26〜30：precocious / truism / jarring / patronizing / happenstance"
+    },
+    {
+      "id": "w28",
+      "title": "28. jarring（違和感のある・耳障りな）",
+      "purpose": "1語を使えるようにする",
+      "beats": [
+        {
+          "id": "w28-say",
+          "why": "単語と発音（普通の速さ）",
+          "shots": [
+            {
+              "src": "pixabay:206315",
+              "in": 1.0,
+              "loop": true,
+              "zoom": [
+                1.12,
+                1.16
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "28. jarring  [C2]",
+          "headlineY": 0.4,
+          "hold": 0.25,
+          "lead": 0.02,
+          "sfx": "pop",
+          "clip": {
+            "tts": {
+              "text": "jarring",
+              "voice": "af_heart",
+              "speed": 1.0
+            },
+            "lines": [
+              {
+                "en": "jarring",
+                "ja": ""
+              }
+            ]
+          }
+        },
+        {
+          "id": "w28-slow",
+          "why": "発音（ゆっくり）",
+          "shots": [
+            {
+              "src": "pixabay:206315",
+              "in": 5.0,
+              "loop": true,
+              "zoom": [
+                1.16,
+                1.2
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "28. jarring  [C2]",
+          "headlineY": 0.4,
+          "hold": 0.3,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "jarring",
+              "voice": "af_heart",
+              "speed": 0.75
+            },
+            "lines": [
+              {
+                "en": "jarring",
+                "ja": ""
+              }
+            ]
+          }
+        },
+        {
+          "id": "w28-meaning",
+          "why": "意味（とニュアンス一言）",
+          "shots": [
+            {
+              "src": "pixabay:206315",
+              "in": 9.0,
+              "loop": true,
+              "zoom": [
+                1.2,
+                1.26
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "28. jarring  [C2]",
+          "headlineY": 0.3,
+          "hold": 0.15,
+          "lead": 0.02,
+          "say": "違和感のある・耳障りな。",
+          "caption": "形容詞「違和感のある・耳障りな」"
+        },
+        {
+          "id": "w28-ex1",
+          "why": "例文を英語で聞く",
+          "shots": [
+            {
+              "src": "pixabay:206315",
+              "in": 13.0,
+              "loop": true,
+              "zoom": [
+                1.26,
+                1.3
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "28. jarring  [C2]",
+          "headlineY": 0.3,
+          "hold": 0.35,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "The sudden change in tone was jarring.",
+              "voice": "af_heart",
+              "speed": 1.0
+            },
+            "lines": [
+              {
+                "en": "The sudden change in tone was jarring.",
+                "ja": "急に口調が変わって、違和感があった"
+              }
+            ]
+          }
+        },
+        {
+          "id": "w28-repeat",
+          "why": "お手本の後に言う時間",
+          "shots": [
+            {
+              "src": "pixabay:206315",
+              "in": 17.0,
+              "loop": true,
+              "zoom": [
+                1.3,
+                1.34
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "28. jarring  [C2]",
+          "headlineY": 0.4,
+          "hold": 1.4,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "jarring",
+              "voice": "af_heart",
+              "speed": 0.95
+            },
+            "ja": "違和感のある・耳障りな"
+          }
+        }
+      ],
+      "listGroup": "26〜30：precocious / truism / jarring / patronizing / happenstance"
+    },
+    {
+      "id": "w29",
+      "title": "29. patronizing（上から目線の）",
+      "purpose": "1語を使えるようにする",
+      "beats": [
+        {
+          "id": "w29-say",
+          "why": "単語と発音（普通の速さ）",
+          "shots": [
+            {
+              "src": "pixabay:243460",
+              "in": 0.9,
+              "loop": true,
+              "zoom": [
+                1.12,
+                1.16
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "29. patronizing  [C2]",
+          "headlineY": 0.4,
+          "hold": 0.25,
+          "lead": 0.02,
+          "sfx": "pop",
+          "clip": {
+            "tts": {
+              "text": "patronizing",
+              "voice": "af_heart",
+              "speed": 1.0
+            },
+            "lines": [
+              {
+                "en": "patronizing",
+                "ja": ""
+              }
+            ]
+          }
+        },
+        {
+          "id": "w29-slow",
+          "why": "発音（ゆっくり）",
+          "shots": [
+            {
+              "src": "pixabay:243460",
+              "in": 4.9,
+              "loop": true,
+              "zoom": [
+                1.16,
+                1.2
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "29. patronizing  [C2]",
+          "headlineY": 0.4,
+          "hold": 0.3,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "patronizing",
+              "voice": "af_heart",
+              "speed": 0.75
+            },
+            "lines": [
+              {
+                "en": "patronizing",
+                "ja": ""
+              }
+            ]
+          }
+        },
+        {
+          "id": "w29-meaning",
+          "why": "意味（とニュアンス一言）",
+          "shots": [
+            {
+              "src": "pixabay:243460",
+              "in": 0.9,
+              "loop": true,
+              "zoom": [
+                1.2,
+                1.26
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "29. patronizing  [C2]",
+          "headlineY": 0.3,
+          "hold": 0.15,
+          "lead": 0.02,
+          "say": "上から目線の。",
+          "caption": "形容詞「上から目線の」"
+        },
+        {
+          "id": "w29-ex1",
+          "why": "例文を英語で聞く",
+          "shots": [
+            {
+              "src": "pixabay:243460",
+              "in": 4.9,
+              "loop": true,
+              "zoom": [
+                1.26,
+                1.3
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "29. patronizing  [C2]",
+          "headlineY": 0.3,
+          "hold": 0.35,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "Don't be so patronizing.",
+              "voice": "af_heart",
+              "speed": 1.0
+            },
+            "lines": [
+              {
+                "en": "Don't be so patronizing.",
+                "ja": "そんなに上から目線で言わないで"
+              }
+            ]
+          }
+        },
+        {
+          "id": "w29-repeat",
+          "why": "お手本の後に言う時間",
+          "shots": [
+            {
+              "src": "pixabay:243460",
+              "in": 0.9,
+              "loop": true,
+              "zoom": [
+                1.3,
+                1.34
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "29. patronizing  [C2]",
+          "headlineY": 0.4,
+          "hold": 1.4,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "patronizing",
+              "voice": "af_heart",
+              "speed": 0.95
+            },
+            "ja": "上から目線の"
+          }
+        }
+      ],
+      "listGroup": "26〜30：precocious / truism / jarring / patronizing / happenstance"
+    },
+    {
+      "id": "w30",
+      "title": "30. happenstance（偶然・たまたま）",
+      "purpose": "1語を使えるようにする",
+      "beats": [
+        {
+          "id": "w30-say",
+          "why": "単語と発音（普通の速さ）",
+          "shots": [
+            {
+              "src": "commons:Narita International Airport - Terminal 2 security gate.jpg",
+              "in": 0,
+              "freeze": true,
+              "zoom": [
+                1.05,
+                1.09
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "30. happenstance  [C2]",
+          "headlineY": 0.4,
+          "hold": 0.25,
+          "lead": 0.02,
+          "sfx": "pop",
+          "clip": {
+            "tts": {
+              "text": "happenstance",
+              "voice": "af_heart",
+              "speed": 1.0
+            },
+            "lines": [
+              {
+                "en": "happenstance",
+                "ja": ""
+              }
+            ]
+          }
+        },
+        {
+          "id": "w30-slow",
+          "why": "発音（ゆっくり）",
+          "shots": [
+            {
+              "src": "commons:Narita International Airport - Terminal 2 security gate.jpg",
+              "in": 0,
+              "freeze": true,
+              "zoom": [
+                1.09,
+                1.13
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "30. happenstance  [C2]",
+          "headlineY": 0.4,
+          "hold": 0.3,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "happenstance",
+              "voice": "af_heart",
+              "speed": 0.75
+            },
+            "lines": [
+              {
+                "en": "happenstance",
+                "ja": ""
+              }
+            ]
+          }
+        },
+        {
+          "id": "w30-meaning",
+          "why": "意味（とニュアンス一言）",
+          "shots": [
+            {
+              "src": "commons:Narita International Airport - Terminal 2 security gate.jpg",
+              "in": 0,
+              "freeze": true,
+              "zoom": [
+                1.13,
+                1.19
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "30. happenstance  [C2]",
+          "headlineY": 0.3,
+          "hold": 0.15,
+          "lead": 0.02,
+          "say": "偶然・たまたま。",
+          "caption": "名詞「偶然・たまたま」"
+        },
+        {
+          "id": "w30-ex1",
+          "why": "例文を英語で聞く",
+          "shots": [
+            {
+              "src": "commons:Narita International Airport - Terminal 2 security gate.jpg",
+              "in": 0,
+              "freeze": true,
+              "zoom": [
+                1.19,
+                1.23
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "30. happenstance  [C2]",
+          "headlineY": 0.3,
+          "hold": 0.35,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "We met by happenstance at the airport.",
+              "voice": "af_heart",
+              "speed": 1.0
+            },
+            "lines": [
+              {
+                "en": "We met by happenstance at the airport.",
+                "ja": "私たちは空港でたまたま出会った"
+              }
+            ]
+          }
+        },
+        {
+          "id": "w30-repeat",
+          "why": "お手本の後に言う時間",
+          "shots": [
+            {
+              "src": "commons:Narita International Airport - Terminal 2 security gate.jpg",
+              "in": 0,
+              "freeze": true,
+              "zoom": [
+                1.23,
+                1.27
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "30. happenstance  [C2]",
+          "headlineY": 0.4,
+          "hold": 1.4,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "happenstance",
+              "voice": "af_heart",
+              "speed": 0.95
+            },
+            "ja": "偶然・たまたま"
+          }
+        }
+      ],
+      "listGroup": "26〜30：precocious / truism / jarring / patronizing / happenstance"
+    },
+    {
+      "id": "check-21-30",
+      "title": "確認テスト 21〜30",
+      "purpose": "覚えたかを確かめる",
+      "beats": [
+        {
+          "id": "check-21-30-lead",
+          "why": "思い出すテストの説明",
+          "shots": [
+            {
+              "src": "commons:Street view of Sarphatistraat with a woman, waiting and looking; free photo Amsterdam, Fons Heijnsbroek 10-2021.jpg",
+              "in": 0,
+              "freeze": true,
+              "zoom": [
+                1.57,
+                1.61
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "思い出せる？",
+          "headlineY": 0.42,
+          "say": "21から30まで、／日本語を見て、英語で言ってみてください。"
+        },
+        {
+          "id": "check-21-30-q0",
+          "why": "日本語から英単語を思い出す（考える間）",
+          "shots": [
+            {
+              "src": "commons:Street view of Sarphatistraat with a woman, waiting and looking; free photo Amsterdam, Fons Heijnsbroek 10-2021.jpg",
+              "in": 0,
+              "freeze": true,
+              "zoom": [
+                1.61,
+                1.65
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "「目を細めて見る」",
+          "headlineY": 0.4,
+          "hold": 2.0,
+          "lead": 0.02,
+          "say": "目を細めて見る。",
+          "caption": "21. 「目を細めて見る」"
+        },
+        {
+          "id": "check-21-30-a0",
+          "why": "答え合わせ（英語音声）",
+          "shots": [
+            {
+              "src": "commons:Street view of Sarphatistraat with a woman, waiting and looking; free photo Amsterdam, Fons Heijnsbroek 10-2021.jpg",
+              "in": 0,
+              "freeze": true,
+              "zoom": [
+                1.65,
+                1.69
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "squint",
+          "headlineY": 0.4,
+          "hold": 0.35,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "squint",
+              "voice": "af_heart",
+              "speed": 1.0
+            },
+            "ja": "目を細めて見る"
+          }
+        },
+        {
+          "id": "check-21-30-q1",
+          "why": "日本語から英単語を思い出す（考える間）",
+          "shots": [
+            {
+              "src": "pixabay:203252",
+              "in": 6.8,
+              "loop": true,
+              "zoom": [
+                1.94,
+                1.98
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "「何を考えているか分からない」",
+          "headlineY": 0.4,
+          "hold": 2.0,
+          "lead": 0.02,
+          "say": "何を考えているか分からない。",
+          "caption": "22. 「何を考えているか分からない」"
+        },
+        {
+          "id": "check-21-30-a1",
+          "why": "答え合わせ（英語音声）",
+          "shots": [
+            {
+              "src": "pixabay:203252",
+              "in": 3.8,
+              "loop": true,
+              "zoom": [
+                1.98,
+                2.02
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "inscrutable",
+          "headlineY": 0.4,
+          "hold": 0.35,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "inscrutable",
+              "voice": "af_heart",
+              "speed": 1.0
+            },
+            "ja": "何を考えているか分からない"
+          }
+        },
+        {
+          "id": "check-21-30-q2",
+          "why": "日本語から英単語を思い出す（考える間）",
+          "shots": [
+            {
+              "src": "pixabay:8252",
+              "in": 9.0,
+              "loop": true,
+              "zoom": [
+                1.94,
+                1.98
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "「先手を打つ作戦」",
+          "headlineY": 0.4,
+          "hold": 2.0,
+          "lead": 0.02,
+          "say": "先手を打つ作戦。",
+          "caption": "23. 「先手を打つ作戦」"
+        },
+        {
+          "id": "check-21-30-a2",
+          "why": "答え合わせ（英語音声）",
+          "shots": [
+            {
+              "src": "pixabay:8252",
+              "in": 13.0,
+              "loop": true,
+              "zoom": [
+                1.98,
+                2.02
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "gambit",
+          "headlineY": 0.4,
+          "hold": 0.35,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "gambit",
+              "voice": "af_heart",
+              "speed": 1.0
+            },
+            "ja": "先手を打つ作戦"
+          }
+        },
+        {
+          "id": "check-21-30-q3",
+          "why": "日本語から英単語を思い出す（考える間）",
+          "shots": [
+            {
+              "src": "pixabay:142641",
+              "in": 6.8,
+              "loop": true,
+              "zoom": [
+                1.64,
+                1.68
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "「（悪いものが）はびこっている」",
+          "headlineY": 0.4,
+          "hold": 2.0,
+          "lead": 0.02,
+          "say": "（悪いものが）はびこっている。",
+          "caption": "24. 「（悪いものが）はびこっている」"
+        },
+        {
+          "id": "check-21-30-a3",
+          "why": "答え合わせ（英語音声）",
+          "shots": [
+            {
+              "src": "pixabay:142641",
+              "in": 3.8,
+              "loop": true,
+              "zoom": [
+                1.68,
+                1.72
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "rife",
+          "headlineY": 0.4,
+          "hold": 0.35,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "rife",
+              "voice": "af_heart",
+              "speed": 1.0
+            },
+            "ja": "（悪いものが）はびこっている"
+          }
+        },
+        {
+          "id": "check-21-30-q4",
+          "why": "日本語から英単語を思い出す（考える間）",
+          "shots": [
+            {
+              "src": "pixabay:204421",
+              "in": 0.0,
+              "loop": true,
+              "zoom": [
+                1.34,
+                1.38
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "「うろつく・ぶらぶらする」",
+          "headlineY": 0.4,
+          "hold": 2.0,
+          "lead": 0.02,
+          "say": "うろつく・ぶらぶらする。",
+          "caption": "25. 「うろつく・ぶらぶらする」"
+        },
+        {
+          "id": "check-21-30-a4",
+          "why": "答え合わせ（英語音声）",
+          "shots": [
+            {
+              "src": "pixabay:204421",
+              "in": 4.0,
+              "loop": true,
+              "zoom": [
+                1.38,
+                1.42
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "loiter",
+          "headlineY": 0.4,
+          "hold": 0.35,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "loiter",
+              "voice": "af_heart",
+              "speed": 1.0
+            },
+            "ja": "うろつく・ぶらぶらする"
+          }
+        },
+        {
+          "id": "check-21-30-q5",
+          "why": "日本語から英単語を思い出す（考える間）",
+          "shots": [
+            {
+              "src": "pixabay:215471",
+              "in": 4.9,
+              "loop": true,
+              "zoom": [
+                1.34,
+                1.38
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "「ませた・早熟な」",
+          "headlineY": 0.4,
+          "hold": 2.0,
+          "lead": 0.02,
+          "say": "ませた・早熟な。",
+          "caption": "26. 「ませた・早熟な」"
+        },
+        {
+          "id": "check-21-30-a5",
+          "why": "答え合わせ（英語音声）",
+          "shots": [
+            {
+              "src": "pixabay:215471",
+              "in": 0.9,
+              "loop": true,
+              "zoom": [
+                1.38,
+                1.42
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "precocious",
+          "headlineY": 0.4,
+          "hold": 0.35,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "precocious",
+              "voice": "af_heart",
+              "speed": 1.0
+            },
+            "ja": "ませた・早熟な"
+          }
+        },
+        {
+          "id": "check-21-30-q6",
+          "why": "日本語から英単語を思い出す（考える間）",
+          "shots": [
+            {
+              "src": "pixabay:145428",
+              "in": 1.0,
+              "loop": true,
+              "zoom": [
+                1.64,
+                1.68
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "「分かりきった真理」",
+          "headlineY": 0.4,
+          "hold": 2.0,
+          "lead": 0.02,
+          "say": "分かりきった真理。",
+          "caption": "27. 「分かりきった真理」"
+        },
+        {
+          "id": "check-21-30-a6",
+          "why": "答え合わせ（英語音声）",
+          "shots": [
+            {
+              "src": "pixabay:145428",
+              "in": 5.0,
+              "loop": true,
+              "zoom": [
+                1.68,
+                1.72
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "truism",
+          "headlineY": 0.4,
+          "hold": 0.35,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "truism",
+              "voice": "af_heart",
+              "speed": 1.0
+            },
+            "ja": "分かりきった真理"
+          }
+        },
+        {
+          "id": "check-21-30-q7",
+          "why": "日本語から英単語を思い出す（考える間）",
+          "shots": [
+            {
+              "src": "pixabay:206315",
+              "in": 3.0,
+              "loop": true,
+              "zoom": [
+                1.34,
+                1.38
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "「違和感のある・耳障りな」",
+          "headlineY": 0.4,
+          "hold": 2.0,
+          "lead": 0.02,
+          "say": "違和感のある・耳障りな。",
+          "caption": "28. 「違和感のある・耳障りな」"
+        },
+        {
+          "id": "check-21-30-a7",
+          "why": "答え合わせ（英語音声）",
+          "shots": [
+            {
+              "src": "pixabay:206315",
+              "in": 7.0,
+              "loop": true,
+              "zoom": [
+                1.38,
+                1.42
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "jarring",
+          "headlineY": 0.4,
+          "hold": 0.35,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "jarring",
+              "voice": "af_heart",
+              "speed": 1.0
+            },
+            "ja": "違和感のある・耳障りな"
+          }
+        },
+        {
+          "id": "check-21-30-q8",
+          "why": "日本語から英単語を思い出す（考える間）",
+          "shots": [
+            {
+              "src": "pixabay:243460",
+              "in": 4.9,
+              "loop": true,
+              "zoom": [
+                1.34,
+                1.38
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "「上から目線の」",
+          "headlineY": 0.4,
+          "hold": 2.0,
+          "lead": 0.02,
+          "say": "上から目線の。",
+          "caption": "29. 「上から目線の」"
+        },
+        {
+          "id": "check-21-30-a8",
+          "why": "答え合わせ（英語音声）",
+          "shots": [
+            {
+              "src": "pixabay:243460",
+              "in": 0.9,
+              "loop": true,
+              "zoom": [
+                1.38,
+                1.42
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "patronizing",
+          "headlineY": 0.4,
+          "hold": 0.35,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "patronizing",
+              "voice": "af_heart",
+              "speed": 1.0
+            },
+            "ja": "上から目線の"
+          }
+        },
+        {
+          "id": "check-21-30-q9",
+          "why": "日本語から英単語を思い出す（考える間）",
+          "shots": [
+            {
+              "src": "commons:Narita International Airport - Terminal 2 security gate.jpg",
+              "in": 0,
+              "freeze": true,
+              "zoom": [
+                1.27,
+                1.31
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "「偶然・たまたま」",
+          "headlineY": 0.4,
+          "hold": 2.0,
+          "lead": 0.02,
+          "say": "偶然・たまたま。",
+          "caption": "30. 「偶然・たまたま」"
+        },
+        {
+          "id": "check-21-30-a9",
+          "why": "答え合わせ（英語音声）",
+          "shots": [
+            {
+              "src": "commons:Narita International Airport - Terminal 2 security gate.jpg",
+              "in": 0,
+              "freeze": true,
+              "zoom": [
+                1.31,
+                1.35
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "happenstance",
+          "headlineY": 0.4,
+          "hold": 0.35,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "happenstance",
+              "voice": "af_heart",
+              "speed": 1.0
+            },
+            "ja": "偶然・たまたま"
+          }
+        }
+      ],
+      "listGroup": "確認テスト 21〜30"
+    },
+    {
+      "id": "ending",
+      "title": "まとめ",
+      "listGroup": "確認テスト 21〜30",
+      "purpose": "今日の語を振り返って終える",
+      "beats": [
+        {
+          "id": "ending",
+          "why": "締め",
+          "shots": [
+            {
+              "src": "pixabay:32938",
+              "in": 4.0,
+              "loop": true,
+              "zoom": [
+                1.5,
+                1.54
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "C2レベル\n英単語30",
+          "headlineY": 0.42,
+          "hold": 1.2,
+          "say": "今日の30語でした。／何度か見て、声に出すと定着します。"
+        }
+      ]
+    }
+  ]
+}

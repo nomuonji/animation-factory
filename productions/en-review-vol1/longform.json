@@ -1,0 +1,2545 @@
+{
+  "version": 1,
+  "id": "en-review-vol1",
+  "title": "英検1級のその先｜ネイティブは使うのに試験に出ない英単語10選【まとめて覚える #1】",
+  "audience": "C1〜C2レベルの語彙を増やしたい日本語話者",
+  "question": "上級レベルの10語を、発音・意味・例文で覚えられるか",
+  "payoff": "確認テストで全部の語を英語で言える",
+  "voice": {
+    "engine": "voicevox",
+    "speaker": "青山龍星",
+    "style": "ノーマル",
+    "speed": 1.2
+  },
+  "music": {
+    "asset": "safe-space-loop",
+    "gain": 0.14,
+    "duck": 0.4
+  },
+  "descriptionLines": [
+    "・shenanigans（名詞）＝ いたずら・ごまかし",
+    "・discombobulated（形容詞）＝ すっかり混乱した",
+    "・persnickety（形容詞）＝ 細かいことにうるさい",
+    "・humdrum（形容詞）＝ 単調な・平凡な",
+    "・gumption（名詞）＝ 度胸・やる気・機転",
+    "・chutzpah（名詞）＝ 図々しさ・大胆さ",
+    "・bugbear（名詞）＝ 悩みの種・苦手なもの",
+    "・comeuppance（名詞）＝ 当然の報い",
+    "・rigmarole（名詞）＝ 面倒な手続き",
+    "・wheelhouse（名詞）＝ 得意分野",
+    "",
+    "例文",
+    "　No more shenanigans, kids. ＝ いたずらはもうおしまいだよ",
+    "　There were some financial shenanigans at the company. ＝ その会社では、お金のごまかしがあった",
+    "　I felt discombobulated after the long flight. ＝ 長いフライトの後、頭がぼんやりしていた",
+    "　The sudden change left everyone discombobulated. ＝ 急な変更で、みんな混乱した",
+    "　My boss is persnickety about fonts. ＝ 上司はフォントにうるさい",
+    "　Don't be so persnickety. ＝ そんなに細かいこと言わないで",
+    "　I needed a break from my humdrum routine. ＝ 単調な毎日から抜け出したかった",
+    "　It was a humdrum little town. ＝ 平凡で小さな町だった",
+    "　She had the gumption to ask for a raise. ＝ 彼女は思い切って昇給を頼んだ",
+    "　It takes gumption to start your own business. ＝ 起業するには度胸がいる",
+    "　He had the chutzpah to ask me for money again. ＝ 彼は図々しくも、また金を貸してと言ってきた",
+    "　It took real chutzpah to pitch the idea to the CEO. ＝ 社長にその案を出すなんて、本当に大胆だった",
+    "　Noise is my biggest bugbear. ＝ 騒音がいちばんの悩みの種だ",
+    "　Slow internet is a real bugbear for remote workers. ＝ 遅いネットは、在宅勤務の人の悩みの種だ",
+    "　The bully finally got his comeuppance. ＝ いじめっ子は、ついに報いを受けた",
+    "　Sooner or later, cheaters get their comeuppance. ＝ ずるをする人は、いずれ報いを受ける",
+    "　Renewing my passport was such a rigmarole. ＝ パスポートの更新は本当に面倒だった",
+    "　I can't face the whole rigmarole of moving again. ＝ また引っ越しの面倒な手続きをする気になれない",
+    "　Data analysis is right in her wheelhouse. ＝ データ分析は、まさに彼女の得意分野だ",
+    "　That's not really in my wheelhouse. ＝ それは、あまり得意じゃない",
+    "意味の確認: https://dictionary.cambridge.org/dictionary/english/shenanigans",
+    "意味の確認: https://dictionary.cambridge.org/dictionary/english/discombobulated",
+    "意味の確認: https://dictionary.cambridge.org/dictionary/english/persnickety",
+    "意味の確認: https://dictionary.cambridge.org/dictionary/english/humdrum",
+    "意味の確認: https://dictionary.cambridge.org/dictionary/english/gumption",
+    "意味の確認: https://dictionary.cambridge.org/dictionary/english/chutzpah",
+    "意味の確認: https://dictionary.cambridge.org/dictionary/english/bugbear",
+    "意味の確認: https://dictionary.cambridge.org/dictionary/english/comeuppance",
+    "意味の確認: https://dictionary.cambridge.org/dictionary/english/rigmarole",
+    "意味の確認: https://dictionary.cambridge.org/dictionary/english/wheelhouse"
+  ],
+  "chapters": [
+    {
+      "id": "opening",
+      "title": "はじめに",
+      "purpose": "何を覚える動画かを示す",
+      "beats": [
+        {
+          "id": "opening",
+          "why": "語数とレベルと進め方を示す",
+          "shots": [
+            {
+              "src": "pixabay:232496",
+              "in": 0.5,
+              "loop": true,
+              "zoom": [
+                1.12,
+                1.16
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "英検1級のその先\nまとめて覚える10語",
+          "headlineY": 0.42,
+          "say": "上級レベルの英単語を、10語。／発音、意味、例文をテンポよく確認して、／最後にテストします。",
+          "caption": "上級レベルの英単語 10語／発音、意味、例文をテンポよく確認して、／最後にテストします。"
+        }
+      ]
+    },
+    {
+      "id": "w1",
+      "title": "1. shenanigans（いたずら・ごまかし）",
+      "purpose": "1語を使えるようにする",
+      "beats": [
+        {
+          "id": "w1-say",
+          "why": "単語と発音（普通の速さ）",
+          "shots": [
+            {
+              "src": "pixabay:232496",
+              "in": 0.5,
+              "loop": true,
+              "zoom": [
+                1.16,
+                1.2
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "1. shenanigans",
+          "headlineY": 0.4,
+          "hold": 0.25,
+          "lead": 0.02,
+          "sfx": "pop",
+          "clip": {
+            "tts": {
+              "text": "shenanigans",
+              "voice": "af_heart",
+              "speed": 1.0
+            },
+            "lines": [
+              {
+                "en": "shenanigans",
+                "ja": ""
+              }
+            ]
+          }
+        },
+        {
+          "id": "w1-slow",
+          "why": "発音（ゆっくり）",
+          "shots": [
+            {
+              "src": "pixabay:232496",
+              "in": 0.5,
+              "loop": true,
+              "zoom": [
+                1.2,
+                1.24
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "1. shenanigans",
+          "headlineY": 0.4,
+          "hold": 0.3,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "shenanigans",
+              "voice": "af_heart",
+              "speed": 0.75
+            },
+            "lines": [
+              {
+                "en": "shenanigans",
+                "ja": ""
+              }
+            ]
+          }
+        },
+        {
+          "id": "w1-meaning",
+          "why": "意味（とニュアンス一言）",
+          "shots": [
+            {
+              "src": "pixabay:232496",
+              "in": 0.5,
+              "loop": true,
+              "zoom": [
+                1.24,
+                1.3
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "1. shenanigans",
+          "headlineY": 0.3,
+          "hold": 0.15,
+          "lead": 0.02,
+          "say": "いたずら・ごまかし。／子どものいたずらから、お金のごまかしまで使えます。",
+          "caption": "名詞「いたずら・ごまかし」／ふざけた悪さから、ずるいごまかしまで"
+        },
+        {
+          "id": "w1-ex1",
+          "why": "例文を英語で聞く",
+          "shots": [
+            {
+              "src": "pixabay:232496",
+              "in": 0.5,
+              "loop": true,
+              "zoom": [
+                1.3,
+                1.34
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "1. shenanigans",
+          "headlineY": 0.3,
+          "hold": 0.35,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "No more shenanigans, kids.",
+              "voice": "af_heart",
+              "speed": 1.0
+            },
+            "lines": [
+              {
+                "en": "No more shenanigans, kids.",
+                "ja": "いたずらはもうおしまいだよ"
+              }
+            ]
+          }
+        },
+        {
+          "id": "w1-ex2",
+          "why": "例文を英語で聞く",
+          "shots": [
+            {
+              "src": "pixabay:232496",
+              "in": 0.5,
+              "loop": true,
+              "zoom": [
+                1.34,
+                1.38
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "1. shenanigans",
+          "headlineY": 0.3,
+          "hold": 0.35,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "There were some financial shenanigans at the company.",
+              "voice": "am_michael",
+              "speed": 1.0
+            },
+            "lines": [
+              {
+                "en": "There were some financial shenanigans at the company.",
+                "ja": "その会社では、お金のごまかしがあった"
+              }
+            ]
+          }
+        },
+        {
+          "id": "w1-repeat",
+          "why": "お手本の後に言う時間",
+          "shots": [
+            {
+              "src": "pixabay:232496",
+              "in": 0.5,
+              "loop": true,
+              "zoom": [
+                1.38,
+                1.42
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "1. shenanigans",
+          "headlineY": 0.4,
+          "hold": 1.4,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "shenanigans",
+              "voice": "af_heart",
+              "speed": 0.95
+            },
+            "ja": "いたずら・ごまかし"
+          }
+        }
+      ]
+    },
+    {
+      "id": "w2",
+      "title": "2. discombobulated（すっかり混乱した）",
+      "purpose": "1語を使えるようにする",
+      "beats": [
+        {
+          "id": "w2-say",
+          "why": "単語と発音（普通の速さ）",
+          "shots": [
+            {
+              "src": "pixabay:345611",
+              "in": 1.0,
+              "loop": true,
+              "zoom": [
+                1.12,
+                1.16
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "2. discombobulated",
+          "headlineY": 0.4,
+          "hold": 0.25,
+          "lead": 0.02,
+          "sfx": "pop",
+          "clip": {
+            "tts": {
+              "text": "discombobulated",
+              "voice": "af_heart",
+              "speed": 1.0
+            },
+            "lines": [
+              {
+                "en": "discombobulated",
+                "ja": ""
+              }
+            ]
+          }
+        },
+        {
+          "id": "w2-slow",
+          "why": "発音（ゆっくり）",
+          "shots": [
+            {
+              "src": "pixabay:345611",
+              "in": 5.0,
+              "loop": true,
+              "zoom": [
+                1.16,
+                1.2
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "2. discombobulated",
+          "headlineY": 0.4,
+          "hold": 0.3,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "discombobulated",
+              "voice": "af_heart",
+              "speed": 0.75
+            },
+            "lines": [
+              {
+                "en": "discombobulated",
+                "ja": ""
+              }
+            ]
+          }
+        },
+        {
+          "id": "w2-meaning",
+          "why": "意味（とニュアンス一言）",
+          "shots": [
+            {
+              "src": "pixabay:345611",
+              "in": 0.0,
+              "loop": true,
+              "zoom": [
+                1.2,
+                1.26
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "2. discombobulated",
+          "headlineY": 0.3,
+          "hold": 0.15,
+          "lead": 0.02,
+          "say": "すっかり混乱した。／頭がこんがらがって、調子が狂った感じです。",
+          "caption": "形容詞「すっかり混乱した」／頭がこんがらがって、調子が狂った"
+        },
+        {
+          "id": "w2-ex1",
+          "why": "例文を英語で聞く",
+          "shots": [
+            {
+              "src": "pixabay:345611",
+              "in": 4.0,
+              "loop": true,
+              "zoom": [
+                1.26,
+                1.3
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "2. discombobulated",
+          "headlineY": 0.3,
+          "hold": 0.35,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "I felt discombobulated after the long flight.",
+              "voice": "af_heart",
+              "speed": 1.0
+            },
+            "lines": [
+              {
+                "en": "I felt discombobulated after the long flight.",
+                "ja": "長いフライトの後、頭がぼんやりしていた"
+              }
+            ]
+          }
+        },
+        {
+          "id": "w2-ex2",
+          "why": "例文を英語で聞く",
+          "shots": [
+            {
+              "src": "pixabay:345611",
+              "in": 8.0,
+              "loop": true,
+              "zoom": [
+                1.3,
+                1.34
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "2. discombobulated",
+          "headlineY": 0.3,
+          "hold": 0.35,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "The sudden change left everyone discombobulated.",
+              "voice": "am_michael",
+              "speed": 1.0
+            },
+            "lines": [
+              {
+                "en": "The sudden change left everyone discombobulated.",
+                "ja": "急な変更で、みんな混乱した"
+              }
+            ]
+          }
+        },
+        {
+          "id": "w2-repeat",
+          "why": "お手本の後に言う時間",
+          "shots": [
+            {
+              "src": "pixabay:345611",
+              "in": 3.0,
+              "loop": true,
+              "zoom": [
+                1.34,
+                1.38
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "2. discombobulated",
+          "headlineY": 0.4,
+          "hold": 1.4,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "discombobulated",
+              "voice": "af_heart",
+              "speed": 0.95
+            },
+            "ja": "すっかり混乱した"
+          }
+        }
+      ]
+    },
+    {
+      "id": "w3",
+      "title": "3. persnickety（細かいことにうるさい）",
+      "purpose": "1語を使えるようにする",
+      "beats": [
+        {
+          "id": "w3-say",
+          "why": "単語と発音（普通の速さ）",
+          "shots": [
+            {
+              "src": "commons:Woman sits at desk working on laptop in home office.jpg",
+              "in": 0,
+              "freeze": true,
+              "zoom": [
+                1.1,
+                1.14
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "3. persnickety",
+          "headlineY": 0.4,
+          "hold": 0.25,
+          "lead": 0.02,
+          "sfx": "pop",
+          "clip": {
+            "tts": {
+              "text": "persnickety",
+              "voice": "af_heart",
+              "speed": 1.0
+            },
+            "lines": [
+              {
+                "en": "persnickety",
+                "ja": ""
+              }
+            ]
+          }
+        },
+        {
+          "id": "w3-slow",
+          "why": "発音（ゆっくり）",
+          "shots": [
+            {
+              "src": "commons:Woman sits at desk working on laptop in home office.jpg",
+              "in": 0,
+              "freeze": true,
+              "zoom": [
+                1.14,
+                1.18
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "3. persnickety",
+          "headlineY": 0.4,
+          "hold": 0.3,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "persnickety",
+              "voice": "af_heart",
+              "speed": 0.75
+            },
+            "lines": [
+              {
+                "en": "persnickety",
+                "ja": ""
+              }
+            ]
+          }
+        },
+        {
+          "id": "w3-meaning",
+          "why": "意味（とニュアンス一言）",
+          "shots": [
+            {
+              "src": "commons:Woman sits at desk working on laptop in home office.jpg",
+              "in": 0,
+              "freeze": true,
+              "zoom": [
+                1.18,
+                1.24
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "3. persnickety",
+          "headlineY": 0.3,
+          "hold": 0.15,
+          "lead": 0.02,
+          "say": "細かいことにうるさい。／どうでもいい細かいところに、こだわる人に使います。",
+          "caption": "形容詞「細かいことにうるさい」／どうでもいい細部にこだわる"
+        },
+        {
+          "id": "w3-ex1",
+          "why": "例文を英語で聞く",
+          "shots": [
+            {
+              "src": "commons:Woman sits at desk working on laptop in home office.jpg",
+              "in": 0,
+              "freeze": true,
+              "zoom": [
+                1.24,
+                1.28
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "3. persnickety",
+          "headlineY": 0.3,
+          "hold": 0.35,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "My boss is persnickety about fonts.",
+              "voice": "af_heart",
+              "speed": 1.0
+            },
+            "lines": [
+              {
+                "en": "My boss is persnickety about fonts.",
+                "ja": "上司はフォントにうるさい"
+              }
+            ]
+          }
+        },
+        {
+          "id": "w3-ex2",
+          "why": "例文を英語で聞く",
+          "shots": [
+            {
+              "src": "commons:Woman sits at desk working on laptop in home office.jpg",
+              "in": 0,
+              "freeze": true,
+              "zoom": [
+                1.28,
+                1.32
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "3. persnickety",
+          "headlineY": 0.3,
+          "hold": 0.35,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "Don't be so persnickety.",
+              "voice": "am_michael",
+              "speed": 1.0
+            },
+            "lines": [
+              {
+                "en": "Don't be so persnickety.",
+                "ja": "そんなに細かいこと言わないで"
+              }
+            ]
+          }
+        },
+        {
+          "id": "w3-repeat",
+          "why": "お手本の後に言う時間",
+          "shots": [
+            {
+              "src": "commons:Woman sits at desk working on laptop in home office.jpg",
+              "in": 0,
+              "freeze": true,
+              "zoom": [
+                1.32,
+                1.36
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "3. persnickety",
+          "headlineY": 0.4,
+          "hold": 1.4,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "persnickety",
+              "voice": "af_heart",
+              "speed": 0.95
+            },
+            "ja": "細かいことにうるさい"
+          }
+        }
+      ]
+    },
+    {
+      "id": "w4",
+      "title": "4. humdrum（単調な・平凡な）",
+      "purpose": "1語を使えるようにする",
+      "beats": [
+        {
+          "id": "w4-say",
+          "why": "単語と発音（普通の速さ）",
+          "shots": [
+            {
+              "src": "pixabay:3965",
+              "in": 1.0,
+              "loop": true,
+              "zoom": [
+                1.12,
+                1.16
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "4. humdrum",
+          "headlineY": 0.4,
+          "hold": 0.25,
+          "lead": 0.02,
+          "sfx": "pop",
+          "clip": {
+            "tts": {
+              "text": "humdrum",
+              "voice": "af_heart",
+              "speed": 1.0
+            },
+            "lines": [
+              {
+                "en": "humdrum",
+                "ja": ""
+              }
+            ]
+          }
+        },
+        {
+          "id": "w4-slow",
+          "why": "発音（ゆっくり）",
+          "shots": [
+            {
+              "src": "pixabay:3965",
+              "in": 5.0,
+              "loop": true,
+              "zoom": [
+                1.16,
+                1.2
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "4. humdrum",
+          "headlineY": 0.4,
+          "hold": 0.3,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "humdrum",
+              "voice": "af_heart",
+              "speed": 0.75
+            },
+            "lines": [
+              {
+                "en": "humdrum",
+                "ja": ""
+              }
+            ]
+          }
+        },
+        {
+          "id": "w4-meaning",
+          "why": "意味（とニュアンス一言）",
+          "shots": [
+            {
+              "src": "pixabay:3965",
+              "in": 9.0,
+              "loop": true,
+              "zoom": [
+                1.2,
+                1.26
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "4. humdrum",
+          "headlineY": 0.3,
+          "hold": 0.15,
+          "lead": 0.02,
+          "say": "単調な・平凡な。／毎日同じことの繰り返しで、変化がない感じです。",
+          "caption": "形容詞「単調な・平凡な」／毎日同じで、変化がない"
+        },
+        {
+          "id": "w4-ex1",
+          "why": "例文を英語で聞く",
+          "shots": [
+            {
+              "src": "pixabay:3965",
+              "in": 3.0,
+              "loop": true,
+              "zoom": [
+                1.26,
+                1.3
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "4. humdrum",
+          "headlineY": 0.3,
+          "hold": 0.35,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "I needed a break from my humdrum routine.",
+              "voice": "af_heart",
+              "speed": 1.0
+            },
+            "lines": [
+              {
+                "en": "I needed a break from my humdrum routine.",
+                "ja": "単調な毎日から抜け出したかった"
+              }
+            ]
+          }
+        },
+        {
+          "id": "w4-ex2",
+          "why": "例文を英語で聞く",
+          "shots": [
+            {
+              "src": "pixabay:3965",
+              "in": 7.0,
+              "loop": true,
+              "zoom": [
+                1.3,
+                1.34
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "4. humdrum",
+          "headlineY": 0.3,
+          "hold": 0.35,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "It was a humdrum little town.",
+              "voice": "am_michael",
+              "speed": 1.0
+            },
+            "lines": [
+              {
+                "en": "It was a humdrum little town.",
+                "ja": "平凡で小さな町だった"
+              }
+            ]
+          }
+        },
+        {
+          "id": "w4-repeat",
+          "why": "お手本の後に言う時間",
+          "shots": [
+            {
+              "src": "pixabay:3965",
+              "in": 1.0,
+              "loop": true,
+              "zoom": [
+                1.34,
+                1.38
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "4. humdrum",
+          "headlineY": 0.4,
+          "hold": 1.4,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "humdrum",
+              "voice": "af_heart",
+              "speed": 0.95
+            },
+            "ja": "単調な・平凡な"
+          }
+        }
+      ]
+    },
+    {
+      "id": "w5",
+      "title": "5. gumption（度胸・やる気・機転）",
+      "purpose": "1語を使えるようにする",
+      "beats": [
+        {
+          "id": "w5-say",
+          "why": "単語と発音（普通の速さ）",
+          "shots": [
+            {
+              "src": "pixabay:137265",
+              "in": 1.0,
+              "loop": true,
+              "zoom": [
+                1.12,
+                1.16
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "5. gumption",
+          "headlineY": 0.4,
+          "hold": 0.25,
+          "lead": 0.02,
+          "sfx": "pop",
+          "clip": {
+            "tts": {
+              "text": "gumption",
+              "voice": "af_heart",
+              "speed": 1.0
+            },
+            "lines": [
+              {
+                "en": "gumption",
+                "ja": ""
+              }
+            ]
+          }
+        },
+        {
+          "id": "w5-slow",
+          "why": "発音（ゆっくり）",
+          "shots": [
+            {
+              "src": "pixabay:137265",
+              "in": 5.0,
+              "loop": true,
+              "zoom": [
+                1.16,
+                1.2
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "5. gumption",
+          "headlineY": 0.4,
+          "hold": 0.3,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "gumption",
+              "voice": "af_heart",
+              "speed": 0.75
+            },
+            "lines": [
+              {
+                "en": "gumption",
+                "ja": ""
+              }
+            ]
+          }
+        },
+        {
+          "id": "w5-meaning",
+          "why": "意味（とニュアンス一言）",
+          "shots": [
+            {
+              "src": "pixabay:137265",
+              "in": 9.0,
+              "loop": true,
+              "zoom": [
+                1.2,
+                1.26
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "5. gumption",
+          "headlineY": 0.3,
+          "hold": 0.15,
+          "lead": 0.02,
+          "say": "度胸・やる気・機転。／思い切って行動する力や、とっさの機転のことです。",
+          "caption": "名詞「度胸・やる気・機転」／思い切って行動する力"
+        },
+        {
+          "id": "w5-ex1",
+          "why": "例文を英語で聞く",
+          "shots": [
+            {
+              "src": "pixabay:137265",
+              "in": 0.0,
+              "loop": true,
+              "zoom": [
+                1.26,
+                1.3
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "5. gumption",
+          "headlineY": 0.3,
+          "hold": 0.35,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "She had the gumption to ask for a raise.",
+              "voice": "af_heart",
+              "speed": 1.0
+            },
+            "lines": [
+              {
+                "en": "She had the gumption to ask for a raise.",
+                "ja": "彼女は思い切って昇給を頼んだ"
+              }
+            ]
+          }
+        },
+        {
+          "id": "w5-ex2",
+          "why": "例文を英語で聞く",
+          "shots": [
+            {
+              "src": "pixabay:137265",
+              "in": 4.0,
+              "loop": true,
+              "zoom": [
+                1.3,
+                1.34
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "5. gumption",
+          "headlineY": 0.3,
+          "hold": 0.35,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "It takes gumption to start your own business.",
+              "voice": "am_michael",
+              "speed": 1.0
+            },
+            "lines": [
+              {
+                "en": "It takes gumption to start your own business.",
+                "ja": "起業するには度胸がいる"
+              }
+            ]
+          }
+        },
+        {
+          "id": "w5-repeat",
+          "why": "お手本の後に言う時間",
+          "shots": [
+            {
+              "src": "pixabay:137265",
+              "in": 8.0,
+              "loop": true,
+              "zoom": [
+                1.34,
+                1.38
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "5. gumption",
+          "headlineY": 0.4,
+          "hold": 1.4,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "gumption",
+              "voice": "af_heart",
+              "speed": 0.95
+            },
+            "ja": "度胸・やる気・機転"
+          }
+        }
+      ]
+    },
+    {
+      "id": "w6",
+      "title": "6. chutzpah（図々しさ・大胆さ）",
+      "purpose": "1語を使えるようにする",
+      "beats": [
+        {
+          "id": "w6-say",
+          "why": "単語と発音（普通の速さ）",
+          "shots": [
+            {
+              "src": "pixabay:50312",
+              "in": 1.0,
+              "loop": true,
+              "zoom": [
+                1.12,
+                1.16
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "6. chutzpah",
+          "headlineY": 0.4,
+          "hold": 0.25,
+          "lead": 0.02,
+          "sfx": "pop",
+          "clip": {
+            "tts": {
+              "text": "chutzpah",
+              "voice": "af_heart",
+              "speed": 1.0
+            },
+            "lines": [
+              {
+                "en": "chutzpah",
+                "ja": ""
+              }
+            ]
+          }
+        },
+        {
+          "id": "w6-slow",
+          "why": "発音（ゆっくり）",
+          "shots": [
+            {
+              "src": "pixabay:50312",
+              "in": 5.0,
+              "loop": true,
+              "zoom": [
+                1.16,
+                1.2
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "6. chutzpah",
+          "headlineY": 0.4,
+          "hold": 0.3,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "chutzpah",
+              "voice": "af_heart",
+              "speed": 0.75
+            },
+            "lines": [
+              {
+                "en": "chutzpah",
+                "ja": ""
+              }
+            ]
+          }
+        },
+        {
+          "id": "w6-meaning",
+          "why": "意味（とニュアンス一言）",
+          "shots": [
+            {
+              "src": "pixabay:50312",
+              "in": 9.0,
+              "loop": true,
+              "zoom": [
+                1.2,
+                1.26
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "6. chutzpah",
+          "headlineY": 0.3,
+          "hold": 0.15,
+          "lead": 0.02,
+          "say": "図々しさ・大胆さ。／ふつうは遠慮するところを、平気でやってのける図々しさです。",
+          "caption": "名詞「図々しさ・大胆さ」／ふつうは遠慮するところで、平気でやる"
+        },
+        {
+          "id": "w6-ex1",
+          "why": "例文を英語で聞く",
+          "shots": [
+            {
+              "src": "pixabay:50312",
+              "in": 13.0,
+              "loop": true,
+              "zoom": [
+                1.26,
+                1.3
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "6. chutzpah",
+          "headlineY": 0.3,
+          "hold": 0.35,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "He had the chutzpah to ask me for money again.",
+              "voice": "af_heart",
+              "speed": 1.0
+            },
+            "lines": [
+              {
+                "en": "He had the chutzpah to ask me for money again.",
+                "ja": "彼は図々しくも、また金を貸してと言ってきた"
+              }
+            ]
+          }
+        },
+        {
+          "id": "w6-ex2",
+          "why": "例文を英語で聞く",
+          "shots": [
+            {
+              "src": "pixabay:50312",
+              "in": 17.0,
+              "loop": true,
+              "zoom": [
+                1.3,
+                1.34
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "6. chutzpah",
+          "headlineY": 0.3,
+          "hold": 0.35,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "It took real chutzpah to pitch the idea to the CEO.",
+              "voice": "am_michael",
+              "speed": 1.0
+            },
+            "lines": [
+              {
+                "en": "It took real chutzpah to pitch the idea to the CEO.",
+                "ja": "社長にその案を出すなんて、本当に大胆だった"
+              }
+            ]
+          }
+        },
+        {
+          "id": "w6-repeat",
+          "why": "お手本の後に言う時間",
+          "shots": [
+            {
+              "src": "pixabay:50312",
+              "in": 2.0,
+              "loop": true,
+              "zoom": [
+                1.34,
+                1.38
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "6. chutzpah",
+          "headlineY": 0.4,
+          "hold": 1.4,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "chutzpah",
+              "voice": "af_heart",
+              "speed": 0.95
+            },
+            "ja": "図々しさ・大胆さ"
+          }
+        }
+      ]
+    },
+    {
+      "id": "w7",
+      "title": "7. bugbear（悩みの種・苦手なもの）",
+      "purpose": "1語を使えるようにする",
+      "beats": [
+        {
+          "id": "w7-say",
+          "why": "単語と発音（普通の速さ）",
+          "shots": [
+            {
+              "src": "pixabay:227112",
+              "in": 1.0,
+              "loop": true,
+              "zoom": [
+                1.12,
+                1.16
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "7. bugbear",
+          "headlineY": 0.4,
+          "hold": 0.25,
+          "lead": 0.02,
+          "sfx": "pop",
+          "clip": {
+            "tts": {
+              "text": "bugbear",
+              "voice": "af_heart",
+              "speed": 1.0
+            },
+            "lines": [
+              {
+                "en": "bugbear",
+                "ja": ""
+              }
+            ]
+          }
+        },
+        {
+          "id": "w7-slow",
+          "why": "発音（ゆっくり）",
+          "shots": [
+            {
+              "src": "pixabay:227112",
+              "in": 5.0,
+              "loop": true,
+              "zoom": [
+                1.16,
+                1.2
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "7. bugbear",
+          "headlineY": 0.4,
+          "hold": 0.3,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "bugbear",
+              "voice": "af_heart",
+              "speed": 0.75
+            },
+            "lines": [
+              {
+                "en": "bugbear",
+                "ja": ""
+              }
+            ]
+          }
+        },
+        {
+          "id": "w7-meaning",
+          "why": "意味（とニュアンス一言）",
+          "shots": [
+            {
+              "src": "pixabay:227112",
+              "in": 9.0,
+              "loop": true,
+              "zoom": [
+                1.2,
+                1.26
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "7. bugbear",
+          "headlineY": 0.3,
+          "hold": 0.15,
+          "lead": 0.02,
+          "say": "悩みの種・苦手なもの。／いつもイライラさせられる、悩みの種です。",
+          "caption": "名詞「悩みの種・苦手なもの」／いつもイライラさせられるもの"
+        },
+        {
+          "id": "w7-ex1",
+          "why": "例文を英語で聞く",
+          "shots": [
+            {
+              "src": "pixabay:227112",
+              "in": 13.0,
+              "loop": true,
+              "zoom": [
+                1.26,
+                1.3
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "7. bugbear",
+          "headlineY": 0.3,
+          "hold": 0.35,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "Noise is my biggest bugbear.",
+              "voice": "af_heart",
+              "speed": 1.0
+            },
+            "lines": [
+              {
+                "en": "Noise is my biggest bugbear.",
+                "ja": "騒音がいちばんの悩みの種だ"
+              }
+            ]
+          }
+        },
+        {
+          "id": "w7-ex2",
+          "why": "例文を英語で聞く",
+          "shots": [
+            {
+              "src": "pixabay:227112",
+              "in": 17.0,
+              "loop": true,
+              "zoom": [
+                1.3,
+                1.34
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "7. bugbear",
+          "headlineY": 0.3,
+          "hold": 0.35,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "Slow internet is a real bugbear for remote workers.",
+              "voice": "am_michael",
+              "speed": 1.0
+            },
+            "lines": [
+              {
+                "en": "Slow internet is a real bugbear for remote workers.",
+                "ja": "遅いネットは、在宅勤務の人の悩みの種だ"
+              }
+            ]
+          }
+        },
+        {
+          "id": "w7-repeat",
+          "why": "お手本の後に言う時間",
+          "shots": [
+            {
+              "src": "pixabay:227112",
+              "in": 2.0,
+              "loop": true,
+              "zoom": [
+                1.34,
+                1.38
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "7. bugbear",
+          "headlineY": 0.4,
+          "hold": 1.4,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "bugbear",
+              "voice": "af_heart",
+              "speed": 0.95
+            },
+            "ja": "悩みの種・苦手なもの"
+          }
+        }
+      ]
+    },
+    {
+      "id": "w8",
+      "title": "8. comeuppance（当然の報い）",
+      "purpose": "1語を使えるようにする",
+      "beats": [
+        {
+          "id": "w8-say",
+          "why": "単語と発音（普通の速さ）",
+          "shots": [
+            {
+              "src": "pixabay:31961",
+              "in": 1.0,
+              "loop": true,
+              "zoom": [
+                1.12,
+                1.16
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "8. comeuppance",
+          "headlineY": 0.4,
+          "hold": 0.25,
+          "lead": 0.02,
+          "sfx": "pop",
+          "clip": {
+            "tts": {
+              "text": "comeuppance",
+              "voice": "af_heart",
+              "speed": 1.0
+            },
+            "lines": [
+              {
+                "en": "comeuppance",
+                "ja": ""
+              }
+            ]
+          }
+        },
+        {
+          "id": "w8-slow",
+          "why": "発音（ゆっくり）",
+          "shots": [
+            {
+              "src": "pixabay:31961",
+              "in": 5.0,
+              "loop": true,
+              "zoom": [
+                1.16,
+                1.2
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "8. comeuppance",
+          "headlineY": 0.4,
+          "hold": 0.3,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "comeuppance",
+              "voice": "af_heart",
+              "speed": 0.75
+            },
+            "lines": [
+              {
+                "en": "comeuppance",
+                "ja": ""
+              }
+            ]
+          }
+        },
+        {
+          "id": "w8-meaning",
+          "why": "意味（とニュアンス一言）",
+          "shots": [
+            {
+              "src": "pixabay:31961",
+              "in": 9.0,
+              "loop": true,
+              "zoom": [
+                1.2,
+                1.26
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "8. comeuppance",
+          "headlineY": 0.3,
+          "hold": 0.15,
+          "lead": 0.02,
+          "say": "当然の報い。／悪いことをした人に、返ってくる罰のことです。",
+          "caption": "名詞「当然の報い」／悪いことをした人に返ってくる罰"
+        },
+        {
+          "id": "w8-ex1",
+          "why": "例文を英語で聞く",
+          "shots": [
+            {
+              "src": "pixabay:31961",
+              "in": 1.0,
+              "loop": true,
+              "zoom": [
+                1.26,
+                1.3
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "8. comeuppance",
+          "headlineY": 0.3,
+          "hold": 0.35,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "The bully finally got his comeuppance.",
+              "voice": "af_heart",
+              "speed": 1.0
+            },
+            "lines": [
+              {
+                "en": "The bully finally got his comeuppance.",
+                "ja": "いじめっ子は、ついに報いを受けた"
+              }
+            ]
+          }
+        },
+        {
+          "id": "w8-ex2",
+          "why": "例文を英語で聞く",
+          "shots": [
+            {
+              "src": "pixabay:31961",
+              "in": 5.0,
+              "loop": true,
+              "zoom": [
+                1.3,
+                1.34
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "8. comeuppance",
+          "headlineY": 0.3,
+          "hold": 0.35,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "Sooner or later, cheaters get their comeuppance.",
+              "voice": "am_michael",
+              "speed": 1.0
+            },
+            "lines": [
+              {
+                "en": "Sooner or later, cheaters get their comeuppance.",
+                "ja": "ずるをする人は、いずれ報いを受ける"
+              }
+            ]
+          }
+        },
+        {
+          "id": "w8-repeat",
+          "why": "お手本の後に言う時間",
+          "shots": [
+            {
+              "src": "pixabay:31961",
+              "in": 9.0,
+              "loop": true,
+              "zoom": [
+                1.34,
+                1.38
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "8. comeuppance",
+          "headlineY": 0.4,
+          "hold": 1.4,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "comeuppance",
+              "voice": "af_heart",
+              "speed": 0.95
+            },
+            "ja": "当然の報い"
+          }
+        }
+      ]
+    },
+    {
+      "id": "w9",
+      "title": "9. rigmarole（面倒な手続き）",
+      "purpose": "1語を使えるようにする",
+      "beats": [
+        {
+          "id": "w9-say",
+          "why": "単語と発音（普通の速さ）",
+          "shots": [
+            {
+              "src": "pixabay:43559",
+              "in": 1.0,
+              "loop": true,
+              "zoom": [
+                1.12,
+                1.16
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "9. rigmarole",
+          "headlineY": 0.4,
+          "hold": 0.25,
+          "lead": 0.02,
+          "sfx": "pop",
+          "clip": {
+            "tts": {
+              "text": "rigmarole",
+              "voice": "af_heart",
+              "speed": 1.0
+            },
+            "lines": [
+              {
+                "en": "rigmarole",
+                "ja": ""
+              }
+            ]
+          }
+        },
+        {
+          "id": "w9-slow",
+          "why": "発音（ゆっくり）",
+          "shots": [
+            {
+              "src": "pixabay:43559",
+              "in": 5.0,
+              "loop": true,
+              "zoom": [
+                1.16,
+                1.2
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "9. rigmarole",
+          "headlineY": 0.4,
+          "hold": 0.3,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "rigmarole",
+              "voice": "af_heart",
+              "speed": 0.75
+            },
+            "lines": [
+              {
+                "en": "rigmarole",
+                "ja": ""
+              }
+            ]
+          }
+        },
+        {
+          "id": "w9-meaning",
+          "why": "意味（とニュアンス一言）",
+          "shots": [
+            {
+              "src": "pixabay:43559",
+              "in": 9.0,
+              "loop": true,
+              "zoom": [
+                1.2,
+                1.26
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "9. rigmarole",
+          "headlineY": 0.3,
+          "hold": 0.15,
+          "lead": 0.02,
+          "say": "面倒な手続き。／長くて、ややこしくて、無駄が多い手続きのことです。",
+          "caption": "名詞「面倒な手続き」／長くて、ややこしくて、無駄が多い"
+        },
+        {
+          "id": "w9-ex1",
+          "why": "例文を英語で聞く",
+          "shots": [
+            {
+              "src": "pixabay:43559",
+              "in": 13.0,
+              "loop": true,
+              "zoom": [
+                1.26,
+                1.3
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "9. rigmarole",
+          "headlineY": 0.3,
+          "hold": 0.35,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "Renewing my passport was such a rigmarole.",
+              "voice": "af_heart",
+              "speed": 1.0
+            },
+            "lines": [
+              {
+                "en": "Renewing my passport was such a rigmarole.",
+                "ja": "パスポートの更新は本当に面倒だった"
+              }
+            ]
+          }
+        },
+        {
+          "id": "w9-ex2",
+          "why": "例文を英語で聞く",
+          "shots": [
+            {
+              "src": "pixabay:43559",
+              "in": 0.0,
+              "loop": true,
+              "zoom": [
+                1.3,
+                1.34
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "9. rigmarole",
+          "headlineY": 0.3,
+          "hold": 0.35,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "I can't face the whole rigmarole of moving again.",
+              "voice": "am_michael",
+              "speed": 1.0
+            },
+            "lines": [
+              {
+                "en": "I can't face the whole rigmarole of moving again.",
+                "ja": "また引っ越しの面倒な手続きをする気になれない"
+              }
+            ]
+          }
+        },
+        {
+          "id": "w9-repeat",
+          "why": "お手本の後に言う時間",
+          "shots": [
+            {
+              "src": "pixabay:43559",
+              "in": 4.0,
+              "loop": true,
+              "zoom": [
+                1.34,
+                1.38
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "9. rigmarole",
+          "headlineY": 0.4,
+          "hold": 1.4,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "rigmarole",
+              "voice": "af_heart",
+              "speed": 0.95
+            },
+            "ja": "面倒な手続き"
+          }
+        }
+      ]
+    },
+    {
+      "id": "w10",
+      "title": "10. wheelhouse（得意分野）",
+      "purpose": "1語を使えるようにする",
+      "beats": [
+        {
+          "id": "w10-say",
+          "why": "単語と発音（普通の速さ）",
+          "shots": [
+            {
+              "src": "pixabay:130645",
+              "in": 1.0,
+              "loop": true,
+              "zoom": [
+                1.12,
+                1.16
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "10. wheelhouse",
+          "headlineY": 0.4,
+          "hold": 0.25,
+          "lead": 0.02,
+          "sfx": "pop",
+          "clip": {
+            "tts": {
+              "text": "wheelhouse",
+              "voice": "af_heart",
+              "speed": 1.0
+            },
+            "lines": [
+              {
+                "en": "wheelhouse",
+                "ja": ""
+              }
+            ]
+          }
+        },
+        {
+          "id": "w10-slow",
+          "why": "発音（ゆっくり）",
+          "shots": [
+            {
+              "src": "pixabay:130645",
+              "in": 5.0,
+              "loop": true,
+              "zoom": [
+                1.16,
+                1.2
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "10. wheelhouse",
+          "headlineY": 0.4,
+          "hold": 0.3,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "wheelhouse",
+              "voice": "af_heart",
+              "speed": 0.75
+            },
+            "lines": [
+              {
+                "en": "wheelhouse",
+                "ja": ""
+              }
+            ]
+          }
+        },
+        {
+          "id": "w10-meaning",
+          "why": "意味（とニュアンス一言）",
+          "shots": [
+            {
+              "src": "pixabay:130645",
+              "in": 9.0,
+              "loop": true,
+              "zoom": [
+                1.2,
+                1.26
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "10. wheelhouse",
+          "headlineY": 0.3,
+          "hold": 0.15,
+          "lead": 0.02,
+          "say": "得意分野。／自分がいちばん力を発揮できる範囲のことです。",
+          "caption": "名詞「得意分野」／いちばん力を発揮できる範囲"
+        },
+        {
+          "id": "w10-ex1",
+          "why": "例文を英語で聞く",
+          "shots": [
+            {
+              "src": "pixabay:130645",
+              "in": 13.0,
+              "loop": true,
+              "zoom": [
+                1.26,
+                1.3
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "10. wheelhouse",
+          "headlineY": 0.3,
+          "hold": 0.35,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "Data analysis is right in her wheelhouse.",
+              "voice": "af_heart",
+              "speed": 1.0
+            },
+            "lines": [
+              {
+                "en": "Data analysis is right in her wheelhouse.",
+                "ja": "データ分析は、まさに彼女の得意分野だ"
+              }
+            ]
+          }
+        },
+        {
+          "id": "w10-ex2",
+          "why": "例文を英語で聞く",
+          "shots": [
+            {
+              "src": "pixabay:130645",
+              "in": 3.0,
+              "loop": true,
+              "zoom": [
+                1.3,
+                1.34
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "10. wheelhouse",
+          "headlineY": 0.3,
+          "hold": 0.35,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "That's not really in my wheelhouse.",
+              "voice": "am_michael",
+              "speed": 1.0
+            },
+            "lines": [
+              {
+                "en": "That's not really in my wheelhouse.",
+                "ja": "それは、あまり得意じゃない"
+              }
+            ]
+          }
+        },
+        {
+          "id": "w10-repeat",
+          "why": "お手本の後に言う時間",
+          "shots": [
+            {
+              "src": "pixabay:130645",
+              "in": 7.0,
+              "loop": true,
+              "zoom": [
+                1.34,
+                1.38
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "10. wheelhouse",
+          "headlineY": 0.4,
+          "hold": 1.4,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "wheelhouse",
+              "voice": "af_heart",
+              "speed": 0.95
+            },
+            "ja": "得意分野"
+          }
+        }
+      ]
+    },
+    {
+      "id": "check-1-10",
+      "title": "確認テスト 1〜10",
+      "purpose": "覚えたかを確かめる",
+      "beats": [
+        {
+          "id": "check-1-10-lead",
+          "why": "思い出すテストの説明",
+          "shots": [
+            {
+              "src": "pixabay:232496",
+              "in": 0.5,
+              "loop": true,
+              "zoom": [
+                1.42,
+                1.46
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "思い出せる？",
+          "headlineY": 0.42,
+          "say": "1から10まで、／日本語を見て、英語で言ってみてください。"
+        },
+        {
+          "id": "check-1-10-q0",
+          "why": "日本語から英単語を思い出す（考える間）",
+          "shots": [
+            {
+              "src": "pixabay:232496",
+              "in": 0.5,
+              "loop": true,
+              "zoom": [
+                1.46,
+                1.5
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "「いたずら・ごまかし」",
+          "headlineY": 0.4,
+          "hold": 2.0,
+          "lead": 0.02,
+          "say": "いたずら・ごまかし。",
+          "caption": "1. 「いたずら・ごまかし」"
+        },
+        {
+          "id": "check-1-10-a0",
+          "why": "答え合わせ（英語音声）",
+          "shots": [
+            {
+              "src": "pixabay:232496",
+              "in": 0.5,
+              "loop": true,
+              "zoom": [
+                1.5,
+                1.54
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "shenanigans",
+          "headlineY": 0.4,
+          "hold": 0.35,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "shenanigans",
+              "voice": "af_heart",
+              "speed": 1.0
+            },
+            "ja": "いたずら・ごまかし"
+          }
+        },
+        {
+          "id": "check-1-10-q1",
+          "why": "日本語から英単語を思い出す（考える間）",
+          "shots": [
+            {
+              "src": "pixabay:345611",
+              "in": 7.0,
+              "loop": true,
+              "zoom": [
+                1.38,
+                1.42
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "「すっかり混乱した」",
+          "headlineY": 0.4,
+          "hold": 2.0,
+          "lead": 0.02,
+          "say": "すっかり混乱した。",
+          "caption": "2. 「すっかり混乱した」"
+        },
+        {
+          "id": "check-1-10-a1",
+          "why": "答え合わせ（英語音声）",
+          "shots": [
+            {
+              "src": "pixabay:345611",
+              "in": 2.0,
+              "loop": true,
+              "zoom": [
+                1.42,
+                1.46
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "discombobulated",
+          "headlineY": 0.4,
+          "hold": 0.35,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "discombobulated",
+              "voice": "af_heart",
+              "speed": 1.0
+            },
+            "ja": "すっかり混乱した"
+          }
+        },
+        {
+          "id": "check-1-10-q2",
+          "why": "日本語から英単語を思い出す（考える間）",
+          "shots": [
+            {
+              "src": "commons:Woman sits at desk working on laptop in home office.jpg",
+              "in": 0,
+              "freeze": true,
+              "zoom": [
+                1.36,
+                1.4
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "「細かいことにうるさい」",
+          "headlineY": 0.4,
+          "hold": 2.0,
+          "lead": 0.02,
+          "say": "細かいことにうるさい。",
+          "caption": "3. 「細かいことにうるさい」"
+        },
+        {
+          "id": "check-1-10-a2",
+          "why": "答え合わせ（英語音声）",
+          "shots": [
+            {
+              "src": "commons:Woman sits at desk working on laptop in home office.jpg",
+              "in": 0,
+              "freeze": true,
+              "zoom": [
+                1.4,
+                1.44
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "persnickety",
+          "headlineY": 0.4,
+          "hold": 0.35,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "persnickety",
+              "voice": "af_heart",
+              "speed": 1.0
+            },
+            "ja": "細かいことにうるさい"
+          }
+        },
+        {
+          "id": "check-1-10-q3",
+          "why": "日本語から英単語を思い出す（考える間）",
+          "shots": [
+            {
+              "src": "pixabay:3965",
+              "in": 5.0,
+              "loop": true,
+              "zoom": [
+                1.38,
+                1.42
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "「単調な・平凡な」",
+          "headlineY": 0.4,
+          "hold": 2.0,
+          "lead": 0.02,
+          "say": "単調な・平凡な。",
+          "caption": "4. 「単調な・平凡な」"
+        },
+        {
+          "id": "check-1-10-a3",
+          "why": "答え合わせ（英語音声）",
+          "shots": [
+            {
+              "src": "pixabay:3965",
+              "in": 9.0,
+              "loop": true,
+              "zoom": [
+                1.42,
+                1.46
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "humdrum",
+          "headlineY": 0.4,
+          "hold": 0.35,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "humdrum",
+              "voice": "af_heart",
+              "speed": 1.0
+            },
+            "ja": "単調な・平凡な"
+          }
+        },
+        {
+          "id": "check-1-10-q4",
+          "why": "日本語から英単語を思い出す（考える間）",
+          "shots": [
+            {
+              "src": "pixabay:137265",
+              "in": 12.0,
+              "loop": true,
+              "zoom": [
+                1.38,
+                1.42
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "「度胸・やる気・機転」",
+          "headlineY": 0.4,
+          "hold": 2.0,
+          "lead": 0.02,
+          "say": "度胸・やる気・機転。",
+          "caption": "5. 「度胸・やる気・機転」"
+        },
+        {
+          "id": "check-1-10-a4",
+          "why": "答え合わせ（英語音声）",
+          "shots": [
+            {
+              "src": "pixabay:137265",
+              "in": 3.0,
+              "loop": true,
+              "zoom": [
+                1.42,
+                1.46
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "gumption",
+          "headlineY": 0.4,
+          "hold": 0.35,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "gumption",
+              "voice": "af_heart",
+              "speed": 1.0
+            },
+            "ja": "度胸・やる気・機転"
+          }
+        },
+        {
+          "id": "check-1-10-q5",
+          "why": "日本語から英単語を思い出す（考える間）",
+          "shots": [
+            {
+              "src": "pixabay:50312",
+              "in": 6.0,
+              "loop": true,
+              "zoom": [
+                1.38,
+                1.42
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "「図々しさ・大胆さ」",
+          "headlineY": 0.4,
+          "hold": 2.0,
+          "lead": 0.02,
+          "say": "図々しさ・大胆さ。",
+          "caption": "6. 「図々しさ・大胆さ」"
+        },
+        {
+          "id": "check-1-10-a5",
+          "why": "答え合わせ（英語音声）",
+          "shots": [
+            {
+              "src": "pixabay:50312",
+              "in": 10.0,
+              "loop": true,
+              "zoom": [
+                1.42,
+                1.46
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "chutzpah",
+          "headlineY": 0.4,
+          "hold": 0.35,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "chutzpah",
+              "voice": "af_heart",
+              "speed": 1.0
+            },
+            "ja": "図々しさ・大胆さ"
+          }
+        },
+        {
+          "id": "check-1-10-q6",
+          "why": "日本語から英単語を思い出す（考える間）",
+          "shots": [
+            {
+              "src": "pixabay:227112",
+              "in": 6.0,
+              "loop": true,
+              "zoom": [
+                1.38,
+                1.42
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "「悩みの種・苦手なもの」",
+          "headlineY": 0.4,
+          "hold": 2.0,
+          "lead": 0.02,
+          "say": "悩みの種・苦手なもの。",
+          "caption": "7. 「悩みの種・苦手なもの」"
+        },
+        {
+          "id": "check-1-10-a6",
+          "why": "答え合わせ（英語音声）",
+          "shots": [
+            {
+              "src": "pixabay:227112",
+              "in": 10.0,
+              "loop": true,
+              "zoom": [
+                1.42,
+                1.46
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "bugbear",
+          "headlineY": 0.4,
+          "hold": 0.35,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "bugbear",
+              "voice": "af_heart",
+              "speed": 1.0
+            },
+            "ja": "悩みの種・苦手なもの"
+          }
+        },
+        {
+          "id": "check-1-10-q7",
+          "why": "日本語から英単語を思い出す（考える間）",
+          "shots": [
+            {
+              "src": "pixabay:31961",
+              "in": 1.0,
+              "loop": true,
+              "zoom": [
+                1.38,
+                1.42
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "「当然の報い」",
+          "headlineY": 0.4,
+          "hold": 2.0,
+          "lead": 0.02,
+          "say": "当然の報い。",
+          "caption": "8. 「当然の報い」"
+        },
+        {
+          "id": "check-1-10-a7",
+          "why": "答え合わせ（英語音声）",
+          "shots": [
+            {
+              "src": "pixabay:31961",
+              "in": 5.0,
+              "loop": true,
+              "zoom": [
+                1.42,
+                1.46
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "comeuppance",
+          "headlineY": 0.4,
+          "hold": 0.35,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "comeuppance",
+              "voice": "af_heart",
+              "speed": 1.0
+            },
+            "ja": "当然の報い"
+          }
+        },
+        {
+          "id": "check-1-10-q8",
+          "why": "日本語から英単語を思い出す（考える間）",
+          "shots": [
+            {
+              "src": "pixabay:43559",
+              "in": 8.0,
+              "loop": true,
+              "zoom": [
+                1.38,
+                1.42
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "「面倒な手続き」",
+          "headlineY": 0.4,
+          "hold": 2.0,
+          "lead": 0.02,
+          "say": "面倒な手続き。",
+          "caption": "9. 「面倒な手続き」"
+        },
+        {
+          "id": "check-1-10-a8",
+          "why": "答え合わせ（英語音声）",
+          "shots": [
+            {
+              "src": "pixabay:43559",
+              "in": 12.0,
+              "loop": true,
+              "zoom": [
+                1.42,
+                1.46
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "rigmarole",
+          "headlineY": 0.4,
+          "hold": 0.35,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "rigmarole",
+              "voice": "af_heart",
+              "speed": 1.0
+            },
+            "ja": "面倒な手続き"
+          }
+        },
+        {
+          "id": "check-1-10-q9",
+          "why": "日本語から英単語を思い出す（考える間）",
+          "shots": [
+            {
+              "src": "pixabay:130645",
+              "in": 11.0,
+              "loop": true,
+              "zoom": [
+                1.38,
+                1.42
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "「得意分野」",
+          "headlineY": 0.4,
+          "hold": 2.0,
+          "lead": 0.02,
+          "say": "得意分野。",
+          "caption": "10. 「得意分野」"
+        },
+        {
+          "id": "check-1-10-a9",
+          "why": "答え合わせ（英語音声）",
+          "shots": [
+            {
+              "src": "pixabay:130645",
+              "in": 1.0,
+              "loop": true,
+              "zoom": [
+                1.42,
+                1.46
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "wheelhouse",
+          "headlineY": 0.4,
+          "hold": 0.35,
+          "lead": 0.02,
+          "clip": {
+            "tts": {
+              "text": "wheelhouse",
+              "voice": "af_heart",
+              "speed": 1.0
+            },
+            "ja": "得意分野"
+          }
+        }
+      ]
+    },
+    {
+      "id": "ending",
+      "title": "まとめ",
+      "purpose": "今日の語を振り返って終える",
+      "beats": [
+        {
+          "id": "ending",
+          "why": "締め",
+          "shots": [
+            {
+              "src": "pixabay:232496",
+              "in": 0.5,
+              "loop": true,
+              "zoom": [
+                1.54,
+                1.58
+              ],
+              "frame": "fill"
+            }
+          ],
+          "headline": "英検1級のその先\nまとめて覚える10語",
+          "headlineY": 0.42,
+          "hold": 1.2,
+          "say": "今日の10語でした。／何度か見て、声に出すと定着します。"
+        }
+      ]
+    }
+  ]
+}
