@@ -47,3 +47,7 @@ When changing a reviewed production, re-render it so the Review Pages workflow c
 ## Long-form films
 
 Read `docs/longform.md` before making a chapter-based landscape film. Use `productions/<id>/longform.json` and `tools/longform/longform.py`; keep narration, chapter purpose and shot choices in data. The Shorts source/voice engine is shared, but long-form output and workflow are separate. Technical pass is not editorial approval. Review the full MP4 and sound; do not send long-form artifacts into Shorts auto-publication.
+
+## Reference replication
+
+To match a reference short's look and pacing, read `docs/reference-replication.md` and use `.claude/skills/reference-replication/SKILL.md` with `tools/reference/reference.py` (`measure` / `track` / `compare`). The reference is only a ruler: never copy its frames or audio into outputs or commits, and keep measured numbers in `productions/<id>/` data, not in runtime code. A close technical match is not editorial approval.
