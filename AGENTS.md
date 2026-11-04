@@ -6,6 +6,7 @@ This repository is a reusable animation factory, not a collection of one-off vid
 
 1. Read `catalog/components.json` and `catalog/audio.json`.
    Check `catalog/asset-library.json` before creating or sourcing new art or sound.
+   When the library is not enough, `docs/asset-sources.md` lists two optional tools: **Openverse** (keyless search of CC/public-domain images and audio — Freesound SFX, Jamendo music, Flickr/Wikimedia) and **earshot** (lets an agent measure and compare audio it cannot hear, plus a bank of code-made SFX). Install earshot from GitHub, not PyPI.
 2. Read `schemas/production.schema.json`.
 3. Compose existing components and event kinds before changing engine/runtime code.
 4. Keep production-specific decisions inside `productions/<production-id>/production.json`.
