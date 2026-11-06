@@ -1,0 +1,91 @@
+name: 3D Shorts
+
+# Renders procedural 3D Shorts (tools/three) with VOICEVOX dialogue.
+# Technical pass only: nothing here uploads or publishes anywhere.
+on:
+  workflow_dispatch:
+    inputs:
+      production:
+        description: production folder under productions/ (must contain scene3d.json)
+        required: true
+        type: string
+  pull_request:
+    paths:
+      - "productions/**/scene3d.json"
+      - "src/three/**"
+      - "tools/three/**"
+      - "catalog/sfx3d.json"
+      - "three.html"
+      - ".github/workflows/three-shorts.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: three-shorts-${{ github.event.inputs.production || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  render:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Resolve productions
+        id: resolve
+        shell: bash
+        env:
+          MANUAL: ${{ inputs.production }}
+          BASE: ${{ github.event.pull_request.base.sha }}
+        run: |
+          set -euo pipefail
+          if [ -n "${MANUAL:-}" ]; then
+            list="$MANUAL"
+          else
+            list="$(git diff --name-only "$BASE" HEAD -- 'productions/*/scene3d.json' | sed -n 's#^productions/\([^/]*\)/scene3d\.json$#\1#p' | sort -u | tr '\n' ' ')"
+            if [ -z "$list" ]; then
+              # engine-only change: re-render every 3D production as a regression check
+              list="$(ls productions/*/scene3d.json | sed -n 's#^productions/\([^/]*\)/scene3d\.json$#\1#p' | tr '\n' ' ')"
+            fi
+          fi
+          for p in $list; do [[ "$p" =~ ^[A-Za-z0-9._-]+$ ]] || { echo "unsafe: $p"; exit 2; }; done
+          echo "list=$list" >> "$GITHUB_OUTPUT"
+          echo "Productions: $list"
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Dependencies
+        run: |
+          npm ci
+          npx playwright install --with-deps chromium
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg fonts-noto-cjk
+
+      - name: Typecheck
+        run: npx tsc --noEmit
+
+      - name: Start VOICEVOX engine
+        run: |
+          docker run -d --rm --name vv -p 127.0.0.1:50021:50021 voicevox/voicevox_engine:cpu-latest
+          for i in $(seq 1 120); do curl -fsS http://127.0.0.1:50021/version && exit 0; sleep 2; done; docker logs vv; exit 1
+
+      - name: Render
+        run: |
+          set -euo pipefail
+          for p in ${{ steps.resolve.outputs.list }}; do
+            node tools/three/render3d.mjs "$p"
+            mkdir -p "artifact/$p"
+            cp "outputs/three/$p/$p.mp4" "artifact/$p/"
+            cp -r "outputs/three/$p/review/." "artifact/$p/"
+          done
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: three-shorts-${{ github.run_id }}
+          path: artifact/
+          retention-days: 30

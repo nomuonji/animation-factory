@@ -48,3 +48,7 @@ When changing a reviewed production, re-render it so the Review Pages workflow c
 ## Long-form films
 
 Read `docs/longform.md` before making a chapter-based landscape film. Use `productions/<id>/longform.json` and `tools/longform/longform.py`; keep narration, chapter purpose and shot choices in data. The Shorts source/voice engine is shared, but long-form output and workflow are separate. Technical pass is not editorial approval. Review the full MP4 and sound; do not send long-form artifacts into Shorts auto-publication.
+
+## 3D Shorts
+
+For acted 3D skits (characters, props, a set) read `docs/three-shorts.md`. Productions are `productions/<id>/scene3d.json`; reusable props/sets/poses live in `src/three/` and are listed under `three` in `catalog/components.json`. The pixel conventions above do not apply to this line.

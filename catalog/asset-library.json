@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "checkedOn": "2026-09-23",
+  "checkedOn": "2026-11-06",
   "backgrounds": [
     {
       "id": "rainy-city-alley",
@@ -134,6 +134,149 @@
       "license": "CC0-1.0",
       "sha256": "fef13a566090b3f9e8492dcee58e724373a90a0ca7e53171d1d0a03190623b30",
       "use": "RPG fights, deadlines and escalating tension"
+    },
+    {
+      "id": "bossa-thank-you-for-shopping",
+      "title": "(Bossa Nova Loop) Thank You for Shopping!",
+      "path": "assets/music/bossa-thank-you-for-shopping.ogg",
+      "source": "https://freesound.org/people/plasterbrain/sounds/464924",
+      "author": "plasterbrain",
+      "license": "CC0-1.0",
+      "sourceSha256": "27549b4f674f98adfd7e6cef0ea5dca9ba0c22a9982b0536d2b23b0817b5a8c7",
+      "sha256": "55a3e584fc290a06f7593f560d57101b3c4aa3cdb20b68ee0b58ca7791bde266",
+      "processing": "Freesound HQ preview MP3, loudness-normalised to -18 LUFS, Opus 160 kb/s",
+      "durationSec": 12.04,
+      "use": "deadpan shop / everyday absurdity (12s loop)"
+    },
+    {
+      "id": "waiting-lounge",
+      "title": "waiting_1.mp3",
+      "path": "assets/music/waiting-lounge.ogg",
+      "source": "https://freesound.org/people/omarie/sounds/382447",
+      "author": "omarie",
+      "license": "CC0-1.0",
+      "sourceSha256": "a432165a4b488f5edeeb8fbd4be9e84365aff7a1c6288069156bf432606a820c",
+      "sha256": "4cc4c7eeca0509e34b6928b8a852aa2e1269cb9ddd2e2ee967bf65a6e01e1aa1",
+      "processing": "Freesound HQ preview MP3, loudness-normalised to -18 LUFS, Opus 160 kb/s",
+      "durationSec": 85.34,
+      "use": "waiting room, bureaucracy, polite pressure (85s)"
+    },
+    {
+      "id": "numskull",
+      "title": "Numskull",
+      "path": "assets/music/numskull.ogg",
+      "source": "https://freesound.org/people/Beetlemuse/sounds/650939",
+      "author": "Beetlemuse",
+      "license": "CC0-1.0",
+      "sourceSha256": "f42fd3327e531e63c425b0e8f41c3b0dd4bb380e5fa52e4c00091b18ec9e22ba",
+      "sha256": "cfc9de0d32429bd15e18c26da55cb7d46fa8f22fcd8de5045c9eca3b3e2b8dfa",
+      "processing": "Freesound HQ preview MP3, loudness-normalised to -18 LUFS, Opus 160 kb/s",
+      "durationSec": 51.25,
+      "use": "silly, clumsy comedy (51s)"
+    },
+    {
+      "id": "jazz-rusted-maid",
+      "title": "(Jazz Loop) Rusted Maid",
+      "path": "assets/music/jazz-rusted-maid.ogg",
+      "source": "https://freesound.org/people/plasterbrain/sounds/464923",
+      "author": "plasterbrain",
+      "license": "CC0-1.0",
+      "sourceSha256": "cd0847f5fe77d2c0703a2ade783c1a0cce8cbbc4abd2ef5372eb34e520a9fb97",
+      "sha256": "49423a16fdb436050d0bb416f832e956e87c589405b2339ce19b0918157799a8",
+      "processing": "Freesound HQ preview MP3, loudness-normalised to -18 LUFS, Opus 160 kb/s",
+      "durationSec": 30.88,
+      "use": "dry jazz, sly comedy (31s loop)"
+    },
+    {
+      "id": "little-happy-tune",
+      "title": "Little, happy tune - 22.10.2015",
+      "path": "assets/music/little-happy-tune.ogg",
+      "source": "https://freesound.org/people/cabled_mess/sounds/335361",
+      "author": "cabled_mess",
+      "license": "CC0-1.0",
+      "sourceSha256": "e11a6ed0ba9cd4d4b81d9d4ee82b4badbffb1db29a7046c87773abd836dce2b7",
+      "sha256": "43b4c464ce76c197d166f9877908e233f4aeb7cde046c177817ce832c5aa55b2",
+      "processing": "Freesound HQ preview MP3, loudness-normalised to -18 LUFS, Opus 160 kb/s",
+      "durationSec": 40.1,
+      "use": "light, innocent, wholesome (40s)"
+    },
+    {
+      "id": "ukulele-short-loop",
+      "title": "short ukulele loop by rea.mp3",
+      "path": "assets/music/ukulele-short-loop.ogg",
+      "source": "https://freesound.org/people/reasanka/sounds/383023",
+      "author": "reasanka",
+      "license": "CC0-1.0",
+      "sourceSha256": "f27c70f1a465051860a44550cd92e44cd9946941955ee3fd56b7892e5a54b889",
+      "sha256": "5814bd815adc19ed282a72b3eafdac589873d63e4b4cb62507907c25a2a633aa",
+      "processing": "Freesound HQ preview MP3, loudness-normalised to -18 LUFS, Opus 160 kb/s",
+      "durationSec": 15.26,
+      "use": "carefree daily life (15s loop)"
+    },
+    {
+      "id": "lofi-loop-scoop",
+      "title": "Lofi Loop Scoop",
+      "path": "assets/music/lofi-loop-scoop.ogg",
+      "source": "https://freesound.org/people/Seth_Makes_Sounds/sounds/653510",
+      "author": "Seth_Makes_Sounds",
+      "license": "CC0-1.0",
+      "sourceSha256": "c75f275637fc517937e5ac2754c89ebdb0f27280a752c9ff06f20af8028a73b2",
+      "sha256": "14d1253ee1738765716271e561381922e2501c14407174f644a080dabc8b3f79",
+      "processing": "Freesound HQ preview MP3, loudness-normalised to -18 LUFS, Opus 160 kb/s",
+      "durationSec": 86.96,
+      "use": "calm modern, chill (87s)"
+    },
+    {
+      "id": "sad-piano-progression",
+      "title": "Sad Piano Chord Progression",
+      "path": "assets/music/sad-piano-progression.ogg",
+      "source": "https://freesound.org/people/michael_grinnell/sounds/530977",
+      "author": "michael_grinnell",
+      "license": "CC0-1.0",
+      "sourceSha256": "a1110527f25d38f05617b857e3f20d3050fe32c40025844a79ac5f2e862f4890",
+      "sha256": "836f49f2da10081a156bc18974e2611ab2d3e37f3115518df4d6f1078ed35ee0",
+      "processing": "Freesound HQ preview MP3, loudness-normalised to -18 LUFS, Opus 160 kb/s",
+      "durationSec": 60.21,
+      "use": "mock-sad, melancholy beat (60s)"
+    },
+    {
+      "id": "strange-music",
+      "title": "strange music",
+      "path": "assets/music/strange-music.ogg",
+      "source": "https://freesound.org/people/scotcampbell/sounds/263774",
+      "author": "scotcampbell",
+      "license": "CC0-1.0",
+      "sourceSha256": "dd921fd67aee3a66a70a5589086447459885f1ab15aff169570eb88dd9d234bb",
+      "sha256": "4092c3be1cb953b6459267d5af59c8d12f5be84b6685d4519840bb5d8231245b",
+      "processing": "Freesound HQ preview MP3, loudness-normalised to -18 LUFS, Opus 160 kb/s",
+      "durationSec": 44.04,
+      "use": "suspicious, uncanny (44s)"
+    },
+    {
+      "id": "tension-build",
+      "title": "tension build.aiff",
+      "path": "assets/music/tension-build.ogg",
+      "source": "https://freesound.org/people/bevibeldesign/sounds/316649",
+      "author": "bevibeldesign",
+      "license": "CC0-1.0",
+      "sourceSha256": "9b2d604b7c1d01a7279aaeaa35979accd912f4a05455fa13eda7abffc16e13e5",
+      "sha256": "061e6420213ed44136748fde62052650c12ac7e353b0c248d2da08e1894caad0",
+      "processing": "Freesound HQ preview MP3, loudness-normalised to -18 LUFS, Opus 160 kb/s",
+      "durationSec": 15.79,
+      "use": "stinger: rising tension before payoff (16s)"
+    },
+    {
+      "id": "music-box-melody",
+      "title": "Music Box Melody 1",
+      "path": "assets/music/music-box-melody.ogg",
+      "source": "https://freesound.org/people/DRFX/sounds/338986",
+      "author": "DRFX",
+      "license": "CC0-1.0",
+      "sourceSha256": "f43811a16416ed44f403aa93923483142b5b8a0906e70ec03280ade075937aee",
+      "sha256": "aa803ef81a8fd2ddda4a17c599b62fa232ad97984a6e6e58a8b9d69e9c385536",
+      "processing": "Freesound HQ preview MP3, loudness-normalised to -18 LUFS, Opus 160 kb/s",
+      "durationSec": 16.09,
+      "use": "fairy-tale / innocent irony (16s)"
     }
   ]
 }
