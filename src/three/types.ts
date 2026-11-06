@@ -37,5 +37,5 @@ export interface Timeline {
   shots: Shot[];
   captions?: { y?: number; size?: number };
   overlay?: { text: string; start: number; end: number } | null;
-  titleCard?: { text: string; start: number; end: number } | null;
+  titleCard?: { text: string; start: number; end: number; style?: "card" | "band"; label?: string } | null;
 }

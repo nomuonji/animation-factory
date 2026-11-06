@@ -61,7 +61,7 @@ VOICEVOX, so never hard-code dialogue seconds. `pre` / `post` / `hold` / `dur` a
 Actions inside `do` (one verb per action):
 
 - `pose` actor → named pose (`idle counter hold-doc lift-doc point stamp-up stamp-down give sign hand-up bow`) or joint numbers
-- `move` actor → `{x,z,ry}`; `look` actor → `{yaw,pitch}`; `face` actor → expression (`neutral blank polite surprised doubtful weary`)
+- `move` actor → `{x,z,ry}`; `look` actor → `{yaw,pitch}` (pitch > 0 looks down); `face` actor → expression (`neutral blank polite surprised doubtful weary`)
 - `prop` id → transform `{x,y,z,rx,ry,rz,s}` with `dur`, `ease` (`linear inOut in out back`), `arc`
 - `show` / `hide` id; `param` id → e.g. `{sig: 1}` signature progress, `{stamp: 1}`
 - `wiggle` actor → hand scribble amount; `sfx` name (from `catalog/sfx3d.json`); `shot` camera cut mid-beat; `music` cut/resume

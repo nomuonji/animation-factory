@@ -96,12 +96,24 @@ async function synth(line) {
   return { ...info, audio: wav };
 }
 
-const voiced = await vvAlive();
+// cached VOICEVOX takes (outputs/three-voice) are reused even when the engine is offline,
+// so CI can synthesize voices (--voices-only) and any machine can render with real timing.
+async function cached(line) {
+  const v = { speaker: "青山龍星", style: "ノーマル", speed: 1.1, ...(prod.voices?.[line.who] ?? {}), ...(line.voice ?? {}) };
+  const key = createHash("sha1").update(JSON.stringify([plainText(line.text), v])).digest("hex").slice(0, 16);
+  const wav = join(voiceDir, `${key}.wav`), meta = join(voiceDir, `${key}.json`);
+  return existsSync(wav) && existsSync(meta) ? { ...JSON.parse(await readFile(meta, "utf8")), audio: wav } : null;
+}
+const alive = await vvAlive();
 const voices = new Map();
+let voiced = true;
 for (const b of prod.beats) if (b.line) {
-  const v = voiced ? await synth(b.line) : estimateVoice(b.line.text, prod.voices?.[b.line.who]?.speed ?? 1.1);
+  let v = flag("no-voice") ? null : await cached(b.line);
+  if (!v && alive) v = await synth(b.line);
+  if (!v) { voiced = false; v = estimateVoice(b.line.text, prod.voices?.[b.line.who]?.speed ?? 1.1); }
   voices.set(b.line, v);
 }
+if (flag("voices-only")) { console.log(`voices: ${voiced ? "all synthesized/cached" : "MISSING (VOICEVOX offline)"} in ${voiceDir}`); process.exit(voiced ? 0 : 1); }
 const compiled = compile(prod, (l) => voices.get(l));
 const { timeline, audio } = compiled;
 const lint = lintDesign(prod, compiled, await loadFormats());

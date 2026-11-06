@@ -10,12 +10,19 @@ const VERBS = {
   pose: "pose", move: "root", look: "look", face: "face", prop: "tf", param: "param", wiggle: "wiggle"
 };
 
-/** design.titleOnScreen: "always" (default) | "hook" | "none" — title band at the top of the frame */
-function titleCard(prod, duration) {
+/**
+ * Title presentation. Default: a full-frame title card played by the beat whose role is "title"
+ * (a real cut, like a sketch-show title). design.titleOnScreen = "band" keeps a top band for the
+ * whole video instead; "none" shows nothing.
+ */
+function titleCard(prod, duration, beats) {
   const d = prod.design;
   if (!d?.title || d.titleOnScreen === "none") return null;
-  const end = d.titleOnScreen === "hook" ? 3 : duration + 1;
-  return { text: d.titleScreenText ?? d.title, start: 0, end };
+  const text = d.titleScreenText ?? d.title;
+  if (d.titleOnScreen === "band") return { text, start: 0, end: duration + 1, style: "band" };
+  const i = prod.beats.findIndex((b) => b.role === "title");
+  if (i < 0) return null;
+  return { text, start: beats[i].start, end: beats[i].end, style: "card", label: d.titleLabel ?? "ショートコント" };
 }
 
 export function splitChunks(text) {
@@ -75,7 +82,7 @@ export function compile(prod, voiceFor) {
       }
       lines.push({ id, who: b.line.who, text: plainText(b.line.text), start: lineStart, end: lineEnd, moras: v.moras.map(([a, c]) => [lineStart + a, lineStart + c]), chunks, audio: v.audio ?? null });
     }
-    const natural = b.line ? (lineEnd - start) + (b.post ?? 0.22) : 0;
+    const natural = b.line ? (lineEnd - start) + (b.post ?? 0.22) : (b.role === "title" ? 1.5 : 0);
     const end = start + Math.max(natural, b.dur ?? 0) + (b.hold ?? 0);
     const beat = { id, start, end, lineStart, lineEnd };
     beats.push(beat);
@@ -114,7 +121,7 @@ export function compile(prod, voiceFor) {
       meta: { id: prod.meta.id, title: prod.meta.title, fps, width: prod.meta.width ?? 1080, height: prod.meta.height ?? 1920, duration: frames / fps },
       set: prod.set, cameras: prod.cameras ?? {}, actors: prod.actors, props: prod.props ?? {},
       lines: lines.map(({ audio, ...l }) => l), events, shots, captions: prod.captions ?? {}, overlay,
-      titleCard: titleCard(prod, frames / fps)
+      titleCard: titleCard(prod, frames / fps, beats)
     },
     audio: { lines: lines.map((l) => ({ t: l.start, end: l.end, audio: l.audio, who: l.who })), sfx, music: { ...(prod.music ?? {}), events: music } },
     beats

@@ -27,50 +27,46 @@
       "signText": "レジ"
     }
   },
-  "cameras": {},
+  "cameras": {
+    "customer-cu": {
+      "pos": [
+        -0.4,
+        1.58,
+        -0.92
+      ],
+      "target": [
+        0.14,
+        1.5,
+        0.64
+      ],
+      "fov": 24
+    }
+  },
   "captions": {
     "y": 0.74
   },
   "actors": {
     "clerk": {
-      "style": {
-        "skin": "#f0c7a4",
-        "hair": "#26211f",
-        "hairStyle": "side-part",
-        "top": "#f6f5f1",
-        "vest": "#3f8f86",
-        "bottom": "#33363f",
-        "glasses": true,
-        "nameTag": "佐藤"
-      },
+      "vrm": "assets/3d/avatars/Robert.vrm",
+      "height": 1.72,
       "root": {
         "x": 0.04,
         "z": -0.6,
         "ry": 0
       },
       "pose": "counter",
-      "expr": "polite",
-      "seed": 3,
+      "expr": "blank",
       "captionColor": "#ffffff"
     },
     "customer": {
-      "style": {
-        "skin": "#f3cdb0",
-        "hair": "#4a3428",
-        "hairStyle": "ponytail",
-        "top": "#8e98a6",
-        "hood": true,
-        "bottom": "#2f3442",
-        "height": 0.97
-      },
+      "vrm": "assets/3d/avatars/Lydia.vrm",
+      "height": 1.6,
       "root": {
         "x": 0.14,
         "z": 0.64,
         "ry": 3.14159
       },
       "pose": "idle",
-      "expr": "neutral",
-      "seed": 7,
       "captionColor": "#ffe48a"
     }
   },
@@ -100,9 +96,10 @@
       },
       "tf": {
         "x": -0.15,
-        "y": 0.96,
+        "y": 1.9,
         "z": 0.02,
-        "ry": 0.05
+        "ry": 0.05,
+        "rx": 0.3
       }
     },
     "sheet": {
@@ -224,36 +221,73 @@
   "tail": 0,
   "beats": [
     {
-      "id": "ask",
+      "id": "slam",
+      "role": "hook",
       "shot": "counter-top",
-      "push": 0.06,
-      "pre": 0.25,
+      "pre": 0.3,
       "line": {
         "who": "clerk",
-        "text": "こちら、／温めますか？"
-      },
-      "role": "hook"
-    },
-    {
-      "id": "yes",
-      "shot": "customer-cu",
-      "post": 0.15,
-      "line": {
-        "who": "customer",
-        "text": "あ、はい"
+        "text": "加熱に関する、／重要事項説明書です"
       },
       "do": [
         {
-          "at": "lineEnd",
+          "at": 0,
+          "prop": "stack",
+          "to": {
+            "y": 0.96,
+            "rx": 0
+          },
+          "dur": 0.2,
+          "ease": "in"
+        },
+        {
+          "at": 0.2,
+          "sfx": "paper-thud",
+          "gain": 1.2
+        }
+      ]
+    },
+    {
+      "id": "just",
+      "role": "rule",
+      "shot": "customer-cu",
+      "post": 0.1,
+      "line": {
+        "who": "customer",
+        "text": "温めるだけ、／ですよね？"
+      },
+      "do": [
+        {
+          "at": 0,
           "look": "customer",
           "to": {
-            "pitch": -0.42,
+            "pitch": 0.4,
             "yaw": 0.25
           },
-          "dur": 0.35
+          "dur": 0.3
+        },
+        {
+          "at": "lineEnd-0.3",
+          "look": "customer",
+          "to": {
+            "pitch": 0.05,
+            "yaw": 0
+          },
+          "dur": 0.3
         }
-      ],
-      "role": "hook"
+      ]
+    },
+    {
+      "id": "title",
+      "role": "title",
+      "shot": "hero",
+      "dur": 1.5,
+      "do": [
+        {
+          "at": 0,
+          "sfx": "pizz-sting"
+        }
+      ]
     },
     {
       "id": "intro",
@@ -261,7 +295,7 @@
       "push": 0.05,
       "line": {
         "who": "clerk",
-        "text": "では、重要事項を／ご説明します"
+        "text": "ですので、／ご説明します"
       },
       "do": [
         {
@@ -310,13 +344,14 @@
           "at": "lineEnd-0.2",
           "look": "customer",
           "to": {
-            "pitch": -0.35,
+            "pitch": 0.35,
             "yaw": 0.05
           },
           "dur": 0.4
         }
       ],
-      "role": "rule"
+      "role": "bridge",
+      "pre": 0.08
     },
     {
       "id": "nori",
@@ -331,7 +366,7 @@
           "at": 0.1,
           "look": "clerk",
           "to": {
-            "pitch": -0.3
+            "pitch": 0.3
           },
           "dur": 0.4
         }
@@ -357,7 +392,7 @@
           "at": 0,
           "look": "clerk",
           "to": {
-            "pitch": -0.12
+            "pitch": 0.12
           },
           "dur": 0.4
         }
@@ -378,7 +413,7 @@
           "at": 0,
           "look": "clerk",
           "to": {
-            "pitch": 0.0
+            "pitch": -0.0
           },
           "dur": 0.4
         }
@@ -406,7 +441,7 @@
           "at": 0,
           "look": "customer",
           "to": {
-            "pitch": -0.05,
+            "pitch": 0.05,
             "yaw": 0
           },
           "dur": 0.5
@@ -453,14 +488,18 @@
         {
           "at": "lineEnd",
           "pose": "customer",
-          "to": "sign",
+          "to": {
+            "pose": "sign",
+            "shoulderRX": -0.7,
+            "elbowR": -0.3
+          },
           "dur": 0.4
         },
         {
           "at": "lineEnd",
           "look": "customer",
           "to": {
-            "pitch": -0.55,
+            "pitch": 0.55,
             "yaw": 0.1
           },
           "dur": 0.4
@@ -528,7 +567,7 @@
           "at": 0,
           "look": "customer",
           "to": {
-            "pitch": -0.2,
+            "pitch": 0.2,
             "yaw": 0
           },
           "dur": 0.4
@@ -850,7 +889,7 @@
           "at": 0,
           "look": "customer",
           "to": {
-            "pitch": -0.5,
+            "pitch": 0.5,
             "yaw": 0.1
           },
           "dur": 0.5
@@ -867,7 +906,7 @@
       "shot": "clerk-cu",
       "pre": 0.05,
       "post": 0.0,
-      "loopsTo": "ask",
+      "loopsTo": "slam",
       "line": {
         "who": "clerk",
         "text": "では、加熱に関する"
@@ -889,7 +928,7 @@
     }
   ],
   "description": [
-    "「温めますか？」に重要事項の説明義務があったら。",
+    "「温めますか？」に、重要事項の説明義務があったら。",
     "#ショート #コンビニ #3Dアニメ #コント"
   ],
   "design": {
@@ -901,8 +940,8 @@
     ],
     "titlePattern": "world",
     "hook": {
-      "type": "anomaly-first",
-      "firstFrame": "おにぎり1個の横に、分厚い『加熱に関する重要事項説明書』",
+      "type": "in-media-res",
+      "firstFrame": "おにぎり1個の横に、分厚い『加熱に関する重要事項説明書』がドンと置かれる",
       "overlay": "おにぎりを温めるだけ"
     },
     "rule": "レンジで温めることが、契約並みの重要事項説明と同意手続きを要する",
@@ -914,10 +953,11 @@
     ],
     "turn": "客が『やっぱり温めなくて大丈夫です』と断る",
     "payoff": "断ると『温めない場合の重要事項説明書（全3巻）』がさらに大きく落ちてくる",
-    "button": "客が観念して『温めてください』→店員が冒頭の説明を言い始めたところで切る（ループ）",
+    "button": "客が観念して『温めてください』→店員が『では、加熱に関する』と言いかけたところで切る（冒頭の『加熱に関する重要事項説明書です』へループ）",
     "loop": true,
     "reaction": "laugh",
     "audience": "コンビニでレンジ待ちを経験したことがある人が、手続きの大げささで止まる",
+    "titleOnScreen": "card",
     "titleScreenText": "コンビニの温めに\n説明義務がある世界"
   },
   "music": {
