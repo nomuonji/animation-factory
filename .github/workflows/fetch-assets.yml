@@ -24,6 +24,7 @@ jobs:
       - name: Download and hash
         run: |
           set -euo pipefail
+          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
           mkdir -p fetched
           node -e '
             const fs = require("fs"), cp = require("child_process"), crypto = require("crypto");
