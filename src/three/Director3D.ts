@@ -70,7 +70,7 @@ export class Director3D {
     let seed = 1;
     for (const [id, a] of Object.entries(tl.actors)) {
       if (a.vrm && Object.entries(tl.actors).some(([o, b]) => o !== id && b.vrm === a.vrm)) throw new Error(`two actors share ${a.vrm}; use different avatars`);
-      const c = a.vrm ? new VrmCharacter(id, assets.get(a.vrm)!, { height: a.height }) : new Character(id, a.style ?? {});
+      const c = a.vrm ? new VrmCharacter(id, assets.get(a.vrm)!, { height: a.height, turn: a.turn }) : new Character(id, a.style ?? {});
       this.scene.add(c.root);
       const face0 = { eyes: 1, brow: 0, smile: 0, ...(EXPRESSIONS[a.expr ?? "neutral"] ?? {}) } as Val;
       const ch = {
@@ -84,7 +84,7 @@ export class Director3D {
     }
     for (const [id, pr] of Object.entries(tl.props)) {
       let p: Prop;
-      if (pr.kind === "gltf") p = { object: gltfProp(assets, String(pr.params?.src), pr.params ?? {}) };
+      if (pr.kind === "gltf") p = gltfProp(assets, String(pr.params?.src), pr.params ?? {});
       else {
         const b = PROPS[pr.kind];
         if (!b) throw new Error(`Unknown prop kind: ${pr.kind}`);
@@ -168,6 +168,7 @@ export class Director3D {
       p.p.object.scale.setScalar(v.s!);
       p.p.object.visible = (p.vis.at(t).v ?? 1) > 0.5;
       if (p.p.setParam) for (const [k, val] of Object.entries(p.param.at(t))) p.p.setParam(k, val);
+      p.p.animate?.(t);
     }
   }
 }

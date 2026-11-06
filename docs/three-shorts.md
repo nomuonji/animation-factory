@@ -36,6 +36,8 @@ Listed in `catalog/assets3d.json`. Only CC0 files are vendored; keep the ledger 
   `{"vrm": "assets/3d/avatars/Lydia.vrm", "height": 1.6, "root": {...}}`. The same poses, looks and
   lip movement (VRM visemes + blink) work as for procedural characters. The style is colourful and
   surreal; it does not fit every skit.
+- **100Avatars R3 cast** (CC0): `FrogEnjoyer`, `DogoBurger`, `LilShark`, `AjoMajo`, `CuteSaurus` — cuter, with joy/angry/sorrow/fun expressions that follow the `face` actions. `CuteSaurus` needs `"look": {"pitch": 0.9}`; `turn` (degrees) rotates a model that was authored facing away.
+- **Kenney Mini Characters** (CC0) — `assets/3d/kenney/mini-characters/character-*.glb` as `kind: "gltf"` props with `params.clip` (`idle`, `walk`, `emote-yes`, `interact-right`…; evaluated from the timeline). Good for crowds; painted faces, so no lip sync.
 - **Your own VRM** (e.g. made in VRoid Studio) works the same way: put it in `assets/3d/avatars/`,
   record its licence in the ledger, reference it with `vrm`.
 
