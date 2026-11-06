@@ -357,6 +357,10 @@
       "box": [
         "size",
         "color"
+      ],
+      "gltf": [
+        "src (assets/3d/...)",
+        "scale"
       ]
     },
     "character": {
@@ -394,7 +398,8 @@
         "surprised",
         "doubtful",
         "weary"
-      ]
+      ],
+      "vrm": "actors.<id>.vrm = assets/3d/avatars/*.vrm, height"
     },
     "actions": [
       "pose",
@@ -407,8 +412,16 @@
       "param",
       "wiggle",
       "sfx",
-      "shot"
+      "shot",
+      "music"
     ],
-    "sfx": "catalog/sfx3d.json"
+    "sfx": "catalog/sfx3d.json",
+    "design": {
+      "doc": "docs/short-drama-design.md",
+      "formats": "catalog/skit-formats.json",
+      "template": "templates/skit3d.json",
+      "lint": "tools/three/design-lint.mjs"
+    },
+    "assets": "catalog/assets3d.json"
   }
 }

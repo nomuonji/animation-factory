@@ -1,0 +1,80 @@
+{
+  "version": 1,
+  "doc": "docs/short-drama-design.md",
+  "note": "Story formats for acted Shorts (3D skits). A format fixes the beat-role order, hook type, title patterns and timing budget; the joke itself is the production's. tools/three/design-lint.mjs checks a scene3d.json against its format.",
+  "roles": {
+    "hook": "0秒の画と最初の一言。世界の異常（またはその予兆）が音なし・スマホ縮小で見える",
+    "rule": "世界のルールが『一つだけ』だと観客が理解する。説明ではなく、ルールに従った行動で見せる",
+    "escalate": "同じルールの適用が一段ずつ大きく／具体的になる（level 1→2→3）。新情報が毎回ある",
+    "turn": "登場人物がルールから逃げる・反撃する・別の道を選ぶ（But/Therefore）",
+    "payoff": "逃げ道にもルールが適用される／冒頭の約束を最も強い画で回収する",
+    "button": "余韻の一言か、冒頭へつながるループ。3秒以内",
+    "bridge": "動作だけの短いつなぎ（2.5秒以内）。多用しない"
+  },
+  "hookTypes": {
+    "anomaly-first": "異常な物・状況を0秒で見せる（おにぎりの横に分厚い説明書）",
+    "in-media-res": "出来事の最中から始める（平手打ち、告白、落下の瞬間）",
+    "line-first": "状況に合わない一言から始める（『こちらにご署名を』を最初に言う）",
+    "reaction-first": "驚く顔・固まる顔から始め、原因を直後に見せる",
+    "payoff-tease": "最後の画を0秒に一瞬置き、『なぜこうなったか』で巻き戻す"
+  },
+  "titlePatterns": {
+    "world": { "form": "〇〇が△△な世界", "example": "コンビニの温めに説明義務がある世界" },
+    "too-much": { "form": "〇〇すぎる△△", "example": "温めの確認が丁寧すぎるコンビニ" },
+    "consequence": { "form": "〇〇したら△△された", "example": "おにぎりを温めてもらったら署名を求められた" },
+    "fake-howto": { "form": "正しい〇〇のやり方", "example": "コンビニで正しく温めてもらう方法" },
+    "if": { "form": "もしも〇〇が△△だったら", "example": "もしも温めますか？が契約だったら", "warn": "飽和気味。他の型で言えない時だけ" }
+  },
+  "formats": {
+    "institutional-absurdity": {
+      "label": "手続き化（日常の一瞬を役所・契約の手続きにする）",
+      "hook": "anomaly-first",
+      "roles": ["hook", "rule", "escalate", "escalate", "escalate", "turn", "payoff", "button"],
+      "titlePatterns": ["world", "too-much", "consequence"],
+      "duration": [28, 50],
+      "notes": "全員真顔。ツッコミ役を置かない。手続きは本物らしいほど面白い（署名・押印・控え・クーリングオフ）。payoffは『手続きから逃げる手続き』"
+    },
+    "literalization": {
+      "label": "言葉どおり（慣用句・決まり文句を文字どおり実行する）",
+      "hook": "line-first",
+      "roles": ["hook", "rule", "escalate", "escalate", "turn", "payoff", "button"],
+      "titlePatterns": ["world", "consequence"],
+      "duration": [22, 45],
+      "notes": "決まり文句は最初の3秒で口に出す。escalateは『文字どおり度』を上げる。payoffは言った本人に返ってくる"
+    },
+    "role-reversal": {
+      "label": "立場逆転（店員と客、上司と部下、親と子などが入れ替わる）",
+      "hook": "in-media-res",
+      "roles": ["hook", "rule", "escalate", "escalate", "escalate", "turn", "payoff", "button"],
+      "titlePatterns": ["world", "too-much"],
+      "duration": [28, 50],
+      "notes": "逆転は冒頭5秒で確定させる。escalateで逆転した側が『あるある』を正確に再現するほど笑いが強い"
+    },
+    "escalation-ladder": {
+      "label": "エスカレーション（小さな要求が段階的に巨大化する）",
+      "hook": "payoff-tease",
+      "roles": ["hook", "rule", "escalate", "escalate", "escalate", "escalate", "payoff", "button"],
+      "titlePatterns": ["consequence", "too-much"],
+      "duration": [25, 55],
+      "notes": "各段は前段の論理的帰結に見えること。最後の段は画として最大（物理的な大きさ・人数・音量）"
+    },
+    "wrong-expert": {
+      "label": "場違いな専門家（日常の場面に異分野のプロの作法を持ち込む）",
+      "hook": "line-first",
+      "roles": ["hook", "rule", "escalate", "escalate", "turn", "payoff", "button"],
+      "titlePatterns": ["world", "fake-howto"],
+      "duration": [22, 45],
+      "notes": "専門用語は一つだけ正確に使う。payoffは専門家の作法が本当に役立ってしまう、または日常側が専門家を上回る"
+    }
+  },
+  "lint": {
+    "maxTitleChars": 28,
+    "maxOverlayChars": 13,
+    "firstSoundBy": 0.6,
+    "ruleBy": 7.0,
+    "maxStaticShot": 6.0,
+    "payoffAfterRatio": 0.6,
+    "maxButton": 4.0,
+    "maxBridge": 2.5
+  }
+}

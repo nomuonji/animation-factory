@@ -3,6 +3,8 @@ import { Character, EXPRESSIONS, POSES, type FaceState, type Joints } from "./Ch
 import { PROPS, type Prop } from "./props";
 import { SETS, type CameraPreset } from "./sets";
 import type { Timeline, TimelineEvent } from "./types";
+import { gltfProp, type AssetCache } from "./assets";
+import { VrmCharacter } from "./VrmCharacter";
 
 type Val = Record<string, number>;
 
@@ -54,11 +56,11 @@ function numeric(to: Record<string, number | string>): Val {
 export class Director3D {
   readonly scene = new THREE.Scene();
   readonly camera: THREE.PerspectiveCamera;
-  private actors = new Map<string, { c: Character; ch: { pose: Channel; root: Channel; look: Channel; face: Channel; wiggle: Channel }; seed: number }>();
+  private actors = new Map<string, { c: Character | VrmCharacter; ch: { pose: Channel; root: Channel; look: Channel; face: Channel; wiggle: Channel }; seed: number }>();
   private props = new Map<string, { p: Prop; tf: Channel; vis: Channel; param: Channel }>();
   private cameras: Record<string, CameraPreset>;
 
-  constructor(readonly tl: Timeline) {
+  constructor(readonly tl: Timeline, assets: AssetCache = new Map()) {
     const set = SETS[tl.set.kind];
     if (!set) throw new Error(`Unknown set: ${tl.set.kind}`);
     const built = set(this.scene, tl.set.params ?? {});
@@ -67,7 +69,8 @@ export class Director3D {
 
     let seed = 1;
     for (const [id, a] of Object.entries(tl.actors)) {
-      const c = new Character(id, a.style);
+      if (a.vrm && Object.entries(tl.actors).some(([o, b]) => o !== id && b.vrm === a.vrm)) throw new Error(`two actors share ${a.vrm}; use different avatars`);
+      const c = a.vrm ? new VrmCharacter(id, assets.get(a.vrm)!, { height: a.height }) : new Character(id, a.style ?? {});
       this.scene.add(c.root);
       const face0 = { eyes: 1, brow: 0, smile: 0, ...(EXPRESSIONS[a.expr ?? "neutral"] ?? {}) } as Val;
       const ch = {
@@ -80,9 +83,13 @@ export class Director3D {
       this.actors.set(id, { c, ch, seed: a.seed ?? seed++ });
     }
     for (const [id, pr] of Object.entries(tl.props)) {
-      const b = PROPS[pr.kind];
-      if (!b) throw new Error(`Unknown prop kind: ${pr.kind}`);
-      const p = b(pr.params ?? {});
+      let p: Prop;
+      if (pr.kind === "gltf") p = { object: gltfProp(assets, String(pr.params?.src), pr.params ?? {}) };
+      else {
+        const b = PROPS[pr.kind];
+        if (!b) throw new Error(`Unknown prop kind: ${pr.kind}`);
+        p = b(pr.params ?? {});
+      }
       this.scene.add(p.object);
       const tf0 = { x: 0, y: 0, z: 0, rx: 0, ry: 0, rz: 0, s: 1, ...pr.tf } as Val;
       this.props.set(id, { p, tf: new Channel(tf0, (e) => numeric(e.to)), vis: new Channel({ v: pr.visible === false ? 0 : 1 }, (e) => numeric(e.to)), param: new Channel({}, (e) => numeric(e.to)) });
@@ -128,12 +135,12 @@ export class Director3D {
     this.camera.updateProjectionMatrix();
 
     // speaking state
-    const speaking = new Map<string, { open: number; nod: number }>();
+    const speaking = new Map<string, { open: number; nod: number; mora: number }>();
     for (const l of this.tl.lines) {
       if (t < l.start || t > l.end) continue;
-      let open = 0;
-      for (const [s, e] of l.moras) if (t >= s && t <= e) { open = 0.25 + 0.75 * Math.sin(Math.PI * (t - s) / Math.max(0.01, e - s)); break; }
-      speaking.set(l.who, { open, nod: Math.sin((t - l.start) * 5.2) * 0.02 });
+      let open = 0, mora = 0;
+      for (const [i, [s, e]] of l.moras.entries()) if (t >= s && t <= e) { open = 0.25 + 0.75 * Math.sin(Math.PI * (t - s) / Math.max(0.01, e - s)); mora = i; break; }
+      speaking.set(l.who, { open, nod: Math.sin((t - l.start) * 5.2) * 0.02, mora });
     }
 
     for (const [id, a] of this.actors) {
@@ -150,7 +157,8 @@ export class Director3D {
         face: { ...face, eyes: (face.eyes ?? 1) * blink, mouth: sp?.open ?? 0 },
         breath: Math.sin(t * 1.75 + a.seed),
         wiggle: a.ch.wiggle.at(t).w ?? 0,
-        time: t
+        time: t,
+        mora: sp?.mora ?? 0
       });
     }
     for (const [, p] of this.props) {

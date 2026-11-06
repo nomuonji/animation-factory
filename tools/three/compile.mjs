@@ -45,7 +45,7 @@ function parseAt(at, beat) {
  */
 export function compile(prod, voiceFor) {
   const fps = prod.meta.fps ?? 30;
-  const lines = [], events = [], shots = [], sfx = [];
+  const lines = [], events = [], shots = [], sfx = [], music = [];
   let t = prod.lead ?? 0;
   const beats = [];
   for (const [i, b] of prod.beats.entries()) {
@@ -75,6 +75,7 @@ export function compile(prod, voiceFor) {
     for (const a of b.do ?? []) {
       const at = parseAt(a.at, beat);
       if (a.sfx) { sfx.push({ t: at, name: a.sfx, gain: a.gain ?? 1 }); continue; }
+      if (a.music) { music.push({ t: at, op: a.music, fade: a.fade ?? 0.08 }); continue; }
       if (a.shot) { shots.push({ start: at, end, cam: a.shot, push: a.push ?? 0 }); continue; }
       if (a.show || a.hide) { events.push({ t: at, dur: 0, channel: "vis", target: a.show ?? a.hide, to: { v: a.show ? 1 : 0 } }); continue; }
       const verb = Object.keys(VERBS).find((k) => k in a);
@@ -93,13 +94,19 @@ export function compile(prod, voiceFor) {
   events.sort((a, b) => a.t - b.t);
   sfx.sort((a, b) => a.t - b.t);
   const frames = Math.ceil(duration * fps);
+  let overlay = prod.overlay ?? null;
+  const ho = prod.design?.hook?.overlay;
+  if (!overlay && ho) {
+    const until = beats.find((b, i) => prod.beats[i].role === "rule")?.end ?? beats[0]?.end ?? 3;
+    overlay = { text: ho, start: 0, end: until };
+  }
   return {
     timeline: {
       meta: { id: prod.meta.id, title: prod.meta.title, fps, width: prod.meta.width ?? 1080, height: prod.meta.height ?? 1920, duration: frames / fps },
       set: prod.set, cameras: prod.cameras ?? {}, actors: prod.actors, props: prod.props ?? {},
-      lines: lines.map(({ audio, ...l }) => l), events, shots, captions: prod.captions ?? {}, overlay: prod.overlay ?? null
+      lines: lines.map(({ audio, ...l }) => l), events, shots, captions: prod.captions ?? {}, overlay
     },
-    audio: { lines: lines.map((l) => ({ t: l.start, audio: l.audio, who: l.who })), sfx },
+    audio: { lines: lines.map((l) => ({ t: l.start, end: l.end, audio: l.audio, who: l.who })), sfx, music: { ...(prod.music ?? {}), events: music } },
     beats
   };
 }

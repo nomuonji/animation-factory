@@ -19,6 +19,7 @@ import { fileURLToPath } from "node:url";
 import { chromium } from "playwright";
 import { createServer } from "vite";
 import { compile, estimateVoice, plainText } from "./compile.mjs";
+import { lintDesign, loadFormats } from "./design-lint.mjs";
 
 const root = fileURLToPath(new URL("../..", import.meta.url));
 const argv = process.argv.slice(2);
@@ -101,7 +102,15 @@ for (const b of prod.beats) if (b.line) {
   const v = voiced ? await synth(b.line) : estimateVoice(b.line.text, prod.voices?.[b.line.who]?.speed ?? 1.1);
   voices.set(b.line, v);
 }
-const { timeline, audio } = compile(prod, (l) => voices.get(l));
+const compiled = compile(prod, (l) => voices.get(l));
+const { timeline, audio } = compiled;
+const lint = lintDesign(prod, compiled, await loadFormats());
+await writeFile(join(outDir, "design-report.md"), lint.report);
+for (const w of lint.warnings) console.warn("design warning:", w);
+if (lint.errors.length) {
+  for (const e of lint.errors) console.error("design error:", e);
+  if (!flag("no-lint")) { console.error(`design check failed (${outDir}/design-report.md). Fix it, or pass --no-lint for a technical test.`); process.exit(2); }
+}
 const scale = Number(opt("scale", "1"));
 if (scale !== 1) { timeline.meta.width = Math.round(timeline.meta.width * scale / 2) * 2; timeline.meta.height = Math.round(timeline.meta.height * scale / 2) * 2; }
 await writeFile(join(outDir, "timeline.json"), JSON.stringify(timeline, null, 1));
@@ -152,31 +161,55 @@ await browser.close();
 await server.close();
 
 // ---------- audio ----------
+// buses: voices -> [vox] (also the ducking key), sfx + room tone -> [fx], music -> [bgm] ducked under [vox]
 const SFX = JSON.parse(await readFile(join(root, "catalog", "sfx3d.json"), "utf8")).sfx;
+const LIB = JSON.parse(await readFile(join(root, "catalog", "asset-library.json"), "utf8"));
 const genDir = join(outDir, "sfx");
 await mkdir(genDir, { recursive: true });
 const dur = timeline.meta.duration;
-const inputs = [], filters = [];
-const add = (file, t, gain) => { const i = inputs.length / 2; inputs.push("-i", file); const ms = Math.max(0, Math.round(t * 1000)); filters.push(`[${i}:a]aresample=48000,aformat=channel_layouts=stereo,volume=${gain},adelay=${ms}|${ms}[a${i}]`); };
-for (const l of audio.lines) if (l.audio) add(l.audio, l.t, prod.voices?.[l.who]?.gain ?? 1);
+const inputs = [], filters = [], vox = [], fx = [];
+const add = (file, t, gain, bus, extra = []) => { const i = inputs.length / 2; inputs.push("-i", file); const ms = Math.max(0, Math.round(t * 1000)); filters.push(`[${i}:a]aresample=48000,aformat=channel_layouts=stereo,volume=${gain},adelay=${ms}|${ms}[a${i}]`); bus.push(`[a${i}]`); void extra; };
+for (const l of audio.lines) if (l.audio) add(l.audio, l.t, prod.voices?.[l.who]?.gain ?? 1, vox);
 for (const s of audio.sfx) {
   const def = SFX[s.name];
   if (!def) throw new Error(`Unknown sfx: ${s.name} (catalog/sfx3d.json)`);
   for (const layer of def.layers) {
     let file = layer.file ? join(root, layer.file) : join(genDir, `${s.name}-${def.layers.indexOf(layer)}.wav`);
     if (layer.lavfi && !existsSync(file)) await run("ffmpeg", ["-y", "-loglevel", "error", "-f", "lavfi", "-i", layer.lavfi, "-ar", "48000", "-ac", "2", file]);
-    add(file, s.t + (layer.offset ?? 0), (layer.gain ?? 1) * s.gain);
+    add(file, s.t + (layer.offset ?? 0), (layer.gain ?? 1) * s.gain, fx);
   }
 }
 const tone = join(genDir, "roomtone.wav");
 await run("ffmpeg", ["-y", "-loglevel", "error", "-f", "lavfi", "-i", `anoisesrc=color=brown:amplitude=0.6:d=${dur.toFixed(2)}`, "-f", "lavfi", "-i", `sine=f=100:d=${dur.toFixed(2)}`,
   "-filter_complex", "[0:a]lowpass=f=400,volume=0.05[n];[1:a]volume=0.006[h];[n][h]amix=inputs=2:normalize=0", "-ar", "48000", "-ac", "2", tone]);
-add(tone, 0, 1);
-const n = inputs.length / 2;
+add(tone, 0, 1, fx);
+const graph = [...filters];
+if (!vox.length) { add(tone, 0, 0, vox); graph.push(filters.at(-1)); }
+graph.push(`${vox.join("")}amix=inputs=${vox.length}:normalize=0:duration=longest,asplit=2[vox][key]`);
+graph.push(`${fx.join("")}amix=inputs=${fx.length}:normalize=0:duration=longest[fx]`);
+const m = audio.music ?? {};
+let buses = "[vox][fx]", nb = 2, musicCredit = null;
+if (m.track) {
+  const tr = LIB.music.find((x) => x.id === m.track);
+  if (!tr) throw new Error(`music.track not in catalog/asset-library.json music: ${m.track}`);
+  musicCredit = tr;
+  const i = inputs.length / 2;
+  inputs.push("-stream_loop", "-1", "-i", join(root, tr.path));
+  // silence windows from music:cut / music:resume actions
+  const cuts = [];
+  let open = null;
+  for (const e of m.events ?? []) { if (e.op === "cut" && open === null) open = e.t; if (e.op === "resume" && open !== null) { cuts.push([open, e.t]); open = null; } }
+  if (open !== null) cuts.push([open, dur + 1]);
+  const mute = cuts.length ? `,volume='if(${cuts.map(([a, b]) => `between(t,${a.toFixed(3)},${b.toFixed(3)})`).join("+")},0,1)':eval=frame` : "";
+  const start = m.from ?? 0, fadeOut = m.fadeOut ?? 0.8;
+  const ms = Math.round(start * 1000);
+  graph.push(`[${i}:a]aresample=48000,aformat=channel_layouts=stereo,atrim=0:${(dur - start).toFixed(3)},volume=${m.gain ?? 0.3},afade=t=in:d=${m.fadeIn ?? 0.3},afade=t=out:st=${Math.max(0, dur - start - fadeOut).toFixed(3)}:d=${fadeOut},adelay=${ms}|${ms}${mute}[bgmraw]`);
+  graph.push(`[bgmraw][key]sidechaincompress=threshold=0.015:ratio=${m.duckRatio ?? 6}:attack=15:release=350:makeup=1[bgm]`);
+  buses += "[bgm]"; nb = 3;
+} else graph.push("[key]anullsink");
+graph.push(`${buses}amix=inputs=${nb}:normalize=0:duration=first,atrim=0:${dur.toFixed(3)},loudnorm=I=-15:TP=-1.5:LRA=11,aresample=48000[out]`);
 const mix = join(outDir, "mix.wav");
-await run("ffmpeg", ["-y", "-loglevel", "error", ...inputs, "-filter_complex",
-  `${filters.join(";")};${Array.from({ length: n }, (_, i) => `[a${i}]`).join("")}amix=inputs=${n}:normalize=0:duration=longest,atrim=0:${dur.toFixed(3)},loudnorm=I=-15:TP=-1.5:LRA=11,aresample=48000[out]`,
-  "-map", "[out]", "-ar", "48000", "-ac", "2", mix]);
+await run("ffmpeg", ["-y", "-loglevel", "error", ...inputs, "-filter_complex", graph.join(";"), "-map", "[out]", "-ar", "48000", "-ac", "2", mix]);
 
 const final = join(outDir, `${id}.mp4`);
 await run("ffmpeg", ["-y", "-loglevel", "error", "-i", videoOnly, "-i", mix, "-map", "0:v", "-map", "1:a", "-c:v", "copy", "-c:a", "aac", "-b:a", "192k", "-shortest", "-movflags", "+faststart", final]);
@@ -193,7 +226,13 @@ let srt = "", k = 1;
 for (const l of timeline.lines) for (const c of l.chunks) srt += `${k++}\n${ts(c.start)} --> ${ts(c.end)}\n${c.text}\n\n`;
 await writeFile(join(review, "captions.srt"), srt);
 const credits = [...new Set([...voices.values()].map((v) => v.speaker).filter(Boolean))].map((s) => `VOICEVOX:${s}`);
-const desc = [...(prod.description ?? []), "", ...credits, "効果音: Kenney (CC0) / 一部コード生成", "3D: animation-factory three（手続き生成モデル）"].join("\n");
+const assetCredits = [];
+if (musicCredit) assetCredits.push(`BGM: "${musicCredit.title ?? musicCredit.id}" by ${musicCredit.author} (${musicCredit.license}) ${musicCredit.source}`);
+for (const a of Object.values(prod.actors)) if (a.vrm) assetCredits.push(`3Dキャラクター: ${a.vrm.split("/").pop()} — 100Avatars by Polygonal Mind (CC0)`);
+if (Object.values(prod.props ?? {}).some((p) => p.kind === "gltf")) assetCredits.push("3D小道具: KayKit by Kay Lousberg (CC0)");
+const desc = [prod.design?.title ?? prod.meta.title, "", ...(prod.description ?? []), "", ...credits, ...assetCredits, "効果音: Kenney (CC0) / 一部コード生成", "3D: animation-factory three"].join("\n");
 await writeFile(join(review, "description.txt"), desc);
+await writeFile(join(review, "title.txt"), [prod.design?.title ?? prod.meta.title, ...(prod.design?.titleAlternatives ?? [])].join("\n") + "\n");
+await writeFile(join(review, "design-report.md"), lint.report);
 await writeFile(join(review, "status.json"), JSON.stringify({ production: id, duration: dur, voice: voiced ? "voicevox" : "none-estimated-timing", technical: "pass", editorial: "unreviewed", renderedAt: new Date().toISOString() }, null, 2));
 console.log(`done: ${final} (${dur.toFixed(1)}s, voice=${voiced ? "VOICEVOX" : "none"})`);
