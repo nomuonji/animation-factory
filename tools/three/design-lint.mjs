@@ -60,12 +60,12 @@ export function lintDesign(prod, compiled, catalog) {
   const order = beats.map((b) => b.role).filter((r) => r && r !== "bridge" && r !== "title");
   const titleBeat = beats.find((b) => b.role === "title");
   const cardDur = titleBeat ? titleBeat.end - titleBeat.start : 0;
-  if ((d.titleOnScreen ?? "card") === "card" && !titleBeat) E.push("タイトルカードのビート（role=title）がない。フックの直後に置く");
-  if (titleBeat && titleBeat.start > 6) W.push(`タイトルカードが遅い（${titleBeat.start.toFixed(1)}s）。フック直後に`);
-  if (titleBeat && cardDur > 2.2) W.push(`タイトルカードが長い（${cardDur.toFixed(1)}s）`);
+  if ((d.titleOnScreen ?? "card") === "card" && !titleBeat) E.push("タイトルカードのビート（role=title）がない。動画の一番最初に置く");
+  if (titleBeat && beats[0]?.role !== "title") E.push(`タイトルカードは一番最初のビートにする（今は${titleBeat.start.toFixed(1)}s）`);
+  if (titleBeat && cardDur > L.maxTitleCard) W.push(`タイトルカードが長い（${cardDur.toFixed(1)}s > ${L.maxTitleCard}s）。最初の画で離脱される`);
   const unknown = beats.filter((b) => b.role && !catalog.roles[b.role]);
   if (unknown.length) E.push(`未知の role: ${unknown.map((b) => b.role).join(",")}`);
-  if (order[0] !== "hook") E.push("最初のビートは role=hook");
+  if (order[0] !== "hook") E.push("タイトルの次（なければ最初）のビートは role=hook");
   if (order.at(-1) !== "button") W.push("最後のビートは role=button（余韻・ループ）を推奨");
   const idx = (r) => order.indexOf(r), last = (r) => order.lastIndexOf(r);
   const esc = beats.filter((b) => b.role === "escalate");
@@ -77,7 +77,7 @@ export function lintDesign(prod, compiled, catalog) {
   else if (idx("turn") < last("escalate")) W.push("turn が escalate より前にある");
   if (idx("payoff") < 0) E.push("payoff ビートがない");
   else if (idx("payoff") < idx("turn")) E.push("payoff が turn より前");
-  const firstSound = Math.min(tl.lines[0]?.start ?? Infinity, compiled.audio.sfx[0]?.t ?? Infinity);
+  const firstSound = Math.min(compiled.audio.sfx.find((x) => x.t <= 0.05) ? 0 : Infinity, tl.lines[0]?.start ?? Infinity, compiled.audio.sfx[0]?.t ?? Infinity);
   if (firstSound > L.firstSoundBy) E.push(`最初の音が遅い（${firstSound.toFixed(2)}s > ${L.firstSoundBy}s）`);
   const rule = beats.find((b) => b.role === "rule");
   if (!rule) E.push("rule ビートがない（世界のルールが一つだと分かる瞬間）");

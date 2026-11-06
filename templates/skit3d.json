@@ -1,10 +1,18 @@
 {
-  "meta": { "id": "<production-folder>", "title": "<working title>", "fps": 30, "width": 1080, "height": 1920 },
-
+  "meta": {
+    "id": "<production-folder>",
+    "title": "<working title>",
+    "fps": 30,
+    "width": 1080,
+    "height": 1920
+  },
   "design": {
     "format": "institutional-absurdity",
     "title": "<28字以内。どんな世界かを言う。オチは言わない>",
-    "titleAlternatives": ["<別の型で1案>", "<別の型で1案>"],
+    "titleAlternatives": [
+      "<別の型で1案>",
+      "<別の型で1案>"
+    ],
     "titlePattern": "world",
     "hook": {
       "type": "anomaly-first",
@@ -12,38 +20,186 @@
       "overlay": "<13字以内。タイトルの繰り返しではなく、絵の意味を一言で補う>"
     },
     "rule": "<この世界でずれているルールは一つだけ。一文で>",
-    "escalations": ["<L1: もっともらしい適用>", "<L2: 具体的で少し変>", "<L3: 明らかにおかしいが筋は通る>"],
+    "escalations": [
+      "<L1: もっともらしい適用>",
+      "<L2: 具体的で少し変>",
+      "<L3: 明らかにおかしいが筋は通る>"
+    ],
     "turn": "<登場人物がルールから逃げる/拒否する/別の手を打つ>",
     "payoff": "<逃げ道にもルールが適用される。最も大きい画>",
     "button": "<3秒以内の余韻。冒頭につながるならloop=true>",
     "loop": false,
     "reaction": "laugh",
-    "audience": "<誰がどんな場面でスクロールしていて止まるか>"
+    "audience": "<誰がどんな場面でスクロールしていて止まるか>",
+    "titleOnScreen": "card"
   },
-
   "voices": {
-    "a": { "speaker": "青山龍星", "style": "ノーマル", "speed": 1.12 },
-    "b": { "speaker": "春日部つむぎ", "style": "ノーマル", "speed": 1.05 }
+    "a": {
+      "speaker": "青山龍星",
+      "style": "ノーマル",
+      "speed": 1.12
+    },
+    "b": {
+      "speaker": "春日部つむぎ",
+      "style": "ノーマル",
+      "speed": 1.05
+    }
   },
-  "music": { "track": "<catalog/asset-library.json の music id>", "gain": 0.22, "fadeOut": 0.6 },
-  "set": { "kind": "convenience-store", "params": {} },
-  "captions": { "y": 0.74 },
+  "music": {
+    "track": "<catalog/asset-library.json の music id>",
+    "gain": 0.32,
+    "fadeOut": 0.6
+  },
+  "set": {
+    "kind": "convenience-store",
+    "params": {}
+  },
+  "captions": {
+    "y": 0.74
+  },
   "actors": {
-    "a": { "style": { "top": "#f6f5f1" }, "root": { "x": 0.04, "z": -0.6, "ry": 0 }, "pose": "counter", "captionColor": "#ffffff" },
-    "b": { "vrm": "assets/3d/avatars/Lydia.vrm", "height": 1.6, "root": { "x": 0.14, "z": 0.64, "ry": 3.14159 }, "pose": "idle", "captionColor": "#ffe48a" }
+    "a": {
+      "style": {
+        "top": "#f6f5f1"
+      },
+      "root": {
+        "x": 0.04,
+        "z": -0.6,
+        "ry": 0
+      },
+      "pose": "counter",
+      "captionColor": "#ffffff"
+    },
+    "b": {
+      "vrm": "assets/3d/avatars/Lydia.vrm",
+      "height": 1.6,
+      "root": {
+        "x": 0.14,
+        "z": 0.64,
+        "ry": 3.14159
+      },
+      "pose": "idle",
+      "captionColor": "#ffe48a"
+    }
   },
   "props": {},
-
   "beats": [
-    { "id": "hook", "role": "hook", "shot": "counter-top", "pre": 0.2, "line": { "who": "a", "text": "<最初の一言。0.6秒以内に音を出す>" } },
-    { "id": "rule", "role": "rule", "shot": "clerk-cu", "line": { "who": "a", "text": "<ルールを行動で示す一言>" } },
-    { "id": "esc1", "role": "escalate", "level": 1, "shot": "counter-top", "line": { "who": "a", "text": "<L1>" } },
-    { "id": "esc2", "role": "escalate", "level": 2, "shot": "clerk-cu", "line": { "who": "a", "text": "<L2>" } },
-    { "id": "react", "role": "bridge", "shot": "customer-cu", "line": { "who": "b", "text": "<短い反応>" } },
-    { "id": "esc3", "role": "escalate", "level": 3, "shot": "hero", "line": { "who": "a", "text": "<L3>" } },
-    { "id": "turn", "role": "turn", "shot": "customer-cu", "line": { "who": "b", "text": "<逃げる/拒否する一言>" } },
-    { "id": "payoff", "role": "payoff", "shot": "side", "line": { "who": "a", "text": "<逃げ道にもルール>" }, "do": [ { "at": "line+0.8", "sfx": "binder-thud" }, { "at": "line+0.8", "music": "cut" } ] },
-    { "id": "button", "role": "button", "shot": "counter-wide", "line": { "who": "b", "text": "<余韻>" }, "do": [ { "at": 0, "music": "resume" } ] }
+    {
+      "id": "title",
+      "role": "title",
+      "shot": "hero",
+      "dur": 1.2,
+      "do": [
+        {
+          "at": 0,
+          "sfx": "title-sting"
+        }
+      ]
+    },
+    {
+      "id": "hook",
+      "role": "hook",
+      "shot": "counter-top",
+      "pre": 0.05,
+      "line": {
+        "who": "a",
+        "text": "<最初の一言。0.6秒以内に音を出す>"
+      }
+    },
+    {
+      "id": "rule",
+      "role": "rule",
+      "shot": "clerk-cu",
+      "line": {
+        "who": "a",
+        "text": "<ルールを行動で示す一言>"
+      }
+    },
+    {
+      "id": "esc1",
+      "role": "escalate",
+      "level": 1,
+      "shot": "counter-top",
+      "line": {
+        "who": "a",
+        "text": "<L1>"
+      }
+    },
+    {
+      "id": "esc2",
+      "role": "escalate",
+      "level": 2,
+      "shot": "clerk-cu",
+      "line": {
+        "who": "a",
+        "text": "<L2>"
+      }
+    },
+    {
+      "id": "react",
+      "role": "bridge",
+      "shot": "customer-cu",
+      "line": {
+        "who": "b",
+        "text": "<短い反応>"
+      }
+    },
+    {
+      "id": "esc3",
+      "role": "escalate",
+      "level": 3,
+      "shot": "hero",
+      "line": {
+        "who": "a",
+        "text": "<L3>"
+      }
+    },
+    {
+      "id": "turn",
+      "role": "turn",
+      "shot": "customer-cu",
+      "line": {
+        "who": "b",
+        "text": "<逃げる/拒否する一言>"
+      }
+    },
+    {
+      "id": "payoff",
+      "role": "payoff",
+      "shot": "side",
+      "line": {
+        "who": "a",
+        "text": "<逃げ道にもルール>"
+      },
+      "do": [
+        {
+          "at": "line+0.8",
+          "sfx": "binder-thud"
+        },
+        {
+          "at": "line+0.8",
+          "music": "cut"
+        }
+      ]
+    },
+    {
+      "id": "button",
+      "role": "button",
+      "shot": "counter-wide",
+      "line": {
+        "who": "b",
+        "text": "<余韻>"
+      },
+      "do": [
+        {
+          "at": 0,
+          "music": "resume"
+        }
+      ]
+    }
   ],
-  "description": ["<説明欄の1行目（タイトルの補足）>", "#ショート"]
+  "description": [
+    "<説明欄の1行目（タイトルの補足）>",
+    "#ショート"
+  ]
 }

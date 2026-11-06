@@ -221,10 +221,22 @@
   "tail": 0,
   "beats": [
     {
+      "id": "title",
+      "role": "title",
+      "shot": "hero",
+      "dur": 1.2,
+      "do": [
+        {
+          "at": 0,
+          "sfx": "title-sting"
+        }
+      ]
+    },
+    {
       "id": "slam",
       "role": "hook",
       "shot": "counter-top",
-      "pre": 0.3,
+      "pre": 0.05,
       "line": {
         "who": "clerk",
         "text": "加熱に関する、／重要事項説明書です"
@@ -274,18 +286,6 @@
             "yaw": 0
           },
           "dur": 0.3
-        }
-      ]
-    },
-    {
-      "id": "title",
-      "role": "title",
-      "shot": "hero",
-      "dur": 1.5,
-      "do": [
-        {
-          "at": 0,
-          "sfx": "pizz-sting"
         }
       ]
     },
@@ -962,7 +962,7 @@
   },
   "music": {
     "track": "bossa-thank-you-for-shopping",
-    "gain": 0.2,
+    "gain": 0.32,
     "fadeIn": 0.2,
     "fadeOut": 0.3
   }

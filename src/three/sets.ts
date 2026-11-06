@@ -57,6 +57,24 @@ function shelfWall(parent: THREE.Object3D, opts: { w: number; h: number; rows: n
 }
 
 export const SETS: Record<string, SetBuilder> = {
+  /** Neutral cyclorama for character sheets, lineups and title shots. */
+  studio(scene, p) {
+    const bg = String(p.color ?? "#f3e9dc");
+    scene.background = new THREE.Color(bg);
+    lights(scene, { key: 1.4 });
+    const floor = new THREE.Mesh(new THREE.PlaneGeometry(30, 30), new THREE.MeshToonMaterial({ color: new THREE.Color(bg), gradientMap: (toon("#fff") as THREE.MeshToonMaterial).gradientMap }));
+    floor.rotation.x = -Math.PI / 2; floor.receiveShadow = true; scene.add(floor);
+    const wall = new THREE.Mesh(new THREE.PlaneGeometry(30, 12), new THREE.MeshToonMaterial({ color: new THREE.Color(bg), gradientMap: (toon("#fff") as THREE.MeshToonMaterial).gradientMap }));
+    wall.position.set(0, 6, -3); wall.receiveShadow = true; scene.add(wall);
+    return {
+      surfaces: { floor: 0 },
+      cameras: {
+        front: { pos: [0, 1.0, 4.2], target: [0, 0.75, 0], fov: 34 },
+        close: { pos: [0, 1.3, 1.6], target: [0, 1.15, 0], fov: 32 }
+      }
+    };
+  },
+
   "convenience-store"(scene, p) {
     scene.background = new THREE.Color("#ece9e2");
     lights(scene);
