@@ -42,6 +42,21 @@ function drawCaption(g: CanvasRenderingContext2D, tl: Timeline, t: number) {
     });
     break;
   }
+  const tc = tl.titleCard;
+  if (tc && t >= tc.start && t < tc.end) {
+    // persistent title band (below the Shorts top bar), max 2 lines
+    const s = Math.round(W * 0.062);
+    g.save();
+    g.font = `900 ${s}px ${JP_FONT}`; g.textAlign = "center"; g.textBaseline = "middle"; g.lineJoin = "round";
+    const lines: string[] = []; let cur = "";
+    for (const ch of tc.text) { if (ch === "\n") { lines.push(cur); cur = ""; } else if (g.measureText(cur + ch).width > W * 0.84) { lines.push(cur); cur = ch; } else cur += ch; }
+    if (cur) lines.push(cur);
+    const top = H * 0.075, lh = s * 1.28, bandH = lines.length * lh + s * 0.6;
+    g.fillStyle = "rgba(20,18,22,0.86)"; g.fillRect(0, top, W, bandH);
+    g.fillStyle = "#ffe14d"; g.fillRect(0, top + bandH - s * 0.08, W, s * 0.08);
+    lines.forEach((txt, i) => { g.fillStyle = "#ffffff"; g.fillText(txt, W / 2, top + s * 0.3 + lh * (i + 0.5)); });
+    g.restore();
+  }
   const o = tl.overlay;
   if (o && t >= o.start && t < o.end) {
     // hook text: big, top third, readable at phone size; fades out over 0.2s
@@ -49,7 +64,7 @@ function drawCaption(g: CanvasRenderingContext2D, tl: Timeline, t: number) {
     const alpha = Math.min(1, (o.end - t) / 0.2);
     g.save(); g.globalAlpha = alpha;
     g.font = `900 ${s}px ${JP_FONT}`; g.textAlign = "center"; g.textBaseline = "middle"; g.lineJoin = "round";
-    const y = H * 0.155, w = g.measureText(o.text).width + s * 1.1;
+    const y = H * (tl.titleCard ? 0.25 : 0.155), w = g.measureText(o.text).width + s * 1.1;
     g.fillStyle = "#ffe14d"; g.beginPath(); g.roundRect(W / 2 - w / 2, y - s * 0.78, w, s * 1.56, s * 0.3); g.fill();
     g.lineWidth = s * 0.08; g.strokeStyle = "#141216"; g.stroke();
     g.fillStyle = "#141216"; g.fillText(o.text, W / 2, y + s * 0.04);

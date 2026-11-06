@@ -80,7 +80,6 @@ jobs:
           for p in ${{ steps.resolve.outputs.list }}; do
             node tools/three/render3d.mjs "$p"
             mkdir -p "artifact/$p"
-            cp "outputs/three/$p/$p.mp4" "artifact/$p/"
             cp -r "outputs/three/$p/review/." "artifact/$p/"
           done
 
