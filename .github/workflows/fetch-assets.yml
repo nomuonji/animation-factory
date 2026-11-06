@@ -1,0 +1,49 @@
+name: Fetch remote assets
+
+# Downloads files listed in catalog/remote-assets.json on a GitHub runner
+# (the agent sandbox cannot reach some CDNs) and uploads them as an artifact
+# with sha256 + license metadata. Nothing is committed automatically: an agent or
+# a person reviews the artifact, commits the files, and registers them in
+# catalog/asset-library.json.
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - "catalog/remote-assets.json"
+      - ".github/workflows/fetch-assets.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  fetch:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download and hash
+        run: |
+          set -euo pipefail
+          mkdir -p fetched
+          node -e '
+            const fs = require("fs"), cp = require("child_process"), crypto = require("crypto");
+            const { assets } = JSON.parse(fs.readFileSync("catalog/remote-assets.json", "utf8"));
+            const report = [];
+            for (const a of assets) {
+              if (!/^assets\/[A-Za-z0-9._\/-]+$/.test(a.dest) || a.dest.includes("..")) throw new Error("bad dest " + a.dest);
+              if (!/^https:\/\//.test(a.url)) throw new Error("bad url " + a.url);
+              const out = "fetched/" + a.dest;
+              fs.mkdirSync(require("path").dirname(out), { recursive: true });
+              cp.execFileSync("curl", ["-fsSL", "--retry", "3", "-o", out, a.url]);
+              const sha256 = crypto.createHash("sha256").update(fs.readFileSync(out)).digest("hex");
+              const dur = cp.execFileSync("ffprobe", ["-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", out]).toString().trim();
+              report.push({ ...a, sha256, bytes: fs.statSync(out).size, duration: Number(dur) || null });
+              console.log(a.id, sha256.slice(0, 12), dur);
+            }
+            fs.writeFileSync("fetched/report.json", JSON.stringify(report, null, 2));
+          '
+      - uses: actions/upload-artifact@v4
+        with:
+          name: remote-assets-${{ github.run_id }}
+          path: fetched/
+          retention-days: 7
