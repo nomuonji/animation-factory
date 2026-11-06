@@ -137,7 +137,8 @@ const f0 = Math.round(Number(opt("frames-from", "0")) * fps);
 const f1 = Math.min(Math.round(timeline.meta.duration * fps), Math.round(Number(opt("frames-to", String(timeline.meta.duration))) * fps));
 const videoOnly = join(outDir, "video-only.mp4");
 const started = Date.now();
-await run("ffmpeg", ["-y", "-loglevel", "error", "-f", "image2pipe", "-framerate", String(fps), "-c:v", "mjpeg", "-i", "-",
+if (flag("reuse-video") && existsSync(videoOnly)) console.log("reusing", videoOnly);
+else await run("ffmpeg", ["-y", "-loglevel", "error", "-f", "image2pipe", "-framerate", String(fps), "-c:v", "mjpeg", "-i", "-",
   "-c:v", "libx264", "-preset", "veryfast", "-crf", "18", "-pix_fmt", "yuv420p", "-movflags", "+faststart", videoOnly], async (stdin) => {
   for (let f = f0; f < f1; f++) {
     const buf = await grab(f / fps);
@@ -156,7 +157,7 @@ const genDir = join(outDir, "sfx");
 await mkdir(genDir, { recursive: true });
 const dur = timeline.meta.duration;
 const inputs = [], filters = [];
-const add = (file, t, gain) => { const i = inputs.length; inputs.push("-i", file); const ms = Math.max(0, Math.round(t * 1000)); filters.push(`[${i}:a]aresample=48000,aformat=channel_layouts=stereo,volume=${gain},adelay=${ms}|${ms}[a${i}]`); };
+const add = (file, t, gain) => { const i = inputs.length / 2; inputs.push("-i", file); const ms = Math.max(0, Math.round(t * 1000)); filters.push(`[${i}:a]aresample=48000,aformat=channel_layouts=stereo,volume=${gain},adelay=${ms}|${ms}[a${i}]`); };
 for (const l of audio.lines) if (l.audio) add(l.audio, l.t, prod.voices?.[l.who]?.gain ?? 1);
 for (const s of audio.sfx) {
   const def = SFX[s.name];
