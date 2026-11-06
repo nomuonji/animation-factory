@@ -9,6 +9,11 @@ on:
         description: production folder under productions/ (must contain scene3d.json)
         required: true
         type: string
+      voices_only:
+        description: only synthesize VOICEVOX takes (artifact three-voice) so another machine can render
+        required: false
+        default: false
+        type: boolean
   pull_request:
     paths:
       - "productions/**/scene3d.json"
@@ -74,7 +79,13 @@ jobs:
           docker run -d --rm --name vv -p 127.0.0.1:50021:50021 voicevox/voicevox_engine:cpu-latest
           for i in $(seq 1 120); do curl -fsS http://127.0.0.1:50021/version && exit 0; sleep 2; done; docker logs vv; exit 1
 
+      - name: Voices only
+        if: ${{ inputs.voices_only }}
+        run: |
+          for p in ${{ steps.resolve.outputs.list }}; do node tools/three/render3d.mjs "$p" --voices-only; done
+          mkdir -p artifact && cp -r outputs/three-voice artifact/
       - name: Render
+        if: ${{ !inputs.voices_only }}
         run: |
           set -euo pipefail
           for p in ${{ steps.resolve.outputs.list }}; do
