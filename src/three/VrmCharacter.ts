@@ -20,7 +20,7 @@ export class VrmCharacter {
   private rest = new Map<string, THREE.Vector3>();
   private scale = 1;
 
-  constructor(readonly id: string, gltf: GLTF, opts: { height?: number } = {}) {
+  constructor(readonly id: string, gltf: GLTF, opts: { height?: number; turn?: number } = {}) {
     const vrm = gltf.userData.vrm as VRM | undefined;
     if (!vrm) throw new Error(`${id}: file is not a VRM`);
     // independent copy per actor
@@ -35,7 +35,11 @@ export class VrmCharacter {
     const box = new THREE.Box3().setFromObject(vrm.scene);
     const h = box.max.y - box.min.y;
     this.scale = (opts.height ?? 1.62) / Math.max(0.1, h);
-    this.root.add(vrm.scene);
+    // some models are authored facing the other way; `turn` (degrees) fixes that per actor
+    const facing = new THREE.Group();
+    facing.rotation.y = ((opts.turn ?? 0) * Math.PI) / 180;
+    facing.add(vrm.scene);
+    this.root.add(facing);
     this.root.scale.setScalar(this.scale);
     for (const [bone, child] of [["leftUpperArm", "leftLowerArm"], ["leftLowerArm", "leftHand"], ["rightUpperArm", "rightLowerArm"], ["rightLowerArm", "rightHand"]] as const) {
       const a = this.node(bone), b = this.node(child);
@@ -85,6 +89,12 @@ export class VrmCharacter {
       const open = Math.max(0, Math.min(1, face.mouth));
       if (open > 0) em.setValue(VISEMES[(state.mora ?? 0) % VISEMES.length]!, open);
       em.setValue("blink", Math.max(0, Math.min(1, 1 - face.eyes)));
+      // map procedural face numbers onto VRM emotion presets when the model has them
+      const clamp = (v: number) => Math.max(0, Math.min(1, v));
+      em.setValue("happy", clamp(face.smile * 1.2));
+      em.setValue("sad", clamp(-face.smile * 1.4));
+      em.setValue("angry", clamp((-face.brow - 0.12) * 2.5));
+      em.setValue("surprised", clamp((face.brow - 0.2) * 3));
     }
     this.vrm.update(0);
   }

@@ -9,6 +9,7 @@ import { canvasTexture, flat, JP_FONT, mesh, rand, toon } from "./toon";
 export interface Prop {
   object: THREE.Object3D;
   setParam?(key: string, value: number): void;
+  animate?(t: number): void;
 }
 
 export type PropBuilder = (params: Record<string, unknown>) => Prop;
