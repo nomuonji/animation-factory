@@ -1,5 +1,6 @@
 import * as THREE from "three";
 import { Director3D } from "./Director3D";
+import { preloadAssets } from "./assets";
 import { JP_FONT } from "./toon";
 import type { Timeline } from "./types";
 
@@ -43,11 +44,16 @@ function drawCaption(g: CanvasRenderingContext2D, tl: Timeline, t: number) {
   }
   const o = tl.overlay;
   if (o && t >= o.start && t < o.end) {
-    const s = Math.round(W * 0.05);
-    g.font = `900 ${s}px ${JP_FONT}`; g.textAlign = "center"; g.textBaseline = "middle";
-    const w = g.measureText(o.text).width + s;
-    g.fillStyle = "rgba(20,18,22,0.82)"; g.fillRect(W / 2 - w / 2, H * 0.12 - s * 0.75, w, s * 1.5);
-    g.fillStyle = "#ffe27a"; g.fillText(o.text, W / 2, H * 0.12);
+    // hook text: big, top third, readable at phone size; fades out over 0.2s
+    const s = Math.round(W * 0.075);
+    const alpha = Math.min(1, (o.end - t) / 0.2);
+    g.save(); g.globalAlpha = alpha;
+    g.font = `900 ${s}px ${JP_FONT}`; g.textAlign = "center"; g.textBaseline = "middle"; g.lineJoin = "round";
+    const y = H * 0.155, w = g.measureText(o.text).width + s * 1.1;
+    g.fillStyle = "#ffe14d"; g.beginPath(); g.roundRect(W / 2 - w / 2, y - s * 0.78, w, s * 1.56, s * 0.3); g.fill();
+    g.lineWidth = s * 0.08; g.strokeStyle = "#141216"; g.stroke();
+    g.fillStyle = "#141216"; g.fillText(o.text, W / 2, y + s * 0.04);
+    g.restore();
   }
 }
 
@@ -73,7 +79,7 @@ async function boot() {
   out.width = W; out.height = H;
   out.id = "out";
   const g = out.getContext("2d")!;
-  const dir = new Director3D(tl);
+  const dir = new Director3D(tl, await preloadAssets(tl));
 
   const draw = (t: number) => {
     dir.update(t);

@@ -266,7 +266,7 @@ export class Character {
   }
 
   /** Apply a fully resolved state. */
-  apply(state: { root: { x: number; y: number; z: number; ry: number }; joints: Joints; look: { yaw: number; pitch: number }; face: FaceState; breath: number; wiggle: number; time: number }) {
+  apply(state: { root: { x: number; y: number; z: number; ry: number }; joints: Joints; look: { yaw: number; pitch: number }; face: FaceState; breath: number; wiggle: number; time: number; mora?: number }) {
     const { root, joints: j, look, face } = state;
     this.root.position.set(root.x, root.y, root.z);
     this.root.rotation.y = root.ry;

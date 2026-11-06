@@ -6,13 +6,6 @@
     "width": 1080,
     "height": 1920
   },
-  "concept": {
-    "promise": "おにぎり1個の横に、分厚い『加熱に関する重要事項説明書』がある（0秒の画）",
-    "turn": "説明→署名→受付印→控え。手続きが本物の契約並みに進む。だから客は温めを断る",
-    "payoff": "断ると『温めない場合の重要事項説明書（全3巻）』がさらに大きく落ちてくる",
-    "reaction": "笑い（ズレは『温めの確認が法的手続き』の一点だけ。全員真顔、ツッコミなし）",
-    "source": "ラジ父レンズ creative-thinking: institutional_absurdity + deadpan_underreaction"
-  },
   "voices": {
     "clerk": {
       "speaker": "青山龍星",
@@ -189,6 +182,42 @@
         "rx": -0.25
       },
       "visible": false
+    },
+    "ketchup": {
+      "kind": "gltf",
+      "params": {
+        "src": "assets/3d/kaykit/restaurant/ketchup.gltf",
+        "scale": 0.5
+      },
+      "tf": {
+        "x": -0.82,
+        "y": 0.96,
+        "z": -0.1
+      }
+    },
+    "mustard": {
+      "kind": "gltf",
+      "params": {
+        "src": "assets/3d/kaykit/restaurant/mustard.gltf",
+        "scale": 0.5
+      },
+      "tf": {
+        "x": -0.74,
+        "y": 0.96,
+        "z": -0.06
+      }
+    },
+    "towels": {
+      "kind": "gltf",
+      "params": {
+        "src": "assets/3d/kaykit/restaurant/papertowel.gltf",
+        "scale": 0.6
+      },
+      "tf": {
+        "x": -0.55,
+        "y": 0.9,
+        "z": -1.1
+      }
     }
   },
   "lead": 0,
@@ -202,7 +231,8 @@
       "line": {
         "who": "clerk",
         "text": "こちら、／温めますか？"
-      }
+      },
+      "role": "hook"
     },
     {
       "id": "yes",
@@ -222,7 +252,8 @@
           },
           "dur": 0.35
         }
-      ]
+      ],
+      "role": "hook"
     },
     {
       "id": "intro",
@@ -230,7 +261,7 @@
       "push": 0.05,
       "line": {
         "who": "clerk",
-        "text": "では、加熱に関する／重要事項を／ご説明いたします"
+        "text": "では、加熱に関する／重要事項を／ご説明します"
       },
       "do": [
         {
@@ -284,7 +315,8 @@
           },
           "dur": 0.4
         }
-      ]
+      ],
+      "role": "rule"
     },
     {
       "id": "nori",
@@ -303,7 +335,9 @@
           },
           "dur": 0.4
         }
-      ]
+      ],
+      "role": "escalate",
+      "level": 1
     },
     {
       "id": "ume",
@@ -327,7 +361,9 @@
           },
           "dur": 0.4
         }
-      ]
+      ],
+      "role": "escalate",
+      "level": 2
     },
     {
       "id": "cooling",
@@ -346,7 +382,9 @@
           },
           "dur": 0.4
         }
-      ]
+      ],
+      "role": "escalate",
+      "level": 3
     },
     {
       "id": "hai",
@@ -373,7 +411,8 @@
           },
           "dur": 0.5
         }
-      ]
+      ],
+      "role": "bridge"
     },
     {
       "id": "sign",
@@ -472,7 +511,9 @@
           "to": "idle",
           "dur": 0.4
         }
-      ]
+      ],
+      "role": "escalate",
+      "level": 4
     },
     {
       "id": "stamp",
@@ -584,7 +625,9 @@
           "to": "counter",
           "dur": 0.4
         }
-      ]
+      ],
+      "role": "escalate",
+      "level": 4
     },
     {
       "id": "heat",
@@ -643,7 +686,8 @@
           "to": "hold-doc",
           "dur": 0.5
         }
-      ]
+      ],
+      "role": "bridge"
     },
     {
       "id": "cancel",
@@ -672,7 +716,8 @@
           "to": "idle",
           "dur": 0.5
         }
-      ]
+      ],
+      "role": "turn"
     },
     {
       "id": "kashikomari",
@@ -732,12 +777,13 @@
           "to": "blank",
           "dur": 0.4
         }
-      ]
+      ],
+      "role": "bridge"
     },
     {
       "id": "nonheat",
       "shot": "side",
-      "post": 0.15,
+      "post": 0.5,
       "line": {
         "who": "clerk",
         "text": "では、温めない場合の／重要事項を／ご説明いたします"
@@ -781,14 +827,24 @@
           "face": "customer",
           "to": "weary",
           "dur": 0.3
+        },
+        {
+          "at": "line+1.32",
+          "music": "cut"
         }
-      ]
+      ],
+      "role": "payoff"
     },
     {
-      "id": "end",
+      "id": "giveup",
+      "role": "button",
       "shot": "counter-wide",
-      "push": 0.05,
-      "dur": 2.2,
+      "pre": 0.15,
+      "post": 0.1,
+      "line": {
+        "who": "customer",
+        "text": "……やっぱり、／温めてください"
+      },
       "do": [
         {
           "at": 0,
@@ -797,13 +853,76 @@
             "pitch": -0.5,
             "yaw": 0.1
           },
-          "dur": 0.6
+          "dur": 0.5
+        },
+        {
+          "at": 0,
+          "music": "resume"
+        }
+      ]
+    },
+    {
+      "id": "again",
+      "role": "button",
+      "shot": "clerk-cu",
+      "pre": 0.05,
+      "post": 0.0,
+      "loopsTo": "ask",
+      "line": {
+        "who": "clerk",
+        "text": "では、加熱に関する"
+      },
+      "do": [
+        {
+          "at": 0,
+          "face": "clerk",
+          "to": "blank",
+          "dur": 0.2
+        },
+        {
+          "at": 0,
+          "pose": "clerk",
+          "to": "point",
+          "dur": 0.35
         }
       ]
     }
   ],
   "description": [
-    "コンビニの「温めますか？」に、重要事項の説明義務があったら。",
-    "#ショート #コンビニ #3Dアニメ"
-  ]
+    "「温めますか？」に重要事項の説明義務があったら。",
+    "#ショート #コンビニ #3Dアニメ #コント"
+  ],
+  "design": {
+    "format": "institutional-absurdity",
+    "title": "コンビニの温めに説明義務がある世界",
+    "titleAlternatives": [
+      "おにぎりを温めてもらったら署名を求められた",
+      "温めの確認が丁寧すぎるコンビニ"
+    ],
+    "titlePattern": "world",
+    "hook": {
+      "type": "anomaly-first",
+      "firstFrame": "おにぎり1個の横に、分厚い『加熱に関する重要事項説明書』",
+      "overlay": "おにぎりを温めるだけ"
+    },
+    "rule": "レンジで温めることが、契約並みの重要事項説明と同意手続きを要する",
+    "escalations": [
+      "海苔がしっとりする",
+      "梅干しが想定より熱い",
+      "8日以内ならクーリングオフ可",
+      "署名・受付印・お客様控え"
+    ],
+    "turn": "客が『やっぱり温めなくて大丈夫です』と断る",
+    "payoff": "断ると『温めない場合の重要事項説明書（全3巻）』がさらに大きく落ちてくる",
+    "button": "客が観念して『温めてください』→店員が冒頭の説明を言い始めたところで切る（ループ）",
+    "loop": true,
+    "reaction": "laugh",
+    "audience": "コンビニでレンジ待ちを経験したことがある人が、手続きの大げささで止まる"
+  },
+  "music": {
+    "track": "bossa-thank-you-for-shopping",
+    "gain": 0.2,
+    "fadeIn": 0.2,
+    "fadeOut": 0.3
+  }
 }
