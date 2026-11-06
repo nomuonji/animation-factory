@@ -86,6 +86,35 @@
           "gain": 0.7
         }
       ]
+    },
+    "title-sting": {
+      "layers": [
+        {
+          "file": "assets/kenney/music-jingles/Audio/Pizzicato jingles/jingles_PIZZI04.ogg",
+          "gain": 0.8
+        },
+        {
+          "file": "assets/kenney/impact-sounds/Audio/impactSoft_medium_001.ogg",
+          "gain": 0.5
+        }
+      ]
+    },
+    "payoff-hit": {
+      "layers": [
+        {
+          "file": "assets/kenney/impact-sounds/Audio/impactPlank_medium_002.ogg",
+          "gain": 1.0
+        },
+        {
+          "file": "assets/kenney/impact-sounds/Audio/impactSoft_heavy_001.ogg",
+          "gain": 1.0,
+          "offset": 0.005
+        },
+        {
+          "lavfi": "sine=f=55:d=0.6,afade=t=out:st=0.05:d=0.55",
+          "gain": 0.6
+        }
+      ]
     }
   }
 }

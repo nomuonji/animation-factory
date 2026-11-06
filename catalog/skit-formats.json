@@ -10,7 +10,7 @@
     "payoff": "逃げ道にもルールが適用される／冒頭の約束を最も強い画で回収する",
     "button": "余韻の一言か、冒頭へつながるループ。3秒以内",
     "bridge": "動作だけの短いつなぎ（2.5秒以内）。多用しない",
-    "title": "タイトルカード（全画面のコマ）。フックの直後に1.2〜2秒。タイトルの文言を読ませる"
+    "title": "タイトルカード（全画面のコマ）。動画の一番最初に1.0〜1.4秒。文言を読ませ、何のコントかを先に約束する"
   },
   "hookTypes": {
     "anomaly-first": "異常な物・状況を0秒で見せる（おにぎりの横に分厚い説明書）",
@@ -47,8 +47,8 @@
       "label": "手続き化（日常の一瞬を役所・契約の手続きにする）",
       "hook": "anomaly-first",
       "roles": [
-        "hook",
         "title",
+        "hook",
         "rule",
         "escalate",
         "escalate",
@@ -72,8 +72,8 @@
       "label": "言葉どおり（慣用句・決まり文句を文字どおり実行する）",
       "hook": "line-first",
       "roles": [
-        "hook",
         "title",
+        "hook",
         "rule",
         "escalate",
         "escalate",
@@ -95,8 +95,8 @@
       "label": "立場逆転（店員と客、上司と部下、親と子などが入れ替わる）",
       "hook": "in-media-res",
       "roles": [
-        "hook",
         "title",
+        "hook",
         "rule",
         "escalate",
         "escalate",
@@ -119,8 +119,8 @@
       "label": "エスカレーション（小さな要求が段階的に巨大化する）",
       "hook": "payoff-tease",
       "roles": [
-        "hook",
         "title",
+        "hook",
         "rule",
         "escalate",
         "escalate",
@@ -143,8 +143,8 @@
       "label": "場違いな専門家（日常の場面に異分野のプロの作法を持ち込む）",
       "hook": "line-first",
       "roles": [
-        "hook",
         "title",
+        "hook",
         "rule",
         "escalate",
         "escalate",
@@ -171,6 +171,7 @@
     "maxStaticShot": 6.0,
     "payoffAfterRatio": 0.6,
     "maxButton": 4.0,
-    "maxBridge": 2.5
+    "maxBridge": 2.5,
+    "maxTitleCard": 1.6
   }
 }

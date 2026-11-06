@@ -44,6 +44,10 @@ Kenney (kenney.nl, CC0), Poly Haven (CC0, realistic), Poly Pizza (mixed CC0/CC-B
 Files the sandbox cannot download go into `catalog/remote-assets.json`; the **Fetch remote assets**
 workflow downloads them on a runner and uploads an artifact with sha256 for review.
 
+## Sets
+
+`convenience-store` (counter, register, hot-snack case, microwaves, shelves) and `studio` (plain cyclorama for character sheets and lineups; cameras `front`, `close`).
+
 ## Music
 
 `"music": {"track": "<id>", "gain": 0.2, "fadeIn": 0.2, "fadeOut": 0.6}` loops a track from the

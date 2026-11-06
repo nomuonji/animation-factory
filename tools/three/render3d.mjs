@@ -192,12 +192,15 @@ for (const s of audio.sfx) {
   }
 }
 const tone = join(genDir, "roomtone.wav");
-await run("ffmpeg", ["-y", "-loglevel", "error", "-f", "lavfi", "-i", `anoisesrc=color=brown:amplitude=0.6:d=${dur.toFixed(2)}`, "-f", "lavfi", "-i", `sine=f=100:d=${dur.toFixed(2)}`,
+if (prod.ambience === "roomtone") await run("ffmpeg", ["-y", "-loglevel", "error", "-f", "lavfi", "-i", `anoisesrc=color=brown:amplitude=0.6:d=${dur.toFixed(2)}`, "-f", "lavfi", "-i", `sine=f=100:d=${dur.toFixed(2)}`,
   "-filter_complex", "[0:a]lowpass=f=400,volume=0.05[n];[1:a]volume=0.006[h];[n][h]amix=inputs=2:normalize=0", "-ar", "48000", "-ac", "2", tone]);
-add(tone, 0, 1, fx);
+const silence = join(genDir, "silence.wav");
+if (!existsSync(silence)) await run("ffmpeg", ["-y", "-loglevel", "error", "-f", "lavfi", "-i", `anullsrc=r=48000:cl=stereo:d=1`, silence]);
+add(prod.ambience === "roomtone" ? tone : silence, 0, 1, fx);
 const graph = [...filters];
-if (!vox.length) { add(tone, 0, 0, vox); graph.push(filters.at(-1)); }
-graph.push(`${vox.join("")}amix=inputs=${vox.length}:normalize=0:duration=longest,asplit=2[vox][key]`);
+if (!vox.length) { add(silence, 0, 0, vox); graph.push(filters.at(-1)); }
+// dialogue chain: rumble cut, gentle compression, presence lift, soft de-ess (keeps TTS intelligible on phone speakers)
+graph.push(`${vox.join("")}amix=inputs=${vox.length}:normalize=0:duration=longest,highpass=f=90,acompressor=threshold=0.08:ratio=3:attack=8:release=120:makeup=1.6,equalizer=f=2600:t=q:w=1.2:g=3,equalizer=f=7200:t=q:w=2:g=-2,asplit=2[vox][key]`);
 graph.push(`${fx.join("")}amix=inputs=${fx.length}:normalize=0:duration=longest[fx]`);
 const m = audio.music ?? {};
 let buses = "[vox][fx]", nb = 2, musicCredit = null;
@@ -215,13 +218,22 @@ if (m.track) {
   const mute = cuts.length ? `,volume='if(${cuts.map(([a, b]) => `between(t,${a.toFixed(3)},${b.toFixed(3)})`).join("+")},0,1)':eval=frame` : "";
   const start = m.from ?? 0, fadeOut = m.fadeOut ?? 0.8;
   const ms = Math.round(start * 1000);
-  graph.push(`[${i}:a]aresample=48000,aformat=channel_layouts=stereo,atrim=0:${(dur - start).toFixed(3)},volume=${m.gain ?? 0.3},afade=t=in:d=${m.fadeIn ?? 0.3},afade=t=out:st=${Math.max(0, dur - start - fadeOut).toFixed(3)}:d=${fadeOut},adelay=${ms}|${ms}${mute}[bgmraw]`);
-  graph.push(`[bgmraw][key]sidechaincompress=threshold=0.015:ratio=${m.duckRatio ?? 6}:attack=15:release=350:makeup=1[bgm]`);
+  graph.push(`[${i}:a]aresample=48000,aformat=channel_layouts=stereo,atrim=0:${(dur - start).toFixed(3)},volume=${m.gain ?? 0.32},afade=t=in:d=${m.fadeIn ?? 0.3},afade=t=out:st=${Math.max(0, dur - start - fadeOut).toFixed(3)}:d=${fadeOut},adelay=${ms}|${ms}${mute}[bgmraw]`);
+  graph.push(`[bgmraw][key]sidechaincompress=threshold=0.02:ratio=${m.duckRatio ?? 5}:attack=20:release=450:makeup=1[bgm]`);
   buses += "[bgm]"; nb = 3;
 } else graph.push("[key]anullsink");
-graph.push(`${buses}amix=inputs=${nb}:normalize=0:duration=first,atrim=0:${dur.toFixed(3)},loudnorm=I=-15:TP=-1.5:LRA=11,aresample=48000[out]`);
-const mix = join(outDir, "mix.wav");
-await run("ffmpeg", ["-y", "-loglevel", "error", ...inputs, "-filter_complex", graph.join(";"), "-map", "[out]", "-ar", "48000", "-ac", "2", mix]);
+graph.push(`${buses}amix=inputs=${nb}:normalize=0:duration=first,atrim=0:${dur.toFixed(3)}[out]`);
+const pre = join(outDir, "mix-pre.wav"), mix = join(outDir, "mix.wav");
+await run("ffmpeg", ["-y", "-loglevel", "error", ...inputs, "-filter_complex", graph.join(";"), "-map", "[out]", "-ar", "48000", "-ac", "2", pre]);
+// two-pass loudness normalisation to -14 LUFS (YouTube playback reference)
+const probe = await new Promise((res, rej) => {
+  const p = spawn("ffmpeg", ["-hide_banner", "-nostats", "-i", pre, "-af", "loudnorm=I=-14:TP=-1.5:LRA=9:print_format=json", "-f", "null", "-"], { cwd: root });
+  let err = ""; p.stderr.on("data", (d) => { err += d; }); p.on("error", rej);
+  p.on("exit", () => { try { res(JSON.parse(err.slice(err.lastIndexOf("{"), err.lastIndexOf("}") + 1))); } catch (e) { rej(e); } });
+});
+await run("ffmpeg", ["-y", "-loglevel", "error", "-i", pre, "-af",
+  `loudnorm=I=-14:TP=-1.5:LRA=9:measured_I=${probe.input_i}:measured_TP=${probe.input_tp}:measured_LRA=${probe.input_lra}:measured_thresh=${probe.input_thresh}:offset=${probe.target_offset}:linear=true,aresample=48000`,
+  "-ar", "48000", "-ac", "2", mix]);
 
 const final = join(outDir, `${id}.mp4`);
 await run("ffmpeg", ["-y", "-loglevel", "error", "-i", videoOnly, "-i", mix, "-map", "0:v", "-map", "1:a", "-c:v", "copy", "-c:a", "aac", "-b:a", "192k", "-shortest", "-movflags", "+faststart", final]);
