@@ -57,7 +57,12 @@ export function lintDesign(prod, compiled, catalog) {
   const beats = prod.beats.map((b, i) => ({ ...b, ...compiled.beats[i] }));
   const missing = beats.filter((b) => !b.role).map((b) => b.id);
   if (missing.length) E.push(`role のないビート: ${missing.join(", ")}`);
-  const order = beats.map((b) => b.role).filter((r) => r && r !== "bridge");
+  const order = beats.map((b) => b.role).filter((r) => r && r !== "bridge" && r !== "title");
+  const titleBeat = beats.find((b) => b.role === "title");
+  const cardDur = titleBeat ? titleBeat.end - titleBeat.start : 0;
+  if ((d.titleOnScreen ?? "card") === "card" && !titleBeat) E.push("タイトルカードのビート（role=title）がない。フックの直後に置く");
+  if (titleBeat && titleBeat.start > 6) W.push(`タイトルカードが遅い（${titleBeat.start.toFixed(1)}s）。フック直後に`);
+  if (titleBeat && cardDur > 2.2) W.push(`タイトルカードが長い（${cardDur.toFixed(1)}s）`);
   const unknown = beats.filter((b) => b.role && !catalog.roles[b.role]);
   if (unknown.length) E.push(`未知の role: ${unknown.map((b) => b.role).join(",")}`);
   if (order[0] !== "hook") E.push("最初のビートは role=hook");
@@ -76,7 +81,7 @@ export function lintDesign(prod, compiled, catalog) {
   if (firstSound > L.firstSoundBy) E.push(`最初の音が遅い（${firstSound.toFixed(2)}s > ${L.firstSoundBy}s）`);
   const rule = beats.find((b) => b.role === "rule");
   if (!rule) E.push("rule ビートがない（世界のルールが一つだと分かる瞬間）");
-  else if (rule.end > L.ruleBy) E.push(`ルールの提示が遅い（${rule.end.toFixed(1)}s > ${L.ruleBy}s）`);
+  else if (rule.end - cardDur > L.ruleBy) E.push(`ルールの提示が遅い（タイトルカードを除き${(rule.end - cardDur).toFixed(1)}s > ${L.ruleBy}s）`);
   const pay = beats.find((b) => b.role === "payoff");
   if (pay && pay.start < dur * L.payoffAfterRatio) W.push(`payoff が早い（${pay.start.toFixed(1)}s, 全体の${Math.round(pay.start / dur * 100)}%）`);
   const btn = beats.filter((b) => b.role === "button").at(-1);

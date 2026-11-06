@@ -43,19 +43,46 @@ function drawCaption(g: CanvasRenderingContext2D, tl: Timeline, t: number) {
     break;
   }
   const tc = tl.titleCard;
-  if (tc && t >= tc.start && t < tc.end) {
-    // persistent title band (below the Shorts top bar), max 2 lines
-    const s = Math.round(W * 0.062);
-    g.save();
-    g.font = `900 ${s}px ${JP_FONT}`; g.textAlign = "center"; g.textBaseline = "middle"; g.lineJoin = "round";
+  const wrap = (text: string, maxW: number) => {
     const lines: string[] = []; let cur = "";
-    for (const ch of tc.text) { if (ch === "\n") { lines.push(cur); cur = ""; } else if (g.measureText(cur + ch).width > W * 0.84) { lines.push(cur); cur = ch; } else cur += ch; }
+    for (const ch of text) { if (ch === "\n") { lines.push(cur); cur = ""; } else if (g.measureText(cur + ch).width > maxW) { lines.push(cur); cur = ch; } else cur += ch; }
     if (cur) lines.push(cur);
-    const top = H * 0.075, lh = s * 1.28, bandH = lines.length * lh + s * 0.6;
+    return lines;
+  };
+  if (tc && tc.style === "band" && t >= tc.start && t < tc.end) {
+    const s = Math.round(W * 0.062);
+    g.save(); g.font = `900 ${s}px ${JP_FONT}`; g.textAlign = "center"; g.textBaseline = "middle";
+    const lines = wrap(tc.text, W * 0.84), top = H * 0.075, lh = s * 1.28, bandH = lines.length * lh + s * 0.6;
     g.fillStyle = "rgba(20,18,22,0.86)"; g.fillRect(0, top, W, bandH);
-    g.fillStyle = "#ffe14d"; g.fillRect(0, top + bandH - s * 0.08, W, s * 0.08);
     lines.forEach((txt, i) => { g.fillStyle = "#ffffff"; g.fillText(txt, W / 2, top + s * 0.3 + lh * (i + 0.5)); });
     g.restore();
+  }
+  if (tc && tc.style === "card" && t >= tc.start && t < tc.end) {
+    // full-frame title card: the scene darkens, the title lands with a small overshoot
+    const u = Math.min(1, (t - tc.start) / 0.22);
+    const k = 1 + 0.12 * (1 - u) * (1 - u) - 0.02 * Math.sin(Math.PI * u);
+    g.save();
+    g.fillStyle = "rgba(14,13,18,0.9)"; g.fillRect(0, 0, W, H);
+    const s = Math.round(W * 0.094);
+    g.translate(W / 2, H * 0.47); g.scale(k, k);
+    g.font = `900 ${s}px ${JP_FONT}`; g.textAlign = "center"; g.textBaseline = "middle"; g.lineJoin = "round";
+    const lines = wrap(tc.text, W * 0.86), lh = s * 1.3, h0 = -((lines.length - 1) * lh) / 2;
+    if (tc.label) {
+      const ls = Math.round(s * 0.42);
+      g.font = `900 ${ls}px ${JP_FONT}`;
+      const lw = g.measureText(tc.label).width + ls * 1.2;
+      g.fillStyle = "#ffe14d"; g.beginPath(); g.roundRect(-lw / 2, h0 - lh * 0.5 - ls * 2.1, lw, ls * 1.5, ls * 0.25); g.fill();
+      g.fillStyle = "#141216"; g.fillText(tc.label, 0, h0 - lh * 0.5 - ls * 1.33);
+      g.font = `900 ${s}px ${JP_FONT}`;
+    }
+    lines.forEach((txt, i) => {
+      const y = h0 + i * lh;
+      g.lineWidth = s * 0.16; g.strokeStyle = "#000000"; g.strokeText(txt, 0, y);
+      g.fillStyle = "#ffffff"; g.fillText(txt, 0, y);
+    });
+    g.fillStyle = "#ffe14d"; g.fillRect(-W * 0.3, h0 + (lines.length - 1) * lh + lh * 0.62, W * 0.6, s * 0.12);
+    g.restore();
+    return;
   }
   const o = tl.overlay;
   if (o && t >= o.start && t < o.end) {
@@ -64,7 +91,7 @@ function drawCaption(g: CanvasRenderingContext2D, tl: Timeline, t: number) {
     const alpha = Math.min(1, (o.end - t) / 0.2);
     g.save(); g.globalAlpha = alpha;
     g.font = `900 ${s}px ${JP_FONT}`; g.textAlign = "center"; g.textBaseline = "middle"; g.lineJoin = "round";
-    const y = H * (tl.titleCard ? 0.25 : 0.155), w = g.measureText(o.text).width + s * 1.1;
+    const y = H * (tl.titleCard?.style === "band" ? 0.25 : 0.155), w = g.measureText(o.text).width + s * 1.1;
     g.fillStyle = "#ffe14d"; g.beginPath(); g.roundRect(W / 2 - w / 2, y - s * 0.78, w, s * 1.56, s * 0.3); g.fill();
     g.lineWidth = s * 0.08; g.strokeStyle = "#141216"; g.stroke();
     g.fillStyle = "#141216"; g.fillText(o.text, W / 2, y + s * 0.04);
