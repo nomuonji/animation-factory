@@ -10,7 +10,7 @@
     "clerk": {
       "speaker": "青山龍星",
       "style": "ノーマル",
-      "speed": 1.12
+      "speed": 1.2
     },
     "customer": {
       "speaker": "春日部つむぎ",
@@ -237,7 +237,7 @@
     {
       "id": "yes",
       "shot": "customer-cu",
-      "post": 0.35,
+      "post": 0.15,
       "line": {
         "who": "customer",
         "text": "あ、はい"
@@ -261,7 +261,7 @@
       "push": 0.05,
       "line": {
         "who": "clerk",
-        "text": "では、加熱に関する／重要事項を／ご説明します"
+        "text": "では、重要事項を／ご説明します"
       },
       "do": [
         {
