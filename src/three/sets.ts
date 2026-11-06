@@ -187,7 +187,8 @@ export const SETS: Record<string, SetBuilder> = {
         side: { pos: [-0.85, 1.95, 1.35], target: [0.05, 1.02, -0.15], fov: 42 },
         "clerk-cu": { pos: [-0.28, 1.5, 0.9], target: [0.04, 1.3, -0.6], fov: 34 },
         "customer-cu": { pos: [-0.5, 1.48, -0.98], target: [0.14, 1.32, 0.64], fov: 32 },
-        "counter-top": { pos: [-0.06, 2.3, 0.32], target: [-0.06, 0.96, 0.0], fov: 38 },
+        "counter-top": { pos: [-0.05, 2.0, 0.58], target: [-0.04, 0.96, 0.02], fov: 36 },
+        "counter-wide": { pos: [-0.09, 2.15, 0.66], target: [-0.08, 0.98, -0.02], fov: 40 },
         "over-clerk": { pos: [-0.35, 1.62, -1.05], target: [0.1, 1.1, 0.55], fov: 44 }
       }
     };
