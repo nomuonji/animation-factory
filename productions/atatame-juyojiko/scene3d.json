@@ -249,7 +249,7 @@
     },
     {
       "id": "just",
-      "role": "hook",
+      "role": "rule",
       "shot": "customer-cu",
       "post": 0.1,
       "line": {
@@ -350,7 +350,7 @@
           "dur": 0.4
         }
       ],
-      "role": "rule",
+      "role": "bridge",
       "pre": 0.08
     },
     {
