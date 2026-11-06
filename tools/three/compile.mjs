@@ -10,6 +10,14 @@ const VERBS = {
   pose: "pose", move: "root", look: "look", face: "face", prop: "tf", param: "param", wiggle: "wiggle"
 };
 
+/** design.titleOnScreen: "always" (default) | "hook" | "none" — title band at the top of the frame */
+function titleCard(prod, duration) {
+  const d = prod.design;
+  if (!d?.title || d.titleOnScreen === "none") return null;
+  const end = d.titleOnScreen === "hook" ? 3 : duration + 1;
+  return { text: d.titleScreenText ?? d.title, start: 0, end };
+}
+
 export function splitChunks(text) {
   return text.split("／").map((s) => s.trim()).filter(Boolean);
 }
@@ -97,14 +105,16 @@ export function compile(prod, voiceFor) {
   let overlay = prod.overlay ?? null;
   const ho = prod.design?.hook?.overlay;
   if (!overlay && ho) {
-    const until = beats.find((b, i) => prod.beats[i].role === "rule")?.end ?? beats[0]?.end ?? 3;
+    // hook text stays only while the hook beats play (it must not cover faces later)
+    const until = beats.find((b, i) => prod.beats[i].role && prod.beats[i].role !== "hook")?.start ?? beats[0]?.end ?? 3;
     overlay = { text: ho, start: 0, end: until };
   }
   return {
     timeline: {
       meta: { id: prod.meta.id, title: prod.meta.title, fps, width: prod.meta.width ?? 1080, height: prod.meta.height ?? 1920, duration: frames / fps },
       set: prod.set, cameras: prod.cameras ?? {}, actors: prod.actors, props: prod.props ?? {},
-      lines: lines.map(({ audio, ...l }) => l), events, shots, captions: prod.captions ?? {}, overlay
+      lines: lines.map(({ audio, ...l }) => l), events, shots, captions: prod.captions ?? {}, overlay,
+      titleCard: titleCard(prod, frames / fps)
     },
     audio: { lines: lines.map((l) => ({ t: l.start, end: l.end, audio: l.audio, who: l.who })), sfx, music: { ...(prod.music ?? {}), events: music } },
     beats

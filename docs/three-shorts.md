@@ -24,7 +24,7 @@ Before writing beats, fill the `design` block from `templates/skit3d.json` and r
 `docs/short-drama-design.md` (title × first frame × first line, beat roles, hook and title types,
 formats in `catalog/skit-formats.json`). `render3d.mjs` runs `tools/three/design-lint.mjs` and stops
 on structural errors (`--no-lint` only for technical tests). `design.hook.overlay` becomes the
-on-screen hook text until the `rule` beat ends.
+on-screen hook text while the hook beats play; `design.title` is shown as a band at the top for the whole video (`titleOnScreen`, `titleScreenText`).
 
 ## Free 3D assets (CC0, vendored)
 

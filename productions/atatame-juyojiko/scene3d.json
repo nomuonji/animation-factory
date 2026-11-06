@@ -917,7 +917,8 @@
     "button": "客が観念して『温めてください』→店員が冒頭の説明を言い始めたところで切る（ループ）",
     "loop": true,
     "reaction": "laugh",
-    "audience": "コンビニでレンジ待ちを経験したことがある人が、手続きの大げささで止まる"
+    "audience": "コンビニでレンジ待ちを経験したことがある人が、手続きの大げささで止まる",
+    "titleScreenText": "コンビニの温めに\n説明義務がある世界"
   },
   "music": {
     "track": "bossa-thank-you-for-shopping",

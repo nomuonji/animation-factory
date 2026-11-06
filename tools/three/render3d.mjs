@@ -232,6 +232,7 @@ for (const a of Object.values(prod.actors)) if (a.vrm) assetCredits.push(`3Dキ�
 if (Object.values(prod.props ?? {}).some((p) => p.kind === "gltf")) assetCredits.push("3D小道具: KayKit by Kay Lousberg (CC0)");
 const desc = [prod.design?.title ?? prod.meta.title, "", ...(prod.description ?? []), "", ...credits, ...assetCredits, "効果音: Kenney (CC0) / 一部コード生成", "3D: animation-factory three"].join("\n");
 await writeFile(join(review, "description.txt"), desc);
+if (prod.design?.title) { const safe = prod.design.title.replace(/[\\/:*?"<>|\s]+/g, "_"); await run("cp", [final, join(review, `${safe}.mp4`)]); }
 await writeFile(join(review, "title.txt"), [prod.design?.title ?? prod.meta.title, ...(prod.design?.titleAlternatives ?? [])].join("\n") + "\n");
 await writeFile(join(review, "design-report.md"), lint.report);
 await writeFile(join(review, "status.json"), JSON.stringify({ production: id, duration: dur, voice: voiced ? "voicevox" : "none-estimated-timing", technical: "pass", editorial: "unreviewed", renderedAt: new Date().toISOString() }, null, 2));
