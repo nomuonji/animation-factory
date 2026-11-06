@@ -300,5 +300,115 @@
         }
       }
     }
-  ]
+  ],
+  "three": {
+    "doc": "docs/three-shorts.md",
+    "runtime": "src/three",
+    "production": "productions/<id>/scene3d.json",
+    "sets": {
+      "convenience-store": {
+        "cameras": [
+          "hero",
+          "wide",
+          "side",
+          "clerk-cu",
+          "customer-cu",
+          "counter-top",
+          "over-clerk"
+        ],
+        "surfaces": {
+          "counter": 0.96,
+          "backCounter": 0.9
+        }
+      }
+    },
+    "props": {
+      "onigiri": [
+        "label",
+        "size"
+      ],
+      "paper-stack": [
+        "height",
+        "title",
+        "clauses"
+      ],
+      "document": [
+        "title",
+        "clauses",
+        "signature",
+        "noFill",
+        "footer",
+        "param:sig",
+        "param:stamp"
+      ],
+      "binder": [
+        "w",
+        "d",
+        "height",
+        "color",
+        "title",
+        "label",
+        "volume"
+      ],
+      "pen": [
+        "color"
+      ],
+      "hanko": [],
+      "box": [
+        "size",
+        "color"
+      ]
+    },
+    "character": {
+      "style": [
+        "skin",
+        "hair",
+        "hairStyle(side-part|ponytail|short|bald)",
+        "top",
+        "vest",
+        "vestTrim",
+        "bottom",
+        "shoes",
+        "glasses",
+        "nameTag",
+        "hood",
+        "height"
+      ],
+      "poses": [
+        "idle",
+        "counter",
+        "hold-doc",
+        "lift-doc",
+        "point",
+        "stamp-up",
+        "stamp-down",
+        "give",
+        "sign",
+        "hand-up",
+        "bow"
+      ],
+      "expressions": [
+        "neutral",
+        "blank",
+        "polite",
+        "surprised",
+        "doubtful",
+        "weary"
+      ]
+    },
+    "actions": [
+      "pose",
+      "move",
+      "look",
+      "face",
+      "prop",
+      "show",
+      "hide",
+      "param",
+      "wiggle",
+      "sfx",
+      "shot"
+    ],
+    "sfx": "catalog/sfx3d.json"
+  }
 }

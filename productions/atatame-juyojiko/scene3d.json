@@ -1,0 +1,807 @@
+{
+  "meta": {
+    "id": "atatame-juyojiko",
+    "title": "コンビニの「温めますか？」に重要事項説明義務がある世界",
+    "fps": 30,
+    "width": 1080,
+    "height": 1920
+  },
+  "concept": {
+    "promise": "おにぎり1個の横に、分厚い『加熱に関する重要事項説明書』がある（0秒の画）",
+    "turn": "説明→署名→受付印→控え。手続きが本物の契約並みに進む。だから客は温めを断る",
+    "payoff": "断ると『温めない場合の重要事項説明書（全3巻）』がさらに大きく落ちてくる",
+    "reaction": "笑い（ズレは『温めの確認が法的手続き』の一点だけ。全員真顔、ツッコミなし）",
+    "source": "ラジ父レンズ creative-thinking: institutional_absurdity + deadpan_underreaction"
+  },
+  "voices": {
+    "clerk": {
+      "speaker": "青山龍星",
+      "style": "ノーマル",
+      "speed": 1.12
+    },
+    "customer": {
+      "speaker": "春日部つむぎ",
+      "style": "ノーマル",
+      "speed": 1.05
+    }
+  },
+  "set": {
+    "kind": "convenience-store",
+    "params": {
+      "price": "¥160",
+      "stripe": "#e2b443",
+      "counterColor": "#8a9a92",
+      "signText": "レジ"
+    }
+  },
+  "cameras": {},
+  "captions": {
+    "y": 0.74
+  },
+  "actors": {
+    "clerk": {
+      "style": {
+        "skin": "#f0c7a4",
+        "hair": "#26211f",
+        "hairStyle": "side-part",
+        "top": "#f6f5f1",
+        "vest": "#3f8f86",
+        "bottom": "#33363f",
+        "glasses": true,
+        "nameTag": "佐藤"
+      },
+      "root": {
+        "x": 0.04,
+        "z": -0.6,
+        "ry": 0
+      },
+      "pose": "counter",
+      "expr": "polite",
+      "seed": 3,
+      "captionColor": "#ffffff"
+    },
+    "customer": {
+      "style": {
+        "skin": "#f3cdb0",
+        "hair": "#4a3428",
+        "hairStyle": "ponytail",
+        "top": "#8e98a6",
+        "hood": true,
+        "bottom": "#2f3442",
+        "height": 0.97
+      },
+      "root": {
+        "x": 0.14,
+        "z": 0.64,
+        "ry": 3.14159
+      },
+      "pose": "idle",
+      "expr": "neutral",
+      "seed": 7,
+      "captionColor": "#ffe48a"
+    }
+  },
+  "props": {
+    "onigiri": {
+      "kind": "onigiri",
+      "params": {
+        "label": "梅"
+      },
+      "tf": {
+        "x": 0.08,
+        "y": 0.96,
+        "z": 0.1,
+        "ry": 0.15
+      }
+    },
+    "stack": {
+      "kind": "paper-stack",
+      "params": {
+        "height": 0.085,
+        "title": "加熱に関する\n重要事項説明書",
+        "clauses": [
+          "第1条　海苔の食感の変化について",
+          "第2条　具材（梅）の温度について",
+          "第3条　加熱後のクーリングオフ"
+        ]
+      },
+      "tf": {
+        "x": -0.2,
+        "y": 0.96,
+        "z": 0.02,
+        "ry": 0.05
+      }
+    },
+    "sheet": {
+      "kind": "document",
+      "params": {
+        "title": "加熱に関する\n重要事項説明書",
+        "clauses": [
+          "第1条　海苔の食感の変化について",
+          "第2条　具材（梅）の温度について",
+          "第3条　加熱後のクーリングオフ"
+        ],
+        "signature": true,
+        "noFill": true,
+        "footer": "2枚複写（店舗控・お客様控）"
+      },
+      "tf": {
+        "x": -0.2,
+        "y": 1.047,
+        "z": 0.02,
+        "ry": 0.05
+      },
+      "visible": false
+    },
+    "copy": {
+      "kind": "document",
+      "params": {
+        "title": "お客様控",
+        "clauses": [
+          "加熱に関する重要事項説明書"
+        ],
+        "noFill": false,
+        "footer": "大切に保管してください"
+      },
+      "tf": {
+        "x": -0.1,
+        "y": 0.962,
+        "z": -0.15,
+        "ry": 0.0
+      },
+      "visible": false
+    },
+    "pen": {
+      "kind": "pen",
+      "tf": {
+        "x": 0.18,
+        "y": 0.965,
+        "z": 0.26,
+        "ry": 0.4
+      },
+      "visible": false
+    },
+    "hanko": {
+      "kind": "hanko",
+      "tf": {
+        "x": 0.0,
+        "y": 1.12,
+        "z": 0.12
+      },
+      "visible": false
+    },
+    "binder": {
+      "kind": "binder",
+      "params": {
+        "w": 0.34,
+        "d": 0.42,
+        "height": 0.27,
+        "color": "#2f4f7a",
+        "title": "温めない場合の重要事項説明書",
+        "label": "温めない場合の重要事項説明書",
+        "volume": "第1巻（全3巻）"
+      },
+      "tf": {
+        "x": -0.24,
+        "y": 1.6,
+        "z": -0.05,
+        "ry": -0.08,
+        "rx": -0.25
+      },
+      "visible": false
+    }
+  },
+  "lead": 0,
+  "tail": 0,
+  "beats": [
+    {
+      "id": "ask",
+      "shot": "counter-top",
+      "push": 0.06,
+      "pre": 0.25,
+      "line": {
+        "who": "clerk",
+        "text": "こちら、／温めますか？"
+      }
+    },
+    {
+      "id": "yes",
+      "shot": "customer-cu",
+      "post": 0.35,
+      "line": {
+        "who": "customer",
+        "text": "あ、はい"
+      },
+      "do": [
+        {
+          "at": "lineEnd",
+          "look": "customer",
+          "to": {
+            "pitch": -0.42,
+            "yaw": 0.25
+          },
+          "dur": 0.35
+        }
+      ]
+    },
+    {
+      "id": "intro",
+      "shot": "clerk-cu",
+      "push": 0.05,
+      "line": {
+        "who": "clerk",
+        "text": "では、加熱に関する／重要事項を／ご説明いたします"
+      },
+      "do": [
+        {
+          "at": 0,
+          "face": "clerk",
+          "to": "blank",
+          "dur": 0.4
+        },
+        {
+          "at": "lineEnd-0.9",
+          "shot": "hero"
+        },
+        {
+          "at": "lineEnd-0.85",
+          "pose": "clerk",
+          "to": "point",
+          "dur": 0.35
+        },
+        {
+          "at": "lineEnd-0.6",
+          "show": "sheet"
+        },
+        {
+          "at": "lineEnd-0.6",
+          "prop": "sheet",
+          "to": {
+            "x": 0.0,
+            "y": 0.962,
+            "z": 0.12,
+            "ry": 0.0
+          },
+          "dur": 0.45,
+          "arc": 0.03
+        },
+        {
+          "at": "lineEnd-0.6",
+          "sfx": "paper"
+        },
+        {
+          "at": "lineEnd-0.2",
+          "pose": "clerk",
+          "to": "counter",
+          "dur": 0.4
+        },
+        {
+          "at": "lineEnd-0.2",
+          "look": "customer",
+          "to": {
+            "pitch": -0.35,
+            "yaw": 0.05
+          },
+          "dur": 0.4
+        }
+      ]
+    },
+    {
+      "id": "nori",
+      "shot": "counter-top",
+      "push": 0.12,
+      "line": {
+        "who": "clerk",
+        "text": "加熱により、／海苔がしっとりする場合が／ございます"
+      },
+      "do": [
+        {
+          "at": 0.1,
+          "pose": "clerk",
+          "to": "point",
+          "dur": 0.4
+        }
+      ]
+    },
+    {
+      "id": "ume",
+      "shot": "clerk-cu",
+      "line": {
+        "who": "clerk",
+        "text": "具の梅干しが、／想定より熱い場合が／ございます"
+      },
+      "do": [
+        {
+          "at": 0,
+          "pose": "clerk",
+          "to": "counter",
+          "dur": 0.4
+        },
+        {
+          "at": 0,
+          "look": "clerk",
+          "to": {
+            "pitch": -0.12
+          },
+          "dur": 0.4
+        }
+      ]
+    },
+    {
+      "id": "cooling",
+      "shot": "hero",
+      "push": 0.1,
+      "line": {
+        "who": "clerk",
+        "text": "なお、加熱後８日以内であれば、／クーリングオフが可能です"
+      },
+      "do": [
+        {
+          "at": 0,
+          "look": "clerk",
+          "to": {
+            "pitch": 0.0
+          },
+          "dur": 0.4
+        }
+      ]
+    },
+    {
+      "id": "hai",
+      "shot": "customer-cu",
+      "pre": 0.35,
+      "post": 0.45,
+      "line": {
+        "who": "customer",
+        "text": "……はい"
+      },
+      "do": [
+        {
+          "at": 0,
+          "face": "customer",
+          "to": "doubtful",
+          "dur": 0.4
+        },
+        {
+          "at": 0,
+          "look": "customer",
+          "to": {
+            "pitch": -0.05,
+            "yaw": 0
+          },
+          "dur": 0.5
+        }
+      ]
+    },
+    {
+      "id": "sign",
+      "shot": "counter-top",
+      "hold": 1.5,
+      "line": {
+        "who": "clerk",
+        "text": "こちらに、／ご署名を"
+      },
+      "do": [
+        {
+          "at": 0,
+          "pose": "clerk",
+          "to": "point",
+          "dur": 0.35
+        },
+        {
+          "at": "lineEnd",
+          "pose": "clerk",
+          "to": "counter",
+          "dur": 0.4
+        },
+        {
+          "at": "lineEnd",
+          "show": "pen"
+        },
+        {
+          "at": "lineEnd",
+          "prop": "pen",
+          "to": {
+            "x": 0.04,
+            "y": 0.966,
+            "z": 0.24,
+            "ry": 0.5
+          },
+          "dur": 0.3
+        },
+        {
+          "at": "lineEnd",
+          "pose": "customer",
+          "to": "sign",
+          "dur": 0.4
+        },
+        {
+          "at": "lineEnd",
+          "look": "customer",
+          "to": {
+            "pitch": -0.55,
+            "yaw": 0.1
+          },
+          "dur": 0.4
+        },
+        {
+          "at": "lineEnd+0.35",
+          "wiggle": "customer",
+          "to": 1,
+          "dur": 0.1
+        },
+        {
+          "at": "lineEnd+0.35",
+          "param": "sheet",
+          "to": {
+            "sig": 1
+          },
+          "dur": 1.1,
+          "ease": "linear"
+        },
+        {
+          "at": "lineEnd+0.35",
+          "prop": "pen",
+          "to": {
+            "x": 0.16,
+            "z": 0.24,
+            "ry": 0.55
+          },
+          "dur": 1.1,
+          "ease": "linear"
+        },
+        {
+          "at": "lineEnd+0.35",
+          "sfx": "pen-scribble"
+        },
+        {
+          "at": "lineEnd+1.45",
+          "wiggle": "customer",
+          "to": 0,
+          "dur": 0.1
+        },
+        {
+          "at": "end-0.05",
+          "hide": "pen"
+        },
+        {
+          "at": "end-0.05",
+          "pose": "customer",
+          "to": "idle",
+          "dur": 0.4
+        }
+      ]
+    },
+    {
+      "id": "stamp",
+      "shot": "side",
+      "pre": 1.15,
+      "line": {
+        "who": "clerk",
+        "text": "控えは、／お客様の保管用です"
+      },
+      "do": [
+        {
+          "at": 0,
+          "look": "customer",
+          "to": {
+            "pitch": -0.2,
+            "yaw": 0
+          },
+          "dur": 0.4
+        },
+        {
+          "at": 0,
+          "pose": "clerk",
+          "to": "stamp-up",
+          "dur": 0.35
+        },
+        {
+          "at": 0.1,
+          "show": "hanko"
+        },
+        {
+          "at": 0.1,
+          "prop": "hanko",
+          "to": {
+            "x": 0.09,
+            "y": 1.1,
+            "z": 0.08
+          },
+          "dur": 0.25
+        },
+        {
+          "at": 0.55,
+          "pose": "clerk",
+          "to": "stamp-down",
+          "dur": 0.12,
+          "ease": "in"
+        },
+        {
+          "at": 0.55,
+          "prop": "hanko",
+          "to": {
+            "y": 0.963
+          },
+          "dur": 0.12,
+          "ease": "in"
+        },
+        {
+          "at": 0.67,
+          "sfx": "stamp"
+        },
+        {
+          "at": 0.67,
+          "param": "sheet",
+          "to": {
+            "stamp": 1
+          },
+          "dur": 0.05
+        },
+        {
+          "at": 0.85,
+          "prop": "hanko",
+          "to": {
+            "y": 1.1
+          },
+          "dur": 0.2
+        },
+        {
+          "at": 1.05,
+          "hide": "hanko"
+        },
+        {
+          "at": "line",
+          "pose": "clerk",
+          "to": "give",
+          "dur": 0.4
+        },
+        {
+          "at": "line",
+          "show": "copy"
+        },
+        {
+          "at": "line",
+          "prop": "copy",
+          "to": {
+            "x": 0.2,
+            "y": 0.962,
+            "z": 0.22,
+            "ry": 0.1
+          },
+          "dur": 0.5,
+          "arc": 0.03
+        },
+        {
+          "at": "line",
+          "sfx": "paper"
+        },
+        {
+          "at": "lineEnd",
+          "pose": "clerk",
+          "to": "counter",
+          "dur": 0.4
+        }
+      ]
+    },
+    {
+      "id": "heat",
+      "shot": "side",
+      "line": {
+        "who": "clerk",
+        "text": "それでは、／温めてまいります"
+      },
+      "do": [
+        {
+          "at": 0,
+          "face": "clerk",
+          "to": "polite",
+          "dur": 0.3
+        },
+        {
+          "at": "line+0.3",
+          "pose": "clerk",
+          "to": "give",
+          "dur": 0.35
+        },
+        {
+          "at": "line+0.4",
+          "prop": "onigiri",
+          "to": {
+            "x": 0.0,
+            "y": 1.02,
+            "z": -0.22,
+            "ry": 0.15
+          },
+          "dur": 0.4,
+          "arc": 0.04
+        },
+        {
+          "at": "lineEnd-0.35",
+          "move": "clerk",
+          "to": {
+            "ry": 2.2,
+            "z": -0.66
+          },
+          "dur": 0.7
+        },
+        {
+          "at": "lineEnd-0.35",
+          "prop": "onigiri",
+          "to": {
+            "x": 0.25,
+            "y": 1.02,
+            "z": -0.62
+          },
+          "dur": 0.7
+        },
+        {
+          "at": "lineEnd-0.35",
+          "pose": "clerk",
+          "to": "hold-doc",
+          "dur": 0.5
+        }
+      ]
+    },
+    {
+      "id": "cancel",
+      "shot": "customer-cu",
+      "post": 0.3,
+      "line": {
+        "who": "customer",
+        "text": "あ、やっぱり／温めなくて大丈夫です"
+      },
+      "do": [
+        {
+          "at": 0,
+          "face": "customer",
+          "to": "neutral",
+          "dur": 0.3
+        },
+        {
+          "at": 0,
+          "pose": "customer",
+          "to": "hand-up",
+          "dur": 0.35
+        },
+        {
+          "at": "lineEnd",
+          "pose": "customer",
+          "to": "idle",
+          "dur": 0.5
+        }
+      ]
+    },
+    {
+      "id": "kashikomari",
+      "shot": "side",
+      "pre": 0.55,
+      "line": {
+        "who": "clerk",
+        "text": "かしこまりました"
+      },
+      "do": [
+        {
+          "at": 0,
+          "move": "clerk",
+          "to": {
+            "ry": 0,
+            "z": -0.6
+          },
+          "dur": 0.5
+        },
+        {
+          "at": 0,
+          "prop": "onigiri",
+          "to": {
+            "x": 0.08,
+            "y": 0.96,
+            "z": 0.1,
+            "ry": 0.15
+          },
+          "dur": 0.5,
+          "arc": 0.04
+        },
+        {
+          "at": 0.1,
+          "pose": "clerk",
+          "to": "counter",
+          "dur": 0.4
+        },
+        {
+          "at": 0.45,
+          "sfx": "set-down"
+        },
+        {
+          "at": "line",
+          "pose": "clerk",
+          "to": "bow",
+          "dur": 0.4
+        },
+        {
+          "at": "lineEnd",
+          "pose": "clerk",
+          "to": "counter",
+          "dur": 0.4
+        },
+        {
+          "at": "line",
+          "face": "clerk",
+          "to": "blank",
+          "dur": 0.4
+        }
+      ]
+    },
+    {
+      "id": "nonheat",
+      "shot": "hero",
+      "post": 0.15,
+      "line": {
+        "who": "clerk",
+        "text": "では、温めない場合の／重要事項を／ご説明いたします"
+      },
+      "do": [
+        {
+          "at": "line+0.9",
+          "pose": "clerk",
+          "to": "lift-doc",
+          "dur": 0.25
+        },
+        {
+          "at": "line+0.9",
+          "show": "binder"
+        },
+        {
+          "at": "line+1.0",
+          "prop": "binder",
+          "to": {
+            "x": -0.22,
+            "y": 1.045,
+            "z": 0.0,
+            "rx": 0,
+            "ry": 0.04
+          },
+          "dur": 0.32,
+          "ease": "in"
+        },
+        {
+          "at": "line+1.32",
+          "sfx": "binder-thud"
+        },
+        {
+          "at": "line+1.35",
+          "pose": "clerk",
+          "to": "counter",
+          "dur": 0.35
+        },
+        {
+          "at": "line+1.35",
+          "face": "customer",
+          "to": "weary",
+          "dur": 0.3
+        }
+      ]
+    },
+    {
+      "id": "end",
+      "shot": "counter-top",
+      "push": 0.05,
+      "dur": 2.2,
+      "do": [
+        {
+          "at": 0,
+          "look": "customer",
+          "to": {
+            "pitch": -0.5,
+            "yaw": 0.1
+          },
+          "dur": 0.6
+        }
+      ]
+    }
+  ],
+  "description": [
+    "コンビニの「温めますか？」に、重要事項の説明義務があったら。",
+    "#ショート #コンビニ #3Dアニメ"
+  ]
+}
