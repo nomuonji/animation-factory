@@ -25,6 +25,10 @@ export interface CharacterStyle {
   printColor?: string;
   teeth?: boolean;       // white teeth in a grin and when the mouth opens
   cheeks?: string | null; // flat blush/face-paint patches under the eyes
+  eyeStyle?: "dot" | "big"; // big = white sclera, iris, highlight and a lash line (expressive close-ups)
+  iris?: string;
+  boldBrows?: boolean;      // thick, outward-raised brows
+  eyeShadow?: string | null; // painted shading around the eyes (face paint)
 }
 
 export type Joints = Record<string, number>;
@@ -46,6 +50,8 @@ export const POSES: Record<string, Joints> = {
   give:        { spineX: 0.1, spineY: 0, shoulderLX: 0.05, shoulderLZ: 0.08, elbowL: -0.15, shoulderRX: -1.1, shoulderRZ: -0.02, elbowR: -0.35, wristL: 0, wristR: 0 },
   sign:        { spineX: 0.22, spineY: -0.08, shoulderLX: -0.6, shoulderLZ: 0.15, elbowL: -1.1, shoulderRX: -0.85, shoulderRZ: -0.05, elbowR: -0.95, wristL: 0, wristR: 0.1 },
   "hand-up":   { spineX: 0, spineY: 0, shoulderLX: 0.05, shoulderLZ: 0.08, elbowL: -0.15, shoulderRX: -0.75, shoulderRZ: -0.1, elbowR: -1.6, wristL: 0, wristR: 0.4 },
+  // hold something up beside the face for the camera (selfie / "look at this")
+  "hold-up":   { spineX: 0, spineY: 0.05, shoulderLX: 0.05, shoulderLZ: 0.08, elbowL: -0.15, shoulderRX: -1.1, shoulderRZ: -0.45, elbowR: -1.6, wristL: 0, wristR: 0.3 },
   "bow":       { spineX: 0.38, spineY: 0, shoulderLX: 0.15, shoulderLZ: 0.04, elbowL: -0.1, shoulderRX: 0.15, shoulderRZ: -0.04, elbowR: -0.1, wristL: 0, wristR: 0 }
 };
 
@@ -74,8 +80,10 @@ export class Character {
   private elbowR = new THREE.Group();
   private handL = new THREE.Group();
   private handR = new THREE.Group();
-  private eyeL!: THREE.Mesh;
-  private eyeR!: THREE.Mesh;
+  private eyeL!: THREE.Object3D;
+  private eyeR!: THREE.Object3D;
+  private eyeBase = 1.25;
+  private browTilt = 0;
   private browL!: THREE.Mesh;
   private browR!: THREE.Mesh;
   private mouth!: THREE.Mesh;
@@ -88,7 +96,8 @@ export class Character {
     const s = {
       skin: "#f2c9a8", hair: "#2a2226", hairStyle: "short", top: "#f4f2ee", vest: null, vestTrim: "#ffffff",
       bottom: "#3a3d4a", shoes: "#2b2b30", glasses: false, nameTag: null, hood: false, height: 1,
-      horns: null, ears: "round", print: null, printColor: "#f6f3ec", teeth: false, cheeks: null, ...style
+      horns: null, ears: "round", print: null, printColor: "#f6f3ec", teeth: false, cheeks: null,
+      eyeStyle: "dot", iris: "#2a1a14", boldBrows: false, eyeShadow: null, ...style
     } as Required<CharacterStyle>;
     const skin = toon(s.skin);
     const top = toon(s.top);
@@ -163,9 +172,9 @@ export class Character {
         g.fillStyle = s.printColor; g.font = `900 132px ${JP_FONT}`; g.textAlign = "center"; g.textBaseline = "middle";
         chars.forEach((c, i) => g.fillText(c, w / 2, (i + 0.5) * (h / chars.length) + 4));
       });
-      const ph = Math.min(0.24, 0.1 * chars.length);
+      const ph = Math.min(0.3, 0.13 * chars.length);
       const print = new THREE.Mesh(new THREE.PlaneGeometry(ph / chars.length, ph), new THREE.MeshBasicMaterial({ map: tex, transparent: true }));
-      print.position.set(0, 0.33 - ph / 2, 0.131);
+      print.position.set(0, 0.36 - ph / 2, 0.1305);
       this.spine.add(print);
     }
 
@@ -225,12 +234,46 @@ export class Character {
 
     const eyeMat = flat("#17141a");
     const eye = () => { const e = new THREE.Mesh(new THREE.SphereGeometry(0.019, 12, 10), eyeMat); e.scale.set(0.9, 1.25, 0.4); return e; };
-    this.eyeL = eye(); this.eyeL.position.set(0.058, 0.018, 0.152);
-    this.eyeR = eye(); this.eyeR.position.set(-0.058, 0.018, 0.152);
+    if (s.eyeStyle === "big") {
+      this.eyeBase = 1;
+      const big = (side: number) => {
+        const g = new THREE.Group();
+        const sclera = new THREE.Mesh(new THREE.SphereGeometry(0.031, 18, 14), flat("#fbf8f2"));
+        sclera.scale.set(1.12, 0.92, 0.32);
+        const iris = new THREE.Mesh(new THREE.SphereGeometry(0.019, 16, 12), flat(s.iris));
+        iris.scale.set(1, 1.05, 0.3); iris.position.set(-0.004 * side, -0.002, 0.007);
+        const pupil = new THREE.Mesh(new THREE.SphereGeometry(0.009, 12, 10), flat("#0d0a0c"));
+        pupil.scale.set(1, 1, 0.3); pupil.position.set(-0.004 * side, -0.002, 0.0105);
+        const hl = new THREE.Mesh(new THREE.SphereGeometry(0.0045, 8, 6), flat("#ffffff"));
+        hl.scale.set(1, 1, 0.3); hl.position.set(0.004 - 0.004 * side, 0.006, 0.0125);
+        const lash = new THREE.Mesh(new THREE.TorusGeometry(0.032, 0.0042, 4, 18, Math.PI), flat("#141014"));
+        lash.scale.set(1.1, 0.88, 0.6); lash.position.z = 0.004;
+        g.add(sclera, iris, pupil, hl, lash);
+        g.rotation.y = 0.32 * side;
+        return g;
+      };
+      this.eyeL = big(1); this.eyeL.position.set(0.06, 0.012, 0.146);
+      this.eyeR = big(-1); this.eyeR.position.set(-0.06, 0.012, 0.146);
+    } else {
+      this.eyeL = eye(); this.eyeL.position.set(0.058, 0.018, 0.152);
+      this.eyeR = eye(); this.eyeR.position.set(-0.058, 0.018, 0.152);
+    }
     this.head.add(this.eyeL, this.eyeR);
+    if (s.eyeShadow) {
+      for (const side of [-1, 1]) {
+        const c = new THREE.Mesh(new THREE.CircleGeometry(0.046, 20), new THREE.MeshBasicMaterial({ color: s.eyeShadow, transparent: true, opacity: 0.75 }));
+        c.scale.set(1.05, 0.95, 1);
+        c.position.set(0.062 * side, 0.016, 0.1435);
+        c.rotation.y = 0.36 * side;
+        this.head.add(c);
+      }
+    }
     const browMat = flat(shade(s.hair, 0.02));
-    this.browL = new THREE.Mesh(new THREE.BoxGeometry(0.05, 0.009, 0.01), browMat);
-    this.browR = new THREE.Mesh(new THREE.BoxGeometry(0.05, 0.009, 0.01), browMat);
+    const bw = s.boldBrows ? 0.068 : 0.05, bh = s.boldBrows ? 0.017 : 0.009;
+    this.browTilt = s.boldBrows ? 0.22 : 0;
+    this.browL = new THREE.Mesh(new THREE.BoxGeometry(bw, bh, 0.012), browMat);
+    this.browR = new THREE.Mesh(new THREE.BoxGeometry(bw, bh, 0.012), browMat);
+    if (s.boldBrows) { this.browL.rotation.y = 0.3; this.browR.rotation.y = -0.3; }
     this.browL.position.set(0.06, 0.07, 0.152);
     this.browR.position.set(-0.06, 0.07, 0.152);
     this.head.add(this.browL, this.browR);
@@ -248,23 +291,25 @@ export class Character {
     // wide grin: a D-shaped open smile (dark rim, white teeth) used when smile is high and not talking
     {
       const shape = new THREE.Shape();
-      shape.moveTo(-0.05, 0); shape.lineTo(0.05, 0);
-      shape.quadraticCurveTo(0.045, -0.05, 0, -0.052);
-      shape.quadraticCurveTo(-0.045, -0.05, -0.05, 0);
+      shape.moveTo(-0.058, 0.004); shape.quadraticCurveTo(0, -0.004, 0.058, 0.004);
+      shape.quadraticCurveTo(0.054, -0.06, 0, -0.064);
+      shape.quadraticCurveTo(-0.054, -0.06, -0.058, 0.004);
       const g = new THREE.Group();
-      const rim = new THREE.Mesh(new THREE.ShapeGeometry(shape, 12), flat("#3a1418"));
+      const rim = new THREE.Mesh(new THREE.ShapeGeometry(shape, 14), flat("#3a1216"));
       g.add(rim);
       if (s.teeth) {
-        const t = new THREE.Mesh(new THREE.PlaneGeometry(0.086, 0.016), flat("#fbfaf4"));
-        t.position.set(0, -0.011, 0.0004);
+        const ts = new THREE.Shape();
+        ts.moveTo(-0.052, 0.001); ts.quadraticCurveTo(0, -0.006, 0.052, 0.001);
+        ts.lineTo(0.046, -0.016); ts.quadraticCurveTo(0, -0.022, -0.046, -0.016); ts.lineTo(-0.052, 0.001);
+        const t = new THREE.Mesh(new THREE.ShapeGeometry(ts, 10), flat("#fbfaf4"));
+        t.position.z = 0.0004;
         g.add(t);
-        const tongue = new THREE.Mesh(new THREE.CircleGeometry(0.022, 14, Math.PI, Math.PI), flat("#c9474f"));
-        tongue.scale.set(1.2, 0.7, 1); tongue.position.set(0, -0.034, 0.0003);
-        tongue.rotation.z = Math.PI; tongue.position.y = -0.05;
+        const tongue = new THREE.Mesh(new THREE.CircleGeometry(0.03, 16, 0, Math.PI), flat("#d0505a"));
+        tongue.scale.set(1.15, 0.6, 1); tongue.position.set(0, -0.063, 0.0003);
         g.add(tongue);
       }
-      g.position.set(0, -0.06, 0.1585);
-      g.rotation.x = -0.12;
+      g.position.set(0, -0.058, 0.152);
+      g.rotation.x = -0.32;
       g.visible = false;
       this.grin = g;
       this.head.add(g);
@@ -310,7 +355,7 @@ export class Character {
     const crown = mesh(new THREE.SphereGeometry(R, 32, 12, 0, Math.PI * 2, 0, Math.PI * 0.34), mat, 0.006);
     crown.scale.set(1, 1.04, 1);
     this.head.add(crown);
-    const win = 0.82;
+    const win = s.hairStyle === "spiky" ? 1.15 : 0.82;
     const sides = mesh(new THREE.SphereGeometry(R, 32, 14, Math.PI / 2 + win, Math.PI * 2 - 2 * win, Math.PI * 0.335, Math.PI * (s.hairStyle === "ponytail" ? 0.36 : 0.27)), mat, 0.006);
     sides.scale.set(1, 1.04, 1);
     this.head.add(sides);
@@ -324,16 +369,22 @@ export class Character {
     if (s.hairStyle === "spiky") {
       // messy tufts pointing out of the crown and over the forehead
       const tufts: [number, number, number, number][] = [
-        // [azimuth, elevation (0 = equator, PI/2 = top), length, radius]
-        [0.0, 1.35, 0.11, 0.045], [0.9, 1.0, 0.1, 0.042], [-0.9, 1.0, 0.1, 0.042], [1.9, 0.9, 0.1, 0.042], [-1.9, 0.9, 0.1, 0.042],
-        [2.8, 0.85, 0.09, 0.04], [-2.8, 0.85, 0.09, 0.04], [0.35, 0.72, 0.085, 0.036], [-0.4, 0.75, 0.09, 0.036], [0.0, 0.62, 0.075, 0.034],
-        [1.35, 0.55, 0.08, 0.034], [-1.35, 0.55, 0.08, 0.034], [2.4, 0.45, 0.08, 0.035], [-2.4, 0.45, 0.08, 0.035], [3.14, 0.4, 0.08, 0.035]
+        // [azimuth (0 = front), elevation (PI/2 = top), length, radius]
+        [0.0, 1.3, 0.1, 0.05], [0.8, 1.05, 0.1, 0.048], [-0.8, 1.05, 0.1, 0.048], [1.7, 0.95, 0.1, 0.046], [-1.7, 0.95, 0.1, 0.046],
+        [2.6, 0.85, 0.1, 0.046], [-2.6, 0.85, 0.1, 0.046], [3.14, 0.75, 0.1, 0.046], [2.1, 0.45, 0.09, 0.042], [-2.1, 0.45, 0.09, 0.042],
+        [2.9, 0.35, 0.09, 0.042], [-2.9, 0.35, 0.09, 0.042], [1.45, 0.5, 0.08, 0.036], [-1.45, 0.5, 0.08, 0.036],
+        // bangs: messy locks falling over the forehead
+        [0.0, 0.8, 0.12, 0.034], [0.38, 0.8, 0.12, 0.033], [-0.38, 0.8, 0.12, 0.033], [0.72, 0.74, 0.11, 0.032], [-0.72, 0.74, 0.11, 0.032],
+        [0.18, 0.95, 0.11, 0.034], [-0.2, 0.95, 0.11, 0.034]
       ];
       for (const [az, el, len, r] of tufts) {
         const dir = new THREE.Vector3(Math.sin(az) * Math.cos(el), Math.sin(el), Math.cos(az) * Math.cos(el)).normalize();
         // front tufts droop down over the forehead
-        const front = Math.cos(az) > 0.6 && el < 0.9;
-        const aim = front ? dir.clone().add(new THREE.Vector3(0, -0.9, 0.3)).normalize() : dir.clone().add(new THREE.Vector3(0, 0.25, 0)).normalize();
+        const front = Math.cos(az) > 0.6 && el < 1.0;
+        const jitter = new THREE.Vector3(Math.sin(az * 7.3) * 0.25, 0, Math.cos(az * 5.1) * 0.1);
+        const aim = front
+          ? dir.clone().add(new THREE.Vector3(Math.sin(az) * 0.3, -1.15, 0.35)).add(jitter).normalize()
+          : dir.clone().add(new THREE.Vector3(0, 0.05, -0.25)).add(jitter).normalize();
         const cone = mesh(new THREE.ConeGeometry(r, len, 8), mat, 0.005);
         cone.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), aim);
         cone.position.copy(dir.multiplyScalar(R * 0.98)).add(aim.clone().multiplyScalar(len * 0.32));
@@ -374,19 +425,21 @@ export class Character {
     this.neck.rotation.set(look.pitch - (j.spineX ?? 0) * 0.5, look.yaw, 0);
     this.chest.scale.y = 1 + state.breath * 0.012;
     const eyes = Math.max(0.05, face.eyes);
-    this.eyeL.scale.y = this.eyeR.scale.y = 1.25 * eyes;
-    const by = 0.07 + face.brow * 0.03;
+    this.eyeL.scale.y = this.eyeR.scale.y = this.eyeBase * eyes;
+    const by = (this.browTilt ? 0.074 : 0.07) + face.brow * 0.03;
     this.browL.position.y = this.browR.position.y = by;
-    this.browL.rotation.z = -face.brow * 0.25 + face.smile * 0.1;
-    this.browR.rotation.z = face.brow * 0.25 - face.smile * 0.1;
+    this.browL.rotation.z = -face.brow * 0.25 + face.smile * 0.1 + this.browTilt;
+    this.browR.rotation.z = face.brow * 0.25 - face.smile * 0.1 - this.browTilt;
     const open = Math.max(0, Math.min(1, face.mouth));
     this.mouthInner.scale.y = 0.01 + open * 0.75;
     this.mouth.scale.x = 1 - open * 0.3 + face.smile * 0.15;
     this.mouth.rotation.z = 0;
     this.mouth.position.y = -0.075 + face.smile * 0.004 + open * 0.008;
-    const grinning = !!this.grin && open < 0.25 && face.smile > 0.6;
-    if (this.grin) { this.grin.visible = grinning; this.grin.scale.set(0.75 + face.smile * 0.25, 0.55 + face.smile * 0.45, 1); }
-    if (this.teethTop) { this.teethTop.visible = open >= 0.25; this.teethTop.position.y = -0.069 + open * 0.004; }
+    // a big smile stays a big open grin while talking (laughing speech); the jaw opens with each mora
+    const grinning = !!this.grin && face.smile > 0.6;
+    if (this.grin) { this.grin.visible = grinning; this.grin.scale.set(0.7 + face.smile * 0.3, (0.45 + face.smile * 0.55) * (0.8 + open * 0.4), 1); }
+    if (this.teethTop) { this.teethTop.visible = open >= 0.25 && !grinning; this.teethTop.position.y = -0.069 + open * 0.004; }
+    this.mouthInner.visible = !grinning;
     this.mouth.visible = open < 0.25 && !grinning;
   }
 }
@@ -394,11 +447,11 @@ export class Character {
 /** Tapered curved horn growing from the top of the head (side = +1 left, -1 right). */
 function horn(color: string, side: number): THREE.Mesh {
   const curve = new THREE.CatmullRomCurve3([
-    new THREE.Vector3(0.085 * side, 0.125, 0.015),
-    new THREE.Vector3(0.155 * side, 0.175, 0.005),
-    new THREE.Vector3(0.2 * side, 0.26, -0.01),
-    new THREE.Vector3(0.19 * side, 0.35, 0.0),
-    new THREE.Vector3(0.14 * side, 0.41, 0.02)
+    new THREE.Vector3(0.088 * side, 0.118, 0.0),
+    new THREE.Vector3(0.16 * side, 0.155, -0.012),
+    new THREE.Vector3(0.198 * side, 0.225, -0.02),
+    new THREE.Vector3(0.182 * side, 0.295, -0.012),
+    new THREE.Vector3(0.132 * side, 0.33, 0.012)
   ]);
   const segs = 24, radial = 12;
   const geo = new THREE.TubeGeometry(curve, segs, 1, radial, false);
@@ -406,7 +459,7 @@ function horn(color: string, side: number): THREE.Mesh {
   const v = new THREE.Vector3();
   for (let i = 0; i <= segs; i++) {
     const c = curve.getPointAt(i / segs);
-    const r = 0.036 * Math.pow(1 - i / segs, 0.9) + 0.003;
+    const r = 0.046 * Math.pow(1 - i / segs, 0.8) + 0.003;
     for (let k = 0; k <= radial; k++) {
       const idx = i * (radial + 1) + k;
       v.fromBufferAttribute(pos, idx).sub(c).multiplyScalar(r).add(c);

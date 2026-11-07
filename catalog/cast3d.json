@@ -3,9 +3,9 @@
   "cast": {
     "akuma": {
       "name": "悪魔",
-      "role": "チャンネルのメインキャラクター（悪魔）。赤い肌・黒い角・ボサボサの黒髪・とがった耳・胸に「悪魔」の黒パーカー。笑うと歯を見せたニヤけ顔。",
+      "role": "チャンネルのメインキャラクター（悪魔）。赤い顔・目の周りの濃い赤・白目のある大きい目と太い眉・太く短い黒い角・ボサっとした前髪・とがった耳・胸いっぱいに白い「悪魔」の黒パーカー。基本は歯を見せた大笑い（grin）。",
       "style": {
-        "skin": "#d8402c",
+        "skin": "#d93a28",
         "hair": "#18141a",
         "hairStyle": "spiky",
         "top": "#1c1b20",
@@ -17,12 +17,19 @@
         "horns": "#1a1618",
         "ears": "pointed",
         "teeth": true,
-        "cheeks": "#9e1f1c",
-        "height": 1.06
+        "height": 1.06,
+        "eyeStyle": "big",
+        "iris": "#2b1a12",
+        "boldBrows": true,
+        "eyeShadow": "#8a1512"
       },
       "expr": "grin",
       "captionColor": "#ff9d8a",
-      "voice": { "speaker": "玄野武宏", "style": "ノーマル", "speed": 1.15 }
+      "voice": {
+        "speaker": "玄野武宏",
+        "style": "ノーマル",
+        "speed": 1.15
+      }
     },
     "akabeko": {
       "name": "赤べこ（犬）",
@@ -30,7 +37,11 @@
       "figure": "akabeko",
       "height": 1,
       "captionColor": "#ffe07a",
-      "voice": { "speaker": "雨晴はう", "style": "ノーマル", "speed": 1.1 }
+      "voice": {
+        "speaker": "雨晴はう",
+        "style": "ノーマル",
+        "speed": 1.1
+      }
     }
   }
 }

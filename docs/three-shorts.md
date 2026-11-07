@@ -54,8 +54,11 @@ The preset fills style / figure / height / expr / captionColor, and `voices.<id>
 preset voice; anything written in the production wins (style merges key by key).
 
 - **akuma (悪魔)** — procedural `Character`: red skin, black curved `horns`, `hairStyle: "spiky"`,
-  `ears: "pointed"`, black hoodie with `print: "悪魔"`, `teeth`. Expressions `grin` / `smug` show a
-  toothy D-shaped smile. Voice preset: 玄野武宏.
+  `ears: "pointed"`, `eyeStyle: "big"` (sclera, iris, highlight), `boldBrows`, `eyeShadow` face paint,
+  black hoodie with a big `print: "悪魔"`, `teeth`. Default expression `grin`: a toothy open smile that
+  stays open while talking (laughing speech). Pose `hold-up` raises the right hand beside the face —
+  put the akabeko on it at about `{x: root.x - 0.27, y: 1.5, z: root.z + 0.4}` for the selfie shot.
+  Voice preset: 玄野武宏.
 - **akabeko (赤べこ／犬)** — `figure: "akabeko"`, a hand-sized papier-mâché cow (height 1 ≈ 0.2 m).
   No mouth: while it speaks the head nods once per mora; idle is a slow sway. `look` tilts the head,
   `move` places it (put `root.y` on a hand or a surface). Poses are ignored. Voice preset: 雨晴はう.

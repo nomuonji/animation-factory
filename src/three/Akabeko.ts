@@ -18,7 +18,8 @@ export class Akabeko {
   private body!: THREE.Object3D;
 
   constructor(readonly id: string, opts: AkabekoOpts = {}) {
-    const red = toon(opts.body ?? "#d42a24");
+    // papier-mache lacquer: specular so it reads as the glossy toy
+    const red = new THREE.MeshPhongMaterial({ color: opts.body ?? "#d8231d", shininess: 70, specular: 0x6a4a44 });
     const black = toon("#17141a");
     const gold = toon(opts.pattern ?? "#f2c64a");
     const white = toon("#fbf6ea");
@@ -79,7 +80,8 @@ export class Akabeko {
     this.neck.position.set(0, 0.135, 0.075);
     this.root.add(this.neck);
     this.neck.add(this.head);
-    this.head.position.set(0, 0.02, 0.045);
+    this.head.position.set(0, 0.024, 0.05);
+    this.head.scale.setScalar(1.22); // big head = toy proportions
     const skull = mesh(new THREE.SphereGeometry(0.048, 24, 18), red, 0.004);
     skull.scale.set(1.05, 0.95, 1.05);
     this.head.add(skull);
@@ -87,16 +89,21 @@ export class Akabeko {
     muzzle.scale.set(1.1, 0.85, 0.9);
     muzzle.position.set(0, -0.022, 0.035);
     this.head.add(muzzle);
-    // black painted nose band and nostrils
-    const nose = new THREE.Mesh(new THREE.CircleGeometry(0.02, 18), black);
-    nose.scale.set(1.25, 0.6, 1);
-    nose.position.set(0, -0.022, 0.066);
-    this.head.add(nose);
-    // forehead tuft (black fringe painted as a crescent)
-    const fringe = mesh(new THREE.SphereGeometry(0.03, 14, 10, 0, Math.PI * 2, 0, Math.PI * 0.42), black, 0.003);
-    fringe.position.set(0, 0.022, 0.02);
-    fringe.rotation.x = 0.85;
-    this.head.add(fringe);
+    // painted face: two nostrils, a small mouth line, curved black brows
+    for (const side of [-1, 1]) {
+      const n = new THREE.Mesh(new THREE.CircleGeometry(0.0055, 12), flat("#17141a"));
+      n.scale.set(1, 0.7, 1); n.position.set(0.012 * side, -0.016, 0.0655); n.rotation.y = 0.18 * side;
+      this.head.add(n);
+      const brow = new THREE.Mesh(new THREE.TorusGeometry(0.02, 0.0035, 4, 14, Math.PI * 0.8), flat("#17141a"));
+      brow.position.set(0.03 * side, 0.02, 0.045); brow.rotation.set(-0.15, 0.6 * side, Math.PI * 0.1); brow.scale.setScalar(0.85);
+      this.head.add(brow);
+    }
+    const mouthLine = new THREE.Mesh(new THREE.TorusGeometry(0.014, 0.0025, 4, 12, Math.PI * 0.7), flat("#17141a"));
+    mouthLine.position.set(0, -0.03, 0.064); mouthLine.rotation.z = Math.PI * 1.15;
+    this.head.add(mouthLine);
+    const mark = new THREE.Mesh(new THREE.CircleGeometry(0.008, 12), gold);
+    mark.position.set(0, 0.034, 0.042); mark.rotation.x = -0.75;
+    this.head.add(mark);
     // big painted eyes: white disc, gold ring, black pupil
     for (const side of [-1, 1]) {
       const eye = new THREE.Group();
@@ -108,7 +115,7 @@ export class Akabeko {
       const hl = new THREE.Mesh(new THREE.CircleGeometry(0.003, 10), flat("#ffffff"));
       hl.position.set(0.004, 0.004, 0.0015);
       eye.add(ring, white2, pupil, hl);
-      eye.position.set(0.029 * side, 0.016, 0.038);
+      eye.position.set(0.029 * side, 0.012, 0.04);
       eye.rotation.set(-0.05, 0.55 * side, 0);
       this.head.add(eye);
       this.eyes.push(eye);

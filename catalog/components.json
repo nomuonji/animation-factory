@@ -383,7 +383,11 @@
         "printColor",
         "teeth",
         "cheeks",
-        "hairStyle:spiky"
+        "hairStyle:spiky",
+        "eyeStyle(dot|big)",
+        "iris",
+        "boldBrows",
+        "eyeShadow"
       ],
       "poses": [
         "idle",
@@ -396,7 +400,8 @@
         "give",
         "sign",
         "hand-up",
-        "bow"
+        "bow",
+        "hold-up"
       ],
       "expressions": [
         "neutral",
