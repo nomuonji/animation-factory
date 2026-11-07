@@ -70,7 +70,7 @@ export class Director3D {
     let seed = 1;
     for (const [id, a] of Object.entries(tl.actors)) {
       if (a.vrm && Object.entries(tl.actors).some(([o, b]) => o !== id && b.vrm === a.vrm)) throw new Error(`two actors share ${a.vrm}; use different avatars`);
-      const c = a.vrm ? new VrmCharacter(id, assets.get(a.vrm)!, { height: a.height, turn: a.turn }) : new Character(id, a.style ?? {});
+      const c = a.vrm ? new VrmCharacter(id, assets.get(a.vrm)!, { height: a.height, turn: a.turn, seated: a.seated }) : new Character(id, a.style ?? {});
       this.scene.add(c.root);
       const face0 = { eyes: 1, brow: 0, smile: 0, ...(EXPRESSIONS[a.expr ?? "neutral"] ?? {}) } as Val;
       const ch = {

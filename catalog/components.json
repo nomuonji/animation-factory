@@ -320,6 +320,21 @@
           "counter": 0.96,
           "backCounter": 0.9
         }
+      },
+      "interview-room": {
+        "cameras": [
+          "wide",
+          "side",
+          "interviewer-cu",
+          "candidate-cu",
+          "over-interviewer",
+          "over-candidate"
+        ],
+        "surfaces": {
+          "desk": 0.72,
+          "floor": 0
+        },
+        "notes": "会社の会議室での面接。面接官の机（前板で脚が隠れる）z≈-0.4、応募者の椅子は prop（kaykit chair_A, scale 0.8, z≈1.05）。actor.seated=true で座らせる"
       }
     },
     "props": {
