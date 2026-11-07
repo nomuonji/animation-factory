@@ -183,6 +183,10 @@
       "撮影",
       "舞台",
       "何もない"
+    ],
+    "interview-room": [
+      "面接",
+      "会議室"
     ]
   },
   "payoffMechanisms": {

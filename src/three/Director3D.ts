@@ -72,7 +72,7 @@ export class Director3D {
     let seed = 1;
     for (const [id, a] of Object.entries(tl.actors)) {
       if (a.vrm && Object.entries(tl.actors).some(([o, b]) => o !== id && b.vrm === a.vrm)) throw new Error(`two actors share ${a.vrm}; use different avatars`);
-      const c = a.vrm ? new VrmCharacter(id, assets.get(a.vrm)!, { height: a.height, turn: a.turn })
+      const c = a.vrm ? new VrmCharacter(id, assets.get(a.vrm)!, { height: a.height, turn: a.turn, seated: a.seated })
         : a.figure === "chibi" ? new Chibi(id, { ...(a.style as ChibiStyle ?? {}), ...(a.height ? { height: a.height } : {}) })
         : a.figure === "akabeko" ? new Akabeko(id, { height: a.height, ...(a.figureParams ?? {}) })
         : new Character(id, a.style ?? {});

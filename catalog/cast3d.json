@@ -27,7 +27,9 @@
         "speaker": "玄野武宏",
         "style": "ノーマル",
         "speed": 1.15
-      }
+      },
+      "status": "approved 2026-11-07 (main cast)",
+      "reference": "assets/3d/cast/akuma-akabeko-sheet.jpg"
     },
     "akabeko": {
       "name": "赤べこ（犬）",
@@ -39,7 +41,9 @@
         "speaker": "雨晴はう",
         "style": "ノーマル",
         "speed": 1.1
-      }
+      },
+      "status": "approved 2026-11-07 (main cast)",
+      "reference": "assets/3d/cast/akuma-akabeko-sheet.jpg"
     }
   }
 }
