@@ -187,7 +187,7 @@
       "post": 0.15,
       "line": {
         "who": "interviewer",
-        "text": "あ、いえ、／例えると、です"
+        "text": "いえ、例えると、です"
       },
       "do": [
         {
@@ -204,11 +204,11 @@
       "id": "still",
       "role": "bridge",
       "shot": "candidate-cu",
-      "pre": 0.3,
+      "pre": 0.45,
       "post": 0.3,
       "line": {
         "who": "candidate",
-        "text": "……例えても、／カエルです"
+        "text": "例えても、／カエルです"
       },
       "do": [
         {
@@ -298,11 +298,11 @@
       "id": "back",
       "role": "turn",
       "shot": "over-interviewer",
-      "pre": 0.2,
+      "pre": 0.35,
       "post": 0.25,
       "line": {
         "who": "candidate",
-        "text": "あの……面接官さんは、／動物に例えると？"
+        "text": "面接官さんは、／動物に例えると？"
       },
       "do": [
         {
