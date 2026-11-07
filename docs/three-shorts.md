@@ -54,8 +54,9 @@ The preset fills style / figure / height / expr / captionColor, and `voices.<id>
 preset voice; anything written in the production wins (style merges key by key).
 
 - **akuma (悪魔)** — `figure: "chibi"` (`src/three/Chibi.ts`): a super-deformed (~2.2 heads, height 1 ≈ 1.0 m)
-  cute build with a big round head, glossy eyes set low, blush, a tiny mouth with a fang, fluffy black
-  hair with a fringe and an ahoge, short rounded horns, pointed ears, a spade-tip tail and a black hoodie
+  cute build with a big round head and a face drawn like the 100Avatars FrogEnjoyer (white-rimmed eyes
+  with a big brown iris and highlight, pink dot nose, thin line mouth, round blush), a pointed black
+  fringe and an ahoge, short rounded horns, pointed ears, a spade-tip tail and a black hoodie
   with 「悪魔」 on the belly. Chibi style keys: `skin hair top bottom shoes horns ears tail print printColor
   cheeks hood fang`. Default expression `grin` (open smile while talking). Same poses as other actors;
   with `hold-up` the right hand is at about `{x: root.x - 0.18, y: 0.42, z: root.z + 0.15}` — stand the

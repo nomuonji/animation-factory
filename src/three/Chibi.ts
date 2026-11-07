@@ -22,6 +22,7 @@ export interface ChibiStyle {
   cheeks?: string;
   hood?: boolean;
   fang?: boolean;
+  iris?: string;
   height?: number;
 }
 
@@ -48,7 +49,7 @@ export class Chibi {
   constructor(readonly id: string, style: ChibiStyle = {}) {
     const s = {
       skin: "#f2c9a8", hair: "#2a2226", top: "#2a2a30", bottom: "#24232a", shoes: "#1b1a1f", horns: null, ears: "round",
-      tail: null, print: null, printColor: "#fbf8f2", cheeks: "#ff8f9c", hood: true, fang: false, height: 1, ...style
+      tail: null, print: null, printColor: "#fbf8f2", cheeks: "#ff9c8a", hood: true, fang: false, iris: "#6b3b22", height: 1, ...style
     } as Required<ChibiStyle>;
     const skin = toon(s.skin), top = toon(s.top), bottom = toon(s.bottom), hairM = toon(s.hair);
 
@@ -143,51 +144,65 @@ export class Chibi {
     this.head.add(skull);
     const surf = (x: number, y: number) => Math.sqrt(Math.max(0, R * R - (x / 1.06) ** 2 - (y / 0.96) ** 2));
 
-    // eyes: big glossy ovals, set low on the face
+    // Face in the hand-painted 100Avatars style (cf. FrogEnjoyer): round eyes with a white rim,
+    // a big brown iris, a dark outline and a highlight; a pink dot nose; a thin line mouth; round blush.
+    const onFace = (o: THREE.Object3D, x: number, y: number, lift = 0.002) => {
+      const z = surf(x, y);
+      o.position.set(x, y, z + lift);
+      o.lookAt(new THREE.Vector3(x * 2.2, y * 2.2, z * 2.2 + lift));
+      this.head.add(o);
+    };
+    const disc = (r: number, color: string, z: number) => {
+      const m = new THREE.Mesh(new THREE.CircleGeometry(r, 28), flat(color));
+      m.position.z = z;
+      return m;
+    };
     for (const side of [-1, 1]) {
       const g = new THREE.Group();
-      const ex = 0.085 * side, ey = -0.025;
-      const iris = new THREE.Mesh(new THREE.SphereGeometry(0.042, 20, 16), flat("#1d1420"));
-      iris.scale.set(0.82, 1.12, 0.3);
-      const low = new THREE.Mesh(new THREE.SphereGeometry(0.03, 16, 12), flat("#5a3a4e"));
-      low.scale.set(0.75, 0.55, 0.3); low.position.set(0, -0.022, 0.004);
-      const hl = new THREE.Mesh(new THREE.SphereGeometry(0.0145, 12, 10), flat("#ffffff"));
-      hl.scale.set(1, 1.1, 0.3); hl.position.set(0.012, 0.018, 0.009);
-      const hl2 = new THREE.Mesh(new THREE.SphereGeometry(0.007, 10, 8), flat("#ffffff"));
-      hl2.scale.set(1, 1, 0.3); hl2.position.set(-0.012, -0.018, 0.009);
-      g.add(iris, low, hl, hl2);
-      g.position.set(ex, ey, surf(ex, ey) - 0.006);
-      g.rotation.set(0.08, Math.asin(ex / R) * 0.9, 0);
-      this.head.add(g);
+      g.add(disc(0.058, "#2a1a14", 0));                 // outline
+      g.add(disc(0.0535, "#fbf8f0", 0.0004));           // white rim
+      const iris = disc(0.042, s.iris, 0.0008);         // big iris, set slightly inward and low
+      iris.position.set(-0.004 * side, -0.004, 0.0008);
+      g.add(iris);
+      const pupil = disc(0.023, "#1a100c", 0.0012);
+      pupil.position.set(-0.004 * side, -0.004, 0.0012);
+      g.add(pupil);
+      const hl = disc(0.014, "#ffffff", 0.0016);
+      hl.position.set(0.014, 0.015, 0.0016);
+      g.add(hl);
+      const hl2 = disc(0.0055, "#ffffff", 0.0016);
+      hl2.position.set(-0.014, -0.018, 0.0016);
+      g.add(hl2);
+      const eye = new THREE.Group();
+      eye.add(g);
+      onFace(eye, 0.088 * side, -0.018, 0.0025);
       this.eyes.push(g);
-      const brow = new THREE.Mesh(new THREE.CapsuleGeometry(0.008, 0.03, 3, 8), flat(shade(s.hair, 0.02)));
+      // thin brows (mostly hidden by the fringe; they matter for doubtful / surprised)
+      const brow = new THREE.Mesh(new THREE.CapsuleGeometry(0.0055, 0.03, 3, 8), flat(shade(s.hair, -0.02)));
       brow.rotation.z = Math.PI / 2;
-      const by = 0.042;
-      brow.position.set(0.085 * side, by, surf(0.085, by) + 0.002);
-      brow.rotation.y = Math.asin(0.085 * side / R);
-      this.head.add(brow);
+      const bwrap = new THREE.Group(); bwrap.add(brow);
+      onFace(bwrap, 0.088 * side, 0.068, 0.004);
       this.brows.push(brow);
-      // blush
-      const cx = 0.148 * side, cy = -0.085;
-      const cheek = new THREE.Mesh(new THREE.CircleGeometry(0.03, 20), new THREE.MeshBasicMaterial({ color: s.cheeks, transparent: true, opacity: 0.65 }));
-      cheek.scale.set(1.3, 0.75, 1);
-      cheek.position.set(cx, cy, surf(cx, cy) + 0.001);
-      cheek.rotation.y = Math.asin(cx / (R * 1.06)) * 1.05;
-      this.head.add(cheek);
+      // round blush
+      const cheek = new THREE.Mesh(new THREE.CircleGeometry(0.036, 24), new THREE.MeshBasicMaterial({ color: s.cheeks, transparent: true, opacity: 0.8 }));
+      onFace(cheek, 0.155 * side, -0.068, 0.0015);
     }
+    const nose = new THREE.Mesh(new THREE.CircleGeometry(0.009, 16), flat("#f08a8a"));
+    nose.scale.set(1.25, 0.9, 1);
+    onFace(nose, 0, -0.055, 0.002);
 
     // mouth: rest = small smile curve, open = rounded D with a fang, pout = small flat arc
-    const my = -0.1, mz = surf(0, -0.1) + 0.0015;
-    const rest = new THREE.Mesh(new THREE.TorusGeometry(0.016, 0.0035, 4, 14, Math.PI * 0.9), flat("#3a1a20"));
-    rest.rotation.z = Math.PI * 1.05;
-    rest.position.set(0, my + 0.008, mz);
+    const my = -0.092, mz = surf(0, -0.092) + 0.0015;
+    const rest = new THREE.Mesh(new THREE.TorusGeometry(0.03, 0.0026, 4, 16, Math.PI * 0.32), flat("#3a1a14"));
+    rest.rotation.z = Math.PI * 1.34;
+    rest.position.set(0, my + 0.03, mz);
     this.mouthRest = rest;
     const open = new THREE.Group();
     const d = new THREE.Shape();
-    d.moveTo(-0.028, 0); d.lineTo(0.028, 0); d.quadraticCurveTo(0.027, -0.034, 0, -0.036); d.quadraticCurveTo(-0.027, -0.034, -0.028, 0);
+    d.moveTo(-0.022, 0); d.lineTo(0.022, 0); d.quadraticCurveTo(0.021, -0.028, 0, -0.03); d.quadraticCurveTo(-0.021, -0.028, -0.022, 0);
     open.add(new THREE.Mesh(new THREE.ShapeGeometry(d, 12), flat("#5a1a26")));
     const tongue = new THREE.Mesh(new THREE.CircleGeometry(0.016, 14, 0, Math.PI), flat("#f07a86"));
-    tongue.scale.set(1.1, 0.7, 1); tongue.position.set(0, -0.034, 0.0004);
+    tongue.scale.set(0.9, 0.6, 1); tongue.position.set(0, -0.028, 0.0004);
     open.add(tongue);
     if (s.fang) {
       const f = new THREE.Shape(); f.moveTo(0, 0); f.lineTo(0.011, 0); f.lineTo(0.0055, -0.012); f.lineTo(0, 0);
@@ -198,9 +213,9 @@ export class Chibi {
     open.position.set(0, my + 0.012, mz - 0.002);
     open.rotation.x = -0.35;
     this.mouthOpen = open;
-    const pout = new THREE.Mesh(new THREE.TorusGeometry(0.013, 0.0035, 4, 12, Math.PI * 0.8), flat("#3a1a20"));
-    pout.rotation.z = Math.PI * 0.1;
-    pout.position.set(0, my - 0.004, mz);
+    const pout = new THREE.Mesh(new THREE.TorusGeometry(0.03, 0.0026, 4, 16, Math.PI * 0.3), flat("#3a1a14"));
+    pout.rotation.z = Math.PI * 0.35;
+    pout.position.set(0, my - 0.032, mz);
     this.mouthPout = pout;
     this.head.add(rest, open, pout);
 
@@ -228,24 +243,25 @@ export class Chibi {
     const back = mesh(new THREE.SphereGeometry(R * 1.05, 32, 16, Math.PI * 0.5 + 1.3, Math.PI * 2 - 2.6, Math.PI * 0.29, Math.PI * 0.36), hairM, 0.008);
     back.scale.set(1.06, 1.0, 1.02);
     this.head.add(back);
-    const lock = (x: number, y: number, len: number, w: number, tilt: number) => {
-      const m = mesh(new THREE.CapsuleGeometry(w, len, 4, 12), hairM, 0.006);
-      m.scale.set(1, 1, 0.55);
-      m.rotation.z = tilt;
-      const z = surf(x, y) + 0.008;
-      m.position.set(x, y, z);
-      m.rotation.x = -0.25 - y * 1.2;
-      m.rotation.y = Math.asin(Math.max(-1, Math.min(1, x / R))) * 0.9;
-      this.head.add(m);
+    // messy fringe with pointed tips (hand-drawn bangs)
+    const spike = (x: number, y: number, len: number, w: number, tilt: number) => {
+      const m = mesh(new THREE.ConeGeometry(w, len, 10), hairM, 0.005);
+      m.scale.set(1, 1, 0.45);
+      const g = new THREE.Group();
+      m.rotation.z = Math.PI + tilt;   // tip points down
+      m.position.y = -len * 0.35;
+      g.add(m);
+      onFace(g, x, y, 0.01);
     };
-    // scalloped fringe across the forehead
-    lock(0.0, 0.125, 0.045, 0.046, 0.0);
-    lock(0.07, 0.122, 0.045, 0.045, -0.22);
-    lock(-0.07, 0.122, 0.045, 0.045, 0.24);
-    lock(0.135, 0.1, 0.05, 0.042, -0.42);
-    lock(-0.135, 0.1, 0.05, 0.042, 0.45);
-    lock(0.035, 0.165, 0.03, 0.05, -0.1);
-    lock(-0.04, 0.165, 0.03, 0.05, 0.12);
+    spike(0.0, 0.155, 0.12, 0.05, 0.05);
+    spike(0.06, 0.15, 0.13, 0.048, -0.18);
+    spike(-0.065, 0.15, 0.12, 0.048, 0.2);
+    spike(0.12, 0.13, 0.12, 0.045, -0.35);
+    spike(-0.125, 0.13, 0.13, 0.045, 0.38);
+    spike(0.03, 0.18, 0.1, 0.05, 0.25);
+    spike(-0.035, 0.18, 0.1, 0.05, -0.2);
+    spike(0.17, 0.09, 0.11, 0.04, -0.15);
+    spike(-0.17, 0.09, 0.11, 0.04, 0.15);
     for (const side of [-1, 1]) {
       const sideLock = mesh(new THREE.CapsuleGeometry(0.04, 0.09, 4, 10), hairM, 0.006);
       sideLock.scale.set(0.6, 0.9, 0.8);
@@ -304,10 +320,10 @@ export class Chibi {
     this.belly.scale.y = 1.02 + state.breath * 0.012;
     if (this.tail) this.tail.rotation.set(Math.sin(time * 2.1) * 0.12, Math.sin(time * 1.6) * 0.35, 0);
     const eyes = Math.max(0.06, face.eyes);
-    for (const e of this.eyes) e.scale.set(1, eyes * (1 + face.smile * 0.02), 1);
+    for (const e of this.eyes) e.scale.set(1, Math.min(1.15, eyes), 1);
     for (const [i, b] of this.brows.entries()) {
       const side = i === 0 ? -1 : 1;
-      b.position.y = 0.042 + face.brow * 0.02;
+      b.position.y = face.brow * 0.02;
       b.rotation.z = Math.PI / 2 + side * (face.brow * 0.35 - face.smile * 0.1);
     }
     const open = Math.max(0, Math.min(1, face.mouth));
