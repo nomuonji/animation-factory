@@ -46,6 +46,23 @@ Kenney (kenney.nl, CC0), Poly Haven (CC0, realistic), Poly Pizza (mixed CC0/CC-B
 Files the sandbox cannot download go into `catalog/remote-assets.json`; the **Fetch remote assets**
 workflow downloads them on a runner and uploads an artifact with sha256 for review.
 
+## Main cast (reusable presets)
+
+`catalog/cast3d.json` holds the channel's own characters. Reference them instead of repeating
+style blocks: `"actors": {"akuma": {"cast": "akuma", "root": {...}}, "beko": {"cast": "akabeko", "root": {...}}}`.
+The preset fills style / figure / height / expr / captionColor, and `voices.<id>` falls back to the
+preset voice; anything written in the production wins (style merges key by key).
+
+- **akuma (悪魔)** — procedural `Character`: red skin, black curved `horns`, `hairStyle: "spiky"`,
+  `ears: "pointed"`, black hoodie with `print: "悪魔"`, `teeth`. Expressions `grin` / `smug` show a
+  toothy D-shaped smile. Voice preset: 玄野武宏.
+- **akabeko (赤べこ／犬)** — `figure: "akabeko"`, a hand-sized papier-mâché cow (height 1 ≈ 0.2 m).
+  No mouth: while it speaks the head nods once per mora; idle is a slow sway. `look` tilts the head,
+  `move` places it (put `root.y` on a hand or a surface). Poses are ignored. Voice preset: 雨晴はう.
+
+Turnaround / QA: `productions/cast-akuma-akabeko` (`meta.kind: "character-sheet"` skips the story lint
+and is marked `publish: false` in `status.json`; never send it to publishing).
+
 ## Sets
 
 `convenience-store` (counter, register, hot-snack case, microwaves, shelves) and `studio` (plain cyclorama for character sheets and lineups; cameras `front`, `close`).

@@ -1,0 +1,36 @@
+{
+  "doc": "Reusable 3D cast. In scene3d.json: actors.<id> = {\"cast\": \"akuma\", \"root\": {...}} — the preset fills style/figure/height/captionColor, and voices.<id> falls back to the preset voice. Anything written in the production wins.",
+  "cast": {
+    "akuma": {
+      "name": "悪魔",
+      "role": "チャンネルのメインキャラクター（悪魔）。赤い肌・黒い角・ボサボサの黒髪・とがった耳・胸に「悪魔」の黒パーカー。笑うと歯を見せたニヤけ顔。",
+      "style": {
+        "skin": "#d8402c",
+        "hair": "#18141a",
+        "hairStyle": "spiky",
+        "top": "#1c1b20",
+        "hood": true,
+        "print": "悪魔",
+        "printColor": "#f4f1ea",
+        "bottom": "#24232a",
+        "shoes": "#151418",
+        "horns": "#1a1618",
+        "ears": "pointed",
+        "teeth": true,
+        "cheeks": "#9e1f1c",
+        "height": 1.06
+      },
+      "expr": "grin",
+      "captionColor": "#ff9d8a",
+      "voice": { "speaker": "玄野武宏", "style": "ノーマル", "speed": 1.15 }
+    },
+    "akabeko": {
+      "name": "赤べこ（犬）",
+      "role": "チャンネルのメインキャラクター（相棒）。会津の赤べこ。口はなく、しゃべると首がモーラごとにうなずく。手のひらサイズ（height 1 ≒ 0.2 m）。",
+      "figure": "akabeko",
+      "height": 1,
+      "captionColor": "#ffe07a",
+      "voice": { "speaker": "雨晴はう", "style": "ノーマル", "speed": 1.1 }
+    }
+  }
+}

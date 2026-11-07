@@ -9,7 +9,7 @@ import { canvasTexture, flat, JP_FONT, mesh, toon } from "./toon";
 export interface CharacterStyle {
   skin?: string;
   hair?: string;
-  hairStyle?: "side-part" | "ponytail" | "short" | "bald";
+  hairStyle?: "side-part" | "ponytail" | "short" | "bald" | "spiky";
   top?: string;          // shirt / hoodie colour (also sleeves)
   vest?: string | null;  // uniform vest over the top
   vestTrim?: string;
@@ -19,6 +19,12 @@ export interface CharacterStyle {
   nameTag?: string | null;
   hood?: boolean;
   height?: number;       // scale multiplier
+  horns?: string | null; // horn colour (devil, oni); null = none
+  ears?: "round" | "pointed";
+  print?: string | null; // vertical text printed on the chest (e.g. 悪魔 on a hoodie)
+  printColor?: string;
+  teeth?: boolean;       // white teeth in a grin and when the mouth opens
+  cheeks?: string | null; // flat blush/face-paint patches under the eyes
 }
 
 export type Joints = Record<string, number>;
@@ -51,7 +57,9 @@ export const EXPRESSIONS: Record<string, Partial<FaceState>> = {
   polite: { eyes: 0.9, brow: 0.08, smile: 0.5 },
   surprised: { eyes: 1.25, brow: 0.35, smile: -0.1 },
   doubtful: { eyes: 0.72, brow: -0.25, smile: -0.25 },
-  weary: { eyes: 0.6, brow: -0.15, smile: -0.35 }
+  weary: { eyes: 0.6, brow: -0.15, smile: -0.35 },
+  grin: { eyes: 0.85, brow: 0.2, smile: 1 },
+  smug: { eyes: 0.68, brow: -0.12, smile: 0.75 }
 };
 
 export class Character {
@@ -72,12 +80,15 @@ export class Character {
   private browR!: THREE.Mesh;
   private mouth!: THREE.Mesh;
   private mouthInner!: THREE.Mesh;
+  private grin: THREE.Object3D | null = null;
+  private teethTop: THREE.Mesh | null = null;
   private chest!: THREE.Object3D;
 
   constructor(readonly id: string, readonly style: CharacterStyle) {
     const s = {
       skin: "#f2c9a8", hair: "#2a2226", hairStyle: "short", top: "#f4f2ee", vest: null, vestTrim: "#ffffff",
-      bottom: "#3a3d4a", shoes: "#2b2b30", glasses: false, nameTag: null, hood: false, height: 1, ...style
+      bottom: "#3a3d4a", shoes: "#2b2b30", glasses: false, nameTag: null, hood: false, height: 1,
+      horns: null, ears: "round", print: null, printColor: "#f6f3ec", teeth: false, cheeks: null, ...style
     } as Required<CharacterStyle>;
     const skin = toon(s.skin);
     const top = toon(s.top);
@@ -127,7 +138,7 @@ export class Character {
       hood.rotation.set(Math.PI / 2 + 0.25, 0, Math.PI * 0.8);
       hood.position.set(0, 0.47, -0.05);
       this.spine.add(hood);
-      for (const side of [-1, 1]) {
+      for (const side of s.print ? [] : [-1, 1]) {
         const cord = mesh(new THREE.CylinderGeometry(0.006, 0.006, 0.12), flat("#e8e4dc"), false);
         cord.position.set(0.035 * side, 0.36, 0.13);
         this.spine.add(cord);
@@ -143,6 +154,19 @@ export class Character {
       tag.position.set(-0.075, 0.37, 0.134);
       tag.rotation.y = -0.18;
       this.spine.add(tag);
+    }
+
+    if (s.print) {
+      const chars = [...s.print];
+      const tex = canvasTexture(160, 160 * chars.length, (g, w, h) => {
+        g.clearRect(0, 0, w, h);
+        g.fillStyle = s.printColor; g.font = `900 132px ${JP_FONT}`; g.textAlign = "center"; g.textBaseline = "middle";
+        chars.forEach((c, i) => g.fillText(c, w / 2, (i + 0.5) * (h / chars.length) + 4));
+      });
+      const ph = Math.min(0.24, 0.1 * chars.length);
+      const print = new THREE.Mesh(new THREE.PlaneGeometry(ph / chars.length, ph), new THREE.MeshBasicMaterial({ map: tex, transparent: true }));
+      print.position.set(0, 0.33 - ph / 2, 0.131);
+      this.spine.add(print);
     }
 
     // arms
@@ -182,10 +206,18 @@ export class Character {
     skull.scale.set(1, 1.06, 0.98);
     this.head.add(skull);
     for (const side of [-1, 1]) {
-      const ear = mesh(new THREE.SphereGeometry(0.035, 10, 8), skin, 0.005);
-      ear.scale.set(0.5, 1, 0.8);
-      ear.position.set(0.162 * side, -0.01, 0);
-      this.head.add(ear);
+      if (s.ears === "pointed") {
+        const ear = mesh(new THREE.ConeGeometry(0.034, 0.13, 10), skin, 0.005);
+        ear.scale.set(1, 1, 0.45);
+        ear.rotation.set(0, side * 0.35, -side * 1.05);
+        ear.position.set(0.19 * side, 0.02, -0.005);
+        this.head.add(ear);
+      } else {
+        const ear = mesh(new THREE.SphereGeometry(0.035, 10, 8), skin, 0.005);
+        ear.scale.set(0.5, 1, 0.8);
+        ear.position.set(0.162 * side, -0.01, 0);
+        this.head.add(ear);
+      }
     }
     const nose = mesh(new THREE.SphereGeometry(0.018, 10, 8), toon(shade(s.skin, -0.08)), false);
     nose.position.set(0, -0.025, 0.163);
@@ -208,6 +240,47 @@ export class Character {
     this.mouthInner.scale.set(1, 0.01, 0.3);
     this.mouthInner.position.set(0, -0.078, 0.153);
     this.head.add(this.mouth, this.mouthInner);
+    if (s.teeth) {
+      this.teethTop = new THREE.Mesh(new THREE.BoxGeometry(0.03, 0.007, 0.006), flat("#fbfaf4"));
+      this.teethTop.position.set(0, -0.069, 0.158);
+      this.head.add(this.teethTop);
+    }
+    // wide grin: a D-shaped open smile (dark rim, white teeth) used when smile is high and not talking
+    {
+      const shape = new THREE.Shape();
+      shape.moveTo(-0.05, 0); shape.lineTo(0.05, 0);
+      shape.quadraticCurveTo(0.045, -0.05, 0, -0.052);
+      shape.quadraticCurveTo(-0.045, -0.05, -0.05, 0);
+      const g = new THREE.Group();
+      const rim = new THREE.Mesh(new THREE.ShapeGeometry(shape, 12), flat("#3a1418"));
+      g.add(rim);
+      if (s.teeth) {
+        const t = new THREE.Mesh(new THREE.PlaneGeometry(0.086, 0.016), flat("#fbfaf4"));
+        t.position.set(0, -0.011, 0.0004);
+        g.add(t);
+        const tongue = new THREE.Mesh(new THREE.CircleGeometry(0.022, 14, Math.PI, Math.PI), flat("#c9474f"));
+        tongue.scale.set(1.2, 0.7, 1); tongue.position.set(0, -0.034, 0.0003);
+        tongue.rotation.z = Math.PI; tongue.position.y = -0.05;
+        g.add(tongue);
+      }
+      g.position.set(0, -0.06, 0.1585);
+      g.rotation.x = -0.12;
+      g.visible = false;
+      this.grin = g;
+      this.head.add(g);
+    }
+    if (s.cheeks) {
+      for (const side of [-1, 1]) {
+        const c = new THREE.Mesh(new THREE.CircleGeometry(0.03, 16), new THREE.MeshBasicMaterial({ color: s.cheeks, transparent: true, opacity: 0.55 }));
+        c.scale.set(1.2, 0.7, 1);
+        c.position.set(0.085 * side, -0.02, 0.146);
+        c.rotation.y = 0.5 * side;
+        this.head.add(c);
+      }
+    }
+    if (s.horns) {
+      for (const side of [-1, 1]) this.head.add(horn(s.horns, side));
+    }
 
     if (s.glasses) {
       const frame = flat("#222026");
@@ -247,6 +320,26 @@ export class Character {
       fringe.scale.set(0.6, 1, 0.5);
       fringe.position.set(0.035, 0.125, 0.125);
       this.head.add(fringe);
+    }
+    if (s.hairStyle === "spiky") {
+      // messy tufts pointing out of the crown and over the forehead
+      const tufts: [number, number, number, number][] = [
+        // [azimuth, elevation (0 = equator, PI/2 = top), length, radius]
+        [0.0, 1.35, 0.11, 0.045], [0.9, 1.0, 0.1, 0.042], [-0.9, 1.0, 0.1, 0.042], [1.9, 0.9, 0.1, 0.042], [-1.9, 0.9, 0.1, 0.042],
+        [2.8, 0.85, 0.09, 0.04], [-2.8, 0.85, 0.09, 0.04], [0.35, 0.72, 0.085, 0.036], [-0.4, 0.75, 0.09, 0.036], [0.0, 0.62, 0.075, 0.034],
+        [1.35, 0.55, 0.08, 0.034], [-1.35, 0.55, 0.08, 0.034], [2.4, 0.45, 0.08, 0.035], [-2.4, 0.45, 0.08, 0.035], [3.14, 0.4, 0.08, 0.035]
+      ];
+      for (const [az, el, len, r] of tufts) {
+        const dir = new THREE.Vector3(Math.sin(az) * Math.cos(el), Math.sin(el), Math.cos(az) * Math.cos(el)).normalize();
+        // front tufts droop down over the forehead
+        const front = Math.cos(az) > 0.6 && el < 0.9;
+        const aim = front ? dir.clone().add(new THREE.Vector3(0, -0.9, 0.3)).normalize() : dir.clone().add(new THREE.Vector3(0, 0.25, 0)).normalize();
+        const cone = mesh(new THREE.ConeGeometry(r, len, 8), mat, 0.005);
+        cone.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), aim);
+        cone.position.copy(dir.multiplyScalar(R * 0.98)).add(aim.clone().multiplyScalar(len * 0.32));
+        cone.position.y *= 1.04;
+        this.head.add(cone);
+      }
     }
     if (s.hairStyle === "ponytail") {
       for (const side of [-1, 1]) {
@@ -291,8 +384,37 @@ export class Character {
     this.mouth.scale.x = 1 - open * 0.3 + face.smile * 0.15;
     this.mouth.rotation.z = 0;
     this.mouth.position.y = -0.075 + face.smile * 0.004 + open * 0.008;
-    this.mouth.visible = open < 0.25;
+    const grinning = !!this.grin && open < 0.25 && face.smile > 0.6;
+    if (this.grin) { this.grin.visible = grinning; this.grin.scale.set(0.75 + face.smile * 0.25, 0.55 + face.smile * 0.45, 1); }
+    if (this.teethTop) { this.teethTop.visible = open >= 0.25; this.teethTop.position.y = -0.069 + open * 0.004; }
+    this.mouth.visible = open < 0.25 && !grinning;
   }
+}
+
+/** Tapered curved horn growing from the top of the head (side = +1 left, -1 right). */
+function horn(color: string, side: number): THREE.Mesh {
+  const curve = new THREE.CatmullRomCurve3([
+    new THREE.Vector3(0.085 * side, 0.125, 0.015),
+    new THREE.Vector3(0.155 * side, 0.175, 0.005),
+    new THREE.Vector3(0.2 * side, 0.26, -0.01),
+    new THREE.Vector3(0.19 * side, 0.35, 0.0),
+    new THREE.Vector3(0.14 * side, 0.41, 0.02)
+  ]);
+  const segs = 24, radial = 12;
+  const geo = new THREE.TubeGeometry(curve, segs, 1, radial, false);
+  const pos = geo.attributes.position as THREE.BufferAttribute;
+  const v = new THREE.Vector3();
+  for (let i = 0; i <= segs; i++) {
+    const c = curve.getPointAt(i / segs);
+    const r = 0.036 * Math.pow(1 - i / segs, 0.9) + 0.003;
+    for (let k = 0; k <= radial; k++) {
+      const idx = i * (radial + 1) + k;
+      v.fromBufferAttribute(pos, idx).sub(c).multiplyScalar(r).add(c);
+      pos.setXYZ(idx, v.x, v.y, v.z);
+    }
+  }
+  geo.computeVertexNormals();
+  return mesh(geo, toon(color), 0.005);
 }
 
 export function shade(hex: string, amount: number): string {
