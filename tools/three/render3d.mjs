@@ -225,7 +225,7 @@ if (m.track) {
   graph.push(`[bgmraw][key]sidechaincompress=threshold=0.02:ratio=${m.duckRatio ?? 5}:attack=20:release=450:makeup=1[bgm]`);
   buses += "[bgm]"; nb = 3;
 } else graph.push("[key]anullsink");
-graph.push(`${buses}amix=inputs=${nb}:normalize=0:duration=first,atrim=0:${dur.toFixed(3)}[out]`);
+graph.push(`${buses}amix=inputs=${nb}:normalize=0:duration=longest,apad,atrim=0:${dur.toFixed(3)}[out]`);
 const pre = join(outDir, "mix-pre.wav"), mix = join(outDir, "mix.wav");
 await run("ffmpeg", ["-y", "-loglevel", "error", ...inputs, "-filter_complex", graph.join(";"), "-map", "[out]", "-ar", "48000", "-ac", "2", pre]);
 // two-pass loudness normalisation to -14 LUFS (YouTube playback reference)
