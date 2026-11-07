@@ -1,5 +1,6 @@
 import * as THREE from "three";
 import { Akabeko } from "./Akabeko";
+import { Chibi, type ChibiStyle } from "./Chibi";
 import { Character, EXPRESSIONS, POSES, type FaceState, type Joints } from "./Character";
 import { PROPS, type Prop } from "./props";
 import { SETS, type CameraPreset } from "./sets";
@@ -57,7 +58,7 @@ function numeric(to: Record<string, number | string>): Val {
 export class Director3D {
   readonly scene = new THREE.Scene();
   readonly camera: THREE.PerspectiveCamera;
-  private actors = new Map<string, { c: Character | VrmCharacter | Akabeko; ch: { pose: Channel; root: Channel; look: Channel; face: Channel; wiggle: Channel }; seed: number }>();
+  private actors = new Map<string, { c: Character | VrmCharacter | Akabeko | Chibi; ch: { pose: Channel; root: Channel; look: Channel; face: Channel; wiggle: Channel }; seed: number }>();
   private props = new Map<string, { p: Prop; tf: Channel; vis: Channel; param: Channel }>();
   private cameras: Record<string, CameraPreset>;
 
@@ -72,6 +73,7 @@ export class Director3D {
     for (const [id, a] of Object.entries(tl.actors)) {
       if (a.vrm && Object.entries(tl.actors).some(([o, b]) => o !== id && b.vrm === a.vrm)) throw new Error(`two actors share ${a.vrm}; use different avatars`);
       const c = a.vrm ? new VrmCharacter(id, assets.get(a.vrm)!, { height: a.height, turn: a.turn })
+        : a.figure === "chibi" ? new Chibi(id, { ...(a.style as ChibiStyle ?? {}), ...(a.height ? { height: a.height } : {}) })
         : a.figure === "akabeko" ? new Akabeko(id, { height: a.height, ...(a.figureParams ?? {}) })
         : new Character(id, a.style ?? {});
       this.scene.add(c.root);

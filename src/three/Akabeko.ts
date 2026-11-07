@@ -115,7 +115,7 @@ export class Akabeko {
       const hl = new THREE.Mesh(new THREE.CircleGeometry(0.003, 10), flat("#ffffff"));
       hl.position.set(0.004, 0.004, 0.0015);
       eye.add(ring, white2, pupil, hl);
-      eye.position.set(0.029 * side, 0.012, 0.04);
+      eye.position.set(0.029 * side, 0.012, 0.044);
       eye.rotation.set(-0.05, 0.55 * side, 0);
       this.head.add(eye);
       this.eyes.push(eye);
