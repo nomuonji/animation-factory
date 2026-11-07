@@ -7,6 +7,7 @@
  *   node tools/three/design-lint.mjs <id>     (estimated voice timing)
  */
 import { readFile } from "node:fs/promises";
+import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import process from "node:process";
 import { fileURLToPath } from "node:url";
@@ -17,6 +18,17 @@ const chars = (s) => [...String(s ?? "")].length;
 
 export async function loadFormats() {
   return JSON.parse(await readFile(join(root, "catalog", "skit-formats.json"), "utf8"));
+}
+
+/** Other productions' payoff mechanisms, to stop the same twist being reused back to back. */
+function otherMechanisms(selfId) {
+  const dir = join(root, "productions"), out = [];
+  for (const id of readdirSync(dir)) {
+    const f = join(dir, id, "scene3d.json");
+    if (id === selfId || !existsSync(f)) continue;
+    try { const m = JSON.parse(readFileSync(f, "utf8")).design?.payoffMechanism; if (m) out.push({ id, m }); } catch { /* ignore */ }
+  }
+  return out;
 }
 
 /** @returns {{errors:string[], warnings:string[], report:string}} */
@@ -49,6 +61,21 @@ export function lintDesign(prod, compiled, catalog) {
     if (d.title && (h.overlay === d.title || d.title.includes(h.overlay))) W.push("フック文字がタイトルの繰り返し。別の層（絵の補足・問い）にする");
   }
   for (const k of ["rule", "turn", "payoff", "button"]) if (!d[k]) E.push(`design.${k} がない`);
+
+  // --- reality: everything except the one broken rule must be true to life (2026-11-07 再発防止)
+  const r = d.reality ?? {};
+  if (!r.place) E.push("design.reality.place（どこで起きる話か）がない");
+  if (!r.normalEvent) E.push("design.reality.normalEvent（その場所で現実に普通に起きる出来事）がない");
+  if (!r.onlyBreak) E.push("design.reality.onlyBreak（現実から外す1点）がない");
+  const setPlaces = catalog.setPlaces?.[prod.set?.kind];
+  if (r.place && setPlaces && !setPlaces.some((k) => r.place.includes(k)))
+    E.push(`セット「${prod.set.kind}」は「${r.place}」ではない（${setPlaces.join("/")}用）。場所に合うセットを作る。手持ちのセットに合わせて場所を変えない`);
+  if (r.place && !setPlaces) E.push(`セット「${prod.set?.kind}」の対応場所が catalog/skit-formats.json の setPlaces にない`);
+
+  // --- the twist itself: not a repeat of a recent payoff
+  if (!d.payoffMechanism) E.push("design.payoffMechanism（オチの仕組みを短い英語のキーで。例: escape-route-also-procedure）がない");
+  else for (const o of otherMechanisms(prod.meta.id)) if (o.m === d.payoffMechanism) W.push(`オチの仕組み「${d.payoffMechanism}」は ${o.id} と同じ。続けて出すなら別の仕組みにする`);
+  if (!d.ideation?.method || !d.ideation?.candidates || d.ideation.candidates < 10) W.push("design.ideation（発想の手順と検討した案の数。10案以上）を記録する");
   if (!Array.isArray(d.escalations) || d.escalations.length < 2) E.push("design.escalations を2段以上");
   if (d.payoff && d.title && [...d.payoff.matchAll(/[一-龠ァ-ヶー]{3,}/g)].some((m) => d.title.includes(m[0]) && !(d.rule ?? "").includes(m[0])))
     W.push("タイトルがオチ（payoff）の語を含んでいる可能性。ネタバレしていないか");
@@ -106,6 +133,8 @@ export function lintDesign(prod, compiled, catalog) {
     `- title: **${d.title}**（${chars(d.title)}字, ${d.titlePattern ?? "-"}）`,
     `- alternatives: ${(d.titleAlternatives ?? []).join(" / ")}`,
     `- hook: ${h.type} — 0秒: ${h.firstFrame ?? "?"} / 画面文字: 「${h.overlay ?? ""}」`,
+    `- reality: ${r.place ?? "?"} — 普通: ${r.normalEvent ?? "?"} / 外す1点: ${r.onlyBreak ?? "?"}`,
+    `- payoff mechanism: ${d.payoffMechanism ?? "?"} / ideation: ${d.ideation?.method ?? "?"}（${d.ideation?.candidates ?? "?"}案）`,
     `- rule: ${d.rule ?? ""}`,
     `- escalations: ${(d.escalations ?? []).map((x, i) => `${i + 1}) ${x}`).join(" ")}`,
     `- turn: ${d.turn ?? ""}`, `- payoff: ${d.payoff ?? ""}`, `- button: ${d.button ?? ""}${d.loop ? "（ループ）" : ""}`,

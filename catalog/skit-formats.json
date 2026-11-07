@@ -173,5 +173,24 @@
     "maxButton": 4.0,
     "maxBridge": 2.5,
     "maxTitleCard": 1.6
+  },
+  "setPlaces": {
+    "convenience-store": [
+      "コンビニ"
+    ],
+    "studio": [
+      "スタジオ",
+      "撮影",
+      "舞台",
+      "何もない"
+    ]
+  },
+  "payoffMechanisms": {
+    "escape-route-also-procedure": "逃げ道にも同じルールが適用される（温めない場合の重要事項説明書）",
+    "literal-callback": "冒頭の言葉が文字どおりの意味で返ってくる",
+    "role-flip": "ルールを押し付けていた側が、同じルールを受ける側になる",
+    "scale-jump": "最後の段だけ桁違いに大きくなる",
+    "rule-was-right": "おかしなルールが、最後に本当に役に立ってしまう",
+    "reveal-everyone": "周りの全員が最初からそのルールで生きていたと分かる"
   }
 }
