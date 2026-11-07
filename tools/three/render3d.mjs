@@ -19,6 +19,7 @@ import { fileURLToPath } from "node:url";
 import { chromium } from "playwright";
 import { createServer } from "vite";
 import { compile, estimateVoice, plainText } from "./compile.mjs";
+import { loadCast, resolveCast } from "./cast.mjs";
 import { lintDesign, loadFormats } from "./design-lint.mjs";
 
 const root = fileURLToPath(new URL("../..", import.meta.url));
@@ -33,7 +34,7 @@ const outDir = join(root, "outputs", "three", id);
 const voiceDir = join(root, "outputs", "three-voice");
 await mkdir(outDir, { recursive: true });
 await mkdir(voiceDir, { recursive: true });
-const prod = JSON.parse(await readFile(prodPath, "utf8"));
+const prod = resolveCast(JSON.parse(await readFile(prodPath, "utf8")), await loadCast());
 const VV = process.env.VOICEVOX_URL ?? "http://127.0.0.1:50021";
 
 function run(cmd, args, input) {
@@ -116,7 +117,9 @@ for (const b of prod.beats) if (b.line) {
 if (flag("voices-only")) { console.log(`voices: ${voiced ? "all synthesized/cached" : "MISSING (VOICEVOX offline)"} in ${voiceDir}`); process.exit(voiced ? 0 : 1); }
 const compiled = compile(prod, (l) => voices.get(l));
 const { timeline, audio } = compiled;
-const lint = lintDesign(prod, compiled, await loadFormats());
+// character sheets (meta.kind = "character-sheet") are cast QA turnarounds, not skits: no story lint, never published
+const sheet = prod.meta?.kind === "character-sheet";
+const lint = sheet ? { errors: [], warnings: [], report: "# character sheet\n\nキャラクター確認用。スキットではないのでデザイン検査は対象外。公開しない。\n" } : lintDesign(prod, compiled, await loadFormats());
 await writeFile(join(outDir, "design-report.md"), lint.report);
 for (const w of lint.warnings) console.warn("design warning:", w);
 if (lint.errors.length) {
@@ -259,5 +262,5 @@ await writeFile(join(review, "description.txt"), desc);
 if (prod.design?.title) { const safe = prod.design.title.replace(/[\\/:*?"<>|\s]+/g, "_"); await run("cp", [final, join(review, `${safe}.mp4`)]); }
 await writeFile(join(review, "title.txt"), [prod.design?.title ?? prod.meta.title, ...(prod.design?.titleAlternatives ?? [])].join("\n") + "\n");
 await writeFile(join(review, "design-report.md"), lint.report);
-await writeFile(join(review, "status.json"), JSON.stringify({ production: id, duration: dur, voice: voiced ? "voicevox" : "none-estimated-timing", technical: "pass", editorial: "unreviewed", renderedAt: new Date().toISOString() }, null, 2));
+await writeFile(join(review, "status.json"), JSON.stringify({ production: id, duration: dur, voice: voiced ? "voicevox" : "none-estimated-timing", technical: "pass", editorial: "unreviewed", ...(sheet ? { kind: "character-sheet", publish: false } : {}), renderedAt: new Date().toISOString() }, null, 2));
 console.log(`done: ${final} (${dur.toFixed(1)}s, voice=${voiced ? "VOICEVOX" : "none"})`);

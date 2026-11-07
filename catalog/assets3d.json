@@ -351,6 +351,28 @@
         "character-male-f"
       ],
       "notes": "Chibi humans, 32 built-in clips (idle, walk, emote-yes, emote-no, interact-right, pick-up, sit, holding-both...). Face is painted: no lip sync. Use as kind=gltf with params.clip for crowds/background."
+    },
+    {
+      "id": "cast-akuma",
+      "path": "catalog/cast3d.json#akuma",
+      "kind": "cast",
+      "pack": "Channel main cast (procedural, in-repo)",
+      "author": "animation-factory (original)",
+      "license": "original — own channel character, no third-party art",
+      "source": "src/three/Character.ts",
+      "reference": "assets/3d/cast/akuma-akabeko-sheet.jpg",
+      "notes": "悪魔: チャンネルのメインキャラクター。actors.<id>.cast = \"akuma\" で使う。2026-11-07 確定。"
+    },
+    {
+      "id": "cast-akabeko",
+      "path": "catalog/cast3d.json#akabeko",
+      "kind": "cast",
+      "pack": "Channel main cast (procedural, in-repo)",
+      "author": "animation-factory (original)",
+      "license": "original — own channel character, no third-party art",
+      "source": "src/three/Akabeko.ts",
+      "reference": "assets/3d/cast/akuma-akabeko-sheet.jpg",
+      "notes": "赤べこ（犬）: チャンネルのメインキャラクター。actors.<id>.cast = \"akabeko\" で使う。2026-11-07 確定。"
     }
   ]
 }

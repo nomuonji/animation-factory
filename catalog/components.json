@@ -391,7 +391,18 @@
         "glasses",
         "nameTag",
         "hood",
-        "height"
+        "height",
+        "horns",
+        "ears(round|pointed)",
+        "print",
+        "printColor",
+        "teeth",
+        "cheeks",
+        "hairStyle:spiky",
+        "eyeStyle(dot|big)",
+        "iris",
+        "boldBrows",
+        "eyeShadow"
       ],
       "poses": [
         "idle",
@@ -404,7 +415,8 @@
         "give",
         "sign",
         "hand-up",
-        "bow"
+        "bow",
+        "hold-up"
       ],
       "expressions": [
         "neutral",
@@ -412,7 +424,9 @@
         "polite",
         "surprised",
         "doubtful",
-        "weary"
+        "weary",
+        "grin",
+        "smug"
       ],
       "vrm": "actors.<id>.vrm = assets/3d/avatars/*.vrm, height"
     },
@@ -437,6 +451,11 @@
       "template": "templates/skit3d.json",
       "lint": "tools/three/design-lint.mjs"
     },
-    "assets": "catalog/assets3d.json"
+    "assets": "catalog/assets3d.json",
+    "figures": {
+      "akabeko": "actors.<id>.figure = \"akabeko\" (+ height, figureParams.body/pattern); head nods per mora instead of a mouth",
+      "chibi": "actors.<id>.figure = \"chibi\" + style {skin,hair,top,bottom,shoes,horns,ears,tail,print,printColor,cheeks,hood,fang}; cute ~2.2-head build, same poses/face/lip movement"
+    },
+    "cast": "catalog/cast3d.json — actors.<id>.cast = akuma | akabeko (channel main characters)"
   }
 }

@@ -30,7 +30,7 @@ export interface Timeline {
   meta: { id: string; title: string; fps: number; width: number; height: number; duration: number };
   set: { kind: string; params?: Record<string, unknown> };
   cameras?: Record<string, CameraPreset>;
-  actors: Record<string, { style?: CharacterStyle; vrm?: string; height?: number; turn?: number; seated?: boolean; root: { x: number; y?: number; z: number; ry?: number }; pose?: string; look?: { yaw?: number; pitch?: number }; expr?: string; seed?: number; captionColor?: string }>;
+  actors: Record<string, { style?: CharacterStyle; vrm?: string; figure?: "akabeko" | "chibi"; figureParams?: { body?: string; pattern?: string }; cast?: string; height?: number; turn?: number; seated?: boolean; root: { x: number; y?: number; z: number; ry?: number }; pose?: string; look?: { yaw?: number; pitch?: number }; expr?: string; seed?: number; captionColor?: string }>;
   props: Record<string, { kind: string; params?: Record<string, unknown>; tf: Transform; visible?: boolean }>;
   lines: CompiledLine[];
   events: TimelineEvent[];

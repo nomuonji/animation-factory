@@ -46,6 +46,27 @@ Kenney (kenney.nl, CC0), Poly Haven (CC0, realistic), Poly Pizza (mixed CC0/CC-B
 Files the sandbox cannot download go into `catalog/remote-assets.json`; the **Fetch remote assets**
 workflow downloads them on a runner and uploads an artifact with sha256 for review.
 
+## Main cast (reusable presets)
+
+`catalog/cast3d.json` holds the channel's own characters. Reference them instead of repeating
+style blocks: `"actors": {"akuma": {"cast": "akuma", "root": {...}}, "beko": {"cast": "akabeko", "root": {...}}}`.
+The preset fills style / figure / height / expr / captionColor, and `voices.<id>` falls back to the
+preset voice; anything written in the production wins (style merges key by key).
+
+- **akuma (悪魔)** — procedural `Character` (normal proportions) with `eyeStyle: "villain"`: narrow upturned
+  eyes with tiny pupils and a heavy upper lid, sharp V brows, `eyeShadow` under the eyes, and (expression
+  `grin`, the default) a wide crescent grin of jagged teeth that keeps showing while he talks. Red skin,
+  black `horns`, `hairStyle: "spiky"`, `ears: "pointed"`, black hoodie with `print: "悪魔"`. Pose `hold-up`
+  raises the right hand beside the face — put the akabeko at about `{x: root.x - 0.27, y: 1.5, z: root.z + 0.4}`
+  for the selfie shot. Voice preset: 玄野武宏. (Other face styles: `eyeStyle: "frog"` painted 100Avatars
+  look, `"big"`; `figure: "chibi"` is a ~2.2-head build.)
+- **akabeko (赤べこ／犬)** — `figure: "akabeko"`, a hand-sized papier-mâché cow (height 1 ≈ 0.2 m).
+  No mouth: while it speaks the head nods once per mora; idle is a slow sway. `look` tilts the head,
+  `move` places it (put `root.y` on a hand or a surface). Poses are ignored. Voice preset: 雨晴はう.
+
+Turnaround / QA: `productions/cast-akuma-akabeko` (`meta.kind: "character-sheet"` skips the story lint
+and is marked `publish: false` in `status.json`; never send it to publishing).
+
 ## Sets
 
 `convenience-store` (counter, register, hot-snack case, microwaves, shelves), `interview-room` (meeting-room job interview: desk with modesty panel, whiteboard, clock, blinds; place the candidate chair as a gltf prop) and `studio` (plain cyclorama for character sheets and lineups; cameras `front`, `close`).
