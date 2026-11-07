@@ -31,7 +31,20 @@
     "loop": false,
     "reaction": "laugh",
     "audience": "<誰がどんな場面でスクロールしていて止まるか>",
-    "titleOnScreen": "card"
+    "titleOnScreen": "card",
+    "reality": {
+      "place": "<話の舞台。セットはここに合わせて作る>",
+      "normalEvent": "<その場所で現実に普通に起きる出来事>",
+      "onlyBreak": "<現実から外す1点だけ>"
+    },
+    "payoffMechanism": "<catalog/skit-formats.json の payoffMechanisms のキー。直前の作品と変える>",
+    "ideation": {
+      "method": "<例: creative-thinking（ラジ父）で発想操作3系統以上>",
+      "candidates": 15,
+      "rejected": [
+        "<落とした案と理由>"
+      ]
+    }
   },
   "voices": {
     "a": {
