@@ -69,7 +69,7 @@ and is marked `publish: false` in `status.json`; never send it to publishing).
 
 ## Sets
 
-`convenience-store` (counter, register, hot-snack case, microwaves, shelves), `interview-room` (meeting-room job interview: desk with modesty panel, whiteboard, clock, blinds; place the candidate chair as a gltf prop) and `studio` (plain cyclorama for character sheets and lineups; cameras `front`, `close`).
+`convenience-store` (counter, register, hot-snack case, microwaves, shelves), `interview-room` (meeting-room job interview: desk with modesty panel, whiteboard, clock, blinds; place the candidate chair as a gltf prop), `studio` (plain cyclorama for character sheets and lineups; cameras `front`, `close`) and `photo-studio` (写真館 for ID photos: paper backdrop sweep, wooden floor, sample portraits; put the sitter on a `chair_stool` gltf at z≈-0.6; props `photo-camera` (tripod, `height`, `tilt`) and `strobe` (softbox, `param flash` 0..1 for the flash; pair it with the `camera-shutter` sfx)).
 
 ## Music
 

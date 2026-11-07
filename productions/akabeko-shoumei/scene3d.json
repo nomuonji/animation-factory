@@ -1,0 +1,422 @@
+{
+  "meta": {
+    "id": "akabeko-shoumei",
+    "title": "赤べこの証明写真",
+    "fps": 30,
+    "width": 1080,
+    "height": 1920
+  },
+  "design": {
+    "format": "escalation-ladder",
+    "title": "赤べこの証明写真",
+    "titleAlternatives": [
+      "証明写真で「動かないでください」",
+      "写真館に赤べこが来た"
+    ],
+    "titlePattern": "world",
+    "titleOnScreen": "card",
+    "titleScreenText": "赤べこの\n証明写真",
+    "hook": {
+      "type": "in-media-res",
+      "firstFrame": "写真館。青い背景紙の前の丸椅子に手のひらサイズの赤べこ、手前に三脚カメラと悪魔のカメラマン",
+      "overlay": "撮りまーす"
+    },
+    "rule": "赤べこは返事をすると首がうなずいてしまう（しゃべる＝首が揺れる）",
+    "escalations": [
+      "『動かないでくださいね』に『はい』と返事した瞬間、首が揺れてシャッターが切れる",
+      "『すみません』と謝ると、もっと揺れる",
+      "『お返事はしなくて大丈夫です』に『わかりました』で、いちばん揺れる"
+    ],
+    "turn": "カメラマンはあきらめず、証明写真の定番の指示『少し顎を引いてください』に切り替える",
+    "payoff": "『はい』のうなずきが、ちょうど顎を引いた形になってシャッター。カメラマン『……いいですね』",
+    "button": "赤べこ『ありがとうございました』（何度もうなずく＝お辞儀）",
+    "loop": false,
+    "reaction": "laugh",
+    "audience": "証明写真や写真館で『動かないで』『顎を引いて』と言われた経験のある人が、赤べこが椅子に座っている絵で止まる",
+    "reality": {
+      "place": "写真館での証明写真の撮影",
+      "normalEvent": "カメラマンが『動かないでくださいね』『少し顎を引いてください』と声をかけ、客が『はい』と返事する",
+      "onlyBreak": "客が赤べこなので、返事をすると首がうなずいてしまう"
+    },
+    "payoffMechanism": "rule-was-right",
+    "ideation": {
+      "method": "creative-thinking（ラジ父レンズ）。single_rule_shift / premise_reinterpretation（キャラが元からそうである性質）/ literalization / institutional_absurdity / social_script_corruption の5系統で18案→現実チェック・狙いすぎチェック・既存作との重なりで落として1案",
+      "candidates": 18,
+      "rejected": [
+        "ハロウィンの職場で『何の仮装？』→本物の悪魔：『動物に例えると→カエルです』と同じ仕組み",
+        "役所で本人確認書類→悪魔がパーカーの『悪魔』の文字を見せる：ボケ用の物を見せびらかす型（化石の身分証と同じ）",
+        "歯医者で『お口開けてください』→赤べこに口がない：二段目が続かず結末が唐突",
+        "写真館で『口を閉じて』→悪魔のギザ歯が見えたまま：『これが普通です』という作った台詞で締めることになる",
+        "会議で『異論ありませんね』→赤べこが揺れている：揺れ＝賛成が一度で分からない"
+      ]
+    }
+  },
+  "voices": {},
+  "music": {
+    "track": "little-happy-tune",
+    "gain": 0.24,
+    "fadeIn": 0.2,
+    "fadeOut": 0.5
+  },
+  "set": {
+    "kind": "photo-studio",
+    "params": {
+      "backdrop": "#8ea9bf"
+    }
+  },
+  "captions": {
+    "y": 0.76
+  },
+  "actors": {
+    "akuma": {
+      "cast": "akuma",
+      "root": {
+        "x": 0.0,
+        "z": 1.05,
+        "ry": 3.14159
+      },
+      "pose": "counter",
+      "look": {
+        "pitch": 0.15
+      }
+    },
+    "beko": {
+      "cast": "akabeko",
+      "height": 1.1,
+      "root": {
+        "x": 0,
+        "y": 0.45,
+        "z": -0.6,
+        "ry": 0
+      }
+    }
+  },
+  "props": {
+    "stool": {
+      "kind": "gltf",
+      "params": {
+        "src": "assets/3d/kaykit/furniture/chair_stool.gltf",
+        "scale": 0.9
+      },
+      "tf": {
+        "x": 0,
+        "y": 0,
+        "z": -0.6
+      }
+    },
+    "camera": {
+      "kind": "photo-camera",
+      "params": {
+        "height": 0.95,
+        "tilt": 0.27
+      },
+      "tf": {
+        "x": 0,
+        "y": 0,
+        "z": 0.66,
+        "ry": 3.14159
+      }
+    },
+    "strobeL": {
+      "kind": "strobe",
+      "params": {
+        "height": 1.45,
+        "tilt": 0.35,
+        "power": 7
+      },
+      "tf": {
+        "x": -0.85,
+        "y": 0,
+        "z": 0.0,
+        "ry": 2.185
+      }
+    }
+  },
+  "beats": [
+    {
+      "id": "title",
+      "role": "title",
+      "shot": "wide",
+      "dur": 1.3,
+      "do": [
+        {
+          "at": 0,
+          "sfx": "title-sting"
+        }
+      ]
+    },
+    {
+      "id": "ready",
+      "role": "hook",
+      "shot": "wide",
+      "push": 0.15,
+      "pre": 0.05,
+      "line": {
+        "who": "akuma",
+        "text": "はい、撮りますね。／動かないでくださいね"
+      }
+    },
+    {
+      "id": "hai1",
+      "role": "rule",
+      "shot": "sitter-cu",
+      "pre": 0.2,
+      "post": 0.45,
+      "line": {
+        "who": "beko",
+        "text": "はい"
+      },
+      "do": [
+        {
+          "at": "line+0.08",
+          "sfx": "camera-shutter"
+        },
+        {
+          "at": "line+0.08",
+          "param": "strobeL",
+          "to": {
+            "flash": 1
+          },
+          "dur": 0
+        },
+        {
+          "at": "line+0.14",
+          "param": "strobeL",
+          "to": {
+            "flash": 0
+          },
+          "dur": 0.18
+        }
+      ]
+    },
+    {
+      "id": "moved",
+      "role": "escalate",
+      "level": 1,
+      "shot": "photographer-cu",
+      "post": 0.2,
+      "line": {
+        "who": "akuma",
+        "text": "あ、動きましたね。／もう一回いきます"
+      },
+      "do": [
+        {
+          "at": 0,
+          "look": "akuma",
+          "to": {
+            "pitch": 0.32
+          },
+          "dur": 0.3
+        },
+        {
+          "at": "lineEnd-0.5",
+          "look": "akuma",
+          "to": {
+            "pitch": 0.1
+          },
+          "dur": 0.35
+        }
+      ]
+    },
+    {
+      "id": "sorry",
+      "role": "bridge",
+      "shot": "sitter-cu",
+      "pre": 0.15,
+      "post": 0.3,
+      "line": {
+        "who": "beko",
+        "text": "すみません"
+      }
+    },
+    {
+      "id": "noreply",
+      "role": "escalate",
+      "level": 2,
+      "shot": "photographer-cu",
+      "post": 0.15,
+      "line": {
+        "who": "akuma",
+        "text": "お返事は、／しなくて大丈夫ですよ"
+      }
+    },
+    {
+      "id": "wakari",
+      "role": "escalate",
+      "level": 3,
+      "shot": "sitter-cu",
+      "push": 0.1,
+      "pre": 0.15,
+      "post": 0.5,
+      "line": {
+        "who": "beko",
+        "text": "わかりました"
+      }
+    },
+    {
+      "id": "chin",
+      "role": "turn",
+      "shot": "reverse",
+      "pre": 0.55,
+      "post": 0.25,
+      "line": {
+        "who": "akuma",
+        "text": "……では、／少し顎を引いてください"
+      }
+    },
+    {
+      "id": "hai2",
+      "role": "payoff",
+      "shot": "sitter-cu",
+      "pre": 0.15,
+      "post": 0.7,
+      "line": {
+        "who": "beko",
+        "text": "はい"
+      },
+      "do": [
+        {
+          "at": "line+0.08",
+          "sfx": "camera-shutter"
+        },
+        {
+          "at": "line+0.08",
+          "param": "strobeL",
+          "to": {
+            "flash": 1
+          },
+          "dur": 0
+        },
+        {
+          "at": "line+0.14",
+          "param": "strobeL",
+          "to": {
+            "flash": 0
+          },
+          "dur": 0.18
+        },
+        {
+          "at": "line+0.1",
+          "music": "cut"
+        }
+      ]
+    },
+    {
+      "id": "good",
+      "role": "bridge",
+      "shot": "photographer-cu",
+      "pre": 0.1,
+      "post": 0.35,
+      "line": {
+        "who": "akuma",
+        "text": "……いいですね"
+      },
+      "do": [
+        {
+          "at": 0,
+          "look": "akuma",
+          "to": {
+            "pitch": 0.32
+          },
+          "dur": 0.3
+        }
+      ]
+    },
+    {
+      "id": "thanks",
+      "role": "button",
+      "shot": "wide-near",
+      "pre": 0.1,
+      "post": 0.6,
+      "line": {
+        "who": "beko",
+        "text": "ありがとうございました"
+      },
+      "do": [
+        {
+          "at": 0,
+          "music": "resume"
+        },
+        {
+          "at": 0,
+          "look": "akuma",
+          "to": {
+            "pitch": 0.15
+          },
+          "dur": 0.4
+        }
+      ]
+    }
+  ],
+  "description": [
+    "写真館で証明写真。",
+    "#ショート #証明写真 #赤べこ #3Dアニメ #コント"
+  ],
+  "cameras": {
+    "wide": {
+      "pos": [
+        1.9,
+        2.1,
+        2.75
+      ],
+      "target": [
+        0,
+        0.68,
+        0.2
+      ],
+      "fov": 48
+    },
+    "photographer-cu": {
+      "pos": [
+        -0.22,
+        1.5,
+        -0.25
+      ],
+      "target": [
+        0.0,
+        1.5,
+        1.05
+      ],
+      "fov": 34
+    },
+    "sitter-cu": {
+      "pos": [
+        0.06,
+        0.75,
+        0.35
+      ],
+      "target": [
+        0,
+        0.5,
+        -0.6
+      ],
+      "fov": 30
+    },
+    "wide-near": {
+      "pos": [
+        1.45,
+        1.75,
+        2.15
+      ],
+      "target": [
+        -0.05,
+        0.72,
+        0.0
+      ],
+      "fov": 44
+    },
+    "reverse": {
+      "pos": [
+        0.2,
+        0.86,
+        -1.4
+      ],
+      "target": [
+        0,
+        1.0,
+        0.8
+      ],
+      "fov": 42
+    }
+  }
+}
