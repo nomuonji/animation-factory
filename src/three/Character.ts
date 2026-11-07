@@ -25,7 +25,7 @@ export interface CharacterStyle {
   printColor?: string;
   teeth?: boolean;       // white teeth in a grin and when the mouth opens
   cheeks?: string | null; // flat blush/face-paint patches under the eyes
-  eyeStyle?: "dot" | "big" | "frog"; // frog = 100Avatars FrogEnjoyer-style painted face // big = white sclera, iris, highlight and a lash line (expressive close-ups)
+  eyeStyle?: "dot" | "big" | "frog" | "villain"; // frog = 100Avatars FrogEnjoyer-style painted face // big = white sclera, iris, highlight and a lash line (expressive close-ups)
   iris?: string;
   boldBrows?: boolean;      // thick, outward-raised brows
   eyeShadow?: string | null; // painted shading around the eyes (face paint)
@@ -91,6 +91,7 @@ export class Character {
   private grin: THREE.Object3D | null = null;
   private teethTop: THREE.Mesh | null = null;
   private grinSize = 1;
+  private browBaseY = 0;
   private chest!: THREE.Object3D;
 
   constructor(readonly id: string, readonly style: CharacterStyle) {
@@ -253,7 +254,35 @@ export class Character {
 
     const eyeMat = flat("#17141a");
     const eye = () => { const e = new THREE.Mesh(new THREE.SphereGeometry(0.019, 12, 10), eyeMat); e.scale.set(0.9, 1.25, 0.4); return e; };
-    if (s.eyeStyle === "frog") {
+    if (s.eyeStyle === "villain") {
+      // narrow upturned eyes: almond with the outer corner raised, tiny pupils, heavy upper lid
+      this.eyeBase = 1;
+      const villainEye = (side: number) => {
+        const almond = (k: number) => {
+          const sh = new THREE.Shape();
+          sh.moveTo(-0.026 * k * side, -0.006 * k);
+          sh.quadraticCurveTo(0.0, 0.024 * k, 0.034 * k * side, 0.018 * k);
+          sh.quadraticCurveTo(0.012 * k * side, -0.02 * k, -0.026 * k * side, -0.006 * k);
+          return new THREE.ShapeGeometry(sh, 12);
+        };
+        const g = new THREE.Group();
+        const lid = new THREE.Mesh(almond(1.22), flat("#120c10"));
+        lid.position.set(0.001 * side, 0.003, 0);
+        g.add(lid);
+        const white = new THREE.Mesh(almond(1), flat("#fbf3d8"));
+        white.position.z = 0.0004;
+        g.add(white);
+        g.add(disc(0.0085, "#120c10", 0.004 * side, 0.003, 0.0008));
+        g.add(disc(0.0026, "#ffffff", 0.0065 * side, 0.0058, 0.0011));
+        const wrap = new THREE.Group();
+        wrap.add(g);
+        g.scale.setScalar(1.15);
+        onFace(wrap, 0.06 * side, 0.004, 0.002);
+        return g;
+      };
+      this.eyeL = villainEye(1);
+      this.eyeR = villainEye(-1);
+    } else if (s.eyeStyle === "frog") {
       this.eyeBase = 1;
       const frogEye = (side: number) => {
         const g = new THREE.Group();
@@ -294,7 +323,7 @@ export class Character {
       this.eyeL = eye(); this.eyeL.position.set(0.058, 0.018, 0.152);
       this.eyeR = eye(); this.eyeR.position.set(-0.058, 0.018, 0.152);
     }
-    if (s.eyeStyle !== "frog") this.head.add(this.eyeL, this.eyeR);
+    if (s.eyeStyle !== "frog" && s.eyeStyle !== "villain") this.head.add(this.eyeL, this.eyeR);
     if (s.eyeShadow) {
       for (const side of [-1, 1]) {
         const c = new THREE.Mesh(new THREE.CircleGeometry(0.046, 20), new THREE.MeshBasicMaterial({ color: s.eyeShadow, transparent: true, opacity: 0.75 }));
@@ -306,11 +335,20 @@ export class Character {
     }
     const browMat = flat(shade(s.hair, 0.02));
     const bw = s.boldBrows ? 0.068 : 0.05, bh = s.boldBrows ? 0.017 : 0.009;
-    this.browTilt = s.boldBrows ? 0.22 : 0;
+    this.browTilt = s.eyeStyle === "villain" ? 0.5 : s.boldBrows ? 0.22 : 0;
     this.browL = new THREE.Mesh(new THREE.BoxGeometry(bw, bh, 0.012), browMat);
     this.browR = new THREE.Mesh(new THREE.BoxGeometry(bw, bh, 0.012), browMat);
     if (s.boldBrows) { this.browL.rotation.y = 0.3; this.browR.rotation.y = -0.3; }
     if (s.eyeStyle === "frog") this.browL.visible = this.browR.visible = false; // painted face: no brows
+    if (s.eyeStyle === "villain") {
+      // sharp V brows: thick, tapered toward the outside, inner ends pulled down
+      for (const [b, side] of [[this.browL, 1], [this.browR, -1]] as const) {
+        b.geometry = new THREE.BoxGeometry(0.07, 0.02, 0.012);
+        b.position.x = 0.058 * side;
+        b.rotation.y = 0.32 * side;
+      }
+      this.browBaseY = 0.05;
+    }
     this.browL.position.set(0.06, 0.07, 0.152);
     this.browR.position.set(-0.06, 0.07, 0.152);
     this.head.add(this.browL, this.browR);
@@ -325,8 +363,44 @@ export class Character {
       this.teethTop.position.set(0, -0.069, 0.158);
       this.head.add(this.teethTop);
     }
-    // wide grin: a D-shaped open smile (dark rim, white teeth) used when smile is high and not talking
-    {
+    if (s.eyeStyle === "villain") {
+      // villain grin: a wide crescent full of jagged teeth that meet in a zigzag
+      const W = 0.06;
+      const up = (x: number) => 0.016 - 0.02 * (1 - (x / W) ** 2);
+      const lo = (x: number) => 0.016 - 0.056 * (1 - (x / W) ** 2);
+      const crescent = (k: number) => {
+        const sh = new THREE.Shape();
+        const n = 24;
+        for (let i = 0; i <= n; i++) { const x = -W + (2 * W * i) / n; i ? sh.lineTo(x * k, up(x) * k) : sh.moveTo(x * k, up(x) * k); }
+        for (let i = n; i >= 0; i--) { const x = -W + (2 * W * i) / n; sh.lineTo(x * k, lo(x) * k); }
+        return new THREE.ShapeGeometry(sh);
+      };
+      const g = new THREE.Group();
+      const rim = new THREE.Mesh(crescent(1.1), flat("#120c10"));
+      rim.position.y = -0.001;
+      g.add(rim);
+      const teeth = new THREE.Mesh(crescent(1), flat("#fbf6e6"));
+      teeth.position.z = 0.0004;
+      g.add(teeth);
+      // zigzag gap between upper and lower teeth
+      const zz = new THREE.Shape();
+      const T = 9, pts: [number, number][] = [];
+      for (let i = 0; i <= T * 2; i++) {
+        const x = -W * 0.92 + (W * 1.84 * i) / (T * 2);
+        const mid = (up(x) + lo(x)) / 2, a = (lo(x) - up(x)) * 0.42;
+        pts.push([x, mid + (i % 2 ? a : -a)]);
+      }
+      pts.forEach(([x, y], i) => (i ? zz.lineTo(x, y + 0.0028) : zz.moveTo(x, y + 0.0028)));
+      for (let i = pts.length - 1; i >= 0; i--) zz.lineTo(pts[i]![0], pts[i]![1] - 0.0028);
+      const gap = new THREE.Mesh(new THREE.ShapeGeometry(zz), flat("#120c10"));
+      gap.position.z = 0.0008;
+      g.add(gap);
+      g.position.set(0, -0.06, 0.154);
+      g.rotation.x = -0.3;
+      g.visible = false;
+      this.grin = g;
+      this.head.add(g);
+    } else {
       const shape = new THREE.Shape();
       shape.moveTo(-0.058, 0.004); shape.quadraticCurveTo(0, -0.004, 0.058, 0.004);
       shape.quadraticCurveTo(0.054, -0.06, 0, -0.064);
@@ -468,7 +542,7 @@ export class Character {
     this.chest.scale.y = 1 + state.breath * 0.012;
     const eyes = Math.max(0.05, face.eyes);
     this.eyeL.scale.y = this.eyeR.scale.y = this.eyeBase * eyes;
-    const by = (this.browTilt ? 0.074 : 0.07) + face.brow * 0.03;
+    const by = (this.browBaseY || (this.browTilt ? 0.074 : 0.07)) + face.brow * 0.03;
     this.browL.position.y = this.browR.position.y = by;
     this.browL.rotation.z = -face.brow * 0.25 + face.smile * 0.1 + this.browTilt;
     this.browR.rotation.z = face.brow * 0.25 - face.smile * 0.1 - this.browTilt;

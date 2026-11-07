@@ -53,13 +53,13 @@ style blocks: `"actors": {"akuma": {"cast": "akuma", "root": {...}}, "beko": {"c
 The preset fills style / figure / height / expr / captionColor, and `voices.<id>` falls back to the
 preset voice; anything written in the production wins (style merges key by key).
 
-- **akuma (悪魔)** — procedural `Character` (normal proportions) with `eyeStyle: "frog"`: a painted face
-  in the 100Avatars FrogEnjoyer style (white-rimmed eyes, big brown `iris`, highlight, pink dot nose,
-  thin line mouth, round `cheeks`, no brows). Red skin, black `horns`, `hairStyle: "spiky"`, `ears:
-  "pointed"`, black hoodie with `print: "悪魔"`, `teeth`. Default expression `grin` (a small toothy open
-  smile that stays open while talking). Pose `hold-up` raises the right hand beside the face — put the
-  akabeko at about `{x: root.x - 0.27, y: 1.5, z: root.z + 0.4}` for the selfie shot. Voice preset: 玄野武宏.
-  (`figure: "chibi"` in `src/three/Chibi.ts` is a ~2.2-head alternative build with the same face style.)
+- **akuma (悪魔)** — procedural `Character` (normal proportions) with `eyeStyle: "villain"`: narrow upturned
+  eyes with tiny pupils and a heavy upper lid, sharp V brows, `eyeShadow` under the eyes, and (expression
+  `grin`, the default) a wide crescent grin of jagged teeth that keeps showing while he talks. Red skin,
+  black `horns`, `hairStyle: "spiky"`, `ears: "pointed"`, black hoodie with `print: "悪魔"`. Pose `hold-up`
+  raises the right hand beside the face — put the akabeko at about `{x: root.x - 0.27, y: 1.5, z: root.z + 0.4}`
+  for the selfie shot. Voice preset: 玄野武宏. (Other face styles: `eyeStyle: "frog"` painted 100Avatars
+  look, `"big"`; `figure: "chibi"` is a ~2.2-head build.)
 - **akabeko (赤べこ／犬)** — `figure: "akabeko"`, a hand-sized papier-mâché cow (height 1 ≈ 0.2 m).
   No mouth: while it speaks the head nods once per mora; idle is a slow sway. `look` tilts the head,
   `move` places it (put `root.y` on a hand or a surface). Poses are ignored. Voice preset: 雨晴はう.

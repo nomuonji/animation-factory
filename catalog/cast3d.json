@@ -3,10 +3,10 @@
   "cast": {
     "akuma": {
       "name": "悪魔",
-      "role": "チャンネルのメインキャラクター（悪魔）。等身大の体（最初の頭身）に、100AvatarsのFrogEnjoyer風の顔（白フチ＋茶色の大きな黒目＋ハイライト、ピンクの点の鼻、細い線の口、丸いチーク）。赤い肌・黒い角・毛先のとがった黒髪・とがった耳・胸に「悪魔」の黒パーカー。笑うと歯を見せた小さめの口。",
+      "role": "チャンネルのメインキャラクター（悪魔）。普通の頭身。悪役顔：つり目（白目に小さい黒目・太い上まぶた）、鋭いV字の太眉、目の下の濃い赤、ギザ歯がかみ合った横に広いニヤリ口。赤い肌・黒い角・とがった黒髪・とがった耳・胸に「悪魔」の黒パーカー。",
       "style": {
-        "skin": "#e8473a",
-        "hair": "#2a2230",
+        "skin": "#d93a2a",
+        "hair": "#18141a",
         "hairStyle": "spiky",
         "top": "#1c1b20",
         "hood": true,
@@ -17,10 +17,9 @@
         "horns": "#1f1a22",
         "ears": "pointed",
         "teeth": true,
-        "cheeks": "#ff9c8a",
-        "eyeStyle": "frog",
-        "iris": "#6b3b22",
-        "height": 1.06
+        "eyeStyle": "villain",
+        "height": 1.06,
+        "eyeShadow": "#9c1c16"
       },
       "expr": "grin",
       "captionColor": "#ff9d8a",
