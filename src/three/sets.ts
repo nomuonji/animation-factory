@@ -272,5 +272,72 @@ export const SETS: Record<string, SetBuilder> = {
         "over-candidate": { pos: [-0.45, 1.25, 1.75], target: [0.05, 0.95, -0.6], fov: 40 }
       }
     };
+  },
+
+  /**
+   * Photo studio (写真館) for ID / portrait photos: a paper backdrop sweep at the back (z≈-1.7),
+   * the sitter's stool area around z≈-0.6, the photographer's side at z>0.6.
+   * Camera-on-tripod and strobes are props (`photo-camera`, `strobe`) so they can be placed and flashed.
+   */
+  "photo-studio"(scene, p) {
+    scene.background = new THREE.Color("#e8e4dc");
+    lights(scene, { key: 1.35 });
+    const grad = (toon("#fff") as THREE.MeshToonMaterial).gradientMap;
+    // wooden floor
+    const wood = canvasTexture(512, 512, (g, w, h) => {
+      g.fillStyle = "#b98d62"; g.fillRect(0, 0, w, h);
+      for (let i = 0; i < 8; i++) {
+        g.fillStyle = rand(i) > 0.5 ? "#b48659" : "#c0956a"; g.fillRect(0, i * h / 8, w, h / 8 - 2);
+        g.fillStyle = "#9a7048"; g.fillRect(0, (i + 1) * h / 8 - 2, w, 2);
+        g.fillRect(rand(i + 9) * w, i * h / 8, 2, h / 8);
+      }
+    });
+    wood.wrapS = wood.wrapT = THREE.RepeatWrapping; wood.repeat.set(5, 5);
+    const floor = new THREE.Mesh(new THREE.PlaneGeometry(12, 12), new THREE.MeshToonMaterial({ map: wood, gradientMap: grad }));
+    floor.rotation.x = -Math.PI / 2; floor.receiveShadow = true; scene.add(floor);
+    const wallC = String(p.wall ?? "#efebe4");
+    const wallB = mesh(new THREE.BoxGeometry(6, 3, 0.05), toon(wallC), false); wallB.position.set(0, 1.5, -2.0); scene.add(wallB);
+    const wallL = mesh(new THREE.BoxGeometry(0.05, 3, 6), toon(wallC), false); wallL.position.set(-2.2, 1.5, 0.6); scene.add(wallL);
+    const wallR = mesh(new THREE.BoxGeometry(0.05, 3, 6), toon(wallC), false); wallR.position.set(2.2, 1.5, 0.6); scene.add(wallR);
+    const wallF = mesh(new THREE.BoxGeometry(6, 3, 0.05), toon(wallC), false); wallF.position.set(0, 1.5, 3.4); scene.add(wallF);
+    // seamless paper backdrop: vertical sheet + quarter-cylinder sweep onto the floor
+    const paperC = String(p.backdrop ?? "#8ea9bf");
+    const paper = toon(paperC);
+    const bw = 2.6, r = 0.45, back = -1.75;
+    const vert = mesh(new THREE.PlaneGeometry(bw, 2.3), paper, false); vert.position.set(0, r + 1.15, back); scene.add(vert);
+    const sweepMat = paper.clone(); sweepMat.side = THREE.DoubleSide;
+    const sweep = new THREE.Mesh(new THREE.CylinderGeometry(r, r, bw, 24, 1, true, Math.PI, Math.PI / 2), sweepMat);
+    sweep.rotation.z = Math.PI / 2; sweep.position.set(0, r, back + r); sweep.receiveShadow = true;
+    scene.add(sweep);
+    const run = mesh(new THREE.PlaneGeometry(bw, 1.2), paper, false); run.rotation.x = -Math.PI / 2; run.position.set(0, 0.002, back + r + 0.6); scene.add(run);
+    // backdrop stands and roll
+    for (const x of [-bw / 2 - 0.08, bw / 2 + 0.08]) {
+      const pole = mesh(new THREE.CylinderGeometry(0.018, 0.018, 2.85, 8), toon("#2b2c30"), 0.004); pole.position.set(x, 1.425, back - 0.05); scene.add(pole);
+      for (const a of [0, 2.1, 4.2]) { const leg = mesh(new THREE.CylinderGeometry(0.012, 0.012, 0.5, 6), toon("#2b2c30"), 0.003); leg.position.set(x + Math.cos(a) * 0.18, 0.12, back - 0.05 + Math.sin(a) * 0.18); leg.rotation.set(Math.sin(a) * 1.1, 0, -Math.cos(a) * 1.1); scene.add(leg); }
+    }
+    const roll = mesh(new THREE.CylinderGeometry(0.06, 0.06, bw + 0.1, 16), toon(paperC), 0.004); roll.rotation.z = Math.PI / 2; roll.position.set(0, 2.82, back - 0.02); scene.add(roll);
+    // sample portraits on the side wall (generic silhouettes, no real people)
+    for (const [i, z] of [0.4, 1.3, 2.2].entries()) {
+      const tex = canvasTexture(256, 320, (g, w, h) => {
+        g.fillStyle = "#f7f4ee"; g.fillRect(0, 0, w, h);
+        g.fillStyle = ["#9fb4c6", "#c9b8a6", "#b7c2a9"][i]!; g.fillRect(24, 24, w - 48, h - 48);
+        g.fillStyle = "#4a4650"; g.beginPath(); g.arc(w / 2, h * 0.42, 44, 0, Math.PI * 2); g.fill();
+        g.beginPath(); g.ellipse(w / 2, h * 0.84, 82, 60, 0, Math.PI, 0); g.fill();
+      });
+      const frame = mesh(new THREE.BoxGeometry(0.03, 0.5, 0.4), toon("#3a2c22"), 0.004); frame.position.set(-2.16, 1.55, z); scene.add(frame);
+      const pic = new THREE.Mesh(new THREE.PlaneGeometry(0.34, 0.44), new THREE.MeshBasicMaterial({ map: tex })); pic.rotation.y = Math.PI / 2; pic.position.set(-2.14, 1.55, z); scene.add(pic);
+    }
+    // ceiling
+    const ceil = new THREE.Mesh(new THREE.PlaneGeometry(6, 7), flat("#f6f5f1")); ceil.rotation.x = Math.PI / 2; ceil.position.set(0, 2.95, 0.6); scene.add(ceil);
+    return {
+      surfaces: { floor: 0 },
+      cameras: {
+        wide: { pos: [1.55, 1.45, 2.6], target: [-0.05, 0.75, -0.3], fov: 42 },
+        side: { pos: [1.8, 1.05, 0.0], target: [-0.2, 0.8, 0.0], fov: 40 },
+        "sitter-cu": { pos: [0.08, 0.82, 0.25], target: [0, 0.62, -0.6], fov: 28 },
+        "photographer-cu": { pos: [-0.25, 1.4, 0.15], target: [0.05, 1.4, 1.35], fov: 34 },
+        "over-photographer": { pos: [0.5, 1.5, 2.25], target: [0, 0.65, -0.6], fov: 34 }
+      }
+    };
   }
 };

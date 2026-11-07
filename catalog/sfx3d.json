@@ -115,6 +115,31 @@
           "gain": 0.6
         }
       ]
+    },
+    "camera-shutter": {
+      "layers": [
+        {
+          "lavfi": "anoisesrc=color=white:amplitude=0.7:d=0.05,highpass=f=1800,lowpass=f=9000,afade=t=in:d=0.002,afade=t=out:st=0.008:d=0.04",
+          "gain": 0.8
+        },
+        {
+          "lavfi": "anoisesrc=color=white:amplitude=0.6:d=0.06,bandpass=f=2600:w=2000,afade=t=in:d=0.002,afade=t=out:st=0.01:d=0.05",
+          "gain": 0.7,
+          "offset": 0.09
+        },
+        {
+          "lavfi": "sine=f=180:d=0.04,afade=t=out:st=0.005:d=0.035",
+          "gain": 0.3
+        }
+      ]
+    },
+    "strobe-pop": {
+      "layers": [
+        {
+          "lavfi": "anoisesrc=color=pink:amplitude=0.4:d=0.12,highpass=f=3000,afade=t=in:d=0.002,afade=t=out:st=0.01:d=0.1",
+          "gain": 0.35
+        }
+      ]
     }
   }
 }

@@ -187,6 +187,11 @@
     "interview-room": [
       "面接",
       "会議室"
+    ],
+    "photo-studio": [
+      "写真館",
+      "写真スタジオ",
+      "証明写真"
     ]
   },
   "payoffMechanisms": {

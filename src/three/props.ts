@@ -272,6 +272,61 @@ export const PROPS: Record<string, PropBuilder> = {
     return { object: g };
   },
 
+  /** Camera on a tripod (photo studio). Pivot on the floor; lens faces +z, tilt with params.tilt (rad, + = down). */
+  "photo-camera"(p) {
+    const h = num(p.height, 1.0), tilt = num(p.tilt, 0);
+    const g = new THREE.Group();
+    const metal = toon("#2a2b30");
+    for (let i = 0; i < 3; i++) {
+      const a = (i / 3) * Math.PI * 2 + Math.PI / 6;
+      const leg = mesh(new THREE.CylinderGeometry(0.009, 0.012, h * 1.02, 6), metal, 0.003);
+      leg.position.set(Math.sin(a) * h * 0.14, h * 0.48, Math.cos(a) * h * 0.14);
+      leg.rotation.set(Math.cos(a) * -0.3, 0, Math.sin(a) * 0.3);
+      g.add(leg);
+    }
+    const col = mesh(new THREE.CylinderGeometry(0.014, 0.014, h * 0.2, 8), metal, 0.003); col.position.y = h * 0.92; g.add(col);
+    const head = new THREE.Group(); head.position.y = h + 0.02; head.rotation.x = tilt; g.add(head);
+    const body = mesh(new THREE.BoxGeometry(0.15, 0.1, 0.08), toon("#1b1c20"), 0.004); body.position.y = 0.05; head.add(body);
+    const grip = mesh(new THREE.BoxGeometry(0.035, 0.085, 0.09), toon("#141417"), 0.003); grip.position.set(-0.06, 0.045, 0.01); head.add(grip);
+    const prism = mesh(new THREE.BoxGeometry(0.06, 0.04, 0.06), toon("#1b1c20"), 0.003); prism.position.set(0, 0.115, 0); head.add(prism);
+    const lens = mesh(new THREE.CylinderGeometry(0.034, 0.036, 0.1, 18), toon("#202126"), 0.003); lens.rotation.x = Math.PI / 2; lens.position.set(0, 0.05, 0.09); head.add(lens);
+    const glass = new THREE.Mesh(new THREE.CircleGeometry(0.026, 18), new THREE.MeshPhongMaterial({ color: 0x1a2a3a, shininess: 120, specular: 0x8899aa })); glass.position.set(0, 0.05, 0.141); head.add(glass);
+    const screen = new THREE.Mesh(new THREE.PlaneGeometry(0.1, 0.065), flat("#24303a")); screen.rotation.y = Math.PI; screen.position.set(0.005, 0.05, -0.041); head.add(screen);
+    return { object: g };
+  },
+
+  /** Studio strobe: stand + square softbox. params.flash (0..1) lights the front panel and a point light (the flash). */
+  strobe(p) {
+    const h = num(p.height, 1.7);
+    const g = new THREE.Group();
+    const metal = toon("#2a2b30");
+    const pole = mesh(new THREE.CylinderGeometry(0.014, 0.014, h, 8), metal, 0.003); pole.position.y = h / 2; g.add(pole);
+    for (let i = 0; i < 3; i++) {
+      const a = (i / 3) * Math.PI * 2;
+      const leg = mesh(new THREE.CylinderGeometry(0.01, 0.01, 0.45, 6), metal, 0.003);
+      leg.position.set(Math.sin(a) * 0.16, 0.12, Math.cos(a) * 0.16); leg.rotation.set(Math.cos(a) * 1.05, 0, -Math.sin(a) * 1.05); g.add(leg);
+    }
+    const s = num(p.size, 0.55);
+    const box = new THREE.Group(); box.position.y = h; box.rotation.x = num(p.tilt, 0.15); g.add(box);
+    const shellMat = toon("#1d1e22").clone(); shellMat.side = THREE.DoubleSide;
+    const shell = mesh(new THREE.CylinderGeometry(s * 0.72, s * 0.18, s * 0.45, 4, 1, true), shellMat, 0.004);
+    shell.rotation.set(Math.PI / 2, Math.PI / 4, 0); shell.position.z = -s * 0.22; box.add(shell);
+    const panelMat = new THREE.MeshBasicMaterial({ color: new THREE.Color("#d9d6cf") });
+    const panel = new THREE.Mesh(new THREE.PlaneGeometry(s, s), panelMat); panel.position.z = 0.002; box.add(panel);
+    const light = new THREE.PointLight(0xffffff, 0, 6, 1.2); light.position.z = 0.25; box.add(light);
+    const base = new THREE.Color("#d9d6cf"), hot = new THREE.Color("#ffffff");
+    const power = num(p.power, 9);
+    return {
+      object: g,
+      setParam(k, v) {
+        if (k !== "flash") return;
+        const f = Math.max(0, Math.min(1, v));
+        panelMat.color.copy(base).lerp(hot, f);
+        light.intensity = f * power;
+      }
+    };
+  },
+
   box(p) {
     const s = p.size as number[] | undefined;
     const m = mesh(new THREE.BoxGeometry(s?.[0] ?? 0.1, s?.[1] ?? 0.1, s?.[2] ?? 0.1), toon(str(p.color, "#cccccc")));
