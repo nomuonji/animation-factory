@@ -168,11 +168,11 @@
       },
       "do": [
         {
-          "at": "line+0.08",
+          "at": "line+0.13",
           "sfx": "camera-shutter"
         },
         {
-          "at": "line+0.08",
+          "at": "line+0.13",
           "param": "strobeL",
           "to": {
             "flash": 1
@@ -180,7 +180,7 @@
           "dur": 0
         },
         {
-          "at": "line+0.14",
+          "at": "line+0.19",
           "param": "strobeL",
           "to": {
             "flash": 0
@@ -276,11 +276,11 @@
       },
       "do": [
         {
-          "at": "line+0.08",
+          "at": "line+0.13",
           "sfx": "camera-shutter"
         },
         {
-          "at": "line+0.08",
+          "at": "line+0.13",
           "param": "strobeL",
           "to": {
             "flash": 1
@@ -288,7 +288,7 @@
           "dur": 0
         },
         {
-          "at": "line+0.14",
+          "at": "line+0.19",
           "param": "strobeL",
           "to": {
             "flash": 0
@@ -381,16 +381,16 @@
     },
     "sitter-cu": {
       "pos": [
-        0.06,
-        0.75,
-        0.35
+        0.3,
+        0.76,
+        0.32
       ],
       "target": [
-        0,
-        0.5,
-        -0.6
+        0.0,
+        0.54,
+        -0.55
       ],
-      "fov": 30
+      "fov": 32
     },
     "wide-near": {
       "pos": [
