@@ -25,7 +25,7 @@ export interface CharacterStyle {
   printColor?: string;
   teeth?: boolean;       // white teeth in a grin and when the mouth opens
   cheeks?: string | null; // flat blush/face-paint patches under the eyes
-  eyeStyle?: "dot" | "big"; // big = white sclera, iris, highlight and a lash line (expressive close-ups)
+  eyeStyle?: "dot" | "big" | "frog"; // frog = 100Avatars FrogEnjoyer-style painted face // big = white sclera, iris, highlight and a lash line (expressive close-ups)
   iris?: string;
   boldBrows?: boolean;      // thick, outward-raised brows
   eyeShadow?: string | null; // painted shading around the eyes (face paint)
@@ -90,6 +90,7 @@ export class Character {
   private mouthInner!: THREE.Mesh;
   private grin: THREE.Object3D | null = null;
   private teethTop: THREE.Mesh | null = null;
+  private grinSize = 1;
   private chest!: THREE.Object3D;
 
   constructor(readonly id: string, readonly style: CharacterStyle) {
@@ -228,13 +229,48 @@ export class Character {
         this.head.add(ear);
       }
     }
-    const nose = mesh(new THREE.SphereGeometry(0.018, 10, 8), toon(shade(s.skin, -0.08)), false);
-    nose.position.set(0, -0.025, 0.163);
-    this.head.add(nose);
+    // point on the skull surface, facing outward (for painted face parts)
+    const onFace = (o: THREE.Object3D, x: number, y: number, lift = 0.002) => {
+      const r = 0.165, z = 0.98 * Math.sqrt(Math.max(0, r * r - x * x - (y / 1.06) ** 2));
+      o.position.set(x, y, z + lift);
+      o.lookAt(new THREE.Vector3(x * 2.2, y * 2.2, z * 2.2 + lift));
+      this.head.add(o);
+    };
+    const disc = (r: number, color: string, x = 0, y = 0, z = 0) => {
+      const m = new THREE.Mesh(new THREE.CircleGeometry(r, 28), flat(color));
+      m.position.set(x, y, z);
+      return m;
+    };
+    if (s.eyeStyle === "frog") {
+      const nose = new THREE.Mesh(new THREE.CircleGeometry(0.0065, 16), flat("#f08a8a"));
+      nose.scale.set(1.25, 0.9, 1);
+      onFace(nose, 0, -0.036, 0.002);
+    } else {
+      const nose = mesh(new THREE.SphereGeometry(0.018, 10, 8), toon(shade(s.skin, -0.08)), false);
+      nose.position.set(0, -0.025, 0.163);
+      this.head.add(nose);
+    }
 
     const eyeMat = flat("#17141a");
     const eye = () => { const e = new THREE.Mesh(new THREE.SphereGeometry(0.019, 12, 10), eyeMat); e.scale.set(0.9, 1.25, 0.4); return e; };
-    if (s.eyeStyle === "big") {
+    if (s.eyeStyle === "frog") {
+      this.eyeBase = 1;
+      const frogEye = (side: number) => {
+        const g = new THREE.Group();
+        g.add(disc(0.042, "#2a1a14"));
+        g.add(disc(0.0385, "#fbf8f0", 0, 0, 0.0003));
+        g.add(disc(0.03, s.iris, -0.003 * side, -0.003, 0.0006));
+        g.add(disc(0.0165, "#1a100c", -0.003 * side, -0.003, 0.0009));
+        g.add(disc(0.0102, "#ffffff", 0.01, 0.011, 0.0012));
+        g.add(disc(0.004, "#ffffff", -0.01, -0.013, 0.0012));
+        const wrap = new THREE.Group();
+        wrap.add(g);
+        onFace(wrap, 0.062 * side, -0.006, 0.002);
+        return g;
+      };
+      this.eyeL = frogEye(1);
+      this.eyeR = frogEye(-1);
+    } else if (s.eyeStyle === "big") {
       this.eyeBase = 1;
       const big = (side: number) => {
         const g = new THREE.Group();
@@ -258,7 +294,7 @@ export class Character {
       this.eyeL = eye(); this.eyeL.position.set(0.058, 0.018, 0.152);
       this.eyeR = eye(); this.eyeR.position.set(-0.058, 0.018, 0.152);
     }
-    this.head.add(this.eyeL, this.eyeR);
+    if (s.eyeStyle !== "frog") this.head.add(this.eyeL, this.eyeR);
     if (s.eyeShadow) {
       for (const side of [-1, 1]) {
         const c = new THREE.Mesh(new THREE.CircleGeometry(0.046, 20), new THREE.MeshBasicMaterial({ color: s.eyeShadow, transparent: true, opacity: 0.75 }));
@@ -274,11 +310,12 @@ export class Character {
     this.browL = new THREE.Mesh(new THREE.BoxGeometry(bw, bh, 0.012), browMat);
     this.browR = new THREE.Mesh(new THREE.BoxGeometry(bw, bh, 0.012), browMat);
     if (s.boldBrows) { this.browL.rotation.y = 0.3; this.browR.rotation.y = -0.3; }
+    if (s.eyeStyle === "frog") this.browL.visible = this.browR.visible = false; // painted face: no brows
     this.browL.position.set(0.06, 0.07, 0.152);
     this.browR.position.set(-0.06, 0.07, 0.152);
     this.head.add(this.browL, this.browR);
-    this.mouth = new THREE.Mesh(new THREE.BoxGeometry(0.045, 0.006, 0.01), flat("#5a2f2f"));
-    this.mouth.position.set(0, -0.075, 0.155);
+    this.mouth = new THREE.Mesh(new THREE.BoxGeometry(s.eyeStyle === "frog" ? 0.03 : 0.045, s.eyeStyle === "frog" ? 0.0035 : 0.006, 0.01), flat(s.eyeStyle === "frog" ? "#3a1a14" : "#5a2f2f"));
+    this.mouth.position.set(0, s.eyeStyle === "frog" ? -0.066 : -0.075, 0.155);
     this.mouthInner = new THREE.Mesh(new THREE.SphereGeometry(0.02, 12, 8), flat("#4a1f24"));
     this.mouthInner.scale.set(1, 0.01, 0.3);
     this.mouthInner.position.set(0, -0.078, 0.153);
@@ -308,6 +345,7 @@ export class Character {
         tongue.scale.set(1.15, 0.6, 1); tongue.position.set(0, -0.063, 0.0003);
         g.add(tongue);
       }
+      if (s.eyeStyle === "frog") { g.scale.setScalar(0.62); this.grinSize = 0.62; }
       g.position.set(0, -0.058, 0.152);
       g.rotation.x = -0.32;
       g.visible = false;
@@ -316,11 +354,15 @@ export class Character {
     }
     if (s.cheeks) {
       for (const side of [-1, 1]) {
-        const c = new THREE.Mesh(new THREE.CircleGeometry(0.03, 16), new THREE.MeshBasicMaterial({ color: s.cheeks, transparent: true, opacity: 0.55 }));
-        c.scale.set(1.2, 0.7, 1);
-        c.position.set(0.085 * side, -0.02, 0.146);
-        c.rotation.y = 0.5 * side;
-        this.head.add(c);
+        const frog = s.eyeStyle === "frog";
+        const c = new THREE.Mesh(new THREE.CircleGeometry(frog ? 0.026 : 0.03, 20), new THREE.MeshBasicMaterial({ color: s.cheeks, transparent: true, opacity: frog ? 0.8 : 0.55 }));
+        if (frog) onFace(c, 0.104 * side, -0.046, 0.0015);
+        else {
+          c.scale.set(1.2, 0.7, 1);
+          c.position.set(0.085 * side, -0.02, 0.146);
+          c.rotation.y = 0.5 * side;
+          this.head.add(c);
+        }
       }
     }
     if (s.horns) {
@@ -437,7 +479,7 @@ export class Character {
     this.mouth.position.y = -0.075 + face.smile * 0.004 + open * 0.008;
     // a big smile stays a big open grin while talking (laughing speech); the jaw opens with each mora
     const grinning = !!this.grin && face.smile > 0.6;
-    if (this.grin) { this.grin.visible = grinning; this.grin.scale.set(0.7 + face.smile * 0.3, (0.45 + face.smile * 0.55) * (0.8 + open * 0.4), 1); }
+    if (this.grin) { this.grin.visible = grinning; this.grin.scale.set(this.grinSize * (0.7 + face.smile * 0.3), this.grinSize * (0.45 + face.smile * 0.55) * (0.8 + open * 0.4), 1); }
     if (this.teethTop) { this.teethTop.visible = open >= 0.25 && !grinning; this.teethTop.position.y = -0.069 + open * 0.004; }
     this.mouthInner.visible = !grinning;
     this.mouth.visible = open < 0.25 && !grinning;

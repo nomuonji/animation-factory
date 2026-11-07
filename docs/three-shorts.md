@@ -53,14 +53,13 @@ style blocks: `"actors": {"akuma": {"cast": "akuma", "root": {...}}, "beko": {"c
 The preset fills style / figure / height / expr / captionColor, and `voices.<id>` falls back to the
 preset voice; anything written in the production wins (style merges key by key).
 
-- **akuma (悪魔)** — `figure: "chibi"` (`src/three/Chibi.ts`): a super-deformed (~2.2 heads, height 1 ≈ 1.0 m)
-  cute build with a big round head and a face drawn like the 100Avatars FrogEnjoyer (white-rimmed eyes
-  with a big brown iris and highlight, pink dot nose, thin line mouth, round blush), a pointed black
-  fringe and an ahoge, short rounded horns, pointed ears, a spade-tip tail and a black hoodie
-  with 「悪魔」 on the belly. Chibi style keys: `skin hair top bottom shoes horns ears tail print printColor
-  cheeks hood fang`. Default expression `grin` (open smile while talking). Same poses as other actors;
-  with `hold-up` the right hand is at about `{x: root.x - 0.18, y: 0.42, z: root.z + 0.15}` — stand the
-  akabeko (height 0.85) there for the selfie shot. Voice preset: 玄野武宏.
+- **akuma (悪魔)** — procedural `Character` (normal proportions) with `eyeStyle: "frog"`: a painted face
+  in the 100Avatars FrogEnjoyer style (white-rimmed eyes, big brown `iris`, highlight, pink dot nose,
+  thin line mouth, round `cheeks`, no brows). Red skin, black `horns`, `hairStyle: "spiky"`, `ears:
+  "pointed"`, black hoodie with `print: "悪魔"`, `teeth`. Default expression `grin` (a small toothy open
+  smile that stays open while talking). Pose `hold-up` raises the right hand beside the face — put the
+  akabeko at about `{x: root.x - 0.27, y: 1.5, z: root.z + 0.4}` for the selfie shot. Voice preset: 玄野武宏.
+  (`figure: "chibi"` in `src/three/Chibi.ts` is a ~2.2-head alternative build with the same face style.)
 - **akabeko (赤べこ／犬)** — `figure: "akabeko"`, a hand-sized papier-mâché cow (height 1 ≈ 0.2 m).
   No mouth: while it speaks the head nods once per mora; idle is a slow sway. `look` tilts the head,
   `move` places it (put `root.y` on a hand or a surface). Poses are ignored. Voice preset: 雨晴はう.
