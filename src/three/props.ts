@@ -208,6 +208,46 @@ export const PROPS: Record<string, PropBuilder> = {
     return { object: g };
   },
 
+  /** Folded A-frame desk card with text on both faces (reception, "面接会場", price tags). */
+  "tent-card"(p) {
+    const w = num(p.w, 0.24), h = num(p.h, 0.1);
+    const tex = canvasTexture(768, Math.round(768 * h / w), (c, cw, ch) => {
+      c.fillStyle = str(p.color, "#fbfaf6"); c.fillRect(0, 0, cw, ch);
+      c.strokeStyle = str(p.accent, "#2f4f7a"); c.lineWidth = 10; c.strokeRect(12, 12, cw - 24, ch - 24);
+      c.fillStyle = "#1b1b1f"; c.font = `bold ${Math.round(ch * 0.42)}px ${JP_FONT}`; c.textAlign = "center"; c.textBaseline = "middle";
+      c.fillText(str(p.text, ""), cw / 2, ch / 2 + 4);
+    });
+    const g = new THREE.Group();
+    const face = new THREE.MeshBasicMaterial({ map: tex });
+    for (const side of [1, -1]) {
+      const m = new THREE.Mesh(new THREE.PlaneGeometry(w, h), face);
+      m.position.set(0, h / 2 * Math.cos(0.32), side * h / 2 * Math.sin(0.32));
+      m.rotation.set(-side * 0.32, side > 0 ? 0 : Math.PI, 0);
+      g.add(m);
+    }
+    return { object: g };
+  },
+
+  /** Small white plate with bite-size samples on toothpicks. */
+  "sample-plate"(p) {
+    const n = Math.max(1, Math.min(6, num(p.count, 3)));
+    const g = new THREE.Group();
+    const plate = mesh(new THREE.CylinderGeometry(0.075, 0.06, 0.012, 24), toon("#fbfbf8"), 0.003);
+    plate.position.y = 0.006; g.add(plate);
+    for (let i = 0; i < n; i++) {
+      const a = (i / n) * Math.PI * 2;
+      const bit = mesh(new THREE.SphereGeometry(0.017, 10, 8), toon(str(p.food, "#c9852f"), { emissive: "#2a1400" }), 0.002);
+      bit.scale.set(1.25, 0.8, 1);
+      bit.position.set(Math.cos(a) * 0.035, 0.024, Math.sin(a) * 0.035);
+      g.add(bit);
+      const pick = mesh(new THREE.CylinderGeometry(0.0016, 0.0016, 0.05, 5), toon("#e7d3a3"), false);
+      pick.position.set(Math.cos(a) * 0.035, 0.05, Math.sin(a) * 0.035);
+      pick.rotation.z = 0.15;
+      g.add(pick);
+    }
+    return { object: g };
+  },
+
   pen(p) {
     const g = new THREE.Group();
     const body = mesh(new THREE.CylinderGeometry(0.0055, 0.0055, 0.14, 10), toon(str(p.color, "#2b3f8f")), 0.002);

@@ -1,0 +1,524 @@
+{
+  "meta": {
+    "id": "shishoku-mensetsu",
+    "title": "コンビニの試食に面接がある世界",
+    "fps": 30,
+    "width": 1080,
+    "height": 1920
+  },
+  "design": {
+    "format": "institutional-absurdity",
+    "title": "コンビニの試食に面接がある世界",
+    "titleAlternatives": [
+      "唐揚げを試食しようとしたら面接が始まった",
+      "試食の選考が厳しすぎるコンビニ"
+    ],
+    "titlePattern": "world",
+    "titleOnScreen": "card",
+    "titleScreenText": "コンビニの試食に\n面接がある世界",
+    "hook": {
+      "type": "anomaly-first",
+      "firstFrame": "唐揚げ1皿の横に『試食 選考会場』の卓上札。柴バーガーの店員が面接官の顔で座っている",
+      "overlay": "唐揚げ1個の試食です"
+    },
+    "rule": "試食をするには、就職面接と同じ選考を受けなければならない",
+    "escalations": [
+      "志望動機を聞かれる",
+      "数ある唐揚げの中から当店を選んだ理由を聞かれる",
+      "この唐揚げで何を実現したいか聞かれる"
+    ],
+    "turn": "客が『もう普通に買います』と試食を諦める",
+    "payoff": "購入は最終面接。カウンターの奥から面接官がさらに2人せり上がってくる",
+    "button": "『なお、試用期間は3か月です』（試食→試用）",
+    "loop": false,
+    "reaction": "laugh",
+    "audience": "コンビニの試食や就活の面接を経験した人が、質問の既視感で止まる"
+  },
+  "voices": {
+    "clerk": {
+      "speaker": "青山龍星",
+      "style": "ノーマル",
+      "speed": 1.15
+    },
+    "customer": {
+      "speaker": "ずんだもん",
+      "style": "ノーマル",
+      "speed": 1.08
+    }
+  },
+  "music": {
+    "track": "waiting-lounge",
+    "gain": 0.3,
+    "fadeIn": 0.2,
+    "fadeOut": 0.5
+  },
+  "set": {
+    "kind": "convenience-store",
+    "params": {
+      "price": "¥220",
+      "stripe": "#e2b443",
+      "counterColor": "#8a9a92",
+      "signText": "レジ"
+    }
+  },
+  "cameras": {
+    "clerk-cu": {
+      "pos": [
+        -0.55,
+        1.42,
+        1.1
+      ],
+      "target": [
+        0.04,
+        1.22,
+        -0.62
+      ],
+      "fov": 30
+    },
+    "customer-cu": {
+      "pos": [
+        -0.78,
+        1.62,
+        -1.12
+      ],
+      "target": [
+        0.16,
+        1.08,
+        0.68
+      ],
+      "fov": 30
+    },
+    "hero": {
+      "pos": [
+        0.7,
+        1.6,
+        1.85
+      ],
+      "target": [
+        -0.05,
+        1.12,
+        -0.3
+      ],
+      "fov": 40
+    },
+    "panel": {
+      "pos": [
+        0.62,
+        1.5,
+        2.0
+      ],
+      "target": [
+        -0.02,
+        1.15,
+        -0.7
+      ],
+      "fov": 48
+    },
+    "counter-top": {
+      "pos": [
+        -0.05,
+        2.0,
+        0.6
+      ],
+      "target": [
+        -0.04,
+        0.96,
+        0.04
+      ],
+      "fov": 40
+    }
+  },
+  "captions": {
+    "y": 0.74
+  },
+  "actors": {
+    "clerk": {
+      "vrm": "assets/3d/avatars/DogoBurger.vrm",
+      "height": 1.1,
+      "root": {
+        "x": 0.04,
+        "y": 0.42,
+        "z": -0.62,
+        "ry": 0
+      },
+      "pose": "counter",
+      "expr": "blank",
+      "captionColor": "#ffffff"
+    },
+    "customer": {
+      "vrm": "assets/3d/avatars/LilShark.vrm",
+      "height": 1.3,
+      "root": {
+        "x": 0.16,
+        "z": 0.68,
+        "ry": 3.14159
+      },
+      "pose": "idle",
+      "captionColor": "#ffe48a"
+    }
+  },
+  "props": {
+    "card": {
+      "kind": "tent-card",
+      "params": {
+        "text": "試食 選考会場",
+        "w": 0.26,
+        "h": 0.1
+      },
+      "tf": {
+        "x": -0.2,
+        "y": 0.96,
+        "z": 0.12,
+        "ry": 0.08
+      }
+    },
+    "plate": {
+      "kind": "sample-plate",
+      "params": {
+        "count": 1
+      },
+      "tf": {
+        "x": 0.1,
+        "y": 0.96,
+        "z": 0.08
+      }
+    },
+    "panelL": {
+      "kind": "gltf",
+      "params": {
+        "src": "assets/3d/kenney/mini-characters/character-male-d.glb",
+        "scale": 2.1,
+        "clip": "idle"
+      },
+      "tf": {
+        "x": -0.5,
+        "y": -1.5,
+        "z": -0.95,
+        "ry": 0.35
+      }
+    },
+    "panelR": {
+      "kind": "gltf",
+      "params": {
+        "src": "assets/3d/kenney/mini-characters/character-female-d.glb",
+        "scale": 2.1,
+        "clip": "idle"
+      },
+      "tf": {
+        "x": 0.55,
+        "y": -1.5,
+        "z": -0.95,
+        "ry": -0.35
+      }
+    },
+    "ketchup": {
+      "kind": "gltf",
+      "params": {
+        "src": "assets/3d/kaykit/restaurant/ketchup.gltf",
+        "scale": 0.5
+      },
+      "tf": {
+        "x": -0.82,
+        "y": 0.96,
+        "z": -0.1
+      }
+    }
+  },
+  "beats": [
+    {
+      "id": "title",
+      "role": "title",
+      "shot": "hero",
+      "dur": 1.2,
+      "do": [
+        {
+          "at": 0,
+          "sfx": "title-sting"
+        }
+      ]
+    },
+    {
+      "id": "start",
+      "role": "hook",
+      "shot": "counter-top",
+      "push": 0.05,
+      "pre": 0.05,
+      "line": {
+        "who": "clerk",
+        "text": "では、試食の面接を／始めます"
+      },
+      "do": [
+        {
+          "at": 0.05,
+          "sfx": "set-down"
+        }
+      ]
+    },
+    {
+      "id": "just",
+      "role": "rule",
+      "shot": "customer-cu",
+      "post": 0.15,
+      "line": {
+        "who": "customer",
+        "text": "……試食、／ですよね？"
+      },
+      "do": [
+        {
+          "at": 0,
+          "look": "customer",
+          "to": {
+            "pitch": 0.3,
+            "yaw": 0.2
+          },
+          "dur": 0.3
+        },
+        {
+          "at": "lineEnd-0.2",
+          "look": "customer",
+          "to": {
+            "pitch": 0.05,
+            "yaw": 0
+          },
+          "dur": 0.3
+        }
+      ]
+    },
+    {
+      "id": "q1",
+      "role": "escalate",
+      "level": 1,
+      "shot": "clerk-cu",
+      "push": 0.04,
+      "line": {
+        "who": "clerk",
+        "text": "志望動機を、／お聞かせください"
+      },
+      "do": [
+        {
+          "at": 0,
+          "pose": "clerk",
+          "to": "counter",
+          "dur": 0.3
+        }
+      ]
+    },
+    {
+      "id": "a1",
+      "role": "bridge",
+      "shot": "customer-cu",
+      "post": 0.15,
+      "line": {
+        "who": "customer",
+        "text": "お腹が、空いていて……"
+      },
+      "do": [
+        {
+          "at": 0,
+          "face": "customer",
+          "to": "doubtful",
+          "dur": 0.3
+        }
+      ]
+    },
+    {
+      "id": "q2",
+      "role": "escalate",
+      "level": 2,
+      "shot": "hero",
+      "push": 0.08,
+      "line": {
+        "who": "clerk",
+        "text": "数ある唐揚げの中から、／当店を選んだ理由は？"
+      },
+      "do": [
+        {
+          "at": 0.2,
+          "pose": "clerk",
+          "to": "point",
+          "dur": 0.35
+        },
+        {
+          "at": "lineEnd",
+          "pose": "clerk",
+          "to": "counter",
+          "dur": 0.4
+        }
+      ]
+    },
+    {
+      "id": "a2",
+      "role": "bridge",
+      "shot": "customer-cu",
+      "post": 0.15,
+      "line": {
+        "who": "customer",
+        "text": "目の前に、／あったので"
+      },
+      "do": [
+        {
+          "at": 0,
+          "look": "customer",
+          "to": {
+            "pitch": 0.35,
+            "yaw": -0.1
+          },
+          "dur": 0.3
+        }
+      ]
+    },
+    {
+      "id": "q3",
+      "role": "escalate",
+      "level": 3,
+      "shot": "clerk-cu",
+      "push": 0.1,
+      "line": {
+        "who": "clerk",
+        "text": "では、この唐揚げで、／あなたは何を／実現したいですか"
+      },
+      "do": [
+        {
+          "at": 0,
+          "look": "clerk",
+          "to": {
+            "pitch": 0.08
+          },
+          "dur": 0.4
+        }
+      ]
+    },
+    {
+      "id": "a3",
+      "role": "bridge",
+      "shot": "customer-cu",
+      "pre": 0.3,
+      "post": 0.25,
+      "line": {
+        "who": "customer",
+        "text": "……満腹、です"
+      },
+      "do": [
+        {
+          "at": 0,
+          "face": "customer",
+          "to": "weary",
+          "dur": 0.3
+        },
+        {
+          "at": 0,
+          "look": "customer",
+          "to": {
+            "pitch": 0.05,
+            "yaw": 0
+          },
+          "dur": 0.4
+        }
+      ]
+    },
+    {
+      "id": "giveup",
+      "role": "turn",
+      "shot": "side",
+      "post": 0.2,
+      "line": {
+        "who": "customer",
+        "text": "あの、もう／普通に買います"
+      },
+      "do": [
+        {
+          "at": 0,
+          "pose": "customer",
+          "to": "hand-up",
+          "dur": 0.35
+        },
+        {
+          "at": "lineEnd",
+          "pose": "customer",
+          "to": "idle",
+          "dur": 0.4
+        }
+      ]
+    },
+    {
+      "id": "final",
+      "role": "payoff",
+      "shot": "panel",
+      "pre": 0.15,
+      "post": 0.6,
+      "line": {
+        "who": "clerk",
+        "text": "ご購入の場合は、／最終面接になります"
+      },
+      "do": [
+        {
+          "at": "line+1.0",
+          "prop": "panelL",
+          "to": {
+            "y": 0.3
+          },
+          "dur": 0.35,
+          "ease": "back"
+        },
+        {
+          "at": "line+1.1",
+          "prop": "panelR",
+          "to": {
+            "y": 0.3
+          },
+          "dur": 0.35,
+          "ease": "back"
+        },
+        {
+          "at": "line+1.0",
+          "sfx": "payoff-hit"
+        },
+        {
+          "at": "line+1.0",
+          "music": "cut"
+        },
+        {
+          "at": "line+1.0",
+          "face": "customer",
+          "to": "surprised",
+          "dur": 0.2
+        }
+      ]
+    },
+    {
+      "id": "probation",
+      "role": "button",
+      "shot": "clerk-cu",
+      "pre": 0.1,
+      "post": 0.4,
+      "line": {
+        "who": "clerk",
+        "text": "なお、試用期間は／3か月です"
+      },
+      "do": [
+        {
+          "at": 0,
+          "music": "resume"
+        },
+        {
+          "at": 0.2,
+          "pose": "clerk",
+          "to": "give",
+          "dur": 0.35
+        },
+        {
+          "at": 0.25,
+          "prop": "plate",
+          "to": {
+            "z": 0.22
+          },
+          "dur": 0.4
+        }
+      ]
+    }
+  ],
+  "description": [
+    "唐揚げを1個試食したいだけなのに。",
+    "#ショート #コンビニ #3Dアニメ #コント #面接"
+  ]
+}
