@@ -20,7 +20,10 @@ export class VrmCharacter {
   private rest = new Map<string, THREE.Vector3>();
   private scale = 1;
 
-  constructor(readonly id: string, gltf: GLTF, opts: { height?: number; turn?: number } = {}) {
+  private seated = false;
+
+  constructor(readonly id: string, gltf: GLTF, opts: { height?: number; turn?: number; seated?: boolean } = {}) {
+    this.seated = !!opts.seated;
     const vrm = gltf.userData.vrm as VRM | undefined;
     if (!vrm) throw new Error(`${id}: file is not a VRM`);
     // independent copy per actor
@@ -83,6 +86,14 @@ export class VrmCharacter {
     // procedural "left" (+X when facing +Z) is the character's left
     this.aimArm("left", j.shoulderLX ?? 0, j.shoulderLZ ?? 0, j.elbowL ?? 0);
     this.aimArm("right", j.shoulderRX ?? 0, j.shoulderRZ ?? 0, (j.elbowR ?? 0) + wig);
+    if (this.seated) {
+      // thighs forward (+Z), shins straight down
+      for (const side of ["left", "right"] as const) {
+        const ul = this.node(`${side}UpperLeg`), ll = this.node(`${side}LowerLeg`);
+        if (ul) ul.quaternion.copy(this.toModel(new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(1, 0, 0), -Math.PI / 2)));
+        if (ll) ll.quaternion.copy(this.toModel(new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(1, 0, 0), Math.PI / 2)));
+      }
+    }
     const em = this.vrm.expressionManager;
     if (em) {
       for (const v of new Set(VISEMES)) em.setValue(v, 0);

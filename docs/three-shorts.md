@@ -48,7 +48,7 @@ workflow downloads them on a runner and uploads an artifact with sha256 for revi
 
 ## Sets
 
-`convenience-store` (counter, register, hot-snack case, microwaves, shelves) and `studio` (plain cyclorama for character sheets and lineups; cameras `front`, `close`).
+`convenience-store` (counter, register, hot-snack case, microwaves, shelves), `interview-room` (meeting-room job interview: desk with modesty panel, whiteboard, clock, blinds; place the candidate chair as a gltf prop) and `studio` (plain cyclorama for character sheets and lineups; cameras `front`, `close`).
 
 ## Music
 
@@ -96,3 +96,7 @@ SwiftShader (CPU WebGL): about 0.8 s per 1080×1920 frame on 2 cores.
 Outputs: `outputs/three/<id>/<id>.mp4` and `review/` (`design-report.md`, `title.txt`, `first-frame-phone.png`,
 `contact-sheet.jpg` 1 fps, `captions.srt`, `description.txt` with VOICEVOX/Kenney credits, `status.json`).
 `status.json` always says `editorial: unreviewed` — a person decides that.
+
+### Seated actors
+
+`"seated": true` on a VRM actor bends both legs (thighs forward, shins down). Lower `root.y` so the hips meet the seat; behind a desk with a modesty panel, raise it so the torso shows above the desk.

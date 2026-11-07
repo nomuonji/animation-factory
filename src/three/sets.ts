@@ -210,5 +210,67 @@ export const SETS: Record<string, SetBuilder> = {
         "over-clerk": { pos: [-0.35, 1.62, -1.05], target: [0.1, 1.1, 0.55], fov: 44 }
       }
     };
+  },
+
+  /** Company meeting room used for job interviews: interviewer desk at z<0, candidate chair at z>0. */
+  "interview-room"(scene, p) {
+    scene.background = new THREE.Color("#e9e7e2");
+    lights(scene, { key: 1.45 });
+    const deskTop = 0.72;
+    const grad = (toon("#fff") as THREE.MeshToonMaterial).gradientMap;
+    // carpet tiles
+    const carpet = canvasTexture(512, 512, (g, w, h) => {
+      g.fillStyle = "#8c939c"; g.fillRect(0, 0, w, h);
+      for (let i = 0; i < 2600; i++) { g.fillStyle = rand(i) > 0.5 ? "#838a93" : "#959ca5"; g.fillRect(rand(i + 1) * w, rand(i + 2) * h, 2, 2); }
+      g.strokeStyle = "#7c838b"; g.lineWidth = 2; g.strokeRect(0, 0, w, h);
+    });
+    carpet.wrapS = carpet.wrapT = THREE.RepeatWrapping; carpet.repeat.set(6, 6);
+    const floor = new THREE.Mesh(new THREE.PlaneGeometry(12, 12), new THREE.MeshToonMaterial({ map: carpet, gradientMap: grad }));
+    floor.rotation.x = -Math.PI / 2; floor.receiveShadow = true; scene.add(floor);
+    const wallC = String(p.wall ?? "#f1efea");
+    const wallB = mesh(new THREE.BoxGeometry(6, 3, 0.05), toon(wallC), false); wallB.position.set(0, 1.5, -1.6); scene.add(wallB);
+    const wallL = mesh(new THREE.BoxGeometry(0.05, 3, 6), toon(wallC), false); wallL.position.set(-2.2, 1.5, 0.4); scene.add(wallL);
+    const wallR = mesh(new THREE.BoxGeometry(0.05, 3, 6), toon(wallC), false); wallR.position.set(2.2, 1.5, 0.4); scene.add(wallR);
+    const wallF = mesh(new THREE.BoxGeometry(6, 3, 0.05), toon(wallC), false); wallF.position.set(0, 1.5, 3.2); scene.add(wallF);
+    const skirting = mesh(new THREE.BoxGeometry(6, 0.08, 0.02), toon("#6d6a66"), false); skirting.position.set(0, 0.04, -1.57); scene.add(skirting);
+    // window with blinds on the right wall
+    const win = new THREE.Mesh(new THREE.PlaneGeometry(1.8, 1.3), flat("#cfe3f2"));
+    win.position.set(2.17, 1.5, 0.2); win.rotation.y = -Math.PI / 2; scene.add(win);
+    for (let i = 0; i < 16; i++) {
+      const slat = mesh(new THREE.BoxGeometry(0.01, 0.05, 1.82), toon("#f7f6f2"), false);
+      slat.position.set(2.14, 0.9 + i * 0.08, 0.2); slat.rotation.z = 0.5; scene.add(slat);
+    }
+    // wall clock behind the interviewer
+    const clock = new THREE.Group();
+    const face = new THREE.Mesh(new THREE.CircleGeometry(0.16, 32), new THREE.MeshBasicMaterial({ map: canvasTexture(256, 256, (g, w, h) => {
+      g.fillStyle = "#ffffff"; g.beginPath(); g.arc(w / 2, h / 2, w / 2, 0, Math.PI * 2); g.fill();
+      g.strokeStyle = "#2a2a2a"; g.lineWidth = 14; g.stroke();
+      g.fillStyle = "#2a2a2a"; for (let k = 0; k < 12; k++) { const a = (k / 12) * Math.PI * 2; g.fillRect(w / 2 + Math.sin(a) * 100 - 4, h / 2 - Math.cos(a) * 100 - 4, 8, 8); }
+      g.lineWidth = 9; g.beginPath(); g.moveTo(w / 2, h / 2); g.lineTo(w / 2 + 50, h / 2 + 10); g.stroke();
+      g.lineWidth = 6; g.beginPath(); g.moveTo(w / 2, h / 2); g.lineTo(w / 2 - 20, h / 2 - 82); g.stroke();
+    }) }));
+    clock.add(face); clock.position.set(-0.75, 2.05, -1.57); scene.add(clock);
+    // interviewer desk with modesty panel (hides legs)
+    const deskC = String(p.desk ?? "#d8c3a2");
+    const top = mesh(new THREE.BoxGeometry(1.7, 0.04, 0.62), toon(deskC), 0.005); top.position.set(0, deskTop - 0.02, -0.4); scene.add(top);
+    const panel = mesh(new THREE.BoxGeometry(1.66, deskTop - 0.1, 0.03), toon("#6f7378"), 0.004); panel.position.set(0, (deskTop - 0.1) / 2 + 0.06, -0.12); scene.add(panel);
+    for (const x of [-0.8, 0.8]) { const leg = mesh(new THREE.BoxGeometry(0.04, deskTop - 0.04, 0.58), toon("#5d6166"), 0.004); leg.position.set(x, (deskTop - 0.04) / 2, -0.4); scene.add(leg); }
+    // whiteboard on back wall (blank)
+    const wb = mesh(new THREE.BoxGeometry(1.3, 0.8, 0.03), toon("#fbfbfa"), 0.005); wb.position.set(0.6, 1.65, -1.56); scene.add(wb);
+    const tray = mesh(new THREE.BoxGeometry(1.3, 0.03, 0.06), toon("#9aa0a6"), 0.003); tray.position.set(0.6, 1.24, -1.52); scene.add(tray);
+    // ceiling panels
+    const ceil = new THREE.Mesh(new THREE.PlaneGeometry(6, 6), flat("#f6f5f1")); ceil.rotation.x = Math.PI / 2; ceil.position.y = 2.7; scene.add(ceil);
+    for (const z of [-0.6, 1.1]) { const strip = new THREE.Mesh(new THREE.BoxGeometry(0.6, 0.02, 0.6), flat("#ffffff")); strip.position.set(0, 2.69, z); scene.add(strip); }
+    return {
+      surfaces: { desk: deskTop, floor: 0 },
+      cameras: {
+        wide: { pos: [1.35, 1.45, 2.3], target: [-0.1, 0.85, -0.2], fov: 40 },
+        side: { pos: [2.0, 1.15, 0.25], target: [-0.4, 0.95, 0.2], fov: 42 },
+        "interviewer-cu": { pos: [-0.12, 1.12, 0.6], target: [0, 1.05, -0.7], fov: 32 },
+        "candidate-cu": { pos: [0.12, 1.12, -0.25], target: [0, 0.95, 0.95], fov: 32 },
+        "over-interviewer": { pos: [0.45, 1.35, -1.0], target: [-0.05, 0.85, 0.95], fov: 40 },
+        "over-candidate": { pos: [-0.45, 1.25, 1.75], target: [0.05, 0.95, -0.6], fov: 40 }
+      }
+    };
   }
 };
