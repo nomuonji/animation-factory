@@ -80,7 +80,7 @@ export class Director3D {
       const face0 = { eyes: 1, brow: 0, smile: 0, ...(EXPRESSIONS[a.expr ?? "neutral"] ?? {}) } as Val;
       const ch = {
         pose: new Channel({ ...(POSES[a.pose ?? "idle"] ?? POSES.idle!) }, (e) => ({ ...(typeof e.to.pose === "string" ? POSES[e.to.pose] ?? {} : {}), ...numeric(e.to) })),
-        root: new Channel({ x: a.root.x, y: a.root.y ?? 0, z: a.root.z, ry: a.root.ry ?? 0 }, (e) => numeric(e.to)),
+        root: new Channel({ x: a.root.x, y: a.root.y ?? 0, z: a.root.z, ry: a.root.ry ?? 0, rx: a.root.rx ?? 0 }, (e) => numeric(e.to)),
         look: new Channel({ yaw: a.look?.yaw ?? 0, pitch: a.look?.pitch ?? 0 }, (e) => numeric(e.to)),
         face: new Channel(face0, (e) => ({ ...(typeof e.to.expr === "string" ? (EXPRESSIONS[e.to.expr] as Val) ?? {} : {}), ...numeric(e.to) })),
         wiggle: new Channel({ w: 0 }, (e) => numeric(e.to))
@@ -156,7 +156,7 @@ export class Director3D {
       const sp = speaking.get(id);
       const look = a.ch.look.at(t);
       a.c.apply({
-        root: a.ch.root.at(t) as { x: number; y: number; z: number; ry: number },
+        root: a.ch.root.at(t) as { x: number; y: number; z: number; ry: number; rx?: number },
         joints: a.ch.pose.at(t) as Joints,
         look: { yaw: look.yaw ?? 0, pitch: (look.pitch ?? 0) + (sp?.nod ?? 0) },
         face: { ...face, eyes: (face.eyes ?? 1) * blink, mouth: sp?.open ?? 0 },

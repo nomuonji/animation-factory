@@ -339,5 +339,106 @@ export const SETS: Record<string, SetBuilder> = {
         "over-photographer": { pos: [0.5, 1.5, 2.25], target: [0, 0.65, -0.6], fov: 34 }
       }
     };
+  },
+  "dental-clinic"(scene, p) {
+    // 歯科医院の診療台。患者は原点の診療台に +Z 向きで座り、背もたれは -Z 側へ倒れる（params.recline, ラジアン）。
+    // 歯科医は患者の右後ろ（x≈-0.5, z≈-0.4）、ライトは顔の上、うがいの鉢とコップは患者の左（+X）。
+    scene.background = new THREE.Color("#eef2f0");
+    lights(scene, { key: 1.35 });
+    const grad = (toon("#fff") as THREE.MeshToonMaterial).gradientMap;
+    const recline = Number(p.recline ?? 0.62);
+    const chairC = String(p.chair ?? "#6cc3b8");
+    // vinyl floor tiles
+    const tiles = canvasTexture(512, 512, (g, w, h) => {
+      g.fillStyle = "#e3e0d8"; g.fillRect(0, 0, w, h);
+      for (let i = 0; i < 4; i++) for (let j = 0; j < 4; j++) { g.fillStyle = (i + j) % 2 ? "#dcd8cf" : "#e6e3dc"; g.fillRect(i * w / 4, j * h / 4, w / 4 - 2, h / 4 - 2); }
+    });
+    tiles.wrapS = tiles.wrapT = THREE.RepeatWrapping; tiles.repeat.set(4, 4);
+    const floor = new THREE.Mesh(new THREE.PlaneGeometry(12, 12), new THREE.MeshToonMaterial({ map: tiles, gradientMap: grad }));
+    floor.rotation.x = -Math.PI / 2; floor.receiveShadow = true; scene.add(floor);
+    const wallC = String(p.wall ?? "#f3f6f4");
+    const wallB = mesh(new THREE.BoxGeometry(6, 3, 0.05), toon(wallC), false); wallB.position.set(0, 1.5, -1.9); scene.add(wallB);
+    const wallL = mesh(new THREE.BoxGeometry(0.05, 3, 6), toon(wallC), false); wallL.position.set(-2.0, 1.5, 0.8); scene.add(wallL);
+    const wallR = mesh(new THREE.BoxGeometry(0.05, 3, 6), toon(wallC), false); wallR.position.set(2.0, 1.5, 0.8); scene.add(wallR);
+    const wallF = mesh(new THREE.BoxGeometry(6, 3, 0.05), toon(wallC), false); wallF.position.set(0, 1.5, 3.6); scene.add(wallF);
+    const skirt = mesh(new THREE.BoxGeometry(5.9, 0.1, 0.02), toon("#9fb7b2"), false); skirt.position.set(0, 0.05, -1.87); scene.add(skirt);
+    // window with blinds on the right wall
+    const win = new THREE.Mesh(new THREE.PlaneGeometry(1.3, 1.0), flat("#dceefa")); win.rotation.y = -Math.PI / 2; win.position.set(1.97, 1.6, -0.3); scene.add(win);
+    for (let i = 0; i < 14; i++) { const sl = mesh(new THREE.BoxGeometry(0.02, 0.012, 1.3), toon("#f7f7f4"), false); sl.position.set(1.95, 1.12 + i * 0.07, -0.3); scene.add(sl); }
+    // back counter: cabinets, sink, gloves box, paper cups
+    const cab = mesh(new THREE.BoxGeometry(2.4, 0.85, 0.55), toon("#f8f8f5"), 0.004); cab.position.set(-0.3, 0.425, -1.6); scene.add(cab);
+    for (let i = 0; i < 4; i++) { const d = mesh(new THREE.BoxGeometry(0.56, 0.7, 0.01), toon("#eceee9"), 0.003); d.position.set(-1.2 + i * 0.6, 0.42, -1.32); scene.add(d); const h = mesh(new THREE.BoxGeometry(0.12, 0.015, 0.02), toon("#9aa3a3"), false); h.position.set(-1.2 + i * 0.6, 0.72, -1.31); scene.add(h); }
+    const top = mesh(new THREE.BoxGeometry(2.44, 0.04, 0.58), toon("#cfd8d6"), 0.004); top.position.set(-0.3, 0.87, -1.6); scene.add(top);
+    const sink = mesh(new THREE.BoxGeometry(0.42, 0.02, 0.3), toon("#b9c4c4"), false); sink.position.set(-1.05, 0.895, -1.6); scene.add(sink);
+    const tap = mesh(new THREE.CylinderGeometry(0.012, 0.012, 0.22, 8), toon("#c9cfd2"), 0.003); tap.position.set(-1.05, 1.0, -1.78); scene.add(tap);
+    const glove = mesh(new THREE.BoxGeometry(0.24, 0.1, 0.12), toon("#a8c8ec"), 0.003); glove.position.set(0.2, 0.94, -1.62); scene.add(glove);
+    for (let i = 0; i < 4; i++) { const c = mesh(new THREE.CylinderGeometry(0.035, 0.028, 0.08, 12), toon("#ffffff"), 0.003); c.position.set(0.55, 0.93 + i * 0.06, -1.62); scene.add(c); }
+    const upper = mesh(new THREE.BoxGeometry(2.4, 0.6, 0.32), toon("#f8f8f5"), 0.004); upper.position.set(-0.3, 2.05, -1.72); scene.add(upper);
+    // tooth-brushing poster (generic drawing, no text brand)
+    const poster = canvasTexture(320, 440, (g, w, h) => {
+      g.fillStyle = "#fffdf6"; g.fillRect(0, 0, w, h);
+      g.fillStyle = "#4bb3a8"; g.fillRect(0, 0, w, 70);
+      g.fillStyle = "#ffffff"; g.font = `bold 40px ${JP_FONT}`; g.textAlign = "center"; g.fillText("はみがき", w / 2, 50);
+      // a big tooth
+      g.fillStyle = "#ffffff"; g.strokeStyle = "#7a8a8c"; g.lineWidth = 5;
+      g.beginPath(); g.moveTo(90, 150); g.bezierCurveTo(90, 100, 230, 100, 230, 150); g.lineTo(220, 260); g.lineTo(190, 330); g.lineTo(165, 250); g.lineTo(140, 330); g.lineTo(105, 260); g.closePath(); g.fill(); g.stroke();
+      g.fillStyle = "#2a2a2a"; g.beginPath(); g.arc(135, 175, 7, 0, Math.PI * 2); g.arc(185, 175, 7, 0, Math.PI * 2); g.fill();
+      g.strokeStyle = "#2a2a2a"; g.lineWidth = 4; g.beginPath(); g.arc(160, 195, 18, 0.2, Math.PI - 0.2); g.stroke();
+      g.fillStyle = "#5a6a6c"; g.font = `24px ${JP_FONT}`; g.fillText("1日3回 3分間", w / 2, 390);
+    });
+    const pf = mesh(new THREE.BoxGeometry(0.5, 0.68, 0.02), toon("#d8dcd8"), 0.003); pf.position.set(0.85, 1.55, -1.86); scene.add(pf);
+    const pp = new THREE.Mesh(new THREE.PlaneGeometry(0.46, 0.64), new THREE.MeshBasicMaterial({ map: poster })); pp.position.set(0.85, 1.55, -1.845); scene.add(pp);
+    // x-ray viewer on the left wall
+    const xr = mesh(new THREE.BoxGeometry(0.03, 0.42, 0.62), toon("#e8ecef"), 0.003); xr.position.set(-1.97, 1.5, -0.6); scene.add(xr);
+    const xrs = new THREE.Mesh(new THREE.PlaneGeometry(0.56, 0.36), flat("#cfe3ef")); xrs.rotation.y = Math.PI / 2; xrs.position.set(-1.95, 1.5, -0.6); scene.add(xrs);
+
+    // ---- dental chair ----
+    const chair = toon(chairC), frame = toon("#f4f4f1"), metal = toon("#c4cacc");
+    const base = mesh(new THREE.BoxGeometry(0.6, 0.06, 0.8), frame, 0.004); base.position.set(0, 0.03, 0.15); scene.add(base);
+    const col = mesh(new THREE.CylinderGeometry(0.1, 0.12, 0.38, 16), frame, 0.004); col.position.set(0, 0.24, 0.1); scene.add(col);
+    const seat = mesh(new THREE.BoxGeometry(0.56, 0.09, 0.5), chair, 0.005); seat.position.set(0, 0.47, 0.17); scene.add(seat);
+    // leg rest rising forward a little (reclined chairs lift the legs)
+    const leg = mesh(new THREE.BoxGeometry(0.5, 0.08, 0.62), chair, 0.005); leg.rotation.x = -0.18 * recline / 0.62; leg.position.set(0, 0.5, 0.72); scene.add(leg);
+    // backrest hinged at the back of the seat
+    const hinge = new THREE.Group(); hinge.position.set(0, 0.5, -0.07); hinge.rotation.x = -recline; scene.add(hinge);
+    const back = mesh(new THREE.BoxGeometry(0.56, 0.78, 0.1), chair, 0.005); back.position.set(0, 0.39, -0.03); hinge.add(back);
+    const backShell = mesh(new THREE.BoxGeometry(0.54, 0.74, 0.03), frame, 0.004); backShell.position.set(0, 0.39, -0.1); hinge.add(backShell);
+    const head = mesh(new THREE.BoxGeometry(0.3, 0.16, 0.09), chair, 0.005); head.position.set(0, 0.86, 0.0); hinge.add(head);
+    for (const x of [-0.31, 0.31]) { const arm = mesh(new THREE.BoxGeometry(0.07, 0.05, 0.42), frame, 0.004); arm.position.set(x, 0.66, 0.18); scene.add(arm); const post = mesh(new THREE.BoxGeometry(0.04, 0.16, 0.04), frame, 0.003); post.position.set(x, 0.57, 0.02); scene.add(post); }
+    // spittoon unit on the patient's left (+X)
+    const unit = mesh(new THREE.CylinderGeometry(0.06, 0.07, 0.8, 12), frame, 0.004); unit.position.set(0.55, 0.4, -0.15); scene.add(unit);
+    const bowl = mesh(new THREE.SphereGeometry(0.12, 18, 10, 0, Math.PI * 2, 0, Math.PI / 2), toon("#dfe9ea"), 0.004); bowl.rotation.x = Math.PI; bowl.position.set(0.55, 0.86, -0.08); scene.add(bowl);
+    const rim = mesh(new THREE.TorusGeometry(0.12, 0.012, 8, 24), frame, false); rim.rotation.x = Math.PI / 2; rim.position.set(0.55, 0.86, -0.08); scene.add(rim);
+    const cup = mesh(new THREE.CylinderGeometry(0.03, 0.025, 0.07, 12), toon("#ffffff"), 0.003); cup.position.set(0.66, 0.9, 0.05); scene.add(cup);
+    // instrument tray on an arm in front-left of the patient
+    const tpole = mesh(new THREE.CylinderGeometry(0.018, 0.018, 0.45, 8), metal, 0.003); tpole.position.set(0.55, 0.85, 0.05); scene.add(tpole);
+    const tarm = mesh(new THREE.BoxGeometry(0.04, 0.03, 0.5), metal, 0.003); tarm.position.set(0.55, 1.07, 0.3); scene.add(tarm);
+    const tray = mesh(new THREE.BoxGeometry(0.36, 0.03, 0.26), toon("#e9ecea"), 0.004); tray.position.set(0.48, 1.09, 0.58); scene.add(tray);
+    for (let i = 0; i < 4; i++) { const t = mesh(new THREE.CylinderGeometry(0.006, 0.006, 0.16, 6), metal, false); t.rotation.z = Math.PI / 2; t.position.set(0.48, 1.11, 0.5 + i * 0.05); scene.add(t); }
+    // overhead light: post behind the chair, arm over the patient, lamp head aimed at the mouth
+    const lpost = mesh(new THREE.CylinderGeometry(0.03, 0.03, 1.95, 10), frame, 0.004); lpost.position.set(0.0, 0.98, -0.9); scene.add(lpost);
+    const larm = mesh(new THREE.BoxGeometry(0.05, 0.05, 1.05), frame, 0.004); larm.position.set(0.0, 1.95, -0.38); scene.add(larm);
+    const ldrop = mesh(new THREE.CylinderGeometry(0.018, 0.018, 0.2, 8), frame, 0.003); ldrop.position.set(0.0, 1.85, 0.12); scene.add(ldrop);
+    const lamp = new THREE.Group(); lamp.position.set(0.0, 1.72, 0.14); lamp.rotation.x = 0.9; scene.add(lamp);
+    const lh = mesh(new THREE.BoxGeometry(0.34, 0.08, 0.16), frame, 0.005); lamp.add(lh);
+    const lens = new THREE.Mesh(new THREE.PlaneGeometry(0.28, 0.11), flat(p.lampOff ? "#cfd6d8" : "#fffbe6")); lens.rotation.x = Math.PI / 2; lens.position.y = -0.041; lamp.add(lens);
+    if (!p.lampOff) {
+      const spot = new THREE.SpotLight(0xfff6e0, 2.2, 3, 0.5, 0.6, 1.2);
+      spot.position.set(0.0, 1.7, 0.2); spot.target.position.set(0, 0.95, -0.2); scene.add(spot, spot.target);
+    }
+    // dentist's stool
+    const st = mesh(new THREE.CylinderGeometry(0.18, 0.18, 0.06, 18), toon("#56636a"), 0.004); st.position.set(-1.0, 0.5, -0.95); scene.add(st);
+    const sp = mesh(new THREE.CylinderGeometry(0.025, 0.025, 0.46, 8), metal, 0.003); sp.position.set(-1.0, 0.24, -0.95); scene.add(sp);
+    const ceil = new THREE.Mesh(new THREE.PlaneGeometry(6, 7), flat("#f7f8f6")); ceil.rotation.x = Math.PI / 2; ceil.position.set(0, 2.95, 0.8); scene.add(ceil);
+    return {
+      surfaces: { floor: 0, seat: 0.52, tray: 1.1 },
+      cameras: {
+        wide: { pos: [1.5, 1.6, 2.5], target: [-0.1, 0.85, -0.1], fov: 44 },
+        side: { pos: [1.9, 1.15, 0.1], target: [0, 0.9, -0.1], fov: 40 },
+        "patient-cu": { pos: [0.35, 1.45, 0.75], target: [0, 1.0, -0.15], fov: 34 },
+        "dentist-cu": { pos: [0.2, 1.35, 0.55], target: [-0.5, 1.4, -0.45], fov: 34 },
+        "over-dentist": { pos: [-0.85, 1.75, -0.95], target: [0.05, 0.95, 0.0], fov: 40 }
+      }
+    };
   }
 };

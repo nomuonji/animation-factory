@@ -72,10 +72,11 @@ export class VrmCharacter {
     lower.quaternion.setFromUnitVectors(restL, dLlocal.normalize());
   }
 
-  apply(state: { root: { x: number; y: number; z: number; ry: number }; joints: Joints; look: { yaw: number; pitch: number }; face: FaceState; breath: number; wiggle: number; time: number; mora?: number }) {
+  apply(state: { root: { x: number; y: number; z: number; ry: number; rx?: number }; joints: Joints; look: { yaw: number; pitch: number }; face: FaceState; breath: number; wiggle: number; time: number; mora?: number }) {
     const { root, joints: j, look, face } = state;
     this.root.position.set(root.x, root.y, root.z);
-    this.root.rotation.y = root.ry;
+    // rx tilts the whole body back (>0) or forward, e.g. a reclined dental chair; applied after the yaw
+    this.root.rotation.set(root.rx ?? 0, root.ry, 0, "YXZ");
     const spine = this.node("spine"), chest = this.node("chest") ?? this.node("upperChest"), neck = this.node("neck"), head = this.node("head");
     if (spine) spine.quaternion.copy(this.toModel(new THREE.Quaternion().setFromEuler(new THREE.Euler((j.spineX ?? 0) * 0.6, (j.spineY ?? 0) * 0.6, 0))));
     if (chest) chest.quaternion.copy(this.toModel(new THREE.Quaternion().setFromEuler(new THREE.Euler((j.spineX ?? 0) * 0.4 + state.breath * 0.01, (j.spineY ?? 0) * 0.4, 0))));
@@ -99,6 +100,13 @@ export class VrmCharacter {
       for (const v of new Set(VISEMES)) em.setValue(v, 0);
       const open = Math.max(0, Math.min(1, face.mouth));
       if (open > 0) em.setValue(VISEMES[(state.mora ?? 0) % VISEMES.length]!, open);
+      // face.jaw: extra mouth opening on the "aa" shape; values above 1 exaggerate the blend shape
+      // (setValue clamps to 0..1, so the weight is written directly)
+      const jaw = face.jaw ?? 0;
+      if (jaw > 0) {
+        const aa = em.getExpression("aa");
+        if (aa) aa.weight = Math.max(jaw, aa.weight);
+      }
       em.setValue("blink", Math.max(0, Math.min(1, 1 - face.eyes)));
       // map procedural face numbers onto VRM emotion presets when the model has them
       const clamp = (v: number) => Math.max(0, Math.min(1, v));

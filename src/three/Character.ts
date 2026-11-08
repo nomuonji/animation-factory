@@ -29,6 +29,7 @@ export interface CharacterStyle {
   iris?: string;
   boldBrows?: boolean;      // thick, outward-raised brows
   eyeShadow?: string | null; // painted shading around the eyes (face paint)
+  mask?: string | null;     // surgical/face mask colour over nose and mouth (dentist, nurse); null = none
 }
 
 export type Joints = Record<string, number>;
@@ -55,7 +56,7 @@ export const POSES: Record<string, Joints> = {
   "bow":       { spineX: 0.38, spineY: 0, shoulderLX: 0.15, shoulderLZ: 0.04, elbowL: -0.1, shoulderRX: 0.15, shoulderRZ: -0.04, elbowR: -0.1, wristL: 0, wristR: 0 }
 };
 
-export interface FaceState { eyes: number; brow: number; mouth: number; smile: number; }
+export interface FaceState { eyes: number; brow: number; mouth: number; smile: number; jaw?: number; }
 
 export const EXPRESSIONS: Record<string, Partial<FaceState>> = {
   neutral: { eyes: 1, brow: 0, smile: 0 },
@@ -99,7 +100,7 @@ export class Character {
       skin: "#f2c9a8", hair: "#2a2226", hairStyle: "short", top: "#f4f2ee", vest: null, vestTrim: "#ffffff",
       bottom: "#3a3d4a", shoes: "#2b2b30", glasses: false, nameTag: null, hood: false, height: 1,
       horns: null, ears: "round", print: null, printColor: "#f6f3ec", teeth: false, cheeks: null,
-      eyeStyle: "dot", iris: "#2a1a14", boldBrows: false, eyeShadow: null, ...style
+      eyeStyle: "dot", iris: "#2a1a14", boldBrows: false, eyeShadow: null, mask: null, ...style
     } as Required<CharacterStyle>;
     const skin = toon(s.skin);
     const top = toon(s.top);
@@ -228,6 +229,26 @@ export class Character {
         ear.scale.set(0.5, 1, 0.8);
         ear.position.set(0.162 * side, -0.01, 0);
         this.head.add(ear);
+      }
+    }
+    if (s.mask) {
+      // pleated face mask: a slice of a sphere just outside the skull, from the nose to the chin, with ear loops
+      const m = mesh(new THREE.SphereGeometry(0.186, 28, 10, Math.PI / 2 - 1.0, 2.0, 1.52, 0.94), toon(s.mask), 0.004);
+      (m.material as THREE.Material).side = THREE.DoubleSide;
+      m.scale.set(1.0, 1.06, 1.0);
+      this.head.add(m);
+      for (const k of [0.3, 0.55]) {
+        const pleat = new THREE.Mesh(new THREE.TorusGeometry(0.1875, 0.0012, 4, 30, 1.9), flat(shade(s.mask, -0.12)));
+        pleat.rotation.set(Math.PI / 2, 0, Math.PI / 2 - 0.95 + Math.PI);
+        pleat.position.y = -0.186 * 1.06 * Math.cos(1.52 + 0.94 * k) - 0.0;
+        pleat.scale.set(Math.sin(1.52 + 0.94 * k), Math.sin(1.52 + 0.94 * k), 1);
+        this.head.add(pleat);
+      }
+      for (const side of [-1, 1]) {
+        const loop = new THREE.Mesh(new THREE.TorusGeometry(0.03, 0.003, 4, 12, Math.PI), flat("#f2f2f2"));
+        loop.rotation.set(0, Math.PI / 2, Math.PI / 2);
+        loop.position.set(0.163 * side, -0.035, -0.005);
+        this.head.add(loop);
       }
     }
     // point on the skull surface, facing outward (for painted face parts)

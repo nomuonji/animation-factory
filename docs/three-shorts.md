@@ -69,7 +69,9 @@ and is marked `publish: false` in `status.json`; never send it to publishing).
 
 ## Sets
 
-`convenience-store` (counter, register, hot-snack case, microwaves, shelves), `interview-room` (meeting-room job interview: desk with modesty panel, whiteboard, clock, blinds; place the candidate chair as a gltf prop), `studio` (plain cyclorama for character sheets and lineups; cameras `front`, `close`) and `photo-studio` (写真館 for ID photos: paper backdrop sweep, wooden floor, sample portraits; put the sitter on a `chair_stool` gltf at z≈-0.6; props `photo-camera` (tripod, `height`, `tilt`) and `strobe` (softbox, `param flash` 0..1 for the flash; pair it with the `camera-shutter` sfx)).
+`convenience-store` (counter, register, hot-snack case, microwaves, shelves), `interview-room` (meeting-room job interview: desk with modesty panel, whiteboard, clock, blinds; place the candidate chair as a gltf prop), `studio` (plain cyclorama for character sheets and lineups; cameras `front`, `close`) and `photo-studio` (写真館 for ID photos: paper backdrop sweep, wooden floor, sample portraits; put the sitter on a `chair_stool` gltf at z≈-0.6; props `photo-camera` (tripod, `height`, `tilt`) and `strobe` (softbox, `param flash` 0..1 for the flash; pair it with the `camera-shutter` sfx)) and `dental-clinic` (歯科医院: dental chair reclined by `params.recline` (rad, default 0.62), overhead lamp, spittoon with cup, instrument tray, back counter, brushing poster; cameras `wide`, `side`, `patient-cu`, `dentist-cu`, `over-dentist`. Lay a VRM patient on it with `seated: true` and `root.rx: -recline`; the dentist stands at the patient's right, x≈-0.5, z≈-0.3, ry=π/2).
+
+Actor extras: `root.rx` (also through `move`) tilts a VRM actor's whole body back (<0) or forward, after its yaw — for reclined chairs and beds. `face` actions take `{"jaw": n}` to open a VRM mouth beyond its talking shape ("aa" blend shape; values above 1 exaggerate it, e.g. 3 for a huge jaw); `{"jaw": 0}` returns it. Procedural characters take `style.mask` (face-mask colour) for dentists and nurses.
 
 ## Music
 
