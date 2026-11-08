@@ -348,6 +348,21 @@
           "floor": 0
         },
         "notes": "写真館（証明写真・ポートレート）。奥 z≈-1.75 に背景紙（params.backdrop で色）、被写体の椅子は prop（kaykit chair_stool, 高さ0.5）を z≈-0.6 に、撮影者側 z>0.6。三脚カメラ（photo-camera）とストロボ（strobe, param flash）は prop"
+      },
+      "dental-clinic": {
+        "cameras": [
+          "wide",
+          "side",
+          "patient-cu",
+          "dentist-cu",
+          "over-dentist"
+        ],
+        "surfaces": {
+          "floor": 0,
+          "seat": 0.52,
+          "tray": 1.1
+        },
+        "notes": "歯科医院の診療台（定期検診・治療）。患者は原点の診療台に +Z 向き、背もたれは params.recline（既定0.62rad）で -Z 側へ倒れる。VRM 患者は seated:true と root.rx=-recline で寝かせる（LilShark height1.2 なら root {y:0.2,z:0.05}）。歯科医は患者の右（x≈-0.5, z≈-0.3, ry=π/2）、うがいの鉢・コップ・器具トレーは患者の左、無影灯は顔の上（params.lampOff で消灯）"
       }
     },
     "props": {
@@ -426,7 +441,8 @@
         "eyeStyle(dot|big)",
         "iris",
         "boldBrows",
-        "eyeShadow"
+        "eyeShadow",
+        "mask"
       ],
       "poses": [
         "idle",

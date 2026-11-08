@@ -1,0 +1,511 @@
+{
+  "meta": {
+    "id": "same-haisha",
+    "title": "サメの歯科検診",
+    "fps": 30,
+    "width": 1080,
+    "height": 1920
+  },
+  "design": {
+    "format": "escalation-ladder",
+    "title": "サメの歯科検診",
+    "titleAlternatives": [
+      "歯医者で「一回閉じてください」",
+      "口が閉じないサメ、歯医者へ"
+    ],
+    "titlePattern": "world",
+    "titleOnScreen": "card",
+    "titleScreenText": "サメの\n歯科検診",
+    "hook": {
+      "type": "line-first",
+      "firstFrame": "歯医者の診療台に倒れたサメ。ライトの下で口は最初から大きく開いていて、横からマスクの歯科医がのぞき込む",
+      "overlay": "定期検診"
+    },
+    "rule": "患者がサメなので、口が元から開いたまま閉じない",
+    "escalations": [
+      "『一回閉じてください』に『……閉じてます』",
+      "噛み合わせの『カチカチしてください』に、口で『カチカチ』と言う",
+      "『冷たいもの、しみたりします？』に『ずっとスースーします』",
+      "『歯ぎしりはされますか？』に『できないです』",
+      "『口呼吸って言われません？』に『言われます』"
+    ],
+    "turn": "歯科医は閉じさせるのをあきらめ、検診の最後の定番『もう少し大きく開けてください』に切り替える",
+    "payoff": "サメのあごがいちばん大きく開く（顔の半分以上が口になる）",
+    "button": "『はい、閉じてくださーい』→ 元の開いた口に戻って『閉じてます』",
+    "loop": false,
+    "reaction": "laugh",
+    "audience": "歯医者で『閉じて』『カチカチして』『イーってして』と言われた経験のある人が、口の開いたサメが診療台にいる絵で止まる",
+    "reality": {
+      "place": "歯科医院の診療台での定期検診",
+      "normalEvent": "歯科医が『お口開けてください』『一回閉じてください』『カチカチしてください』『イーってしてください』と声をかけ、歯ぎしりや口呼吸について聞く",
+      "onlyBreak": "患者がサメで、口が元から開いたまま閉じない"
+    },
+    "payoffMechanism": "scale-jump",
+    "ideation": {
+      "method": "creative-thinking（ラジ父レンズ）。premise_reinterpretation（キャラが元からそうである性質）/ social_script_corruption（定番の決まり文句）/ literalization / mundane_detail / category_collision の5系統で19案→現実チェック・狙いすぎチェック・既存3作（温め・動物に例えると・赤べこの証明写真）との重なり・二段目以降が作れるかで落として1案。人の選択は入っていない（予約実行）",
+      "candidates": 19,
+      "rejected": [
+        "美容院のシャンプー台で『かゆいところございませんか』→悪魔が『角の付け根』：二段目以降が角の繰り返しになり、オチが立たない",
+        "辛さを選べるラーメン屋で悪魔が『地獄で』：店のメニュー名に頼った言葉遊びで、作った決め台詞に寄る",
+        "動物病院で飼い主『最近ずっと首を振ってて』→患者が赤べこ：前作『赤べこの証明写真』と同じうなずきのズレ",
+        "歯医者で歯を数えるとサメの歯が何列もある：列が画で見えず、一度で分からない",
+        "職場で『顔赤いけど熱ある？』→悪魔『元からです』：『これが普通です』型の作った台詞で締めることになる",
+        "お土産屋で客の赤べこが売り物と間違われる：取り違えの既視感が強く、オチで世界を広げすぎる",
+        "柴バーガーに散歩中『柴ですか？』：『バーガーです』の前作と同じオチ"
+      ]
+    }
+  },
+  "voices": {
+    "dentist": {
+      "speaker": "冥鳴ひまり",
+      "style": "ノーマル",
+      "speed": 1.08
+    },
+    "shark": {
+      "speaker": "白上虎太郎",
+      "style": "ふつう",
+      "speed": 1.05
+    }
+  },
+  "music": {
+    "track": "waiting-lounge",
+    "gain": 0.24,
+    "fadeIn": 0.2,
+    "fadeOut": 0.5
+  },
+  "set": {
+    "kind": "dental-clinic",
+    "params": {
+      "recline": 0.62
+    }
+  },
+  "captions": {
+    "y": 0.76
+  },
+  "actors": {
+    "dentist": {
+      "style": {
+        "skin": "#f2cdb0",
+        "hair": "#2e2422",
+        "hairStyle": "ponytail",
+        "top": "#f7f7f4",
+        "bottom": "#8fb6cf",
+        "shoes": "#f0f0ee",
+        "mask": "#bcd7ea"
+      },
+      "root": {
+        "x": -0.52,
+        "z": -0.32,
+        "ry": 1.5708
+      },
+      "pose": "counter",
+      "look": {
+        "pitch": 0.45
+      },
+      "expr": "blank",
+      "captionColor": "#ffffff"
+    },
+    "shark": {
+      "vrm": "assets/3d/avatars/LilShark.vrm",
+      "height": 1.2,
+      "seated": true,
+      "root": {
+        "x": 0,
+        "y": 0.2,
+        "z": 0.05,
+        "ry": 0,
+        "rx": -0.62
+      },
+      "pose": "idle",
+      "captionColor": "#b9e2ff"
+    }
+  },
+  "props": {},
+  "beats": [
+    {
+      "id": "title",
+      "role": "title",
+      "shot": "wide",
+      "dur": 1.3,
+      "do": [
+        {
+          "at": 0,
+          "sfx": "title-sting"
+        }
+      ]
+    },
+    {
+      "id": "open",
+      "role": "hook",
+      "shot": "over-dentist",
+      "pre": 0.05,
+      "post": 0.1,
+      "line": {
+        "who": "dentist",
+        "text": "はーい、／お口開けてくださーい"
+      }
+    },
+    {
+      "id": "hai",
+      "role": "bridge",
+      "shot": "patient-cu",
+      "pre": 0.15,
+      "post": 0.35,
+      "line": {
+        "who": "shark",
+        "text": "はい"
+      }
+    },
+    {
+      "id": "close",
+      "role": "rule",
+      "shot": "over-dentist",
+      "post": 0.1,
+      "line": {
+        "who": "dentist",
+        "text": "……はい、／一回閉じてくださーい"
+      },
+      "do": [
+        {
+          "at": 0,
+          "look": "dentist",
+          "to": {
+            "pitch": 0.5
+          },
+          "dur": 0.3
+        }
+      ]
+    },
+    {
+      "id": "closed",
+      "role": "escalate",
+      "level": 1,
+      "shot": "patient-cu",
+      "push": 0.08,
+      "pre": 0.35,
+      "post": 0.45,
+      "line": {
+        "who": "shark",
+        "text": "……閉じてます"
+      }
+    },
+    {
+      "id": "kachi",
+      "role": "escalate",
+      "level": 2,
+      "shot": "dentist-cu",
+      "pre": 0.3,
+      "post": 0.1,
+      "line": {
+        "who": "dentist",
+        "text": "……では、噛み合わせ見ますね。／カチカチしてください"
+      },
+      "do": [
+        {
+          "at": 0,
+          "look": "dentist",
+          "to": {
+            "pitch": 0.3
+          },
+          "dur": 0.3
+        }
+      ]
+    },
+    {
+      "id": "kachi2",
+      "role": "bridge",
+      "shot": "patient-cu",
+      "pre": 0.1,
+      "post": 0.4,
+      "line": {
+        "who": "shark",
+        "text": "カチカチ"
+      }
+    },
+    {
+      "id": "ii",
+      "role": "bridge",
+      "shot": "dentist-cu",
+      "pre": 0.2,
+      "post": 0.05,
+      "line": {
+        "who": "dentist",
+        "text": "……イーってしてください"
+      }
+    },
+    {
+      "id": "ii2",
+      "role": "bridge",
+      "shot": "patient-cu",
+      "pre": 0.1,
+      "post": 0.4,
+      "line": {
+        "who": "shark",
+        "text": "イー"
+      }
+    },
+    {
+      "id": "cold",
+      "role": "escalate",
+      "level": 3,
+      "shot": "over-dentist",
+      "pre": 0.2,
+      "post": 0.1,
+      "line": {
+        "who": "dentist",
+        "text": "冷たいもの、／しみたりします？"
+      },
+      "do": [
+        {
+          "at": 0,
+          "look": "dentist",
+          "to": {
+            "pitch": 0.45
+          },
+          "dur": 0.3
+        }
+      ]
+    },
+    {
+      "id": "cold2",
+      "role": "bridge",
+      "shot": "patient-cu",
+      "pre": 0.2,
+      "post": 0.35,
+      "line": {
+        "who": "shark",
+        "text": "ずっと、／スースーします"
+      }
+    },
+    {
+      "id": "grind",
+      "role": "escalate",
+      "level": 4,
+      "shot": "dentist-cu",
+      "pre": 0.2,
+      "post": 0.1,
+      "line": {
+        "who": "dentist",
+        "text": "歯ぎしりとか、／されます？"
+      },
+      "do": [
+        {
+          "at": 0,
+          "look": "dentist",
+          "to": {
+            "pitch": 0.45
+          },
+          "dur": 0.3
+        }
+      ]
+    },
+    {
+      "id": "grind2",
+      "role": "bridge",
+      "shot": "patient-cu",
+      "pre": 0.2,
+      "post": 0.35,
+      "line": {
+        "who": "shark",
+        "text": "できないです"
+      }
+    },
+    {
+      "id": "breath",
+      "role": "escalate",
+      "level": 5,
+      "shot": "over-dentist",
+      "pre": 0.25,
+      "post": 0.1,
+      "line": {
+        "who": "dentist",
+        "text": "……口呼吸って、／言われません？"
+      }
+    },
+    {
+      "id": "breath2",
+      "role": "bridge",
+      "shot": "patient-cu",
+      "pre": 0.15,
+      "post": 0.45,
+      "line": {
+        "who": "shark",
+        "text": "言われます"
+      }
+    },
+    {
+      "id": "wide",
+      "role": "turn",
+      "shot": "wide",
+      "pre": 0.3,
+      "post": 0.15,
+      "line": {
+        "who": "dentist",
+        "text": "……では最後に、／もう少し大きく／開けてくださーい"
+      },
+      "do": [
+        {
+          "at": 0,
+          "look": "dentist",
+          "to": {
+            "pitch": 0.5
+          },
+          "dur": 0.3
+        }
+      ]
+    },
+    {
+      "id": "aa",
+      "role": "payoff",
+      "shot": "payoff",
+      "pre": 0.1,
+      "post": 0.9,
+      "line": {
+        "who": "shark",
+        "text": "あー"
+      },
+      "do": [
+        {
+          "at": "line",
+          "face": "shark",
+          "to": {
+            "jaw": 3.2
+          },
+          "dur": 0.45,
+          "ease": "back"
+        },
+        {
+          "at": "line+0.45",
+          "sfx": "payoff-hit"
+        },
+        {
+          "at": "line+0.4",
+          "music": "cut"
+        },
+        {
+          "at": "line+0.45",
+          "move": "dentist",
+          "to": {
+            "x": -0.62
+          },
+          "dur": 0.35
+        },
+        {
+          "at": "line+0.45",
+          "look": "dentist",
+          "to": {
+            "pitch": 0.25
+          },
+          "dur": 0.35
+        }
+      ]
+    },
+    {
+      "id": "enough",
+      "role": "bridge",
+      "shot": "dentist-cu",
+      "pre": 0.1,
+      "post": 0.1,
+      "line": {
+        "who": "dentist",
+        "text": "……はい、／閉じてくださーい"
+      }
+    },
+    {
+      "id": "end",
+      "role": "button",
+      "shot": "patient-cu",
+      "pre": 0.1,
+      "post": 0.8,
+      "line": {
+        "who": "shark",
+        "text": "閉じてます"
+      },
+      "do": [
+        {
+          "at": 0,
+          "music": "resume"
+        },
+        {
+          "at": 0,
+          "face": "shark",
+          "to": {
+            "jaw": 0
+          },
+          "dur": 0.35
+        }
+      ]
+    }
+  ],
+  "cameras": {
+    "wide": {
+      "pos": [
+        0.55,
+        1.45,
+        2.3
+      ],
+      "target": [
+        -0.12,
+        0.9,
+        -0.2
+      ],
+      "fov": 40
+    },
+    "patient-cu": {
+      "pos": [
+        0.15,
+        1.32,
+        0.95
+      ],
+      "target": [
+        0,
+        1.03,
+        -0.2
+      ],
+      "fov": 36
+    },
+    "dentist-cu": {
+      "pos": [
+        0.32,
+        1.12,
+        0.38
+      ],
+      "target": [
+        -0.52,
+        1.42,
+        -0.32
+      ],
+      "fov": 34
+    },
+    "over-dentist": {
+      "pos": [
+        -0.25,
+        1.85,
+        0.6
+      ],
+      "target": [
+        -0.08,
+        1.0,
+        -0.2
+      ],
+      "fov": 44
+    },
+    "payoff": {
+      "pos": [
+        0.05,
+        1.55,
+        1.5
+      ],
+      "target": [
+        -0.2,
+        1.12,
+        -0.2
+      ],
+      "fov": 42
+    }
+  },
+  "description": [
+    "歯医者で定期検診。",
+    "#ショート #歯医者 #サメ #3Dアニメ #コント"
+  ]
+}
