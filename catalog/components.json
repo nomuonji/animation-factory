@@ -363,6 +363,23 @@
           "tray": 1.1
         },
         "notes": "歯科医院の診療台（定期検診・治療）。患者は原点の診療台に +Z 向き、背もたれは params.recline（既定0.62rad）で -Z 側へ倒れる。VRM 患者は seated:true と root.rx=-recline で寝かせる（LilShark height1.2 なら root {y:0.2,z:0.05}）。歯科医は患者の右（x≈-0.5, z≈-0.3, ry=π/2）、うがいの鉢・コップ・器具トレーは患者の左、無影灯は顔の上（params.lampOff で消灯）"
+      },
+      "animal-clinic": {
+        "cameras": [
+          "wide",
+          "dog-cu",
+          "patient-cu",
+          "vet-cu",
+          "over-dog",
+          "payoff",
+          "side"
+        ],
+        "surfaces": {
+          "floor": 0,
+          "scale": 0.155,
+          "exam": 0.98
+        },
+        "notes": "動物病院の診察室。受付兼診察スペースに床置き体重計と診察台、健康チェックの掲示、薬棚を設置。犬の飼い主と人間の患者を同一画面に収める"
       }
     },
     "props": {
