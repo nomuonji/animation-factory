@@ -484,18 +484,6 @@ export const SETS: Record<string, SetBuilder> = {
     const signFace = new THREE.Mesh(new THREE.PlaneGeometry(1.36, 0.48), new THREE.MeshBasicMaterial({ map: signTex }));
     signFace.position.set(0, 2.48, -1.875); scene.add(signFace);
 
-    // Medicine cabinets and bottles; ordinary clinical dressing, not joke props.
-    const cabinet = mesh(new THREE.BoxGeometry(1.35, 0.85, 0.42), toon("#d9e3de"), 0.004);
-    cabinet.position.set(-1.85, 0.47, -1.55); scene.add(cabinet);
-    const top = mesh(new THREE.BoxGeometry(1.43, 0.06, 0.48), toon("#f8f9f6"), 0.004);
-    top.position.set(-1.85, 0.93, -1.54); scene.add(top);
-    for (let i = 0; i < 4; i++) {
-      const bottle = mesh(new THREE.CylinderGeometry(0.055, 0.055, 0.19, 12), toon(["#b6d6c8", "#f0d9a5", "#b7cde0", "#d9bfd1"][i]!), 0.003);
-      bottle.position.set(-2.28 + i * 0.28, 1.05, -1.48); scene.add(bottle);
-      const cap = mesh(new THREE.CylinderGeometry(0.032, 0.032, 0.04, 10), toon("#f7f7f2"), false);
-      cap.position.set(-2.28 + i * 0.28, 1.165, -1.48); scene.add(cap);
-    }
-
     // Animal-health poster with simple silhouettes.
     const posterTex = canvasTexture(256, 340, (g, w, h) => {
       g.fillStyle = "#fffdf7"; g.fillRect(0, 0, w, h);
@@ -512,14 +500,6 @@ export const SETS: Record<string, SetBuilder> = {
     posterFrame.position.set(1.95, 1.75, -1.91); scene.add(posterFrame);
     const poster = new THREE.Mesh(new THREE.PlaneGeometry(0.66, 0.92), new THREE.MeshBasicMaterial({ map: posterTex }));
     poster.position.set(1.95, 1.75, -1.887); scene.add(poster);
-
-    // Standard veterinary exam table at the side, leaving the scale and actors clear.
-    const examTop = mesh(new THREE.BoxGeometry(0.9, 0.12, 1.15), toon("#b9d4cc"), 0.006);
-    examTop.position.set(1.95, 0.92, 0.0); scene.add(examTop);
-    for (const x of [1.62, 2.28]) for (const z of [-0.38, 0.38]) {
-      const leg = mesh(new THREE.CylinderGeometry(0.035, 0.045, 0.86, 10), toon("#a5b4af"), 0.004);
-      leg.position.set(x, 0.46, z); scene.add(leg);
-    }
 
     // Floor scale: the human patient stands on it.
     const scaleBase = mesh(new THREE.BoxGeometry(0.82, 0.10, 0.72), toon("#536d6c"), 0.008);
@@ -542,21 +522,6 @@ export const SETS: Record<string, SetBuilder> = {
     ]);
     const lead = mesh(new THREE.TubeGeometry(leadCurve, 24, 0.012, 8, false), toon("#c65a52"), false);
     scene.add(lead);
-
-    // Waiting bench and a small plant keep the room grounded.
-    const bench = mesh(new THREE.BoxGeometry(1.05, 0.09, 0.34), toon("#9fb9b0"), 0.004);
-    bench.position.set(-1.8, 0.55, -0.58); scene.add(bench);
-    for (const x of [-2.2, -1.4]) {
-      const leg = mesh(new THREE.CylinderGeometry(0.025, 0.03, 0.5, 8), toon("#788d86"), 0.003);
-      leg.position.set(x, 0.28, -0.58); scene.add(leg);
-    }
-    const pot = mesh(new THREE.CylinderGeometry(0.14, 0.12, 0.22, 12), toon("#c08c6b"), 0.003);
-    pot.position.set(2.2, 0.12, -1.25); scene.add(pot);
-    for (let i = 0; i < 5; i++) {
-      const leaf = mesh(new THREE.SphereGeometry(0.11, 10, 8), toon("#6f9d79"), false);
-      leaf.position.set(2.2 + Math.cos(i * Math.PI * 2 / 5) * 0.13, 0.42 + (i % 2) * 0.08, -1.25 + Math.sin(i * Math.PI * 2 / 5) * 0.13);
-      leaf.scale.set(0.7, 1.5, 0.7); scene.add(leaf);
-    }
 
     return {
       surfaces: { floor: 0, scale: 0.155, exam: 0.98 },
