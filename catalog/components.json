@@ -379,7 +379,7 @@
           "scale": 0.155,
           "exam": 0.98
         },
-        "notes": "動物病院の診察室。受付兼診察スペースに床置き体重計と診察台、健康チェックの掲示、薬棚を設置。犬の飼い主と人間の患者を同一画面に収める"
+        "notes": "動物病院の診察室。部屋の壁・床・サインはセット、家具と診察台は既存KayKit Furniture Bits（bed_single_A / cabinet_medium_decorated / chair_A / table_medium）をscene3d.jsonから直接読み込む。診療記録には既存binder / pen propを使用。キャストは既存100Avatars R3のDogoBurger / Erika / Robert。"
       }
     },
     "props": {
