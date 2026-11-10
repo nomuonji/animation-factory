@@ -167,10 +167,10 @@
     "maxTitleChars": 28,
     "maxOverlayChars": 13,
     "firstSoundBy": 0.6,
-    "ruleBy": 7.0,
-    "maxStaticShot": 6.0,
+    "ruleBy": 7,
+    "maxStaticShot": 6,
     "payoffAfterRatio": 0.6,
-    "maxButton": 4.0,
+    "maxButton": 4,
     "maxBridge": 2.5,
     "maxTitleCard": 1.6
   },
@@ -196,6 +196,11 @@
     "dental-clinic": [
       "歯科",
       "歯医者"
+    ],
+    "animal-clinic": [
+      "動物病院",
+      "獣医",
+      "診察室"
     ]
   },
   "payoffMechanisms": {
