@@ -124,7 +124,89 @@
       "captionColor": "#ffe48a"
     }
   },
-  "props": {},
+  "props": {
+    "exam-bed": {
+      "kind": "gltf",
+      "params": {
+        "src": "assets/3d/kaykit/furniture/bed_single_A.gltf",
+        "scale": 0.42
+      },
+      "tf": {
+        "x": 1.62,
+        "y": 0.06,
+        "z": -0.42,
+        "ry": 0
+      }
+    },
+    "medicine-cabinet": {
+      "kind": "gltf",
+      "params": {
+        "src": "assets/3d/kaykit/furniture/cabinet_medium_decorated.gltf",
+        "scale": 0.43
+      },
+      "tf": {
+        "x": -2.05,
+        "y": 0,
+        "z": -1.43,
+        "ry": 0
+      }
+    },
+    "waiting-chair": {
+      "kind": "gltf",
+      "params": {
+        "src": "assets/3d/kaykit/furniture/chair_A.gltf",
+        "scale": 0.56
+      },
+      "tf": {
+        "x": -1.55,
+        "y": 0,
+        "z": 0.68,
+        "ry": 0.25
+      }
+    },
+    "vet-desk": {
+      "kind": "gltf",
+      "params": {
+        "src": "assets/3d/kaykit/furniture/table_medium.gltf",
+        "scale": 0.43
+      },
+      "tf": {
+        "x": 1.72,
+        "y": 0,
+        "z": -1.42,
+        "ry": 0
+      }
+    },
+    "medical-record": {
+      "kind": "binder",
+      "params": {
+        "w": 0.26,
+        "d": 0.32,
+        "height": 0.055,
+        "color": "#557b78",
+        "title": "診療記録",
+        "label": "診療記録"
+      },
+      "tf": {
+        "x": 1.52,
+        "y": 0.44,
+        "z": -1.35,
+        "ry": 0.08
+      }
+    },
+    "record-pen": {
+      "kind": "pen",
+      "params": {
+        "color": "#3c5364"
+      },
+      "tf": {
+        "x": 1.86,
+        "y": 0.45,
+        "z": -1.35,
+        "ry": 0.35
+      }
+    }
+  },
   "beats": [
     {
       "id": "title",
