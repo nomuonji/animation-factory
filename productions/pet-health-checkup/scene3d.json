@@ -195,7 +195,7 @@
           "at": 0,
           "face": "human",
           "to": {
-            "expression": "angry"
+            "expr": "angry"
           },
           "dur": 0.25
         }
@@ -345,7 +345,7 @@
           "at": 0,
           "face": "human",
           "to": {
-            "expression": "surprised"
+            "expr": "surprised"
           },
           "dur": 0.2
         }
