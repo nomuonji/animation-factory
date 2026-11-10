@@ -1,0 +1,439 @@
+{
+  "meta": {
+    "id": "pet-health-checkup",
+    "title": "ペットの健康診断",
+    "fps": 30,
+    "width": 1080,
+    "height": 1920
+  },
+  "design": {
+    "format": "role-reversal",
+    "title": "ペットの健康診断",
+    "titleAlternatives": [
+      "犬が飼い主を連れてきた",
+      "診察されるのはどっち？"
+    ],
+    "titlePattern": "world",
+    "titleOnScreen": "card",
+    "titleScreenText": "ペットの\n健康診断",
+    "hook": {
+      "type": "in-media-res",
+      "firstFrame": "動物病院。犬がリードを持ち、首輪をつけた人間が体重計に乗っている",
+      "overlay": "診察されるのは人間"
+    },
+    "rule": "この世界では犬が飼い主で、人間がペットとして診察を受ける",
+    "escalations": [
+      "食事の質問に、犬が飼い主として人間の夜食について答える",
+      "運動の質問に、犬が人間の散歩が週末だけだと答える",
+      "体重の話になると、犬が人間の生活習慣を具体的に説明する"
+    ],
+    "turn": "人間が自分の話を自分に聞いてほしいと獣医に訴える",
+    "payoff": "獣医の勧めで、犬が人間にリードをつけて毎日の散歩へ連れ出す",
+    "button": "診察の帰り道から、人間の散歩が始まる",
+    "loop": false,
+    "reaction": "laugh",
+    "audience": "動物病院でペットの食事や運動について相談したことがある人",
+    "reality": {
+      "place": "動物病院の診察室",
+      "normalEvent": "獣医が飼い主にペットの食事・運動・体重について質問する",
+      "onlyBreak": "犬が飼い主で、人間が犬のペットとして診察を受けている"
+    },
+    "payoffMechanism": "literal-callback",
+    "ideation": {
+      "method": "creative-thinking v3（ラジ父レンズ）。single_rule_shift / social_script_corruption / mundane_detail / literalization の4系統で16案を発散。現実の場所と出来事を固定し、ズレが一点だけの案を選定",
+      "candidates": 16,
+      "rejected": [
+        "人間が犬を診察する普通の動物病院：逆転がなく既存の題材から先へ進まない",
+        "犬が獣医になる：役割を二つ以上反転させ、最初の一画で状況が伝わらない",
+        "化石や特別な首輪を身分証にする：ボケ用の小道具が主役になる",
+        "犬が人間に薬を飲ませる：動物病院の診察という普通の出来事から外れてしまう",
+        "犬が人間に芸をさせる：診察ではなく見世物になり、舞台の現実性が崩れる"
+      ]
+    }
+  },
+  "voices": {
+    "vet": {
+      "speaker": "春日部つむぎ",
+      "style": "ノーマル",
+      "speed": 1.06
+    },
+    "dog": {
+      "speaker": "青山龍星",
+      "style": "ノーマル",
+      "speed": 1.08
+    },
+    "human": {
+      "speaker": "玄野武宏",
+      "style": "ノーマル",
+      "speed": 1.03
+    }
+  },
+  "music": {
+    "track": "waiting-lounge",
+    "gain": 0.25,
+    "fadeIn": 0.2,
+    "fadeOut": 0.55
+  },
+  "set": {
+    "kind": "animal-clinic",
+    "params": {}
+  },
+  "captions": {
+    "y": 0.75
+  },
+  "actors": {
+    "dog": {
+      "vrm": "assets/3d/avatars/DogoBurger.vrm",
+      "height": 1.25,
+      "root": {
+        "x": -0.72,
+        "z": -0.25,
+        "ry": 0
+      },
+      "pose": "idle",
+      "look": {
+        "yaw": 0.18,
+        "pitch": 0.1
+      },
+      "expr": "blank",
+      "captionColor": "#c8f59a"
+    },
+    "vet": {
+      "vrm": "assets/3d/avatars/Erika.vrm",
+      "height": 1.55,
+      "root": {
+        "x": 0.9,
+        "z": -0.45,
+        "ry": 0
+      },
+      "pose": "idle",
+      "expr": "polite",
+      "captionColor": "#ffffff"
+    },
+    "human": {
+      "vrm": "assets/3d/avatars/Robert.vrm",
+      "height": 1.55,
+      "root": {
+        "x": 0.05,
+        "y": 0.12,
+        "z": 0.78,
+        "ry": 3.14159
+      },
+      "pose": "idle",
+      "expr": "doubtful",
+      "captionColor": "#ffe48a"
+    }
+  },
+  "props": {},
+  "beats": [
+    {
+      "id": "title",
+      "role": "title",
+      "shot": "wide",
+      "dur": 1.25,
+      "do": [
+        {
+          "at": 0,
+          "sfx": "title-sting"
+        }
+      ]
+    },
+    {
+      "id": "question",
+      "role": "hook",
+      "shot": "wide",
+      "pre": 0.05,
+      "post": 0.1,
+      "line": {
+        "who": "vet",
+        "text": "今日は、どちらの診察ですか？"
+      }
+    },
+    {
+      "id": "request",
+      "role": "rule",
+      "shot": "dog-cu",
+      "pre": 0.15,
+      "post": 0.2,
+      "line": {
+        "who": "dog",
+        "text": "この子の健康診断をお願いします"
+      }
+    },
+    {
+      "id": "food",
+      "role": "escalate",
+      "level": 1,
+      "shot": "vet-cu",
+      "pre": 0.15,
+      "line": {
+        "who": "vet",
+        "text": "最近、ごはんは食べていますか？"
+      }
+    },
+    {
+      "id": "snack",
+      "role": "bridge",
+      "shot": "dog-cu",
+      "post": 0.15,
+      "line": {
+        "who": "dog",
+        "text": "夜食が増えているんです"
+      }
+    },
+    {
+      "id": "me",
+      "role": "bridge",
+      "shot": "patient-cu",
+      "post": 0.2,
+      "line": {
+        "who": "human",
+        "text": "それ、僕の話でしょ！"
+      },
+      "do": [
+        {
+          "at": 0,
+          "face": "human",
+          "to": {
+            "expression": "angry"
+          },
+          "dur": 0.25
+        }
+      ]
+    },
+    {
+      "id": "exercise",
+      "role": "escalate",
+      "level": 2,
+      "shot": "vet-cu",
+      "line": {
+        "who": "vet",
+        "text": "運動はしていますか？"
+      }
+    },
+    {
+      "id": "weekend",
+      "role": "bridge",
+      "shot": "dog-cu",
+      "post": 0.1,
+      "line": {
+        "who": "dog",
+        "text": "週末にしか散歩していません"
+      }
+    },
+    {
+      "id": "objection",
+      "role": "bridge",
+      "shot": "patient-cu",
+      "post": 0.2,
+      "line": {
+        "who": "human",
+        "text": "週末は、歩いてます！"
+      }
+    },
+    {
+      "id": "weight",
+      "role": "escalate",
+      "level": 3,
+      "shot": "vet-cu",
+      "line": {
+        "who": "vet",
+        "text": "体重も、少し増えましたね"
+      }
+    },
+    {
+      "id": "sleep",
+      "role": "bridge",
+      "shot": "dog-cu",
+      "line": {
+        "who": "dog",
+        "text": "帰ると、すぐ寝てしまって"
+      }
+    },
+    {
+      "id": "work",
+      "role": "bridge",
+      "shot": "patient-cu",
+      "post": 0.1,
+      "line": {
+        "who": "human",
+        "text": "仕事が忙しいんです！"
+      }
+    },
+    {
+      "id": "turn",
+      "role": "turn",
+      "shot": "over-dog",
+      "post": 0.2,
+      "line": {
+        "who": "human",
+        "text": "先生、僕の話も聞いてください！"
+      }
+    },
+    {
+      "id": "walk",
+      "role": "payoff",
+      "shot": "payoff",
+      "post": 0.15,
+      "line": {
+        "who": "vet",
+        "text": "では、毎日のお散歩を増やしましょう"
+      },
+      "do": [
+        {
+          "at": "line+0.1",
+          "music": "cut"
+        },
+        {
+          "at": "line+0.25",
+          "move": "dog",
+          "to": {
+            "x": -0.58,
+            "z": -0.02
+          },
+          "dur": 0.55,
+          "ease": "inOut"
+        },
+        {
+          "at": "line+0.25",
+          "move": "human",
+          "to": {
+            "x": 0.05,
+            "z": 1.02
+          },
+          "dur": 0.55,
+          "ease": "inOut"
+        },
+        {
+          "at": "line+0.3",
+          "sfx": "step"
+        }
+      ]
+    },
+    {
+      "id": "go",
+      "role": "bridge",
+      "shot": "wide",
+      "post": 0.1,
+      "line": {
+        "who": "dog",
+        "text": "はい。行こう。"
+      },
+      "do": [
+        {
+          "at": 0,
+          "look": "dog",
+          "to": {
+            "yaw": 0.35,
+            "pitch": 0.12
+          },
+          "dur": 0.25
+        }
+      ]
+    },
+    {
+      "id": "today",
+      "role": "button",
+      "shot": "patient-cu",
+      "post": 0.65,
+      "line": {
+        "who": "human",
+        "text": "今から！？"
+      },
+      "do": [
+        {
+          "at": 0,
+          "face": "human",
+          "to": {
+            "expression": "surprised"
+          },
+          "dur": 0.2
+        }
+      ]
+    }
+  ],
+  "cameras": {
+    "wide": {
+      "pos": [
+        0.12,
+        1.95,
+        5.8
+      ],
+      "target": [
+        0.02,
+        1,
+        0
+      ],
+      "fov": 44
+    },
+    "dog-cu": {
+      "pos": [
+        -1,
+        1.35,
+        2.6
+      ],
+      "target": [
+        -0.72,
+        1.05,
+        -0.15
+      ],
+      "fov": 38
+    },
+    "patient-cu": {
+      "pos": [
+        0.12,
+        1.35,
+        2.85
+      ],
+      "target": [
+        0.05,
+        1.1,
+        0.78
+      ],
+      "fov": 37
+    },
+    "vet-cu": {
+      "pos": [
+        1.5,
+        1.45,
+        2.65
+      ],
+      "target": [
+        0.82,
+        1.15,
+        -0.45
+      ],
+      "fov": 38
+    },
+    "over-dog": {
+      "pos": [
+        -1.65,
+        1.85,
+        2.7
+      ],
+      "target": [
+        0.05,
+        0.95,
+        0.1
+      ],
+      "fov": 44
+    },
+    "payoff": {
+      "pos": [
+        0.18,
+        2.05,
+        5.3
+      ],
+      "target": [
+        0.02,
+        0.95,
+        0.18
+      ],
+      "fov": 46
+    }
+  },
+  "description": [
+    "動物病院での健康診断。飼い主とペットが逆だったら？",
+    "#ショート #3Dアニメ #コント #動物病院 #健康診断"
+  ]
+}
