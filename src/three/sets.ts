@@ -440,5 +440,136 @@ export const SETS: Record<string, SetBuilder> = {
         "over-dentist": { pos: [-0.85, 1.75, -0.95], target: [0.05, 0.95, 0.0], fov: 40 }
       }
     };
-  }
+  },
+
+  /**
+   * Animal clinic examination room. A human patient stands on the floor scale;
+   * keep the owner, patient and veterinarian inside the wide vertical frame.
+   */
+  "animal-clinic"(scene, p) {
+    scene.background = new THREE.Color("#e8efed");
+    lights(scene, { key: 1.45 });
+    const grad = (toon("#fff") as THREE.MeshToonMaterial).gradientMap;
+    const floorTex = canvasTexture(512, 512, (g, w, h) => {
+      g.fillStyle = "#e5e2d9"; g.fillRect(0, 0, w, h);
+      for (let y = 0; y < 4; y++) for (let x = 0; x < 4; x++) {
+        g.fillStyle = (x + y) % 2 ? "#ddd9cf" : "#e9e6de";
+        g.fillRect(x * w / 4 + 2, y * h / 4 + 2, w / 4 - 4, h / 4 - 4);
+      }
+    });
+    floorTex.wrapS = floorTex.wrapT = THREE.RepeatWrapping;
+    floorTex.repeat.set(5, 5);
+    const floor = new THREE.Mesh(new THREE.PlaneGeometry(12, 12), new THREE.MeshToonMaterial({ map: floorTex, gradientMap: grad }));
+    floor.rotation.x = -Math.PI / 2; floor.receiveShadow = true; scene.add(floor);
+
+    const wallColor = String(p.wall ?? "#f3f5f1");
+    const back = mesh(new THREE.BoxGeometry(5.4, 3.0, 0.06), toon(wallColor), false);
+    back.position.set(0, 1.5, -2.0); scene.add(back);
+    const left = mesh(new THREE.BoxGeometry(0.06, 3.0, 5.2), toon("#e7ece8"), false);
+    left.position.set(-2.7, 1.5, 0.5); scene.add(left);
+    const right = mesh(new THREE.BoxGeometry(0.06, 3.0, 5.2), toon("#e7ece8"), false);
+    right.position.set(2.7, 1.5, 0.5); scene.add(right);
+    const base = mesh(new THREE.BoxGeometry(5.35, 0.13, 0.035), toon("#9eafa8"), false);
+    base.position.set(0, 0.08, -1.96); scene.add(base);
+
+    // Clinic sign with legible Japanese lettering.
+    const signTex = canvasTexture(512, 180, (g, w, h) => {
+      g.fillStyle = "#eaf4ee"; g.fillRect(0, 0, w, h);
+      g.fillStyle = "#2b6654"; g.fillRect(0, 0, 14, h);
+      g.fillStyle = "#31594c"; g.font = `bold 76px ${JP_FONT}`; g.textAlign = "center"; g.textBaseline = "middle";
+      g.fillText("動物病院", w / 2 + 4, h / 2);
+    });
+    const sign = mesh(new THREE.BoxGeometry(1.45, 0.58, 0.06), toon("#f8faf6"), 0.004);
+    sign.position.set(0, 2.48, -1.91); scene.add(sign);
+    const signFace = new THREE.Mesh(new THREE.PlaneGeometry(1.36, 0.48), new THREE.MeshBasicMaterial({ map: signTex }));
+    signFace.position.set(0, 2.48, -1.875); scene.add(signFace);
+
+    // Medicine cabinets and bottles; ordinary clinical dressing, not joke props.
+    const cabinet = mesh(new THREE.BoxGeometry(1.35, 0.85, 0.42), toon("#d9e3de"), 0.004);
+    cabinet.position.set(-1.85, 0.47, -1.55); scene.add(cabinet);
+    const top = mesh(new THREE.BoxGeometry(1.43, 0.06, 0.48), toon("#f8f9f6"), 0.004);
+    top.position.set(-1.85, 0.93, -1.54); scene.add(top);
+    for (let i = 0; i < 4; i++) {
+      const bottle = mesh(new THREE.CylinderGeometry(0.055, 0.055, 0.19, 12), toon(["#b6d6c8", "#f0d9a5", "#b7cde0", "#d9bfd1"][i]!), 0.003);
+      bottle.position.set(-2.28 + i * 0.28, 1.05, -1.48); scene.add(bottle);
+      const cap = mesh(new THREE.CylinderGeometry(0.032, 0.032, 0.04, 10), toon("#f7f7f2"), false);
+      cap.position.set(-2.28 + i * 0.28, 1.165, -1.48); scene.add(cap);
+    }
+
+    // Animal-health poster with simple silhouettes.
+    const posterTex = canvasTexture(256, 340, (g, w, h) => {
+      g.fillStyle = "#fffdf7"; g.fillRect(0, 0, w, h);
+      g.fillStyle = "#7bb19b"; g.fillRect(0, 0, w, 54);
+      g.fillStyle = "#ffffff"; g.font = `bold 25px ${JP_FONT}`; g.textAlign = "center"; g.fillText("健康チェック", w / 2, 37);
+      g.fillStyle = "#b98655";
+      g.beginPath(); g.arc(92, 142, 38, 0, Math.PI * 2); g.fill();
+      g.beginPath(); g.ellipse(63, 101, 15, 34, -0.35, 0, Math.PI * 2); g.ellipse(121, 101, 15, 34, 0.35, 0, Math.PI * 2); g.fill();
+      g.fillStyle = "#24292b"; g.beginPath(); g.arc(78, 139, 4, 0, Math.PI * 2); g.arc(106, 139, 4, 0, Math.PI * 2); g.fill();
+      g.fillStyle = "#6b7b79"; g.font = `18px ${JP_FONT}`;
+      ["食事・運動・体重", "定期的に確認しましょう"].forEach((t, i) => g.fillText(t, w / 2, 232 + i * 34));
+    });
+    const posterFrame = mesh(new THREE.BoxGeometry(0.72, 0.98, 0.035), toon("#d7ddd7"), 0.003);
+    posterFrame.position.set(1.95, 1.75, -1.91); scene.add(posterFrame);
+    const poster = new THREE.Mesh(new THREE.PlaneGeometry(0.66, 0.92), new THREE.MeshBasicMaterial({ map: posterTex }));
+    poster.position.set(1.95, 1.75, -1.887); scene.add(poster);
+
+    // Standard veterinary exam table at the side, leaving the scale and actors clear.
+    const examTop = mesh(new THREE.BoxGeometry(0.9, 0.12, 1.15), toon("#b9d4cc"), 0.006);
+    examTop.position.set(1.95, 0.92, 0.0); scene.add(examTop);
+    for (const x of [1.62, 2.28]) for (const z of [-0.38, 0.38]) {
+      const leg = mesh(new THREE.CylinderGeometry(0.035, 0.045, 0.86, 10), toon("#a5b4af"), 0.004);
+      leg.position.set(x, 0.46, z); scene.add(leg);
+    }
+
+    // Floor scale: the human patient stands on it.
+    const scaleBase = mesh(new THREE.BoxGeometry(0.82, 0.10, 0.72), toon("#536d6c"), 0.008);
+    scaleBase.position.set(0.05, 0.07, 0.77); scene.add(scaleBase);
+    const scaleTop = mesh(new THREE.BoxGeometry(0.75, 0.035, 0.65), toon("#dce8e3"), 0.004);
+    scaleTop.position.set(0.05, 0.137, 0.77); scene.add(scaleTop);
+    const display = mesh(new THREE.BoxGeometry(0.28, 0.095, 0.035), toon("#273b3c"), 0.003);
+    display.position.set(0.05, 0.19, 1.12); scene.add(display);
+    const displayFace = new THREE.Mesh(new THREE.PlaneGeometry(0.22, 0.052), flat("#a8d1bf"));
+    displayFace.position.set(0.05, 0.19, 1.14); scene.add(displayFace);
+
+    // A real dog lead and collar make the single role reversal readable at a glance.
+    const collar = new THREE.Mesh(new THREE.TorusGeometry(0.13, 0.018, 8, 28), toon("#cb5d54"));
+    collar.rotation.x = Math.PI / 2; collar.position.set(0.05, 1.38, 0.77); scene.add(collar);
+    const leadCurve = new THREE.CatmullRomCurve3([
+      new THREE.Vector3(-0.48, 1.08, -0.20),
+      new THREE.Vector3(-0.22, 1.24, 0.06),
+      new THREE.Vector3(-0.04, 1.36, 0.42),
+      new THREE.Vector3(0.05, 1.38, 0.67)
+    ]);
+    const lead = mesh(new THREE.TubeGeometry(leadCurve, 24, 0.012, 8, false), toon("#c65a52"), false);
+    scene.add(lead);
+
+    // Waiting bench and a small plant keep the room grounded.
+    const bench = mesh(new THREE.BoxGeometry(1.05, 0.09, 0.34), toon("#9fb9b0"), 0.004);
+    bench.position.set(-1.8, 0.55, -0.58); scene.add(bench);
+    for (const x of [-2.2, -1.4]) {
+      const leg = mesh(new THREE.CylinderGeometry(0.025, 0.03, 0.5, 8), toon("#788d86"), 0.003);
+      leg.position.set(x, 0.28, -0.58); scene.add(leg);
+    }
+    const pot = mesh(new THREE.CylinderGeometry(0.14, 0.12, 0.22, 12), toon("#c08c6b"), 0.003);
+    pot.position.set(2.2, 0.12, -1.25); scene.add(pot);
+    for (let i = 0; i < 5; i++) {
+      const leaf = mesh(new THREE.SphereGeometry(0.11, 10, 8), toon("#6f9d79"), false);
+      leaf.position.set(2.2 + Math.cos(i * Math.PI * 2 / 5) * 0.13, 0.42 + (i % 2) * 0.08, -1.25 + Math.sin(i * Math.PI * 2 / 5) * 0.13);
+      leaf.scale.set(0.7, 1.5, 0.7); scene.add(leaf);
+    }
+
+    return {
+      surfaces: { floor: 0, scale: 0.155, exam: 0.98 },
+      cameras: {
+        wide: { pos: [0.12, 1.95, 5.8], target: [0.02, 1.0, 0.0], fov: 44 },
+        "dog-cu": { pos: [-1.0, 1.35, 2.6], target: [-0.72, 1.05, -0.15], fov: 38 },
+        "patient-cu": { pos: [0.12, 1.35, 2.85], target: [0.05, 1.1, 0.78], fov: 37 },
+        "vet-cu": { pos: [1.5, 1.45, 2.65], target: [0.82, 1.15, -0.45], fov: 38 },
+        "over-dog": { pos: [-1.65, 1.85, 2.7], target: [0.05, 0.95, 0.1], fov: 44 },
+        payoff: { pos: [0.18, 2.05, 5.3], target: [0.02, 0.95, 0.18], fov: 46 },
+        side: { pos: [-2.1, 1.55, 1.8], target: [0.1, 0.9, 0.15], fov: 44 }
+      }
+    };
+  },
+
 };
