@@ -55,13 +55,25 @@
         ],
         "sourceChunks": [
           {
-            "id": "<実取得chunk ID>",
+            "id": "<実取得chunk ID 1>",
+            "dataset": "radichichi",
+            "retrievalTier": "creative",
+            "role": "ogiri_reference"
+          },
+          {
+            "id": "<実取得chunk ID 2>",
+            "dataset": "radichichi",
+            "retrievalTier": "creative",
+            "role": "ogiri_reference"
+          },
+          {
+            "id": "<実取得chunk ID 3>",
             "dataset": "radichichi",
             "retrievalTier": "creative",
             "role": "ogiri_reference"
           }
         ],
-        "sourceChunkIds": ["<実取得chunk ID>", "<実取得chunk ID>", "<実取得chunk ID>"],
+        "sourceChunkIds": ["<実取得chunk ID 1>", "<実取得chunk ID 2>", "<実取得chunk ID 3>"],
         "sourceExampleIds": [
           "radichichi-<ID>",
           "radichichi-<ID>",
