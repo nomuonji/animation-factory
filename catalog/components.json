@@ -363,6 +363,22 @@
           "tray": 1.1
         },
         "notes": "歯科医院の診療台（定期検診・治療）。患者は原点の診療台に +Z 向き、背もたれは params.recline（既定0.62rad）で -Z 側へ倒れる。VRM 患者は seated:true と root.rx=-recline で寝かせる（LilShark height1.2 なら root {y:0.2,z:0.05}）。歯科医は患者の右（x≈-0.5, z≈-0.3, ry=π/2）、うがいの鉢・コップ・器具トレーは患者の左、無影灯は顔の上（params.lampOff で消灯）"
+      },
+      "real-estate-office": {
+        "cameras": [
+          "wide",
+          "agent-cu",
+          "customer-cu",
+          "over-customer",
+          "over-agent",
+          "desk-top"
+        ],
+        "surfaces": {
+          "desk": 0.72,
+          "floor": 0,
+          "seat": 0.48
+        },
+        "notes": "不動産屋の賃貸カウンター（部屋探し・物件紹介）。相談机 z≈-0.35（天板0.72、中央の目隠し板、両側に低い仕切り）。担当者は机の奥 z≈-0.85 で +Z 向き（手続き型人物は seated:true＋root.y≈-0.32）、客は手前の椅子 z≈0.25 で -Z 向き（椅子は prop）。奥の壁に物件チラシのコルクボードと「おすすめ物件」（params.header, params.accent）、右に物件チラシを貼った窓、左にパンフ棚。机の間取り図は floor-plan prop"
       }
     },
     "props": {
@@ -415,6 +431,17 @@
         "tilt",
         "power",
         "param:flash"
+      ],
+      "floor-plan": [
+        "layout",
+        "rent",
+        "room",
+        "tags[]",
+        "seed",
+        "accent",
+        "tagColor",
+        "w",
+        "d"
       ]
     },
     "character": {
