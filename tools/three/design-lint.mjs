@@ -39,8 +39,8 @@ function otherMechanisms(selfId) {
  */
 export function validateIdeationEvidence(ideation) {
   const errors = [];
-  if (ideation?.gateVersion !== 1)
-    errors.push("新規3Dコントは design.ideation.gateVersion=1 が必須");
+  if (ideation?.gateVersion !== 2)
+    errors.push("新規3Dコントは design.ideation.gateVersion=2 が必須");
   const c = ideation?.corpus ?? {};
   if (!ideation?.method || !/creative-thinking/i.test(ideation.method))
     errors.push("design.ideation.method は My Portal creative-thinking を明記する");
@@ -96,6 +96,10 @@ export function validateIdeationEvidence(ideation) {
   for (const [i, x] of candidates.entries()) {
     if (!x?.id || !x?.concept) errors.push(`candidateLog[${i}] にid/conceptがない`);
     if (!mechanismIds.has(x?.mechanism)) errors.push(`candidateLog[${i}] のmechanismが定義済み3系統にない`);
+    if (!/^[a-z0-9][a-z0-9-]{1,47}$/.test(String(x?.mechanismFamily ?? "")))
+      errors.push(`candidateLog[${i}].mechanismFamily は自由記述の一意なslugが必要`);
+    if (String(x?.causalCore ?? "").trim().length < 12)
+      errors.push(`candidateLog[${i}].causalCore は舞台・人物を除いた因果構造を12字以上で記述する`);
     if (!["shortlisted", "selected", "rejected", "other"].includes(x?.status))
       errors.push(`candidateLog[${i}] のstatusが不正`);
     if (x?.status === "rejected" && !x?.reason) errors.push(`candidateLog[${i}] の却下理由がない`);
@@ -103,8 +107,8 @@ export function validateIdeationEvidence(ideation) {
   if (candidates.filter((x) => x?.status === "rejected").length < 2)
     errors.push("candidateLog に却下理由つき候補が2案以上必要");
   const shortlist = Array.isArray(ideation?.shortlist) ? ideation.shortlist : [];
-  if (shortlist.length < 3 || shortlist.slice(0, 3).some((id) => !candidateIds.has(id)))
-    errors.push("design.ideation.shortlist は候補ログに存在する提示済み3案のIDが必要");
+  if (shortlist.length !== 3 || new Set(shortlist).size !== 3 || shortlist.some((id) => !candidateIds.has(id)))
+    errors.push("design.ideation.shortlist は候補ログに存在する重複なしの3案ちょうどでなければならない");
   if (!candidateIds.has(ideation?.selectedCandidateId) || !shortlist.includes(ideation?.selectedCandidateId))
     errors.push("selectedCandidateId は提示したshortlistから選ばれた候補IDでなければならない");
   const selected = candidates.find((x) => x?.id === ideation?.selectedCandidateId);
@@ -112,6 +116,79 @@ export function validateIdeationEvidence(ideation) {
     errors.push("selectedCandidateId の候補statusは selected");
   if (!["user", "delegated"].includes(ideation?.selectionAuthority))
     errors.push("selectionAuthority は user または明示委任時の delegated");
+
+  // Structural diversity: labels are free-form diagnostics, never a fixed idea-generation taxonomy.
+  const familyCounts = new Map();
+  const causalCores = new Map();
+  for (const x of candidates) {
+    const family = String(x?.mechanismFamily ?? "");
+    familyCounts.set(family, (familyCounts.get(family) ?? 0) + 1);
+    const core = String(x?.causalCore ?? "").trim().toLocaleLowerCase("ja");
+    if (core) causalCores.set(core, (causalCores.get(core) ?? 0) + 1);
+  }
+  if (familyCounts.size < 4)
+    errors.push("candidateLog は固定分類表ではなく自由記述のmechanismFamilyを4系統以上含める");
+  const familyLimit = Math.floor(candidates.length * 0.4);
+  if ([...familyCounts.values()].some((count) => count > familyLimit))
+    errors.push("candidateLog の最大mechanismFamilyが全候補の40%を超えている（同じ発想構造への偏り）");
+  if ([...causalCores.values()].some((count) => count > 1))
+    errors.push("candidateLog に同一causalCoreの重複がある");
+
+  const audit = ideation?.diversityAudit ?? {};
+  if (audit.mode !== "blind-reclassification")
+    errors.push("diversityAudit.mode はラベルを隠した blind-reclassification が必須");
+  if (audit.verdict !== "pass")
+    errors.push("diversityAudit.verdict は別工程の批評パス完了後の pass が必須");
+  if (String(audit.summary ?? "").trim().length < 30)
+    errors.push("diversityAudit.summary に批評結果の具体的な要約が必要");
+  const reviewedIds = Array.isArray(audit.reviewedCandidateIds) ? audit.reviewedCandidateIds : [];
+  if (new Set(reviewedIds).size !== candidateIds.size || candidateIds.size !== reviewedIds.length || reviewedIds.some((id) => !candidateIds.has(id)))
+    errors.push("diversityAudit.reviewedCandidateIds は15案以上のcandidateLog全件と一致する必要がある");
+  const assignments = Array.isArray(audit.familyAssignments) ? audit.familyAssignments : [];
+  const blindMap = new Map();
+  for (const x of assignments) {
+    if (!x?.candidateId || !candidateIds.has(x.candidateId) || !x?.familyId || blindMap.has(x.candidateId))
+      errors.push("diversityAudit.familyAssignments は全候補に一意なcandidateId/familyIdを割り当てる");
+    else blindMap.set(x.candidateId, x.familyId);
+  }
+  if (blindMap.size !== candidateIds.size || [...candidateIds].some((id) => !blindMap.has(id)))
+    errors.push("diversityAudit.familyAssignments がcandidateLog全件を再分類していない");
+  for (const x of candidates) {
+    if (blindMap.has(x.id) && blindMap.get(x.id) !== x.mechanismFamily)
+      errors.push(`候補 ${x.id} の生成時mechanismFamilyと盲検再分類が一致しない。ラベルだけでなく案を再評価する`);
+  }
+  const blindCounts = new Map();
+  for (const family of blindMap.values()) blindCounts.set(family, (blindCounts.get(family) ?? 0) + 1);
+  if (blindCounts.size < 4)
+    errors.push("blind-reclassification の結果は4つ以上の因果機序に分かれている必要がある");
+  if ([...blindCounts.values()].some((count) => count > familyLimit))
+    errors.push("blind-reclassification で同一因果機序が候補全体の40%を超えている");
+
+  const definitions = Array.isArray(audit.familyDefinitions) ? audit.familyDefinitions : [];
+  const definitionIds = new Set(definitions.map((x) => x?.id).filter(Boolean));
+  if (definitionIds.size !== blindCounts.size || [...blindCounts.keys()].some((id) => !definitionIds.has(id)) ||
+      definitions.some((x) => String(x?.definingMove ?? "").trim().length < 15))
+    errors.push("diversityAudit.familyDefinitions は盲検分類の全系統について固有の因果機序を記述する");
+
+  const shortlistFamilies = shortlist.map((id) => blindMap.get(id));
+  if (new Set(shortlistFamilies).size !== 3 || shortlistFamilies.some((x) => !x))
+    errors.push("shortlistの3案は盲検再分類後も3つの異なる発想構造でなければならない");
+  const expectedPairs = new Set();
+  for (let i = 0; i < shortlist.length; i++) for (let j = i + 1; j < shortlist.length; j++)
+    expectedPairs.add([shortlist[i], shortlist[j]].sort().join("::"));
+  const pairChecks = Array.isArray(audit.shortlistPairChecks) ? audit.shortlistPairChecks : [];
+  const seenPairs = new Set();
+  for (const pair of pairChecks) {
+    const key = [pair?.candidateA, pair?.candidateB].sort().join("::");
+    if (!expectedPairs.has(key) || seenPairs.has(key))
+      errors.push("diversityAudit.shortlistPairChecks はshortlistの3組を重複なく比較する");
+    seenPairs.add(key);
+    if (pair?.sameCausalStructure !== false || pair?.notOnlySettingChange !== true ||
+        String(pair?.difference ?? "").trim().length < 20)
+      errors.push("shortlistPairChecks は因果構造が異なり、設定差だけでない具体的な違いを説明する");
+  }
+  if (seenPairs.size !== 3 || pairChecks.length !== 3)
+    errors.push("diversityAudit.shortlistPairChecks はshortlistの全3ペアが必須");
   return [...new Set(errors)];
 }
 
@@ -159,11 +236,11 @@ export function lintDesign(prod, compiled, catalog) {
   // --- the twist itself: not a repeat of a recent payoff
   if (!d.payoffMechanism) E.push("design.payoffMechanism（オチの仕組みを短い英語のキーで。例: escape-route-also-procedure）がない");
   else for (const o of otherMechanisms(prod.meta.id)) if (o.m === d.payoffMechanism) W.push(`オチの仕組み「${d.payoffMechanism}」は ${o.id} と同じ。続けて出すなら別の仕組みにする`);
-  if (d.ideation?.gateVersion === 1) {
+  if (d.ideation?.gateVersion === 2) {
     const ideationErrors = validateIdeationEvidence(d.ideation);
     E.push(...ideationErrors.map((message) => `ideation provenance: ${message}`));
   } else {
-    W.push("legacy production: Radichichi gate is grandfathered for unchanged existing works; every new or modified scene3d.json must set ideation.gateVersion=1 (PR gate enforces this)");
+    W.push("legacy production: unchanged existing works remain renderable; every new or modified scene3d.json must set ideation.gateVersion=2 (PR gate enforces provenance and structural diversity)");
   }
   if (!Array.isArray(d.escalations) || d.escalations.length < 2) E.push("design.escalations を2段以上");
   if (d.payoff && d.title && [...d.payoff.matchAll(/[一-龠ァ-ヶー]{3,}/g)].some((m) => d.title.includes(m[0]) && !(d.rule ?? "").includes(m[0])))

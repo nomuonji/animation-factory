@@ -39,7 +39,7 @@
     },
     "payoffMechanism": "<catalog/skit-formats.json の payoffMechanisms のキー。直前の作品と変える>",
     "ideation": {
-      "gateVersion": 1,
+      "gateVersion": 2,
       "method": "creative-thinking (My Portal chat Skill)",
       "candidates": 15,
       "rejected": [
@@ -107,6 +107,8 @@
         {
           "id": "C01",
           "mechanism": "<operation-1>",
+          "mechanismFamily": "<自由記述の因果機序slug。既成リストから選ばない>",
+          "causalCore": "<舞台・人物・小道具を除いた因果構造>",
           "concept": "<候補の一文概要>",
           "status": "rejected",
           "reason": "<採否理由>"
@@ -114,7 +116,30 @@
       ],
       "shortlist": ["C01", "C02", "C03"],
       "selectedCandidateId": "C01",
-      "selectionAuthority": "user"
+      "selectionAuthority": "user",
+      "diversityAudit": {
+        "mode": "blind-reclassification",
+        "verdict": "pass",
+        "summary": "<生成側のラベルを隠して全候補を再分類した結果>",
+        "reviewedCandidateIds": ["C01", "C02", "...全15案以上"],
+        "familyAssignments": [
+          { "candidateId": "C01", "familyId": "<批評側が独立に付けた機序>" }
+        ],
+        "familyDefinitions": [
+          { "id": "<family-id>", "definingMove": "<他の系統と何が違う因果機序か>" }
+        ],
+        "shortlistPairChecks": [
+          {
+            "candidateA": "C01",
+            "candidateB": "C02",
+            "sameCausalStructure": false,
+            "notOnlySettingChange": true,
+            "difference": "<因果構造の違い。舞台・人物・小道具の違いだけではない>"
+          },
+          { "candidateA": "C01", "candidateB": "C03", "sameCausalStructure": false, "notOnlySettingChange": true, "difference": "<具体的な違い>" },
+          { "candidateA": "C02", "candidateB": "C03", "sameCausalStructure": false, "notOnlySettingChange": true, "difference": "<具体的な違い>" }
+        ]
+      }
     }
   },
   "voices": {

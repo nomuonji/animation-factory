@@ -2,7 +2,7 @@
 /**
  * PR gate for every added or modified 3D skit scene file.
  * Unchanged legacy scenes remain renderable; changed/new scenes must include
- * complete Radichichi provenance and a selected shortlist candidate.
+ * complete Radichichi provenance, broad candidate families, blind reclassification, and a structurally distinct shortlist.
  */
 import { execFileSync } from "node:child_process";
 import { readFileSync } from "node:fs";
