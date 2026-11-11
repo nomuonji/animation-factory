@@ -39,6 +39,7 @@
     },
     "payoffMechanism": "<catalog/skit-formats.json の payoffMechanisms のキー。直前の作品と変える>",
     "ideation": {
+      "gateVersion": 1,
       "method": "creative-thinking (My Portal chat Skill)",
       "candidates": 15,
       "rejected": [
