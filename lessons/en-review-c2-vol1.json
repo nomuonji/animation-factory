@@ -1,0 +1,502 @@
+{
+  "id": "en-review-c2-vol1",
+  "pattern": "review",
+  "number": 2,
+  "level": "C2",
+  "title": "C2レベルの英単語30｜ネイティブは普通に使う上級語彙を一気に覚える",
+  "headline": "C2レベル\n英単語30",
+  "words": [
+    {
+      "word": "nonchalant",
+      "pos": "形容詞",
+      "ja": "平然とした・無頓着な",
+      "cefr": "C2",
+      "scene": "laughing",
+      "nuance": [
+        {
+          "cap": "気にしていないふりも含む",
+          "say": "気にしていないふりをする時にも使います。"
+        }
+      ],
+      "examples": [
+        {
+          "en": "She looked nonchalant, but she was nervous.",
+          "ja": "平然として見えたが、彼女は緊張していた"
+        }
+      ]
+    },
+    {
+      "word": "knack",
+      "pos": "名詞",
+      "ja": "コツ・才能",
+      "cefr": "C2",
+      "scene": "notebook-writing",
+      "nuance": [
+        {
+          "cap": "have a knack for 〜 で「〜が得意」",
+          "say": "ハブ・ア・ナック・フォー、で、得意だ、という意味です。"
+        }
+      ],
+      "examples": [
+        {
+          "en": "He has a knack for making people laugh.",
+          "ja": "彼は人を笑わせるのが得意だ"
+        }
+      ]
+    },
+    {
+      "word": "mull over",
+      "pos": "動詞",
+      "ja": "じっくり考える",
+      "cefr": "C2",
+      "scene": "thinking",
+      "nuance": [],
+      "examples": [
+        {
+          "en": "Let me mull it over and get back to you.",
+          "ja": "じっくり考えてから返事するね"
+        }
+      ]
+    },
+    {
+      "word": "idiosyncratic",
+      "pos": "形容詞",
+      "ja": "独特の・その人特有の",
+      "cefr": "C2",
+      "scene": "elderly",
+      "nuance": [],
+      "examples": [
+        {
+          "en": "His writing style is wonderfully idiosyncratic.",
+          "ja": "彼の文体は見事に独特だ"
+        }
+      ]
+    },
+    {
+      "word": "hindsight",
+      "pos": "名詞",
+      "ja": "後になって分かること",
+      "cefr": "C2",
+      "scene": "street-waiting",
+      "nuance": [
+        {
+          "cap": "in hindsight ＝ 今思えば",
+          "say": "イン・ハインドサイトで、今思えば。"
+        }
+      ],
+      "examples": [
+        {
+          "en": "In hindsight, I should have left earlier.",
+          "ja": "今思えば、もっと早く出るべきだった"
+        }
+      ]
+    },
+    {
+      "word": "coax",
+      "pos": "動詞",
+      "ja": "なだめすかして〜させる",
+      "cefr": "C2",
+      "scene": "cafe",
+      "nuance": [],
+      "examples": [
+        {
+          "en": "I coaxed my cat out from under the bed.",
+          "ja": "なだめて猫をベッドの下から出した"
+        }
+      ]
+    },
+    {
+      "word": "ephemeral",
+      "pos": "形容詞",
+      "ja": "はかない・つかの間の",
+      "cefr": "C2",
+      "scene": "city-night",
+      "nuance": [],
+      "examples": [
+        {
+          "en": "Fame on social media is often ephemeral.",
+          "ja": "ＳＮＳでの人気は、たいていつかの間だ"
+        }
+      ]
+    },
+    {
+      "word": "qualm",
+      "pos": "名詞",
+      "ja": "ためらい・良心のとがめ",
+      "cefr": "C2",
+      "scene": "office-desk",
+      "nuance": [
+        {
+          "cap": "have no qualms about 〜 で「平気で〜する」",
+          "say": "ハブ・ノー・クォームズ・アバウトで、平気でする、です。"
+        }
+      ],
+      "examples": [
+        {
+          "en": "She had no qualms about telling him the truth.",
+          "ja": "彼女は平気で彼に本当のことを言った"
+        }
+      ]
+    },
+    {
+      "word": "uncanny",
+      "pos": "形容詞",
+      "ja": "不気味なほどの・驚くほどの",
+      "cefr": "C2",
+      "scene": "thinking",
+      "nuance": [],
+      "examples": [
+        {
+          "en": "There's an uncanny resemblance between them.",
+          "ja": "二人は驚くほどよく似ている"
+        }
+      ]
+    },
+    {
+      "word": "eke out",
+      "pos": "動詞",
+      "ja": "なんとかやりくりする",
+      "cefr": "C2",
+      "scene": "kitchen",
+      "nuance": [
+        {
+          "cap": "eke out a living ＝ かつかつで暮らす",
+          "say": "イーク・アウト・ア・リビングで、かつかつで暮らす。"
+        }
+      ],
+      "examples": [
+        {
+          "en": "They eked out a living selling vegetables.",
+          "ja": "彼らは野菜を売って、なんとか暮らしていた"
+        }
+      ]
+    },
+    {
+      "word": "haphazard",
+      "pos": "形容詞",
+      "ja": "行き当たりばったりの",
+      "cefr": "C2",
+      "scene": "desk-flatlay",
+      "nuance": [],
+      "examples": [
+        {
+          "en": "The project was planned in a haphazard way.",
+          "ja": "その計画は行き当たりばったりだった"
+        }
+      ]
+    },
+    {
+      "word": "drudgery",
+      "pos": "名詞",
+      "ja": "退屈な骨折り仕事",
+      "cefr": "C2",
+      "scene": "office-clocks",
+      "nuance": [],
+      "examples": [
+        {
+          "en": "Automation takes the drudgery out of data entry.",
+          "ja": "自動化で、データ入力の退屈な作業がなくなる"
+        }
+      ]
+    },
+    {
+      "word": "wallow",
+      "pos": "動詞",
+      "ja": "（感情に）浸る",
+      "cefr": "C2",
+      "scene": "living-room",
+      "nuance": [
+        {
+          "cap": "wallow in self-pity ＝ 自己憐憫に浸る",
+          "say": "ワロー・イン・セルフピティで、自分をあわれんで浸る。"
+        }
+      ],
+      "examples": [
+        {
+          "en": "Stop wallowing in self-pity.",
+          "ja": "いつまでも自分をあわれむのはやめなよ"
+        }
+      ]
+    },
+    {
+      "word": "tacit",
+      "pos": "形容詞",
+      "ja": "暗黙の",
+      "cefr": "C2",
+      "scene": "meeting",
+      "nuance": [],
+      "examples": [
+        {
+          "en": "There was a tacit agreement not to discuss it.",
+          "ja": "その話はしないという暗黙の了解があった"
+        }
+      ]
+    },
+    {
+      "word": "innuendo",
+      "pos": "名詞",
+      "ja": "ほのめかし・当てこすり",
+      "cefr": "C2",
+      "scene": "argument",
+      "nuance": [],
+      "examples": [
+        {
+          "en": "The article was full of innuendo.",
+          "ja": "その記事は当てこすりだらけだった"
+        }
+      ]
+    },
+    {
+      "word": "surreptitious",
+      "pos": "形容詞",
+      "ja": "こっそりした",
+      "cefr": "C2",
+      "scene": "smartphone",
+      "nuance": [],
+      "examples": [
+        {
+          "en": "He took a surreptitious glance at his phone.",
+          "ja": "彼はこっそりスマホに目をやった"
+        }
+      ]
+    },
+    {
+      "word": "clinch",
+      "pos": "動詞",
+      "ja": "（勝利・契約を）決める",
+      "cefr": "C2",
+      "scene": "meeting",
+      "nuance": [],
+      "examples": [
+        {
+          "en": "That last goal clinched the title.",
+          "ja": "最後のゴールで優勝が決まった"
+        }
+      ]
+    },
+    {
+      "word": "wistful",
+      "pos": "形容詞",
+      "ja": "懐かしそうな・もの悲しげな",
+      "cefr": "C2",
+      "scene": "rain-street",
+      "nuance": [],
+      "examples": [
+        {
+          "en": "She gave a wistful smile.",
+          "ja": "彼女はどこか寂しげに微笑んだ"
+        }
+      ]
+    },
+    {
+      "word": "smattering",
+      "pos": "名詞",
+      "ja": "少しばかりの知識",
+      "cefr": "C2",
+      "scene": "library",
+      "nuance": [
+        {
+          "cap": "a smattering of 〜 ＝ 〜を少しだけ",
+          "say": "ア・スマタリング・オブで、少しだけ。"
+        }
+      ],
+      "examples": [
+        {
+          "en": "I speak a smattering of French.",
+          "ja": "フランス語は少しだけ話せる"
+        }
+      ]
+    },
+    {
+      "word": "superfluous",
+      "pos": "形容詞",
+      "ja": "余計な・不必要な",
+      "cefr": "C2",
+      "scene": "notebook-writing",
+      "nuance": [],
+      "examples": [
+        {
+          "en": "Cut any superfluous words from your essay.",
+          "ja": "作文から余計な言葉は全部削って"
+        }
+      ]
+    },
+    {
+      "word": "squint",
+      "pos": "動詞",
+      "ja": "目を細めて見る",
+      "cefr": "C2",
+      "scene": "street-waiting",
+      "nuance": [],
+      "examples": [
+        {
+          "en": "I had to squint to read the sign.",
+          "ja": "目を細めないと標識が読めなかった"
+        }
+      ]
+    },
+    {
+      "word": "inscrutable",
+      "pos": "形容詞",
+      "ja": "何を考えているか分からない",
+      "cefr": "C2",
+      "scene": "thinking",
+      "nuance": [],
+      "examples": [
+        {
+          "en": "His face was completely inscrutable.",
+          "ja": "彼の表情からは、何も読み取れなかった"
+        }
+      ]
+    },
+    {
+      "word": "gambit",
+      "pos": "名詞",
+      "ja": "先手を打つ作戦",
+      "cefr": "C2",
+      "scene": "meeting",
+      "nuance": [
+        {
+          "cap": "opening gambit ＝ 話の切り出し",
+          "say": "オープニング・ギャンビットで、話の切り出し方。"
+        }
+      ],
+      "examples": [
+        {
+          "en": "Her opening gambit was a joke about the weather.",
+          "ja": "彼女はまず天気の冗談で切り出した"
+        }
+      ]
+    },
+    {
+      "word": "rife",
+      "pos": "形容詞",
+      "ja": "（悪いものが）はびこっている",
+      "cefr": "C2",
+      "scene": "smartphone",
+      "nuance": [],
+      "examples": [
+        {
+          "en": "The internet is rife with rumors.",
+          "ja": "ネットはうわさであふれている"
+        }
+      ]
+    },
+    {
+      "word": "loiter",
+      "pos": "動詞",
+      "ja": "うろつく・ぶらぶらする",
+      "cefr": "C2",
+      "scene": "texting-street",
+      "nuance": [],
+      "examples": [
+        {
+          "en": "Teenagers were loitering outside the shop.",
+          "ja": "十代の若者が店の前でたむろしていた"
+        }
+      ]
+    },
+    {
+      "word": "precocious",
+      "pos": "形容詞",
+      "ja": "ませた・早熟な",
+      "cefr": "C2",
+      "scene": "classroom",
+      "nuance": [],
+      "examples": [
+        {
+          "en": "She was a precocious child who read at three.",
+          "ja": "彼女は三歳で字が読める早熟な子だった"
+        }
+      ]
+    },
+    {
+      "word": "truism",
+      "pos": "名詞",
+      "ja": "分かりきった真理",
+      "cefr": "C2",
+      "scene": "library",
+      "nuance": [],
+      "examples": [
+        {
+          "en": "It's a truism that practice makes perfect.",
+          "ja": "練習が大事なのは、分かりきったことだ"
+        }
+      ]
+    },
+    {
+      "word": "jarring",
+      "pos": "形容詞",
+      "ja": "違和感のある・耳障りな",
+      "cefr": "C2",
+      "scene": "construction",
+      "nuance": [],
+      "examples": [
+        {
+          "en": "The sudden change in tone was jarring.",
+          "ja": "急に口調が変わって、違和感があった"
+        }
+      ]
+    },
+    {
+      "word": "patronizing",
+      "pos": "形容詞",
+      "ja": "上から目線の",
+      "cefr": "C2",
+      "scene": "frustrated",
+      "nuance": [],
+      "examples": [
+        {
+          "en": "Don't be so patronizing.",
+          "ja": "そんなに上から目線で言わないで"
+        }
+      ]
+    },
+    {
+      "word": "happenstance",
+      "pos": "名詞",
+      "ja": "偶然・たまたま",
+      "cefr": "C2",
+      "scene": "airport",
+      "nuance": [],
+      "examples": [
+        {
+          "en": "We met by happenstance at the airport.",
+          "ja": "私たちは空港でたまたま出会った"
+        }
+      ]
+    }
+  ],
+  "sources": [
+    "https://dictionary.cambridge.org/dictionary/english/nonchalant",
+    "https://dictionary.cambridge.org/dictionary/english/knack",
+    "https://dictionary.cambridge.org/dictionary/english/mull-sth-over",
+    "https://dictionary.cambridge.org/dictionary/english/idiosyncratic",
+    "https://dictionary.cambridge.org/dictionary/english/hindsight",
+    "https://dictionary.cambridge.org/dictionary/english/coax",
+    "https://dictionary.cambridge.org/dictionary/english/ephemeral",
+    "https://dictionary.cambridge.org/dictionary/english/qualm",
+    "https://dictionary.cambridge.org/dictionary/english/uncanny",
+    "https://dictionary.cambridge.org/dictionary/english/eke-out-sth",
+    "https://dictionary.cambridge.org/dictionary/english/haphazard",
+    "https://dictionary.cambridge.org/dictionary/english/drudgery",
+    "https://dictionary.cambridge.org/dictionary/english/wallow",
+    "https://dictionary.cambridge.org/dictionary/english/tacit",
+    "https://dictionary.cambridge.org/dictionary/english/innuendo",
+    "https://dictionary.cambridge.org/dictionary/english/surreptitious",
+    "https://dictionary.cambridge.org/dictionary/english/clinch",
+    "https://dictionary.cambridge.org/dictionary/english/wistful",
+    "https://dictionary.cambridge.org/dictionary/english/smattering",
+    "https://dictionary.cambridge.org/dictionary/english/superfluous",
+    "https://dictionary.cambridge.org/dictionary/english/squint",
+    "https://dictionary.cambridge.org/dictionary/english/inscrutable",
+    "https://dictionary.cambridge.org/dictionary/english/gambit",
+    "https://dictionary.cambridge.org/dictionary/english/rife",
+    "https://dictionary.cambridge.org/dictionary/english/loiter",
+    "https://dictionary.cambridge.org/dictionary/english/precocious",
+    "https://dictionary.cambridge.org/dictionary/english/truism",
+    "https://dictionary.cambridge.org/dictionary/english/jarring",
+    "https://dictionary.cambridge.org/dictionary/english/patronizing",
+    "https://dictionary.cambridge.org/dictionary/english/happenstance"
+  ]
+}

@@ -115,8 +115,35 @@ def cmd_lesson(a):
     import lesson
     for spec in a.specs:
         out = lesson.write(spec)
-        B.load(out)  # must be a valid brief
+        if out.name == "longform.json":
+            sys.path.insert(0, str(ROOT / "tools" / "longform"))
+            import longform
+            longform.load(out)
+        else:
+            B.load(out)  # must be a valid brief
         print(out)
+
+
+def cmd_vocab(a):
+    """CEFR C1/C2 words not yet used in any lesson (lessons/*.json)."""
+    import csv
+    used = set()
+    for f in (ROOT / "lessons").glob("*.json"):
+        spec = json.loads(f.read_text(encoding="utf-8"))
+        for w in spec.get("words", []):
+            used.add(w["word"].lower())
+        for k in ("word",):
+            if spec.get(k):
+                used.add(spec[k].lower())
+        for k in ("a", "b"):
+            if isinstance(spec.get(k), dict):
+                used.add(spec[k]["word"].lower())
+    rows = csv.DictReader(open(ROOT / "catalog" / "vocab" / "octanove-vocabulary-profile-c1c2-1.0.csv", encoding="utf-8"))
+    out = [r for r in rows if r["CEFR"] == a.level and (not a.pos or r["pos"] == a.pos)
+           and r["headword"].strip().split("/")[0].lower() not in used]
+    for r in out:
+        print(f'{r["headword"].strip():<28} {r["pos"]:<10} {r["CEFR"]}')
+    print(f"{len(out)} unused {a.level} words", file=sys.stderr)
 
 
 def cmd_lock(a):
@@ -165,6 +192,10 @@ def main():
     ls_ = sub.add_parser("lesson", help="compile lessons/<id>.json into productions/<id>/short.json")
     ls_.add_argument("specs", nargs="+")
     ls_.set_defaults(fn=cmd_lesson)
+    vc = sub.add_parser("vocab", help="list unused CEFR C1/C2 words")
+    vc.add_argument("--level", choices=["C1", "C2"], default="C2")
+    vc.add_argument("--pos", default="")
+    vc.set_defaults(fn=cmd_vocab)
     lk = sub.add_parser("lock")
     lk.add_argument("brief")
     lk.set_defaults(fn=cmd_lock)
