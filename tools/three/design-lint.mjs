@@ -66,7 +66,7 @@ export function validateIdeationEvidence(ideation) {
   }
   const chunkIds = new Set(chunks.map((x) => x?.id).filter(Boolean));
   const declaredChunkIds = Array.isArray(c.sourceChunkIds) ? c.sourceChunkIds : [];
-  if (declaredChunkIds.length < 3 || declaredChunkIds.some((id) => !chunkIds.has(id)))
+  if (new Set(declaredChunkIds).size !== declaredChunkIds.length || declaredChunkIds.length < 3 || declaredChunkIds.some((id) => !chunkIds.has(id)))
     errors.push("design.ideation.corpus.sourceChunkIds は sourceChunks と一致する3件以上が必要");
   for (const q of queries) {
     if (!Array.isArray(q?.resultChunkIds) || !q.resultChunkIds.some((id) => chunkIds.has(id)))
@@ -79,6 +79,7 @@ export function validateIdeationEvidence(ideation) {
   if (mechanisms.length < 3)
     errors.push("design.ideation.mechanisms は3種類以上必要");
   const mechanismIds = new Set(mechanisms.map((x) => x?.id).filter(Boolean));
+  if (mechanismIds.size < 3) errors.push("design.ideation.mechanisms は重複しない3種類以上必要");
   for (const [i, m] of mechanisms.entries()) {
     if (!m?.abstractOperation) errors.push(`mechanisms[${i}].abstractOperation がない`);
     if (!m?.transfer) errors.push(`mechanisms[${i}].transfer がない`);
@@ -89,6 +90,7 @@ export function validateIdeationEvidence(ideation) {
   if (candidates.length < 15 || candidates.length !== ideation?.candidates)
     errors.push("design.ideation.candidateLog は candidates と件数が一致する新規15案以上の全数記録が必要");
   const candidateIds = new Set(candidates.map((x) => x?.id).filter(Boolean));
+  if (candidateIds.size !== candidates.length) errors.push("candidateLog の候補IDはすべて一意でなければならない");
   for (const [i, x] of candidates.entries()) {
     if (!x?.id || !x?.concept) errors.push(`candidateLog[${i}] にid/conceptがない`);
     if (!mechanismIds.has(x?.mechanism)) errors.push(`candidateLog[${i}] のmechanismが定義済み3系統にない`);
