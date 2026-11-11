@@ -172,7 +172,12 @@
     "payoffAfterRatio": 0.6,
     "maxButton": 4.0,
     "maxBridge": 2.5,
-    "maxTitleCard": 1.6
+    "maxTitleCard": 1.6,
+    "targetDuration": [
+      35,
+      50
+    ],
+    "minCandidates": 15
   },
   "setPlaces": {
     "convenience-store": [

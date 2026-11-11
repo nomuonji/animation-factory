@@ -51,4 +51,4 @@ Read `docs/longform.md` before making a chapter-based landscape film. Use `produ
 
 ## 3D Shorts
 
-For acted 3D skits (characters, props, a set) read `docs/three-shorts.md`. Productions are `productions/<id>/scene3d.json`; reusable props/sets/poses live in `src/three/` and are listed under `three` in `catalog/components.json`. The pixel conventions above do not apply to this line.
+For acted 3D skits (characters, props, a set) follow `docs/three-shorts-playbook.md` end to end (ideation → scene → lint/stills → voices → render → `tools/three/qa.mjs` → merge → publish with `tools/three/publish-pack.mjs` → `productions/<id>/published.json`). Tools are described in `docs/three-shorts.md`. Productions are `productions/<id>/scene3d.json`; reusable props/sets/poses live in `src/three/` and are listed under `three` in `catalog/components.json`. The pixel conventions above do not apply to this line.

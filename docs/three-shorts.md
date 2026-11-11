@@ -6,6 +6,8 @@ Use it for **acted skits** — characters, props and a set — where no real foo
 skill still apply: decide the first frame and the payoff before animating, one twist per video,
 review the contact sheet, and report technical / editorial / audience separately.
 
+**Making a skit from idea to publication? Follow `docs/three-shorts-playbook.md`** (the step-by-step runbook with quality gates). This file describes the tools.
+
 ## Pieces
 
 | Path | Role |
@@ -119,6 +121,9 @@ SwiftShader (CPU WebGL): about 0.8 s per 1080×1920 frame on 2 cores.
 Outputs: `outputs/three/<id>/<id>.mp4` and `review/` (`design-report.md`, `title.txt`, `first-frame-phone.png`,
 `contact-sheet.jpg` 1 fps, `captions.srt`, `description.txt` with VOICEVOX/Kenney credits, `status.json`).
 `status.json` always says `editorial: unreviewed` — a person decides that.
+
+After a full render: `node tools/three/qa.mjs <id>` (technical gate: review pack, real voice, 35–50 s, A/V length = timeline, -14 LUFS, credits).
+Publishing: `node tools/three/publish-pack.mjs <id> --publisher <video-publisher checkout>` writes `incoming/おもしろ/<date>-<id>.mp4/.json`; record the posted URLs in `productions/<id>/published.json` (the pack refuses a production that has one).
 
 ### Seated actors
 
