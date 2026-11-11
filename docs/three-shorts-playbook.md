@@ -61,7 +61,7 @@ My Portal にアクセスできる場合は、canonical chat Skill `short-form-v
 
 ### 2.1.1 ラジ父の実検索・転用証跡（必須、lintで停止）
 
-3Dコントの新規案は、My Portal chat Skill `creative-thinking` の3D専用ゲートを必ず実行する。旧Agent HQ Method名をJSONに書くだけでは通過しない。
+3Dコントの新規案は、My Portal chat Skill `creative-thinking` の3D専用ゲートを必ず実行する。新規・変更する `scene3d.json` の `design.ideation.gateVersion` は `1` とし、PR CIが全証跡を検査する。既存の未変更作品はlegacyとしてレンダリング可能だが、編集時にはこのゲートへ移行する。旧Agent HQ Method名をJSONに書くだけでは通過しない。
 
 1. `portal_search({collection:"humor_examples", query:"<場面・定番会話・関係性に沿った検索語>", limit:100, scanLimit:500})` を複数の異なる検索語で実行する。
 2. 結果のうち `dataset=radichichi`、`retrievalTier=creative`、`role=ogiri_reference` のみをラジ父の発想参照例として採用する。最低3チャンク、5回答例以上を確認する。raw_context / source_index はcreative検索結果の代用品ではない。
