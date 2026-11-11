@@ -370,7 +370,7 @@ export const SETS: Record<string, SetBuilder> = {
         "customer-cu": { pos: [0.38, 1.06, -0.95], target: [0, 0.76, 0.3], fov: 28 },
         "over-customer": { pos: [-0.4, 1.3, 1.25], target: [0.05, 0.98, -0.7], fov: 40 },
         "over-agent": { pos: [0.42, 1.42, -1.35], target: [-0.05, 0.9, 0.3], fov: 40 },
-        "desk-top": { pos: [0.02, 1.6, 0.14], target: [0, 0.72, -0.02], fov: 34 }
+        "desk-top": { pos: [0, 2.3, 0.2], target: [0, 0.72, -0.04], fov: 21 }
       }
     };
   },
