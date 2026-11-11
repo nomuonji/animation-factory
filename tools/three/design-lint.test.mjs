@@ -24,6 +24,7 @@ function validIdeation() {
     };
   });
   return {
+    gateVersion: 1,
     method: "creative-thinking (My Portal chat Skill)",
     candidates: 15,
     rejected: ["C01: overdesigned", "C02: too close to an existing skit"],
@@ -103,4 +104,11 @@ test("requires three distinct mechanisms and unique source chunk IDs", () => {
   const errors = validateIdeationEvidence(ideation);
   assert.ok(errors.some((message) => message.includes("重複しない3種類")));
   assert.ok(errors.some((message) => message.includes("sourceChunkIds")));
+});
+
+test("blocks a new production that does not opt into gate version 1", () => {
+  const ideation = validIdeation();
+  delete ideation.gateVersion;
+  const errors = validateIdeationEvidence(ideation);
+  assert.ok(errors.some((message) => message.includes("gateVersion=1")));
 });
