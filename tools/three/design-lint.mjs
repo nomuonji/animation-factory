@@ -76,6 +76,8 @@ export function lintDesign(prod, compiled, catalog) {
   if (!d.payoffMechanism) E.push("design.payoffMechanism（オチの仕組みを短い英語のキーで。例: escape-route-also-procedure）がない");
   else for (const o of otherMechanisms(prod.meta.id)) if (o.m === d.payoffMechanism) W.push(`オチの仕組み「${d.payoffMechanism}」は ${o.id} と同じ。続けて出すなら別の仕組みにする`);
   if (!d.ideation?.method || !d.ideation?.candidates || d.ideation.candidates < 10) W.push("design.ideation（発想の手順と検討した案の数。10案以上）を記録する");
+  else if (L.minCandidates && d.ideation.candidates < L.minCandidates) W.push(`design.ideation.candidates が ${d.ideation.candidates}（${L.minCandidates}案以上。docs/three-shorts-playbook.md §2）`);
+  if (d.ideation && (!Array.isArray(d.ideation.rejected) || d.ideation.rejected.length < 2)) W.push("design.ideation.rejected に落とした案と理由を2つ以上書く（次の人が同じ案を出さないため）");
   if (!Array.isArray(d.escalations) || d.escalations.length < 2) E.push("design.escalations を2段以上");
   if (d.payoff && d.title && [...d.payoff.matchAll(/[一-龠ァ-ヶー]{3,}/g)].some((m) => d.title.includes(m[0]) && !(d.rule ?? "").includes(m[0])))
     W.push("タイトルがオチ（payoff）の語を含んでいる可能性。ネタバレしていないか");
@@ -114,6 +116,8 @@ export function lintDesign(prod, compiled, catalog) {
   const btn = beats.filter((b) => b.role === "button").at(-1);
   if (btn && btn.end - btn.start > L.maxButton) W.push(`button が長い（${(btn.end - btn.start).toFixed(1)}s > ${L.maxButton}s）`);
   for (const b of beats.filter((x) => x.role === "bridge")) if (b.end - b.start > L.maxBridge) W.push(`bridge ${b.id} が長い`);
+  if (L.targetDuration && d.format && (dur < L.targetDuration[0] || dur > L.targetDuration[1]))
+    W.push(`尺 ${dur.toFixed(1)}s は 3Dコントの目安 ${L.targetDuration[0]}〜${L.targetDuration[1]}s の外（2026-11-07 本人指示）。段（escalate）を足す／削る`);
   if (fmt) {
     const [lo, hi] = fmt.duration;
     if (dur < lo || dur > hi) W.push(`尺 ${dur.toFixed(1)}s は ${d.format} の目安 ${lo}〜${hi}s の外`);

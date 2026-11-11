@@ -5,6 +5,7 @@
 - 型の正本: `catalog/skit-formats.json`（フォーマット・役割・フック型・タイトル型・数値の目安）
 - 雛形: `templates/skit3d.json` を `productions/<id>/scene3d.json` にコピーして埋める
 - 自動チェック: `node tools/three/design-lint.mjs <id>`（レンダリング時にも自動実行。エラーがあると止まる）
+- 制作〜公開の手順: `docs/three-shorts-playbook.md`
 - 編集審査: `short-form-video-direction` スキル（My Portal）の6軸。構造チェックの合格は面白さの保証ではない
 
 ## 0. 現実の土台（2026-11-07 再発防止）
