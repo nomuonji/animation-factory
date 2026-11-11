@@ -16,7 +16,7 @@
 - **手持ちのセットに合わせて舞台を変えない**。合うセットがなければ `src/three/sets.ts` に作る（lint は `setPlaces` で、セットと舞台が食い違うと止める）
 - 失敗例: 「試食に面接」をコンビニのセットで作った。コンビニに試食はないので、ネタとは別の違和感が先に立つ
 - `design.payoffMechanism` にオチの仕組みを書く。直近の作品と同じ仕組みなら lint が警告する（例: 2本続けて「逃げ道にも手続き」）
-- `design.ideation` にはMy Portal `creative-thinking` の実行証跡（Radichichi creative-tierのchunk/example IDs、queryLog、3種以上のmechanisms、15案の全candidateLog、提示したshortlist、選定ID）を保存する。原文回答は公開repoへ転記しない。数だけの記載や過去の候補リストの流用は不可。必須項目は `tools/three/design-lint.mjs` がエラーで止める
+- `design.ideation` にはMy Portal `creative-thinking` の実行証跡（Radichichi creative-tierのchunk/example IDs、queryLog、3種以上のmechanisms、15案の全candidateLog、提示したshortlist、選定ID）を保存する。原文回答は公開repoへ転記しない。数だけの記載や過去の候補リストの流用は不可。新規・変更する作品では `design.ideation.gateVersion=1` が必須。必須項目は `tools/three/design-lint.mjs` とPR専用の `tools/three/check-skit-pr-gate.mjs` が検査する。未変更の既存作品はlegacyとして再レンダリングできる
 
 ### 狙いすぎない（2026-11-07 本人評価）
 
