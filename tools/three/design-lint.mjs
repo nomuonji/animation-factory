@@ -31,6 +31,86 @@ function otherMechanisms(selfId) {
   return out;
 }
 
+
+/**
+ * Fail-closed provenance gate for new 3D skits.
+ * Source text stays in My Portal; the public production record stores only IDs
+ * and abstracted mechanisms, not copied Radichichi answers.
+ */
+export function validateIdeationEvidence(ideation) {
+  const errors = [];
+  const c = ideation?.corpus ?? {};
+  if (!ideation?.method || !/creative-thinking/i.test(ideation.method))
+    errors.push("design.ideation.method は My Portal creative-thinking を明記する");
+  if (ideation?.candidates < 15)
+    errors.push("design.ideation.candidates は新規15案以上");
+  if (!Array.isArray(ideation?.rejected) || ideation.rejected.length < 2)
+    errors.push("design.ideation.rejected は却下理由つきで2案以上");
+  if (c.dataset !== "radichichi")
+    errors.push("design.ideation.corpus.dataset は radichichi");
+  if (!c.datasetVersion)
+    errors.push("design.ideation.corpus.datasetVersion がない");
+  if (!c.retrievedAt)
+    errors.push("design.ideation.corpus.retrievedAt（実検索日時）がない");
+  const queries = Array.isArray(c.queryLog) ? c.queryLog : [];
+  if (new Set(queries.map((x) => String(x?.query ?? "").trim()).filter(Boolean)).size < 2)
+    errors.push("design.ideation.corpus.queryLog に異なる実検索クエリが2つ以上必要");
+  const chunks = Array.isArray(c.sourceChunks) ? c.sourceChunks : [];
+  if (chunks.length < 3)
+    errors.push("design.ideation.corpus.sourceChunks は3チャンク以上必要");
+  for (const [i, x] of chunks.entries()) {
+    if (!x?.id) errors.push(`sourceChunks[${i}].id がない`);
+    if (x?.dataset !== "radichichi") errors.push(`sourceChunks[${i}] の dataset が radichichi ではない`);
+    if (x?.retrievalTier !== "creative") errors.push(`sourceChunks[${i}] は retrievalTier=creative ではない`);
+    if (x?.role !== "ogiri_reference") errors.push(`sourceChunks[${i}] は role=ogiri_reference ではない`);
+  }
+  const chunkIds = new Set(chunks.map((x) => x?.id).filter(Boolean));
+  const declaredChunkIds = Array.isArray(c.sourceChunkIds) ? c.sourceChunkIds : [];
+  if (declaredChunkIds.length < 3 || declaredChunkIds.some((id) => !chunkIds.has(id)))
+    errors.push("design.ideation.corpus.sourceChunkIds は sourceChunks と一致する3件以上が必要");
+  for (const q of queries) {
+    if (!Array.isArray(q?.resultChunkIds) || !q.resultChunkIds.some((id) => chunkIds.has(id)))
+      errors.push(`queryLog「${q?.query ?? "?"}」に取得済みsourceChunkIdsが紐づいていない`);
+  }
+  const exampleIds = Array.isArray(c.sourceExampleIds) ? c.sourceExampleIds : [];
+  if (new Set(exampleIds).size < 5 || exampleIds.some((id) => !/^radichichi-\d+$/.test(String(id))))
+    errors.push("design.ideation.corpus.sourceExampleIds は実例IDを重複なしで5件以上");
+  const mechanisms = Array.isArray(ideation?.mechanisms) ? ideation.mechanisms : [];
+  if (mechanisms.length < 3)
+    errors.push("design.ideation.mechanisms は3種類以上必要");
+  const mechanismIds = new Set(mechanisms.map((x) => x?.id).filter(Boolean));
+  for (const [i, m] of mechanisms.entries()) {
+    if (!m?.abstractOperation) errors.push(`mechanisms[${i}].abstractOperation がない`);
+    if (!m?.transfer) errors.push(`mechanisms[${i}].transfer がない`);
+    if (!Array.isArray(m?.sourceExampleIds) || !m.sourceExampleIds.some((id) => exampleIds.includes(id)))
+      errors.push(`mechanisms[${i}] に実際に取得したsourceExampleIdsが結びついていない`);
+  }
+  const candidates = Array.isArray(ideation?.candidateLog) ? ideation.candidateLog : [];
+  if (candidates.length < 15 || candidates.length !== ideation?.candidates)
+    errors.push("design.ideation.candidateLog は candidates と件数が一致する新規15案以上の全数記録が必要");
+  const candidateIds = new Set(candidates.map((x) => x?.id).filter(Boolean));
+  for (const [i, x] of candidates.entries()) {
+    if (!x?.id || !x?.concept) errors.push(`candidateLog[${i}] にid/conceptがない`);
+    if (!mechanismIds.has(x?.mechanism)) errors.push(`candidateLog[${i}] のmechanismが定義済み3系統にない`);
+    if (!["shortlisted", "selected", "rejected", "other"].includes(x?.status))
+      errors.push(`candidateLog[${i}] のstatusが不正`);
+    if (x?.status === "rejected" && !x?.reason) errors.push(`candidateLog[${i}] の却下理由がない`);
+  }
+  if (candidates.filter((x) => x?.status === "rejected").length < 2)
+    errors.push("candidateLog に却下理由つき候補が2案以上必要");
+  const shortlist = Array.isArray(ideation?.shortlist) ? ideation.shortlist : [];
+  if (shortlist.length < 3 || shortlist.slice(0, 3).some((id) => !candidateIds.has(id)))
+    errors.push("design.ideation.shortlist は候補ログに存在する提示済み3案のIDが必要");
+  if (!candidateIds.has(ideation?.selectedCandidateId) || !shortlist.includes(ideation?.selectedCandidateId))
+    errors.push("selectedCandidateId は提示したshortlistから選ばれた候補IDでなければならない");
+  const selected = candidates.find((x) => x?.id === ideation?.selectedCandidateId);
+  if (selected?.status !== "selected")
+    errors.push("selectedCandidateId の候補statusは selected");
+  if (!["user", "delegated"].includes(ideation?.selectionAuthority))
+    errors.push("selectionAuthority は user または明示委任時の delegated");
+  return [...new Set(errors)];
+}
+
 /** @returns {{errors:string[], warnings:string[], report:string}} */
 export function lintDesign(prod, compiled, catalog) {
   const E = [], W = [];
@@ -75,9 +155,8 @@ export function lintDesign(prod, compiled, catalog) {
   // --- the twist itself: not a repeat of a recent payoff
   if (!d.payoffMechanism) E.push("design.payoffMechanism（オチの仕組みを短い英語のキーで。例: escape-route-also-procedure）がない");
   else for (const o of otherMechanisms(prod.meta.id)) if (o.m === d.payoffMechanism) W.push(`オチの仕組み「${d.payoffMechanism}」は ${o.id} と同じ。続けて出すなら別の仕組みにする`);
-  if (!d.ideation?.method || !d.ideation?.candidates || d.ideation.candidates < 10) W.push("design.ideation（発想の手順と検討した案の数。10案以上）を記録する");
-  else if (L.minCandidates && d.ideation.candidates < L.minCandidates) W.push(`design.ideation.candidates が ${d.ideation.candidates}（${L.minCandidates}案以上。docs/three-shorts-playbook.md §2）`);
-  if (d.ideation && (!Array.isArray(d.ideation.rejected) || d.ideation.rejected.length < 2)) W.push("design.ideation.rejected に落とした案と理由を2つ以上書く（次の人が同じ案を出さないため）");
+  const ideationErrors = validateIdeationEvidence(d.ideation);
+  E.push(...ideationErrors.map((message) => `ideation provenance: ${message}`));
   if (!Array.isArray(d.escalations) || d.escalations.length < 2) E.push("design.escalations を2段以上");
   if (d.payoff && d.title && [...d.payoff.matchAll(/[一-龠ァ-ヶー]{3,}/g)].some((m) => d.title.includes(m[0]) && !(d.rule ?? "").includes(m[0])))
     W.push("タイトルがオチ（payoff）の語を含んでいる可能性。ネタバレしていないか");
@@ -139,6 +218,7 @@ export function lintDesign(prod, compiled, catalog) {
     `- hook: ${h.type} — 0秒: ${h.firstFrame ?? "?"} / 画面文字: 「${h.overlay ?? ""}」`,
     `- reality: ${r.place ?? "?"} — 普通: ${r.normalEvent ?? "?"} / 外す1点: ${r.onlyBreak ?? "?"}`,
     `- payoff mechanism: ${d.payoffMechanism ?? "?"} / ideation: ${d.ideation?.method ?? "?"}（${d.ideation?.candidates ?? "?"}案）`,
+    `- Radichichi evidence: ${d.ideation?.corpus?.sourceExampleIds?.length ?? 0} example IDs / ${d.ideation?.corpus?.sourceChunkIds?.length ?? 0} creative chunks / ${d.ideation?.mechanisms?.length ?? 0} mechanisms`,
     `- rule: ${d.rule ?? ""}`,
     `- escalations: ${(d.escalations ?? []).map((x, i) => `${i + 1}) ${x}`).join(" ")}`,
     `- turn: ${d.turn ?? ""}`, `- payoff: ${d.payoff ?? ""}`, `- button: ${d.button ?? ""}${d.loop ? "（ループ）" : ""}`,
