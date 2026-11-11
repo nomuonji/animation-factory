@@ -1,0 +1,31 @@
+name: Three Shorts Ideation Gate Tests
+
+on:
+  pull_request:
+    paths:
+      - "tools/three/design-lint.mjs"
+      - "tools/three/design-lint.test.mjs"
+      - "templates/skit3d.json"
+      - "docs/three-shorts-playbook.md"
+      - "docs/short-drama-design.md"
+  push:
+    branches:
+      - main
+    paths:
+      - "tools/three/design-lint.mjs"
+      - "tools/three/design-lint.test.mjs"
+      - "templates/skit3d.json"
+      - "docs/three-shorts-playbook.md"
+      - "docs/short-drama-design.md"
+
+jobs:
+  ideation-gate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: "npm"
+      - run: npm ci
+      - run: node --test tools/three/design-lint.test.mjs
