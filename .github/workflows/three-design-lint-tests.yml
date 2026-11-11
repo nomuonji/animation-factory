@@ -15,6 +15,7 @@ on:
     paths:
       - "tools/three/design-lint.mjs"
       - "tools/three/design-lint.test.mjs"
+      - "tools/three/check-skit-pr-gate.mjs"
       - "templates/skit3d.json"
       - "docs/three-shorts-playbook.md"
       - "docs/short-drama-design.md"
