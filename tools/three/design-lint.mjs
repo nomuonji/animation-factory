@@ -39,6 +39,8 @@ function otherMechanisms(selfId) {
  */
 export function validateIdeationEvidence(ideation) {
   const errors = [];
+  if (ideation?.gateVersion !== 1)
+    errors.push("新規3Dコントは design.ideation.gateVersion=1 が必須");
   const c = ideation?.corpus ?? {};
   if (!ideation?.method || !/creative-thinking/i.test(ideation.method))
     errors.push("design.ideation.method は My Portal creative-thinking を明記する");
@@ -157,8 +159,12 @@ export function lintDesign(prod, compiled, catalog) {
   // --- the twist itself: not a repeat of a recent payoff
   if (!d.payoffMechanism) E.push("design.payoffMechanism（オチの仕組みを短い英語のキーで。例: escape-route-also-procedure）がない");
   else for (const o of otherMechanisms(prod.meta.id)) if (o.m === d.payoffMechanism) W.push(`オチの仕組み「${d.payoffMechanism}」は ${o.id} と同じ。続けて出すなら別の仕組みにする`);
-  const ideationErrors = validateIdeationEvidence(d.ideation);
-  E.push(...ideationErrors.map((message) => `ideation provenance: ${message}`));
+  if (d.ideation?.gateVersion === 1) {
+    const ideationErrors = validateIdeationEvidence(d.ideation);
+    E.push(...ideationErrors.map((message) => `ideation provenance: ${message}`));
+  } else {
+    W.push("legacy production: Radichichi gate is grandfathered for unchanged existing works; every new or modified scene3d.json must set ideation.gateVersion=1 (PR gate enforces this)");
+  }
   if (!Array.isArray(d.escalations) || d.escalations.length < 2) E.push("design.escalations を2段以上");
   if (d.payoff && d.title && [...d.payoff.matchAll(/[一-龠ァ-ヶー]{3,}/g)].some((m) => d.title.includes(m[0]) && !(d.rule ?? "").includes(m[0])))
     W.push("タイトルがオチ（payoff）の語を含んでいる可能性。ネタバレしていないか");
