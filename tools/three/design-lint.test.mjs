@@ -95,3 +95,12 @@ test("blocks a selected idea that was not in the displayed shortlist", () => {
   const errors = validateIdeationEvidence(ideation);
   assert.ok(errors.some((message) => message.includes("shortlist")));
 });
+
+test("requires three distinct mechanisms and unique source chunk IDs", () => {
+  const ideation = validIdeation();
+  ideation.mechanisms[2].id = ideation.mechanisms[1].id;
+  ideation.corpus.sourceChunkIds[2] = ideation.corpus.sourceChunkIds[1];
+  const errors = validateIdeationEvidence(ideation);
+  assert.ok(errors.some((message) => message.includes("重複しない3種類")));
+  assert.ok(errors.some((message) => message.includes("sourceChunkIds")));
+});
