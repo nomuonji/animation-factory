@@ -1,5 +1,6 @@
 import * as THREE from "three";
 import { canvasTexture, flat, JP_FONT, mesh, rand, toon } from "./toon";
+import { drawFloorPlan } from "./props";
 
 /**
  * Reusable sets. A set builds static geometry, lights and named camera
@@ -270,6 +271,106 @@ export const SETS: Record<string, SetBuilder> = {
         "candidate-cu": { pos: [0.12, 1.12, -0.25], target: [0, 0.95, 0.95], fov: 32 },
         "over-interviewer": { pos: [0.45, 1.35, -1.0], target: [-0.05, 0.85, 0.95], fov: 40 },
         "over-candidate": { pos: [-0.45, 1.25, 1.75], target: [0.05, 0.95, -0.6], fov: 40 }
+      }
+    };
+  },
+
+
+  /**
+   * Real-estate agency (不動産屋の賃貸カウンター). Consultation desk centred at z≈-0.35 (top 0.72) with a
+   * centre modesty divider and low booth partitions; the agent sits behind it (z≈-0.85, facing +Z), the
+   * customer on a chair in front (z≈0.25, facing -Z). Back wall: a corkboard of property flyers under an
+   * 「おすすめ物件」 header; right wall: shop window with flyers taped to the glass; left: brochure rack.
+   * Floor-plan sheets on the desk are `floor-plan` props.
+   */
+  "real-estate-office"(scene, p) {
+    scene.background = new THREE.Color("#eeece6");
+    lights(scene, { key: 1.4 });
+    const grad = (toon("#fff") as THREE.MeshToonMaterial).gradientMap;
+    const deskTop = 0.72;
+    const accent = String(p.accent ?? "#2f7d4f");
+    const wood = canvasTexture(512, 512, (g, w, h) => {
+      g.fillStyle = "#c9b08a"; g.fillRect(0, 0, w, h);
+      for (let i = 0; i < 8; i++) { g.fillStyle = i % 2 ? "#c2a881" : "#cdb591"; g.fillRect(0, i * h / 8, w, h / 8 - 2); }
+      for (let i = 0; i < 900; i++) { g.fillStyle = "rgba(120,90,60,0.08)"; g.fillRect(rand(i) * w, rand(i + 5) * h, 30 + rand(i + 9) * 60, 1); }
+    });
+    wood.wrapS = wood.wrapT = THREE.RepeatWrapping; wood.repeat.set(3, 3);
+    const floor = new THREE.Mesh(new THREE.PlaneGeometry(12, 12), new THREE.MeshToonMaterial({ map: wood, gradientMap: grad }));
+    floor.rotation.x = -Math.PI / 2; floor.receiveShadow = true; scene.add(floor);
+    const wallC = String(p.wall ?? "#f4f2ec");
+    const wallB = mesh(new THREE.BoxGeometry(6, 3, 0.05), toon(wallC), false); wallB.position.set(0, 1.5, -1.6); scene.add(wallB);
+    const wallL = mesh(new THREE.BoxGeometry(0.05, 3, 6), toon(wallC), false); wallL.position.set(-2.0, 1.5, 0.6); scene.add(wallL);
+    const wallR = mesh(new THREE.BoxGeometry(0.05, 3, 6), toon(wallC), false); wallR.position.set(2.0, 1.5, 0.6); scene.add(wallR);
+    const wallF = mesh(new THREE.BoxGeometry(6, 3, 0.05), toon(wallC), false); wallF.position.set(0, 1.5, 3.4); scene.add(wallF);
+    const skirt = mesh(new THREE.BoxGeometry(5.9, 0.08, 0.02), toon("#7b6a58"), false); skirt.position.set(0, 0.04, -1.57); scene.add(skirt);
+    // corkboard of property flyers on the back wall
+    const cols = 6, rows = 3, fw = 0.24, fh = 0.34, gap = 0.05;
+    const bw = cols * fw + (cols + 1) * gap, bh = rows * fh + (rows + 1) * gap;
+    const by = 1.68;
+    const board = mesh(new THREE.BoxGeometry(bw, bh, 0.03), toon("#b98f5e"), 0.004); board.position.set(0, by, -1.56); scene.add(board);
+    const accents = [accent, "#2c5d9e", "#c7462f", "#7a4fa0", "#d0892a"];
+    const layouts = ["1K", "1R", "1DK", "2DK", "1LDK", "1K", "2LDK", "1R"];
+    for (let r = 0; r < rows; r++) for (let c = 0; c < cols; c++) {
+      const k = r * cols + c;
+      const tex = canvasTexture(240, 340, (g, w, h) => drawFloorPlan(g, w, h, {
+        seed: k + 3, accent: accents[k % accents.length], layout: layouts[k % layouts.length],
+        rent: `${(4.2 + rand(k + 11) * 5).toFixed(1)}万円`, room: "", tags: []
+      }));
+      const f = new THREE.Mesh(new THREE.PlaneGeometry(fw, fh), new THREE.MeshBasicMaterial({ map: tex }));
+      f.position.set(-bw / 2 + gap + fw / 2 + c * (fw + gap), by + bh / 2 - gap - fh / 2 - r * (fh + gap), -1.54);
+      f.rotation.z = (rand(k + 21) - 0.5) * 0.03;
+      scene.add(f);
+    }
+    const head = canvasTexture(512, 96, (g, w, h) => {
+      g.fillStyle = accent; g.fillRect(0, 0, w, h);
+      g.fillStyle = "#ffffff"; g.font = `bold 58px ${JP_FONT}`; g.textAlign = "center"; g.textBaseline = "middle";
+      g.fillText(String(p.header ?? "おすすめ物件"), w / 2, h / 2 + 3);
+    });
+    const hd = new THREE.Mesh(new THREE.PlaneGeometry(0.9, 0.17), new THREE.MeshBasicMaterial({ map: head }));
+    hd.position.set(0, by + bh / 2 + 0.13, -1.55); scene.add(hd);
+    // shop window on the right wall, flyers taped to the glass (seen from behind: plain sheets)
+    const win = new THREE.Mesh(new THREE.PlaneGeometry(2.6, 1.9), flat("#d8ebf5")); win.rotation.y = -Math.PI / 2; win.position.set(1.97, 1.3, 0.4); scene.add(win);
+    const mull = toon("#8c8f93");
+    for (const z of [-0.9, 0.4, 1.7]) { const m = mesh(new THREE.BoxGeometry(0.04, 1.9, 0.04), mull, false); m.position.set(1.95, 1.3, z); scene.add(m); }
+    for (let i = 0; i < 8; i++) {
+      const sh = new THREE.Mesh(new THREE.PlaneGeometry(0.21, 0.3), flat(rand(i + 40) > 0.3 ? "#f6f5f1" : "#efe8d6"));
+      sh.rotation.y = -Math.PI / 2; sh.position.set(1.94, 1.05 + (i % 2) * 0.42, -0.6 + Math.floor(i / 2) * 0.55); scene.add(sh);
+    }
+    // brochure rack on the left wall
+    const rack = mesh(new THREE.BoxGeometry(0.3, 1.3, 0.7), toon("#e4e1da"), 0.004); rack.position.set(-1.82, 0.65, -0.6); scene.add(rack);
+    for (let i = 0; i < 4; i++) for (let j = 0; j < 2; j++) {
+      const b = mesh(new THREE.BoxGeometry(0.02, 0.26, 0.2), toon(accents[(i + j) % accents.length]!), 0.002);
+      b.position.set(-1.66, 0.35 + i * 0.28, -0.75 + j * 0.3); b.rotation.z = -0.15; scene.add(b);
+    }
+    // consultation desk with a centre modesty divider and low booth partitions
+    const deskC = String(p.desk ?? "#f2efe8");
+    const top = mesh(new THREE.BoxGeometry(1.4, 0.04, 0.72), toon(deskC), 0.005); top.position.set(0, deskTop - 0.02, -0.35); scene.add(top);
+    const edge = mesh(new THREE.BoxGeometry(1.4, 0.02, 0.02), toon(accent), false); edge.position.set(0, deskTop - 0.03, 0.015); scene.add(edge);
+    const divider = mesh(new THREE.BoxGeometry(1.36, deskTop - 0.06, 0.03), toon("#d9d5cc"), 0.004); divider.position.set(0, (deskTop - 0.06) / 2, -0.35); scene.add(divider);
+    for (const x of [-0.68, 0.68]) {
+      const leg = mesh(new THREE.BoxGeometry(0.04, deskTop - 0.04, 0.68), toon("#bdb8ae"), 0.004); leg.position.set(x, (deskTop - 0.04) / 2, -0.35); scene.add(leg);
+      const part = mesh(new THREE.BoxGeometry(0.03, 0.42, 0.72), toon("#fbfbf8"), 0.004); part.position.set(x, deskTop + 0.21, -0.35); scene.add(part);
+    }
+    // pen stand and a small business-card holder on the agent's side
+    const ps = mesh(new THREE.CylinderGeometry(0.035, 0.035, 0.1, 14), toon("#4b5058"), 0.003); ps.position.set(-0.5, deskTop + 0.05, -0.6); scene.add(ps);
+    for (let i = 0; i < 3; i++) { const pn = mesh(new THREE.CylinderGeometry(0.005, 0.005, 0.14, 6), toon(accents[i]!), false); pn.position.set(-0.5 + (i - 1) * 0.012, deskTop + 0.12, -0.6); pn.rotation.z = (i - 1) * 0.15; scene.add(pn); }
+    const card = mesh(new THREE.BoxGeometry(0.1, 0.04, 0.05), toon("#d6d2c8"), 0.003); card.position.set(0.5, deskTop + 0.02, -0.62); scene.add(card);
+    // agent's chair back (visible behind the agent)
+    const cb = mesh(new THREE.BoxGeometry(0.44, 0.5, 0.06), toon("#3d4450"), 0.004); cb.position.set(0, 0.78, -1.12); scene.add(cb);
+    const cs = mesh(new THREE.BoxGeometry(0.46, 0.07, 0.44), toon("#3d4450"), 0.004); cs.position.set(0, 0.45, -0.92); scene.add(cs);
+    const cp = mesh(new THREE.CylinderGeometry(0.025, 0.025, 0.4, 8), toon("#9aa0a6"), 0.003); cp.position.set(0, 0.22, -0.92); scene.add(cp);
+    // ceiling with light panels
+    const ceil = new THREE.Mesh(new THREE.PlaneGeometry(6, 6), flat("#f7f6f2")); ceil.rotation.x = Math.PI / 2; ceil.position.set(0, 2.8, 0.6); scene.add(ceil);
+    for (const z of [-0.6, 1.1]) { const strip = new THREE.Mesh(new THREE.BoxGeometry(0.6, 0.02, 0.6), flat("#ffffff")); strip.position.set(0, 2.79, z); scene.add(strip); }
+    return {
+      surfaces: { desk: deskTop, floor: 0, seat: 0.48 },
+      cameras: {
+        wide: { pos: [1.3, 1.5, 1.9], target: [-0.1, 0.9, -0.45], fov: 42 },
+        "agent-cu": { pos: [0.45, 1.2, 0.5], target: [0, 0.98, -0.86], fov: 30 },
+        "customer-cu": { pos: [0.38, 1.06, -0.95], target: [0, 0.76, 0.3], fov: 28 },
+        "over-customer": { pos: [-0.4, 1.3, 1.25], target: [0.05, 0.98, -0.7], fov: 40 },
+        "over-agent": { pos: [0.42, 1.42, -1.35], target: [-0.05, 0.9, 0.3], fov: 40 },
+        "desk-top": { pos: [0.02, 1.6, 0.14], target: [0, 0.72, -0.02], fov: 34 }
       }
     };
   },

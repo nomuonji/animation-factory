@@ -1,0 +1,772 @@
+{
+  "meta": {
+    "id": "kaeru-heyasagashi",
+    "title": "カエルの部屋探し",
+    "fps": 30,
+    "width": 1080,
+    "height": 1920
+  },
+  "design": {
+    "format": "escalation-ladder",
+    "title": "カエルの部屋探し",
+    "titleAlternatives": [
+      "不動産屋で「日当たり良好です」",
+      "カエルにおすすめの物件"
+    ],
+    "titlePattern": "world",
+    "titleOnScreen": "card",
+    "titleScreenText": "カエルの\n部屋探し",
+    "hook": {
+      "type": "line-first",
+      "firstFrame": "不動産屋の相談カウンター。机の向こうにスーツの担当者、手前の椅子にカエル帽の客。机の上に『南向き・日当たり良好』の間取り図、奥の壁に物件チラシ",
+      "overlay": "一人暮らしの部屋"
+    },
+    "rule": "客がカエルなので、不動産屋が長所として勧めること（日当たり・乾燥）が短所に、謝りながら伝える短所（湿気・日陰）が長所になる",
+    "escalations": [
+      "『南向きで日当たり良好です』に『もう少し日の当たらないところ』",
+      "『風通しがよく湿気がこもりません』に『乾いちゃいますね』",
+      "『一階なので梅雨は少しジメジメしますが』に身を乗り出す",
+      "『裏が田んぼで、夏の夜はカエルの声が少しにぎやか』に『いいですね』"
+    ],
+    "turn": "担当者は勧めるのをあきらめ、『正直おすすめはしないんですが』と一番条件の悪い物件（北向きの半地下で、一日中日が入らず湿気がすごい）を出す",
+    "payoff": "カエルは即決で『ここにします』",
+    "button": "『内見はいつにしましょう』に『雨の日がいいです』",
+    "loop": false,
+    "reaction": "laugh",
+    "audience": "部屋探しで『日当たり良好』『湿気が少ない』と勧められた経験のある人が、不動産屋のカウンターにカエルが座っている絵と定番の売り文句で止まる",
+    "reality": {
+      "place": "不動産屋の賃貸カウンターでの部屋探し",
+      "normalEvent": "担当者が間取り図を出しながら『南向きで日当たり良好』『角部屋で風通しがいい』と勧め、一階の湿気や周辺環境（田んぼ・夏の虫やカエルの声）などの短所も申し訳なさそうに伝える",
+      "onlyBreak": "客がカエルなので、日当たりと湿気の良し悪しが逆になる"
+    },
+    "payoffMechanism": "flaw-is-the-want",
+    "ideation": {
+      "method": "creative-thinking（ラジ父レンズ）。premise_reinterpretation（キャラが元からそうである性質）/ social_script_corruption（定番の売り文句・決まり文句）/ taste_contrast（好みが逆）/ literalization / mundane_detail の5系統で21案→現実チェック・狙いすぎチェック・既存4作（温め・動物に例えると・赤べこの証明写真・サメの歯科検診）との重なり・二段目以降が作れるかで落として1案。人の選択は入っていない（予約実行）",
+      "candidates": 21,
+      "rejected": [
+        "健康診断で腕の短い恐竜が視力検査で目を隠せない：『届かない』の繰り返しで二段目以降の発見がなく、短い腕はベタ",
+        "美容院で『サイド梳きますか』→ウーパー魔女『エラです』：訂正の一言で終わり、『これが普通です』型の作った台詞で締まる",
+        "不動産屋で悪魔が暗い部屋を好む（北向き・墓地が見える）：同じ仕組みだが心霊・事故物件の方向に寄り、ボケを足していく作りになる",
+        "ファミレスで赤べこに『お子様用の椅子お持ちしますか』：小ささの一発で、段が作れない",
+        "自転車屋で悪魔のヘルメットが角で入らない：『入らない』の繰り返し。以前落とした『美容院で角』と同じ",
+        "結婚式場の打ち合わせでカエルが『雨の日がいい』：好みが逆の同じ仕組みだが、場面の定番台詞が少なく三段目が作れない",
+        "スイミングスクールで浮き輪のサメ：サメは前作。泳げないのは足した設定"
+      ]
+    }
+  },
+  "voices": {
+    "agent": {
+      "speaker": "No.7",
+      "style": "ノーマル",
+      "speed": 1.08
+    },
+    "frog": {
+      "speaker": "ずんだもん",
+      "style": "ノーマル",
+      "speed": 1.05
+    }
+  },
+  "music": {
+    "track": "bossa-thank-you-for-shopping",
+    "gain": 0.24,
+    "fadeIn": 0.2,
+    "fadeOut": 0.5
+  },
+  "set": {
+    "kind": "real-estate-office",
+    "params": {}
+  },
+  "captions": {
+    "y": 0.76
+  },
+  "actors": {
+    "agent": {
+      "seated": true,
+      "style": {
+        "skin": "#f2cdb0",
+        "hair": "#3a2a24",
+        "hairStyle": "ponytail",
+        "top": "#2e3a52",
+        "bottom": "#2a2f3c",
+        "shoes": "#1f1f24",
+        "nameTag": "山本"
+      },
+      "root": {
+        "x": 0,
+        "y": -0.32,
+        "z": -0.86,
+        "ry": 0
+      },
+      "pose": "counter",
+      "expr": "polite",
+      "captionColor": "#ffffff"
+    },
+    "frog": {
+      "vrm": "assets/3d/avatars/FrogEnjoyer.vrm",
+      "height": 1.15,
+      "seated": true,
+      "root": {
+        "x": 0,
+        "y": -0.08,
+        "z": 0.3,
+        "ry": 3.14159
+      },
+      "pose": "idle",
+      "captionColor": "#c8f59a"
+    }
+  },
+  "props": {
+    "chair": {
+      "kind": "gltf",
+      "params": {
+        "src": "assets/3d/kaykit/furniture/chair_A.gltf",
+        "scale": 0.8
+      },
+      "tf": {
+        "x": 0,
+        "y": 0,
+        "z": 0.4,
+        "ry": 3.14159
+      }
+    },
+    "stack": {
+      "kind": "paper-stack",
+      "params": {
+        "height": 0.03,
+        "title": "物件資料",
+        "noFill": false
+      },
+      "tf": {
+        "x": 0.36,
+        "y": 0.72,
+        "z": -0.55,
+        "ry": 0.15
+      }
+    },
+    "plan1": {
+      "kind": "floor-plan",
+      "params": {
+        "layout": "1K",
+        "rent": "6.8万円",
+        "room": "洋室 7帖",
+        "tags": [
+          "南向き",
+          "日当たり良好"
+        ],
+        "seed": 2,
+        "accent": "#2f7d4f"
+      },
+      "tf": {
+        "x": 0,
+        "y": 0.721,
+        "z": -0.16,
+        "ry": 0
+      }
+    },
+    "plan2": {
+      "kind": "floor-plan",
+      "params": {
+        "layout": "1K",
+        "rent": "6.5万円",
+        "room": "洋室 6帖",
+        "tags": [
+          "角部屋",
+          "風通し良好"
+        ],
+        "seed": 5,
+        "accent": "#2c5d9e"
+      },
+      "tf": {
+        "x": 0.34,
+        "y": 0.752,
+        "z": -0.55,
+        "ry": -0.15
+      }
+    },
+    "plan3": {
+      "kind": "floor-plan",
+      "params": {
+        "layout": "1K",
+        "rent": "5.2万円",
+        "room": "和室 6帖",
+        "tags": [
+          "1階"
+        ],
+        "seed": 8,
+        "accent": "#d0892a"
+      },
+      "tf": {
+        "x": 0.34,
+        "y": 0.753,
+        "z": -0.55,
+        "ry": -0.15
+      }
+    },
+    "plan4": {
+      "kind": "floor-plan",
+      "params": {
+        "layout": "1R",
+        "rent": "3.2万円",
+        "room": "洋室 5帖",
+        "tags": [
+          "半地下"
+        ],
+        "seed": 11,
+        "accent": "#6d6f73",
+        "tagColor": "#6d6f73"
+      },
+      "tf": {
+        "x": 0.36,
+        "y": 0.722,
+        "z": -0.55,
+        "ry": -0.15
+      }
+    },
+    "plant": {
+      "kind": "gltf",
+      "params": {
+        "src": "assets/3d/kaykit/furniture/cactus_medium_A.gltf",
+        "scale": 1.0
+      },
+      "tf": {
+        "x": -1.55,
+        "y": 0,
+        "z": -1.25
+      }
+    }
+  },
+  "beats": [
+    {
+      "id": "title",
+      "role": "title",
+      "shot": "wide",
+      "dur": 1.3,
+      "do": [
+        {
+          "at": 0,
+          "sfx": "title-sting"
+        }
+      ]
+    },
+    {
+      "id": "sunny",
+      "role": "hook",
+      "shot": "over-agent",
+      "pre": 0.05,
+      "post": 0.15,
+      "line": {
+        "who": "agent",
+        "text": "こちらのお部屋、／南向きで、／日当たり良好です"
+      },
+      "do": [
+        {
+          "at": 0,
+          "look": "frog",
+          "to": {
+            "pitch": 0.45
+          },
+          "dur": 0.3
+        },
+        {
+          "at": 0,
+          "pose": "agent",
+          "to": "give",
+          "dur": 0.35
+        },
+        {
+          "at": "lineEnd",
+          "pose": "agent",
+          "to": "counter",
+          "dur": 0.4
+        }
+      ]
+    },
+    {
+      "id": "shade",
+      "role": "rule",
+      "shot": "customer-cu",
+      "pre": 0.3,
+      "post": 0.35,
+      "line": {
+        "who": "frog",
+        "text": "……もう少し、／日の当たらないところって"
+      },
+      "do": [
+        {
+          "at": 0,
+          "look": "frog",
+          "to": {
+            "pitch": 0
+          },
+          "dur": 0.4
+        },
+        {
+          "at": 0,
+          "face": "frog",
+          "to": {
+            "expr": "weary"
+          },
+          "dur": 0.4
+        }
+      ]
+    },
+    {
+      "id": "kashiko",
+      "role": "bridge",
+      "shot": "agent-cu",
+      "pre": 0.1,
+      "post": 0.1,
+      "line": {
+        "who": "agent",
+        "text": "……かしこまりました"
+      },
+      "do": [
+        {
+          "at": 0,
+          "face": "agent",
+          "to": {
+            "expr": "blank"
+          },
+          "dur": 0.3
+        },
+        {
+          "at": "line",
+          "look": "agent",
+          "to": {
+            "pitch": 0.15
+          },
+          "dur": 0.3
+        }
+      ]
+    },
+    {
+      "id": "breeze",
+      "role": "escalate",
+      "level": 1,
+      "shot": "desk-top",
+      "post": 0.15,
+      "line": {
+        "who": "agent",
+        "text": "では、こちら。／角部屋で風通しがよく、／湿気がこもりません"
+      },
+      "do": [
+        {
+          "at": 0,
+          "look": "agent",
+          "to": {
+            "pitch": 0.35
+          },
+          "dur": 0.3
+        },
+        {
+          "at": 0,
+          "pose": "agent",
+          "to": "give",
+          "dur": 0.35
+        },
+        {
+          "at": 0,
+          "prop": "plan2",
+          "to": {
+            "x": 0,
+            "y": 0.723,
+            "z": -0.16,
+            "ry": 0
+          },
+          "dur": 0.55,
+          "ease": "out"
+        },
+        {
+          "at": 0.05,
+          "sfx": "paper"
+        },
+        {
+          "at": 0,
+          "look": "frog",
+          "to": {
+            "pitch": 0.45
+          },
+          "dur": 0.3
+        },
+        {
+          "at": "lineEnd",
+          "pose": "agent",
+          "to": "counter",
+          "dur": 0.4
+        },
+        {
+          "at": "lineEnd",
+          "look": "agent",
+          "to": {
+            "pitch": 0
+          },
+          "dur": 0.3
+        }
+      ]
+    },
+    {
+      "id": "dry",
+      "role": "bridge",
+      "shot": "customer-cu",
+      "pre": 0.3,
+      "post": 0.35,
+      "line": {
+        "who": "frog",
+        "text": "……乾いちゃいますね"
+      },
+      "do": [
+        {
+          "at": 0,
+          "look": "frog",
+          "to": {
+            "pitch": 0.1
+          },
+          "dur": 0.4
+        },
+        {
+          "at": 0,
+          "face": "frog",
+          "to": {
+            "expr": "weary"
+          },
+          "dur": 0.3
+        }
+      ]
+    },
+    {
+      "id": "floor1",
+      "role": "escalate",
+      "level": 2,
+      "shot": "agent-cu",
+      "pre": 0.25,
+      "post": 0.15,
+      "line": {
+        "who": "agent",
+        "text": "……こちらは一階なので、／梅雨は少し、／ジメジメしますが"
+      },
+      "do": [
+        {
+          "at": 0,
+          "look": "agent",
+          "to": {
+            "pitch": 0.35
+          },
+          "dur": 0.3
+        },
+        {
+          "at": 0,
+          "pose": "agent",
+          "to": "give",
+          "dur": 0.35
+        },
+        {
+          "at": 0,
+          "prop": "plan3",
+          "to": {
+            "x": 0,
+            "y": 0.725,
+            "z": -0.16,
+            "ry": 0
+          },
+          "dur": 0.55,
+          "ease": "out"
+        },
+        {
+          "at": 0.05,
+          "sfx": "paper"
+        },
+        {
+          "at": "line+0.4",
+          "look": "agent",
+          "to": {
+            "pitch": 0.05
+          },
+          "dur": 0.3
+        },
+        {
+          "at": "line+0.4",
+          "face": "agent",
+          "to": {
+            "expr": "weary"
+          },
+          "dur": 0.4
+        },
+        {
+          "at": "lineEnd",
+          "pose": "agent",
+          "to": "counter",
+          "dur": 0.4
+        }
+      ]
+    },
+    {
+      "id": "jimejime",
+      "role": "bridge",
+      "shot": "over-agent",
+      "pre": 0.15,
+      "post": 0.3,
+      "line": {
+        "who": "frog",
+        "text": "ジメジメ、／するんですか"
+      },
+      "do": [
+        {
+          "at": 0,
+          "move": "frog",
+          "to": {
+            "z": 0.26
+          },
+          "dur": 0.35,
+          "ease": "out"
+        },
+        {
+          "at": 0,
+          "face": "frog",
+          "to": {
+            "expr": "polite"
+          },
+          "dur": 0.3
+        },
+        {
+          "at": 0,
+          "look": "frog",
+          "to": {
+            "pitch": 0.1
+          },
+          "dur": 0.3
+        }
+      ]
+    },
+    {
+      "id": "paddy",
+      "role": "escalate",
+      "level": 3,
+      "shot": "over-customer",
+      "pre": 0.2,
+      "post": 0.15,
+      "line": {
+        "who": "agent",
+        "text": "あと、裏が田んぼでして、／夏の夜は、カエルの声が／少しにぎやかです"
+      },
+      "do": [
+        {
+          "at": 0,
+          "face": "agent",
+          "to": {
+            "expr": "blank"
+          },
+          "dur": 0.3
+        },
+        {
+          "at": "line+1.2",
+          "look": "agent",
+          "to": {
+            "pitch": 0.1,
+            "yaw": 0.1
+          },
+          "dur": 0.4
+        }
+      ]
+    },
+    {
+      "id": "iine",
+      "role": "bridge",
+      "shot": "customer-cu",
+      "pre": 0.25,
+      "post": 0.4,
+      "line": {
+        "who": "frog",
+        "text": "……いいですね"
+      },
+      "do": [
+        {
+          "at": 0,
+          "face": "frog",
+          "to": {
+            "smile": 1
+          },
+          "dur": 0.4
+        }
+      ]
+    },
+    {
+      "id": "honestly",
+      "role": "bridge",
+      "shot": "agent-cu",
+      "pre": 0.3,
+      "post": 0.1,
+      "line": {
+        "who": "agent",
+        "text": "……正直、／おすすめはしないんですが"
+      },
+      "do": [
+        {
+          "at": 0,
+          "look": "agent",
+          "to": {
+            "pitch": 0.35,
+            "yaw": -0.25
+          },
+          "dur": 0.35
+        },
+        {
+          "at": 0,
+          "face": "agent",
+          "to": {
+            "expr": "doubtful"
+          },
+          "dur": 0.3
+        },
+        {
+          "at": 0.1,
+          "pose": "agent",
+          "to": "lift-doc",
+          "dur": 0.45
+        }
+      ]
+    },
+    {
+      "id": "basement",
+      "role": "turn",
+      "shot": "desk-top",
+      "post": 0.2,
+      "line": {
+        "who": "agent",
+        "text": "北向きの半地下で、／一日中、日が入らなくて、／湿気がすごいです"
+      },
+      "do": [
+        {
+          "at": 0,
+          "pose": "agent",
+          "to": "give",
+          "dur": 0.35
+        },
+        {
+          "at": 0,
+          "look": "agent",
+          "to": {
+            "pitch": 0.35,
+            "yaw": 0
+          },
+          "dur": 0.3
+        },
+        {
+          "at": 0,
+          "prop": "plan4",
+          "to": {
+            "x": 0,
+            "y": 0.727,
+            "z": -0.16,
+            "ry": 0
+          },
+          "dur": 0.6,
+          "ease": "out"
+        },
+        {
+          "at": 0.05,
+          "sfx": "paper"
+        },
+        {
+          "at": 0,
+          "look": "frog",
+          "to": {
+            "pitch": 0.45
+          },
+          "dur": 0.3
+        },
+        {
+          "at": "lineEnd",
+          "pose": "agent",
+          "to": "counter",
+          "dur": 0.4
+        }
+      ]
+    },
+    {
+      "id": "here",
+      "role": "payoff",
+      "shot": "customer-cu",
+      "pre": 0.05,
+      "post": 0.8,
+      "line": {
+        "who": "frog",
+        "text": "ここにします"
+      },
+      "do": [
+        {
+          "at": 0,
+          "look": "frog",
+          "to": {
+            "pitch": 0
+          },
+          "dur": 0.25
+        },
+        {
+          "at": 0,
+          "face": "frog",
+          "to": {
+            "smile": 1
+          },
+          "dur": 0.25
+        },
+        {
+          "at": "lineEnd",
+          "music": "cut"
+        },
+        {
+          "at": "lineEnd",
+          "sfx": "payoff-hit"
+        }
+      ]
+    },
+    {
+      "id": "naiken",
+      "role": "bridge",
+      "shot": "agent-cu",
+      "pre": 0.1,
+      "post": 0.1,
+      "line": {
+        "who": "agent",
+        "text": "……では、内見は／いつにしましょう"
+      },
+      "do": [
+        {
+          "at": 0,
+          "music": "resume"
+        },
+        {
+          "at": 0,
+          "look": "agent",
+          "to": {
+            "pitch": 0,
+            "yaw": 0
+          },
+          "dur": 0.3
+        },
+        {
+          "at": 0,
+          "face": "agent",
+          "to": {
+            "expr": "polite"
+          },
+          "dur": 0.4
+        }
+      ]
+    },
+    {
+      "id": "rain",
+      "role": "button",
+      "shot": "wide",
+      "pre": 0.15,
+      "post": 0.8,
+      "line": {
+        "who": "frog",
+        "text": "雨の日がいいです"
+      }
+    }
+  ],
+  "description": [
+    "不動産屋で一人暮らしの部屋探し。",
+    "#ショート #不動産 #部屋探し #カエル #3Dアニメ #コント"
+  ]
+}
