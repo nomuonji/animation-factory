@@ -52,8 +52,12 @@ jobs:
           else
             list="$(git diff --name-only "$BASE" HEAD -- 'productions/*/scene3d.json' | sed -n 's#^productions/\([^/]*\)/scene3d\.json$#\1#p' | sort -u | tr '\n' ' ')"
             if [ -z "$list" ]; then
-              # engine-only change: re-render every 3D production as a regression check
-              list="$(ls productions/*/scene3d.json | sed -n 's#^productions/\([^/]*\)/scene3d\.json$#\1#p' | tr '\n' ' ')"
+              # Lint/provenance/docs-only changes do not require a costly video regression render.
+              runtime_changed="$(git diff --name-only "$BASE" HEAD -- 'src/three/**' 'tools/three/**' 'catalog/sfx3d.json' 'three.html' | grep -vE '^tools/three/(design-lint\.mjs|design-lint\.test\.mjs|check-skit-pr-gate\.mjs)$' || true)"
+              if [ -n "$runtime_changed" ]; then
+                # Actual renderer/runtime change: re-render every 3D production as a regression check.
+                list="$(ls productions/*/scene3d.json | sed -n 's#^productions/\([^/]*\)/scene3d\.json$#\1#p' | tr '\n' ' ')"
+              fi
             fi
           fi
           for p in $list; do [[ "$p" =~ ^[A-Za-z0-9._-]+$ ]] || { echo "unsafe: $p"; exit 2; }; done
@@ -61,10 +65,12 @@ jobs:
           echo "Productions: $list"
 
       - uses: actions/setup-node@v4
+        if: ${{ steps.resolve.outputs.list != '' }}
         with:
           node-version: 22
 
       - name: Dependencies
+        if: ${{ steps.resolve.outputs.list != '' }}
         run: |
           npm ci
           npx playwright install --with-deps chromium
@@ -72,9 +78,11 @@ jobs:
           sudo apt-get install -y -qq ffmpeg fonts-noto-cjk
 
       - name: Typecheck
+        if: ${{ steps.resolve.outputs.list != '' }}
         run: npx tsc --noEmit
 
       - name: Start VOICEVOX engine
+        if: ${{ steps.resolve.outputs.list != '' }}
         run: |
           docker run -d --rm --name vv -p 127.0.0.1:50021:50021 voicevox/voicevox_engine:cpu-latest
           for i in $(seq 1 120); do curl -fsS http://127.0.0.1:50021/version && exit 0; sleep 2; done; docker logs vv; exit 1
@@ -95,6 +103,7 @@ jobs:
           done
 
       - uses: actions/upload-artifact@v4
+        if: ${{ steps.resolve.outputs.list != '' }}
         with:
           name: three-shorts-${{ github.run_id }}
           path: artifact/

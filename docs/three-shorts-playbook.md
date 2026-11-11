@@ -38,8 +38,7 @@
 4. 見本: `productions/doubutsu-tatoeru`（Yuto が「めちゃいい」と評価）。
    「動物に例えると？」→「カエルです」→聞き返すと「バーガーです」。現実の場面そのまま、ずらすのは一点、説明も決め台詞もない。
 
-My Portal にアクセスできる場合は、chat skill `short-form-video-direction` の「3D 寸劇」節、Method `creative-thinking`、
-`taste_evidence_list(domain: humor)` も読む。**読めなくても**、必要な中身は下の §2 とこのリポジトリの docs に書いてある。
+My Portal にアクセスできる場合は、canonical chat Skill `short-form-video-direction` と `creative-thinking`、`taste_evidence_list(domain: humor)` を毎回読む。**新規3DコントでCreative Thinkingまたはラジ父コーパスへアクセスできない場合は停止する。** 下の§2は要約であって、実データ検索の代替ではない。
 
 ## 2. 案出し（ここが一番大事）
 
@@ -59,6 +58,20 @@ My Portal にアクセスできる場合は、chat skill `short-form-video-direc
 | category_collision / hidden_consequence / backstory_implication / format_exploitation | 別の領域とぶつける／二次的な帰結／背景をにおわせる／形式を使う | — |
 
 各案に必ず書く: **場所／その場所で現実に普通に起きる出来事／外す1点**。
+
+### 2.1.1 ラジ父の実検索・転用証跡（必須、lintで停止）
+
+3Dコントの新規案は、My Portal chat Skill `creative-thinking` の3D専用ゲートを必ず実行する。新規・変更する `scene3d.json` の `design.ideation.gateVersion` は `1` とし、PR CIが全証跡を検査する。既存の未変更作品はlegacyとしてレンダリング可能だが、編集時にはこのゲートへ移行する。旧Agent HQ Method名をJSONに書くだけでは通過しない。
+
+1. `portal_search({collection:"humor_examples", query:"<場面・定番会話・関係性に沿った検索語>", limit:100, scanLimit:500})` を複数の異なる検索語で実行する。
+2. 結果のうち `dataset=radichichi`、`retrievalTier=creative`、`role=ogiri_reference` のみをラジ父の発想参照例として採用する。最低3チャンク、5回答例以上を確認する。raw_context / source_index はcreative検索結果の代用品ではない。
+3. 最低3種類の発想操作を、実際に取得したexampleIdと紐づける。原文の回答本文はMy Portal内で読むにとどめ、公開repoへ転載しない。scene3d.jsonにはchunk ID、exampleId、abstract operation、今回へのtransferだけを保存する。
+4. 3系統以上を使って新規15案以上を作り、全件を `design.ideation.candidateLog` に保存する。候補の一文概要、発想操作、採否、却下理由を含める。候補数だけを15と書くのは禁止。
+5. 上位3案を先にユーザーへ提示し、選択を得てから台本を書く。「選定も任せる」と明示されている場合だけ自動選定可。
+6. `design.ideation.corpus` に検索日時、dataset/version、queryLog、sourceChunks（各chunkのdataset/retrievalTier/role）、sourceChunkIds、sourceExampleIdsを記録する。さらにmechanisms、candidateLog、shortlist、selectedCandidateId、selectionAuthorityを保存する。テンプレートと `design-lint.mjs` がこの形式を要求する。
+7. 5例・3チャンク・3操作・15候補・上位3案提示のどれかが欠けたらscript / VOICEVOX / render / PRへ進まない。My Portal検索が使えない場合は作業を止め、「未取得」と報告する。既存PRの説明や過去の候補リストを今回の実績に付け替えない。
+
+**公開repoへラジ父の回答本文・長文引用を複製しない。** 原データの正本はMy Portal `humor_examples`。GitHub側には出典IDと抽象化だけを残す。
 
 ### 2.2 落とす（ふるい）
 

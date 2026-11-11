@@ -39,11 +39,82 @@
     },
     "payoffMechanism": "<catalog/skit-formats.json の payoffMechanisms のキー。直前の作品と変える>",
     "ideation": {
-      "method": "<例: creative-thinking（ラジ父）で発想操作3系統以上>",
+      "gateVersion": 1,
+      "method": "creative-thinking (My Portal chat Skill)",
       "candidates": 15,
       "rejected": [
-        "<落とした案と理由>"
-      ]
+        "<却下候補IDと理由>",
+        "<却下候補IDと理由>"
+      ],
+      "corpus": {
+        "dataset": "radichichi",
+        "datasetVersion": "v1",
+        "retrievedAt": "<ISO-8601>",
+        "queryLog": [
+          { "query": "<実検索語1>", "resultChunkIds": ["<取得chunk ID>"] },
+          { "query": "<実検索語2>", "resultChunkIds": ["<取得chunk ID>"] }
+        ],
+        "sourceChunks": [
+          {
+            "id": "<実取得chunk ID 1>",
+            "dataset": "radichichi",
+            "retrievalTier": "creative",
+            "role": "ogiri_reference"
+          },
+          {
+            "id": "<実取得chunk ID 2>",
+            "dataset": "radichichi",
+            "retrievalTier": "creative",
+            "role": "ogiri_reference"
+          },
+          {
+            "id": "<実取得chunk ID 3>",
+            "dataset": "radichichi",
+            "retrievalTier": "creative",
+            "role": "ogiri_reference"
+          }
+        ],
+        "sourceChunkIds": ["<実取得chunk ID 1>", "<実取得chunk ID 2>", "<実取得chunk ID 3>"],
+        "sourceExampleIds": [
+          "radichichi-<ID>",
+          "radichichi-<ID>",
+          "radichichi-<ID>",
+          "radichichi-<ID>",
+          "radichichi-<ID>"
+        ]
+      },
+      "mechanisms": [
+        {
+          "id": "<operation-1>",
+          "sourceExampleIds": ["radichichi-<ID>"],
+          "abstractOperation": "<元回答から抽出した抽象的な因果構造。原文は転記しない>",
+          "transfer": "<今回の別題材へどう転用したか>"
+        },
+        {
+          "id": "<operation-2>",
+          "sourceExampleIds": ["radichichi-<ID>"],
+          "abstractOperation": "<発想操作>",
+          "transfer": "<今回への転用>"
+        },
+        {
+          "id": "<operation-3>",
+          "sourceExampleIds": ["radichichi-<ID>"],
+          "abstractOperation": "<発想操作>",
+          "transfer": "<今回への転用>"
+        }
+      ],
+      "candidateLog": [
+        {
+          "id": "C01",
+          "mechanism": "<operation-1>",
+          "concept": "<候補の一文概要>",
+          "status": "rejected",
+          "reason": "<採否理由>"
+        }
+      ],
+      "shortlist": ["C01", "C02", "C03"],
+      "selectedCandidateId": "C01",
+      "selectionAuthority": "user"
     }
   },
   "voices": {
