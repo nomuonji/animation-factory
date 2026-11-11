@@ -50,13 +50,13 @@ jobs:
           if [ -n "${MANUAL:-}" ]; then
             list="$MANUAL"
           else
-            list="$(git diff --name-only "$BASE" HEAD -- 'productions/*/scene3d.json' | sed -n 's#^productions/\\([^/]*\\)/scene3d\\.json$#\\1#p' | sort -u | tr '\\n' ' ')"
+            list="$(git diff --name-only "$BASE" HEAD -- 'productions/*/scene3d.json' | sed -n 's#^productions/\([^/]*\)/scene3d\.json$#\1#p' | sort -u | tr '\n' ' ')"
             if [ -z "$list" ]; then
               # Lint/provenance/docs-only changes do not require a costly video regression render.
-              runtime_changed="$(git diff --name-only "$BASE" HEAD -- 'src/three/**' 'tools/three/**' 'catalog/sfx3d.json' 'three.html' | grep -vE '^tools/three/(design-lint\\.mjs|design-lint\\.test\\.mjs|check-skit-pr-gate\\.mjs)$' || true)"
+              runtime_changed="$(git diff --name-only "$BASE" HEAD -- 'src/three/**' 'tools/three/**' 'catalog/sfx3d.json' 'three.html' | grep -vE '^tools/three/(design-lint\.mjs|design-lint\.test\.mjs|check-skit-pr-gate\.mjs)$' || true)"
               if [ -n "$runtime_changed" ]; then
                 # Actual renderer/runtime change: re-render every 3D production as a regression check.
-                list="$(ls productions/*/scene3d.json | sed -n 's#^productions/\\([^/]*\\)/scene3d\\.json$#\\1#p' | tr '\\n' ' ')"
+                list="$(ls productions/*/scene3d.json | sed -n 's#^productions/\([^/]*\)/scene3d\.json$#\1#p' | tr '\n' ' ')"
               fi
             fi
           fi
