@@ -7,7 +7,7 @@
 import { execFileSync } from "node:child_process";
 import { readFileSync } from "node:fs";
 import process from "node:process";
-import { validateIdeationEvidence } from "./design-lint.mjs";
+import { validateComedyAudit, validateIdeationEvidence } from "./design-lint.mjs";
 
 const base = process.env.BASE_SHA;
 const head = process.env.HEAD_SHA;
@@ -35,13 +35,16 @@ for (const path of changed) {
     failed = true;
     continue;
   }
-  const issues = validateIdeationEvidence(production.design?.ideation);
+  const issues = [
+    ...validateIdeationEvidence(production.design?.ideation),
+    ...validateComedyAudit(production.design?.comedyAudit, production.beats?.map((beat) => beat.id) ?? [])
+  ];
   if (issues.length) {
     console.error(`FAIL ${path}`);
     for (const issue of issues) console.error(`  - ${issue}`);
     failed = true;
   } else {
-    console.log(`PASS ${path}: Radichichi evidence structure is complete`);
+    console.log(`PASS ${path}: ideation provenance, comedy audit record and structural diversity evidence are present`);
   }
 }
 
