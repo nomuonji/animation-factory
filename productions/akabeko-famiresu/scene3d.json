@@ -703,7 +703,7 @@
       "role": "bridge",
       "shot": "register-customer",
       "pre": 0.05,
-      "post": 0.2,
+      "post": 0.1,
       "line": {
         "who": "akuma",
         "text": "2人です"
@@ -713,7 +713,7 @@
       "id": "isu",
       "role": "rule",
       "shot": "register-staff",
-      "pre": 0.15,
+      "pre": 0.05,
       "post": 0.15,
       "line": {
         "who": "server",
