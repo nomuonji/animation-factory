@@ -106,6 +106,18 @@ export function validateIdeationEvidence(ideation) {
   }
   if (candidates.filter((x) => x?.status === "rejected").length < 2)
     errors.push("candidateLog に却下理由つき候補が2案以上必要");
+
+  const userSeeds = Array.isArray(ideation?.userSeeds) ? ideation.userSeeds : [];
+  for (const [i, seed] of userSeeds.entries()) {
+    if (seed?.platform !== "x") errors.push(`userSeeds[${i}].platform は x が必要`);
+    if (!/^x_\d+$/.test(String(seed?.sourcePostId ?? "")))
+      errors.push(`userSeeds[${i}].sourcePostId は My Portal social_posts の正確な x_投稿ID が必要`);
+    if (String(seed?.transformation ?? "").trim().length < 20)
+      errors.push(`userSeeds[${i}].transformation は投稿の核から今回の案への転用を20字以上で記述する`);
+    if (seed?.reusedVerbatim !== false)
+      errors.push(`userSeeds[${i}].reusedVerbatim は false（原文の転載・置換コピー禁止）`);
+  }
+
   const shortlist = Array.isArray(ideation?.shortlist) ? ideation.shortlist : [];
   if (shortlist.length !== 3 || new Set(shortlist).size !== 3 || shortlist.some((id) => !candidateIds.has(id)))
     errors.push("design.ideation.shortlist は候補ログに存在する重複なしの3案ちょうどでなければならない");
@@ -192,6 +204,73 @@ export function validateIdeationEvidence(ideation) {
   return [...new Set(errors)];
 }
 
+
+/**
+ * Required editorial evidence for a new 3D skit.
+ * This validates that a hostile comedy review was documented; it cannot
+ * determine whether the premise or punchline is actually funny.
+ */
+export function validateComedyAudit(audit, beatIds = []) {
+  const errors = [];
+  const requireText = (key, min = 16) => {
+    if (String(audit?.[key] ?? "").trim().length < min)
+      errors.push(`design.comedyAudit.${key} は具体的に${min}字以上で記述する`);
+  };
+  requireText("comicKernel", 18);
+  requireText("audienceExpectation", 16);
+  requireText("characterIntent", 16);
+  requireText("pressure", 12);
+  requireText("payoffCausality", 20);
+
+  const knownBeatIds = new Set(beatIds.filter(Boolean));
+  const escalations = Array.isArray(audit?.escalations) ? audit.escalations : [];
+  if (escalations.length < 2)
+    errors.push("design.comedyAudit.escalations は状況の変化を示す2段以上が必要");
+  const escalationIds = new Set();
+  for (const [i, item] of escalations.entries()) {
+    if (!item?.beatId || !knownBeatIds.has(item.beatId))
+      errors.push(`comedyAudit.escalations[${i}].beatId は実際のbeat IDを指定する`);
+    if (item?.beatId && escalationIds.has(item.beatId))
+      errors.push(`comedyAudit.escalations[${i}] は異なるbeatを指定する（同じ場面の言い換えを段数に数えない）`);
+    if (item?.beatId) escalationIds.add(item.beatId);
+    if (String(item?.change ?? "").trim().length < 14)
+      errors.push(`comedyAudit.escalations[${i}].change は何が変わるか14字以上で記述する`);
+  }
+
+  const laugh = audit?.laughMoment ?? {};
+  if (!laugh.beatId || !knownBeatIds.has(laugh.beatId))
+    errors.push("design.comedyAudit.laughMoment.beatId は実際のbeat IDを指定する");
+  if (String(laugh.description ?? "").trim().length < 16)
+    errors.push("design.comedyAudit.laughMoment.description は具体的な笑いの瞬間を16字以上で記述する");
+
+  const review = audit?.independentReview ?? {};
+  if (review.mode !== "hostile-reader")
+    errors.push("design.comedyAudit.independentReview.mode は hostile-reader が必要");
+  if (review.verdict !== "pass")
+    errors.push("design.comedyAudit.independentReview.verdict は修正・却下を解消した pass が必要");
+  if (String(review.summary ?? "").trim().length < 30)
+    errors.push("independentReview.summary に台本を読み直した批評を30字以上で記述する");
+  if (String(review.strongestObjection ?? "").trim().length < 16)
+    errors.push("independentReview.strongestObjection に最も強い反論を16字以上で記述する");
+  if (String(review.resolution ?? "").trim().length < 16)
+    errors.push("independentReview.resolution に反論への回答または修正を16字以上で記述する");
+
+  const checks = review.checks ?? {};
+  const requiredChecks = [
+    "premiseHasComicEngine",
+    "notJustMundaneIncident",
+    "payoffIsEarned",
+    "characterCanonRespected",
+    "noUnmotivatedAdditions",
+    "notOnlyRoleReversal"
+  ];
+  for (const key of requiredChecks) {
+    if (checks[key] !== true)
+      errors.push(`independentReview.checks.${key} は批評で確認して true にする`);
+  }
+  return [...new Set(errors)];
+}
+
 /** @returns {{errors:string[], warnings:string[], report:string}} */
 export function lintDesign(prod, compiled, catalog) {
   const E = [], W = [];
@@ -239,6 +318,8 @@ export function lintDesign(prod, compiled, catalog) {
   if (d.ideation?.gateVersion === 2) {
     const ideationErrors = validateIdeationEvidence(d.ideation);
     E.push(...ideationErrors.map((message) => `ideation provenance: ${message}`));
+    const comedyErrors = validateComedyAudit(d.comedyAudit, prod.beats?.map((beat) => beat.id) ?? []);
+    E.push(...comedyErrors.map((message) => `comedy audit: ${message}`));
   } else {
     W.push("legacy production: unchanged existing works remain renderable; every new or modified scene3d.json must set ideation.gateVersion=2 (PR gate enforces provenance and structural diversity)");
   }

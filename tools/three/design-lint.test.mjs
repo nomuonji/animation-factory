@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { validateIdeationEvidence } from "./design-lint.mjs";
+import { validateComedyAudit, validateIdeationEvidence } from "./design-lint.mjs";
 
 function validIdeation() {
   const chunkIds = ["chunk-101", "chunk-102", "chunk-103"];
@@ -168,4 +168,97 @@ test("rejects duplicate causal cores even when candidate labels differ", () => {
 test("keeps the taxonomy open: unlisted family names are accepted when evidence is diverse", () => {
   const ideation = validIdeation();
   assert.deepEqual(validateIdeationEvidence(ideation), []);
+});
+
+
+function validComedyAudit() {
+  return {
+    comicKernel: "表彰の順位が探偵の推理能力でなく学校の地理的位置で決まる。",
+    audienceExpectation: "観客は日本一という表彰を実績や推理力への評価だと考える。",
+    characterIntent: "高校生は表彰を受け取り、記者の質問に正直に答えようとする。",
+    pressure: "記者が受賞理由を尋ね、表彰の建前と実際の基準の差が露呈する。",
+    escalations: [
+      { beatId: "hook", change: "一件も事件を解決していない事実が明らかになる。" },
+      { beatId: "turn", change: "順位の基準が地理的位置だと明かされる。" }
+    ],
+    payoffCausality: "さらに西の高校の探偵が現れ、地理順位が更新される。",
+    laughMoment: { beatId: "payoff", description: "新しい探偵も事件未解決のまま同じ賞を受け取る。" },
+    independentReview: {
+      mode: "hostile-reader",
+      verdict: "pass",
+      summary: "台詞と行動だけで確認し、序盤の受賞と未解決の落差が終盤の順位更新につながっている。",
+      strongestObjection: "地理的順位を言うだけでは一発ネタで終わる可能性がある。",
+      resolution: "受賞理由の説明後に順位が実際に更新される展開を加え、前半の前提を再度動かす。",
+      checks: {
+        premiseHasComicEngine: true,
+        notJustMundaneIncident: true,
+        payoffIsEarned: true,
+        characterCanonRespected: true,
+        noUnmotivatedAdditions: true,
+        notOnlyRoleReversal: true
+      }
+    }
+  };
+}
+
+const comedyBeatIds = ["hook", "turn", "payoff"];
+
+test("accepts a complete, beat-linked comedy audit", () => {
+  assert.deepEqual(validateComedyAudit(validComedyAudit(), comedyBeatIds), []);
+});
+
+test("blocks comedy audit with no distinct escalation or no laugh moment", () => {
+  const audit = validComedyAudit();
+  audit.escalations = [audit.escalations[0], audit.escalations[0]];
+  audit.laughMoment.beatId = "not-a-real-beat";
+  const errors = validateComedyAudit(audit, comedyBeatIds);
+  assert.ok(errors.some((message) => message.includes("異なるbeat")));
+  assert.ok(errors.some((message) => message.includes("実際のbeat ID")));
+});
+
+test("blocks an everyday inconvenience that has no independent comic engine", () => {
+  const audit = validComedyAudit();
+  audit.independentReview.checks.notJustMundaneIncident = false;
+  assert.ok(validateComedyAudit(audit, comedyBeatIds).some((message) => message.includes("notJustMundaneIncident")));
+});
+
+test("blocks an unearned payoff or invented character traits", () => {
+  const audit = validComedyAudit();
+  audit.independentReview.checks.payoffIsEarned = false;
+  audit.independentReview.checks.characterCanonRespected = false;
+  audit.independentReview.checks.noUnmotivatedAdditions = false;
+  const errors = validateComedyAudit(audit, comedyBeatIds);
+  assert.ok(errors.some((message) => message.includes("payoffIsEarned")));
+  assert.ok(errors.some((message) => message.includes("characterCanonRespected")));
+  assert.ok(errors.some((message) => message.includes("noUnmotivatedAdditions")));
+});
+
+test("blocks an unresolved hostile-reader objection", () => {
+  const audit = validComedyAudit();
+  audit.independentReview.verdict = "revise";
+  assert.ok(validateComedyAudit(audit, comedyBeatIds).some((message) => message.includes("verdict")));
+});
+
+test("allows optional user X-post inspiration when the source and transformation are recorded", () => {
+  const ideation = validIdeation();
+  ideation.userSeeds = [{
+    platform: "x",
+    sourcePostId: "x_1986463621413806176",
+    transformation: "競技人口が少なくて一位という核を地理順位の表彰と後続校へ転用した。",
+    reusedVerbatim: false
+  }];
+  assert.deepEqual(validateIdeationEvidence(ideation), []);
+});
+
+test("rejects verbatim or untraceable user X-post reuse", () => {
+  const ideation = validIdeation();
+  ideation.userSeeds = [{
+    platform: "x",
+    sourcePostId: "1986463621413806176",
+    transformation: "元投稿をほぼそのまま台詞にした。",
+    reusedVerbatim: true
+  }];
+  const errors = validateIdeationEvidence(ideation);
+  assert.ok(errors.some((message) => message.includes("正確な x_投稿ID")));
+  assert.ok(errors.some((message) => message.includes("reusedVerbatim")));
 });
