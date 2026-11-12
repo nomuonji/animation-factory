@@ -110,7 +110,7 @@ export function validateIdeationEvidence(ideation) {
   const userSeeds = Array.isArray(ideation?.userSeeds) ? ideation.userSeeds : [];
   for (const [i, seed] of userSeeds.entries()) {
     if (seed?.platform !== "x") errors.push(`userSeeds[${i}].platform は x が必要`);
-    if (!/^x_\\d+$/.test(String(seed?.sourcePostId ?? "")))
+    if (!/^x_\d+$/.test(String(seed?.sourcePostId ?? "")))
       errors.push(`userSeeds[${i}].sourcePostId は My Portal social_posts の正確な x_投稿ID が必要`);
     if (String(seed?.transformation ?? "").trim().length < 20)
       errors.push(`userSeeds[${i}].transformation は投稿の核から今回の案への転用を20字以上で記述する`);
