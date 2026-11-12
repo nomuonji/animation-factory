@@ -243,7 +243,7 @@ test("allows optional user X-post inspiration when the source and transformation
   const ideation = validIdeation();
   ideation.userSeeds = [{
     platform: "x",
-    sourcePostId: "x_1986463621416176",
+    sourcePostId: "x_1986463621413806176",
     transformation: "競技人口が少なくて一位という核を地理順位の表彰と後続校へ転用した。",
     reusedVerbatim: false
   }];
@@ -254,11 +254,11 @@ test("rejects verbatim or untraceable user X-post reuse", () => {
   const ideation = validIdeation();
   ideation.userSeeds = [{
     platform: "x",
-    sourcePostId: "1986463621416176",
+    sourcePostId: "1986463621413806176",
     transformation: "元投稿をほぼそのまま台詞にした。",
     reusedVerbatim: true
   }];
   const errors = validateIdeationEvidence(ideation);
-  assert.ok(errors.some((message) => message.includes("正確なMy Portal record ID")));
+  assert.ok(errors.some((message) => message.includes("正確な x_投稿ID")));
   assert.ok(errors.some((message) => message.includes("reusedVerbatim")));
 });
