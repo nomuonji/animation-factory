@@ -1,0 +1,1201 @@
+{
+  "meta": {
+    "id": "akabeko-famiresu",
+    "title": "赤べこのファミレス",
+    "fps": 30,
+    "width": 1080,
+    "height": 1920
+  },
+  "design": {
+    "format": "escalation-ladder",
+    "title": "赤べこのファミレス",
+    "titleAlternatives": [
+      "ファミレスで「お子様用のお椅子は？」",
+      "手のひらサイズの大人、ファミレスへ"
+    ],
+    "titlePattern": "world",
+    "titleOnScreen": "card",
+    "titleScreenText": "赤べこの\nファミレス",
+    "hook": {
+      "type": "line-first",
+      "firstFrame": "ファミレスの入口のレジ。カウンターの向こうに制服の店員、手前に悪魔の客。カウンターの端におもちゃのかご",
+      "overlay": "2名様です"
+    },
+    "rule": "連れの赤べこは中身は大人だが手のひらサイズなので、店員が小さい子向けの定番サービスを順に勧めてしまう。赤べこは『大人です』と言い張る",
+    "escalations": [
+      "『お子様用のお椅子、お使いになりますか？』に『大人です』",
+      "お冷のグラスが自分と同じくらいの高さで、ストローを頼む",
+      "『よろしければ、塗り絵もございます』に『……結構です』",
+      "ハンバーグを『お子様用のハーフサイズもございますが』に『普通ので』。来た皿が自分より大きく、取り皿を頼む",
+      "会計で『お子様、おもちゃどうぞ』"
+    ],
+    "turn": "赤べこはおもちゃも『大人です』と断り、店員は『失礼しました』とかごを引っ込める",
+    "payoff": "引っ込めかけたかごに『……一個だけ、いいですか』",
+    "button": "悪魔が店員に『……すいません』と頭を下げる（保護者のように）",
+    "loop": false,
+    "reaction": "laugh",
+    "audience": "ファミレスで子ども連れに勧められる椅子・取り皿・レジのおもちゃを見たことがある人が、手のひらの赤べこが『大人です』と言い張る絵で止まる",
+    "reality": {
+      "place": "ファミレスの入口とボックス席",
+      "normalEvent": "小さい子連れの客に、店員が入口でお子様用の椅子を勧め、席でお冷・注文（お子様向けの量の案内）・取り皿を出し、会計のときにレジのかごからおもちゃを1つ選ばせる",
+      "onlyBreak": "連れが手のひらサイズの赤べこ（中身は大人）なので、大きさで子どもと判断される"
+    },
+    "payoffMechanism": "pride-yields-to-want",
+    "ideation": {
+      "gateVersion": 2,
+      "method": "creative-thinking (My Portal chat Skill, rev 6) + 3D寸劇ゲートv2",
+      "candidates": 16,
+      "rejected": [
+        "C02: 人数カウントの料金計算は説明が要り一度で分からない。二段目以降が料金表の読み上げになる",
+        "C05: 二段目が作れない（魚を頼み続けるだけ）。サメは歯科で既出",
+        "C06: キャラ・場面のどこを外したかが一点に定まらない。人間の心理だけで3Dキャラを使う理由がない",
+        "C07: 作った決め台詞で落とす狙いすぎ型（2026-11-07 不評の型）",
+        "C08: 体質の説明でボケる。決め台詞型で一発で終わり、35秒もたない",
+        "C09: C01と同じ『外見で別扱い』の構造。柴バーガーをペットと見るのが一度で伝わりにくい"
+      ],
+      "corpus": {
+        "dataset": "radichichi",
+        "datasetVersion": "v1",
+        "retrievedAt": "2026-11-12T03:55:00Z",
+        "queryLog": [
+          {
+            "query": "健康診断",
+            "resultChunkIds": [
+              "radichichi_1755068597_006"
+            ]
+          },
+          {
+            "query": "店員",
+            "resultChunkIds": [
+              "radichichi_1755068597_009",
+              "radichichi_1755068597_008",
+              "radichichi_1755068597_006",
+              "radichichi_1755068597_002"
+            ]
+          },
+          {
+            "query": "子ども",
+            "resultChunkIds": [
+              "radichichi_1755068597_008",
+              "radichichi_1755068597_006"
+            ]
+          }
+        ],
+        "zeroResultQueries": [
+          "美容院",
+          "お子様"
+        ],
+        "sourceChunks": [
+          {
+            "id": "radichichi_1755068597_009",
+            "dataset": "radichichi",
+            "retrievalTier": "creative",
+            "role": "ogiri_reference"
+          },
+          {
+            "id": "radichichi_1755068597_008",
+            "dataset": "radichichi",
+            "retrievalTier": "creative",
+            "role": "ogiri_reference"
+          },
+          {
+            "id": "radichichi_1755068597_006",
+            "dataset": "radichichi",
+            "retrievalTier": "creative",
+            "role": "ogiri_reference"
+          },
+          {
+            "id": "radichichi_1755068597_002",
+            "dataset": "radichichi",
+            "retrievalTier": "creative",
+            "role": "ogiri_reference"
+          }
+        ],
+        "sourceChunkIds": [
+          "radichichi_1755068597_009",
+          "radichichi_1755068597_008",
+          "radichichi_1755068597_006",
+          "radichichi_1755068597_002"
+        ],
+        "sourceExampleIds": [
+          "radichichi-639",
+          "radichichi-690",
+          "radichichi-463",
+          "radichichi-476",
+          "radichichi-110",
+          "radichichi-95",
+          "radichichi-424"
+        ]
+      },
+      "mechanisms": [
+        {
+          "id": "consistent-misclassification",
+          "sourceExampleIds": [
+            "radichichi-476",
+            "radichichi-110"
+          ],
+          "abstractOperation": "制度や店が自分の分類ルールを、見た目が似ているだけの相手にも一貫して当てはめ、その扱いが本人にまで及ぶ",
+          "transfer": "ファミレスの『小さい客＝お子様』という店の判断を、手のひらサイズの大人（赤べこ）に一貫して当て続ける"
+        },
+        {
+          "id": "ordinariness-of-the-extraordinary",
+          "sourceExampleIds": [
+            "radichichi-95",
+            "radichichi-424"
+          ],
+          "abstractOperation": "特別・異常な存在や場所が、ごく実用的で所帯じみた性質を持っていることがズレになる",
+          "transfer": "悪魔や人外の客が店で普通の常連・普通の客として振る舞う案に転用"
+        },
+        {
+          "id": "body-reroutes-routine",
+          "sourceExampleIds": [
+            "radichichi-639",
+            "radichichi-690"
+          ],
+          "abstractOperation": "体の性質が、定番の礼儀や式次第の動作を別の物理的結果に変えてしまう",
+          "transfer": "健康診断・視力検査・美容院など標準姿勢のある手順に体の形をぶつける案に転用"
+        },
+        {
+          "id": "stock-question-other-axis",
+          "sourceExampleIds": [
+            "radichichi-463"
+          ],
+          "abstractOperation": "定番の確認質問が、想定と別の軸（別の指示対象・本音）で受け取られる",
+          "transfer": "窓口・問診・シャンプー台の定型質問を別の軸で受ける案に転用（多くは決め台詞型として却下）"
+        }
+      ],
+      "candidateLog": [
+        {
+          "id": "C01",
+          "mechanism": "consistent-misclassification",
+          "mechanismFamily": "appearance-misclassified-treatment",
+          "causalCore": "見た目の大きさで子どもと判断された大人が、店の定番サービスの各段で大人の体面と実用の間で少しずつ折れていく",
+          "concept": "ファミレス。悪魔が連れてきた手のひらサイズの赤べこ（中身は大人）に、店員がキッズチェア・お冷・料理の量・レジのおもちゃと、小さい子向けの定番サービスを順に勧める。赤べこは大人だと言い張りつつ、大きさが合うのは子ども向けの物ばかり。",
+          "status": "selected"
+        },
+        {
+          "id": "C02",
+          "mechanism": "consistent-misclassification",
+          "mechanismFamily": "rule-engine-processes-anomaly-mechanically",
+          "causalCore": "人数で料金が決まる手続きで、数えるべきか曖昧な連れが1名として計上され、人数に連動する決まりが次々に適用される",
+          "concept": "カラオケの受付で『何名様ですか』。手のひらサイズの連れを1名と数えるかどうかで室料・ワンドリンク制・マイクの本数が決まっていく。",
+          "status": "rejected",
+          "reason": "人数カウントの料金計算は説明が要り一度で分からない。二段目以降が料金表の読み上げになる"
+        },
+        {
+          "id": "C03",
+          "mechanism": "ordinariness-of-the-extraordinary",
+          "mechanismFamily": "staff-normalizes-the-uncanny",
+          "causalCore": "異形の部位を店側が日常の手入れ対象として当たり前に扱い、その慣れから長い通い歴がにじむ",
+          "concept": "美容院。常連の悪魔に美容師が『角、だいぶ伸びましたね。前回と同じくらいで？』と、角を髪や爪と同じ手入れの対象として慣れた調子で扱う。",
+          "status": "shortlisted",
+          "reason": "角を『切る』動作がボケのために足す作業になりやすく、通い歴が一度で伝わるか不安。選定から外した"
+        },
+        {
+          "id": "C04",
+          "mechanism": "body-reroutes-routine",
+          "mechanismFamily": "body-breaks-standard-procedure",
+          "causalCore": "測定の標準姿勢が体の形と合わず、測定器の決まりを守ろうとするほど結果が狂う",
+          "concept": "健康診断の身長測定にセーターの恐竜。『かかとと背中を柱につけて』でしっぽがつかえ、体重計からしっぽがはみ出す。",
+          "status": "shortlisted",
+          "reason": "既存の3本（サメの歯科・カエルの面接・カエルの部屋探し）と同じ『体が手順に合わない』型に寄るため選定から外した"
+        },
+        {
+          "id": "C05",
+          "mechanism": "ordinariness-of-the-extraordinary",
+          "mechanismFamily": "staff-normalizes-the-uncanny",
+          "causalCore": "捕食者が食べられる側の仲間を普通の客として注文し、店は平然と提供する",
+          "concept": "回転寿司にうきわを付けたサメの客。魚を次々に頼むが店は普通に営業している。",
+          "status": "rejected",
+          "reason": "二段目が作れない（魚を頼み続けるだけ）。サメは歯科で既出"
+        },
+        {
+          "id": "C06",
+          "mechanism": "stock-question-other-axis",
+          "mechanismFamily": "ritual-politeness-blocks-truth",
+          "causalCore": "定型の気づかいの質問が社交辞令として機能し、本音を言う余地を逆にふさぐ",
+          "concept": "美容院のシャンプー台で『かゆいところございませんか？』。客は本当はかゆいのに毎回『大丈夫です』と答えてしまう。",
+          "status": "rejected",
+          "reason": "キャラ・場面のどこを外したかが一点に定まらない。人間の心理だけで3Dキャラを使う理由がない"
+        },
+        {
+          "id": "C07",
+          "mechanism": "stock-question-other-axis",
+          "mechanismFamily": "identity-pun-answer-to-stock-question",
+          "causalCore": "窓口の定番の確認質問に、正体にちなんだ一言の答えで落とす",
+          "concept": "郵便局の窓口で悪魔が小包を出す。『中身は何ですか？』に『魂です』。",
+          "status": "rejected",
+          "reason": "作った決め台詞で落とす狙いすぎ型（2026-11-07 不評の型）"
+        },
+        {
+          "id": "C08",
+          "mechanism": "stock-question-other-axis",
+          "mechanismFamily": "identity-pun-answer-to-stock-question",
+          "causalCore": "部屋の希望を聞く定型の質問に、自分の体質を説明する答えを返して笑いを取る",
+          "concept": "ホテルのチェックインで悪魔に『禁煙と喫煙どちらに』。悪魔は硫黄の匂いを気にして喫煙を選ぶ。",
+          "status": "rejected",
+          "reason": "体質の説明でボケる。決め台詞型で一発で終わり、35秒もたない"
+        },
+        {
+          "id": "C09",
+          "mechanism": "consistent-misclassification",
+          "mechanismFamily": "appearance-misclassified-treatment",
+          "causalCore": "店が外見からペットか客かを判断し、本人の自己申告とずれた待遇が続く",
+          "concept": "ペット同伴可のカフェに柴犬の頭をしたバーガー姿の客。店員が犬用の水皿とドッグケーキを出すが、本人は客としてコーヒーを頼みたい。",
+          "status": "rejected",
+          "reason": "C01と同じ『外見で別扱い』の構造。柴バーガーをペットと見るのが一度で伝わりにくい"
+        },
+        {
+          "id": "C10",
+          "mechanism": "stock-question-other-axis",
+          "mechanismFamily": "identity-pun-answer-to-stock-question",
+          "causalCore": "問診の定型項目に、出自にちなんだ答えを当てて一言で落とす",
+          "concept": "献血の問診で悪魔に『最近、海外に行かれましたか？』『地獄に』。",
+          "status": "rejected",
+          "reason": "作った決め台詞（『地獄に』）で締める狙いすぎ型"
+        },
+        {
+          "id": "C11",
+          "mechanism": "body-reroutes-routine",
+          "mechanismFamily": "body-breaks-standard-procedure",
+          "causalCore": "検査が求める回答の形式を体が出力できず、別の動きでしか答えられない",
+          "concept": "眼科の視力検査で手のない赤べこ。『空いている方向を指してください』に、指せないのでうなずくしかない。",
+          "status": "rejected",
+          "reason": "赤べこのうなずきは『赤べこの証明写真』で既出"
+        },
+        {
+          "id": "C12",
+          "mechanism": "ordinariness-of-the-extraordinary",
+          "mechanismFamily": "fearsome-image-inverted-by-ordinariness",
+          "causalCore": "恐れられる存在が地域の慣習を誰よりも律儀に守り、相手のほうが落ち着かなくなる",
+          "concept": "引っ越しの挨拶。新しく越してきた悪魔が菓子折りを持って、ゴミの日や騒音のお詫びまで誰より丁寧に挨拶する。",
+          "status": "rejected",
+          "reason": "隣人の挨拶だと一度で分からず、二段目の発見が弱い"
+        },
+        {
+          "id": "C13",
+          "mechanism": "consistent-misclassification",
+          "mechanismFamily": "rule-engine-processes-anomaly-mechanically",
+          "causalCore": "生まれつきの性質で毎回同じ規則違反が起き、窓口が淡々と規定どおりの処理を積み重ねる",
+          "concept": "図書館の返却カウンターに水の中で暮らすウーパールーパーの魔女。返す本が毎回しっとり濡れていて、職員は淡々と規定どおり汚損の手続きを重ねる。",
+          "status": "rejected",
+          "reason": "魔女の『濡れている』が見た目で伝わりにくく、汚損手続きの説明が要る"
+        },
+        {
+          "id": "C14",
+          "mechanism": "body-reroutes-routine",
+          "mechanismFamily": "body-breaks-standard-procedure",
+          "causalCore": "外せる前提の物が体の一部で、標準手順の最初の前提が崩れる",
+          "concept": "美容院でカエル帽の子に『帽子お預かりします』。帽子が頭そのもので外せず、カットの手順が始められない。",
+          "status": "rejected",
+          "reason": "カエルが3本目になり、帽子が外れない一点だけで段が作れない"
+        },
+        {
+          "id": "C15",
+          "mechanism": "body-reroutes-routine",
+          "mechanismFamily": "body-quirk-accidentally-satisfies-metric",
+          "causalCore": "体の癖が採点機の評価項目に偶然合致し、本人の意図と無関係に高得点になる",
+          "concept": "カラオケで赤べこが歌うと首が振れ続け、採点のビブラートが満点になる。",
+          "status": "rejected",
+          "reason": "うなずき（首振り）ネタの再利用。結末が採点表示頼み"
+        },
+        {
+          "id": "C16",
+          "mechanism": "ordinariness-of-the-extraordinary",
+          "mechanismFamily": "fearsome-image-inverted-by-ordinariness",
+          "causalCore": "怖い外見の者が日常の小さな試練では普通の人と同じように弱い",
+          "concept": "ファミレスで悪魔が『辛さ、5段階から選べます』に一番辛いのを選び、普通に涙目で水をおかわりする。",
+          "status": "rejected",
+          "reason": "『怖いのに辛さに弱い』は定番で既視感が強い。足した激辛メニューで笑わせにいく"
+        }
+      ],
+      "shortlist": [
+        "C01",
+        "C03",
+        "C04"
+      ],
+      "selectedCandidateId": "C01",
+      "selectionAuthority": "delegated",
+      "selectionNote": "予約実行（Yuto 2026-11-07 指示: 案から1本選んで公開まで）のため自動選定。人には未提示",
+      "diversityAudit": {
+        "mode": "blind-reclassification",
+        "verdict": "pass",
+        "summary": "生成側の操作ラベルを隠し、concept と causalCore だけを別のサブエージェントに渡して16案を再分類した。8系統（最大3案=19%）。生成側の当初の系統分けとは C05（捕食者の注文→周囲が平然と受け入れる型へ）、C02/C13（規則が機械的に処理する型へ統合）、C12/C16（怖い存在の普通さ）で食い違ったため、案を読み直したうえで批評側の系統に付け替えた。批評側の指摘: 16案のほぼ全てが『店・窓口の定型手続き×人外の客』という同じ舞台型に乗っており、機序の幅は見かけより狭い。C07/C08/C10 は実質1案、C04/C11/C14 も差し替え。",
+        "reviewedCandidateIds": [
+          "C01",
+          "C02",
+          "C03",
+          "C04",
+          "C05",
+          "C06",
+          "C07",
+          "C08",
+          "C09",
+          "C10",
+          "C11",
+          "C12",
+          "C13",
+          "C14",
+          "C15",
+          "C16"
+        ],
+        "familyAssignments": [
+          {
+            "candidateId": "C01",
+            "familyId": "appearance-misclassified-treatment"
+          },
+          {
+            "candidateId": "C02",
+            "familyId": "rule-engine-processes-anomaly-mechanically"
+          },
+          {
+            "candidateId": "C03",
+            "familyId": "staff-normalizes-the-uncanny"
+          },
+          {
+            "candidateId": "C04",
+            "familyId": "body-breaks-standard-procedure"
+          },
+          {
+            "candidateId": "C05",
+            "familyId": "staff-normalizes-the-uncanny"
+          },
+          {
+            "candidateId": "C06",
+            "familyId": "ritual-politeness-blocks-truth"
+          },
+          {
+            "candidateId": "C07",
+            "familyId": "identity-pun-answer-to-stock-question"
+          },
+          {
+            "candidateId": "C08",
+            "familyId": "identity-pun-answer-to-stock-question"
+          },
+          {
+            "candidateId": "C09",
+            "familyId": "appearance-misclassified-treatment"
+          },
+          {
+            "candidateId": "C10",
+            "familyId": "identity-pun-answer-to-stock-question"
+          },
+          {
+            "candidateId": "C11",
+            "familyId": "body-breaks-standard-procedure"
+          },
+          {
+            "candidateId": "C12",
+            "familyId": "fearsome-image-inverted-by-ordinariness"
+          },
+          {
+            "candidateId": "C13",
+            "familyId": "rule-engine-processes-anomaly-mechanically"
+          },
+          {
+            "candidateId": "C14",
+            "familyId": "body-breaks-standard-procedure"
+          },
+          {
+            "candidateId": "C15",
+            "familyId": "body-quirk-accidentally-satisfies-metric"
+          },
+          {
+            "candidateId": "C16",
+            "familyId": "fearsome-image-inverted-by-ordinariness"
+          }
+        ],
+        "familyDefinitions": [
+          {
+            "id": "appearance-misclassified-treatment",
+            "definingMove": "店側が外見で相手のカテゴリーを誤判定し、本人の自己認識とずれた待遇が段階的に積み重なって、本人が抵抗と受容の間で揺れる"
+          },
+          {
+            "id": "rule-engine-processes-anomaly-mechanically",
+            "definingMove": "判断する人ではなく規則・手続きそのものが異常な対象を機械的に処理し、連動する決まりや処理が次々に積み上がる"
+          },
+          {
+            "id": "staff-normalizes-the-uncanny",
+            "definingMove": "本来驚くべき異常を周囲が日常として平然と扱い、その慣れや平然さ自体が笑いの源になる"
+          },
+          {
+            "id": "body-breaks-standard-procedure",
+            "definingMove": "標準手順が前提とする体の形・機能を当人が持たず、手順の要求を物理的に満たせないことで手順が破綻する"
+          },
+          {
+            "id": "body-quirk-accidentally-satisfies-metric",
+            "definingMove": "体の癖が評価基準に偶然ぴったり合い、意図と無関係に成功してしまう（失敗ではなく誤った成功）"
+          },
+          {
+            "id": "ritual-politeness-blocks-truth",
+            "definingMove": "定型の気づかいが社交辞令化して、本音を言う余地をかえってふさぐという人間側の心理の逆説"
+          },
+          {
+            "id": "identity-pun-answer-to-stock-question",
+            "definingMove": "窓口の定型質問に、正体や出自にちなんだ一言の答えを返して即座に落とす一発型の言葉遊び"
+          },
+          {
+            "id": "fearsome-image-inverted-by-ordinariness",
+            "definingMove": "恐ろしいはずの存在が、律儀さや弱さなど普通の人間らしさを見せることでイメージが反転する"
+          }
+        ],
+        "shortlistPairChecks": [
+          {
+            "candidateA": "C01",
+            "candidateB": "C03",
+            "sameCausalStructure": false,
+            "notOnlySettingChange": true,
+            "difference": "C01は店側の外見による誤判定と本人の抵抗のずれが段階的に積み重なる構造で、C03は店側が異常を誤判定せず正しく日常として受け入れ、その慣れから通い歴がにじむ構造。ずれの有無が逆。"
+          },
+          {
+            "candidateA": "C01",
+            "candidateB": "C04",
+            "sameCausalStructure": false,
+            "notOnlySettingChange": true,
+            "difference": "C01は店員の社会的な分類判断（子ども扱い）と大人の体面の葛藤が原因だが、C04は人の判断ではなく測定器の物理的な前提と体の形の不一致が原因で、社会的な体面や交渉は関わらない。"
+          },
+          {
+            "candidateA": "C03",
+            "candidateB": "C04",
+            "sameCausalStructure": false,
+            "notOnlySettingChange": true,
+            "difference": "C03は異形を手順に完全に取り込んで日常化している（手順が通る）のに対し、C04は異形が標準手順に合わず手順が破綻する。異物と手順の関係が順応と衝突で正反対。"
+          }
+        ]
+      }
+    }
+  },
+  "voices": {
+    "server": {
+      "speaker": "春日部つむぎ",
+      "style": "ノーマル",
+      "speed": 1.08
+    }
+  },
+  "music": {
+    "track": "bossa-thank-you-for-shopping",
+    "gain": 0.24,
+    "fadeIn": 0.2,
+    "fadeOut": 0.5
+  },
+  "set": {
+    "kind": "family-restaurant",
+    "params": {}
+  },
+  "captions": {
+    "y": 0.76
+  },
+  "cameras": {
+    "hand-cu": {
+      "pos": [
+        3.05,
+        1.58,
+        -1.05
+      ],
+      "target": [
+        3.12,
+        1.52,
+        -0.45
+      ],
+      "fov": 34
+    },
+    "counter-beko": {
+      "pos": [
+        2.3,
+        1.3,
+        -1.25
+      ],
+      "target": [
+        2.6,
+        1.06,
+        -0.58
+      ],
+      "fov": 38
+    }
+  },
+  "actors": {
+    "server": {
+      "style": {
+        "skin": "#f2cdb0",
+        "hair": "#3a2620",
+        "hairStyle": "ponytail",
+        "top": "#fbfaf6",
+        "vest": "#c0392b",
+        "vestTrim": "#7a1f16",
+        "bottom": "#2a2a30",
+        "shoes": "#1f1f24",
+        "nameTag": "佐藤"
+      },
+      "root": {
+        "x": 2.9,
+        "z": -1.15,
+        "ry": 0
+      },
+      "pose": "counter",
+      "expr": "polite",
+      "captionColor": "#ffffff"
+    },
+    "akuma": {
+      "cast": "akuma",
+      "root": {
+        "x": 2.85,
+        "z": -0.05,
+        "ry": 3.14159
+      },
+      "pose": "hold-up",
+      "captionColor": "#ff9d8a"
+    },
+    "beko": {
+      "cast": "akabeko",
+      "height": 1,
+      "root": {
+        "x": 3.12,
+        "y": 1.5,
+        "z": -0.45,
+        "ry": 3.14159
+      }
+    }
+  },
+  "props": {
+    "basket": {
+      "kind": "toy-basket",
+      "params": {},
+      "tf": {
+        "x": 2.42,
+        "y": 1.0,
+        "z": -0.82,
+        "ry": 0
+      }
+    },
+    "glassA": {
+      "kind": "water-glass",
+      "params": {
+        "height": 0.12
+      },
+      "tf": {
+        "x": -0.2,
+        "y": 0.72,
+        "z": -0.3
+      },
+      "visible": false
+    },
+    "glassB": {
+      "kind": "water-glass",
+      "params": {
+        "height": 0.12
+      },
+      "tf": {
+        "x": 0.42,
+        "y": 0.72,
+        "z": -0.34
+      },
+      "visible": false
+    },
+    "plateA": {
+      "kind": "hamburg-plate",
+      "params": {
+        "size": 0.26
+      },
+      "tf": {
+        "x": -0.24,
+        "y": 0.72,
+        "z": -0.42
+      },
+      "visible": false
+    },
+    "plateB": {
+      "kind": "hamburg-plate",
+      "params": {
+        "size": 0.26
+      },
+      "tf": {
+        "x": 0.12,
+        "y": 0.72,
+        "z": -0.3
+      },
+      "visible": false
+    },
+    "torizara": {
+      "kind": "hamburg-plate",
+      "params": {
+        "size": 0.12,
+        "empty": true
+      },
+      "tf": {
+        "x": 0.42,
+        "y": 0.72,
+        "z": 0.02
+      },
+      "visible": false
+    },
+    "nurie": {
+      "kind": "box",
+      "params": {
+        "size": [
+          0.15,
+          0.004,
+          0.2
+        ],
+        "color": "#fbfbf6"
+      },
+      "tf": {
+        "x": 0.12,
+        "y": 0.72,
+        "z": -0.15,
+        "ry": 0.3
+      },
+      "visible": false
+    },
+    "car": {
+      "kind": "toy-car",
+      "params": {
+        "color": "#3498db"
+      },
+      "tf": {
+        "x": 2.68,
+        "y": 1.0,
+        "z": -0.42,
+        "ry": 0.4
+      },
+      "visible": false
+    }
+  },
+  "beats": [
+    {
+      "id": "title",
+      "role": "title",
+      "shot": "entrance-wide",
+      "dur": 1.3,
+      "do": [
+        {
+          "at": 0,
+          "sfx": "title-sting"
+        }
+      ]
+    },
+    {
+      "id": "nanmei",
+      "role": "hook",
+      "shot": "entrance-wide",
+      "pre": 0.05,
+      "post": 0.1,
+      "line": {
+        "who": "server",
+        "text": "いらっしゃいませ。／何名様ですか？"
+      },
+      "do": [
+        {
+          "at": 0,
+          "pose": "server",
+          "to": "bow",
+          "dur": 0.35
+        },
+        {
+          "at": "line+0.9",
+          "pose": "server",
+          "to": "counter",
+          "dur": 0.35
+        }
+      ]
+    },
+    {
+      "id": "futari",
+      "role": "bridge",
+      "shot": "register-customer",
+      "pre": 0.05,
+      "post": 0.2,
+      "line": {
+        "who": "akuma",
+        "text": "2人です"
+      }
+    },
+    {
+      "id": "isu",
+      "role": "rule",
+      "shot": "register-staff",
+      "pre": 0.15,
+      "post": 0.15,
+      "line": {
+        "who": "server",
+        "text": "……お子様用のお椅子、／お使いになりますか？"
+      },
+      "do": [
+        {
+          "at": 0,
+          "look": "server",
+          "to": {
+            "yaw": 0.25,
+            "pitch": -0.15
+          },
+          "dur": 0.35
+        }
+      ]
+    },
+    {
+      "id": "otona1",
+      "role": "bridge",
+      "shot": "hand-cu",
+      "pre": 0.1,
+      "post": 0.3,
+      "line": {
+        "who": "beko",
+        "text": "大人です"
+      }
+    },
+    {
+      "id": "ohiya",
+      "role": "escalate",
+      "level": 1,
+      "shot": "table-wide",
+      "pre": 0.1,
+      "post": 0.1,
+      "line": {
+        "who": "server",
+        "text": "失礼しました。／お冷です"
+      },
+      "do": [
+        {
+          "at": 0,
+          "move": "server",
+          "to": {
+            "x": 0.95,
+            "z": -0.2,
+            "ry": -1.5708
+          },
+          "dur": 0
+        },
+        {
+          "at": 0,
+          "move": "akuma",
+          "to": {
+            "x": -0.22,
+            "y": -0.32,
+            "z": -0.86,
+            "ry": 0
+          },
+          "dur": 0
+        },
+        {
+          "at": 0,
+          "pose": "akuma",
+          "to": "counter",
+          "dur": 0
+        },
+        {
+          "at": 0,
+          "move": "beko",
+          "to": {
+            "x": 0.34,
+            "y": 0.72,
+            "z": -0.12,
+            "ry": 0.35
+          },
+          "dur": 0
+        },
+        {
+          "at": 0,
+          "look": "server",
+          "to": {
+            "yaw": 0,
+            "pitch": 0.35
+          },
+          "dur": 0
+        },
+        {
+          "at": 0.1,
+          "pose": "server",
+          "to": "give",
+          "dur": 0.35
+        },
+        {
+          "at": 0.3,
+          "show": "glassA"
+        },
+        {
+          "at": 0.3,
+          "sfx": "set-down"
+        },
+        {
+          "at": 0.8,
+          "show": "glassB"
+        },
+        {
+          "at": 0.8,
+          "sfx": "set-down"
+        },
+        {
+          "at": "lineEnd",
+          "pose": "server",
+          "to": "idle",
+          "dur": 0.4
+        }
+      ]
+    },
+    {
+      "id": "straw",
+      "role": "bridge",
+      "shot": "beko-cu",
+      "pre": 0.4,
+      "post": 0.1,
+      "line": {
+        "who": "beko",
+        "text": "……ストロー、／もらえますか"
+      }
+    },
+    {
+      "id": "douzo",
+      "role": "bridge",
+      "shot": "table-top",
+      "pre": 0.05,
+      "post": 0.4,
+      "line": {
+        "who": "server",
+        "text": "はい、どうぞ"
+      },
+      "do": [
+        {
+          "at": "line",
+          "param": "glassB",
+          "to": {
+            "straw": 1
+          },
+          "dur": 0
+        },
+        {
+          "at": "line",
+          "sfx": "set-down"
+        }
+      ]
+    },
+    {
+      "id": "nurie",
+      "role": "escalate",
+      "level": 2,
+      "shot": "server-cu",
+      "pre": 0.15,
+      "post": 0.1,
+      "line": {
+        "who": "server",
+        "text": "よろしければ、／塗り絵もございます"
+      },
+      "do": [
+        {
+          "at": 0,
+          "pose": "server",
+          "to": "give",
+          "dur": 0.35
+        },
+        {
+          "at": 0.3,
+          "show": "nurie"
+        },
+        {
+          "at": 0.3,
+          "sfx": "paper"
+        },
+        {
+          "at": "lineEnd",
+          "pose": "server",
+          "to": "idle",
+          "dur": 0.4
+        }
+      ]
+    },
+    {
+      "id": "kekko",
+      "role": "bridge",
+      "shot": "beko-cu",
+      "pre": 0.15,
+      "post": 0.3,
+      "line": {
+        "who": "beko",
+        "text": "……結構です"
+      },
+      "do": [
+        {
+          "at": "lineEnd",
+          "hide": "nurie"
+        }
+      ]
+    },
+    {
+      "id": "chumon",
+      "role": "bridge",
+      "shot": "akuma-cu",
+      "pre": 0.1,
+      "post": 0.05,
+      "line": {
+        "who": "akuma",
+        "text": "ハンバーグ、／2つで"
+      }
+    },
+    {
+      "id": "half",
+      "role": "escalate",
+      "level": 3,
+      "shot": "server-cu",
+      "pre": 0.1,
+      "post": 0.15,
+      "line": {
+        "who": "server",
+        "text": "……お子様用の／ハーフサイズも、／ございますが"
+      },
+      "do": [
+        {
+          "at": 0,
+          "look": "server",
+          "to": {
+            "pitch": 0.4,
+            "yaw": -0.1
+          },
+          "dur": 0.35
+        }
+      ]
+    },
+    {
+      "id": "futsu",
+      "role": "bridge",
+      "shot": "beko-cu",
+      "pre": 0.1,
+      "post": 0.3,
+      "line": {
+        "who": "beko",
+        "text": "普通ので"
+      }
+    },
+    {
+      "id": "torizara",
+      "role": "escalate",
+      "level": 4,
+      "shot": "table-top",
+      "pre": 0.9,
+      "post": 0.15,
+      "line": {
+        "who": "beko",
+        "text": "……取り皿、／ください"
+      },
+      "do": [
+        {
+          "at": 0,
+          "show": "plateA"
+        },
+        {
+          "at": 0,
+          "show": "plateB"
+        },
+        {
+          "at": 0,
+          "sfx": "set-down"
+        }
+      ]
+    },
+    {
+      "id": "torizara2",
+      "role": "bridge",
+      "shot": "table-top",
+      "pre": 0.05,
+      "post": 0.4,
+      "line": {
+        "who": "server",
+        "text": "はい"
+      },
+      "do": [
+        {
+          "at": "line",
+          "show": "torizara"
+        },
+        {
+          "at": "line",
+          "sfx": "set-down"
+        }
+      ]
+    },
+    {
+      "id": "omocha",
+      "role": "escalate",
+      "level": 5,
+      "shot": "register-staff",
+      "pre": 0.1,
+      "post": 0.15,
+      "line": {
+        "who": "server",
+        "text": "ありがとうございました。／……お子様、／おもちゃどうぞ"
+      },
+      "do": [
+        {
+          "at": 0,
+          "move": "server",
+          "to": {
+            "x": 2.9,
+            "z": -1.15,
+            "ry": 0
+          },
+          "dur": 0
+        },
+        {
+          "at": 0,
+          "move": "akuma",
+          "to": {
+            "x": 2.85,
+            "y": 0,
+            "z": -0.05,
+            "ry": 3.14159
+          },
+          "dur": 0
+        },
+        {
+          "at": 0,
+          "pose": "akuma",
+          "to": "idle",
+          "dur": 0
+        },
+        {
+          "at": 0,
+          "move": "beko",
+          "to": {
+            "x": 2.65,
+            "y": 1.0,
+            "z": -0.58,
+            "ry": 4.57
+          },
+          "dur": 0
+        },
+        {
+          "at": 0,
+          "look": "server",
+          "to": {
+            "yaw": 0.3,
+            "pitch": 0.3
+          },
+          "dur": 0
+        },
+        {
+          "at": 0,
+          "pose": "server",
+          "to": "counter",
+          "dur": 0
+        },
+        {
+          "at": "line+2.0",
+          "pose": "server",
+          "to": "give",
+          "dur": 0.4
+        },
+        {
+          "at": "line+2.0",
+          "prop": "basket",
+          "to": {
+            "x": 2.45,
+            "y": 1.0,
+            "z": -0.56,
+            "ry": 0
+          },
+          "dur": 0.5,
+          "ease": "out"
+        }
+      ]
+    },
+    {
+      "id": "otona2",
+      "role": "turn",
+      "shot": "counter-beko",
+      "pre": 0.15,
+      "post": 0.2,
+      "line": {
+        "who": "beko",
+        "text": "大人です"
+      }
+    },
+    {
+      "id": "shitsurei",
+      "role": "bridge",
+      "shot": "register-top",
+      "pre": 0.05,
+      "post": 0.2,
+      "line": {
+        "who": "server",
+        "text": "失礼しました"
+      },
+      "do": [
+        {
+          "at": "line",
+          "prop": "basket",
+          "to": {
+            "x": 2.42,
+            "y": 1.0,
+            "z": -0.82,
+            "ry": 0
+          },
+          "dur": 0.6,
+          "ease": "inOut"
+        },
+        {
+          "at": "line",
+          "pose": "server",
+          "to": "counter",
+          "dur": 0.4
+        }
+      ]
+    },
+    {
+      "id": "ikko",
+      "role": "payoff",
+      "shot": "counter-beko",
+      "pre": 0.45,
+      "post": 0.9,
+      "line": {
+        "who": "beko",
+        "text": "……一個だけ、／いいですか"
+      },
+      "do": [
+        {
+          "at": 0,
+          "look": "beko",
+          "to": {
+            "yaw": -0.35
+          },
+          "dur": 0.4
+        },
+        {
+          "at": "lineEnd",
+          "music": "cut"
+        },
+        {
+          "at": "lineEnd",
+          "sfx": "payoff-hit"
+        }
+      ]
+    },
+    {
+      "id": "sumimasen",
+      "role": "button",
+      "shot": "entrance-wide",
+      "pre": 0.1,
+      "post": 0.9,
+      "line": {
+        "who": "akuma",
+        "text": "……すいません"
+      },
+      "do": [
+        {
+          "at": 0,
+          "music": "resume"
+        },
+        {
+          "at": 0,
+          "show": "car"
+        },
+        {
+          "at": 0.2,
+          "pose": "akuma",
+          "to": "bow",
+          "dur": 0.5
+        }
+      ]
+    }
+  ],
+  "description": [
+    "ファミレスに、手のひらサイズの大人が来た。",
+    "#ショート #赤べこ #ファミレス #コント"
+  ]
+}

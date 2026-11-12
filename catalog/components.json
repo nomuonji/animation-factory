@@ -379,6 +379,26 @@
           "seat": 0.48
         },
         "notes": "不動産屋の賃貸カウンター（部屋探し・物件紹介）。相談机 z≈-0.35（天板0.72、中央の目隠し板、両側に低い仕切り）。担当者は机の奥 z≈-0.85 で +Z 向き（手続き型人物は seated:true＋root.y≈-0.32）、客は手前の椅子 z≈0.25 で -Z 向き（椅子は prop）。奥の壁に物件チラシのコルクボードと「おすすめ物件」（params.header, params.accent）、右に物件チラシを貼った窓、左にパンフ棚。机の間取り図は floor-plan prop"
+      },
+      "family-restaurant": {
+        "cameras": [
+          "table-wide",
+          "table-top",
+          "beko-cu",
+          "akuma-cu",
+          "server-cu",
+          "entrance-wide",
+          "register-staff",
+          "register-customer",
+          "register-top"
+        ],
+        "surfaces": {
+          "table": 0.72,
+          "seat": 0.45,
+          "register": 1.0,
+          "floor": 0
+        },
+        "notes": "ファミレス。ボックス席（座面0.45のベンチが z≈-0.95 で +Z 向き、背もたれ高め）とテーブル（天板0.72、中心 (0,-0.35)、x -0.6..0.6 / z -0.7..0.0）。店員はテーブルの通路側 x≈0.95 で -X 向き。入口のレジカウンター（天板1.0、中心 (2.9,-0.75)）：店員は奥 z≈-1.15 で +Z 向き、客は手前 z≈-0.05 で -Z 向き。奥の壁に窓、ペンダントライト、卓上にメニュースタンド・紙ナプキン・呼び出しベル、右の壁にガラスの入口ドア。params.accent（座面・制服の差し色）"
       }
     },
     "props": {
@@ -442,6 +462,26 @@
         "tagColor",
         "w",
         "d"
+      ],
+      "water-glass": [
+        "height",
+        "radius",
+        "water",
+        "straw",
+        "strawColor"
+      ],
+      "hamburg-plate": [
+        "size",
+        "plate",
+        "empty"
+      ],
+      "toy-basket": [
+        "width",
+        "depth",
+        "label"
+      ],
+      "toy-car": [
+        "color"
       ]
     },
     "character": {
