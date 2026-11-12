@@ -541,5 +541,113 @@ export const SETS: Record<string, SetBuilder> = {
         "over-dentist": { pos: [-0.85, 1.75, -0.95], target: [0.05, 0.95, 0.0], fov: 40 }
       }
     };
+  },
+  /**
+   * Family restaurant (ファミレス). Booth table area around x=0 and the entrance register area around x=2.9.
+   * Booth: bench seat (top 0.45) at z≈-0.95 facing +Z with a high back, table top 0.72 centred (0,-0.35)
+   * (x -0.6..0.6, z -0.7..0.0); a server stands at the open end x≈0.95 facing -X. Register counter
+   * (top 1.0) centred (2.9,-0.75): staff behind at z≈-1.15 facing +Z, customer in front at x≈2.85, z≈-0.05 facing -Z.
+   * Back wall window behind the booth, pendant lamp, menu stand and napkin box on the table,
+   * glass entrance door on the right wall. Props (glasses, plates, toy basket) are placed by productions.
+   */
+  "family-restaurant"(scene, p) {
+    scene.background = new THREE.Color("#f1ece2");
+    lights(scene, { key: 1.4 });
+    const grad = (toon("#fff") as THREE.MeshToonMaterial).gradientMap;
+    const accent = String(p.accent ?? "#c0392b");
+    const tiles = canvasTexture(512, 512, (g, w, h) => {
+      g.fillStyle = "#e9dcc6"; g.fillRect(0, 0, w, h);
+      for (let i = 0; i < 4; i++) for (let j = 0; j < 4; j++) {
+        g.fillStyle = (i + j) % 2 ? "#e3d3b8" : "#ecdfca"; g.fillRect(i * w / 4 + 2, j * h / 4 + 2, w / 4 - 4, h / 4 - 4);
+      }
+    });
+    tiles.wrapS = tiles.wrapT = THREE.RepeatWrapping; tiles.repeat.set(8, 8);
+    const floor = new THREE.Mesh(new THREE.PlaneGeometry(14, 14), new THREE.MeshToonMaterial({ map: tiles, gradientMap: grad }));
+    floor.rotation.x = -Math.PI / 2; floor.receiveShadow = true; scene.add(floor);
+    const wallC = String(p.wall ?? "#f6efe2");
+    const wallB = mesh(new THREE.BoxGeometry(7, 3, 0.05), toon(wallC), false); wallB.position.set(1.2, 1.5, -1.6); scene.add(wallB);
+    const wallL = mesh(new THREE.BoxGeometry(0.05, 3, 6), toon(wallC), false); wallL.position.set(-2.0, 1.5, 0.6); scene.add(wallL);
+    const wallR = mesh(new THREE.BoxGeometry(0.05, 3, 6), toon(wallC), false); wallR.position.set(4.4, 1.5, 0.6); scene.add(wallR);
+    const wallF = mesh(new THREE.BoxGeometry(7, 3, 0.05), toon(wallC), false); wallF.position.set(1.2, 1.5, 3.4); scene.add(wallF);
+    const wainscot = mesh(new THREE.BoxGeometry(6.9, 0.9, 0.02), toon("#a8754f"), false); wainscot.position.set(1.2, 0.45, -1.565); scene.add(wainscot);
+    const rail = mesh(new THREE.BoxGeometry(6.9, 0.04, 0.04), toon("#7d5236"), false); rail.position.set(1.2, 0.9, -1.55); scene.add(rail);
+    // window behind the booth: sky, frame and a striped awning edge
+    const sky = canvasTexture(512, 320, (g, w, h) => {
+      const gr = g.createLinearGradient(0, 0, 0, h); gr.addColorStop(0, "#bfe0f2"); gr.addColorStop(1, "#eaf5f9");
+      g.fillStyle = gr; g.fillRect(0, 0, w, h);
+      g.fillStyle = "#9cc58f"; for (let i = 0; i < 9; i++) { g.beginPath(); g.arc(i * 64 + 20, h - 20, 46 + rand(i) * 20, 0, Math.PI * 2); g.fill(); }
+    });
+    const win = new THREE.Mesh(new THREE.PlaneGeometry(1.7, 1.0), new THREE.MeshBasicMaterial({ map: sky })); win.position.set(0, 1.62, -1.57); scene.add(win);
+    const frameM = toon("#f4f1ea");
+    for (const [w, h, x, y] of [[1.8, 0.06, 0, 2.14], [1.8, 0.06, 0, 1.1], [0.06, 1.1, -0.88, 1.62], [0.06, 1.1, 0.88, 1.62], [0.04, 1.0, 0, 1.62]] as const) {
+      const f = mesh(new THREE.BoxGeometry(w, h, 0.05), frameM, 0.003); f.position.set(x, y, -1.55); scene.add(f);
+    }
+    // booth: bench with a high back, side panel
+    const uph = toon(accent);
+    const seat = mesh(new THREE.BoxGeometry(1.3, 0.12, 0.5), uph, 0.005); seat.position.set(0, 0.39, -0.97); scene.add(seat);
+    const base = mesh(new THREE.BoxGeometry(1.3, 0.33, 0.46), toon("#6e4a32"), 0.004); base.position.set(0, 0.165, -0.97); scene.add(base);
+    const back = mesh(new THREE.BoxGeometry(1.3, 0.72, 0.14), uph, 0.005); back.position.set(0, 0.8, -1.25); scene.add(back);
+    const backTop = mesh(new THREE.BoxGeometry(1.34, 0.06, 0.18), toon("#6e4a32"), 0.004); backTop.position.set(0, 1.18, -1.25); scene.add(backTop);
+    const side = mesh(new THREE.BoxGeometry(0.06, 1.2, 0.72), toon("#6e4a32"), 0.004); side.position.set(-0.68, 0.6, -1.0); scene.add(side);
+    // table
+    const tTop = 0.72;
+    const top = mesh(new THREE.BoxGeometry(1.2, 0.04, 0.72), toon(String(p.table ?? "#efe6d6")), 0.005); top.position.set(0, tTop - 0.02, -0.35); scene.add(top);
+    const edge = mesh(new THREE.BoxGeometry(1.22, 0.025, 0.74), toon("#8a6446"), false); edge.position.set(0, tTop - 0.045, -0.35); scene.add(edge);
+    const post = mesh(new THREE.CylinderGeometry(0.04, 0.04, tTop - 0.06, 10), toon("#3b3b40"), 0.003); post.position.set(0, (tTop - 0.06) / 2, -0.35); scene.add(post);
+    const foot = mesh(new THREE.BoxGeometry(0.7, 0.03, 0.4), toon("#3b3b40"), 0.003); foot.position.set(0, 0.015, -0.35); scene.add(foot);
+    // menu stand and napkin box at the wall end of the table
+    const stand = canvasTexture(200, 280, (g, w, h) => {
+      g.fillStyle = "#fffaf0"; g.fillRect(0, 0, w, h);
+      g.fillStyle = accent; g.fillRect(0, 0, w, 60);
+      g.fillStyle = "#fff"; g.font = `bold 34px ${JP_FONT}`; g.textAlign = "center"; g.fillText("季節のおすすめ", w / 2, 42);
+      g.fillStyle = "#d9a441"; g.beginPath(); g.ellipse(w / 2, 150, 70, 46, 0, 0, Math.PI * 2); g.fill();
+      g.fillStyle = "#7a3f1f"; g.beginPath(); g.ellipse(w / 2, 145, 46, 28, 0, 0, Math.PI * 2); g.fill();
+      g.fillStyle = "#333"; g.font = `bold 30px ${JP_FONT}`; g.fillText("ハンバーグ", w / 2, 240);
+    });
+    const card = new THREE.Mesh(new THREE.PlaneGeometry(0.1, 0.14), new THREE.MeshBasicMaterial({ map: stand }));
+    card.position.set(-0.4, tTop + 0.075, -0.62); card.rotation.x = -0.12; scene.add(card);
+    const cardBack = mesh(new THREE.BoxGeometry(0.104, 0.144, 0.006), toon("#e8e1d4"), false); cardBack.position.set(-0.4, tTop + 0.075, -0.624); cardBack.rotation.x = -0.12; scene.add(cardBack);
+    const nap = mesh(new THREE.BoxGeometry(0.12, 0.06, 0.08), toon("#f3f3f0"), 0.003); nap.position.set(-0.5, tTop + 0.03, -0.5); scene.add(nap);
+    const napSlot = mesh(new THREE.BoxGeometry(0.08, 0.004, 0.01), flat("#ffffff"), false); napSlot.position.set(-0.5, tTop + 0.062, -0.5); scene.add(napSlot);
+    const bell = mesh(new THREE.CylinderGeometry(0.035, 0.04, 0.03, 16), toon("#2c2c30"), 0.003); bell.position.set(-0.38, tTop + 0.015, -0.48); scene.add(bell);
+    const bellBtn = mesh(new THREE.CylinderGeometry(0.018, 0.018, 0.012, 12), toon("#e8c547"), false); bellBtn.position.set(-0.38, tTop + 0.035, -0.48); scene.add(bellBtn);
+    // pendant lamp over the table
+    const cord = mesh(new THREE.CylinderGeometry(0.004, 0.004, 0.75, 4), toon("#222"), false); cord.position.set(0, 2.6, -0.4); scene.add(cord);
+    const shadeM = toon("#f2d39a", { emissive: "#6b4a10" }).clone(); shadeM.side = THREE.DoubleSide;
+    const shade = mesh(new THREE.ConeGeometry(0.2, 0.18, 20, 1, true), shadeM, 0.004); shade.position.set(0, 2.16, -0.4); scene.add(shade);
+    // register counter by the entrance
+    const rx = 2.9, rz = -0.75, rTop = 1.0;
+    const ctr = mesh(new THREE.BoxGeometry(1.1, rTop - 0.04, 0.5), toon("#8a5a3a"), 0.005); ctr.position.set(rx, (rTop - 0.04) / 2, rz); scene.add(ctr);
+    const ctrTop = mesh(new THREE.BoxGeometry(1.16, 0.04, 0.56), toon("#efe6d6"), 0.005); ctrTop.position.set(rx, rTop - 0.02, rz); scene.add(ctrTop);
+    const front = mesh(new THREE.BoxGeometry(1.0, 0.18, 0.01), toon(accent), false); front.position.set(rx, rTop - 0.2, rz + 0.255); scene.add(front);
+    const reg = mesh(new THREE.BoxGeometry(0.3, 0.1, 0.26), toon("#d9d9d6"), 0.004); reg.position.set(rx + 0.25, rTop + 0.05, rz - 0.06); scene.add(reg);
+    const scr = mesh(new THREE.BoxGeometry(0.24, 0.16, 0.02), toon("#2b2e33"), 0.003); scr.position.set(rx + 0.25, rTop + 0.19, rz - 0.14); scr.rotation.x = -0.25; scene.add(scr);
+    const tray = mesh(new THREE.BoxGeometry(0.18, 0.012, 0.13), toon("#3a6fb0"), 0.002); tray.position.set(rx + 0.05, rTop + 0.006, rz + 0.12); scene.add(tray);
+    const signTex = canvasTexture(256, 96, (g, w, h) => {
+      g.fillStyle = "#fffaf0"; g.fillRect(0, 0, w, h); g.fillStyle = accent; g.fillRect(0, h - 10, w, 10);
+      g.fillStyle = "#333"; g.font = `bold 52px ${JP_FONT}`; g.textAlign = "center"; g.textBaseline = "middle"; g.fillText("お会計", w / 2, h / 2 - 4);
+    });
+    const sign = new THREE.Mesh(new THREE.PlaneGeometry(0.42, 0.16), new THREE.MeshBasicMaterial({ map: signTex })); sign.position.set(rx, 2.15, -1.55); scene.add(sign);
+    // shelf of takeaway goods behind the register
+    const sh = shelfWall(scene, { w: 0.9, h: 0.9, rows: 3, cols: 5, seed: 17, palette: ["#e7c27a", "#d86b4a", "#f1ece2", "#8fb3d1"], depth: 0.22 });
+    sh.position.set(rx - 0.15, 1.0, -1.57);
+    // glass entrance door on the right wall
+    const door = new THREE.Mesh(new THREE.PlaneGeometry(1.0, 2.1), flat("#cfe6ef")); door.rotation.y = -Math.PI / 2; door.position.set(4.37, 1.05, 0.4); scene.add(door);
+    for (const z of [-0.1, 0.9]) { const df = mesh(new THREE.BoxGeometry(0.05, 2.1, 0.05), toon("#8c8f93"), false); df.position.set(4.35, 1.05, z); scene.add(df); }
+    const ceil = new THREE.Mesh(new THREE.PlaneGeometry(7, 7), flat("#f8f5ee")); ceil.rotation.x = Math.PI / 2; ceil.position.set(1.2, 2.9, 0.6); scene.add(ceil);
+    return {
+      surfaces: { table: tTop, seat: 0.45, register: rTop, floor: 0 },
+      cameras: {
+        "table-wide": { pos: [1.55, 1.55, 1.5], target: [0.3, 0.9, -0.35], fov: 46 },
+        "table-top": { pos: [0.3, 1.25, 0.6], target: [0.27, 0.78, -0.24], fov: 38 },
+        "beko-cu": { pos: [0.75, 1.0, 0.45], target: [0.32, 0.81, -0.14], fov: 30 },
+        "akuma-cu": { pos: [0.3, 1.18, 0.45], target: [-0.2, 1.0, -0.85], fov: 32 },
+        "server-cu": { pos: [-0.15, 1.35, 0.35], target: [0.95, 1.38, -0.15], fov: 32 },
+        "entrance-wide": { pos: [4.0, 1.65, 1.05], target: [2.8, 1.2, -0.6], fov: 46 },
+        "register-staff": { pos: [2.15, 1.5, 0.25], target: [2.95, 1.35, -1.15], fov: 30 },
+        "register-customer": { pos: [3.5, 1.55, -1.25], target: [2.85, 1.4, -0.05], fov: 34 },
+        "register-top": { pos: [3.45, 1.5, 0.1], target: [2.65, 1.02, -0.6], fov: 30 }
+      }
+    };
   }
 };

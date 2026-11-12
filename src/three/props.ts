@@ -397,6 +397,85 @@ export const PROPS: Record<string, PropBuilder> = {
     };
   },
 
+  /** Restaurant water glass (お冷). params.water 0..1 fill; params.straw (0/1, tweenable via `param`) shows a straw. */
+  "water-glass"(p) {
+    const h = num(p.height, 0.12), r = num(p.radius, 0.036);
+    const g = new THREE.Group();
+    const glassM = toon("#dfeff6", { transparent: true, opacity: 0.45 });
+    const glass = mesh(new THREE.CylinderGeometry(r, r * 0.85, h, 20, 1, true), glassM, 0.002);
+    (glass.material as THREE.Material).side = THREE.DoubleSide;
+    glass.position.y = h / 2; g.add(glass);
+    const bottom = mesh(new THREE.CylinderGeometry(r * 0.85, r * 0.85, 0.008, 20), glassM, false); bottom.position.y = 0.004; g.add(bottom);
+    const wh = h * num(p.water, 0.75);
+    const water = mesh(new THREE.CylinderGeometry(r * 0.92, r * 0.84, wh, 20), toon("#bfe3f2", { transparent: true, opacity: 0.6 }), false);
+    water.position.y = wh / 2 + 0.006; g.add(water);
+    for (let i = 0; i < 2; i++) { const ice = mesh(new THREE.BoxGeometry(r * 0.7, r * 0.6, r * 0.7), toon("#f4fbfe", { transparent: true, opacity: 0.8 }), false); ice.position.set((i - 0.5) * r * 0.6, wh - r * 0.1, (i - 0.5) * r * 0.3); ice.rotation.set(0.3 * i, 0.6, 0.2); g.add(ice); }
+    const straw = new THREE.Group();
+    const sm = mesh(new THREE.CylinderGeometry(0.004, 0.004, h * 1.45, 8), toon(str(p.strawColor, "#e85a5a")), 0.0015);
+    sm.position.set(r * 0.35, h * 0.72, 0); sm.rotation.z = -0.18; straw.add(sm);
+    straw.visible = num(p.straw, 0) > 0.5; g.add(straw);
+    return { object: g, setParam(k, v) { if (k === "straw") straw.visible = v > 0.5; } };
+  },
+
+  /** Hamburg steak plate (ハンバーグ): white plate, glazed patty, fries, corn, broccoli. params.size = plate diameter (m); params.empty = true for a bare side plate (取り皿). */
+  "hamburg-plate"(p) {
+    const d = num(p.size, 0.26), s = d / 0.26;
+    const g = new THREE.Group();
+    const plate = mesh(new THREE.CylinderGeometry(d / 2, d / 2 * 0.8, 0.016, 32), toon(str(p.plate, "#fbfbf8")), 0.003);
+    plate.position.y = 0.008; g.add(plate);
+    if (p.empty === true) return { object: g };
+    const patty = mesh(new THREE.SphereGeometry(0.055 * s, 20, 12), toon("#6b3418", { emissive: "#1c0800" }), 0.003);
+    patty.scale.set(1.3, 0.45, 1); patty.position.set(-0.02 * s, 0.03 * s, 0.01 * s); g.add(patty);
+    const sauce = mesh(new THREE.SphereGeometry(0.05 * s, 20, 10), toon("#4a1d0c"), false);
+    sauce.scale.set(1.25, 0.2, 0.95); sauce.position.set(-0.02 * s, 0.05 * s, 0.01 * s); g.add(sauce);
+    for (let i = 0; i < 5; i++) { const f = mesh(new THREE.BoxGeometry(0.06 * s, 0.012 * s, 0.012 * s), toon("#e8b94a"), 0.0015); f.position.set(0.065 * s, 0.022 * s + i * 0.004, -0.045 * s + i * 0.018 * s); f.rotation.y = 0.4 + rand(i) * 0.5; g.add(f); }
+    const corn = mesh(new THREE.CylinderGeometry(0.022 * s, 0.022 * s, 0.012 * s, 14), toon("#f2d43a"), 0.0015); corn.position.set(0.06 * s, 0.022 * s, 0.05 * s); g.add(corn);
+    const broc = mesh(new THREE.SphereGeometry(0.018 * s, 10, 8), toon("#3f8a3a"), 0.0015); broc.position.set(-0.075 * s, 0.03 * s, 0.065 * s); g.add(broc);
+    return { object: g };
+  },
+
+  /** Basket of small giveaway toys (ファミレスのレジのおもちゃ). Pivot at the basket bottom. */
+  "toy-basket"(p) {
+    const g = new THREE.Group();
+    const w = num(p.width, 0.26), dpt = num(p.depth, 0.18), h = 0.07;
+    const wick = toon("#c79a5c");
+    const bot = mesh(new THREE.BoxGeometry(w, 0.012, dpt), wick, 0.002); bot.position.y = 0.006; g.add(bot);
+    for (const [sx, sz, x, z] of [[w, 0.012, 0, dpt / 2], [w, 0.012, 0, -dpt / 2], [0.012, dpt, w / 2, 0], [0.012, dpt, -w / 2, 0]] as const) {
+      const side = mesh(new THREE.BoxGeometry(sx, h, sz), wick, 0.002); side.position.set(x, h / 2, z); g.add(side);
+    }
+    const colors = ["#e74c3c", "#3498db", "#f1c40f", "#2ecc71", "#9b59b6", "#ff8fb1", "#1abc9c"];
+    for (let i = 0; i < 9; i++) {
+      const c = colors[i % colors.length]!;
+      const x = (rand(i + 3) - 0.5) * (w - 0.05), z = (rand(i + 7) - 0.5) * (dpt - 0.05);
+      const k = i % 3;
+      const geo = k === 0 ? new THREE.SphereGeometry(0.022, 12, 10) : k === 1 ? new THREE.BoxGeometry(0.045, 0.025, 0.03) : new THREE.CylinderGeometry(0.016, 0.016, 0.05, 10);
+      const toy = mesh(geo, toon(c), 0.0015); toy.position.set(x, 0.045 + rand(i + 11) * 0.02, z); toy.rotation.set(rand(i) * 2, rand(i + 1) * 3, rand(i + 2) * 2); g.add(toy);
+    }
+    if (p.label !== false) {
+      const tex = canvasTexture(256, 72, (gc, cw, ch) => {
+        gc.fillStyle = "#fffaf0"; gc.fillRect(0, 0, cw, ch);
+        gc.fillStyle = "#c0392b"; gc.font = `bold 40px ${JP_FONT}`; gc.textAlign = "center"; gc.textBaseline = "middle";
+        gc.fillText(str(p.label, "おもちゃ"), cw / 2, ch / 2 + 2);
+      });
+      const tag = new THREE.Mesh(new THREE.PlaneGeometry(w * 0.6, w * 0.17), new THREE.MeshBasicMaterial({ map: tex }));
+      tag.position.set(0, h * 0.55, dpt / 2 + 0.008); g.add(tag);
+    }
+    return { object: g };
+  },
+
+  /** Small toy car (giveaway toy). Faces +x. */
+  "toy-car"(p) {
+    const g = new THREE.Group();
+    const c = str(p.color, "#3498db");
+    const body = mesh(new THREE.BoxGeometry(0.07, 0.02, 0.036), toon(c), 0.0015); body.position.y = 0.018; g.add(body);
+    const cab = mesh(new THREE.BoxGeometry(0.036, 0.018, 0.032), toon(c), 0.0015); cab.position.set(-0.004, 0.036, 0); g.add(cab);
+    const win = mesh(new THREE.BoxGeometry(0.038, 0.012, 0.028), toon("#cfe8f5"), false); win.position.set(-0.004, 0.037, 0); g.add(win);
+    for (const x of [-0.022, 0.022]) for (const z of [-0.019, 0.019]) {
+      const wh = mesh(new THREE.CylinderGeometry(0.009, 0.009, 0.006, 12), toon("#222"), 0.001); wh.rotation.x = Math.PI / 2; wh.position.set(x, 0.009, z); g.add(wh);
+    }
+    return { object: g };
+  },
+
   box(p) {
     const s = p.size as number[] | undefined;
     const m = mesh(new THREE.BoxGeometry(s?.[0] ?? 0.1, s?.[1] ?? 0.1, s?.[2] ?? 0.1), toon(str(p.color, "#cccccc")));
