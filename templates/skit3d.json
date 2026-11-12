@@ -51,8 +51,18 @@
         "datasetVersion": "v1",
         "retrievedAt": "<ISO-8601>",
         "queryLog": [
-          { "query": "<実検索語1>", "resultChunkIds": ["<取得chunk ID>"] },
-          { "query": "<実検索語2>", "resultChunkIds": ["<取得chunk ID>"] }
+          {
+            "query": "<実検索語1>",
+            "resultChunkIds": [
+              "<取得chunk ID>"
+            ]
+          },
+          {
+            "query": "<実検索語2>",
+            "resultChunkIds": [
+              "<取得chunk ID>"
+            ]
+          }
         ],
         "sourceChunks": [
           {
@@ -74,7 +84,11 @@
             "role": "ogiri_reference"
           }
         ],
-        "sourceChunkIds": ["<実取得chunk ID 1>", "<実取得chunk ID 2>", "<実取得chunk ID 3>"],
+        "sourceChunkIds": [
+          "<実取得chunk ID 1>",
+          "<実取得chunk ID 2>",
+          "<実取得chunk ID 3>"
+        ],
         "sourceExampleIds": [
           "radichichi-<ID>",
           "radichichi-<ID>",
@@ -86,19 +100,25 @@
       "mechanisms": [
         {
           "id": "<operation-1>",
-          "sourceExampleIds": ["radichichi-<ID>"],
+          "sourceExampleIds": [
+            "radichichi-<ID>"
+          ],
           "abstractOperation": "<元回答から抽出した抽象的な因果構造。原文は転記しない>",
           "transfer": "<今回の別題材へどう転用したか>"
         },
         {
           "id": "<operation-2>",
-          "sourceExampleIds": ["radichichi-<ID>"],
+          "sourceExampleIds": [
+            "radichichi-<ID>"
+          ],
           "abstractOperation": "<発想操作>",
           "transfer": "<今回への転用>"
         },
         {
           "id": "<operation-3>",
-          "sourceExampleIds": ["radichichi-<ID>"],
+          "sourceExampleIds": [
+            "radichichi-<ID>"
+          ],
           "abstractOperation": "<発想操作>",
           "transfer": "<今回への転用>"
         }
@@ -114,19 +134,33 @@
           "reason": "<採否理由>"
         }
       ],
-      "shortlist": ["C01", "C02", "C03"],
+      "shortlist": [
+        "C01",
+        "C02",
+        "C03"
+      ],
       "selectedCandidateId": "C01",
       "selectionAuthority": "user",
       "diversityAudit": {
         "mode": "blind-reclassification",
         "verdict": "pass",
         "summary": "<生成側のラベルを隠して全候補を再分類した結果>",
-        "reviewedCandidateIds": ["C01", "C02", "...全15案以上"],
+        "reviewedCandidateIds": [
+          "C01",
+          "C02",
+          "...全15案以上"
+        ],
         "familyAssignments": [
-          { "candidateId": "C01", "familyId": "<批評側が独立に付けた機序>" }
+          {
+            "candidateId": "C01",
+            "familyId": "<批評側が独立に付けた機序>"
+          }
         ],
         "familyDefinitions": [
-          { "id": "<family-id>", "definingMove": "<他の系統と何が違う因果機序か>" }
+          {
+            "id": "<family-id>",
+            "definingMove": "<他の系統と何が違う因果機序か>"
+          }
         ],
         "shortlistPairChecks": [
           {
@@ -136,9 +170,58 @@
             "notOnlySettingChange": true,
             "difference": "<因果構造の違い。舞台・人物・小道具の違いだけではない>"
           },
-          { "candidateA": "C01", "candidateB": "C03", "sameCausalStructure": false, "notOnlySettingChange": true, "difference": "<具体的な違い>" },
-          { "candidateA": "C02", "candidateB": "C03", "sameCausalStructure": false, "notOnlySettingChange": true, "difference": "<具体的な違い>" }
+          {
+            "candidateA": "C01",
+            "candidateB": "C03",
+            "sameCausalStructure": false,
+            "notOnlySettingChange": true,
+            "difference": "<具体的な違い>"
+          },
+          {
+            "candidateA": "C02",
+            "candidateB": "C03",
+            "sameCausalStructure": false,
+            "notOnlySettingChange": true,
+            "difference": "<具体的な違い>"
+          }
         ]
+      },
+      "userSeeds": []
+    },
+    "comedyAudit": {
+      "comicKernel": "<この状況の具体的なおかしさ。何が笑いを生むか>",
+      "audienceExpectation": "<観客が普通なら何を予測するか>",
+      "characterIntent": "<各人物がこの場で達成しようとしていること>",
+      "pressure": "<目的を妨げる状況・利害・抵抗。無理に対立を足さない>",
+      "escalations": [
+        {
+          "beatId": "<実際のbeat ID>",
+          "change": "<このビートで状況・理解・予測の何が変わるか>"
+        },
+        {
+          "beatId": "<別のbeat ID>",
+          "change": "<次のビートで何が新しく悪化・変化するか>"
+        }
+      ],
+      "payoffCausality": "<オチが最初の前提と登場人物の行動から必然的につながる理由>",
+      "laughMoment": {
+        "beatId": "<笑いが起きる実際のbeat ID>",
+        "description": "<どの台詞・動作・画がなぜ笑いになるのか>"
+      },
+      "independentReview": {
+        "mode": "hostile-reader",
+        "verdict": "pass",
+        "summary": "<生成意図を離れて台本本文を読み直した独立批評>",
+        "strongestObjection": "<この案が面白くない／成立しないとする最も強い反論>",
+        "resolution": "<反論を解消した理由、または修正内容>",
+        "checks": {
+          "premiseHasComicEngine": true,
+          "notJustMundaneIncident": true,
+          "payoffIsEarned": true,
+          "characterCanonRespected": true,
+          "noUnmotivatedAdditions": true,
+          "notOnlyRoleReversal": true
+        }
       }
     }
   },
