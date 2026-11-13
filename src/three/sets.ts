@@ -550,6 +550,90 @@ export const SETS: Record<string, SetBuilder> = {
    * Back wall window behind the booth, pendant lamp, menu stand and napkin box on the table,
    * glass entrance door on the right wall. Props (glasses, plates, toy basket) are placed by productions.
    */
+  /** ホテルのフロント: marble-top reception counter at z=0 (top 1.05), key cubbies and logo behind the staff (staff z≈-0.55 facing +Z, guest z≈0.6 facing -Z). */
+  "hotel-front-desk"(scene, p) {
+    scene.background = new THREE.Color("#efe6d8");
+    lights(scene, { key: 1.4 });
+    const grad = (toon("#fff") as THREE.MeshToonMaterial).gradientMap;
+    const accent = String(p.accent ?? "#7a1f2e");
+    const gold = "#c9a24a";
+    const carpet = canvasTexture(512, 512, (g, w, h) => {
+      g.fillStyle = "#6f2a35"; g.fillRect(0, 0, w, h);
+      g.strokeStyle = "#8a3a47"; g.lineWidth = 6;
+      for (let i = 0; i <= 4; i++) { g.beginPath(); g.moveTo(i * w / 4, 0); g.lineTo(i * w / 4, h); g.moveTo(0, i * h / 4); g.lineTo(w, i * h / 4); g.stroke(); }
+      g.fillStyle = "#8a3a47";
+      for (let i = 0; i < 4; i++) for (let j = 0; j < 4; j++) { g.beginPath(); g.arc(i * w / 4 + w / 8, j * h / 4 + h / 8, 14, 0, Math.PI * 2); g.fill(); }
+    });
+    carpet.wrapS = carpet.wrapT = THREE.RepeatWrapping; carpet.repeat.set(7, 7);
+    const floor = new THREE.Mesh(new THREE.PlaneGeometry(14, 14), new THREE.MeshToonMaterial({ map: carpet, gradientMap: grad }));
+    floor.rotation.x = -Math.PI / 2; floor.receiveShadow = true; scene.add(floor);
+    const wallC = String(p.wall ?? "#f3ead9");
+    const back = mesh(new THREE.BoxGeometry(8, 3.2, 0.05), toon(wallC), false); back.position.set(0, 1.6, -1.45); scene.add(back);
+    const wallL = mesh(new THREE.BoxGeometry(0.05, 3.2, 6), toon(wallC), false); wallL.position.set(-3.2, 1.6, 1.4); scene.add(wallL);
+    const wallR = mesh(new THREE.BoxGeometry(0.05, 3.2, 6), toon(wallC), false); wallR.position.set(3.2, 1.6, 1.4); scene.add(wallR);
+    const wainscot = mesh(new THREE.BoxGeometry(7.9, 0.95, 0.03), toon("#5a2a22"), false); wainscot.position.set(0, 0.475, -1.4); scene.add(wainscot);
+    const wRail = mesh(new THREE.BoxGeometry(7.9, 0.04, 0.05), toon(gold), false); wRail.position.set(0, 0.96, -1.38); scene.add(wRail);
+    const ceil = new THREE.Mesh(new THREE.PlaneGeometry(8, 8), flat("#fbf6ec")); ceil.rotation.x = Math.PI / 2; ceil.position.set(0, 3.1, 1.2); scene.add(ceil);
+
+    // counter: marble top, wood body, brass rail
+    const cTop = 1.05;
+    const body = mesh(new THREE.BoxGeometry(2.6, cTop - 0.05, 0.6), toon("#6b3f2a"), 0.005); body.position.set(0, (cTop - 0.05) / 2, 0); scene.add(body);
+    const panel = mesh(new THREE.BoxGeometry(2.3, 0.62, 0.01), toon("#7d4b33"), false); panel.position.set(0, 0.52, 0.305); scene.add(panel);
+    const slab = mesh(new THREE.BoxGeometry(2.72, 0.05, 0.7), toon("#ece8e0"), 0.005); slab.position.set(0, cTop - 0.025, 0); scene.add(slab);
+    const brass = mesh(new THREE.BoxGeometry(2.6, 0.025, 0.02), toon(gold), false); brass.position.set(0, 0.13, 0.31); scene.add(brass);
+    // service bell, pen cup, registration card, desk monitor (staff side)
+    const bellBase = mesh(new THREE.CylinderGeometry(0.06, 0.07, 0.015, 20), toon("#b98f3a"), 0.003); bellBase.position.set(0.62, cTop + 0.008, 0.12); scene.add(bellBase);
+    const bellDome = mesh(new THREE.SphereGeometry(0.055, 18, 10, 0, Math.PI * 2, 0, Math.PI / 2), toon(gold), 0.003); bellDome.position.set(0.62, cTop + 0.016, 0.12); scene.add(bellDome);
+    const bellKnob = mesh(new THREE.SphereGeometry(0.01, 8, 6), toon("#8a6a22"), false); bellKnob.position.set(0.62, cTop + 0.074, 0.12); scene.add(bellKnob);
+    const cup = mesh(new THREE.CylinderGeometry(0.03, 0.026, 0.07, 12), toon("#2c3340"), 0.003); cup.position.set(-0.7, cTop + 0.035, -0.12); scene.add(cup);
+    const monitor = mesh(new THREE.BoxGeometry(0.36, 0.23, 0.02), toon("#2b2e33"), 0.004); monitor.position.set(-0.45, cTop + 0.2, -0.17); monitor.rotation.y = 0.15; scene.add(monitor);
+    const stand = mesh(new THREE.BoxGeometry(0.05, 0.1, 0.04), toon("#2b2e33"), 0.003); stand.position.set(-0.45, cTop + 0.05, -0.17); scene.add(stand);
+    const monScreen = new THREE.Mesh(new THREE.PlaneGeometry(0.32, 0.19), new THREE.MeshBasicMaterial({ map: canvasTexture(256, 160, (g, w, h) => {
+      g.fillStyle = "#dfe9f3"; g.fillRect(0, 0, w, h); g.fillStyle = "#5f7f9f"; g.fillRect(0, 0, w, 26);
+      g.fillStyle = "#34495e"; for (let i = 0; i < 6; i++) g.fillRect(14, 40 + i * 18, 60 + (i * 37) % 120, 8);
+    }) })); monScreen.position.set(-0.45 + 0.0035, cTop + 0.2, -0.158); monScreen.rotation.y = 0.15; scene.add(monScreen);
+
+    // key cubbies behind the staff
+    const rackW = 1.7, rackH = 1.0, rackY = 1.35, rows = 4, cols = 8;
+    const rack = mesh(new THREE.BoxGeometry(rackW + 0.1, rackH + 0.1, 0.1), toon("#4a2a20"), 0.004); rack.position.set(0.15, rackY + rackH / 2, -1.36); scene.add(rack);
+    const holes = canvasTexture(512, 320, (g, w, h) => {
+      g.fillStyle = "#2a1712"; g.fillRect(0, 0, w, h);
+      const cw = w / cols, ch = h / rows;
+      for (let r = 0; r < rows; r++) for (let c = 0; c < cols; c++) {
+        g.fillStyle = "#3d241b"; g.fillRect(c * cw + 4, r * ch + 4, cw - 8, ch - 8);
+        g.fillStyle = gold; g.fillRect(c * cw + cw / 2 - 3, r * ch + ch * 0.28, 6, ch * 0.34);
+        g.fillStyle = "#e9e1cf"; g.font = `bold 16px ${JP_FONT}`; g.textAlign = "center"; g.fillText(String(301 + r * 10 + c), c * cw + cw / 2, r * ch + ch - 10);
+      }
+    });
+    const rackFace = new THREE.Mesh(new THREE.PlaneGeometry(rackW, rackH), new THREE.MeshBasicMaterial({ map: holes })); rackFace.position.set(0.15, rackY + rackH / 2, -1.305); scene.add(rackFace);
+    // logo plaque above the keys
+    const logo = canvasTexture(512, 128, (g, w, h) => {
+      g.fillStyle = accent; g.fillRect(0, 0, w, h); g.strokeStyle = gold; g.lineWidth = 6; g.strokeRect(8, 8, w - 16, h - 16);
+      g.fillStyle = "#fff6df"; g.font = `bold 54px ${JP_FONT}`; g.textAlign = "center"; g.textBaseline = "middle"; g.fillText(String(p.logo ?? "ホテル グランドみなみ"), w / 2, h / 2 + 2);
+    });
+    const plaque = new THREE.Mesh(new THREE.PlaneGeometry(1.2, 0.3), new THREE.MeshBasicMaterial({ map: logo })); plaque.position.set(0.15, 2.65, -1.4); scene.add(plaque);
+    // 「フロント」 sign hanging over the counter
+    const sgn = canvasTexture(256, 96, (g, w, h) => {
+      g.fillStyle = "#fffaf0"; g.fillRect(0, 0, w, h); g.fillStyle = accent; g.fillRect(0, h - 10, w, 10);
+      g.fillStyle = "#333"; g.font = `bold 52px ${JP_FONT}`; g.textAlign = "center"; g.textBaseline = "middle"; g.fillText("フロント", w / 2, h / 2 - 4);
+    });
+    const sgnM = new THREE.Mesh(new THREE.PlaneGeometry(0.5, 0.19), new THREE.MeshBasicMaterial({ map: sgn })); sgnM.position.set(-1.05, 2.35, -1.39); scene.add(sgnM);
+    // lobby plant and a floor lamp in the guest area
+    const pot = mesh(new THREE.CylinderGeometry(0.16, 0.12, 0.28, 14), toon("#b77a4e"), 0.004); pot.position.set(-2.4, 0.14, 0.2); scene.add(pot);
+    for (let i = 0; i < 7; i++) { const lf = mesh(new THREE.SphereGeometry(0.16, 10, 8), toon(i % 2 ? "#3f8a4e" : "#4da05d"), 0.004); lf.scale.set(0.8, 1.7, 0.5); lf.position.set(-2.4 + Math.cos(i * 0.9) * 0.18, 0.62 + (i % 3) * 0.12, 0.2 + Math.sin(i * 0.9) * 0.14); lf.rotation.z = Math.cos(i * 0.9) * 0.4; scene.add(lf); }
+    return {
+      surfaces: { counter: cTop, floor: 0 },
+      cameras: {
+        wide: { pos: [2.3, 1.7, 2.6], target: [0.1, 1.25, 0], fov: 42 },
+        side: { pos: [2.9, 1.4, -0.05], target: [0, 1.28, -0.2], fov: 28 },
+        "staff-cu": { pos: [0.85, 1.62, 0.95], target: [0.04, 1.62, -0.55], fov: 26 },
+        "bow-3q": { pos: [1.6, 1.22, 1.2], target: [0.04, 1.3, -0.35], fov: 30 },
+        "guest-cu": { pos: [-0.75, 1.6, -0.9], target: [0.14, 1.55, 0.62], fov: 28 },
+        "two-shot": { pos: [2.2, 1.7, 1.8], target: [0.1, 1.3, 0.0], fov: 38 }
+      }
+    };
+  },
+
   "family-restaurant"(scene, p) {
     scene.background = new THREE.Color("#f1ece2");
     lights(scene, { key: 1.4 });
