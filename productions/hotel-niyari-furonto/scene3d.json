@@ -1,0 +1,882 @@
+{
+  "meta": {
+    "id": "hotel-niyari-furonto",
+    "title": "苦情を言ったら、フロントが笑っていた",
+    "fps": 30,
+    "width": 1080,
+    "height": 1920
+  },
+  "design": {
+    "format": "escalation-ladder",
+    "title": "苦情を言ったら、フロントが笑っていた",
+    "titleAlternatives": [
+      "謝るほど怒られるホテルのフロント",
+      "フロントの謝罪、表情だけ謝っていない"
+    ],
+    "titlePattern": "consequence",
+    "titleOnScreen": "card",
+    "titleScreenText": "苦情を言ったら\nフロントが笑ってた",
+    "hook": {
+      "type": "line-first",
+      "firstFrame": "ホテルのフロント。カウンターの手前で腕を組んだ宿泊客が文句を言い、カウンターの奥にはベストを着た悪魔のスタッフ。悪魔は最初から口の端を上げたまま",
+      "overlay": "苦情対応中"
+    },
+    "rule": "フロントのスタッフが悪魔なので、何を言っても顔がニヤリのままで、謝罪が客に謝罪として届かない",
+    "escalations": [
+      "『今、笑いました？』『いえ。真剣にお聞きしております』（客が顔に気づく）",
+      "『元からでして』（弁解が、顔は直せないと明かして逆効果）",
+      "『お隣にも注意しました』『その顔で、ですか？』（顔のせいで、謝罪だけでなく対応の報告まで信用されない）",
+      "声を悲しそうにするが、しゃべるほどギザ歯の口が見える",
+      "手で口を隠すと、今度は目が笑っているのが目立つ"
+    ],
+    "turn": "客が『誠意を見せてください』と迫る",
+    "payoff": "悪魔が深く頭を下げると顔が見えなくなり、客はようやく誠意が伝わったと感じる。横から見ると悪魔は床に向かってニヤリとしたまま",
+    "button": "客が『頭を上げてください』と言うと、悪魔は『……もう少し、このままで』と顔を上げない",
+    "loop": false,
+    "reaction": "laugh",
+    "audience": "お店やホテルの窓口で、謝る店員の表情が気になった経験のある人が、客の前で悪魔が謝るほどに怒られる絵で止まる",
+    "reality": {
+      "place": "ホテルのフロント",
+      "normalEvent": "宿泊客が前夜の騒音に苦情を言い、フロントのスタッフが謝罪する。客が『誠意を見せてください』と言い、スタッフが深く頭を下げ、客が『頭を上げてください』と言う",
+      "onlyBreak": "スタッフが悪魔で、顔がずっとニヤリのまま変えられない"
+    },
+    "payoffMechanism": "sincerity-lands-when-face-hidden",
+    "ideation": {
+      "gateVersion": 2,
+      "method": "creative-thinking (My Portal chat Skill, rev 7) + 3D寸劇ゲートv2",
+      "candidates": 16,
+      "rejected": [
+        "C05/C06/C13: 身体が一斉の動作を再現できないだけで、同じズレの二段目・三段目が作れない（35秒もたない）",
+        "C07: 行き先を言葉遊びにした作った設定に頼る狙いすぎ型",
+        "C08: 既存作 kaeru-heyasagashi の flaw-is-the-want と同じ仕組み",
+        "C09/C10: 日常の小さな不便・譲り合いを描くだけで外す1点と回収がない"
+      ],
+      "corpus": {
+        "dataset": "radichichi",
+        "datasetVersion": "v1",
+        "retrievedAt": "2026-11-13T00:00:00Z",
+        "queryLog": [
+          {
+            "query": "店",
+            "resultChunkIds": [
+              "radichichi_1755068597_009",
+              "radichichi_1755068597_008",
+              "radichichi_1755068597_007",
+              "radichichi_1755068597_006",
+              "radichichi_1755068597_005",
+              "radichichi_1755068597_004",
+              "radichichi_1755068597_002",
+              "radichichi_1755068597_001"
+            ]
+          },
+          {
+            "query": "窓口",
+            "resultChunkIds": [
+              "radichichi_1755068597_005"
+            ]
+          },
+          {
+            "query": "先生",
+            "resultChunkIds": [
+              "radichichi_1755068597_009",
+              "radichichi_1755068597_006",
+              "radichichi_1755068597_005",
+              "radichichi_1755068597_003",
+              "radichichi_1755068597_002"
+            ]
+          },
+          {
+            "query": "案内",
+            "resultChunkIds": [
+              "radichichi_1755068597_008",
+              "radichichi_1755068597_004",
+              "radichichi_1755068597_001"
+            ]
+          }
+        ],
+        "zeroResultQueries": [
+          "定番の質問"
+        ],
+        "sourceChunks": [
+          {
+            "id": "radichichi_1755068597_008",
+            "dataset": "radichichi",
+            "retrievalTier": "creative",
+            "role": "ogiri_reference"
+          },
+          {
+            "id": "radichichi_1755068597_007",
+            "dataset": "radichichi",
+            "retrievalTier": "creative",
+            "role": "ogiri_reference"
+          },
+          {
+            "id": "radichichi_1755068597_006",
+            "dataset": "radichichi",
+            "retrievalTier": "creative",
+            "role": "ogiri_reference"
+          },
+          {
+            "id": "radichichi_1755068597_005",
+            "dataset": "radichichi",
+            "retrievalTier": "creative",
+            "role": "ogiri_reference"
+          }
+        ],
+        "sourceChunkIds": [
+          "radichichi_1755068597_008",
+          "radichichi_1755068597_007",
+          "radichichi_1755068597_006",
+          "radichichi_1755068597_005"
+        ],
+        "sourceExampleIds": [
+          "radichichi-562",
+          "radichichi-486",
+          "radichichi-537",
+          "radichichi-554",
+          "radichichi-435",
+          "radichichi-442",
+          "radichichi-463"
+        ]
+      },
+      "mechanisms": [
+        {
+          "id": "matter-of-fact-disclosure",
+          "sourceExampleIds": [
+            "radichichi-562"
+          ],
+          "abstractOperation": "案内する側の専門職が、本来目立つ欠点を定型の案内の一部として平坦な口調で告げ、告げ方の事務的さが笑いを作る",
+          "transfer": "今回は専門職（フロント）が定型の謝罪文をそのまま事務的に述べる側に使い、言葉の平坦さと顔の不一致の落差の土台にした"
+        },
+        {
+          "id": "trait-to-the-letter",
+          "sourceExampleIds": [
+            "radichichi-486"
+          ],
+          "abstractOperation": "登場人物の性質が、環境や道具の側に文字どおりに反映されていて、性質がどこまでも逃げ場なくついて回る",
+          "transfer": "今回は悪魔の常時ニヤリが、言葉・声・手・目のどの経路でも逃げ場なくついて回る構造として使った"
+        },
+        {
+          "id": "excuse-reveals-frame",
+          "sourceExampleIds": [
+            "radichichi-537"
+          ],
+          "abstractOperation": "言い訳の一言が、話し手がその場に持ち込んでいる前提の枠組みをうっかり明かし、弁解のはずが事態を悪くする",
+          "transfer": "今回は『元からでして』という弁解が、顔が意図ではなく性質だと明かし、かえって客の不満を深める段に使った"
+        },
+        {
+          "id": "standard-test-off-axis",
+          "sourceExampleIds": [
+            "radichichi-463"
+          ],
+          "abstractOperation": "定型の検査や質問が、測りたい軸とは別の軸の反応で答えられ、手順だけが律儀に進む",
+          "transfer": "今回は謝罪の『誠意』という検査が、言葉の軸ではなく顔の軸で判定されてしまう点に使った。別案（C01/C02/C14）の土台にもなった"
+        }
+      ],
+      "candidateLog": [
+        {
+          "id": "C01",
+          "mechanism": "standard-test-off-axis",
+          "mechanismFamily": "literal-honest-answer-to-formulaic-prompt",
+          "causalCore": "儀礼的な定型質問に、答える側が形式通りの「ない」ではなく本当の答えを返し続け、質問者が手順を律儀に実行してしまう",
+          "concept": "美容院のシャンプーで「かゆいところはございませんか」と聞かれた悪魔が、そのたびに本当にかゆい場所（角の根元など）を正直に答え、美容師が律儀に洗い続ける",
+          "status": "rejected",
+          "reason": "正直に答えるだけで二段目の発見が作れない。美容院の定番だが笑いの核が薄い"
+        },
+        {
+          "id": "C02",
+          "mechanism": "standard-test-off-axis",
+          "mechanismFamily": "literal-honest-answer-to-formulaic-prompt",
+          "causalCore": "書式の欄が想定していない回答が、答える人物にとっては素の事実であり、受け手が形式の中にそのまま収めようとする",
+          "concept": "銀行の口座開設の申込書で、魔女が職業欄の質問に素直に「魔女です」と答え、窓口の行員が淡々と欄に収めていく",
+          "status": "shortlisted"
+        },
+        {
+          "id": "C03",
+          "mechanism": "trait-to-the-letter",
+          "mechanismFamily": "rule-boundary-ambiguity-body-vs-accessory",
+          "causalCore": "測定規則が身体の一部と付属物の境界で適用を迷わせ、どちらに倒しても別の規則が引っかかる",
+          "concept": "遊園地のアトラクション入口の身長制限ゲージで、悪魔の角を身長に含めるかどうかをスタッフと確認し合う",
+          "status": "shortlisted"
+        },
+        {
+          "id": "C04",
+          "mechanism": "excuse-reveals-frame",
+          "mechanismFamily": "channel-mismatch-message-vs-face",
+          "causalCore": "言葉は誠実でも顔が不一致で信用されず、顔が見えなくなった時にはじめて言葉だけが伝わる",
+          "concept": "ホテルのフロントで苦情を受けた悪魔のスタッフが、誠実に謝るほど常時ニヤリとした顔のせいで客の怒りが増し、最後に深く頭を下げて顔が見えなくなった時だけ誠意が伝わる",
+          "status": "selected"
+        },
+        {
+          "id": "C05",
+          "mechanism": "trait-to-the-letter",
+          "mechanismFamily": "body-cannot-perform-group-motion",
+          "causalCore": "全員で同じ動きをするよう求める号令に対し、一人の身体だけ動きを再現できず、それを補う工夫が重なる",
+          "concept": "朝のラジオ体操で、恐竜の短い腕では「腕を大きく回しましょう」ができず、周囲が合わせようとする",
+          "status": "rejected",
+          "reason": "『できない』の繰り返しで35秒もたない"
+        },
+        {
+          "id": "C06",
+          "mechanism": "trait-to-the-letter",
+          "mechanismFamily": "body-cannot-perform-group-motion",
+          "causalCore": "祝いの場の一斉の所作に参加できない身体が、場の空気の中で一人だけ浮き上がる",
+          "concept": "結婚式の披露宴の拍手で、恐竜だけ手が届かず拍手できない",
+          "status": "rejected",
+          "reason": "C05と同じく『できない』だけで展開と回収がない"
+        },
+        {
+          "id": "C07",
+          "mechanism": "standard-test-off-axis",
+          "mechanismFamily": "wordplay-answer-to-routine-question",
+          "causalCore": "行き先という定型の質問に対し、答えが地名の言葉遊びになっている",
+          "concept": "タクシーで悪魔が行き先を告げ、運転手が普通の客として確認していく",
+          "status": "rejected",
+          "reason": "行き先を言葉遊びにした作った設定に頼る狙いすぎ型（2026-11-07 不評の型）"
+        },
+        {
+          "id": "C08",
+          "mechanism": "trait-to-the-letter",
+          "mechanismFamily": "value-inversion",
+          "causalCore": "良い・悪いの価値判断が当事者にとって逆になっている",
+          "concept": "初詣のおみくじで、悪魔が大吉を引いてがっかりし、凶を引いて喜ぶ",
+          "status": "rejected",
+          "reason": "悪い方を喜ぶ仕組みは既存作 kaeru-heyasagashi の flaw-is-the-want と同じ"
+        },
+        {
+          "id": "C09",
+          "mechanism": "matter-of-fact-disclosure",
+          "mechanismFamily": "stuck-posture-accumulating-strain",
+          "causalCore": "礼儀として一斉に取った姿勢を解くきっかけが得られず、時間とともに身体的負担が溜まる",
+          "concept": "飲み会の乾杯前に挨拶が長引き、全員がグラスを掲げたまま腕がだんだん下がっていく",
+          "status": "rejected",
+          "reason": "日常の小さな不便を描くだけで外す1点がない"
+        },
+        {
+          "id": "C10",
+          "mechanism": "matter-of-fact-disclosure",
+          "mechanismFamily": "simultaneous-politeness-deadlock",
+          "causalCore": "互いの丁寧さが同時に発動し、どちらも動けなくなる",
+          "concept": "エレベーターで二人が「お先にどうぞ」を譲り合い続ける",
+          "status": "rejected",
+          "reason": "譲り合いだけで展開も回収もない日常の小さな不具合"
+        },
+        {
+          "id": "C11",
+          "mechanism": "trait-to-the-letter",
+          "mechanismFamily": "rule-boundary-ambiguity-body-vs-accessory",
+          "causalCore": "後ろの客の視界という測定基準が、頭の上の付属物か身体の一部かで割れ、取り外せないものを前に規則の運用が止まる",
+          "concept": "映画館で後ろの席の客に「帽子を取ってください」と言われた悪魔が、角は外せないと説明する",
+          "status": "rejected",
+          "reason": "C03と同じ身体と付属物の境界の構造で、映画館では二段目が弱い"
+        },
+        {
+          "id": "C12",
+          "mechanism": "excuse-reveals-frame",
+          "mechanismFamily": "homonym-referent-divergence",
+          "causalCore": "二人が同じ言葉で別々の対象を指しているのに、それぞれの話が一貫して通ってしまい、ずれが話の進行とともに大きくなる",
+          "concept": "三者面談で、先生と保護者がどちらも「お子さん」のことを話しているのに、実は別々の人物を指していてかみ合わない",
+          "status": "rejected",
+          "reason": "『別の人物を指していた』を成立させるために人物を後付けで作る必要がある"
+        },
+        {
+          "id": "C13",
+          "mechanism": "trait-to-the-letter",
+          "mechanismFamily": "body-cannot-perform-group-motion",
+          "causalCore": "挙手という合図が届かない身体が、先生に気づかれないまま発言の機会を逃し続ける",
+          "concept": "クラスの授業で先生が「分かる人」と聞き、恐竜が手を挙げたいが腕が短くて届かず先生に気づかれない",
+          "status": "rejected",
+          "reason": "C05と同じ『できない』の繰り返し"
+        },
+        {
+          "id": "C14",
+          "mechanism": "standard-test-off-axis",
+          "mechanismFamily": "literal-honest-answer-to-formulaic-prompt",
+          "causalCore": "問診票という形式の質問に、本人が欄の想定外の事実をそのまま書き込み、窓口が手順どおりに確認項目を進めてしまう",
+          "concept": "献血の問診票の質問に、悪魔が全部正直に答える",
+          "status": "rejected",
+          "reason": "C01と同じ構造の重複。献血の問診は題材が重い"
+        },
+        {
+          "id": "C15",
+          "mechanism": "trait-to-the-letter",
+          "mechanismFamily": "repulsion-side-effect-becomes-perk",
+          "causalCore": "ある人物の存在が周囲に避けられる効果を生み、その空きが本人の意図と無関係に利益になって他者の視線を集める",
+          "concept": "満員電車で悪魔の周りだけ人が避けて空間ができ、その空間を他の乗客が羨ましそうに見る",
+          "status": "rejected",
+          "reason": "満員電車のセットが重く、羨ましがる周囲の人々は根拠のない後付け設定"
+        },
+        {
+          "id": "C16",
+          "mechanism": "standard-test-off-axis",
+          "mechanismFamily": "convention-applied-to-wrong-anatomy",
+          "causalCore": "身体の特徴を運勢と読み替える慣習を、特徴がまったく別の体質の客に適用する",
+          "concept": "手相占いで占い師が悪魔の手のひらの線を読んでいく",
+          "status": "rejected",
+          "reason": "占いの慣習の作り込みと作った台詞に頼る"
+        }
+      ],
+      "shortlist": [
+        "C02",
+        "C03",
+        "C04"
+      ],
+      "selectedCandidateId": "C04",
+      "selectionAuthority": "delegated",
+      "diversityAudit": {
+        "mode": "blind-reclassification",
+        "verdict": "pass",
+        "summary": "生成者とは別のサブエージェントに、16案のconceptとcausalCoreだけを渡し、ラベルなしで自由に系統分けさせた。11系統に分かれ、最大系統は3案（19%）。C02は生成時に別系統と付けていたが、盲検側が『定型の問いへの素直な回答』系統（C01・C14と同じ）と判定したため、盲検側の分類を採用してラベルを直した。重複文言だったcausalCore（C06/C11/C13/C14）は盲検分類の後で文言を書き分けたが、系統の割当ては変えていない。",
+        "reviewedCandidateIds": [
+          "C01",
+          "C02",
+          "C03",
+          "C04",
+          "C05",
+          "C06",
+          "C07",
+          "C08",
+          "C09",
+          "C10",
+          "C11",
+          "C12",
+          "C13",
+          "C14",
+          "C15",
+          "C16"
+        ],
+        "familyAssignments": [
+          {
+            "candidateId": "C01",
+            "familyId": "literal-honest-answer-to-formulaic-prompt"
+          },
+          {
+            "candidateId": "C02",
+            "familyId": "literal-honest-answer-to-formulaic-prompt"
+          },
+          {
+            "candidateId": "C03",
+            "familyId": "rule-boundary-ambiguity-body-vs-accessory"
+          },
+          {
+            "candidateId": "C04",
+            "familyId": "channel-mismatch-message-vs-face"
+          },
+          {
+            "candidateId": "C05",
+            "familyId": "body-cannot-perform-group-motion"
+          },
+          {
+            "candidateId": "C06",
+            "familyId": "body-cannot-perform-group-motion"
+          },
+          {
+            "candidateId": "C07",
+            "familyId": "wordplay-answer-to-routine-question"
+          },
+          {
+            "candidateId": "C08",
+            "familyId": "value-inversion"
+          },
+          {
+            "candidateId": "C09",
+            "familyId": "stuck-posture-accumulating-strain"
+          },
+          {
+            "candidateId": "C10",
+            "familyId": "simultaneous-politeness-deadlock"
+          },
+          {
+            "candidateId": "C11",
+            "familyId": "rule-boundary-ambiguity-body-vs-accessory"
+          },
+          {
+            "candidateId": "C12",
+            "familyId": "homonym-referent-divergence"
+          },
+          {
+            "candidateId": "C13",
+            "familyId": "body-cannot-perform-group-motion"
+          },
+          {
+            "candidateId": "C14",
+            "familyId": "literal-honest-answer-to-formulaic-prompt"
+          },
+          {
+            "candidateId": "C15",
+            "familyId": "repulsion-side-effect-becomes-perk"
+          },
+          {
+            "candidateId": "C16",
+            "familyId": "convention-applied-to-wrong-anatomy"
+          }
+        ],
+        "familyDefinitions": [
+          {
+            "id": "literal-honest-answer-to-formulaic-prompt",
+            "definingMove": "A formulaic question or form field gets a sincere, literal answer that the process was never designed for, and the official processes it dutifully."
+          },
+          {
+            "id": "rule-boundary-ambiguity-body-vs-accessory",
+            "definingMove": "A measuring or etiquette rule becomes ambiguous at the line between body and attachment, and either reading triggers another rule."
+          },
+          {
+            "id": "body-cannot-perform-group-motion",
+            "definingMove": "A collective gesture is required and one body physically cannot perform it."
+          },
+          {
+            "id": "channel-mismatch-message-vs-face",
+            "definingMove": "The verbal message and the nonverbal channel contradict each other, and the message lands only when the nonverbal channel is removed."
+          },
+          {
+            "id": "wordplay-answer-to-routine-question",
+            "definingMove": "The answer to a routine question is a pun or wordplay, so the joke comes from language."
+          },
+          {
+            "id": "value-inversion",
+            "definingMove": "One character's good/bad valuation is the reverse of the norm, so outcomes are reacted to backwards."
+          },
+          {
+            "id": "stuck-posture-accumulating-strain",
+            "definingMove": "A polite synchronized posture has no release cue, so physical strain builds over time."
+          },
+          {
+            "id": "simultaneous-politeness-deadlock",
+            "definingMove": "Two symmetric courtesies fire at once, and neither party can proceed."
+          },
+          {
+            "id": "homonym-referent-divergence",
+            "definingMove": "Two people use the same word for different referents, and each person's talk stays self-consistent while the gap widens."
+          },
+          {
+            "id": "repulsion-side-effect-becomes-perk",
+            "definingMove": "A person's off-putting trait unintentionally creates a benefit that onlookers envy."
+          },
+          {
+            "id": "convention-applied-to-wrong-anatomy",
+            "definingMove": "A fortune-telling convention that maps body features to meaning is applied to a client whose body works differently."
+          }
+        ],
+        "shortlistPairChecks": [
+          {
+            "candidateA": "C02",
+            "candidateB": "C03",
+            "sameCausalStructure": false,
+            "notOnlySettingChange": true,
+            "difference": "C02 is a sincere answer that doesn't fit a form field, which the clerk simply absorbs. C03 is a rule whose scope is ambiguous at a body/accessory boundary, so every ruling triggers another rule. One is about a mismatched answer and the other is about a mismatched rule."
+          },
+          {
+            "candidateA": "C02",
+            "candidateB": "C04",
+            "sameCausalStructure": false,
+            "notOnlySettingChange": true,
+            "difference": "C02 has no contradiction between channels: the answer is simply out of scope for the form. C04 has a verbal and facial contradiction that erodes trust, resolved only when the face is hidden."
+          },
+          {
+            "candidateA": "C03",
+            "candidateB": "C04",
+            "sameCausalStructure": false,
+            "notOnlySettingChange": true,
+            "difference": "C03 turns on how a measurement rule is applied at a boundary and has no sincerity or trust element. C04 turns on credibility, with a message that fails because of an incongruent nonverbal signal."
+          }
+        ]
+      },
+      "userSeeds": []
+    },
+    "comedyAudit": {
+      "comicKernel": "言葉は本気で謝っているのに、顔だけがニヤリのままで、誠意が伝わらない。顔を隠したときだけ言葉が届く",
+      "audienceExpectation": "苦情を言う客に店員が謝罪し、客が少し落ち着いて収まる、よくある対応の流れを予測する。悪魔の顔は最初から見えているので、いつ指摘されるかを観客が待つ",
+      "characterIntent": "スタッフ（悪魔）は客に許してもらうため、できる限り誠実に謝ろうとしている。客は笑っているような顔で謝られて、本気かどうかが信用できず誠意を確かめたい",
+      "pressure": "謝れば謝るほど顔が目に入り、客の不信が増す。顔は悪魔の元からの造作で、本人にも直せない",
+      "escalations": [
+        {
+          "beatId": "notice",
+          "change": "客が顔に気づいて口に出し、悪魔は否定する。客の不満の中心が騒音から顔に移る"
+        },
+        {
+          "beatId": "moto",
+          "change": "『元からでして』で顔は直せないと分かり、弁解が謝罪の信用をさらに下げる"
+        },
+        {
+          "beatId": "remedy",
+          "change": "顔のせいで、謝罪だけでなく『隣の客に注意した』という対応の報告まで信用されなくなる"
+        },
+        {
+          "beatId": "voice",
+          "change": "声を悲しくして口を使うほど、ギザ歯の口が見えて顔とのちぐはぐが大きくなる"
+        },
+        {
+          "beatId": "hand",
+          "change": "手で口を隠すと、口ではなく細い目がニヤリを引き継いでいるのが分かる"
+        }
+      ],
+      "payoffCausality": "顔が原因だと言葉・声・手の三つの試しで順に確かめられ、残るのは顔を見せない頭の下げ方だけになる。誠意を見せろという客の言葉が、その解決を後押しする。客が見えないぶん誠意を信じるのは、顔が原因だという前提から必然で、新設定を足していない",
+      "laughMoment": {
+        "beatId": "bow",
+        "description": "深く下げた悪魔の顔を横から見ると、床に向かってもニヤリのまま。客はそれを見ずに、誠意が伝わったと安心している"
+      },
+      "independentReview": {
+        "mode": "hostile-reader",
+        "verdict": "pass",
+        "summary": "別のサブエージェントに台本の台詞と動作だけを渡して敵対的に読み直させた。初稿は『口が笑っている』の指摘と弁解を言い換えて繰り返しているだけで水増し、オチの悪魔の動機が曖昧、との判定（revise）だった。",
+        "strongestObjection": "客が毎回『笑ってる』と指摘し悪魔が弁解するだけの同じ構造が続き、指摘の言い換えは理解も予測も変えない水増しに見える",
+        "resolution": "言い換えだけの客の台詞（謝られてる気がしない／声は悲しそうなのに）を削り、顔のせいで謝罪だけでなく隣室への注意という対応の報告まで信用されなくなる段（remedy→doubt）を足して、各段で客の不信の対象が変わるようにした。オチの動機は、直前のhandで顔を隠す試みが先に示されているので、頭を下げ続ける理由は伏線から導ける。決め台詞は足していない",
+        "checks": {
+          "premiseHasComicEngine": true,
+          "notJustMundaneIncident": true,
+          "payoffIsEarned": true,
+          "characterCanonRespected": true,
+          "noUnmotivatedAdditions": true,
+          "notOnlyRoleReversal": true
+        }
+      }
+    }
+  },
+  "voices": {
+    "guest": {
+      "speaker": "青山龍星",
+      "style": "ノーマル",
+      "speed": 1.05
+    }
+  },
+  "music": {
+    "track": "waiting-lounge",
+    "gain": 0.22,
+    "fadeIn": 0.2,
+    "fadeOut": 0.6
+  },
+  "set": {
+    "kind": "hotel-front-desk",
+    "params": {}
+  },
+  "captions": {
+    "y": 0.76
+  },
+  "actors": {
+    "akuma": {
+      "cast": "akuma",
+      "style": {
+        "top": "#262b3c",
+        "hood": false,
+        "print": null,
+        "vest": "#7a1f2e",
+        "vestTrim": "#c9a24a",
+        "nameTag": "あくま",
+        "bottom": "#1f222e"
+      },
+      "root": {
+        "x": 0.04,
+        "z": -0.55,
+        "ry": 0
+      },
+      "pose": "counter",
+      "captionColor": "#ff9d8a"
+    },
+    "guest": {
+      "style": {
+        "skin": "#f2cdb0",
+        "hair": "#2a2226",
+        "hairStyle": "side-part",
+        "top": "#e6ebf2",
+        "bottom": "#3a3d4a",
+        "shoes": "#2b2b30",
+        "glasses": true
+      },
+      "root": {
+        "x": 0.14,
+        "z": 0.62,
+        "ry": 3.14159
+      },
+      "pose": "counter",
+      "expr": "doubtful",
+      "captionColor": "#ffe48a"
+    }
+  },
+  "props": {},
+  "beats": [
+    {
+      "id": "title",
+      "role": "title",
+      "shot": "two-shot",
+      "dur": 1.3,
+      "do": [
+        {
+          "at": 0,
+          "sfx": "title-sting"
+        }
+      ]
+    },
+    {
+      "id": "complaint",
+      "role": "hook",
+      "shot": "two-shot",
+      "pre": 0.05,
+      "post": 0.15,
+      "line": {
+        "who": "guest",
+        "text": "すみません。／昨夜、隣の部屋がうるさくて／眠れなかったんですが"
+      },
+      "do": [
+        {
+          "at": 0,
+          "face": "guest",
+          "to": "doubtful",
+          "dur": 0.01
+        }
+      ]
+    },
+    {
+      "id": "apology",
+      "role": "rule",
+      "shot": "staff-cu",
+      "pre": 0.05,
+      "post": 0.2,
+      "line": {
+        "who": "akuma",
+        "text": "それは大変、／申し訳ございませんでした"
+      }
+    },
+    {
+      "id": "notice",
+      "role": "escalate",
+      "level": 1,
+      "shot": "guest-cu",
+      "pre": 0.15,
+      "post": 0.15,
+      "line": {
+        "who": "guest",
+        "text": "……今、笑いました？"
+      },
+      "do": [
+        {
+          "at": 0,
+          "look": "guest",
+          "to": {
+            "yaw": 0,
+            "pitch": -0.05
+          },
+          "dur": 0.2
+        }
+      ]
+    },
+    {
+      "id": "denial",
+      "role": "bridge",
+      "shot": "staff-cu",
+      "pre": 0.1,
+      "post": 0.2,
+      "line": {
+        "who": "akuma",
+        "text": "いえ。／真剣に、お聞きしております"
+      }
+    },
+    {
+      "id": "mouth",
+      "role": "bridge",
+      "shot": "staff-cu",
+      "pre": 0.15,
+      "post": 0.15,
+      "line": {
+        "who": "guest",
+        "text": "でも、その口が……"
+      }
+    },
+    {
+      "id": "moto",
+      "role": "escalate",
+      "level": 2,
+      "shot": "staff-cu",
+      "pre": 0.15,
+      "post": 0.15,
+      "line": {
+        "who": "akuma",
+        "text": "元からでして。／申し訳ございません"
+      }
+    },
+    {
+      "id": "remedy",
+      "role": "escalate",
+      "level": 3,
+      "shot": "staff-cu",
+      "pre": 0.2,
+      "post": 0.15,
+      "line": {
+        "who": "akuma",
+        "text": "お隣のお客様にも、／先ほど、注意いたしました"
+      }
+    },
+    {
+      "id": "doubt",
+      "role": "bridge",
+      "shot": "guest-cu",
+      "pre": 0.2,
+      "post": 0.2,
+      "line": {
+        "who": "guest",
+        "text": "……その顔で、／ですか？"
+      }
+    },
+    {
+      "id": "voice",
+      "role": "escalate",
+      "level": 4,
+      "shot": "staff-cu",
+      "pre": 0.25,
+      "post": 0.2,
+      "line": {
+        "who": "akuma",
+        "text": "……心から、／お詫び申し上げます……",
+        "voice": {
+          "speed": 0.9
+        }
+      }
+    },
+    {
+      "id": "hand",
+      "role": "escalate",
+      "level": 5,
+      "shot": "staff-cu",
+      "pre": 0.1,
+      "post": 0.15,
+      "line": {
+        "who": "akuma",
+        "text": "では、これで"
+      },
+      "do": [
+        {
+          "at": 0,
+          "pose": "akuma",
+          "to": {
+            "pose": "counter",
+            "shoulderRX": -1.5,
+            "shoulderRZ": 1.05,
+            "elbowR": -1.7,
+            "wristR": 0.1,
+            "spineX": 0.02
+          },
+          "dur": 0.4
+        }
+      ]
+    },
+    {
+      "id": "eyes",
+      "role": "bridge",
+      "shot": "staff-cu",
+      "pre": 0.3,
+      "post": 0.25,
+      "line": {
+        "who": "guest",
+        "text": "……目が、笑ってます"
+      }
+    },
+    {
+      "id": "sincerity",
+      "role": "turn",
+      "shot": "guest-cu",
+      "pre": 0.15,
+      "post": 0.2,
+      "line": {
+        "who": "guest",
+        "text": "もういいです。／誠意を見せてください"
+      },
+      "do": [
+        {
+          "at": 0,
+          "pose": "akuma",
+          "to": "counter",
+          "dur": 0.01
+        }
+      ]
+    },
+    {
+      "id": "bow",
+      "role": "payoff",
+      "shot": "bow-3q",
+      "pre": 0.25,
+      "post": 0.7,
+      "line": {
+        "who": "akuma",
+        "text": "……大変、／申し訳ございませんでした"
+      },
+      "do": [
+        {
+          "at": 0,
+          "pose": "akuma",
+          "to": {
+            "pose": "bow",
+            "spineX": 0.72
+          },
+          "dur": 0.9,
+          "ease": "inOut"
+        },
+        {
+          "at": 0,
+          "look": "akuma",
+          "to": {
+            "pitch": 0.0
+          },
+          "dur": 0.9
+        },
+        {
+          "at": "lineEnd",
+          "music": "cut"
+        },
+        {
+          "at": "lineEnd",
+          "sfx": "payoff-hit"
+        }
+      ]
+    },
+    {
+      "id": "soften",
+      "role": "bridge",
+      "shot": "bow-3q",
+      "pre": 0.3,
+      "post": 0.15,
+      "line": {
+        "who": "guest",
+        "text": "……最初から、／そうしてくれれば"
+      },
+      "do": [
+        {
+          "at": 0,
+          "face": "guest",
+          "to": "polite",
+          "dur": 0.4
+        }
+      ]
+    },
+    {
+      "id": "raise",
+      "role": "bridge",
+      "shot": "bow-3q",
+      "pre": 0.1,
+      "post": 0.2,
+      "line": {
+        "who": "guest",
+        "text": "あ、頭を上げてください"
+      }
+    },
+    {
+      "id": "button",
+      "role": "button",
+      "shot": "bow-3q",
+      "pre": 0.5,
+      "post": 1.1,
+      "line": {
+        "who": "akuma",
+        "text": "……もう少し、／このままで"
+      },
+      "do": [
+        {
+          "at": 0,
+          "music": "resume"
+        }
+      ]
+    }
+  ],
+  "description": [
+    "ホテルのフロントで苦情を言ったら、スタッフが笑っていた。",
+    "#ショート #悪魔 #ホテル #コント"
+  ]
+}
