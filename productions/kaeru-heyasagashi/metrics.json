@@ -1,0 +1,12 @@
+{
+  "production": "kaeru-heyasagashi",
+  "youtubeId": "tg6btRTmq4k",
+  "postedAt": "2026-11-11",
+  "durationSec": 44.5,
+  "variant": "baseline",
+  "note": "",
+  "windowDays": 3,
+  "fetched": false,
+  "metrics": null,
+  "howToFetch": "fuzoku の GitHub Actions `metrics`: mode=video, concept=おもしろ, videos=\"tg6btRTmq4k:2026-11-11:<尺秒>\""
+}

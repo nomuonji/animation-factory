@@ -1,0 +1,12 @@
+{
+  "production": "hotel-niyari-furonto",
+  "youtubeId": "VkrBX8rLbC8",
+  "postedAt": "2026-11-13",
+  "durationSec": 44.0,
+  "variant": "baseline",
+  "note": "",
+  "windowDays": 3,
+  "fetched": false,
+  "metrics": null,
+  "howToFetch": "fuzoku の GitHub Actions `metrics`: mode=video, concept=おもしろ, videos=\"VkrBX8rLbC8:2026-11-13:<尺秒>\""
+}

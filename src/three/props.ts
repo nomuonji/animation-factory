@@ -434,6 +434,55 @@ export const PROPS: Record<string, PropBuilder> = {
     return { object: g };
   },
 
+  /** Ramen bowl (ラーメン): bowl, broth, noodles, narutomaki, chashu, egg, nori, negi. params.negi = amount of green onion 0..1. Pivot at the bottom. */
+  "ramen-bowl"(p) {
+    const g = new THREE.Group();
+    const bowlM = toon(str(p.bowl, "#f4f0e6"));
+    const bowl = mesh(new THREE.CylinderGeometry(0.095, 0.05, 0.085, 28, 1, true), bowlM, 0.003);
+    (bowl.material as THREE.Material).side = THREE.DoubleSide; bowl.position.y = 0.0425; g.add(bowl);
+    const foot = mesh(new THREE.CylinderGeometry(0.05, 0.05, 0.012, 20), bowlM, 0.002); foot.position.y = 0.006; g.add(foot);
+    const rim = mesh(new THREE.TorusGeometry(0.095, 0.004, 6, 28), toon("#c0392b"), false); rim.rotation.x = Math.PI / 2; rim.position.y = 0.083; g.add(rim);
+    const broth = mesh(new THREE.CylinderGeometry(0.088, 0.088, 0.004, 28), toon("#b8793a"), false); broth.position.y = 0.07; g.add(broth);
+    const noodle = mesh(new THREE.CylinderGeometry(0.07, 0.07, 0.014, 24), toon("#f0d27a"), 0.002); noodle.position.y = 0.076; g.add(noodle);
+    for (let i = 0; i < 5; i++) { const w = mesh(new THREE.TorusGeometry(0.03 + i * 0.008, 0.003, 4, 20), toon("#e6c05e"), false); w.rotation.x = Math.PI / 2; w.position.y = 0.085; g.add(w); }
+    const nori = mesh(new THREE.BoxGeometry(0.05, 0.05, 0.004), toon("#1c2a22"), 0.002); nori.position.set(-0.068, 0.1, 0.0); nori.rotation.set(0, 0.2, 0.25); g.add(nori);
+    const egg = mesh(new THREE.SphereGeometry(0.026, 14, 10), toon("#f7f1dd"), 0.002); egg.scale.set(1, 0.55, 1); egg.position.set(0.04, 0.09, 0.03); g.add(egg);
+    const yolk = mesh(new THREE.SphereGeometry(0.012, 10, 8), toon("#f2a93b"), false); yolk.scale.set(1, 0.6, 1); yolk.position.set(0.04, 0.098, 0.03); g.add(yolk);
+    const chashu = mesh(new THREE.CylinderGeometry(0.034, 0.034, 0.008, 18), toon("#c68a63"), 0.002); chashu.position.set(0.015, 0.088, -0.04); chashu.rotation.x = 0.15; g.add(chashu);
+    const naruto = mesh(new THREE.CylinderGeometry(0.02, 0.02, 0.006, 16), toon("#f7efe8"), 0.002); naruto.position.set(-0.03, 0.092, 0.045); naruto.rotation.x = 0.4; g.add(naruto);
+    const swirl = mesh(new THREE.TorusGeometry(0.008, 0.0016, 4, 12), toon("#e66d86"), false); swirl.position.set(-0.03, 0.0955, 0.0475); swirl.rotation.x = 0.4 + Math.PI / 2; g.add(swirl);
+    const n = num(p.negi, 0.6);
+    for (let i = 0; i < Math.round(14 * n); i++) { const o = mesh(new THREE.CylinderGeometry(0.004, 0.004, 0.003, 6), toon("#5cae47"), false); o.position.set(0.03 + (rand(i + 5) - 0.5) * 0.06, 0.094, -0.01 + (rand(i + 9) - 0.5) * 0.05); g.add(o); }
+    return { object: g };
+  },
+
+  /** Plate of pan-fried dumplings (餃子). params.count (default 5). Pivot at the plate bottom. */
+  "gyoza-plate"(p) {
+    const g = new THREE.Group();
+    const plate = mesh(new THREE.CylinderGeometry(0.085, 0.07, 0.014, 26), toon("#f6f3ec"), 0.003); plate.position.y = 0.007; g.add(plate);
+    const n = Math.round(num(p.count, 5));
+    for (let i = 0; i < n; i++) {
+      const body = mesh(new THREE.SphereGeometry(0.026, 12, 8), toon("#f2dca4"), 0.002); body.scale.set(1.45, 0.62, 0.75);
+      body.position.set(-0.04 + i * 0.02, 0.026 + i * 0.001, (i % 2 ? 0.014 : -0.014)); body.rotation.y = 0.12; g.add(body);
+      const crisp = mesh(new THREE.BoxGeometry(0.06, 0.002, 0.014), toon("#b9742f"), false); crisp.position.set(-0.04 + i * 0.02, 0.0165, (i % 2 ? 0.014 : -0.014) + 0.012); g.add(crisp);
+    }
+    return { object: g };
+  },
+
+  /** Beer mug (生ビール): thick glass mug with foam head and handle. Pivot at the bottom. */
+  "beer-mug"(p) {
+    const g = new THREE.Group();
+    const h = num(p.height, 0.13), r = num(p.radius, 0.036);
+    const glassM = toon("#e8f2f6", { transparent: true, opacity: 0.5 });
+    const glass = mesh(new THREE.CylinderGeometry(r, r * 0.92, h, 20, 1, true), glassM, 0.002);
+    (glass.material as THREE.Material).side = THREE.DoubleSide; glass.position.y = h / 2; g.add(glass);
+    const base = mesh(new THREE.CylinderGeometry(r * 0.92, r * 0.92, 0.014, 20), glassM, false); base.position.y = 0.007; g.add(base);
+    const beer = mesh(new THREE.CylinderGeometry(r * 0.94, r * 0.86, h * 0.72, 20), toon("#e3a62c", { emissive: "#3a2400" }), false); beer.position.y = 0.01 + h * 0.36; g.add(beer);
+    const foam = mesh(new THREE.CylinderGeometry(r * 0.98, r * 0.96, h * 0.2, 20), toon("#fffaf0"), 0.002); foam.position.y = h * 0.85; g.add(foam);
+    const handle = mesh(new THREE.TorusGeometry(h * 0.26, 0.007, 6, 18, Math.PI), toon("#dbe9ee"), 0.002); handle.rotation.z = -Math.PI / 2; handle.position.set(r * 0.98, h * 0.5, 0); g.add(handle);
+    return { object: g };
+  },
+
   /** Basket of small giveaway toys (ファミレスのレジのおもちゃ). Pivot at the basket bottom. */
   "toy-basket"(p) {
     const g = new THREE.Group();
