@@ -1,0 +1,12 @@
+{
+  "production": "akabeko-famiresu",
+  "youtubeId": "2fRumhxHr48",
+  "postedAt": "2026-11-12",
+  "durationSec": 40.5,
+  "variant": "baseline",
+  "note": "",
+  "windowDays": 3,
+  "fetched": false,
+  "metrics": null,
+  "howToFetch": "fuzoku の GitHub Actions `metrics`: mode=video, concept=おもしろ, videos=\"2fRumhxHr48:2026-11-12:<尺秒>\""
+}

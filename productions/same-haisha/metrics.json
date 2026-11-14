@@ -1,0 +1,12 @@
+{
+  "production": "same-haisha",
+  "youtubeId": "GU5hNNIqbZo",
+  "postedAt": "2026-11-08",
+  "durationSec": null,
+  "variant": "baseline",
+  "note": "YouTube + TikTok(oyu295)",
+  "windowDays": 3,
+  "fetched": false,
+  "metrics": null,
+  "howToFetch": "fuzoku の GitHub Actions `metrics`: mode=video, concept=おもしろ, videos=\"GU5hNNIqbZo:2026-11-08:<尺秒>\""
+}

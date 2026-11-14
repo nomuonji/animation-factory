@@ -1,0 +1,12 @@
+{
+  "production": "akabeko-shoumei",
+  "youtubeId": "A2yBlXqO3YM",
+  "postedAt": "2026-11-07",
+  "durationSec": 21,
+  "variant": "baseline",
+  "note": "尺21秒（Yuto『短い』）。TikTokは別ブランチで再投稿",
+  "windowDays": 3,
+  "fetched": false,
+  "metrics": null,
+  "howToFetch": "fuzoku の GitHub Actions `metrics`: mode=video, concept=おもしろ, videos=\"A2yBlXqO3YM:2026-11-07:<尺秒>\""
+}
