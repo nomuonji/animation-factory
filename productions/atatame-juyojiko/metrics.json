@@ -2,11 +2,28 @@
   "production": "atatame-juyojiko",
   "youtubeId": "QFWy27ZOfG8",
   "postedAt": "2026-11-06",
-  "durationSec": null,
+  "durationSec": 44,
   "variant": "baseline",
   "note": "コンビニの温め（旧構成・タイトル帯なし）。公開は直接YouTube、TikTok未投稿",
   "windowDays": 3,
-  "fetched": false,
-  "metrics": null,
-  "howToFetch": "fuzoku の GitHub Actions `metrics`: mode=video, concept=おもしろ, videos=\"QFWy27ZOfG8:2026-11-06:<尺秒>\""
+  "fetched": true,
+  "metrics": {
+    "views": 917,
+    "minutesWatched": 119,
+    "avgViewSec": 27,
+    "avgViewPct": 61.7,
+    "subsGained": 2,
+    "likes": 24,
+    "shortsFeedViews": 861,
+    "retention": {
+      "3s": 1.278,
+      "5s": 1.137,
+      "10s": 0.761,
+      "20s": 0.594,
+      "last": 0.427
+    }
+  },
+  "howToFetch": "video-publisher の GitHub Actions `YouTube Metrics`（metrics.yml）: mode=video, concept=おもしろ, videos=\"QFWy27ZOfG8:2026-11-06:<尺秒、0なら自動>\"",
+  "fetchedAt": "2026-11-14",
+  "window": "publishDate..+2d"
 }

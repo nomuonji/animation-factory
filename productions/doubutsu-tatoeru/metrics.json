@@ -2,11 +2,28 @@
   "production": "doubutsu-tatoeru",
   "youtubeId": "7oN8voHFk7w",
   "postedAt": "2026-11-07",
-  "durationSec": null,
+  "durationSec": 28,
   "variant": "baseline",
   "note": "Yuto『めちゃいい』の見本。公開日の尺は未記録",
   "windowDays": 3,
-  "fetched": false,
-  "metrics": null,
-  "howToFetch": "fuzoku の GitHub Actions `metrics`: mode=video, concept=おもしろ, videos=\"7oN8voHFk7w:2026-11-07:<尺秒>\""
+  "fetched": true,
+  "metrics": {
+    "views": 29,
+    "minutesWatched": 5,
+    "avgViewSec": 34,
+    "avgViewPct": 124.27,
+    "subsGained": 0,
+    "likes": 0,
+    "shortsFeedViews": 21,
+    "retention": {
+      "3s": 1.6,
+      "5s": 1.4,
+      "10s": 1.4,
+      "20s": 1.1,
+      "last": 1.0
+    }
+  },
+  "howToFetch": "video-publisher の GitHub Actions `YouTube Metrics`（metrics.yml）: mode=video, concept=おもしろ, videos=\"7oN8voHFk7w:2026-11-07:<尺秒、0なら自動>\"",
+  "fetchedAt": "2026-11-14",
+  "window": "publishDate..+2d"
 }

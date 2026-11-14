@@ -10,8 +10,9 @@
 ## 記録のしかた
 
 - 各コントの `productions/<id>/metrics.json` に、YouTube ID・公開日・尺・variant（その話で変えた1点。無ければ `baseline`）・取得した数字を書く。
-- 数字の取得: fuzoku リポジトリの GitHub Actions `metrics`（workflow_dispatch）を `mode=video`, `concept=おもしろ`,
-  `videos="<YouTubeID>:<公開日 YYYY-MM-DD>:<尺秒>"`（空白区切りで複数）で実行し、ジョブログを読む。公開から3日以上たった動画だけ。取得済みは取り直さない。
+- 数字の取得: nomuonji/video-publisher の GitHub Actions `YouTube Metrics`（metrics.yml、workflow_dispatch）を
+  `mode=video`, `concept=おもしろ`, `videos="<YouTubeID>:<公開日 YYYY-MM-DD>:<尺秒>"`（空白区切りで複数。尺秒を 0 にすると YouTube から取る）で実行し、ジョブログを読む。
+  疎通確認は `mode=check`。認証は Queue From Repo と同じ「おもしろ」の refresh token（yt-analytics.readonly 付き）。ログの `METRICS_JSON` 行が機械可読の数字。公開から3日以上たった動画だけ。取得済みは取り直さない。
   ログには 再生数・平均視聴時間/平均視聴率・登録者増・Shortsフィード経由・維持率（3/5/10/20秒/最後）が出る。
 - 比較は同じ窓（公開日〜+2日）・同じ列どうし。尺が違う動画は平均視聴時間(秒)ではなく、平均視聴率・5秒/10秒の維持率で比べる。
 - TikTok（oyu295）はこの検証に含めない（YouTube Analytics API では取れない）。
@@ -19,28 +20,35 @@
 
 ## 基準（baseline）
 
-variant=`baseline` の既存コント。数字は未取得（下の「状況」参照）。基準の範囲は、取得できた baseline 動画から「典型的な範囲」として書く。
+variant=`baseline` の既存コント。数字は YouTube Analytics（窓: 公開日〜+2日。2026-11-14 取得）。維持率と平均視聴率の 1.0 超えは、ループ再生・見直しで
+視聴時間が動画の長さを超えている印（誤りではない）。TikTok は含めない。
 
-| 話 | YouTube | 公開日 | 尺(秒) | variant |
-|---|---|---|---|---|
-| atatame-juyojiko | QFWy27ZOfG8 | 2026-11-06 | 不明 | baseline |
-| doubutsu-tatoeru | 7oN8voHFk7w | 2026-11-07 | 不明 | baseline |
-| akabeko-shoumei | A2yBlXqO3YM | 2026-11-07 | 約21 | baseline |
-| same-haisha | GU5hNNIqbZo | 2026-11-08 | 不明 | baseline |
-| kaeru-heyasagashi | tg6btRTmq4k | 2026-11-11 | 44.5 | baseline |
-| akabeko-famiresu | 2fRumhxHr48 | 2026-11-12 | 40.5 | baseline |
-| hotel-niyari-furonto | VkrBX8rLbC8 | 2026-11-13 | 44.0 | baseline |
-| itsumono-hatsu | aObbaNGce-A | 2026-11-14 | 43.8 | baseline |
+| 話 | YouTube | 公開日 | 尺(秒) | 再生 | 平均視聴(秒/率) | 維持率 5秒 | 10秒 | 20秒 | 最後 | Shortsフィード | 登録者増 |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| atatame-juyojiko | QFWy27ZOfG8 | 2026-11-06 | 44 | 917 | 27s / 61.7% | 1.14 | 0.76 | 0.59 | 0.43 | 861 | 2 |
+| doubutsu-tatoeru | 7oN8voHFk7w | 2026-11-07 | 28 | 29 | 34s / 124.3% | 1.40 | 1.40 | 1.10 | 1.00 | 21 | 0 |
+| akabeko-shoumei | A2yBlXqO3YM | 2026-11-07 | 22 | 377 | 22s / 103.5% | 1.21 | 1.04 | 0.89 | 0.75 | 337 | 1 |
+| same-haisha | GU5hNNIqbZo | 2026-11-08 | 38 | 246 | 24s / 65.5% | 1.04 | 0.82 | 0.63 | 0.42 | 222 | 1 |
+| kaeru-heyasagashi | tg6btRTmq4k | 2026-11-11 | 44.5 | （窓が未確定・次回取得） | | | | | | | |
+| akabeko-famiresu | 2fRumhxHr48 | 2026-11-12 | 40.5 | （窓が未確定） | | | | | | | |
+| hotel-niyari-furonto | VkrBX8rLbC8 | 2026-11-13 | 44.0 | （窓が未確定） | | | | | | | |
+| itsumono-hatsu | aObbaNGce-A | 2026-11-14 | 43.8 | （窓が未確定） | | | | | | | |
+
+見方の注意（数字は構成・形式についてだけ。笑いの質の判断には使わない）:
+
+- n=4。再生数は 29〜917 とばらつきが極端で、拡散の当たり外れ（Shortsフィードに乗ったか）が大きい。再生数どうしの比較で構成の良し悪しは言えない。
+- 尺が短い（22・28秒）話は平均視聴率・最後の維持率が高く、長い（38・44秒）話は低い。ただし尺と話の内容が同時に違うので、尺が原因とは言えない。
+- 5秒の維持率は4本とも 1.0 を超え、冒頭での離脱は見えていない。10秒以降の落ち方に差が出る（0.76〜1.40）。
 
 ## いま走っている実験
 
-なし（2026-11-14 時点）。理由: 数字が1本も取れていないため、判定が出せず、次に変える点を選べない。**迷ったら変えない**。
+なし（2026-11-14 時点）。理由: 基準になる数字は取れたが n=4 で、尺・内容が話ごとに違い、変える点を1つに絞る根拠がまだ薄い。**迷ったら変えない**。
+基準が7〜8本そろい、3本の検証対象を決められる段階で、下の候補から1つだけ選ぶ。
 
 ## 状況（2026-11-14）
 
-- `metrics` ワークフローは fuzoku リポジトリにあるが、この実行（スケジュール実行のクラウドセッション）からは fuzoku に接続できず（リポジトリが
-  セッションに追加されておらず、追加用のツールも無い）、起動も読み取りもできなかった。数字の取得は未実施。
-- 公開から3日以上たっているのは kaeru-heyasagashi（2026-11-11）以前の6本。次の実行で fuzoku を接続できれば、この6本を最初に取得する（ただし公開日〜+2日の窓がそろっていること）。
+- 数字は video-publisher の `YouTube Metrics` で取れる（疎通確認 OK、公開から3日以上の4本を取得済み）。fuzoku は使わない。
+- 次に取れる窓: kaeru-heyasagashi は 2026-11-15 以降、akabeko-famiresu は 11-16 以降、hotel-niyari-furonto は 11-17 以降、itsumono-hatsu は 11-18 以降（公開日+3日。取得済みは取り直さない）。
 - 実験の切り替えは、3本そろった判定が出てから、1回に1つだけ。
 
 ## 次の実験の候補（まだ走らせない・事前メモ）
@@ -58,4 +66,5 @@ variant=`baseline` の既存コント。数字は未取得（下の「状況」�
 
 ## 変更履歴
 
-- 2026-11-14: 台帳を新設。公開済み7本の YouTube ID・公開日・尺を `productions/<id>/metrics.json` に記録。baseline 定義。実験は未開始。metrics 取得は fuzoku 未接続のため未実施。
+- 2026-11-14: 台帳を新設。公開済み7本の YouTube ID・公開日・尺を `productions/<id>/metrics.json` に記録。baseline 定義。実験は未開始。
+- 2026-11-14: 数字の取得を video-publisher の `YouTube Metrics`（metrics.yml）に統一（fuzoku は使わない）。公開から3日以上の4本（atatame・doubutsu・akabeko-shoumei・same-haisha）の数字を baseline 表に記録。

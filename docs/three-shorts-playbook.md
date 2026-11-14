@@ -250,3 +250,10 @@ cd ../video-publisher && git checkout -B incoming/<id> origin/main && git add in
 - 素材は CC0 などライセンスが確認できるものだけ（`catalog/assets3d.json`、`catalog/asset-library.json`）。
 - `character-sheet` の作品（`cast-akuma-akabeko` など）は公開しない。
 - 技術チェックの合格や CI の成功を、「面白くない」という評価への反論に使わない。
+
+## 10. 再生データの分析と検証
+
+台帳は `docs/experiments.md` と `productions/<id>/metrics.json`。数字は **video-publisher の `YouTube Metrics`**（`metrics.yml`）を
+workflow_dispatch で動かして取る（`mode=check` で疎通、`mode=video`・`concept=おもしろ`・`videos="<ID>:<公開日>:<尺秒、0なら自動> …"`）。
+公開から3日以上たった動画だけ、公開日〜+2日の窓で、再生数・平均視聴・維持率（3/5/10/20秒/最後）・Shortsフィード経由・登録者増が出る。
+ログの `METRICS_JSON` 行を台帳に写す。取得済みは取り直さない。他のリポジトリは使わない。数字は構成・形式の検証にだけ使い、笑いの質の判断には使わない。

@@ -8,5 +8,5 @@
   "windowDays": 3,
   "fetched": false,
   "metrics": null,
-  "howToFetch": "fuzoku の GitHub Actions `metrics`: mode=video, concept=おもしろ, videos=\"2fRumhxHr48:2026-11-12:<尺秒>\""
+  "howToFetch": "video-publisher の GitHub Actions `YouTube Metrics`（metrics.yml）: mode=video, concept=おもしろ, videos=\"2fRumhxHr48:2026-11-12:<尺秒、0なら自動>\""
 }
