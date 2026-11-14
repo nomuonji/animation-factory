@@ -1,0 +1,955 @@
+{
+  "meta": {
+    "id": "itsumono-hatsu",
+    "title": "初めて来たのに、いつもので",
+    "fps": 30,
+    "width": 1080,
+    "height": 1920,
+    "variant": "baseline"
+  },
+  "design": {
+    "format": "literalization",
+    "title": "初めての食堂で『いつもの』と言われた",
+    "titleAlternatives": [
+      "食堂の大将が、私を常連だと思っている",
+      "本当のことを言うほど、サービスされる食堂"
+    ],
+    "titlePattern": "consequence",
+    "titleOnScreen": "card",
+    "titleScreenText": "初めて来たのに\n「いつもの」？",
+    "hook": {
+      "type": "line-first",
+      "firstFrame": "食堂のカウンター。奥の大将が笑顔で身を乗り出し、手前の丸椅子に座ったばかりの客が戸惑っている",
+      "overlay": "初めて来た店"
+    },
+    "rule": "食堂の大将が、初めて来た客を三年来の常連だと思い込んでいる",
+    "escalations": [
+      "客が『初めて』と言うと、大将は常連の冗談と受け取って餃子を付ける",
+      "客が『店の名前も今知った』と重ねると、演技がうまいとビールが付く",
+      "隣の本物の常連が『本当に初めて』と証言しても、仕込みだと思われてさらに喜ばれる"
+    ],
+    "turn": "客が、本当のことを言うのを諦めて会計を頼む",
+    "payoff": "大将は代金を取らず、そのかわり来週のネタを楽しみにしていると言う。本当のことが、来週も笑わせる約束に変わる",
+    "button": "客が小さく『……がんばります』と答える",
+    "loop": false,
+    "reaction": "laugh",
+    "audience": "初めて入った店で常連と間違われ、訂正しそびれた経験がある人",
+    "reality": {
+      "place": "町の食堂のカウンター席",
+      "normalEvent": "常連が席につくと、大将が『いつもの？』と聞いて、注文を取らずに料理を出す",
+      "onlyBreak": "大将が、初めて来た客を三年来の常連と取り違えている"
+    },
+    "payoffMechanism": "truth-taken-as-joke",
+    "ideation": {
+      "gateVersion": 2,
+      "method": "creative-thinking (My Portal chat Skill, 3D寸劇ゲートv2)",
+      "candidates": 16,
+      "rejected": [
+        "C05: 郵便窓口で荷物が客本人。カエルの面接と同じ『本物が答える』仕組みで、赤べこのうなずきも使用済み",
+        "C08: 保護者面談の役割逆転。役割を逆にしただけで笑いの核がなく、カエル面接の role-flip と重なる",
+        "C09: 引っ越し見積もりで全部『はい』。最後だけ桁違いに大きい scale-jump で、歯科のサメと同じ",
+        "C07/C14: 誰も動かない譲り合い。現実にはその場で誰かが動くので土台が弱く、人物の目的が揃って顔の見分けがつかない",
+        "C02: 美容室の洗髪と悪魔の角。悪魔は直近2本に出ており、角の話に閉じやすい。足せる段が増えない",
+        "C06/C16: 『普通とは』『近況を正確に報告』は真顔の確認を長くやる形（狙いすぎ）で、説明で水増しになる"
+      ],
+      "corpus": {
+        "dataset": "radichichi",
+        "datasetVersion": "v1",
+        "retrievedAt": "2026-11-14T03:00:00Z",
+        "queryLog": [
+          {
+            "query": "ラジ父大喜利",
+            "resultChunkIds": [
+              "radichichi_1755068597_005",
+              "radichichi_1755068597_006",
+              "radichichi_1755068597_007",
+              "radichichi_1755068597_008",
+              "radichichi_1755068597_009"
+            ]
+          },
+          {
+            "query": "寿司",
+            "resultChunkIds": [
+              "radichichi_1755068597_008",
+              "radichichi_1755068597_009"
+            ]
+          },
+          {
+            "query": "電車",
+            "resultChunkIds": [
+              "radichichi_1755068597_006"
+            ]
+          }
+        ],
+        "sourceChunks": [
+          {
+            "id": "radichichi_1755068597_005",
+            "dataset": "radichichi",
+            "retrievalTier": "creative",
+            "role": "ogiri_reference"
+          },
+          {
+            "id": "radichichi_1755068597_006",
+            "dataset": "radichichi",
+            "retrievalTier": "creative",
+            "role": "ogiri_reference"
+          },
+          {
+            "id": "radichichi_1755068597_007",
+            "dataset": "radichichi",
+            "retrievalTier": "creative",
+            "role": "ogiri_reference"
+          },
+          {
+            "id": "radichichi_1755068597_008",
+            "dataset": "radichichi",
+            "retrievalTier": "creative",
+            "role": "ogiri_reference"
+          },
+          {
+            "id": "radichichi_1755068597_009",
+            "dataset": "radichichi",
+            "retrievalTier": "creative",
+            "role": "ogiri_reference"
+          }
+        ],
+        "sourceChunkIds": [
+          "radichichi_1755068597_005",
+          "radichichi_1755068597_006",
+          "radichichi_1755068597_007",
+          "radichichi_1755068597_008",
+          "radichichi_1755068597_009"
+        ],
+        "sourceExampleIds": [
+          "radichichi-537",
+          "radichichi-502",
+          "radichichi-432",
+          "radichichi-417",
+          "radichichi-472",
+          "radichichi-447",
+          "radichichi-647"
+        ]
+      },
+      "mechanisms": [
+        {
+          "id": "outcome-inverts-the-script",
+          "sourceExampleIds": [
+            "radichichi-502"
+          ],
+          "abstractOperation": "相手の期待どおりの手順を最後まで正しく実行した結果が、期待とは逆の意味になる",
+          "transfer": "『常連と店主』の定型の流れを守って受け答えした結果、本当のことを言うほど報われるという逆の意味になる"
+        },
+        {
+          "id": "flat-affect-in-odd-situation",
+          "sourceExampleIds": [
+            "radichichi-432"
+          ],
+          "abstractOperation": "異常な状況の当事者が感情を出さず、役割に忠実な最小の動作だけで返す",
+          "transfer": "客は驚きも怒りも出さず、事実だけを平らな声で述べ続ける。笑うのは大将だけ"
+        },
+        {
+          "id": "defence-reassigned-to-script-role",
+          "sourceExampleIds": [
+            "radichichi-537"
+          ],
+          "abstractOperation": "言い訳や発言が、本来の意味ではなく、その場の社交の台本の中の別の役割に割り当てられる",
+          "transfer": "『初めてです』という訂正が、常連の持ちネタという台本の役に割り当てられる"
+        },
+        {
+          "id": "obvious-fact-as-the-bit",
+          "sourceExampleIds": [
+            "radichichi-447",
+            "radichichi-417"
+          ],
+          "abstractOperation": "自明な事実をそのまま口にすることが、そのまま笑いの出し物として扱われる",
+          "transfer": "『初めて来ました』という自明な事実の陳述が、大将の中では出し物になる"
+        }
+      ],
+      "candidateLog": [
+        {
+          "id": "C01",
+          "mechanism": "outcome-inverts-the-script",
+          "mechanismFamily": "denial-rewarded-misread",
+          "causalCore": "人違いをされた人が事実を述べるほど、相手はそれを冗談と受け取って好意で報いるので、否定が大きいほど得をする",
+          "concept": "食堂の大将が初めて来た客を3年来の常連と思い込み『いつもの』を出す。客が本当のことを言うほど『冗談がうまい』とサービスが増える",
+          "status": "selected",
+          "reason": "小道具も決め台詞も要らず場面だけで成立。否定するほど報われる逆転で二段目・三段目が作れる"
+        },
+        {
+          "id": "C02",
+          "mechanism": "flat-affect-in-odd-situation",
+          "mechanismFamily": "stock-question-literal-answer",
+          "causalCore": "手順書の確認項目が、客の身体的特徴によって毎回その特徴の一部を指す答えになり、マニュアルどおりに対応が膨らむ",
+          "concept": "美容室のシャンプーで『かゆいところはございませんか』に悪魔の客が角の付け根と答え、美容師が手順どおり角まわりを洗っていく",
+          "status": "shortlisted",
+          "reason": "現実の手順だけで進む。ただし悪魔は直近2本に出ておりオチが角の話に閉じやすい"
+        },
+        {
+          "id": "C03",
+          "mechanism": "defence-reassigned-to-script-role",
+          "mechanismFamily": "symmetric-deferral-deadlock",
+          "causalCore": "双方が相手より先に礼をやめられず、礼の終わり時が永遠に来ない",
+          "concept": "店先のお見送りで、店員が見えなくなるまでお辞儀し、客が振り返るたびにお辞儀を返すので終わらない",
+          "status": "rejected",
+          "reason": "ホテルのお辞儀（誠意が顔を隠すとき届く）と画が重なる。オチが作りにくい"
+        },
+        {
+          "id": "C04",
+          "mechanism": "obvious-fact-as-the-bit",
+          "mechanismFamily": "questioning-erodes-own-knowledge",
+          "causalCore": "特徴を聞かれるほど自分の持ち物に特徴がないと判明し、確認作業そのものが不可能になる",
+          "concept": "駅の遺失物窓口でビニール傘の特徴を聞かれ、色も形も持ち手も全部ふつうと分かっていく",
+          "status": "rejected",
+          "reason": "笑いは共感のみで人物の目的と展開が弱い。35秒もたない"
+        },
+        {
+          "id": "C05",
+          "mechanism": "obvious-fact-as-the-bit",
+          "mechanismFamily": "stock-question-literal-answer",
+          "causalCore": "定番質問に、人ではなく本物のそれが文字どおり答える",
+          "concept": "郵便窓口で『中身は何ですか』に客本人（赤べこ）が答える",
+          "status": "rejected",
+          "reason": "カエルの面接（本物が答える）と同じ仕組み。赤べこのうなずきも使用済み"
+        },
+        {
+          "id": "C06",
+          "mechanism": "defence-reassigned-to-script-role",
+          "mechanismFamily": "questioning-erodes-own-knowledge",
+          "causalCore": "『普通』という曖昧語を聞き返されるたびに基準が崩れ、本人も自分の普通が分からなくなる",
+          "concept": "ラーメン屋で麺の硬さ・濃さ・油を全部『普通』と答えた客に、店員が『普通とは』と聞き返し続ける",
+          "status": "rejected",
+          "reason": "真顔の確認を長くやる形（狙いすぎ）。店員の聞き返しは日常に起きない"
+        },
+        {
+          "id": "C07",
+          "mechanism": "flat-affect-in-odd-situation",
+          "mechanismFamily": "symmetric-deferral-deadlock",
+          "causalCore": "全員が同じ行動を必要としているのに、誰も最初の一人になりたくないので全員が損をする",
+          "concept": "バスの降車ボタンを全員が降りたいのに誰も押さず、バスが目的の停留所を通過していく",
+          "status": "shortlisted",
+          "reason": "ボタンは普通誰かが押すので現実の土台が弱く、人物の目的が同じ全員になり顔の見分けが立たない"
+        },
+        {
+          "id": "C08",
+          "mechanism": "outcome-inverts-the-script",
+          "mechanismFamily": "role-reversal",
+          "causalCore": "質問する側と答える側が入れ替わる",
+          "concept": "保護者面談で先生が保護者に成績をつけられる",
+          "status": "rejected",
+          "reason": "役割逆転だけで終わる。カエルの面接のオチと同じ仕組み"
+        },
+        {
+          "id": "C09",
+          "mechanism": "outcome-inverts-the-script",
+          "mechanismFamily": "same-answer-scope-creep",
+          "causalCore": "同じ『はい』が対象を増やし最後に桁違いのものまで含む",
+          "concept": "引っ越しの訪問見積もりで『これも運びますか』に全部『はい』と答え、最後に庭の木と窓の景色まで含まれる",
+          "status": "rejected",
+          "reason": "『scale-jump』と同じ最後だけ桁違いの仕組みで、歯科のサメと重なる"
+        },
+        {
+          "id": "C10",
+          "mechanism": "outcome-inverts-the-script",
+          "mechanismFamily": "politeness-cost-accumulation",
+          "causalCore": "遠慮が重なるほど目的地から遠ざかり、礼儀の連鎖が客に不利益を積み上げる",
+          "concept": "タクシーで『この辺で大丈夫です』を遠慮して言い続け、降ろされる場所がどんどん家から遠くなる",
+          "status": "rejected",
+          "reason": "車内セットと走行背景が重い。客の目的（家に帰る）に対して不自然に黙り続ける"
+        },
+        {
+          "id": "C11",
+          "mechanism": "flat-affect-in-odd-situation",
+          "mechanismFamily": "physical-mismatch-futile-service",
+          "causalCore": "衣服のサイズと体のサイズが合わず、確認の声かけと実際の状況が乖離していく",
+          "concept": "試着室で店員が『いかがですか』と外から聞き、客が『大丈夫です』と答えながら服が脱げなくなっていく",
+          "status": "rejected",
+          "reason": "カーテンの向こうが見えず画で見せにくい。体を動かす演技が今のキャラクターでは難しい"
+        },
+        {
+          "id": "C12",
+          "mechanism": "flat-affect-in-odd-situation",
+          "mechanismFamily": "physical-mismatch-futile-service",
+          "causalCore": "小さい来客が自動ドアのセンサーに検知されず、中の人の親切な対応が空回りする",
+          "concept": "手のひらサイズの赤べこが自動ドアの前でセンサーに反応されず、店員が手を振ったり案内したりして開けようとする",
+          "status": "rejected",
+          "reason": "赤べこの大きさ（ファミレスと同じ）に頼る。35秒の展開が作れない"
+        },
+        {
+          "id": "C13",
+          "mechanism": "obvious-fact-as-the-bit",
+          "mechanismFamily": "questioning-erodes-own-knowledge",
+          "causalCore": "『お名前は』『住所は』と聞かれ続け、客が自分の情報を一つも思い出せなくなる",
+          "concept": "区役所の窓口で本人確認を聞かれ、全部忘れた客を職員が手順どおり確かめていく",
+          "status": "rejected",
+          "reason": "何も起きない（忘れているだけ）。展開と回収がない"
+        },
+        {
+          "id": "C14",
+          "mechanism": "defence-reassigned-to-script-role",
+          "mechanismFamily": "symmetric-deferral-deadlock",
+          "causalCore": "順番を譲り合う全員が先に進めず、最後に最初の人が戻される",
+          "concept": "病院の待合室で全員が『お先にどうぞ』と順番を譲る",
+          "status": "rejected",
+          "reason": "バスの降車ボタンと同じ『誰も動かない』。現実に起きにくい"
+        },
+        {
+          "id": "C15",
+          "mechanism": "defence-reassigned-to-script-role",
+          "mechanismFamily": "script-misaddressed",
+          "causalCore": "マニュアルの決まり文句を、本来の相手ではない物に向かって忠実に言い続ける",
+          "concept": "新人店員が研修で教わった『いらっしゃいませ』を入口の自動ドアにも自動販売機にも言う",
+          "status": "rejected",
+          "reason": "全体を異常化している（ひとつのズレに絞れていない）。決まり文句ネタ止まり"
+        },
+        {
+          "id": "C16",
+          "mechanism": "obvious-fact-as-the-bit",
+          "mechanismFamily": "stock-question-literal-answer",
+          "causalCore": "定番の挨拶『最近どう？』に、本人が正確な現状報告を長々と答え、聞いた側が逃げられなくなる",
+          "concept": "床屋で『最近どうですか』と雑談を振られた客が、ここ一週間の出来事を時系列で正確に報告する",
+          "status": "rejected",
+          "reason": "説明で水増しになる（真顔の確認を長くやる）。笑いは話の中身に頼り場面の力が弱い"
+        }
+      ],
+      "shortlist": [
+        "C01",
+        "C02",
+        "C07"
+      ],
+      "selectedCandidateId": "C01",
+      "selectionAuthority": "delegated",
+      "diversityAudit": {
+        "mode": "blind-reclassification",
+        "verdict": "pass",
+        "summary": "生成ラベルを隠し、causalCoreと一文概要だけを別の批評エージェントに渡して16案すべてを再分類した。9系統に分かれ、最大は3案（18.8%）。生成側のラベルは批評側の分類に合わせて直した。",
+        "reviewedCandidateIds": [
+          "C01",
+          "C02",
+          "C03",
+          "C04",
+          "C05",
+          "C06",
+          "C07",
+          "C08",
+          "C09",
+          "C10",
+          "C11",
+          "C12",
+          "C13",
+          "C14",
+          "C15",
+          "C16"
+        ],
+        "familyAssignments": [
+          {
+            "candidateId": "C01",
+            "familyId": "denial-rewarded-misread"
+          },
+          {
+            "candidateId": "C02",
+            "familyId": "stock-question-literal-answer"
+          },
+          {
+            "candidateId": "C03",
+            "familyId": "symmetric-deferral-deadlock"
+          },
+          {
+            "candidateId": "C04",
+            "familyId": "questioning-erodes-own-knowledge"
+          },
+          {
+            "candidateId": "C05",
+            "familyId": "stock-question-literal-answer"
+          },
+          {
+            "candidateId": "C06",
+            "familyId": "questioning-erodes-own-knowledge"
+          },
+          {
+            "candidateId": "C07",
+            "familyId": "symmetric-deferral-deadlock"
+          },
+          {
+            "candidateId": "C08",
+            "familyId": "role-reversal"
+          },
+          {
+            "candidateId": "C09",
+            "familyId": "same-answer-scope-creep"
+          },
+          {
+            "candidateId": "C10",
+            "familyId": "politeness-cost-accumulation"
+          },
+          {
+            "candidateId": "C11",
+            "familyId": "physical-mismatch-futile-service"
+          },
+          {
+            "candidateId": "C12",
+            "familyId": "physical-mismatch-futile-service"
+          },
+          {
+            "candidateId": "C13",
+            "familyId": "questioning-erodes-own-knowledge"
+          },
+          {
+            "candidateId": "C14",
+            "familyId": "symmetric-deferral-deadlock"
+          },
+          {
+            "candidateId": "C15",
+            "familyId": "script-misaddressed"
+          },
+          {
+            "candidateId": "C16",
+            "familyId": "stock-question-literal-answer"
+          }
+        ],
+        "familyDefinitions": [
+          {
+            "id": "denial-rewarded-misread",
+            "definingMove": "他人の誤認が固定されていて、本人が事実を言うほど相手の解釈で冗談に変換され、否定が報酬に変わる"
+          },
+          {
+            "id": "stock-question-literal-answer",
+            "definingMove": "定型の質問や確認項目に、本来想定されない文字どおりの正確な答えが返り、答えに沿って手順や会話が膨らむ"
+          },
+          {
+            "id": "symmetric-deferral-deadlock",
+            "definingMove": "全員が同じ行動を望むのに、互いに先を譲る、または先頭を避けるため、誰も動けず全員が損をする"
+          },
+          {
+            "id": "questioning-erodes-own-knowledge",
+            "definingMove": "確認の質問を重ねるほど、答える側の基準や記憶が崩れ、確認自体が成立しなくなる"
+          },
+          {
+            "id": "role-reversal",
+            "definingMove": "質問する側と答える側、評価する側とされる側の立場が入れ替わる"
+          },
+          {
+            "id": "same-answer-scope-creep",
+            "definingMove": "同じ肯定を繰り返すうちに、対象が通常の範囲を超えて桁違いのものまで膨らむ"
+          },
+          {
+            "id": "politeness-cost-accumulation",
+            "definingMove": "遠慮の一言を重ねるたびに、言った本人だけの不利益が段階的に積み上がる"
+          },
+          {
+            "id": "physical-mismatch-futile-service",
+            "definingMove": "物のサイズや大きさが仕組みに合わず、親切な声かけや対応が実際の状況と乖離して空回りする"
+          },
+          {
+            "id": "script-misaddressed",
+            "definingMove": "マニュアルの決まり文句を、本来の相手ではない物にも忠実に向け続ける"
+          }
+        ],
+        "shortlistPairChecks": [
+          {
+            "candidateA": "C01",
+            "candidateB": "C02",
+            "sameCausalStructure": false,
+            "notOnlySettingChange": true,
+            "difference": "C01は店主の一方的な誤認が固定され、客が本当のことを言うほど冗談に変換されて得をする報酬反転。C02は定型の確認項目に客の身体特徴という文字どおりの答えが返り、手順どおりに対応が膨らむ構造で、誤認も報酬も関与しない。"
+          },
+          {
+            "candidateA": "C01",
+            "candidateB": "C07",
+            "sameCausalStructure": false,
+            "notOnlySettingChange": true,
+            "difference": "C01は誤認する一人と誤認される一人の非対称な関係で、否定が逆に報われる。C07は全員が同じ望みを持ちながら互いに先頭を避ける対称な膠着で、全員が損をする。"
+          },
+          {
+            "candidateA": "C02",
+            "candidateB": "C07",
+            "sameCausalStructure": false,
+            "notOnlySettingChange": true,
+            "difference": "C02は一人の客の答えが手順を駆動して対応が広がる一方向の連鎖。C07は複数人の相互牽制による停滞で、何も進まないこと自体が笑いの源。"
+          }
+        ]
+      },
+      "userSeeds": [],
+      "selectionNote": "スケジュール実行の指示文（2026-11-07 Yuto）が、15案以上から1本を選ぶことを明示的に委任している。3案提示→本人選択は人が不在のため行えない。"
+    },
+    "comedyAudit": {
+      "comicKernel": "客が本当のことを言うほど、大将はそれを冗談と受け取って喜び、サービスで返す。真実を言うことが、笑いを取る行為として扱われる",
+      "audienceExpectation": "観客は、人違いなら客が何度か否定して、最後は誤解が解けて気まずく終わる、と予測する。誤解が解けるより先に、否定が報われる",
+      "characterIntent": "客は誤解を解いてお金を払って帰りたい。大将は常連をもてなして場を盛り上げたい。常連は事実を教えてあげたい",
+      "pressure": "大将の誤認は固く、客が正直になるほど相手の解釈は『ネタ』に固まる。客はもともと遠慮がちで、大声で否定できない",
+      "escalations": [
+        {
+          "beatId": "tell1",
+          "change": "口頭の否定が、大将の中で『常連の持ちネタ』に変換される。誤解が解けるはずの場面で誤認が強まり、餃子が付く"
+        },
+        {
+          "beatId": "tell2",
+          "change": "否定の材料が『店の名前も今知った』という具体的な証拠に変わるが、『演技がうまい』と読まれてビールが付く"
+        },
+        {
+          "beatId": "witness",
+          "change": "第三者の証言という独立した証拠が出るが、大将は『お前までグルか』と全員を仕込みの共犯にする。誤解は解けないどころか周囲を巻き込んで固まる"
+        }
+      ],
+      "payoffCausality": "客は三度とも事実を述べただけで、その結果として大将は『いいもん見せてもらった』と代金を受け取らない。事実を言った結果として『来週のネタ』という約束だけが残る。新しい設定や小道具はなく、大将の誤認と客の正直さだけから出てくる",
+      "laughMoment": {
+        "beatId": "witness-reply",
+        "description": "本物の常連が本当のことを言った直後に、大将が『お前までグルか』と喜ぶ。真実が三回続けて冗談として受理される"
+      },
+      "independentReview": {
+        "mode": "hostile-reader",
+        "verdict": "pass",
+        "summary": "別の批評エージェントが当初案を読み直し、『三段の否定が同じ言い換えで、増えるのが景品の量だけ』『小道具（ポイントカード）に依存』『オチが予想の範囲』と指摘（verdict: revise）。これに従い、否定の手段を口頭→具体的な証拠→第三者の証言と種類を変え、大将の読み替えの理屈も『持ちネタ』『演技』『仕込みの共犯』と変えた。小道具依存の否定は削除し、オチを『無料』から『来週のネタの義務』に変えて、得が負債に反転する形にした。",
+        "strongestObjection": "店で常連と間違われるという小さな日常のすれ違いで、否定の言い換えが続くだけではないか",
+        "resolution": "否定の手段と大将の読み替えがビートごとに変わり、最後に第三者まで巻き込む。オチは代金無料ではなく来週の義務に変えた。ただし笑いの強さは大将の演技と声の出来に依存し、これは人の耳で確認する必要がある",
+        "checks": {
+          "premiseHasComicEngine": true,
+          "notJustMundaneIncident": true,
+          "payoffIsEarned": true,
+          "characterCanonRespected": true,
+          "noUnmotivatedAdditions": true,
+          "notOnlyRoleReversal": true
+        }
+      }
+    }
+  },
+  "voices": {
+    "taisho": {
+      "speaker": "青山龍星",
+      "style": "ノーマル",
+      "speed": 1.12
+    },
+    "guest": {
+      "speaker": "白上虎太郎",
+      "style": "ふつう",
+      "speed": 1.0
+    },
+    "regular": {
+      "speaker": "No.7",
+      "style": "ノーマル",
+      "speed": 1.05
+    }
+  },
+  "music": {
+    "track": "jazz-rusted-maid",
+    "gain": 0.22,
+    "fadeIn": 0.2,
+    "fadeOut": 0.6
+  },
+  "set": {
+    "kind": "diner-counter",
+    "params": {}
+  },
+  "captions": {
+    "y": 0.74
+  },
+  "actors": {
+    "taisho": {
+      "style": {
+        "skin": "#e8b992",
+        "hair": "#2a2226",
+        "hairStyle": "bald",
+        "top": "#f7f5ee",
+        "vest": "#2f4f7a",
+        "vestTrim": "#f7f5ee",
+        "bottom": "#2b2b30",
+        "shoes": "#2b2b30",
+        "boldBrows": true
+      },
+      "root": {
+        "x": 0.04,
+        "z": -0.55,
+        "ry": 0
+      },
+      "pose": "counter",
+      "expr": "polite",
+      "captionColor": "#ffd9a0"
+    },
+    "guest": {
+      "style": {
+        "skin": "#f2cdb0",
+        "hair": "#3a3228",
+        "hairStyle": "side-part",
+        "top": "#8d96a3",
+        "bottom": "#3a3d4a",
+        "shoes": "#2b2b30",
+        "glasses": true
+      },
+      "seated": true,
+      "root": {
+        "x": 0.14,
+        "y": -0.19,
+        "z": 0.85,
+        "ry": 3.14159
+      },
+      "pose": "counter",
+      "expr": "doubtful",
+      "captionColor": "#cfe7ff"
+    },
+    "regular": {
+      "style": {
+        "skin": "#d9a77f",
+        "hair": "#6b5a48",
+        "hairStyle": "short",
+        "top": "#b86b3a",
+        "bottom": "#3d3a34",
+        "shoes": "#2b2b30",
+        "boldBrows": true
+      },
+      "seated": true,
+      "root": {
+        "x": -0.9,
+        "y": -0.19,
+        "z": 0.85,
+        "ry": 3.14159
+      },
+      "pose": "counter",
+      "expr": "blank",
+      "captionColor": "#c8f59a"
+    }
+  },
+  "props": {
+    "regularBowl": {
+      "kind": "ramen-bowl",
+      "params": {
+        "negi": 0.3
+      },
+      "tf": {
+        "x": -0.9,
+        "y": 0.98,
+        "z": 0.18,
+        "ry": 0.3
+      }
+    },
+    "bowl": {
+      "kind": "ramen-bowl",
+      "params": {
+        "negi": 1
+      },
+      "tf": {
+        "x": 0.14,
+        "y": 0.98,
+        "z": -0.18,
+        "ry": 0
+      },
+      "visible": false
+    },
+    "gyoza": {
+      "kind": "gyoza-plate",
+      "params": {
+        "count": 5
+      },
+      "tf": {
+        "x": 0.42,
+        "y": 0.98,
+        "z": -0.18,
+        "ry": 0
+      },
+      "visible": false
+    },
+    "beer": {
+      "kind": "beer-mug",
+      "params": {},
+      "tf": {
+        "x": -0.22,
+        "y": 0.98,
+        "z": -0.15
+      },
+      "visible": false
+    }
+  },
+  "beats": [
+    {
+      "id": "title",
+      "role": "title",
+      "shot": "wide",
+      "dur": 1.3,
+      "do": [
+        {
+          "at": 0,
+          "sfx": "title-sting"
+        }
+      ]
+    },
+    {
+      "id": "itsumono",
+      "role": "hook",
+      "shot": "taisho-cu",
+      "pre": 0.05,
+      "post": 0.15,
+      "line": {
+        "who": "taisho",
+        "text": "お、いらっしゃい。／いつもので、いいね？"
+      },
+      "do": [
+        {
+          "at": 0,
+          "face": "taisho",
+          "to": "grin",
+          "dur": 0.2
+        }
+      ]
+    },
+    {
+      "id": "ee",
+      "role": "rule",
+      "shot": "guest-cu",
+      "pre": 0.3,
+      "post": 0.35,
+      "line": {
+        "who": "guest",
+        "text": "え？……あ、はい"
+      },
+      "do": [
+        {
+          "at": 0,
+          "face": "guest",
+          "to": "doubtful",
+          "dur": 0.01
+        }
+      ]
+    },
+    {
+      "id": "serve",
+      "role": "escalate",
+      "level": 1,
+      "shot": "two-shot",
+      "pre": 0.15,
+      "post": 0.2,
+      "line": {
+        "who": "taisho",
+        "text": "あいよ！／麺かため、ネギ多め。／三年変わらないね"
+      },
+      "do": [
+        {
+          "at": 0.2,
+          "show": "bowl"
+        },
+        {
+          "at": 0.2,
+          "prop": "bowl",
+          "to": {
+            "x": 0.14,
+            "y": 0.98,
+            "z": 0.2
+          },
+          "dur": 0.7,
+          "ease": "out"
+        },
+        {
+          "at": 0.85,
+          "sfx": "set-down"
+        }
+      ]
+    },
+    {
+      "id": "oishii",
+      "role": "bridge",
+      "shot": "guest-cu",
+      "pre": 0.4,
+      "post": 0.1,
+      "line": {
+        "who": "guest",
+        "text": "……いただきます。／……おいしいです"
+      }
+    },
+    {
+      "id": "tell1",
+      "role": "escalate",
+      "level": 2,
+      "shot": "guest-cu",
+      "pre": 0.3,
+      "post": 0.15,
+      "line": {
+        "who": "guest",
+        "text": "あの、実は。／今日、初めて来たんです"
+      }
+    },
+    {
+      "id": "tell1-reply",
+      "role": "escalate",
+      "shot": "taisho-cu",
+      "pre": 0.05,
+      "post": 0.2,
+      "line": {
+        "who": "taisho",
+        "text": "ははは！ 出た出た！／先月の『実は双子』より、いいね。／ほら、餃子つけとく"
+      },
+      "do": [
+        {
+          "at": 0,
+          "face": "taisho",
+          "to": "grin",
+          "dur": 0.1
+        },
+        {
+          "at": "line+2.2",
+          "show": "gyoza"
+        },
+        {
+          "at": "line+2.2",
+          "prop": "gyoza",
+          "to": {
+            "x": 0.42,
+            "y": 0.98,
+            "z": 0.18
+          },
+          "dur": 0.5,
+          "ease": "out"
+        },
+        {
+          "at": "line+2.6",
+          "sfx": "set-down"
+        }
+      ],
+      "level": 2
+    },
+    {
+      "id": "tell2",
+      "role": "escalate",
+      "level": 3,
+      "shot": "guest-cu",
+      "pre": 0.25,
+      "post": 0.15,
+      "line": {
+        "who": "guest",
+        "text": "この店の名前も、／今、看板で知りました"
+      }
+    },
+    {
+      "id": "tell2-reply",
+      "role": "escalate",
+      "shot": "taisho-cu",
+      "pre": 0.05,
+      "post": 0.2,
+      "line": {
+        "who": "taisho",
+        "text": "いいねえ、演技派だ！／ビール持ってきな！"
+      },
+      "do": [
+        {
+          "at": "line+1.4",
+          "show": "beer"
+        },
+        {
+          "at": "line+1.4",
+          "prop": "beer",
+          "to": {
+            "x": -0.12,
+            "y": 0.98,
+            "z": 0.2
+          },
+          "dur": 0.5,
+          "ease": "out"
+        },
+        {
+          "at": "line+1.8",
+          "sfx": "set-down"
+        }
+      ],
+      "level": 3
+    },
+    {
+      "id": "witness",
+      "role": "escalate",
+      "level": 4,
+      "shot": "regular-cu",
+      "pre": 0.35,
+      "post": 0.2,
+      "line": {
+        "who": "regular",
+        "text": "大将。／その人、本当に初めてだよ。／入口で迷ってたもん"
+      },
+      "do": [
+        {
+          "at": 0,
+          "look": "regular",
+          "to": {
+            "yaw": 0.25
+          },
+          "dur": 0.3
+        }
+      ]
+    },
+    {
+      "id": "witness-reply",
+      "role": "escalate",
+      "shot": "taisho-cu",
+      "pre": 0.1,
+      "post": 0.25,
+      "line": {
+        "who": "taisho",
+        "text": "お前までグルか！／仕込みが細かいねえ！"
+      },
+      "do": [
+        {
+          "at": 0,
+          "face": "taisho",
+          "to": "grin",
+          "dur": 0.1
+        }
+      ],
+      "level": 4
+    },
+    {
+      "id": "kaikei",
+      "role": "turn",
+      "shot": "guest-cu",
+      "pre": 0.5,
+      "post": 0.2,
+      "line": {
+        "who": "guest",
+        "text": "……お会計、／お願いします"
+      },
+      "do": [
+        {
+          "at": 0,
+          "face": "guest",
+          "to": "weary",
+          "dur": 0.3
+        }
+      ]
+    },
+    {
+      "id": "daikin",
+      "role": "payoff",
+      "shot": "two-shot",
+      "pre": 0.1,
+      "post": 1.0,
+      "line": {
+        "who": "taisho",
+        "text": "いらんいらん！／いいもん見せてもらった。／来週のネタも、／楽しみにしてるぞ！"
+      },
+      "do": [
+        {
+          "at": "lineEnd",
+          "music": "cut"
+        },
+        {
+          "at": "lineEnd",
+          "sfx": "payoff-hit"
+        }
+      ]
+    },
+    {
+      "id": "ganbaru",
+      "role": "button",
+      "shot": "guest-cu",
+      "pre": 0.6,
+      "post": 1.0,
+      "line": {
+        "who": "guest",
+        "text": "……はい。／……がんばります"
+      },
+      "do": [
+        {
+          "at": 0,
+          "music": "resume"
+        }
+      ]
+    }
+  ],
+  "description": [
+    "初めて来た食堂で、大将に常連と間違われた。本当のことを言うほど、サービスが増えていく。",
+    "#ショート #コント #食堂 #あるある"
+  ]
+}

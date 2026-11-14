@@ -413,6 +413,23 @@
           "floor": 0
         },
         "notes": "ホテルのフロント（チェックイン・苦情対応）。大理石天板のカウンター z=0（天板1.05）。スタッフは奥 z≈-0.55 で +Z 向き、客は手前 z≈0.6 で -Z 向き（ry=π）。奥の壁に鍵の棚（部屋番号つき）とロゴ（params.logo, params.accent）、カウンター上にベル・ペン立て・モニター、左に観葉植物。カメラ: wide / side（横から両者）/ staff-cu（客の肩越しにスタッフ）/ guest-cu / two-shot"
+      },
+      "diner-counter": {
+        "cameras": [
+          "wide",
+          "taisho-cu",
+          "guest-cu",
+          "two-shot",
+          "regular-cu",
+          "counter-top",
+          "side"
+        ],
+        "surfaces": {
+          "counter": 0.98,
+          "seat": 0.58,
+          "floor": 0
+        },
+        "notes": "町の食堂のカウンター（食堂・定食屋・町中華）。木のカウンター z=0（天板0.98）。大将は奥 z≈-0.55 で +Z 向き、客はカウンター前の丸椅子（座面0.58、z≈0.85）に座って -Z 向き（seated、root.y≈-0.2）。丸椅子 x=-1.4,-0.9,0.14,1.2。奥は白タイルの厨房壁、コンロと寸胴、短冊メニュー、屋号の看板、時計。params.accent（差し色）, shopName"
       }
     },
     "props": {
@@ -496,6 +513,17 @@
       ],
       "toy-car": [
         "color"
+      ],
+      "ramen-bowl": [
+        "bowl",
+        "negi"
+      ],
+      "gyoza-plate": [
+        "count"
+      ],
+      "beer-mug": [
+        "height",
+        "radius"
       ]
     },
     "character": {

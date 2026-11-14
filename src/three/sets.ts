@@ -634,6 +634,93 @@ export const SETS: Record<string, SetBuilder> = {
     };
   },
 
+  "diner-counter"(scene, p) {
+    scene.background = new THREE.Color("#efe3cf");
+    lights(scene, { key: 1.4 });
+    const grad = (toon("#fff") as THREE.MeshToonMaterial).gradientMap;
+    const accent = String(p.accent ?? "#b8322a");
+    const shopName = String(p.shopName ?? "大衆食堂 まるき");
+    const floorTex = canvasTexture(512, 512, (g, w, h) => {
+      g.fillStyle = "#8d6e55"; g.fillRect(0, 0, w, h);
+      g.fillStyle = "#7f6149";
+      for (let i = 0; i < 4; i++) for (let j = 0; j < 4; j++) if ((i + j) % 2 === 0) g.fillRect(i * w / 4, j * h / 4, w / 4, h / 4);
+    });
+    floorTex.wrapS = floorTex.wrapT = THREE.RepeatWrapping; floorTex.repeat.set(7, 7);
+    const floor = new THREE.Mesh(new THREE.PlaneGeometry(14, 14), new THREE.MeshToonMaterial({ map: floorTex, gradientMap: grad }));
+    floor.rotation.x = -Math.PI / 2; floor.receiveShadow = true; scene.add(floor);
+    const wallC = String(p.wall ?? "#f1e7d2");
+    const back = mesh(new THREE.BoxGeometry(8, 3.2, 0.05), toon(wallC), false); back.position.set(0, 1.6, -1.5); scene.add(back);
+    const wallL = mesh(new THREE.BoxGeometry(0.05, 3.2, 6), toon(wallC), false); wallL.position.set(-3.0, 1.6, 1.3); scene.add(wallL);
+    const wallR = mesh(new THREE.BoxGeometry(0.05, 3.2, 6), toon(wallC), false); wallR.position.set(3.0, 1.6, 1.3); scene.add(wallR);
+    const ceil = new THREE.Mesh(new THREE.PlaneGeometry(8, 8), flat("#f7f1e4")); ceil.rotation.x = Math.PI / 2; ceil.position.set(0, 3.1, 1.2); scene.add(ceil);
+    // kitchen back wall: white tile below, menu boards above
+    const tiles = canvasTexture(512, 256, (g, w, h) => {
+      g.fillStyle = "#f6f4ee"; g.fillRect(0, 0, w, h);
+      g.strokeStyle = "#cfcabd"; g.lineWidth = 3;
+      for (let i = 0; i <= 16; i++) { g.beginPath(); g.moveTo(i * w / 16, 0); g.lineTo(i * w / 16, h); g.stroke(); }
+      for (let j = 0; j <= 8; j++) { g.beginPath(); g.moveTo(0, j * h / 8); g.lineTo(w, j * h / 8); g.stroke(); }
+    });
+    const tileWall = new THREE.Mesh(new THREE.PlaneGeometry(7.6, 1.5), new THREE.MeshBasicMaterial({ map: tiles })); tileWall.position.set(0, 0.9, -1.47); scene.add(tileWall);
+    const tileCap = mesh(new THREE.BoxGeometry(7.6, 0.05, 0.06), toon("#8c8579"), false); tileCap.position.set(0, 1.66, -1.45); scene.add(tileCap);
+    // menu boards (短冊): wooden strips with item and price
+    const menuItems: Array<[string, string]> = [["ラーメン", "700"], ["餃子", "350"], ["チャーハン", "800"], ["中華そば", "650"], ["生ビール", "500"], ["定食", "900"]];
+    menuItems.forEach(([name, price], i) => {
+      const tex = canvasTexture(128, 300, (g, w, h) => {
+        g.fillStyle = "#f8f1de"; g.fillRect(0, 0, w, h); g.strokeStyle = "#6b4a2a"; g.lineWidth = 6; g.strokeRect(3, 3, w - 6, h - 6);
+        g.fillStyle = "#2a1c12"; g.font = `bold 46px ${JP_FONT}`; g.textAlign = "center"; g.textBaseline = "middle";
+        const chars = [...name]; const step = Math.min(52, 190 / chars.length);
+        chars.forEach((ch, k) => g.fillText(ch, w / 2, 30 + step * (k + 0.5)));
+        g.fillStyle = accent; g.font = `bold 36px ${JP_FONT}`; g.fillText(price, w / 2, h - 36);
+      });
+      const m = new THREE.Mesh(new THREE.PlaneGeometry(0.2, 0.47), new THREE.MeshBasicMaterial({ map: tex }));
+      m.position.set(-1.45 + i * 0.5, 2.15, -1.46); scene.add(m);
+    });
+    // shop name plaque + clock
+    const plq = canvasTexture(512, 112, (g, w, h) => {
+      g.fillStyle = accent; g.fillRect(0, 0, w, h); g.strokeStyle = "#f1d58a"; g.lineWidth = 5; g.strokeRect(7, 7, w - 14, h - 14);
+      g.fillStyle = "#fff4d6"; g.font = `bold 56px ${JP_FONT}`; g.textAlign = "center"; g.textBaseline = "middle"; g.fillText(shopName, w / 2, h / 2 + 2);
+    });
+    const plaque = new THREE.Mesh(new THREE.PlaneGeometry(1.3, 0.285), new THREE.MeshBasicMaterial({ map: plq })); plaque.position.set(0.05, 2.75, -1.46); scene.add(plaque);
+    const clockFace = mesh(new THREE.CylinderGeometry(0.17, 0.17, 0.03, 28), toon("#fbfaf4"), 0.004); clockFace.rotation.x = Math.PI / 2; clockFace.position.set(2.1, 2.3, -1.44); scene.add(clockFace);
+    for (const [len, rot] of [[0.1, 0.5], [0.14, -1.2]] as const) { const hnd = mesh(new THREE.BoxGeometry(0.012, len, 0.01), toon("#222"), false); hnd.position.set(2.1 + Math.sin(rot) * len / 2, 2.3 + Math.cos(rot) * len / 2, -1.42); hnd.rotation.z = -rot; scene.add(hnd); }
+    // stove and pot behind the counter on the left, with a bowl shelf
+    const stove = mesh(new THREE.BoxGeometry(1.0, 0.85, 0.6), toon("#9ea3a8"), 0.005); stove.position.set(-1.2, 0.425, -1.1); scene.add(stove);
+    const pot = mesh(new THREE.CylinderGeometry(0.2, 0.2, 0.34, 22), toon("#c7ccd1"), 0.004); pot.position.set(-1.2, 1.02, -1.1); scene.add(pot);
+    const potLid = mesh(new THREE.CylinderGeometry(0.2, 0.2, 0.02, 22), toon("#b4babf"), 0.003); potLid.position.set(-1.2, 1.2, -1.1); scene.add(potLid);
+    const sh = shelfWall(scene, { w: 1.2, h: 0.6, rows: 2, cols: 6, seed: 41, palette: ["#f4f0e6", "#e7e2d6", "#c0392b", "#2f4f7a"], depth: 0.25 });
+    sh.position.set(1.3, 1.78, -1.47);
+    // counter: wooden top, plain front
+    const cTop = 0.98;
+    const body = mesh(new THREE.BoxGeometry(3.6, cTop - 0.05, 0.62), toon("#a8754f"), 0.005); body.position.set(0, (cTop - 0.05) / 2, 0); scene.add(body);
+    const slab = mesh(new THREE.BoxGeometry(3.72, 0.05, 0.74), toon("#c9a073"), 0.005); slab.position.set(0, cTop - 0.025, 0.04); scene.add(slab);
+    const kick = mesh(new THREE.BoxGeometry(3.6, 0.1, 0.02), toon("#6a4730"), false); kick.position.set(0, 0.2, 0.32); scene.add(kick);
+    // counter items: tissue box, soy, pepper, chopstick cup, water pitcher
+    const tissue = mesh(new THREE.BoxGeometry(0.11, 0.06, 0.07), toon("#f4efe2"), 0.003); tissue.position.set(-0.55, cTop + 0.03, 0.12); scene.add(tissue);
+    const soy = mesh(new THREE.CylinderGeometry(0.025, 0.028, 0.1, 12), toon("#6a2f19"), 0.003); soy.position.set(-0.38, cTop + 0.05, 0.1); scene.add(soy);
+    const soyCap = mesh(new THREE.CylinderGeometry(0.014, 0.018, 0.03, 10), toon("#c0392b"), false); soyCap.position.set(-0.38, cTop + 0.115, 0.1); scene.add(soyCap);
+    const pep = mesh(new THREE.CylinderGeometry(0.02, 0.022, 0.07, 12), toon("#e9e3d1"), 0.003); pep.position.set(-0.28, cTop + 0.035, 0.12); scene.add(pep);
+    const cup = mesh(new THREE.CylinderGeometry(0.035, 0.03, 0.09, 14), toon("#d9d3c3"), 0.003); cup.position.set(1.0, cTop + 0.045, 0.1); scene.add(cup);
+    for (let i = 0; i < 6; i++) { const c = mesh(new THREE.CylinderGeometry(0.004, 0.004, 0.17, 5), toon("#7a4b2a"), false); c.position.set(1.0 + (i - 2.5) * 0.007, cTop + 0.12, 0.1 + ((i % 2) - 0.5) * 0.01); c.rotation.z = (i - 2.5) * 0.04; scene.add(c); }
+    // wooden stools in front of the counter
+    const stoolM = toon("#7a4b2a");
+    for (const sx of [-1.4, -0.9, 0.14, 1.2]) {
+      const seat = mesh(new THREE.CylinderGeometry(0.18, 0.18, 0.06, 20), toon(accent), 0.004); seat.position.set(sx, 0.55, 0.85); scene.add(seat);
+      for (const [dx, dz] of [[-0.1, -0.1], [0.1, -0.1], [-0.1, 0.1], [0.1, 0.1]] as const) { const lg = mesh(new THREE.CylinderGeometry(0.016, 0.016, 0.52, 6), stoolM, 0.002); lg.position.set(sx + dx, 0.26, 0.85 + dz); scene.add(lg); }
+    }
+    return {
+      surfaces: { counter: cTop, seat: 0.58, floor: 0 },
+      cameras: {
+        wide: { pos: [2.2, 1.75, 2.7], target: [0.1, 1.2, 0], fov: 42 },
+        "taisho-cu": { pos: [0.75, 1.55, 1.0], target: [0.04, 1.5, -0.55], fov: 27 },
+        "guest-cu": { pos: [-0.75, 1.5, -0.85], target: [0.14, 1.28, 0.8], fov: 28 },
+        "two-shot": { pos: [0.9, 1.7, 2.7], target: [-0.35, 1.2, 0.3], fov: 40 },
+        "regular-cu": { pos: [-0.5, 1.45, -0.65], target: [-0.9, 1.25, 0.8], fov: 28 },
+        "counter-top": { pos: [0.1, 1.9, 0.9], target: [0.1, 1.0, -0.1], fov: 34 },
+        side: { pos: [2.9, 1.4, 0.2], target: [0, 1.25, 0.2], fov: 30 }
+      }
+    };
+  },
+
   "family-restaurant"(scene, p) {
     scene.background = new THREE.Color("#f1ece2");
     lights(scene, { key: 1.4 });
