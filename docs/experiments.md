@@ -23,18 +23,24 @@ variant=`baseline` の既存コント。数字は未取得（下の「状況」�
 
 | 話 | YouTube | 公開日 | 尺(秒) | variant |
 |---|---|---|---|---|
-| atatame-juyojiko | QFWy27ZOfG8 | 2026-11-06 | 不明 | baseline |
-| doubutsu-tatoeru | 7oN8voHFk7w | 2026-11-07 | 不明 | baseline |
+| atatame-juyojiko | QFWy27ZOfG8 | 2026-11-06 | 44 | baseline |
+| doubutsu-tatoeru | 7oN8voHFk7w | 2026-11-07 | 28 | baseline |
 | akabeko-shoumei | A2yBlXqO3YM | 2026-11-07 | 約21 | baseline |
-| same-haisha | GU5hNNIqbZo | 2026-11-08 | 不明 | baseline |
+| same-haisha | GU5hNNIqbZo | 2026-11-08 | 38 | baseline |
 | kaeru-heyasagashi | tg6btRTmq4k | 2026-11-11 | 44.5 | baseline |
 | akabeko-famiresu | 2fRumhxHr48 | 2026-11-12 | 40.5 | baseline |
 | hotel-niyari-furonto | VkrBX8rLbC8 | 2026-11-13 | 44.0 | baseline |
 | itsumono-hatsu | aObbaNGce-A | 2026-11-14 | 43.8 | baseline |
+| kenon-shitsuon | （公開後に記入） | 2026-11-15 | 45.1 | baseline |
 
 ## いま走っている実験
 
 なし（2026-11-14 時点）。理由: 数字が1本も取れていないため、判定が出せず、次に変える点を選べない。**迷ったら変えない**。
+
+## 状況（2026-11-15）
+
+- 数字の取得: 2026-11-15 に video-publisher の `YouTube Metrics` ワークフロー（読み取りのみ）で5本分を取得できた。fuzoku は引き続き未接続（add_repo の手段なし・GitHub MCP が「not configured」で拒否）。以前の記述にある fuzoku の `metrics` は代替の video-publisher 版で足りた。
+- 2fRumhxHr48 (akabeko-famiresu, 11-12) は公開から3日たっておらず未取得。VkrBX8rLbC8 / aObbaNGce-A も同様に未取得。
 
 ## 状況（2026-11-14）
 
@@ -54,8 +60,23 @@ variant=`baseline` の既存コント。数字は未取得（下の「状況」�
 
 ## 結果
 
-（まだなし）
+**途中経過（2026-11-15）。対象は baseline の5本。実験が走っていないので、判定は出さない。** 窓は公開日〜+2日。
+
+| 話 | 尺(秒) | 再生 | 平均視聴率 | 5秒維持 | 10秒維持 | 20秒維持 | 最後 | 登録者増 |
+|---|---|---|---|---|---|---|---|---|
+| atatame-juyojiko | 44 | 917 | 61.7% | 113.7% | 76.1% | 59.4% | 42.7% | 2 |
+| akabeko-shoumei | 21 | 377 | 103.5% | 119.7% | 101.5% | 84.8% | 75.0% | 1 |
+| same-haisha | 38 | 246 | 65.5% | 103.7% | 82.2% | 62.6% | 42.1% | 1 |
+| kaeru-heyasagashi | 44.5 | 1085 | 66.2% | 118.4% | 77.6% | 59.9% | 47.6% | 0 |
+| doubutsu-tatoeru | 28 | 29 | 124.3% | 140.0% | 140.0% | 110.0% | 100% | 0 |
+
+- 維持率が100%を超えるのは、同じ動画のループ視聴や巻き戻しが入るため（Shortsでは普通に起こる）。
+- 読めること（言い切りではなく見え方）: 尺が長い44〜45秒台（atatame、kaeru）は平均視聴率が60%台で近い値。21秒の akabeko-shoumei は平均視聴率・最後まで見られた割合が高く、これは尺が短いほど高く出る性質と区別できない。38秒の same-haisha の10秒維持が82%と、ほかの30〜45秒台より高め。
+- 注意: n が少ない（5本）。再生数は29〜1,085と大きくばらつき、配信の当たり外れに強く左右される。doubutsu-tatoeru は再生29と極端に少なく、取得した動画IDが違う可能性もある（要確認）ため、基準の範囲に入れない。
+- 因果は言い切らない。尺・題材・キャラ・公開時間がすべて同時に違い、1つの要素の効果は切り分けられない。
+- 判断が要る: 次に変える1点（尺／フック位置／タイトルの付け方／オチの位置）を決めるには、同じ条件の動画が複数本要る。現時点では決めない（`なし` のまま）。
 
 ## 変更履歴
 
 - 2026-11-14: 台帳を新設。公開済み7本の YouTube ID・公開日・尺を `productions/<id>/metrics.json` に記録。baseline 定義。実験は未開始。metrics 取得は fuzoku 未接続のため未実施。
+- 2026-11-15: video-publisher の YouTube Metrics で baseline 5本の数字を取得し、途中経過を記載。kenon-shitsuon を追加（variant=baseline）。実験は未開始のまま。
