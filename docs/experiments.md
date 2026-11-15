@@ -31,7 +31,7 @@ variant=`baseline` の既存コント。数字は未取得（下の「状況」�
 | akabeko-famiresu | 2fRumhxHr48 | 2026-11-12 | 40.5 | baseline |
 | hotel-niyari-furonto | VkrBX8rLbC8 | 2026-11-13 | 44.0 | baseline |
 | itsumono-hatsu | aObbaNGce-A | 2026-11-14 | 43.8 | baseline |
-| kenon-shitsuon | （公開後に記入） | 2026-11-15 | 45.1 | baseline |
+| kenon-shitsuon | uNomz8Qnp-U | 2026-11-15 | 45.1 | baseline |
 
 ## いま走っている実験
 
