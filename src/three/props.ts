@@ -397,6 +397,62 @@ export const PROPS: Record<string, PropBuilder> = {
     };
   },
 
+  /** Wall room thermometer (室温計): white plate with a big LCD. param v = temperature in °C (tweenable); params.label (default "室温"). */
+  "wall-thermo"(p) {
+    const w = num(p.w, 0.3), h = num(p.h, 0.2);
+    const g = new THREE.Group();
+    const body = mesh(new THREE.BoxGeometry(w, h, 0.03), toon("#f4f4f0"), 0.004);
+    body.position.set(0, 0, 0); g.add(body);
+    const c = document.createElement("canvas"); c.width = 512; c.height = Math.round(512 * h / w);
+    const ctx = c.getContext("2d")!;
+    const tex = new THREE.CanvasTexture(c); tex.colorSpace = THREE.SRGBColorSpace;
+    let shown = "";
+    const draw = (v: number) => {
+      const t = v.toFixed(1);
+      if (t === shown) return;
+      shown = t;
+      ctx.fillStyle = "#dfe8dc"; ctx.fillRect(0, 0, c.width, c.height);
+      ctx.fillStyle = "#6f7a6c"; ctx.font = `bold ${Math.round(c.height * 0.16)}px ${JP_FONT}`; ctx.textAlign = "left"; ctx.textBaseline = "top";
+      ctx.fillText(str(p.label, "室温"), c.width * 0.06, c.height * 0.06);
+      ctx.fillStyle = "#1d241c"; ctx.font = `bold ${Math.round(c.height * 0.62)}px ${JP_FONT}`; ctx.textAlign = "right"; ctx.textBaseline = "alphabetic";
+      ctx.fillText(t, c.width * 0.8, c.height * 0.88);
+      ctx.font = `bold ${Math.round(c.height * 0.24)}px ${JP_FONT}`; ctx.textAlign = "left";
+      ctx.fillText("℃", c.width * 0.8, c.height * 0.88);
+      tex.needsUpdate = true;
+    };
+    draw(num(p.v, 22.4));
+    const lcd = new THREE.Mesh(new THREE.PlaneGeometry(w * 0.86, h * 0.8), new THREE.MeshBasicMaterial({ map: tex }));
+    lcd.position.set(0, 0, 0.0165); g.add(lcd);
+    return { object: g, setParam(k, v) { if (k === "v") draw(v); } };
+  },
+
+  /** Digital clinical thermometer (電子体温計). Lies along +x, pivot at the tip-centre. param v = reading (°C) shown on the small LCD when param on = 1. */
+  "clinical-thermometer"(p) {
+    const g = new THREE.Group();
+    const len = 0.13;
+    const body = mesh(new THREE.CylinderGeometry(0.0075, 0.0075, len, 12), toon("#f2f2ee"), 0.0015);
+    body.rotation.z = Math.PI / 2; body.position.x = len / 2; g.add(body);
+    const tip = mesh(new THREE.CylinderGeometry(0.004, 0.0075, 0.018, 12), toon("#c9ced4"), 0.0015);
+    tip.rotation.z = Math.PI / 2; tip.position.x = -0.006; g.add(tip);
+    const c = document.createElement("canvas"); c.width = 128; c.height = 48;
+    const ctx = c.getContext("2d")!;
+    const tex = new THREE.CanvasTexture(c); tex.colorSpace = THREE.SRGBColorSpace;
+    let shown = "";
+    const draw = (v: number, on: boolean) => {
+      const t = on ? v.toFixed(1) : "";
+      if (t === shown + "") return; shown = t;
+      ctx.fillStyle = "#cfd8c8"; ctx.fillRect(0, 0, 128, 48);
+      ctx.fillStyle = "#1d241c"; ctx.font = "bold 36px sans-serif"; ctx.textAlign = "center"; ctx.textBaseline = "middle";
+      ctx.fillText(t, 64, 26);
+      tex.needsUpdate = true;
+    };
+    let v = num(p.v, 36.5), on = num(p.on, 0) > 0.5;
+    draw(v, on);
+    const lcd = new THREE.Mesh(new THREE.PlaneGeometry(0.036, 0.0135), new THREE.MeshBasicMaterial({ map: tex }));
+    lcd.position.set(len * 0.55, 0.0078, 0); lcd.rotation.x = -Math.PI / 2; g.add(lcd);
+    return { object: g, setParam(k, val) { if (k === "v") v = val; if (k === "on") on = val > 0.5; draw(v, on); } };
+  },
+
   /** Restaurant water glass (お冷). params.water 0..1 fill; params.straw (0/1, tweenable via `param`) shows a straw. */
   "water-glass"(p) {
     const h = num(p.height, 0.12), r = num(p.radius, 0.036);
