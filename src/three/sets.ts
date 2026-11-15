@@ -820,5 +820,87 @@ export const SETS: Record<string, SetBuilder> = {
         "register-top": { pos: [3.45, 1.5, 0.1], target: [2.65, 1.02, -0.6], fov: 30 }
       }
     };
+  },
+  "clinic-exam-room"(scene, p) {
+    scene.background = new THREE.Color("#e9f1ee");
+    lights(scene, { key: 1.5 });
+    const grad = (toon("#fff") as THREE.MeshToonMaterial).gradientMap;
+    const accent = String(p.accent ?? "#3e8f86");
+    const floorTex = canvasTexture(512, 512, (g, w, h) => {
+      g.fillStyle = "#cfd6d0"; g.fillRect(0, 0, w, h);
+      g.strokeStyle = "#bfc7c0"; g.lineWidth = 4;
+      for (let i = 0; i <= 4; i++) { g.beginPath(); g.moveTo(i * w / 4, 0); g.lineTo(i * w / 4, h); g.stroke(); g.beginPath(); g.moveTo(0, i * h / 4); g.lineTo(w, i * h / 4); g.stroke(); }
+    });
+    floorTex.wrapS = floorTex.wrapT = THREE.RepeatWrapping; floorTex.repeat.set(6, 6);
+    const floor = new THREE.Mesh(new THREE.PlaneGeometry(14, 14), new THREE.MeshToonMaterial({ map: floorTex, gradientMap: grad }));
+    floor.rotation.x = -Math.PI / 2; floor.receiveShadow = true; scene.add(floor);
+    const wallC = String(p.wall ?? "#f3f7f4");
+    const back = mesh(new THREE.BoxGeometry(8, 3, 0.05), toon(wallC), false); back.position.set(0, 1.5, -1.6); scene.add(back);
+    const wallL = mesh(new THREE.BoxGeometry(0.05, 3, 6), toon(wallC), false); wallL.position.set(-2.5, 1.5, 1.2); scene.add(wallL);
+    const wallR = mesh(new THREE.BoxGeometry(0.05, 3, 6), toon(wallC), false); wallR.position.set(2.5, 1.5, 1.2); scene.add(wallR);
+    const ceil = new THREE.Mesh(new THREE.PlaneGeometry(8, 8), flat("#f8faf8")); ceil.rotation.x = Math.PI / 2; ceil.position.set(0, 2.9, 1.0); scene.add(ceil);
+    // green stripe along the back wall
+    const stripe = mesh(new THREE.BoxGeometry(8, 0.12, 0.02), toon(accent), false); stripe.position.set(0, 0.95, -1.57); scene.add(stripe);
+    // wall air conditioner (above the desk side) with a wall controller beside it
+    const ac = mesh(new THREE.BoxGeometry(0.95, 0.28, 0.2), toon("#f6f6f2"), 0.004); ac.position.set(-0.95, 2.45, -1.48); scene.add(ac);
+    const louver = mesh(new THREE.BoxGeometry(0.85, 0.03, 0.12), toon("#e4e4de"), false); louver.position.set(-0.95, 2.33, -1.38); scene.add(louver);
+    const acLamp = mesh(new THREE.BoxGeometry(0.04, 0.02, 0.01), toon("#6fcf7a"), false); acLamp.position.set(-0.55, 2.5, -1.375); scene.add(acLamp);
+    const ctl = mesh(new THREE.BoxGeometry(0.11, 0.16, 0.025), toon("#f3f2ec"), 0.003); ctl.position.set(-0.4, 1.42, -1.575); scene.add(ctl);
+    const ctlLcd = mesh(new THREE.BoxGeometry(0.07, 0.04, 0.004), toon("#cfd8c8"), false); ctlLcd.position.set(-0.4, 1.47, -1.56); scene.add(ctlLcd);
+    for (const [bx, by] of [[-0.425, 1.395], [-0.375, 1.395], [-0.425, 1.36], [-0.375, 1.36]] as const) { const b = mesh(new THREE.BoxGeometry(0.03, 0.022, 0.006), toon("#8a8f92"), false); b.position.set(bx, by, -1.56); scene.add(b); }
+    // window with blind and a sash handle
+    const winX = 1.55;
+    const sky = canvasTexture(256, 320, (g, w, h) => { const gr = g.createLinearGradient(0, 0, 0, h); gr.addColorStop(0, "#c8e3f2"); gr.addColorStop(1, "#f1f8fb"); g.fillStyle = gr; g.fillRect(0, 0, w, h); g.fillStyle = "#a9cf9c"; g.beginPath(); g.arc(70, h, 90, Math.PI, 0); g.fill(); g.beginPath(); g.arc(190, h, 70, Math.PI, 0); g.fill(); });
+    const pane = new THREE.Mesh(new THREE.PlaneGeometry(0.95, 1.2), new THREE.MeshBasicMaterial({ map: sky })); pane.position.set(winX, 1.75, -1.57); scene.add(pane);
+    const fm = toon("#e8ebe8");
+    for (const [w, h, x, y] of [[1.05, 0.06, winX, 2.38], [1.05, 0.06, winX, 1.12], [0.06, 1.26, winX - 0.5, 1.75], [0.06, 1.26, winX + 0.5, 1.75], [0.04, 1.2, winX, 1.75]] as const) { const f = mesh(new THREE.BoxGeometry(w, h, 0.05), fm, 0.003); f.position.set(x, y, -1.55); scene.add(f); }
+    const latch = mesh(new THREE.BoxGeometry(0.05, 0.02, 0.03), toon("#7c8084"), false); latch.position.set(winX, 1.75, -1.5); scene.add(latch);
+    // poster on the left wall
+    const poster = canvasTexture(256, 340, (g, w, h) => {
+      g.fillStyle = "#fffdf7"; g.fillRect(0, 0, w, h); g.fillStyle = accent; g.fillRect(0, 0, w, 70);
+      g.fillStyle = "#fff"; g.font = `bold 34px ${JP_FONT}`; g.textAlign = "center"; g.textBaseline = "middle"; g.fillText("手洗い・うがい", w / 2, 36);
+      g.fillStyle = "#cfe8f2"; g.beginPath(); g.arc(w / 2, 190, 62, 0, Math.PI * 2); g.fill();
+      g.fillStyle = "#333"; g.font = `bold 26px ${JP_FONT}`; g.fillText("感染症予防", w / 2, 300);
+    });
+    const pst = new THREE.Mesh(new THREE.PlaneGeometry(0.42, 0.56), new THREE.MeshBasicMaterial({ map: poster })); pst.position.set(-2.47, 1.65, 0.2); pst.rotation.y = Math.PI / 2; scene.add(pst);
+    // desk with a PC (electronic chart): the entry form shows its accepted range
+    const dTop = 0.74;
+    const dx = -1.5, dz = -1.15;
+    const dTopM = mesh(new THREE.BoxGeometry(1.3, 0.04, 0.6), toon("#e3d5bd"), 0.005); dTopM.position.set(dx, dTop - 0.02, dz); scene.add(dTopM);
+    for (const sx of [-0.6, 0.6]) { const lg = mesh(new THREE.BoxGeometry(0.05, dTop - 0.04, 0.55), toon("#9aa3a6"), 0.004); lg.position.set(dx + sx, (dTop - 0.04) / 2, dz); scene.add(lg); }
+    const drawer = mesh(new THREE.BoxGeometry(0.35, 0.5, 0.5), toon("#cfd5d6"), 0.004); drawer.position.set(dx + 0.38, 0.45, dz); scene.add(drawer);
+    const monBody = mesh(new THREE.BoxGeometry(0.5, 0.32, 0.03), toon("#2b2e33"), 0.003); monBody.position.set(dx, dTop + 0.27, dz - 0.18); scene.add(monBody);
+    const monStand = mesh(new THREE.BoxGeometry(0.06, 0.1, 0.05), toon("#2b2e33"), 0.003); monStand.position.set(dx, dTop + 0.05, dz - 0.18); scene.add(monStand);
+    const screen = canvasTexture(512, 320, (g, w, h) => {
+      g.fillStyle = "#f4f8fb"; g.fillRect(0, 0, w, h);
+      g.fillStyle = accent; g.fillRect(0, 0, w, 56);
+      g.fillStyle = "#fff"; g.font = `bold 30px ${JP_FONT}`; g.textAlign = "left"; g.textBaseline = "middle"; g.fillText("電子カルテ  バイタル入力", 18, 30);
+      g.fillStyle = "#222"; g.font = `bold 34px ${JP_FONT}`; g.fillText("体温", 24, 118);
+      g.strokeStyle = "#7a8a96"; g.lineWidth = 3; g.strokeRect(120, 88, 190, 60);
+      g.fillStyle = "#222"; g.fillText("℃", 322, 118);
+      g.fillStyle = "#c0392b"; g.font = `bold 28px ${JP_FONT}`; g.fillText("入力できる範囲：36.0〜42.0", 24, 196);
+      g.fillStyle = "#222"; g.font = `bold 26px ${JP_FONT}`; g.fillText("血圧", 24, 258); g.strokeRect(120, 232, 190, 46);
+    });
+    const scr = new THREE.Mesh(new THREE.PlaneGeometry(0.46, 0.288), new THREE.MeshBasicMaterial({ map: screen })); scr.position.set(dx, dTop + 0.27, dz - 0.163); scene.add(scr);
+    const kb = mesh(new THREE.BoxGeometry(0.34, 0.015, 0.12), toon("#d8dadc"), 0.002); kb.position.set(dx, dTop + 0.008, dz + 0.1); scene.add(kb);
+    // exam bed with a paper sheet in the back right corner
+    const bed = mesh(new THREE.BoxGeometry(0.7, 0.45, 1.8), toon("#8aa7b3"), 0.005); bed.position.set(2.05, 0.225, -0.55); scene.add(bed);
+    const pad = mesh(new THREE.BoxGeometry(0.66, 0.08, 1.76), toon("#e9f0f2"), 0.004); pad.position.set(2.05, 0.49, -0.55); scene.add(pad);
+    // low cabinet with a plant at the left
+    const cab = mesh(new THREE.BoxGeometry(0.9, 0.85, 0.4), toon("#d9dedc"), 0.004); cab.position.set(-2.0, 0.425, 0.8); scene.add(cab);
+    return {
+      surfaces: { desk: dTop, seat: 0.45, floor: 0 },
+      cameras: {
+        wide: { pos: [0.2, 1.7, 3.2], target: [0.1, 1.2, -0.2], fov: 44 },
+        "two-shot": { pos: [0.05, 1.3, 3.9], target: [0.05, 1.05, 0.1], fov: 40 },
+        "nurse-cu": { pos: [1.2, 1.5, 1.3], target: [-0.35, 1.35, 0.1], fov: 30 },
+        "patient-cu": { pos: [-1.3, 1.1, 1.6], target: [0.5, 0.95, 0.1], fov: 30 },
+        "wall-cu": { pos: [0.3, 1.5, 0.9], target: [0.15, 1.5, -1.6], fov: 26 },
+        "pc-cu": { pos: [-0.9, 1.3, 0.2], target: [-1.45, 1.05, -1.3], fov: 32 },
+        "ac-cu": { pos: [-2.0, 1.6, -0.2], target: [-0.7, 1.9, -1.3], fov: 42 },
+        window: { pos: [0.9, 1.6, 0.4], target: [1.5, 1.6, -1.55], fov: 34 },
+        side: { pos: [2.2, 1.35, 1.7], target: [0.05, 1.2, 0.0], fov: 34 }
+      }
+    };
   }
 };
