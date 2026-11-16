@@ -32,10 +32,17 @@ variant=`baseline` の既存コント。数字は未取得（下の「状況」�
 | hotel-niyari-furonto | VkrBX8rLbC8 | 2026-11-13 | 44.0 | baseline |
 | itsumono-hatsu | aObbaNGce-A | 2026-11-14 | 43.8 | baseline |
 | kenon-shitsuon | uNomz8Qnp-U | 2026-11-15 | 45.1 | baseline |
+| kyoryu-gym | WbiVJ9s1-vg | 2026-11-16 | 48.1 | baseline |
 
 ## いま走っている実験
 
 なし（2026-11-14 時点）。理由: 数字が1本も取れていないため、判定が出せず、次に変える点を選べない。**迷ったら変えない**。
+
+## 状況（2026-11-16）
+
+- 実験は走っていない（変更なし）。akabeko-famiresu (2fRumhxHr48, 11-12) の数字を取得: 再生44・平均視聴率57.2%・5秒維持96.2%・10秒維持69.2%・20秒維持46.1%・最後42.3%・登録者増0。同じ3日窓でも再生が44と少なく、5本の baseline より全体に低め。尺40.5秒・題材・公開時間が同時に違うため、構造の効果とは言えない。
+- VkrBX8rLbC8 (hotel-niyari-furonto, 11-13) は公開から3日たたず未取得。
+- 本日の kyoryu-gym は variant=baseline（48.1秒。長めの尺側のデータ点）。
 
 ## 状況（2026-11-15）
 
@@ -80,3 +87,4 @@ variant=`baseline` の既存コント。数字は未取得（下の「状況」�
 
 - 2026-11-14: 台帳を新設。公開済み7本の YouTube ID・公開日・尺を `productions/<id>/metrics.json` に記録。baseline 定義。実験は未開始。metrics 取得は fuzoku 未接続のため未実施。
 - 2026-11-15: video-publisher の YouTube Metrics で baseline 5本の数字を取得し、途中経過を記載。kenon-shitsuon を追加（variant=baseline）。実験は未開始のまま。
+- 2026-11-16: akabeko-famiresu の数字を取得（再生44）。kyoryu-gym (WbiVJ9s1-vg, 48.1秒) を追加（variant=baseline）。実験は未開始のまま（判断が要る条件: 3本そろった判定がまだ無い）。
