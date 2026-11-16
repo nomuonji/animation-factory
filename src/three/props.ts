@@ -581,6 +581,15 @@ export const PROPS: Record<string, PropBuilder> = {
     return { object: g };
   },
 
+  "exercise-bench"(p) {
+    // flat weight bench, long axis along z (seat top at 0.48 m)
+    const g = new THREE.Group();
+    const seat = mesh(new THREE.BoxGeometry(0.3, 0.08, 1.15), toon("#2b2e33"), 0.004); seat.position.y = 0.41; g.add(seat);
+    const pad = mesh(new THREE.BoxGeometry(0.28, 0.05, 1.1), toon(str(p.color, "#c9382f")), 0.003); pad.position.y = 0.455; g.add(pad);
+    for (const lz of [-0.45, 0.45]) { const lg = mesh(new THREE.BoxGeometry(0.36, 0.38, 0.05), toon("#7b8087"), 0.003); lg.position.set(0, 0.19, lz); g.add(lg); }
+    return { object: g };
+  },
+
   box(p) {
     const s = p.size as number[] | undefined;
     const m = mesh(new THREE.BoxGeometry(s?.[0] ?? 0.1, s?.[1] ?? 0.1, s?.[2] ?? 0.1), toon(str(p.color, "#cccccc")));
