@@ -902,5 +902,77 @@ export const SETS: Record<string, SetBuilder> = {
         side: { pos: [2.2, 1.35, 1.7], target: [0.05, 1.2, 0.0], fov: 34 }
       }
     };
+  },
+
+  "personal-gym"(scene, p) {
+    scene.background = new THREE.Color("#e8ecf0");
+    lights(scene, { key: 1.5 });
+    const grad = (toon("#fff") as THREE.MeshToonMaterial).gradientMap;
+    const accent = String(p.accent ?? "#e0663a");
+    // rubber floor, with a lighter mat in the training area
+    const floorTex = canvasTexture(512, 512, (g, w, h) => {
+      g.fillStyle = "#3b4048"; g.fillRect(0, 0, w, h);
+      g.strokeStyle = "#343840"; g.lineWidth = 4;
+      for (let i = 0; i <= 4; i++) { g.beginPath(); g.moveTo(i * w / 4, 0); g.lineTo(i * w / 4, h); g.stroke(); g.beginPath(); g.moveTo(0, i * h / 4); g.lineTo(w, i * h / 4); g.stroke(); }
+    });
+    floorTex.wrapS = floorTex.wrapT = THREE.RepeatWrapping; floorTex.repeat.set(6, 6);
+    const floor = new THREE.Mesh(new THREE.PlaneGeometry(14, 14), new THREE.MeshToonMaterial({ map: floorTex, gradientMap: grad }));
+    floor.rotation.x = -Math.PI / 2; floor.receiveShadow = true; scene.add(floor);
+    const wallC = String(p.wall ?? "#eef0f2");
+    const back = mesh(new THREE.BoxGeometry(8, 3, 0.05), toon(wallC), false); back.position.set(0, 1.5, -1.8); scene.add(back);
+    const wallL = mesh(new THREE.BoxGeometry(0.05, 3, 6), toon(wallC), false); wallL.position.set(-2.0, 1.5, 1.2); scene.add(wallL);
+    const wallR = mesh(new THREE.BoxGeometry(0.05, 3, 6), toon(wallC), false); wallR.position.set(2.8, 1.5, 1.2); scene.add(wallR);
+    const ceil = new THREE.Mesh(new THREE.PlaneGeometry(9, 8), flat("#f6f7f8")); ceil.rotation.x = Math.PI / 2; ceil.position.set(0, 2.9, 1.0); scene.add(ceil);
+    // orange stripe along the walls
+    const stripeB = mesh(new THREE.BoxGeometry(8, 0.1, 0.02), toon(accent), false); stripeB.position.set(0, 0.95, -1.77); scene.add(stripeB);
+    const stripeL = mesh(new THREE.BoxGeometry(0.02, 0.1, 6), toon(accent), false); stripeL.position.set(-1.97, 0.95, 1.2); scene.add(stripeL);
+    // big mirror on the back wall (pale glass panel with a soft sheen)
+    const mir = canvasTexture(512, 192, (g, w, h) => {
+      const gr = g.createLinearGradient(0, 0, w, h); gr.addColorStop(0, "#dbe7ee"); gr.addColorStop(0.5, "#eef5f8"); gr.addColorStop(1, "#cfdde6");
+      g.fillStyle = gr; g.fillRect(0, 0, w, h);
+      g.fillStyle = "rgba(255,255,255,0.55)"; g.beginPath(); g.moveTo(90, 0); g.lineTo(150, 0); g.lineTo(80, h); g.lineTo(20, h); g.fill();
+      g.beginPath(); g.moveTo(260, 0); g.lineTo(290, 0); g.lineTo(220, h); g.lineTo(190, h); g.fill();
+    });
+    const mirror = new THREE.Mesh(new THREE.PlaneGeometry(3.6, 1.35), new THREE.MeshBasicMaterial({ map: mir })); mirror.position.set(0.3, 1.7, -1.76); scene.add(mirror);
+    const mf = toon("#2b2e33");
+    for (const [w, h, x, y] of [[3.7, 0.05, 0.3, 2.4], [3.7, 0.05, 0.3, 1.0], [0.05, 1.4, -1.55, 1.7], [0.05, 1.4, 2.15, 1.7]] as const) { const f = mesh(new THREE.BoxGeometry(w, h, 0.04), mf, 0.003); f.position.set(x, y, -1.75); scene.add(f); }
+    // wall clock on the left wall
+    const clk = canvasTexture(128, 128, (g, w, h) => {
+      g.fillStyle = "#fff"; g.beginPath(); g.arc(64, 64, 60, 0, Math.PI * 2); g.fill(); g.strokeStyle = "#333"; g.lineWidth = 6; g.stroke();
+      g.lineWidth = 6; g.beginPath(); g.moveTo(64, 64); g.lineTo(64, 24); g.stroke(); g.beginPath(); g.moveTo(64, 64); g.lineTo(92, 74); g.stroke();
+    });
+    const clock = new THREE.Mesh(new THREE.CircleGeometry(0.16, 24), new THREE.MeshBasicMaterial({ map: clk })); clock.position.set(-1.96, 2.05, 0.7); clock.rotation.y = Math.PI / 2; scene.add(clock);
+    // rubber exercise mat in the middle of the floor
+    const mat = mesh(new THREE.BoxGeometry(1.5, 0.02, 1.9), toon("#5aa0c8"), 0.003); mat.position.set(0.25, 0.012, 0.0); scene.add(mat);
+    // dumbbell rack along the back wall (right)
+    const rack = new THREE.Group();
+    const rb = mesh(new THREE.BoxGeometry(1.5, 0.05, 0.4), toon("#4a4f57"), 0.004); rb.position.y = 0.55; rack.add(rb);
+    const rb2 = mesh(new THREE.BoxGeometry(1.5, 0.05, 0.4), toon("#4a4f57"), 0.004); rb2.position.y = 0.95; rack.add(rb2);
+    for (const lx of [-0.72, 0.72]) { const lg = mesh(new THREE.BoxGeometry(0.05, 1.0, 0.4), toon("#4a4f57"), 0.004); lg.position.set(lx, 0.5, 0); rack.add(lg); }
+    for (let i = 0; i < 7; i++) for (const [ry, sz] of [[0.6, 0.09], [1.0, 0.07]] as const) {
+      const d = mesh(new THREE.CylinderGeometry(sz, sz, 0.26, 14), toon(i % 2 ? "#202328" : "#3a3f47"), 0.003); d.rotation.z = Math.PI / 2; d.position.set(-0.6 + i * 0.2, ry + sz, 0); rack.add(d);
+    }
+    rack.position.set(1.4, 0, -1.55); scene.add(rack);
+    // kettlebells on the floor at the left of the back wall
+    for (const [kx, kz, kc] of [[-1.25, -1.5, "#c9382f"], [-0.95, -1.5, "#2f6fbf"], [-1.1, -1.28, "#e8b53a"]] as const) {
+      const kb = new THREE.Group();
+      const ball = mesh(new THREE.SphereGeometry(0.12, 16, 12), toon(kc), 0.004); ball.position.y = 0.12; kb.add(ball);
+      const hd = mesh(new THREE.TorusGeometry(0.06, 0.016, 8, 14), toon(kc), 0.003); hd.position.y = 0.27; kb.add(hd);
+      kb.position.set(kx, 0, kz); scene.add(kb);
+    }
+    return {
+      surfaces: { floor: 0, mat: 0.02 },
+      cameras: {
+        wide: { pos: [0.1, 1.5, 5.2], target: [0.0, 0.95, 0.0], fov: 44 },
+        "two-shot": { pos: [0.0, 1.1, 4.4], target: [-0.05, 0.85, 0.0], fov: 40 },
+        "trainer-cu": { pos: [1.0, 1.4, 1.9], target: [-0.5, 1.3, 0.0], fov: 30 },
+        "client-cu": { pos: [-0.9, 0.95, 1.7], target: [0.35, 0.8, 0.0], fov: 30 },
+        "floor-wide": { pos: [0.3, 0.9, 4.6], target: [0.3, 0.85, 0.0], fov: 44 },
+        "floor-low": { pos: [0.4, 0.35, 4.6], target: [0.4, 0.3, 0.0], fov: 34 },
+        "bench-side": { pos: [0.4, 0.55, 4.0], target: [0.4, 0.5, 0.0], fov: 34 },
+        "wall-side": { pos: [-1.25, 0.85, 4.2], target: [-1.25, 0.75, 0.0], fov: 44 },
+        "wall-cu": { pos: [-1.65, 0.7, 3.0], target: [-1.65, 0.65, 0.0], fov: 34 }
+      }
+    };
   }
 };
