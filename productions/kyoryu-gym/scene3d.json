@@ -504,7 +504,7 @@
         }
       }
     },
-    "titleScreenText": "恐竜が\nパーソナルジムに入会した"
+    "titleScreenText": "恐竜が\nパーソナルジムに\n入会した"
   },
   "voices": {
     "trainer": {
@@ -598,7 +598,7 @@
       "role": "hook",
       "shot": "two-shot",
       "pre": 0.05,
-      "post": 0.2,
+      "post": 0.1,
       "line": {
         "who": "trainer",
         "text": "目標は、何ですか？"
@@ -627,7 +627,7 @@
       "role": "rule",
       "shot": "client-cu",
       "pre": 0.3,
-      "post": 0.35,
+      "post": 0.25,
       "line": {
         "who": "dino",
         "text": "腕立て伏せを、／1回できるようになりたいです"
@@ -648,7 +648,7 @@
       "role": "escalate",
       "level": 1,
       "shot": "two-shot",
-      "post": 0.2,
+      "post": 0.1,
       "line": {
         "who": "trainer",
         "text": "いいですね。／まず、床に手をついてみましょう"
@@ -683,7 +683,7 @@
       "level": 1,
       "shot": "floor-low",
       "pre": 0.9,
-      "post": 0.2,
+      "post": 0.1,
       "line": {
         "who": "dino",
         "text": "……顔が、ついてます"
@@ -708,7 +708,7 @@
       "role": "bridge",
       "shot": "floor-wide",
       "pre": 0.1,
-      "post": 0.15,
+      "post": 0.08,
       "line": {
         "who": "trainer",
         "text": "顔は、ついてますね。／手は？"
@@ -719,7 +719,7 @@
       "role": "bridge",
       "shot": "floor-low",
       "pre": 0.3,
-      "post": 0.2,
+      "post": 0.1,
       "line": {
         "who": "dino",
         "text": "……浮いてます"
@@ -731,7 +731,7 @@
       "level": 2,
       "shot": "floor-wide",
       "pre": 0.1,
-      "post": 0.2,
+      "post": 0.1,
       "line": {
         "who": "trainer",
         "text": "膝をついても、／変わらないですね"
@@ -756,7 +756,7 @@
       "role": "escalate",
       "level": 3,
       "shot": "two-shot",
-      "post": 0.15,
+      "post": 0.08,
       "line": {
         "who": "trainer",
         "text": "では、台を使いましょう"
@@ -799,7 +799,7 @@
       "level": 3,
       "shot": "bench-side",
       "pre": 0.7,
-      "post": 0.2,
+      "post": 0.1,
       "line": {
         "who": "dino",
         "text": "……お腹が、ついてます"
@@ -820,7 +820,7 @@
       "role": "bridge",
       "shot": "bench-side",
       "pre": 0.1,
-      "post": 0.15,
+      "post": 0.08,
       "line": {
         "who": "trainer",
         "text": "手は、届きました。／押してみてください"
@@ -831,7 +831,7 @@
       "role": "bridge",
       "shot": "bench-side",
       "pre": 0.3,
-      "post": 0.15,
+      "post": 0.08,
       "line": {
         "who": "dino",
         "text": "……押してます"
@@ -860,7 +860,7 @@
       "role": "bridge",
       "shot": "two-shot",
       "pre": 0.1,
-      "post": 0.2,
+      "post": 0.1,
       "line": {
         "who": "trainer",
         "text": "お腹が、ついてますからね"
@@ -870,7 +870,7 @@
       "id": "wall",
       "role": "turn",
       "shot": "two-shot",
-      "post": 0.2,
+      "post": 0.1,
       "line": {
         "who": "trainer",
         "text": "最後に、壁です"
@@ -919,7 +919,7 @@
       "role": "bridge",
       "shot": "wall-side",
       "pre": 1.0,
-      "post": 0.2,
+      "post": 0.1,
       "line": {
         "who": "dino",
         "text": "……届きました"
@@ -1029,7 +1029,7 @@
       "role": "bridge",
       "shot": "wall-side",
       "pre": 0.1,
-      "post": 0.2,
+      "post": 0.1,
       "line": {
         "who": "trainer",
         "text": "ナイス1回です！"
@@ -1074,7 +1074,7 @@
       "role": "bridge",
       "shot": "wall-side",
       "pre": 0.2,
-      "post": 0.15,
+      "post": 0.08,
       "line": {
         "who": "trainer",
         "text": "じゃあ、あと3回、いきましょうか"
