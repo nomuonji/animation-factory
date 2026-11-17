@@ -1,0 +1,12 @@
+{
+  "production": "kyoryu-gym",
+  "youtubeId": "WbiVJ9s1-vg",
+  "postedAt": "2026-11-16",
+  "durationSec": 48.1,
+  "variant": "baseline",
+  "note": "",
+  "windowDays": 3,
+  "fetched": false,
+  "metrics": null,
+  "howToFetch": "video-publisher の YouTube Metrics: videos=\"WbiVJ9s1-vg:2026-11-16:48\""
+}

@@ -364,6 +364,107 @@
         },
         "notes": "歯科医院の診療台（定期検診・治療）。患者は原点の診療台に +Z 向き、背もたれは params.recline（既定0.62rad）で -Z 側へ倒れる。VRM 患者は seated:true と root.rx=-recline で寝かせる（LilShark height1.2 なら root {y:0.2,z:0.05}）。歯科医は患者の右（x≈-0.5, z≈-0.3, ry=π/2）、うがいの鉢・コップ・器具トレーは患者の左、無影灯は顔の上（params.lampOff で消灯）"
       },
+      "real-estate-office": {
+        "cameras": [
+          "wide",
+          "agent-cu",
+          "customer-cu",
+          "over-customer",
+          "over-agent",
+          "desk-top"
+        ],
+        "surfaces": {
+          "desk": 0.72,
+          "floor": 0,
+          "seat": 0.48
+        },
+        "notes": "不動産屋の賃貸カウンター（部屋探し・物件紹介）。相談机 z≈-0.35（天板0.72、中央の目隠し板、両側に低い仕切り）。担当者は机の奥 z≈-0.85 で +Z 向き（手続き型人物は seated:true＋root.y≈-0.32）、客は手前の椅子 z≈0.25 で -Z 向き（椅子は prop）。奥の壁に物件チラシのコルクボードと「おすすめ物件」（params.header, params.accent）、右に物件チラシを貼った窓、左にパンフ棚。机の間取り図は floor-plan prop"
+      },
+      "family-restaurant": {
+        "cameras": [
+          "table-wide",
+          "table-top",
+          "beko-cu",
+          "akuma-cu",
+          "server-cu",
+          "entrance-wide",
+          "register-staff",
+          "register-customer",
+          "register-top"
+        ],
+        "surfaces": {
+          "table": 0.72,
+          "seat": 0.45,
+          "register": 1.0,
+          "floor": 0
+        },
+        "notes": "ファミレス。ボックス席（座面0.45のベンチが z≈-0.95 で +Z 向き、背もたれ高め）とテーブル（天板0.72、中心 (0,-0.35)、x -0.6..0.6 / z -0.7..0.0）。店員はテーブルの通路側 x≈0.95 で -X 向き。入口のレジカウンター（天板1.0、中心 (2.9,-0.75)）：店員は奥 z≈-1.15 で +Z 向き、客は手前 z≈-0.05 で -Z 向き。奥の壁に窓、ペンダントライト、卓上にメニュースタンド・紙ナプキン・呼び出しベル、右の壁にガラスの入口ドア。params.accent（座面・制服の差し色）"
+      },
+      "hotel-front-desk": {
+        "cameras": [
+          "wide",
+          "side",
+          "staff-cu",
+          "guest-cu",
+          "two-shot"
+        ],
+        "surfaces": {
+          "counter": 1.05,
+          "floor": 0
+        },
+        "notes": "ホテルのフロント（チェックイン・苦情対応）。大理石天板のカウンター z=0（天板1.05）。スタッフは奥 z≈-0.55 で +Z 向き、客は手前 z≈0.6 で -Z 向き（ry=π）。奥の壁に鍵の棚（部屋番号つき）とロゴ（params.logo, params.accent）、カウンター上にベル・ペン立て・モニター、左に観葉植物。カメラ: wide / side（横から両者）/ staff-cu（客の肩越しにスタッフ）/ guest-cu / two-shot"
+      },
+      "diner-counter": {
+        "cameras": [
+          "wide",
+          "taisho-cu",
+          "guest-cu",
+          "two-shot",
+          "regular-cu",
+          "counter-top",
+          "side"
+        ],
+        "surfaces": {
+          "counter": 0.98,
+          "seat": 0.58,
+          "floor": 0
+        },
+        "notes": "町の食堂のカウンター（食堂・定食屋・町中華）。木のカウンター z=0（天板0.98）。大将は奥 z≈-0.55 で +Z 向き、客はカウンター前の丸椅子（座面0.58、z≈0.85）に座って -Z 向き（seated、root.y≈-0.2）。丸椅子 x=-1.4,-0.9,0.14,1.2。奥は白タイルの厨房壁、コンロと寸胴、短冊メニュー、屋号の看板、時計。params.accent（差し色）, shopName"
+      },
+      "personal-gym": {
+        "cameras": [
+          "wide",
+          "two-shot",
+          "trainer-cu",
+          "client-cu",
+          "floor-wide",
+          "floor-low",
+          "bench-side",
+          "wall-side",
+          "wall-cu"
+        ],
+        "surfaces": {
+          "floor": 0,
+          "mat": 0.02
+        }
+      },
+      "sento-lobby": {
+        "cameras": [
+          "wide",
+          "bench-cu",
+          "bench-wide",
+          "clerk-cu",
+          "clock-cu",
+          "over-bench",
+          "side"
+        ],
+        "surfaces": {
+          "desk": 1.0,
+          "floor": 0,
+          "bench": 0.45
+        },
+        "notes": "銭湯の休憩所（番台・長椅子・壁掛け時計・冷蔵ケース・扇風機・体重計）。番台は左奥、長椅子は中央〜右。座る人物は seated:true。時計は prop wall-clock（param t で針を進める）"
+      },
       "animal-clinic": {
         "cameras": [
           "wide",
@@ -432,6 +533,58 @@
         "tilt",
         "power",
         "param:flash"
+      ],
+      "floor-plan": [
+        "layout",
+        "rent",
+        "room",
+        "tags[]",
+        "seed",
+        "accent",
+        "tagColor",
+        "w",
+        "d"
+      ],
+      "water-glass": [
+        "height",
+        "radius",
+        "water",
+        "straw",
+        "strawColor"
+      ],
+      "hamburg-plate": [
+        "size",
+        "plate",
+        "empty"
+      ],
+      "toy-basket": [
+        "width",
+        "depth",
+        "label"
+      ],
+      "toy-car": [
+        "color"
+      ],
+      "ramen-bowl": [
+        "bowl",
+        "negi"
+      ],
+      "gyoza-plate": [
+        "count"
+      ],
+      "beer-mug": [
+        "height",
+        "radius"
+      ],
+      "exercise-bench": [
+        "color"
+      ],
+      "wall-clock": [
+        "r",
+        "param:t"
+      ],
+      "milk-bottle": [
+        "param:empty"
       ]
     },
     "character": {

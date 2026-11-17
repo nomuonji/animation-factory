@@ -140,6 +140,30 @@
           "gain": 0.35
         }
       ]
+    },
+    "thermo-beep": {
+      "layers": [
+        {
+          "lavfi": "aevalsrc=if(lt(mod(t\\,0.22)\\,0.1)\\,0.6*sin(2*PI*2800*t)\\,0):d=0.5",
+          "gain": 0.45
+        }
+      ]
+    },
+    "ac-beep": {
+      "layers": [
+        {
+          "lavfi": "sine=f=1800:d=0.12,afade=t=out:st=0.08:d=0.04",
+          "gain": 0.5
+        }
+      ]
+    },
+    "error-buzz": {
+      "layers": [
+        {
+          "lavfi": "aevalsrc=if(gt(sin(2*PI*150*t)\\,0)\\,0.35\\,-0.35):d=0.4,afade=t=out:st=0.3:d=0.1",
+          "gain": 0.5
+        }
+      ]
     }
   }
 }

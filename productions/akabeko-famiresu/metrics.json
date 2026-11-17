@@ -1,0 +1,29 @@
+{
+  "production": "akabeko-famiresu",
+  "youtubeId": "2fRumhxHr48",
+  "postedAt": "2026-11-12",
+  "durationSec": 40.5,
+  "variant": "baseline",
+  "note": "",
+  "windowDays": 3,
+  "fetched": true,
+  "metrics": {
+    "window": "2026-11-12..2026-11-14",
+    "views": 44,
+    "minutesWatched": 10,
+    "avgViewSec": 23,
+    "avgViewPct": 57.24,
+    "subsGained": 0,
+    "likes": 0,
+    "shortsFeedViews": 39,
+    "retention": {
+      "3s": 1.192,
+      "5s": 0.962,
+      "10s": 0.692,
+      "20s": 0.461,
+      "last": 0.4231
+    }
+  },
+  "howToFetch": "fuzoku の GitHub Actions `metrics`: mode=video, concept=おもしろ, videos=\"2fRumhxHr48:2026-11-12:<尺秒>\"",
+  "fetchedAt": "2026-11-16"
+}

@@ -75,7 +75,7 @@ export class Director3D {
       const c = a.vrm ? new VrmCharacter(id, assets.get(a.vrm)!, { height: a.height, turn: a.turn, seated: a.seated })
         : a.figure === "chibi" ? new Chibi(id, { ...(a.style as ChibiStyle ?? {}), ...(a.height ? { height: a.height } : {}) })
         : a.figure === "akabeko" ? new Akabeko(id, { height: a.height, ...(a.figureParams ?? {}) })
-        : new Character(id, a.style ?? {});
+        : new Character(id, a.style ?? {}, { seated: a.seated });
       this.scene.add(c.root);
       const face0 = { eyes: 1, brow: 0, smile: 0, ...(EXPRESSIONS[a.expr ?? "neutral"] ?? {}) } as Val;
       const ch = {

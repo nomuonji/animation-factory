@@ -95,7 +95,7 @@ export class Character {
   private browBaseY = 0;
   private chest!: THREE.Object3D;
 
-  constructor(readonly id: string, readonly style: CharacterStyle) {
+  constructor(readonly id: string, readonly style: CharacterStyle, opts: { seated?: boolean } = {}) {
     const s = {
       skin: "#f2c9a8", hair: "#2a2226", hairStyle: "short", top: "#f4f2ee", vest: null, vestTrim: "#ffffff",
       bottom: "#3a3d4a", shoes: "#2b2b30", glasses: false, nameTag: null, hood: false, height: 1,
@@ -110,6 +110,19 @@ export class Character {
 
     // legs
     for (const side of [-1, 1]) {
+      if (opts.seated) {
+        // seated: thigh forward, shin down. Lower root.y by ~0.32 so the hips (0.5) meet a 0.45 m seat.
+        const thigh = mesh(new THREE.CapsuleGeometry(0.068, 0.34, 4, 10), toon(s.bottom));
+        thigh.rotation.x = Math.PI / 2; thigh.position.set(0.09 * side, -0.02, 0.2);
+        this.hips.add(thigh);
+        const shin = mesh(new THREE.CapsuleGeometry(0.062, 0.36, 4, 10), toon(s.bottom));
+        shin.position.set(0.09 * side, -0.25, 0.4);
+        this.hips.add(shin);
+        const shoe = mesh(new THREE.BoxGeometry(0.11, 0.07, 0.2, 2, 1, 2), toon(s.shoes));
+        shoe.position.set(0.09 * side, -0.47, 0.44);
+        this.hips.add(shoe);
+        continue;
+      }
       const leg = mesh(new THREE.CapsuleGeometry(0.065, 0.62, 4, 10), toon(s.bottom));
       leg.position.set(0.085 * side, -0.4, 0);
       this.hips.add(leg);

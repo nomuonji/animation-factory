@@ -1,0 +1,29 @@
+{
+  "production": "hotel-niyari-furonto",
+  "youtubeId": "VkrBX8rLbC8",
+  "postedAt": "2026-11-13",
+  "durationSec": 44.0,
+  "variant": "baseline",
+  "note": "",
+  "windowDays": 3,
+  "fetched": true,
+  "metrics": {
+    "window": "2026-11-13..2026-11-15",
+    "views": 338,
+    "minutesWatched": 135,
+    "avgViewSec": 42,
+    "avgViewPct": 93.42,
+    "subsGained": 0,
+    "likes": 1,
+    "shortsFeedViews": 313,
+    "retention": {
+      "3s": 1.5,
+      "5s": 1.384,
+      "10s": 1.137,
+      "20s": 0.947,
+      "last": 0.2737
+    }
+  },
+  "howToFetch": "fuzoku の GitHub Actions `metrics`: mode=video, concept=おもしろ, videos=\"VkrBX8rLbC8:2026-11-13:<尺秒>\"",
+  "fetchedAt": "2026-11-17"
+}

@@ -1,0 +1,12 @@
+{
+  "production": "kenon-shitsuon",
+  "youtubeId": "uNomz8Qnp-U",
+  "postedAt": "2026-11-15",
+  "durationSec": 45.1,
+  "variant": "baseline",
+  "note": "診察室（内科クリニック）。ウーパー魔女の体温が室温と同じ、カルテ36度未満エラー。実験は走っていない",
+  "windowDays": 3,
+  "fetched": false,
+  "metrics": null,
+  "howToFetch": "video-publisher の GitHub Actions `YouTube Metrics`: mode=video, concept=おもしろ, videos=\"uNomz8Qnp-U:2026-11-15:45.1\"（公開から3日後以降）"
+}

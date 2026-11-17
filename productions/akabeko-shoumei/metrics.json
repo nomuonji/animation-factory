@@ -1,0 +1,29 @@
+{
+  "production": "akabeko-shoumei",
+  "youtubeId": "A2yBlXqO3YM",
+  "postedAt": "2026-11-07",
+  "durationSec": 21,
+  "variant": "baseline",
+  "note": "尺21秒（Yuto『短い』）。TikTokは別ブランチで再投稿",
+  "windowDays": 3,
+  "fetched": true,
+  "metrics": {
+    "window": "2026-11-07..2026-11-09",
+    "views": 377,
+    "minutesWatched": 53,
+    "avgViewSec": 22,
+    "avgViewPct": 103.49,
+    "subsGained": 1,
+    "likes": 1,
+    "shortsFeedViews": 337,
+    "retention": {
+      "3s": 1.356,
+      "5s": 1.197,
+      "10s": 1.015,
+      "20s": 0.848,
+      "last": 0.75
+    }
+  },
+  "howToFetch": "video-publisher の GitHub Actions `YouTube Metrics`(metrics.yml): mode=video, concept=おもしろ, videos=\"A2yBlXqO3YM:2026-11-07:21\"（fuzoku 未接続のため代替。読み取りのみ）",
+  "fetchedAt": "2026-11-15"
+}
