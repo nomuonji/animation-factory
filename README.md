@@ -8,6 +8,10 @@ The repository is designed so an AI agent can behave like a director: choose act
 
 Chapter-based landscape films now use `productions/<id>/longform.json`. The pipeline reuses the Shorts v3 source/voice engine, renders resumable chapters, and exports a full MP4, synchronized subtitles, chapters, credits and a browser review pack. Draft: 960×540; final: 1920×1080. Run **Long-form production** in Actions or use the local CLI. See [long-form authoring and rendering](docs/longform.md).
 
+## Style Shorts
+
+One topic, one of 21 looks (2D stick figures, living charts and diagrams, paper, comic, risograph, retro anime, pixel art, minimal line; 3D cartoon, what-if desert, low-poly, route map, exploded view, block world, toy bricks, retro console, block horror, clay, game avatar). Write `productions/<id>/styled.json`, run `node tools/styles/render-style.mjs <id>`. See [Style Shorts](docs/style-shorts.md) and the `style-shorts` skill.
+
 ## Current stack
 
 - Phaser 4 renderer

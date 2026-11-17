@@ -1,0 +1,135 @@
+name: Style Shorts
+
+# Renders Style Shorts (tools/styles) with VOICEVOX narration.
+# Technical pass only: nothing here uploads or publishes anywhere.
+on:
+  workflow_dispatch:
+    inputs:
+      production:
+        description: production folder under productions/ (must contain styled.json)
+        required: true
+        type: string
+      style:
+        description: optional style override (catalog/styles.json id), or "all" for a style gallery of stills
+        required: false
+        default: ""
+        type: string
+      voices_only:
+        description: only synthesize VOICEVOX takes (artifact three-voice) so another machine can render
+        required: false
+        default: false
+        type: boolean
+  pull_request:
+    paths:
+      - "productions/**/styled.json"
+      - "src/styles/**"
+      - "tools/styles/**"
+      - "catalog/styles.json"
+      - "catalog/sfx-styles.json"
+      - "styles.html"
+      - ".github/workflows/style-shorts.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: style-shorts-${{ github.event.inputs.production || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  render:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Resolve productions
+        id: resolve
+        shell: bash
+        env:
+          MANUAL: ${{ inputs.production }}
+          BASE: ${{ github.event.pull_request.base.sha }}
+        run: |
+          set -euo pipefail
+          if [ -n "${MANUAL:-}" ]; then
+            list="$MANUAL"
+          else
+            list="$(git diff --name-only "$BASE" HEAD -- 'productions/*/styled.json' | sed -n 's#^productions/\([^/]*\)/styled\.json$#\1#p' | sort -u | tr '\n' ' ')"
+            if [ -z "$list" ]; then
+              changed="$(git diff --name-only "$BASE" HEAD -- 'src/styles/**' 'tools/styles/**' 'catalog/styles.json' 'styles.html' || true)"
+              # engine change: the style gallery of the demo production is the regression check
+              [ -n "$changed" ] && list="style-demo-moon"
+            fi
+          fi
+          for p in $list; do [[ "$p" =~ ^[A-Za-z0-9._-]+$ ]] || { echo "unsafe: $p"; exit 2; }; done
+          echo "list=$list" >> "$GITHUB_OUTPUT"
+          echo "Productions: $list"
+
+      - name: Dependencies
+        if: ${{ steps.resolve.outputs.list != '' }}
+        run: |
+          npm ci
+          npx playwright install --with-deps chromium
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg fonts-noto-cjk fonts-noto-cjk-extra
+
+      - name: Typecheck
+        if: ${{ steps.resolve.outputs.list != '' }}
+        run: npx tsc --noEmit
+
+      - name: Start VOICEVOX engine
+        if: ${{ steps.resolve.outputs.list != '' }}
+        run: |
+          docker run -d --rm --name vv -p 127.0.0.1:50021:50021 voicevox/voicevox_engine:cpu-latest
+          for i in $(seq 1 120); do curl -fsS http://127.0.0.1:50021/version && exit 0; sleep 2; done; docker logs vv; exit 1
+
+      - name: Voices only
+        if: ${{ steps.resolve.outputs.list != '' && inputs.voices_only }}
+        run: |
+          for p in ${{ steps.resolve.outputs.list }}; do node tools/styles/render-style.mjs "$p" --voices-only; done
+          mkdir -p artifact && cp -r outputs/three-voice artifact/
+
+      - name: Render
+        env:
+          STYLE: ${{ inputs.style }}
+          EVENT: ${{ github.event_name }}
+        run: |
+          set -euo pipefail
+          for p in ${{ steps.resolve.outputs.list }}; do
+            if [ "${STYLE:-}" = "all" ] || { [ "$EVENT" = "pull_request" ] && [ "$p" = "style-demo-moon" ]; }; then
+              # gallery: one still per scene in every style + a contact sheet
+              node tools/styles/gallery.mjs "$p"
+              mkdir -p "artifact/$p-gallery" && cp outputs/styles/gallery/"$p"/*.jpg "artifact/$p-gallery/"
+              # and one full video so voice/music/mux are exercised, with its layout inspect
+              node tools/styles/render-style.mjs "$p" --inspect --scale 0.5 || echo "::warning::layout inspect found errors in $p"
+              node tools/styles/render-style.mjs "$p"
+              mkdir -p "artifact/$p" && cp -r "outputs/styles/$p/review/." "artifact/$p/"
+              cp -r "outputs/styles/$p/inspect" "artifact/$p/" || true
+            elif [ -n "${STYLE:-}" ]; then
+              node tools/styles/render-style.mjs "$p" --style "$STYLE" --inspect --scale 0.5 || true
+              node tools/styles/render-style.mjs "$p" --style "$STYLE"
+              mkdir -p "artifact/$p--$STYLE" && cp -r "outputs/styles/$p--$STYLE/review/." "artifact/$p--$STYLE/"
+              cp -r "outputs/styles/$p--$STYLE/inspect" "artifact/$p--$STYLE/" || true
+            else
+              # layout inspect first (cheap), then the real render; both reports go to the artifact
+              node tools/styles/render-style.mjs "$p" --inspect --scale 0.5 || echo "::warning::layout inspect found errors in $p (see inspect/inspect.md)"
+              node tools/styles/render-style.mjs "$p"
+              node tools/styles/qa.mjs "$p" || true
+              mkdir -p "artifact/$p" && cp -r "outputs/styles/$p/review/." "artifact/$p/"
+              cp -r "outputs/styles/$p/inspect" "artifact/$p/" || true
+            fi
+          done
+        if: ${{ steps.resolve.outputs.list != '' && !inputs.voices_only }}
+
+      - uses: actions/upload-artifact@v4
+        if: ${{ steps.resolve.outputs.list != '' }}
+        with:
+          name: style-shorts-${{ github.run_id }}
+          path: artifact/
+          retention-days: 30

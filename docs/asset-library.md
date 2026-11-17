@@ -1,6 +1,6 @@
 # Asset library
 
-Start with [`catalog/asset-library.json`](../catalog/asset-library.json) when choosing reusable art or sound. The library is deliberately broader than the current renderer: assets are stocked and licensed, while individual productions continue to use the supported component catalog until a reusable asset loader is added.
+Start with [`catalog/asset-library.json`](../catalog/asset-library.json) when choosing reusable art or sound. To find new licensed material or check audio, see [asset-sources.md](asset-sources.md) (Openverse, earshot). The library is deliberately broader than the current renderer: assets are stocked and licensed, while individual productions continue to use the supported component catalog until a reusable asset loader is added.
 
 ## Backgrounds
 

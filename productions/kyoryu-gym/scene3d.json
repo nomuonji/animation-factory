@@ -1,0 +1,1136 @@
+{
+  "meta": {
+    "id": "kyoryu-gym",
+    "title": "恐竜がパーソナルジムに入会した",
+    "fps": 30,
+    "width": 1080,
+    "height": 1920,
+    "variant": "baseline"
+  },
+  "design": {
+    "format": "escalation-ladder",
+    "title": "恐竜がパーソナルジムに入会した",
+    "titleAlternatives": [
+      "腕立て伏せが1回もできない恐竜",
+      "腕立て伏せの目標が『1回』のジム"
+    ],
+    "titlePattern": "consequence",
+    "hook": {
+      "type": "line-first",
+      "firstFrame": "パーソナルジムで、セーター姿の小さな恐竜とトレーナーが向かい合っている",
+      "overlay": "目標は『1回』"
+    },
+    "rule": "腕の短い恐竜が、腕立て伏せを1回やりたいと頼む。トレーナーはいつもの手順どおり、できるところまで易しい版に変えていく",
+    "escalations": [
+      "床の腕立て：手が床に届かず、顔が先につく",
+      "膝つき：何も変わらない",
+      "台の腕立て：手は届くが、お腹が先につく",
+      "壁の腕立て：やっと手が届き、ほんの少し押せる"
+    ],
+    "turn": "トレーナーが最後に、壁に手をつく版を選ぶ",
+    "payoff": "壁を押した体がほんの少し動き、トレーナーが1回として全力で祝う",
+    "button": "『あと3回』と言うトレーナーに、恐竜が来週でお願いする",
+    "loop": false,
+    "reaction": "laugh",
+    "audience": "ジムの初回カウンセリングを経験したことがあり、スクロール中に『腕立て1回が目標』という一言で足が止まる人",
+    "titleOnScreen": "card",
+    "reality": {
+      "place": "パーソナルジムの初回トレーニング",
+      "normalEvent": "トレーナーが目標を聞き、腕立て伏せを床・膝つき・台・壁と段階的に易しくして、できる形を探す",
+      "onlyBreak": "客が腕の短い恐竜なので、一番易しい壁の腕立てでやっと手が届く"
+    },
+    "payoffMechanism": "smallest-win-celebrated",
+    "ideation": {
+      "gateVersion": 2,
+      "method": "creative-thinking (My Portal chat Skill, 2026-11-16 scheduled run: delegated selection)",
+      "candidates": 16,
+      "rejected": [
+        "C01 引越し見積もり・卵: 『卵は割れ物か生ものか』の説明に頼り、段ごとの新しい発見が少ない",
+        "C09 おみくじ・悪魔: kaeru-heyasagashi（短所が長所）と同じ仕組み",
+        "C14 回転寿司・柴バーガー: doubutsu-tatoeru の『バーガーです』と重なる",
+        "C15 卒業式の呼名・赤べこ: akabeko-shoumei（返事でうなずく）と同じ仕組み"
+      ],
+      "corpus": {
+        "dataset": "radichichi",
+        "datasetVersion": "v1",
+        "retrievedAt": "2026-11-16T04:30:00Z",
+        "queryLog": [
+          {
+            "query": "先生",
+            "resultChunkIds": [
+              "radichichi_1755068597_009",
+              "radichichi_1755068597_006",
+              "radichichi_1755068597_003"
+            ]
+          },
+          {
+            "query": "入学式",
+            "resultChunkIds": [
+              "radichichi_1755068597_009"
+            ]
+          },
+          {
+            "query": "面接",
+            "resultChunkIds": [
+              "radichichi_1755068597_006"
+            ]
+          }
+        ],
+        "sourceChunks": [
+          {
+            "id": "radichichi_1755068597_009",
+            "dataset": "radichichi",
+            "retrievalTier": "creative",
+            "role": "ogiri_reference"
+          },
+          {
+            "id": "radichichi_1755068597_006",
+            "dataset": "radichichi",
+            "retrievalTier": "creative",
+            "role": "ogiri_reference"
+          },
+          {
+            "id": "radichichi_1755068597_003",
+            "dataset": "radichichi",
+            "retrievalTier": "creative",
+            "role": "ogiri_reference"
+          }
+        ],
+        "sourceChunkIds": [
+          "radichichi_1755068597_009",
+          "radichichi_1755068597_006",
+          "radichichi_1755068597_003"
+        ],
+        "sourceExampleIds": [
+          "radichichi-690",
+          "radichichi-228",
+          "radichichi-459",
+          "radichichi-414",
+          "radichichi-442",
+          "radichichi-435"
+        ]
+      },
+      "mechanisms": [
+        {
+          "id": "m-ritual-physics",
+          "sourceExampleIds": [
+            "radichichi-690",
+            "radichichi-228"
+          ],
+          "abstractOperation": "決まった所作の連鎖を、環境や身体の物理条件に置き換え、次の動作までの因果を一段ずつ追う",
+          "transfer": "腕立て伏せという定番の運動の段階（床・膝つき・台・壁）を、短い腕という身体条件で一段ずつ追う"
+        },
+        {
+          "id": "m-concept-contagion",
+          "sourceExampleIds": [
+            "radichichi-459",
+            "radichichi-414"
+          ],
+          "abstractOperation": "ひとつの概念や規則が持ち込まれると、周囲の言動がすべてそれに引っ張られる",
+          "transfer": "候補では、願い事や借り物の指示が文字どおりに周囲を動かす構造として使った"
+        },
+        {
+          "id": "m-script-native",
+          "sourceExampleIds": [
+            "radichichi-442"
+          ],
+          "abstractOperation": "定型の確認や質問を、その場の現物と手順どおりに進める",
+          "transfer": "カウンセリングの『目標は？』から手順どおりに進めるトレーナーの言い方として使った"
+        },
+        {
+          "id": "m-labeled-state-shift",
+          "sourceExampleIds": [
+            "radichichi-435"
+          ],
+          "abstractOperation": "場の定型の表示や呼称が一語だけ入れ替わり、状況の意味が反転する",
+          "transfer": "候補では、おみくじの吉凶やメニューの表示など呼称の反転として使った"
+        }
+      ],
+      "candidateLog": [
+        {
+          "id": "C01",
+          "mechanism": "m-script-native",
+          "mechanismFamily": "classification-meets-living-thing",
+          "causalCore": "事務的な品目分類の質問が、分類できない生き物の入った荷物に当たり、答えが分類の外へ広がる",
+          "concept": "引越し見積もりで、恐竜の荷物に卵が入っている",
+          "status": "rejected",
+          "reason": "孵化日を引越し日と調整する展開は『卵が割れ物か生ものか』の説明に頼り、段ごとの新しい発見が少ない"
+        },
+        {
+          "id": "C02",
+          "mechanism": "m-concept-contagion",
+          "mechanismFamily": "classification-meets-living-thing",
+          "causalCore": "発送可否の定型確認が、時間が経つと中身が変わる品物で成立しなくなる",
+          "concept": "郵便窓口で恐竜が卵を送りたい",
+          "status": "rejected",
+          "reason": "郵便局の禁止品の規則を作って説明する必要があり、現実の土台から外れる点が2つになる"
+        },
+        {
+          "id": "C03",
+          "mechanism": "m-ritual-physics",
+          "mechanismFamily": "ripple-of-accommodation",
+          "causalCore": "一人の身体条件に合わせた調整が、隣接する全員の位置調整へ連鎖する",
+          "concept": "体育館の『前へならえ』で恐竜の腕が前の子に届かず、前の子から順に下がっていく",
+          "status": "shortlisted"
+        },
+        {
+          "id": "C04",
+          "mechanism": "m-script-native",
+          "mechanismFamily": "trait-sync-conflict",
+          "causalCore": "同時に起きる身体の癖が、順序を要求する所作の規則と常に衝突する",
+          "concept": "接客研修の語先後礼で、しゃべるとうなずく赤べこが同時礼になる",
+          "status": "rejected",
+          "reason": "akabeko-shoumei（返事をするとうなずく）と笑いの仕組みが同じ"
+        },
+        {
+          "id": "C05",
+          "mechanism": "m-ritual-physics",
+          "mechanismFamily": "stepwise-fit-failure",
+          "causalCore": "規格品を身体に合わせる定型調整の各段階が、別々の形状で順に失敗する",
+          "concept": "眼鏡屋のフィッティングで悪魔の角と耳に眼鏡が合わない",
+          "status": "rejected",
+          "reason": "悪魔のニヤリ顔を使ったhotel-niyari-furontoに近く、各段の失敗が『合わない』の繰り返しになる"
+        },
+        {
+          "id": "C06",
+          "mechanism": "m-ritual-physics",
+          "mechanismFamily": "regression-ladder-to-smallest-win",
+          "causalCore": "目標のために課題を段階的に易しくし、最も易しい版で初めて成立して小さな成功が全力で祝われる",
+          "concept": "パーソナルジムで、腕の短い恐竜が『腕立て伏せ1回』を目標に入会する",
+          "status": "selected"
+        },
+        {
+          "id": "C07",
+          "mechanism": "m-script-native",
+          "mechanismFamily": "test-axis-mismatch",
+          "causalCore": "標準検査の測定軸が対象の得意軸とずれ、全項目が空振りした後に別の軸だけ反応する",
+          "concept": "耳鼻科の聴力検査で、恐竜は高い音が聞こえず低い音だけ反応する",
+          "status": "shortlisted"
+        },
+        {
+          "id": "C08",
+          "mechanism": "m-labeled-state-shift",
+          "mechanismFamily": "performer-outclassed",
+          "causalCore": "驚かせる側の定型演出が、本物の側の客に通じず立場が揺らぐ",
+          "concept": "お化け屋敷に本物の悪魔が客として入る",
+          "status": "rejected",
+          "reason": "役割逆転だけで二段目がなく、既存設定にない『お化けが悪魔を恐れる』を足すことになる"
+        },
+        {
+          "id": "C09",
+          "mechanism": "m-labeled-state-shift",
+          "mechanismFamily": "taste-inversion",
+          "causalCore": "吉凶の価値判断が当事者の立場で反転する",
+          "concept": "初詣のおみくじで悪魔が大吉を引いて落ち込む",
+          "status": "rejected",
+          "reason": "kaeru-heyasagashi（短所が長所）と同じ仕組み"
+        },
+        {
+          "id": "C10",
+          "mechanism": "m-labeled-state-shift",
+          "mechanismFamily": "mundane-service-supernatural-destination",
+          "causalCore": "日常の接客手順が超常的な目的地にもそのまま適用され淡々と進む",
+          "concept": "タクシーで悪魔が『地獄まで』と言う",
+          "status": "rejected",
+          "reason": "場所の設定全体が異常になり、ズレが一点に絞れない"
+        },
+        {
+          "id": "C11",
+          "mechanism": "m-ritual-physics",
+          "mechanismFamily": "threshold-signal-misattribution",
+          "causalCore": "閾値の警報が鳴る原因が見た目の印象と一致せず、犯人の特定が逆転する",
+          "concept": "エレベーターの重量オーバーのブザーで、恐竜ではなく別の客が原因だった",
+          "status": "rejected",
+          "reason": "日常の小さな不具合を描いただけで笑いの核と展開がない"
+        },
+        {
+          "id": "C12",
+          "mechanism": "m-concept-contagion",
+          "mechanismFamily": "stock-phrase-literalized",
+          "causalCore": "願い事を書くという定型が文字どおり実行され、叶った結果を受け取る",
+          "concept": "七夕の短冊に書いた願いが文字どおり叶う",
+          "status": "rejected",
+          "reason": "叶える側の新しい設定を足す必要があり、後付けに頼る"
+        },
+        {
+          "id": "C13",
+          "mechanism": "m-concept-contagion",
+          "mechanismFamily": "stock-phrase-literalized",
+          "causalCore": "お題カードの指示が人物の属性に文字どおり適用され、借りる対象が人になる",
+          "concept": "借り物競走で『小さいもの』のカードを引いた赤べこ",
+          "status": "rejected",
+          "reason": "お題を作って用意する小道具（カード）の見せ方に笑いを頼る狙いすぎ"
+        },
+        {
+          "id": "C14",
+          "mechanism": "m-labeled-state-shift",
+          "mechanismFamily": "self-as-menu",
+          "causalCore": "客自身がメニューの一品と同じ形をしており、注文と提供の対応が自己参照になる",
+          "concept": "ハンバーガー店に柴バーガーが客として来る",
+          "status": "rejected",
+          "reason": "doubutsu-tatoeru の『バーガーです』と笑いの仕組みが重なる"
+        },
+        {
+          "id": "C15",
+          "mechanism": "m-script-native",
+          "mechanismFamily": "trait-sync-conflict",
+          "causalCore": "返事のたびに起きる身体動作が、返事の有無を判別する儀式的場面で誤判定を生む",
+          "concept": "卒業式の呼名で、返事のたびにうなずく赤べこ",
+          "status": "rejected",
+          "reason": "akabeko-shoumei と同じ仕組み、しかも赤べこの『口がない』設定と衝突する"
+        },
+        {
+          "id": "C16",
+          "mechanism": "m-ritual-physics",
+          "mechanismFamily": "lesson-goal-inverted",
+          "causalCore": "指導の目標動作が対象の性質では常に達成済みか不可能で、指導の方向が反転する",
+          "concept": "水泳教室で、うきわのサメに『顔をつけて』と指導する",
+          "status": "rejected",
+          "reason": "2段目以降の新しい発見が作れず35秒もたない"
+        }
+      ],
+      "shortlist": [
+        "C03",
+        "C06",
+        "C07"
+      ],
+      "selectedCandidateId": "C06",
+      "selectionAuthority": "delegated",
+      "diversityAudit": {
+        "mode": "blind-reclassification",
+        "verdict": "pass",
+        "summary": "生成時のラベルを伏せ、causalCoreと一文概要だけを読み直して全16案を再分類した。同一エージェントによる別工程であり、人による独立批評ではない。結果は生成時の13系統と一致し、最大系統は2案（12.5%）。shortlistの3案は別の因果構造だった。",
+        "reviewedCandidateIds": [
+          "C01",
+          "C02",
+          "C03",
+          "C04",
+          "C05",
+          "C06",
+          "C07",
+          "C08",
+          "C09",
+          "C10",
+          "C11",
+          "C12",
+          "C13",
+          "C14",
+          "C15",
+          "C16"
+        ],
+        "familyAssignments": [
+          {
+            "candidateId": "C01",
+            "familyId": "classification-meets-living-thing"
+          },
+          {
+            "candidateId": "C02",
+            "familyId": "classification-meets-living-thing"
+          },
+          {
+            "candidateId": "C03",
+            "familyId": "ripple-of-accommodation"
+          },
+          {
+            "candidateId": "C04",
+            "familyId": "trait-sync-conflict"
+          },
+          {
+            "candidateId": "C05",
+            "familyId": "stepwise-fit-failure"
+          },
+          {
+            "candidateId": "C06",
+            "familyId": "regression-ladder-to-smallest-win"
+          },
+          {
+            "candidateId": "C07",
+            "familyId": "test-axis-mismatch"
+          },
+          {
+            "candidateId": "C08",
+            "familyId": "performer-outclassed"
+          },
+          {
+            "candidateId": "C09",
+            "familyId": "taste-inversion"
+          },
+          {
+            "candidateId": "C10",
+            "familyId": "mundane-service-supernatural-destination"
+          },
+          {
+            "candidateId": "C11",
+            "familyId": "threshold-signal-misattribution"
+          },
+          {
+            "candidateId": "C12",
+            "familyId": "stock-phrase-literalized"
+          },
+          {
+            "candidateId": "C13",
+            "familyId": "stock-phrase-literalized"
+          },
+          {
+            "candidateId": "C14",
+            "familyId": "self-as-menu"
+          },
+          {
+            "candidateId": "C15",
+            "familyId": "trait-sync-conflict"
+          },
+          {
+            "candidateId": "C16",
+            "familyId": "lesson-goal-inverted"
+          }
+        ],
+        "familyDefinitions": [
+          {
+            "id": "classification-meets-living-thing",
+            "definingMove": "事務的な品目の分類質問が、生き物の入った荷物に当たって答えが分類の外へ広がる"
+          },
+          {
+            "id": "ripple-of-accommodation",
+            "definingMove": "一人に合わせた調整が、周りの全員の配置へ波及して連鎖する"
+          },
+          {
+            "id": "trait-sync-conflict",
+            "definingMove": "同時に起きる身体の癖が、順序を求める所作の規則と衝突する"
+          },
+          {
+            "id": "stepwise-fit-failure",
+            "definingMove": "規格品を身体に合わせる定型調整が、段階ごとに別の形状で失敗する"
+          },
+          {
+            "id": "regression-ladder-to-smallest-win",
+            "definingMove": "課題を段階的に易しくして、最も易しい版で初めて成立し小さな成功を祝う"
+          },
+          {
+            "id": "test-axis-mismatch",
+            "definingMove": "標準検査の測定軸が対象の得意軸とずれ、別の軸でだけ反応する"
+          },
+          {
+            "id": "performer-outclassed",
+            "definingMove": "驚かせる側の定型の演出が、本物の側の客に通じず立場が揺らぐ"
+          },
+          {
+            "id": "taste-inversion",
+            "definingMove": "吉凶などの価値判断が当事者の立場で反転する"
+          },
+          {
+            "id": "mundane-service-supernatural-destination",
+            "definingMove": "日常の接客手順が超常的な目的地にもそのまま淡々と適用される"
+          },
+          {
+            "id": "threshold-signal-misattribution",
+            "definingMove": "閾値の警報の原因が見た目の印象と食い違い、犯人の特定が逆転する"
+          },
+          {
+            "id": "stock-phrase-literalized",
+            "definingMove": "願い事の定型が文字どおり実行され、叶った結果を受け取る"
+          },
+          {
+            "id": "self-as-menu",
+            "definingMove": "客自身がメニューの一品と同じ形で、注文と提供が自己参照になる"
+          },
+          {
+            "id": "lesson-goal-inverted",
+            "definingMove": "指導の目標動作が対象の性質では達成済みか不可能で、指導の方向が反転する"
+          }
+        ],
+        "shortlistPairChecks": [
+          {
+            "candidateA": "C03",
+            "candidateB": "C06",
+            "sameCausalStructure": false,
+            "notOnlySettingChange": true,
+            "difference": "C03は一人の条件に合わせた調整が周りの全員の位置へ連鎖して広がる。C06は一人の課題を易しい版へ段階的に落として最後の成功に至る。広がる構造と絞る構造で別物"
+          },
+          {
+            "candidateA": "C03",
+            "candidateB": "C07",
+            "sameCausalStructure": false,
+            "notOnlySettingChange": true,
+            "difference": "C03は同じ号令に対する周囲の調整の連鎖。C07は検査の測定軸を変えて、反応する軸を見つける探索。周囲が動く構造と、軸を探す構造で別物"
+          },
+          {
+            "candidateA": "C06",
+            "candidateB": "C07",
+            "sameCausalStructure": false,
+            "notOnlySettingChange": true,
+            "difference": "C06は課題の難度を下げ続けて成立点を探す。C07は課題は同じまま、測る軸を変えて反応する所を探す。変える対象が課題の難度か測定軸かで因果が違う"
+          }
+        ]
+      },
+      "userSeeds": []
+    },
+    "comedyAudit": {
+      "comicKernel": "腕立て伏せを1回やりたい恐竜に、トレーナーが定番の手順で易しい版へ落とし続け、最後の壁に手をつく版でやっと成立して、それを全力で祝う",
+      "audienceExpectation": "ジムで腕立て伏せの段階を落としていく場面を知る観客は、膝つきや台でできるようになると予測する",
+      "characterIntent": "恐竜は腕立て伏せを1回やりたい。トレーナーは本人の目標に向けて、できる形を見つけたい",
+      "pressure": "恐竜の腕が短く、床・膝つき・台のどの形でも体のほうが先についてしまう",
+      "escalations": [
+        {
+          "beatId": "floor",
+          "change": "床の形で、手より先に顔がついて、腕が足りないと分かる"
+        },
+        {
+          "beatId": "belly",
+          "change": "台の形で、手は届くが今度はお腹が先についてしまい、問題が手の位置から体の厚みに変わる"
+        },
+        {
+          "beatId": "wall",
+          "change": "最後の形で、手が届く見込みが初めて立ち、観客は成功を期待する"
+        }
+      ],
+      "payoffCausality": "最初に『1回』と目標を言っているので、壁で体がほんの少し動いただけでも、トレーナーがそれを1回として祝うことが、目標と手順の流れから自然につながる",
+      "laughMoment": {
+        "beatId": "moved",
+        "description": "体がほんの少し動いただけなのに、トレーナーが目を見開いて『動きました』と本気で言う"
+      },
+      "independentReview": {
+        "mode": "hostile-reader",
+        "verdict": "pass",
+        "summary": "台詞と動作だけを読み直した。恐竜が腕立て伏せをできない、という単純な状況を、トレーナーの手順どおりの態度で一段ずつ深くしている。各段で手の位置・お腹・壁と問題が変わる。ただし最後の高揚は、笑うか微笑ましいで止まるかが好みに左右される。",
+        "strongestObjection": "腕が短くてできないという一点を繰り返しているだけで、笑いの核は『できない』の連続ではないか",
+        "resolution": "段ごとに失敗の理由を変えた（顔が先／手は浮く／お腹が先／手が届く）。最後は成功に至り、最初の『1回』という目標に戻る形にして、できないの連続で終わらせない",
+        "checks": {
+          "premiseHasComicEngine": true,
+          "notJustMundaneIncident": true,
+          "payoffIsEarned": true,
+          "characterCanonRespected": true,
+          "noUnmotivatedAdditions": true,
+          "notOnlyRoleReversal": true
+        }
+      }
+    },
+    "titleScreenText": "恐竜が\nパーソナルジムに\n入会した"
+  },
+  "voices": {
+    "trainer": {
+      "speaker": "青山龍星",
+      "style": "ノーマル",
+      "speed": 1.1
+    },
+    "dino": {
+      "speaker": "春日部つむぎ",
+      "style": "ノーマル",
+      "speed": 0.98
+    }
+  },
+  "music": {
+    "track": "ukulele-short-loop",
+    "gain": 0.2,
+    "fadeIn": 0.2,
+    "fadeOut": 0.6
+  },
+  "set": {
+    "kind": "personal-gym",
+    "params": {}
+  },
+  "captions": {
+    "y": 0.74
+  },
+  "actors": {
+    "trainer": {
+      "style": {
+        "skin": "#f0c9a8",
+        "hair": "#241a14",
+        "hairStyle": "spiky",
+        "top": "#2f6fd0",
+        "bottom": "#1f2733",
+        "shoes": "#f4f4f4",
+        "nameTag": ""
+      },
+      "root": {
+        "x": -0.5,
+        "z": 0.0,
+        "ry": 1.5707963267948966
+      },
+      "pose": "idle",
+      "expr": "polite",
+      "captionColor": "#9fd0ff"
+    },
+    "dino": {
+      "vrm": "assets/3d/avatars/CuteSaurus.vrm",
+      "height": 1.15,
+      "look": {
+        "pitch": 0.9
+      },
+      "root": {
+        "x": 0.25,
+        "y": 0,
+        "z": 0.0,
+        "ry": -1.5707963267948966
+      },
+      "pose": "idle",
+      "captionColor": "#ffe08a"
+    }
+  },
+  "props": {
+    "bench": {
+      "kind": "exercise-bench",
+      "params": {},
+      "visible": false,
+      "tf": {
+        "x": 0.02,
+        "y": 0,
+        "z": 0,
+        "ry": 0
+      }
+    }
+  },
+  "beats": [
+    {
+      "id": "title",
+      "role": "title",
+      "shot": "wide",
+      "dur": 1.3,
+      "do": [
+        {
+          "at": 0,
+          "sfx": "title-sting"
+        }
+      ]
+    },
+    {
+      "id": "hook",
+      "role": "hook",
+      "shot": "two-shot",
+      "pre": 0.05,
+      "post": 0.1,
+      "line": {
+        "who": "trainer",
+        "text": "目標は、何ですか？"
+      },
+      "do": [
+        {
+          "at": 0,
+          "look": "dino",
+          "to": {
+            "pitch": 0.9
+          },
+          "dur": 0.1
+        },
+        {
+          "at": 0,
+          "face": "trainer",
+          "to": {
+            "expr": "polite"
+          },
+          "dur": 0.2
+        }
+      ]
+    },
+    {
+      "id": "goal",
+      "role": "rule",
+      "shot": "client-cu",
+      "pre": 0.3,
+      "post": 0.25,
+      "line": {
+        "who": "dino",
+        "text": "腕立て伏せを、／1回できるようになりたいです"
+      },
+      "do": [
+        {
+          "at": 0,
+          "face": "dino",
+          "to": {
+            "expr": "polite"
+          },
+          "dur": 0.2
+        }
+      ]
+    },
+    {
+      "id": "start",
+      "role": "escalate",
+      "level": 1,
+      "shot": "two-shot",
+      "post": 0.1,
+      "line": {
+        "who": "trainer",
+        "text": "いいですね。／まず、床に手をついてみましょう"
+      },
+      "do": [
+        {
+          "at": "lineEnd-0.2",
+          "move": "dino",
+          "to": {
+            "x": 1.05,
+            "y": 0.02,
+            "z": 0,
+            "ry": -1.5707963267948966,
+            "rx": 1.45
+          },
+          "dur": 1.0,
+          "ease": "inOut"
+        },
+        {
+          "at": "lineEnd-0.1",
+          "sfx": "step"
+        },
+        {
+          "at": "lineEnd+0.4",
+          "sfx": "step"
+        }
+      ]
+    },
+    {
+      "id": "floor",
+      "role": "escalate",
+      "level": 1,
+      "shot": "floor-low",
+      "pre": 0.9,
+      "post": 0.1,
+      "line": {
+        "who": "dino",
+        "text": "……顔が、ついてます"
+      },
+      "do": [
+        {
+          "at": 0,
+          "sfx": "set-down"
+        },
+        {
+          "at": 0,
+          "face": "dino",
+          "to": {
+            "expr": "weary"
+          },
+          "dur": 0.2
+        }
+      ]
+    },
+    {
+      "id": "hands",
+      "role": "bridge",
+      "shot": "floor-wide",
+      "pre": 0.1,
+      "post": 0.08,
+      "line": {
+        "who": "trainer",
+        "text": "顔は、ついてますね。／手は？"
+      }
+    },
+    {
+      "id": "float",
+      "role": "bridge",
+      "shot": "floor-low",
+      "pre": 0.3,
+      "post": 0.1,
+      "line": {
+        "who": "dino",
+        "text": "……浮いてます"
+      }
+    },
+    {
+      "id": "knee",
+      "role": "escalate",
+      "level": 2,
+      "shot": "floor-wide",
+      "pre": 0.1,
+      "post": 0.1,
+      "line": {
+        "who": "trainer",
+        "text": "膝をついても、／変わらないですね"
+      },
+      "do": [
+        {
+          "at": "line",
+          "move": "dino",
+          "to": {
+            "x": 0.98,
+            "y": 0.02,
+            "z": 0,
+            "ry": -1.5707963267948966,
+            "rx": 1.4
+          },
+          "dur": 0.5
+        }
+      ]
+    },
+    {
+      "id": "bench",
+      "role": "escalate",
+      "level": 3,
+      "shot": "two-shot",
+      "post": 0.08,
+      "line": {
+        "who": "trainer",
+        "text": "では、台を使いましょう"
+      },
+      "do": [
+        {
+          "at": "line",
+          "show": "bench"
+        },
+        {
+          "at": "line",
+          "sfx": "set-down"
+        },
+        {
+          "at": "lineEnd",
+          "move": "dino",
+          "to": {
+            "x": 1.05,
+            "y": 0,
+            "z": 0,
+            "ry": -1.5707963267948966,
+            "rx": 1.0
+          },
+          "dur": 0.8,
+          "ease": "inOut"
+        },
+        {
+          "at": "lineEnd",
+          "face": "dino",
+          "to": {
+            "expr": "polite"
+          },
+          "dur": 0.3
+        }
+      ]
+    },
+    {
+      "id": "belly",
+      "role": "escalate",
+      "level": 3,
+      "shot": "bench-side",
+      "pre": 0.7,
+      "post": 0.1,
+      "line": {
+        "who": "dino",
+        "text": "……お腹が、ついてます"
+      },
+      "do": [
+        {
+          "at": 0,
+          "face": "dino",
+          "to": {
+            "expr": "weary"
+          },
+          "dur": 0.2
+        }
+      ]
+    },
+    {
+      "id": "reach",
+      "role": "bridge",
+      "shot": "bench-side",
+      "pre": 0.1,
+      "post": 0.08,
+      "line": {
+        "who": "trainer",
+        "text": "手は、届きました。／押してみてください"
+      }
+    },
+    {
+      "id": "press",
+      "role": "bridge",
+      "shot": "bench-side",
+      "pre": 0.3,
+      "post": 0.08,
+      "line": {
+        "who": "dino",
+        "text": "……押してます"
+      },
+      "do": [
+        {
+          "at": 0.1,
+          "move": "dino",
+          "to": {
+            "rx": 0.97
+          },
+          "dur": 0.2
+        },
+        {
+          "at": 0.4,
+          "move": "dino",
+          "to": {
+            "rx": 1.0
+          },
+          "dur": 0.3
+        }
+      ]
+    },
+    {
+      "id": "why",
+      "role": "bridge",
+      "shot": "two-shot",
+      "pre": 0.1,
+      "post": 0.1,
+      "line": {
+        "who": "trainer",
+        "text": "お腹が、ついてますからね"
+      }
+    },
+    {
+      "id": "wall",
+      "role": "turn",
+      "shot": "two-shot",
+      "post": 0.1,
+      "line": {
+        "who": "trainer",
+        "text": "最後に、壁です"
+      },
+      "do": [
+        {
+          "at": "line",
+          "hide": "bench"
+        },
+        {
+          "at": "lineEnd-0.3",
+          "move": "dino",
+          "to": {
+            "x": -1.55,
+            "y": 0,
+            "z": 0,
+            "ry": -1.5707963267948966,
+            "rx": 0.02
+          },
+          "dur": 1.3,
+          "ease": "inOut"
+        },
+        {
+          "at": "lineEnd",
+          "sfx": "step"
+        },
+        {
+          "at": "lineEnd+0.5",
+          "sfx": "step"
+        },
+        {
+          "at": "lineEnd-0.3",
+          "move": "trainer",
+          "to": {
+            "x": -0.6,
+            "y": 0,
+            "z": 0.1,
+            "ry": -1.25
+          },
+          "dur": 1.0
+        }
+      ]
+    },
+    {
+      "id": "lean",
+      "role": "bridge",
+      "shot": "wall-side",
+      "pre": 1.0,
+      "post": 0.1,
+      "line": {
+        "who": "dino",
+        "text": "……届きました"
+      },
+      "do": [
+        {
+          "at": 0.8,
+          "move": "dino",
+          "to": {
+            "x": -1.55,
+            "rx": 0.34
+          },
+          "dur": 0.5,
+          "ease": "inOut"
+        },
+        {
+          "at": 0,
+          "face": "dino",
+          "to": {
+            "expr": "polite"
+          },
+          "dur": 0.3
+        }
+      ]
+    },
+    {
+      "id": "try",
+      "role": "bridge",
+      "shot": "wall-side",
+      "pre": 0.15,
+      "post": 0.1,
+      "line": {
+        "who": "trainer",
+        "text": "押してみましょう"
+      }
+    },
+    {
+      "id": "moved",
+      "role": "payoff",
+      "shot": "wall-side",
+      "pre": 0.7,
+      "post": 0.25,
+      "line": {
+        "who": "trainer",
+        "text": "……いま、動きました！"
+      },
+      "do": [
+        {
+          "at": -0.6,
+          "move": "dino",
+          "to": {
+            "x": -1.55,
+            "rx": 0.26
+          },
+          "dur": 0.5
+        },
+        {
+          "at": 0,
+          "move": "dino",
+          "to": {
+            "x": -1.55,
+            "rx": 0.34
+          },
+          "dur": 0.5
+        },
+        {
+          "at": 0,
+          "music": "cut"
+        },
+        {
+          "at": 0,
+          "sfx": "payoff-hit"
+        },
+        {
+          "at": 0,
+          "face": "trainer",
+          "to": {
+            "expr": "surprised"
+          },
+          "dur": 0.1
+        }
+      ]
+    },
+    {
+      "id": "one",
+      "role": "payoff",
+      "shot": "wall-cu",
+      "pre": 0.2,
+      "post": 0.3,
+      "line": {
+        "who": "dino",
+        "text": "……1回、できました"
+      },
+      "do": [
+        {
+          "at": 0,
+          "face": "dino",
+          "to": {
+            "expr": "grin"
+          },
+          "dur": 0.3
+        }
+      ]
+    },
+    {
+      "id": "nice",
+      "role": "bridge",
+      "shot": "wall-side",
+      "pre": 0.1,
+      "post": 0.1,
+      "line": {
+        "who": "trainer",
+        "text": "ナイス1回です！"
+      },
+      "do": [
+        {
+          "at": 0,
+          "move": "trainer",
+          "to": {
+            "x": -0.6,
+            "y": 0,
+            "z": 0.1,
+            "ry": -1.4
+          },
+          "dur": 0.5
+        },
+        {
+          "at": 0,
+          "pose": "trainer",
+          "to": {
+            "spineX": 0.85,
+            "shoulderRX": -0.75,
+            "elbowR": -0.45,
+            "shoulderLX": 0.05,
+            "shoulderLZ": 0.08,
+            "elbowL": -0.15
+          },
+          "dur": 0.5
+        },
+        {
+          "at": 0,
+          "music": "resume"
+        },
+        {
+          "at": "line+0.4",
+          "sfx": "paper"
+        }
+      ]
+    },
+    {
+      "id": "more",
+      "role": "bridge",
+      "shot": "wall-side",
+      "pre": 0.2,
+      "post": 0.08,
+      "line": {
+        "who": "trainer",
+        "text": "じゃあ、あと3回、いきましょうか"
+      },
+      "do": [
+        {
+          "at": 0,
+          "move": "trainer",
+          "to": {
+            "x": -0.6,
+            "y": 0,
+            "z": 0.1,
+            "ry": -0.2
+          },
+          "dur": 0.1
+        },
+        {
+          "at": 0,
+          "pose": "trainer",
+          "to": "idle",
+          "dur": 0.4
+        },
+        {
+          "at": 0,
+          "face": "trainer",
+          "to": {
+            "expr": "polite"
+          },
+          "dur": 0.2
+        }
+      ]
+    },
+    {
+      "id": "next",
+      "role": "button",
+      "shot": "wall-cu",
+      "pre": 0.45,
+      "post": 0.5,
+      "line": {
+        "who": "dino",
+        "text": "……来週でお願いします"
+      },
+      "do": [
+        {
+          "at": 0,
+          "face": "dino",
+          "to": {
+            "expr": "weary"
+          },
+          "dur": 0.3
+        }
+      ]
+    }
+  ],
+  "description": [
+    "パーソナルジムの初回。腕の短い恐竜が『腕立て伏せを1回』という目標で入会し、トレーナーが床・膝つき・台・壁と易しい形へ変えていく。",
+    "#ショート #コント #恐竜 #ジム"
+  ]
+}

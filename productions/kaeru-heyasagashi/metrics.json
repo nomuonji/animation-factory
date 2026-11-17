@@ -1,0 +1,29 @@
+{
+  "production": "kaeru-heyasagashi",
+  "youtubeId": "tg6btRTmq4k",
+  "postedAt": "2026-11-11",
+  "durationSec": 44.5,
+  "variant": "baseline",
+  "note": "",
+  "windowDays": 3,
+  "fetched": true,
+  "metrics": {
+    "window": "2026-11-11..2026-11-13",
+    "views": 1085,
+    "minutesWatched": 90,
+    "avgViewSec": 29,
+    "avgViewPct": 66.19,
+    "subsGained": 0,
+    "likes": 1,
+    "shortsFeedViews": 1040,
+    "retention": {
+      "3s": 1.327,
+      "5s": 1.184,
+      "10s": 0.776,
+      "20s": 0.599,
+      "last": 0.4762
+    }
+  },
+  "howToFetch": "video-publisher の GitHub Actions `YouTube Metrics`(metrics.yml): mode=video, concept=おもしろ, videos=\"tg6btRTmq4k:2026-11-11:44.5\"（fuzoku 未接続のため代替。読み取りのみ）",
+  "fetchedAt": "2026-11-15"
+}

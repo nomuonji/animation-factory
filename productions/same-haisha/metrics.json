@@ -1,0 +1,29 @@
+{
+  "production": "same-haisha",
+  "youtubeId": "GU5hNNIqbZo",
+  "postedAt": "2026-11-08",
+  "durationSec": 38,
+  "variant": "baseline",
+  "note": "YouTube + TikTok(oyu295)",
+  "windowDays": 3,
+  "fetched": true,
+  "metrics": {
+    "window": "2026-11-08..2026-11-10",
+    "views": 246,
+    "minutesWatched": 46,
+    "avgViewSec": 24,
+    "avgViewPct": 65.52,
+    "subsGained": 1,
+    "likes": 1,
+    "shortsFeedViews": 222,
+    "retention": {
+      "3s": 1.15,
+      "5s": 1.037,
+      "10s": 0.822,
+      "20s": 0.626,
+      "last": 0.4206
+    }
+  },
+  "howToFetch": "video-publisher の GitHub Actions `YouTube Metrics`(metrics.yml): mode=video, concept=おもしろ, videos=\"GU5hNNIqbZo:2026-11-08:38\"（fuzoku 未接続のため代替。読み取りのみ）",
+  "fetchedAt": "2026-11-15"
+}

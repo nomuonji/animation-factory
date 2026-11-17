@@ -1,0 +1,400 @@
+{
+  "version": 1,
+  "note": "Style Shorts looks (tools/styles, src/styles/themes.ts). One production = one topic told in one style. Each style has a skill at .claude/skills/style-<id>/SKILL.md. 'best' lists the scene kinds the look was designed around; other kinds still render but look generic. 'music' is the default CC0 track (catalog/asset-library.json), 'sceneSfx' the cue played on each new scene (catalog/sfx3d.json).",
+  "styles": [
+    {
+      "id": "stickman",
+      "name": "棒人間",
+      "engine": "2d",
+      "best": [
+        "stage",
+        "card",
+        "list"
+      ],
+      "music": "numskull",
+      "sceneSfx": "pop",
+      "look": "白い丸顔と黒い線の棒人間。しましまシャツ。空と海と砂浜のような明るい単色背景、線は手描き風にわずかに震える。",
+      "fits": "あるある、小ネタ、体のしくみ、もしもの話。キャラが1〜2人で動けば成立する話",
+      "recipe": "hook=stage（人物が疑問のポーズ＋emote ?）→ card/counterで答え → stageで体を張って再現 → payoff=stageでオチ",
+      "sets": "beach park city room space sky",
+      "cast": "人物は1〜2人。color で服の縞の色、hair は基本 none。face は大きく変える（smug→shock→laugh）。tongue や dizzy がこの画風に合う",
+      "avoid": "グラフを多用しない（線画の人物が主役）。3人以上並べない",
+      "transition": "pop"
+    },
+    {
+      "id": "minimal-line",
+      "name": "ミニマル線画",
+      "engine": "2d",
+      "best": [
+        "path",
+        "stage",
+        "card",
+        "quote"
+      ],
+      "music": "safe-space-loop",
+      "sceneSfx": null,
+      "look": "黒背景に白い一本線だけ。ペン先の点が線を描き続ける。小さな白文字。",
+      "fits": "人生観・考え方・格言・比喩。静かで余白のある話",
+      "recipe": "hook=path（線が描かれ始める）→ quote/card で一言 → stage（白線の人物が1人）→ path で締め",
+      "sets": "void のみ（自動）",
+      "cast": "人物は線だけ・顔なし。動きは walk / sit / point-up など少なめ",
+      "avoid": "色・アイコンを増やさない。早口にしない（speed 1.05 前後、post を長め）",
+      "transition": "fade"
+    },
+    {
+      "id": "living-chart",
+      "name": "動くグラフ",
+      "engine": "2d",
+      "best": [
+        "chart",
+        "counter",
+        "list"
+      ],
+      "music": "lofi-loop-scoop",
+      "sceneSfx": "tick",
+      "look": "白背景、大きな数字のカウンターと、点が先頭で走る折れ線/伸びる棒。モノクロ＋差し色1色。",
+      "fits": "人口・価格・記録など、時系列の数字で驚きがある話。出典必須",
+      "recipe": "hook=counter（いちばん驚く数字）→ chart line（推移）→ chart bar（比較）→ card で結論",
+      "sets": "plain",
+      "cast": "人物は基本出さない。数字は format: short / comma を使い分け、unit を必ず付ける",
+      "avoid": "出典のない数字は使わない（sources 必須）。points は 4〜12 点",
+      "transition": "fade"
+    },
+    {
+      "id": "living-diagram",
+      "name": "動く図解",
+      "engine": "2d",
+      "best": [
+        "diagram",
+        "stage",
+        "list",
+        "counter"
+      ],
+      "music": "waiting-lounge",
+      "sceneSfx": "whoosh",
+      "look": "薄いグレー背景、塗りつぶしのピクトグラム人物、丸いアイコンノードと点線矢印、黒いラベルタグ。",
+      "fits": "仕組み・お金の流れ・因果関係・手順の説明",
+      "recipe": "hook=stage（ピクトグラムの人が状況を演じる）→ diagram（流れ・因果）→ list（手順）→ counter（量）",
+      "sets": "plain city room",
+      "cast": "人物は塗りつぶしのピクトグラム。diagram の nodes は 2〜5 個、edges に動詞のラベル",
+      "avoid": "ノードを詰め込まない。説明が長い beat は分割する",
+      "transition": "slide"
+    },
+    {
+      "id": "paper-presenter",
+      "name": "紙の解説者",
+      "engine": "2d",
+      "best": [
+        "card",
+        "counter",
+        "list",
+        "quote",
+        "chart"
+      ],
+      "music": "bossa-thank-you-for-shopping",
+      "sceneSfx": "whoosh",
+      "look": "新聞紙のような生成り色、明朝の見出し、赤い差し色と罫線。紙の切り抜きの解説者が横に立つ。",
+      "fits": "ニュースの裏側、数字の比較、制度やルールの解説",
+      "recipe": "hook=card（見出し）→ counter（数字）→ list → quote/chart → card で結論。紙面をめくる slide 遷移",
+      "sets": "newsprint（自動）",
+      "cast": "人物を出すなら paper 体型で端に立たせ present / point で指す",
+      "avoid": "ポップな色を足さない（赤1色＋墨）",
+      "transition": "slide"
+    },
+    {
+      "id": "paper-cutout",
+      "name": "切り絵",
+      "engine": "2d",
+      "best": [
+        "stage",
+        "card",
+        "list"
+      ],
+      "music": "ukulele-short-loop",
+      "sceneSfx": "whoosh",
+      "look": "紫と橙の重ねた色紙、影の落ちた切り絵の人物と雲、紙の繊維テクスチャ。",
+      "fits": "物語・おとぎ話調・やさしい解説",
+      "recipe": "hook=stage（切り絵の場面）→ stage を continue で進める → card で一言 → stage でオチ",
+      "sets": "dusk-paper（宇宙・空も自動でここ）, beach, park",
+      "cast": "人物は色紙の服。hair: bob / bun / spiky で描き分け。影が付くので重なりを活かす",
+      "avoid": "細かい文字のグラフは向かない",
+      "transition": "slide"
+    },
+    {
+      "id": "comic",
+      "name": "アメコミ",
+      "engine": "2d",
+      "best": [
+        "stage",
+        "card",
+        "counter"
+      ],
+      "music": "numskull",
+      "sceneSfx": "boom",
+      "look": "黄色の集中線、網点（ハーフトーン）、黒い太線、爆発型の吹き出し、コマ枠。",
+      "fits": "大げさな事実、ランキング、勢いのある驚きネタ",
+      "recipe": "hook=stage（shock の顔＋camera.shake）→ card（爆発の吹き出しで一言）→ counter → stage でオチ",
+      "sets": "burst（自動）, city",
+      "cast": "人物は太い輪郭。emote ! と anger、pose shock / cheer / panic が映える",
+      "avoid": "落ち着いた話・しんみりした話には使わない",
+      "transition": "flash"
+    },
+    {
+      "id": "risograph",
+      "name": "リソグラフ",
+      "engine": "2d",
+      "best": [
+        "stage",
+        "card",
+        "list"
+      ],
+      "music": "lofi-loop-scoop",
+      "sceneSfx": null,
+      "look": "ピンク・青・黄のインクを乗算で重ねた印刷物風。版ずれと粒状のノイズ。線なしの面だけの人物。",
+      "fits": "カルチャー、暮らし、ゆるい雑学",
+      "recipe": "hook=stage → card → list → stage。色は3インク（ピンク・青・黄）のまま",
+      "sets": "riso-night（自動）",
+      "cast": "人物は線なしの面。color は palette の3色から",
+      "avoid": "写真のようなリアルさを求めない。暗い場面を作らない",
+      "transition": "cut"
+    },
+    {
+      "id": "retro-anime",
+      "name": "レトロアニメ",
+      "engine": "2d",
+      "best": [
+        "stage",
+        "card"
+      ],
+      "music": "flowerbed-fields",
+      "sceneSfx": "whoosh",
+      "look": "80年代風の夕焼け太陽と格子の地面、集中線、走査線とフィルムの粒。",
+      "fits": "挑戦・夢・宇宙・スピード感のある話",
+      "recipe": "hook=stage（run / fly で勢い）→ card（叫ぶ一言）→ counter → stage cheer",
+      "sets": "sunset-grid（自動）",
+      "cast": "pose run / jump / fly / cheer。camera.zoom を寄せて勢いを出す",
+      "avoid": "静かな説明だけの回には使わない",
+      "transition": "flash"
+    },
+    {
+      "id": "pixel-art",
+      "name": "ドット絵",
+      "engine": "2d",
+      "best": [
+        "stage",
+        "card",
+        "counter"
+      ],
+      "music": "little-happy-tune",
+      "sceneSfx": "tick",
+      "look": "1/6解像度で描いて最近傍拡大した本物の粗いドット。夜空・月・家。等幅フォントの字幕箱。",
+      "fits": "ゲーム風の挑戦、レベルアップ型の説明、宇宙",
+      "recipe": "hook=stage（chip: 'STAGE 1' など）→ counter（ゲームのスコア風）→ stage（jump / walk）→ card 'CLEAR'",
+      "sets": "night-pixel（宇宙も自動）, beach, park, city",
+      "cast": "細部は潰れるので大きなポーズで見せる。emote ! ? が効く",
+      "avoid": "小さい文字・細い線を使わない（1/4 解像度で潰れる）",
+      "transition": "cut"
+    },
+    {
+      "id": "cartoon-3d",
+      "name": "3Dアニメ",
+      "engine": "3d",
+      "best": [
+        "stage",
+        "card"
+      ],
+      "music": "flowerbed-fields",
+      "sceneSfx": "pop",
+      "look": "トゥーン陰影の丸っこい3D人物、明るい町並み、黄色の縁取り字幕。",
+      "fits": "日常のもしも話、身近な疑問",
+      "recipe": "hook=stage（人物が疑問）→ stage continue で試す → card（3D背景の上のパネル）→ stage でオチ",
+      "sets": "town（自動）",
+      "cast": "人物は丸い頭のトゥーン。talks: true で口パクも可。to.x で歩かせると横向きで歩く",
+      "avoid": "人物を画面端（|x|>0.8）に置かない（縦画面で切れる）",
+      "transition": "cut"
+    },
+    {
+      "id": "what-if-3d",
+      "name": "もしも3D",
+      "engine": "3d",
+      "best": [
+        "stage",
+        "card",
+        "counter"
+      ],
+      "music": "strange-music",
+      "sceneSfx": "whoosh",
+      "look": "淡い橙の砂漠、円錐の山、浮かぶ雲、ソフトな影。シュールで静かな空気。",
+      "fits": "「もし〇〇だったら」系の思考実験",
+      "recipe": "hook=card/stage「もしも〜」→ stage（砂漠に1人、shock / think）→ counter → stage の静かなオチ",
+      "sets": "desert（自動）",
+      "cast": "人物は少なく、間を長めに（post 0.3）。camera.to.zoom でゆっくり寄る",
+      "avoid": "賑やかにしない。BGM は strange-music",
+      "transition": "fade"
+    },
+    {
+      "id": "low-poly-3d",
+      "name": "ローポリ3D",
+      "engine": "3d",
+      "best": [
+        "stage",
+        "card"
+      ],
+      "music": "lofi-loop-scoop",
+      "sceneSfx": "whoosh",
+      "look": "フラットシェーディングの角ばった岩と人物、宇宙の暗い背景に紫と橙。",
+      "fits": "宇宙・地球・自然・スケールの話",
+      "recipe": "hook=stage（宇宙の岩場に人物）→ counter（距離・大きさ）→ card → stage",
+      "sets": "space-rocks（自動）",
+      "cast": "角ばった体。fly / point-up が合う。小道具 moon / rocket",
+      "avoid": "生活の場面（部屋・店）には合わない",
+      "transition": "cut"
+    },
+    {
+      "id": "route-3d",
+      "name": "3Dルート",
+      "engine": "3d",
+      "best": [
+        "route",
+        "counter",
+        "card"
+      ],
+      "music": "lofi-loop-scoop",
+      "sceneSfx": "tick",
+      "look": "白い建物ブロックの街を斜め上から。青いルート線が伸び、ピンと所要時間のカードが出る。",
+      "fits": "移動・距離・地理・「歩いたら何分」系",
+      "recipe": "hook=route（出発→到着、eta を出す）→ counter（距離）→ card（比較の一言）→ route で別ルート",
+      "sets": "city-white（route で自動）",
+      "cast": "人物は出さない。route の text=出発地、label=到着地、eta=所要時間",
+      "avoid": "実在の地名・所要時間は地図サービス等で確認してから。実際の道順とは一致しない模式図だと説明に書く",
+      "transition": "fade"
+    },
+    {
+      "id": "exploded-view",
+      "name": "分解図",
+      "engine": "3d",
+      "best": [
+        "exploded",
+        "card",
+        "counter"
+      ],
+      "music": "lofi-loop-scoop",
+      "sceneSfx": "whoosh",
+      "look": "黒背景で製品の層が宙に分かれ、細い引き出し線とラベルが付く。",
+      "fits": "製品・機械・食べ物などの中身や構造",
+      "recipe": "hook=exploded（まだ閉じた状態から開く）→ card（いちばん意外な層）→ counter（数・重さ）→ exploded continue",
+      "sets": "void-dark（自動）",
+      "cast": "layers は上から順に 4〜7 枚。detail で補足の小さい字",
+      "avoid": "構造の事実は出典を確認。模式図と明記する",
+      "transition": "fade"
+    },
+    {
+      "id": "block-world",
+      "name": "ブロックワールド",
+      "engine": "3d",
+      "best": [
+        "stage",
+        "card"
+      ],
+      "music": "little-happy-tune",
+      "sceneSfx": "pop",
+      "look": "立方体ブロックの丘と木、四角い頭のボクセル人物。",
+      "fits": "サバイバル・建築・ゲーム風の挑戦",
+      "recipe": "hook=stage（ボクセルの丘に人物）→ stage（walk / jump で試す）→ card → stage cheer",
+      "sets": "voxel-hills（自動）",
+      "cast": "四角い頭。hair: short（ブロックの髪）。小道具 tree / box",
+      "avoid": "特定ゲームのロゴ・キャラ名・UI を出さない（オリジナルのブロック世界として作る）",
+      "transition": "cut"
+    },
+    {
+      "id": "toy-bricks",
+      "name": "おもちゃブロック",
+      "engine": "3d",
+      "best": [
+        "stage",
+        "card"
+      ],
+      "music": "flowerbed-fields",
+      "sceneSfx": "pop",
+      "look": "凸のあるプラスチックブロックの台座と人形、つやのある原色。",
+      "fits": "組み立て・仕組み・子ども向けの説明",
+      "recipe": "hook=stage（ブロックの台座の上）→ card → stage → counter",
+      "sets": "brick-sky（自動）",
+      "cast": "黄色い頭のブロック人形。pop 遷移と pop 効果音",
+      "avoid": "特定ブランドの名前・ロゴを出さない",
+      "transition": "pop"
+    },
+    {
+      "id": "retro-console",
+      "name": "レトロ3Dゲーム",
+      "engine": "3d",
+      "best": [
+        "stage",
+        "card"
+      ],
+      "music": "safe-space-loop",
+      "sceneSfx": "glitch",
+      "look": "低解像度＋ディザ＋頂点のガタつき。霧のかかった夜の裏庭。00年代家庭用ゲーム機風。",
+      "fits": "ノスタルジー、ミッション形式、都市伝説",
+      "recipe": "hook=stage（chip: 'MISSION 01' など）→ stage → card → stage",
+      "sets": "backyard-night（自動）",
+      "cast": "低解像度・ディザ・頂点のガタつきは自動。fog の夜。BGM は safe-space-loop",
+      "avoid": "細かい文字を3D側に置かない（パネルか字幕で）",
+      "transition": "fade"
+    },
+    {
+      "id": "block-horror",
+      "name": "ブロックホラー",
+      "engine": "3d",
+      "best": [
+        "stage",
+        "card"
+      ],
+      "music": "tension-build",
+      "sceneSfx": null,
+      "look": "真っ暗な廊下、ブロック状の長身の影、光る白い目、強いビネット。",
+      "fits": "怖い話・ゾッとする事実",
+      "recipe": "hook=stage（暗い廊下、主人公が scared）→ stage continue（奥に color: shadow の人物が現れる）→ card（一言）→ stage",
+      "sets": "dark-corridor（自動）",
+      "cast": "影の人物は z を奥（-3〜-6）に置き、近づくときは to.z。emote は ... や !",
+      "avoid": "過度にグロい表現は入れない。驚かせる音は1回まで",
+      "transition": "fade"
+    },
+    {
+      "id": "clay",
+      "name": "クレイアニメ",
+      "engine": "3d",
+      "best": [
+        "stage",
+        "card"
+      ],
+      "music": "ukulele-short-loop",
+      "sceneSfx": "pop",
+      "look": "指跡のある粘土の質感、丸い人物、柔らかい光、コマ撮り風にカクつく動き。",
+      "fits": "やさしい雑学、子ども・食べ物・動物",
+      "recipe": "hook=stage → stage continue → card → stage。動きは自動で12コマ/秒のカクつき",
+      "sets": "clay-sky（自動）",
+      "cast": "丸い粘土の人物。face を豊かに（happy / shock / blush）。小道具 burger / heart / sun",
+      "avoid": "速い動き（run）を多用しない（コマ撮り感が出ない）",
+      "transition": "cut"
+    },
+    {
+      "id": "game-avatar",
+      "name": "ゲームアバター",
+      "engine": "3d",
+      "best": [
+        "stage",
+        "card"
+      ],
+      "music": "numskull",
+      "sceneSfx": "pop",
+      "look": "紫の部屋、ブロック体型のゲームアバター、ネームタグと時計のゲームUI、大きな赤い字幕。",
+      "fits": "「もしも」系の小ネタ、ゲーム内あるある",
+      "recipe": "hook=stage（spawn台の上のアバター、shock）→ stage（jump / dance）→ card（赤い大きな一言）→ stage",
+      "sets": "avatar-room（自動）",
+      "cast": "ブロック体型のアバター。HUD（あなた・時計）は自動。pose dance / jump / panic",
+      "avoid": "特定ゲームのロゴ・名前・通貨を出さない",
+      "transition": "pop"
+    }
+  ]
+}

@@ -1,0 +1,948 @@
+{
+  "meta": {
+    "id": "sento-akami",
+    "title": "赤みが引くまで",
+    "fps": 30,
+    "width": 1080,
+    "height": 1920,
+    "variant": "baseline"
+  },
+  "design": {
+    "format": "literalization",
+    "title": "赤みが引くまで休ませてくれる銭湯",
+    "titleAlternatives": [
+      "湯上がりの顔が赤いと言われ続ける夜",
+      "気遣いが丁寧すぎる銭湯の休憩所"
+    ],
+    "titlePattern": "world",
+    "titleOnScreen": "card",
+    "titleScreenText": "湯上がりの\n赤みが引くまで",
+    "hook": {
+      "type": "line-first",
+      "firstFrame": "銭湯のロビー。番台から身を乗り出す番頭と、ベンチで牛乳を手にした赤い肌の悪魔。壁の時計は20時40分",
+      "overlay": "湯上がりの休憩"
+    },
+    "rule": "銭湯では、湯上がりに顔が赤い客は『赤みが引くまで』休ませてもらえる",
+    "escalations": [
+      "常連が牛乳をおごってくれる",
+      "番頭がおでこを冷やし扇風機を強にする",
+      "閉店時刻になっても『引くまで』は有効"
+    ],
+    "turn": "番頭が閉店を告げ、悪魔が帰ろうとする",
+    "payoff": "番頭は『まだ赤い』として閉店後も付き合い、休憩所の灯りの下で一緒に引くのを待つ",
+    "button": "悪魔が静かにお礼を言い、時計は午前0時50分",
+    "loop": false,
+    "reaction": "laugh",
+    "audience": "湯上がりに顔が赤いまま休憩所でぼんやりした経験がある人",
+    "reality": {
+      "place": "銭湯の休憩所（番台のあるロビー）",
+      "normalEvent": "湯上がりに顔が赤い客を、番頭や常連が『のぼせてない？』と気遣い、赤みが引くまで休ませる",
+      "onlyBreak": "客が悪魔で、肌が元から赤いので赤みが引かない"
+    },
+    "payoffMechanism": "kindness-keeps-its-word",
+    "ideation": {
+      "gateVersion": 2,
+      "method": "creative-thinking (My Portal chat Skill) — 無人の定期実行。選定は定期タスクの標準指示による委任",
+      "candidates": 18,
+      "rejected": [
+        "C02: 口が閉じない性質が歯科のサメと同じ。音の笑いは3Dで伝わりにくい",
+        "C03: 写真館のうなずきと同じ性質。同じ返事の繰り返しになりやすい",
+        "C04: 変温の性質が内科と同じ。リフトの場面は現実的な定番の一言に乏しい",
+        "C05: 起き上がれない画の説明が長くなる。顔が見えず演技が伝わりにくい",
+        "C07: パブロフの犬を連想させる知識ネタに見え、狙いすぎと取られる",
+        "C08: カエルがバンジーを飛ぶ場面は現実に起きない"
+      ],
+      "corpus": {
+        "dataset": "radichichi",
+        "datasetVersion": "v1",
+        "retrievedAt": "2026-11-17T04:10:00Z",
+        "queryLog": [
+          {
+            "query": "本来",
+            "resultChunkIds": [
+              "radichichi_1755068597_001"
+            ]
+          },
+          {
+            "query": "店員",
+            "resultChunkIds": [
+              "radichichi_1755068597_009",
+              "radichichi_1755068597_008",
+              "radichichi_1755068597_006",
+              "radichichi_1755068597_005",
+              "radichichi_1755068597_004",
+              "radichichi_1755068597_002",
+              "radichichi_1755068597_001"
+            ]
+          },
+          {
+            "query": "病院",
+            "resultChunkIds": [
+              "radichichi_1755068597_003"
+            ]
+          },
+          {
+            "query": "先生",
+            "resultChunkIds": [
+              "radichichi_1755068597_009",
+              "radichichi_1755068597_006",
+              "radichichi_1755068597_005",
+              "radichichi_1755068597_003",
+              "radichichi_1755068597_002"
+            ]
+          }
+        ],
+        "sourceChunks": [
+          {
+            "id": "radichichi_1755068597_001",
+            "dataset": "radichichi",
+            "retrievalTier": "creative",
+            "role": "ogiri_reference"
+          },
+          {
+            "id": "radichichi_1755068597_002",
+            "dataset": "radichichi",
+            "retrievalTier": "creative",
+            "role": "ogiri_reference"
+          },
+          {
+            "id": "radichichi_1755068597_003",
+            "dataset": "radichichi",
+            "retrievalTier": "creative",
+            "role": "ogiri_reference"
+          },
+          {
+            "id": "radichichi_1755068597_005",
+            "dataset": "radichichi",
+            "retrievalTier": "creative",
+            "role": "ogiri_reference"
+          }
+        ],
+        "sourceChunkIds": [
+          "radichichi_1755068597_001",
+          "radichichi_1755068597_002",
+          "radichichi_1755068597_003",
+          "radichichi_1755068597_005"
+        ],
+        "sourceExampleIds": [
+          "radichichi-110",
+          "radichichi-126",
+          "radichichi-95",
+          "radichichi-228",
+          "radichichi-351",
+          "radichichi-87"
+        ]
+      },
+      "mechanisms": [
+        {
+          "id": "m-category",
+          "sourceExampleIds": [
+            "radichichi-110",
+            "radichichi-228"
+          ],
+          "abstractOperation": "ある存在のひとつの属性を制度や物理がそのまま別の枠・仕組みの規則に当てはめ、その規則が字義どおり最後まで働く",
+          "transfer": "体の一部や性質を設備・手順の条件に当てはめる案(尻尾と座席、角と穴、体重の単位など)の候補群へ転用した"
+        },
+        {
+          "id": "m-persist",
+          "sourceExampleIds": [
+            "radichichi-351",
+            "radichichi-87"
+          ],
+          "abstractOperation": "非日常の頂点や特殊な条件の最中でも、ごく日常の小さな状態や習慣が止まらず続いてしまう",
+          "transfer": "夜が更けても元から赤い肌が引かない、というように、続く状態が時間を貫く案へ転用した"
+        },
+        {
+          "id": "m-unwitting",
+          "sourceExampleIds": [
+            "radichichi-126",
+            "radichichi-95"
+          ],
+          "abstractOperation": "善意や平凡な事実が当事者の事情を知らないまま重なり、大きな出来事の説明を静かに平らにする",
+          "transfer": "周囲の親切が段ごとに増えるのに、誰も本人の元からの事情を知らないまま続く構造として使った"
+        }
+      ],
+      "candidateLog": [
+        {
+          "id": "C01",
+          "mechanism": "m-category",
+          "mechanismFamily": "environment-need-inverts-procedure",
+          "causalCore": "乾かさないでほしい・濡れていたいという生理が、美容院の標準手順(乾かす)と逆向きに当たる",
+          "concept": "美容院で客が本物のカエル。ドライヤーでしおれ、霧吹きで復活し、次回予約は雨の日",
+          "status": "shortlisted"
+        },
+        {
+          "id": "C02",
+          "mechanism": "m-persist",
+          "mechanismFamily": "articulation-lost",
+          "causalCore": "口が閉じない体では唇音が出せず、注文の復唱がすべて崩れる",
+          "concept": "居酒屋でサメの注文が唇音を失い店員が聞き返す",
+          "status": "rejected",
+          "reason": "口が閉じない性質が歯科のサメと同じ。音の笑いは3Dで伝わりにくい"
+        },
+        {
+          "id": "C03",
+          "mechanism": "m-category",
+          "mechanismFamily": "response-channel-ambiguity",
+          "causalCore": "否定の返事が動作としては肯定になり、案内がどんどん上の階へ進む",
+          "concept": "デパートのエレベーターで赤べこの『いえ』がうなずきになる",
+          "status": "rejected",
+          "reason": "写真館のうなずきと同じ性質。同じ返事の繰り返しになりやすい"
+        },
+        {
+          "id": "C04",
+          "mechanism": "m-persist",
+          "mechanismFamily": "environment-need-inverts-procedure",
+          "causalCore": "気温で体の速さが変わるため、同じ場所で動きの速さが急変する",
+          "concept": "スキー場のリフトで変温動物の魔女が降りられず、ロッジで暖まると急に速くなる",
+          "status": "rejected",
+          "reason": "変温の性質が内科と同じ。リフトの場面は現実的な定番の一言に乏しい"
+        },
+        {
+          "id": "C05",
+          "mechanism": "m-category",
+          "mechanismFamily": "body-part-vs-fixed-fixture",
+          "causalCore": "顔を穴に入れる姿勢で、頭の突起が縁に引っかかり起き上がれなくなる",
+          "concept": "マッサージ店で悪魔の角がうつ伏せ用の穴に引っかかる",
+          "status": "rejected",
+          "reason": "起き上がれない画の説明が長くなる。顔が見えず演技が伝わりにくい"
+        },
+        {
+          "id": "C06",
+          "mechanism": "m-category",
+          "mechanismFamily": "body-part-vs-fixed-fixture",
+          "causalCore": "体の一部の大きさが座席の条件を順に潰し、最後は料金規則で連れとして数えられる",
+          "concept": "映画館で恐竜が尻尾の収まる席を探し、最後列のペアシートで尻尾を連れとして数える",
+          "status": "shortlisted"
+        },
+        {
+          "id": "C07",
+          "mechanism": "m-persist",
+          "mechanismFamily": "instinct-leaks-into-routine",
+          "causalCore": "他人の呼び出し音にも条件反射で動いてしまい、席と受け取り口を往復する",
+          "concept": "フードコートで柴バーガーが他人の呼び出しベルでも走る",
+          "status": "rejected",
+          "reason": "パブロフの犬を連想させる知識ネタに見え、狙いすぎと取られる"
+        },
+        {
+          "id": "C08",
+          "mechanism": "m-category",
+          "mechanismFamily": "measurement-scale-mismatch",
+          "causalCore": "記入欄の単位と本人の体の尺度が桁違いで、手順の前提が成り立たない",
+          "concept": "バンジーの受付でカエルの体重がグラム単位",
+          "status": "rejected",
+          "reason": "カエルがバンジーを飛ぶ場面は現実に起きない"
+        },
+        {
+          "id": "C09",
+          "mechanism": "m-persist",
+          "mechanismFamily": "constant-state-misread-as-temporary",
+          "causalCore": "元から続いている状態を一時的な不調と見なされ、『引くまで』という親切が時間の限り続く",
+          "concept": "銭湯の休憩所で赤い肌の悪魔が『赤みが引くまで』と気遣われ続け、閉店後も付き合われる",
+          "status": "selected"
+        },
+        {
+          "id": "C10",
+          "mechanism": "m-persist",
+          "mechanismFamily": "instinct-leaks-into-routine",
+          "causalCore": "鼻が良いため、手元や厨房の匂いから段ごとに多くを嗅ぎ当てる",
+          "concept": "ワインのテイスティングで柴バーガーが厨房の今夜のメインまで当てる",
+          "status": "rejected",
+          "reason": "犬の嗅覚という見慣れた発想で、知識ネタの笑いに寄る"
+        },
+        {
+          "id": "C11",
+          "mechanism": "m-category",
+          "mechanismFamily": "body-part-vs-fixed-fixture",
+          "causalCore": "腰回りの幅が標準の通路幅に合わず、案内された先でも別の狭さにぶつかる",
+          "concept": "駅の改札でうきわのサメが幅広改札へ案内され電車の戸で詰まる",
+          "status": "rejected",
+          "reason": "小道具(うきわ)頼みになり、歯科のサメと同じ性質になる"
+        },
+        {
+          "id": "C12",
+          "mechanism": "m-category",
+          "mechanismFamily": "body-part-vs-fixed-fixture",
+          "causalCore": "測定の標準姿勢が体の突起と両立せず、測るほど数値が揺れる",
+          "concept": "健康診断の身長測定で恐竜の尻尾が標準姿勢と両立しない",
+          "status": "rejected",
+          "reason": "内科の測定と構造が近く、映画館案と尻尾が重なる"
+        },
+        {
+          "id": "C13",
+          "mechanism": "m-persist",
+          "mechanismFamily": "environment-need-inverts-procedure",
+          "causalCore": "冷たいものを口にすると動作が鈍り、温かいものを得ると戻る",
+          "concept": "カフェで変温動物の魔女が冷水で動作が鈍る",
+          "status": "rejected",
+          "reason": "変温の性質が内科・スキー案と並ぶ"
+        },
+        {
+          "id": "C14",
+          "mechanism": "m-category",
+          "mechanismFamily": "measurement-scale-mismatch",
+          "causalCore": "呼び出しの手続きが体の小ささを想定しておらず、順番を飛ばされる",
+          "concept": "郵便局の番号呼び出しで手のひらサイズの赤べこが見落とされる",
+          "status": "rejected",
+          "reason": "ファミレスの手のひらサイズと同じ性質"
+        },
+        {
+          "id": "C15",
+          "mechanism": "m-persist",
+          "mechanismFamily": "articulation-lost",
+          "causalCore": "常に見えている体の状態が、色の重なりで段ごとに変化して見える",
+          "concept": "かき氷の屋台でサメの舌の色が混ざり続ける",
+          "status": "rejected",
+          "reason": "口が閉じない性質の重複。色が混ざるだけで二段目に新しい発見がない"
+        },
+        {
+          "id": "C16",
+          "mechanism": "m-category",
+          "mechanismFamily": "body-part-vs-fixed-fixture",
+          "causalCore": "検品手順の『脱いでください』が短い腕では実行できず、中身が現れる",
+          "concept": "クリーニング店の受付で腕の短い恐竜がセーターを脱げない",
+          "status": "rejected",
+          "reason": "ジムの腕が短い性質と同じ。着ている服を預ける場面が現実的か疑問"
+        },
+        {
+          "id": "C17",
+          "mechanism": "m-persist",
+          "mechanismFamily": "environment-need-inverts-procedure",
+          "causalCore": "注意事項の一つ一つに、本人の好みが逆向きに答える",
+          "concept": "キャンプ場でカエルが雨予報・低地を歓迎する",
+          "status": "rejected",
+          "reason": "注意されるたびに逆を選ぶ繰り返しで、同じズレの水増しになる"
+        },
+        {
+          "id": "C18",
+          "mechanism": "m-category",
+          "mechanismFamily": "constant-state-misread-as-temporary",
+          "causalCore": "常時の顔つきが検査上の不正と同じに見え、検査官が注意し続ける",
+          "concept": "免許更新の視力検査で悪魔の細い目が不正のように見える",
+          "status": "rejected",
+          "reason": "ホテルのニヤリ顔と同じ性質。視力検査の定番度が弱い"
+        }
+      ],
+      "shortlist": [
+        "C01",
+        "C06",
+        "C09"
+      ],
+      "selectedCandidateId": "C09",
+      "selectionAuthority": "delegated",
+      "diversityAudit": {
+        "mode": "blind-reclassification",
+        "verdict": "pass",
+        "summary": "生成時のmechanismFamilyラベルを外し、causalCoreの文だけを読み直して全18案を7系統に再分類した。最大系統は体の一部と固定設備(5案、28%)。選んだ3案は盲検分類でも別系統。",
+        "reviewedCandidateIds": [
+          "C01",
+          "C02",
+          "C03",
+          "C04",
+          "C05",
+          "C06",
+          "C07",
+          "C08",
+          "C09",
+          "C10",
+          "C11",
+          "C12",
+          "C13",
+          "C14",
+          "C15",
+          "C16",
+          "C17",
+          "C18"
+        ],
+        "familyAssignments": [
+          {
+            "candidateId": "C01",
+            "familyId": "environment-need-inverts-procedure"
+          },
+          {
+            "candidateId": "C02",
+            "familyId": "articulation-lost"
+          },
+          {
+            "candidateId": "C03",
+            "familyId": "response-channel-ambiguity"
+          },
+          {
+            "candidateId": "C04",
+            "familyId": "environment-need-inverts-procedure"
+          },
+          {
+            "candidateId": "C05",
+            "familyId": "body-part-vs-fixed-fixture"
+          },
+          {
+            "candidateId": "C06",
+            "familyId": "body-part-vs-fixed-fixture"
+          },
+          {
+            "candidateId": "C07",
+            "familyId": "instinct-leaks-into-routine"
+          },
+          {
+            "candidateId": "C08",
+            "familyId": "measurement-scale-mismatch"
+          },
+          {
+            "candidateId": "C09",
+            "familyId": "constant-state-misread-as-temporary"
+          },
+          {
+            "candidateId": "C10",
+            "familyId": "instinct-leaks-into-routine"
+          },
+          {
+            "candidateId": "C11",
+            "familyId": "body-part-vs-fixed-fixture"
+          },
+          {
+            "candidateId": "C12",
+            "familyId": "body-part-vs-fixed-fixture"
+          },
+          {
+            "candidateId": "C13",
+            "familyId": "environment-need-inverts-procedure"
+          },
+          {
+            "candidateId": "C14",
+            "familyId": "measurement-scale-mismatch"
+          },
+          {
+            "candidateId": "C15",
+            "familyId": "articulation-lost"
+          },
+          {
+            "candidateId": "C16",
+            "familyId": "body-part-vs-fixed-fixture"
+          },
+          {
+            "candidateId": "C17",
+            "familyId": "environment-need-inverts-procedure"
+          },
+          {
+            "candidateId": "C18",
+            "familyId": "constant-state-misread-as-temporary"
+          }
+        ],
+        "familyDefinitions": [
+          {
+            "id": "environment-need-inverts-procedure",
+            "definingMove": "本人の生理的な必要が、店の標準手順(乾かす・冷やす・注意する)と逆向きに当たる"
+          },
+          {
+            "id": "articulation-lost",
+            "definingMove": "口や舌など発声・表示の器官の性質が、会話の聞き取りそのものを壊す"
+          },
+          {
+            "id": "response-channel-ambiguity",
+            "definingMove": "返事の経路(うなずき等)が否定と肯定を区別できず、手順が誤作動する"
+          },
+          {
+            "id": "body-part-vs-fixed-fixture",
+            "definingMove": "体の一部の大きさ・形が、席・穴・改札・測定姿勢など固定の設備条件と合わない"
+          },
+          {
+            "id": "instinct-leaks-into-routine",
+            "definingMove": "本能的な反射・感覚が、決まった手順の最中に漏れ出す"
+          },
+          {
+            "id": "measurement-scale-mismatch",
+            "definingMove": "単位や呼び出しの尺度が本人の大きさと桁違いで、手順の前提が成立しない"
+          },
+          {
+            "id": "constant-state-misread-as-temporary",
+            "definingMove": "常に続く状態を周囲が一時的な不調と解釈し、その解釈の規則が長く適用され続ける"
+          }
+        ],
+        "shortlistPairChecks": [
+          {
+            "candidateA": "C01",
+            "candidateB": "C06",
+            "sameCausalStructure": false,
+            "notOnlySettingChange": true,
+            "difference": "C01は水・乾燥という生理の必要が手順と逆向きに当たる連鎖、C06は体の大きさが席の条件を順に潰して最後に料金規則へ落ちる消去法で、因果が別"
+          },
+          {
+            "candidateA": "C01",
+            "candidateB": "C09",
+            "sameCausalStructure": false,
+            "notOnlySettingChange": true,
+            "difference": "C01は本人の必要と店の手順の衝突、C09は周囲の解釈の誤りが『引くまで』という親切な規則として時間いっぱい続く構造で、衝突の主体が違う"
+          },
+          {
+            "candidateA": "C06",
+            "candidateB": "C09",
+            "sameCausalStructure": false,
+            "notOnlySettingChange": true,
+            "difference": "C06は設備の制約が客を選択肢から追い出す空間の消去法、C09は何も変わらない本人の周りで時間と気遣いだけが積み上がる時間の構造で、舞台の差し替えではない"
+          }
+        ]
+      },
+      "userSeeds": []
+    },
+    "comedyAudit": {
+      "comicKernel": "『赤みが引くまで』という親切な決まり文句が、元から赤い肌には終わりのない約束になり、周りの優しさだけが段ごとに大きくなる",
+      "audienceExpectation": "観客は、のぼせではなく元から赤いと一度で分かるので、いつ誰が気づいて親切が止まるのかを予測する",
+      "characterIntent": "番頭は客をのぼせから守りたい。常連は親切をしたい。悪魔は迷惑をかけずに休憩所を使いたい",
+      "pressure": "閉店時刻が来ても赤みは引かない。悪魔は元からだと一度言ったが、遠慮と取られて通じない",
+      "escalations": [
+        {
+          "beatId": "esc1",
+          "change": "常連が加わり、気遣いが言葉から牛乳のおごりという物に変わる"
+        },
+        {
+          "beatId": "esc2",
+          "change": "時刻が22時台に進み、番頭が自ら冷たいタオルと扇風機の強風で世話を焼く"
+        },
+        {
+          "beatId": "turn",
+          "change": "閉店時刻が来て、親切に期限があるか(帰るか残るか)の局面に入る"
+        }
+      ],
+      "payoffCausality": "番頭が最初に言った『赤みが引くまで』を文字どおり守り、元から赤い肌は引かないので、閉店後も約束が続くのは前提と行動からそのまま導ける",
+      "laughMoment": {
+        "beatId": "payoff",
+        "description": "閉店を告げた直後、番頭が悪魔の赤い顔を見て『まだ引いてない』と約束を守り、時計が0時台を指す中で付き合い始める画と台詞"
+      },
+      "independentReview": {
+        "mode": "hostile-reader",
+        "verdict": "pass",
+        "summary": "台詞と動作だけを読み直した。悪魔は一度だけ元から赤いと言い、以後は丁寧に受け続けるので、訂正しそびれのネタに見える恐れはあるが、笑いの核は訂正ではなく『引くまで』という約束の字義どおりの履行にある。",
+        "strongestObjection": "元から赤いと一度で分かるので、以降の親切の積み重ねは同じ誤解の繰り返しに見え、二段目が弱いのではないか",
+        "resolution": "各段で親切の種類が物・手当て・時間と変わり、時計の針が進む。最後の段は誤解が解けるのではなく約束が閉店を超えて守られるという別の事象で、繰り返しではなく回収になっている。",
+        "checks": {
+          "premiseHasComicEngine": true,
+          "notJustMundaneIncident": true,
+          "payoffIsEarned": true,
+          "characterCanonRespected": true,
+          "noUnmotivatedAdditions": true,
+          "notOnlyRoleReversal": true
+        }
+      }
+    }
+  },
+  "voices": {
+    "banto": {
+      "speaker": "春日部つむぎ",
+      "style": "ノーマル",
+      "speed": 1.0
+    },
+    "regular": {
+      "speaker": "No.7",
+      "style": "ノーマル",
+      "speed": 1.0
+    }
+  },
+  "music": {
+    "track": "waiting-lounge",
+    "gain": 0.22,
+    "fadeIn": 0.2,
+    "fadeOut": 0.6
+  },
+  "set": {
+    "kind": "sento-lobby",
+    "params": {}
+  },
+  "captions": {
+    "y": 0.76
+  },
+  "actors": {
+    "akuma": {
+      "cast": "akuma",
+      "style": {
+        "hood": false,
+        "print": null,
+        "top": "#2b3a4a",
+        "bottom": "#24232a"
+      },
+      "seated": true,
+      "root": {
+        "x": 0.62,
+        "y": -0.3,
+        "z": -1.12,
+        "ry": 0
+      },
+      "pose": "idle",
+      "captionColor": "#ff9d8a"
+    },
+    "banto": {
+      "style": {
+        "skin": "#f2cdb0",
+        "hair": "#c8c4bf",
+        "hairStyle": "ponytail",
+        "top": "#f6f1e6",
+        "vest": "#2f6f8f",
+        "vestTrim": "#f7f5ee",
+        "bottom": "#3a3d4a",
+        "shoes": "#2b2b30",
+        "glasses": true
+      },
+      "root": {
+        "x": -0.85,
+        "z": -1.3,
+        "ry": 0
+      },
+      "pose": "counter",
+      "expr": "polite",
+      "captionColor": "#ffe48a"
+    },
+    "regular": {
+      "style": {
+        "skin": "#d9a77f",
+        "hair": "#6b5a48",
+        "hairStyle": "short",
+        "top": "#b86b3a",
+        "bottom": "#3d3a34",
+        "shoes": "#2b2b30",
+        "boldBrows": true
+      },
+      "root": {
+        "x": 1.4,
+        "z": -0.55,
+        "ry": -0.5
+      },
+      "pose": "idle",
+      "expr": "neutral",
+      "captionColor": "#c8f59a"
+    }
+  },
+  "props": {
+    "clock": {
+      "kind": "wall-clock",
+      "params": {
+        "t": 20.67
+      },
+      "tf": {
+        "x": 0.95,
+        "y": 2.55,
+        "z": -1.53
+      }
+    },
+    "milk": {
+      "kind": "milk-bottle",
+      "params": {},
+      "tf": {
+        "x": 1.35,
+        "y": 0.98,
+        "z": -0.5
+      },
+      "visible": false
+    },
+    "towel": {
+      "kind": "box",
+      "params": {
+        "size": [
+          0.3,
+          0.03,
+          0.1
+        ],
+        "color": "#f4f6f8"
+      },
+      "tf": {
+        "x": 0.62,
+        "y": 1.36,
+        "z": -0.92
+      },
+      "visible": false
+    }
+  },
+  "beats": [
+    {
+      "id": "title",
+      "role": "title",
+      "shot": "wide",
+      "dur": 1.3,
+      "do": [
+        {
+          "at": 0,
+          "sfx": "title-sting"
+        }
+      ]
+    },
+    {
+      "id": "hook",
+      "role": "hook",
+      "shot": "wide",
+      "pre": 0.05,
+      "post": 0.2,
+      "line": {
+        "who": "banto",
+        "text": "お兄さん、顔が真っ赤よ。／のぼせてない？"
+      },
+      "do": [
+        {
+          "at": 0,
+          "look": "banto",
+          "to": {
+            "yaw": 0.0,
+            "pitch": 0.1
+          },
+          "dur": 0.3
+        },
+        {
+          "at": "line+0.3",
+          "shot": "clerk-cu"
+        }
+      ]
+    },
+    {
+      "id": "genuine",
+      "role": "rule",
+      "shot": "bench-cu",
+      "pre": 0.25,
+      "post": 0.2,
+      "line": {
+        "who": "akuma",
+        "text": "あ、いえ。／これは元からでして"
+      }
+    },
+    {
+      "id": "promise",
+      "role": "rule",
+      "shot": "clerk-cu",
+      "pre": 0.2,
+      "post": 0.2,
+      "line": {
+        "who": "banto",
+        "text": "遠慮しなくていいのよ。／赤みが引くまで、ゆっくりしていってね"
+      },
+      "do": [
+        {
+          "at": "line+0.6",
+          "shot": "wide"
+        }
+      ]
+    },
+    {
+      "id": "esc1",
+      "role": "escalate",
+      "level": 1,
+      "shot": "wide",
+      "pre": 0.1,
+      "post": 0.15,
+      "line": {
+        "who": "regular",
+        "text": "兄ちゃん、まだ赤いなあ。／ほら、牛乳。おごりだ"
+      },
+      "do": [
+        {
+          "at": 0,
+          "param": "clock",
+          "to": {
+            "t": 21.75
+          },
+          "dur": 0.8
+        },
+        {
+          "at": 0.3,
+          "sfx": "step"
+        },
+        {
+          "at": "line+0.2",
+          "shot": "bench-wide"
+        },
+        {
+          "at": "line+0.9",
+          "show": "milk"
+        },
+        {
+          "at": "line+0.9",
+          "prop": "milk",
+          "to": {
+            "x": 0.98,
+            "y": 0.45,
+            "z": -0.98
+          },
+          "dur": 0.5,
+          "ease": "out"
+        },
+        {
+          "at": "line+1.4",
+          "sfx": "set-down"
+        }
+      ]
+    },
+    {
+      "id": "thanks",
+      "role": "bridge",
+      "shot": "bench-cu",
+      "pre": 0.3,
+      "post": 0.2,
+      "line": {
+        "who": "akuma",
+        "text": "……いただきます"
+      }
+    },
+    {
+      "id": "esc2",
+      "role": "escalate",
+      "level": 2,
+      "shot": "wide",
+      "pre": 0.1,
+      "post": 0.15,
+      "line": {
+        "who": "banto",
+        "text": "まだ引かないわねえ。／おでこ冷やして、扇風機は強ね"
+      },
+      "do": [
+        {
+          "at": 0,
+          "param": "clock",
+          "to": {
+            "t": 22.58
+          },
+          "dur": 0.8
+        },
+        {
+          "at": 0.2,
+          "move": "banto",
+          "to": {
+            "x": 0.1,
+            "z": -0.7,
+            "ry": 0.9
+          },
+          "dur": 0.9
+        },
+        {
+          "at": "line+0.3",
+          "shot": "bench-wide"
+        },
+        {
+          "at": "line+0.8",
+          "show": "towel"
+        },
+        {
+          "at": "line+0.8",
+          "prop": "towel",
+          "to": {
+            "x": 0.62,
+            "y": 1.36,
+            "z": -0.92
+          },
+          "dur": 0.4,
+          "ease": "out"
+        }
+      ]
+    },
+    {
+      "id": "otsuki",
+      "role": "escalate",
+      "level": 3,
+      "shot": "bench-wide",
+      "pre": 0.2,
+      "post": 0.15,
+      "line": {
+        "who": "regular",
+        "text": "じゃ、兄ちゃん、お先に。／お大事にな"
+      },
+      "do": [
+        {
+          "at": "line+0.2",
+          "move": "regular",
+          "to": {
+            "x": 2.1,
+            "z": 1.6,
+            "ry": 1.0
+          },
+          "dur": 2.0
+        }
+      ]
+    },
+    {
+      "id": "turn",
+      "role": "turn",
+      "shot": "wide",
+      "pre": 0.1,
+      "post": 0.2,
+      "line": {
+        "who": "banto",
+        "text": "ごめんねえ、うち、／もう閉める時間なのよ"
+      },
+      "do": [
+        {
+          "at": 0,
+          "param": "clock",
+          "to": {
+            "t": 23.95
+          },
+          "dur": 0.8
+        },
+        {
+          "at": 0.1,
+          "move": "banto",
+          "to": {
+            "x": -0.3,
+            "z": -0.8,
+            "ry": 0.3
+          },
+          "dur": 0.8
+        }
+      ]
+    },
+    {
+      "id": "leave",
+      "role": "bridge",
+      "shot": "bench-cu",
+      "pre": 0.25,
+      "post": 0.15,
+      "line": {
+        "who": "akuma",
+        "text": "あ……じゃあ、そろそろ"
+      }
+    },
+    {
+      "id": "payoff",
+      "role": "payoff",
+      "shot": "bench-wide",
+      "pre": 0.2,
+      "post": 0.25,
+      "line": {
+        "who": "banto",
+        "text": "……あら。まだ赤いじゃない。／引くまで、いていいのよ"
+      },
+      "do": [
+        {
+          "at": "lineEnd",
+          "music": "cut"
+        },
+        {
+          "at": "lineEnd",
+          "sfx": "payoff-hit"
+        }
+      ]
+    },
+    {
+      "id": "button",
+      "role": "button",
+      "shot": "wide",
+      "pre": 0.2,
+      "post": 0.4,
+      "line": {
+        "who": "akuma",
+        "text": "……ありがとうございます"
+      },
+      "do": [
+        {
+          "at": 0,
+          "music": "resume"
+        },
+        {
+          "at": 0,
+          "param": "clock",
+          "to": {
+            "t": 24.83
+          },
+          "dur": 0.8
+        }
+      ]
+    }
+  ],
+  "description": [
+    "銭湯の休憩所で、顔が赤いと『赤みが引くまで』休ませてもらえる。悪魔の肌は、元から赤い。",
+    "#ショート #コント #銭湯 #あるある"
+  ]
+}

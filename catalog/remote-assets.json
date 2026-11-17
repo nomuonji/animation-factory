@@ -1,0 +1,127 @@
+{
+  "version": 1,
+  "note": "Files the sandbox cannot download directly. .github/workflows/fetch-assets.yml downloads them on a runner and uploads an artifact; an agent then commits the files and registers them (with sha256) in catalog/asset-library.json. Verify the license on `source` before use.",
+  "assets": [
+    {
+      "id": "bossa-thank-you-for-shopping",
+      "kind": "music",
+      "url": "https://cdn.freesound.org/previews/464/464924_4284968-hq.mp3",
+      "source": "https://freesound.org/people/plasterbrain/sounds/464924",
+      "title": "(Bossa Nova Loop) Thank You for Shopping!",
+      "author": "plasterbrain",
+      "license": "CC0-1.0",
+      "dest": "assets/music/bossa-thank-you-for-shopping.mp3",
+      "use": "deadpan shop / everyday absurdity (12s loop)"
+    },
+    {
+      "id": "waiting-lounge",
+      "kind": "music",
+      "url": "https://cdn.freesound.org/previews/382/382447_6045458-hq.mp3",
+      "source": "https://freesound.org/people/omarie/sounds/382447",
+      "title": "waiting_1.mp3",
+      "author": "omarie",
+      "license": "CC0-1.0",
+      "dest": "assets/music/waiting-lounge.mp3",
+      "use": "waiting room, bureaucracy, polite pressure (85s)"
+    },
+    {
+      "id": "numskull",
+      "kind": "music",
+      "url": "https://cdn.freesound.org/previews/650/650939_10334845-hq.mp3",
+      "source": "https://freesound.org/people/Beetlemuse/sounds/650939",
+      "title": "Numskull",
+      "author": "Beetlemuse",
+      "license": "CC0-1.0",
+      "dest": "assets/music/numskull.mp3",
+      "use": "silly, clumsy comedy (51s)"
+    },
+    {
+      "id": "jazz-rusted-maid",
+      "kind": "music",
+      "url": "https://cdn.freesound.org/previews/464/464923_4284968-hq.mp3",
+      "source": "https://freesound.org/people/plasterbrain/sounds/464923",
+      "title": "(Jazz Loop) Rusted Maid",
+      "author": "plasterbrain",
+      "license": "CC0-1.0",
+      "dest": "assets/music/jazz-rusted-maid.mp3",
+      "use": "dry jazz, sly comedy (31s loop)"
+    },
+    {
+      "id": "little-happy-tune",
+      "kind": "music",
+      "url": "https://cdn.freesound.org/previews/335/335361_5450487-hq.mp3",
+      "source": "https://freesound.org/people/cabled_mess/sounds/335361",
+      "title": "Little, happy tune - 22.10.2015",
+      "author": "cabled_mess",
+      "license": "CC0-1.0",
+      "dest": "assets/music/little-happy-tune.mp3",
+      "use": "light, innocent, wholesome (40s)"
+    },
+    {
+      "id": "ukulele-short-loop",
+      "kind": "music",
+      "url": "https://cdn.freesound.org/previews/383/383023_6336990-hq.mp3",
+      "source": "https://freesound.org/people/reasanka/sounds/383023",
+      "title": "short ukulele loop by rea.mp3",
+      "author": "reasanka",
+      "license": "CC0-1.0",
+      "dest": "assets/music/ukulele-short-loop.mp3",
+      "use": "carefree daily life (15s loop)"
+    },
+    {
+      "id": "lofi-loop-scoop",
+      "kind": "music",
+      "url": "https://cdn.freesound.org/previews/653/653510_13228046-hq.mp3",
+      "source": "https://freesound.org/people/Seth_Makes_Sounds/sounds/653510",
+      "title": "Lofi Loop Scoop",
+      "author": "Seth_Makes_Sounds",
+      "license": "CC0-1.0",
+      "dest": "assets/music/lofi-loop-scoop.mp3",
+      "use": "calm modern, chill (87s)"
+    },
+    {
+      "id": "sad-piano-progression",
+      "kind": "music",
+      "url": "https://cdn.freesound.org/previews/530/530977_7372230-hq.mp3",
+      "source": "https://freesound.org/people/michael_grinnell/sounds/530977",
+      "title": "Sad Piano Chord Progression",
+      "author": "michael_grinnell",
+      "license": "CC0-1.0",
+      "dest": "assets/music/sad-piano-progression.mp3",
+      "use": "mock-sad, melancholy beat (60s)"
+    },
+    {
+      "id": "strange-music",
+      "kind": "music",
+      "url": "https://cdn.freesound.org/previews/263/263774_4833715-hq.mp3",
+      "source": "https://freesound.org/people/scotcampbell/sounds/263774",
+      "title": "strange music",
+      "author": "scotcampbell",
+      "license": "CC0-1.0",
+      "dest": "assets/music/strange-music.mp3",
+      "use": "suspicious, uncanny (44s)"
+    },
+    {
+      "id": "tension-build",
+      "kind": "music",
+      "url": "https://cdn.freesound.org/previews/316/316649_4557960-hq.mp3",
+      "source": "https://freesound.org/people/bevibeldesign/sounds/316649",
+      "title": "tension build.aiff",
+      "author": "bevibeldesign",
+      "license": "CC0-1.0",
+      "dest": "assets/music/tension-build.mp3",
+      "use": "stinger: rising tension before payoff (16s)"
+    },
+    {
+      "id": "music-box-melody",
+      "kind": "music",
+      "url": "https://cdn.freesound.org/previews/338/338986_5106192-hq.mp3",
+      "source": "https://freesound.org/people/DRFX/sounds/338986",
+      "title": "Music Box Melody 1",
+      "author": "DRFX",
+      "license": "CC0-1.0",
+      "dest": "assets/music/music-box-melody.mp3",
+      "use": "fairy-tale / innocent irony (16s)"
+    }
+  ]
+}

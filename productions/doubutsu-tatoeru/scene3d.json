@@ -1,0 +1,424 @@
+{
+  "meta": {
+    "id": "doubutsu-tatoeru",
+    "title": "「自分を動物に例えると？」",
+    "fps": 30,
+    "width": 1080,
+    "height": 1920
+  },
+  "design": {
+    "format": "literalization",
+    "title": "「自分を動物に例えると？」",
+    "titleAlternatives": [
+      "面接で動物に例えられないカエル",
+      "動物に例えると、カエルです"
+    ],
+    "titlePattern": "world",
+    "titleOnScreen": "card",
+    "titleScreenText": "あなたを\n動物に例えると？",
+    "hook": {
+      "type": "line-first",
+      "firstFrame": "会議室の面接。机の向こうに柴バーガーの面接官、手前のパイプ椅子にカエル帽の応募者",
+      "overlay": "最後の質問"
+    },
+    "rule": "面接の定番質問『自分を動物に例えると？』を、本物の動物（カエル）が受ける",
+    "escalations": [
+      "『例えると』を言い直されても、例えようがない",
+      "それならと、カエルとしての強みを面接どおりに答える"
+    ],
+    "turn": "応募者が面接官に同じ質問を聞き返す",
+    "payoff": "柴の面接官は迷わず『バーガーです』",
+    "button": "何事もなかったように『結果は後日ご連絡します』",
+    "loop": false,
+    "reaction": "laugh",
+    "audience": "就活で『動物に例えると？』と聞かれた/聞かれそうな人が、質問の既視感で止まる",
+    "reality": {
+      "place": "会社の会議室での就職面接",
+      "normalEvent": "面接官が最後に『ご自身を動物に例えると？』と聞く",
+      "onlyBreak": "応募者が本物のカエルなので、例えようがない"
+    },
+    "payoffMechanism": "role-flip",
+    "ideation": {
+      "method": "creative-thinking（ラジ父レンズ）。single_rule_shift / literalization / premise_reinterpretation 等で16案→3案を本人に提示→本人が選択（他2案は『狙いすぎ』で不採用）",
+      "candidates": 16
+    }
+  },
+  "voices": {
+    "interviewer": {
+      "speaker": "青山龍星",
+      "style": "ノーマル",
+      "speed": 1.1
+    },
+    "candidate": {
+      "speaker": "ずんだもん",
+      "style": "ノーマル",
+      "speed": 1.05
+    }
+  },
+  "music": {
+    "track": "waiting-lounge",
+    "gain": 0.26,
+    "fadeIn": 0.2,
+    "fadeOut": 0.5
+  },
+  "set": {
+    "kind": "interview-room",
+    "params": {}
+  },
+  "captions": {
+    "y": 0.74
+  },
+  "actors": {
+    "interviewer": {
+      "vrm": "assets/3d/avatars/DogoBurger.vrm",
+      "height": 1.1,
+      "seated": true,
+      "root": {
+        "x": 0,
+        "y": 0.3,
+        "z": -0.78,
+        "ry": 0
+      },
+      "pose": "counter",
+      "expr": "blank",
+      "captionColor": "#ffffff"
+    },
+    "candidate": {
+      "vrm": "assets/3d/avatars/FrogEnjoyer.vrm",
+      "height": 1.15,
+      "seated": true,
+      "root": {
+        "x": 0,
+        "y": -0.08,
+        "z": 0.95,
+        "ry": 3.14159
+      },
+      "pose": "idle",
+      "captionColor": "#c8f59a"
+    }
+  },
+  "props": {
+    "chair": {
+      "kind": "gltf",
+      "params": {
+        "src": "assets/3d/kaykit/furniture/chair_A.gltf",
+        "scale": 0.8
+      },
+      "tf": {
+        "x": 0,
+        "y": 0,
+        "z": 1.05,
+        "ry": 3.14159
+      }
+    },
+    "docs": {
+      "kind": "document",
+      "params": {},
+      "tf": {
+        "x": -0.18,
+        "y": 0.72,
+        "z": -0.38,
+        "ry": 0.1
+      }
+    },
+    "pen": {
+      "kind": "pen",
+      "params": {},
+      "tf": {
+        "x": 0.2,
+        "y": 0.73,
+        "z": -0.36,
+        "ry": -0.4
+      }
+    },
+    "plant": {
+      "kind": "gltf",
+      "params": {
+        "src": "assets/3d/kaykit/furniture/cactus_medium_A.gltf",
+        "scale": 1.0
+      },
+      "tf": {
+        "x": -1.5,
+        "y": 0,
+        "z": -1.25
+      }
+    }
+  },
+  "beats": [
+    {
+      "id": "title",
+      "role": "title",
+      "shot": "wide",
+      "dur": 1.3,
+      "do": [
+        {
+          "at": 0,
+          "sfx": "title-sting"
+        }
+      ]
+    },
+    {
+      "id": "ask",
+      "role": "hook",
+      "shot": "over-candidate",
+      "push": 0.05,
+      "pre": 0.05,
+      "line": {
+        "who": "interviewer",
+        "text": "では最後に。／ご自身を、動物に例えると？"
+      }
+    },
+    {
+      "id": "frog",
+      "role": "rule",
+      "shot": "candidate-cu",
+      "pre": 0.35,
+      "post": 0.4,
+      "line": {
+        "who": "candidate",
+        "text": "……カエルです"
+      }
+    },
+    {
+      "id": "again",
+      "role": "escalate",
+      "level": 1,
+      "shot": "interviewer-cu",
+      "post": 0.15,
+      "line": {
+        "who": "interviewer",
+        "text": "いえ、例えると、です"
+      },
+      "do": [
+        {
+          "at": 0,
+          "look": "interviewer",
+          "to": {
+            "pitch": 0.05
+          },
+          "dur": 0.3
+        }
+      ]
+    },
+    {
+      "id": "still",
+      "role": "bridge",
+      "shot": "candidate-cu",
+      "pre": 0.45,
+      "post": 0.3,
+      "line": {
+        "who": "candidate",
+        "text": "例えても、／カエルです"
+      },
+      "do": [
+        {
+          "at": 0,
+          "look": "candidate",
+          "to": {
+            "pitch": 0.25,
+            "yaw": 0.15
+          },
+          "dur": 0.4
+        },
+        {
+          "at": "lineEnd",
+          "look": "candidate",
+          "to": {
+            "pitch": 0,
+            "yaw": 0
+          },
+          "dur": 0.4
+        }
+      ]
+    },
+    {
+      "id": "strength",
+      "role": "escalate",
+      "level": 2,
+      "shot": "over-candidate",
+      "post": 0.1,
+      "line": {
+        "who": "interviewer",
+        "text": "……では、カエルとしての／強みは？"
+      },
+      "do": [
+        {
+          "at": 0,
+          "look": "interviewer",
+          "to": {
+            "pitch": 0.35
+          },
+          "dur": 0.4
+        },
+        {
+          "at": "lineEnd-0.3",
+          "look": "interviewer",
+          "to": {
+            "pitch": 0
+          },
+          "dur": 0.4
+        }
+      ]
+    },
+    {
+      "id": "answer",
+      "role": "bridge",
+      "shot": "candidate-cu",
+      "post": 0.2,
+      "line": {
+        "who": "candidate",
+        "text": "跳躍力と、／湿気に強いところです"
+      }
+    },
+    {
+      "id": "note",
+      "role": "bridge",
+      "shot": "interviewer-cu",
+      "post": 0.3,
+      "line": {
+        "who": "interviewer",
+        "text": "なるほど"
+      },
+      "do": [
+        {
+          "at": 0,
+          "look": "interviewer",
+          "to": {
+            "pitch": 0.45
+          },
+          "dur": 0.3
+        },
+        {
+          "at": 0.1,
+          "sfx": "pen-scribble"
+        }
+      ]
+    },
+    {
+      "id": "back",
+      "role": "turn",
+      "shot": "over-interviewer",
+      "pre": 0.35,
+      "post": 0.25,
+      "line": {
+        "who": "candidate",
+        "text": "面接官さんは、／動物に例えると？"
+      },
+      "do": [
+        {
+          "at": 0,
+          "look": "interviewer",
+          "to": {
+            "pitch": 0
+          },
+          "dur": 0.3
+        }
+      ]
+    },
+    {
+      "id": "burger",
+      "role": "payoff",
+      "shot": "interviewer-cu",
+      "pre": 0.1,
+      "post": 0.7,
+      "line": {
+        "who": "interviewer",
+        "text": "バーガーです"
+      },
+      "do": [
+        {
+          "at": "lineEnd",
+          "music": "cut"
+        }
+      ]
+    },
+    {
+      "id": "close",
+      "role": "button",
+      "shot": "wide",
+      "pre": 0.1,
+      "post": 0.5,
+      "line": {
+        "who": "interviewer",
+        "text": "結果は後日、／ご連絡します"
+      },
+      "do": [
+        {
+          "at": 0,
+          "music": "resume"
+        }
+      ]
+    }
+  ],
+  "description": [
+    "面接の定番質問。",
+    "#ショート #面接 #就活 #3Dアニメ #コント"
+  ],
+  "cameras": {
+    "wide": {
+      "pos": [
+        1.7,
+        1.55,
+        2.7
+      ],
+      "target": [
+        0,
+        0.75,
+        0.05
+      ],
+      "fov": 42
+    },
+    "candidate-cu": {
+      "pos": [
+        0.12,
+        0.98,
+        -0.35
+      ],
+      "target": [
+        0,
+        0.72,
+        0.95
+      ],
+      "fov": 40
+    },
+    "interviewer-cu": {
+      "pos": [
+        -0.12,
+        1.1,
+        0.8
+      ],
+      "target": [
+        0,
+        0.9,
+        -0.78
+      ],
+      "fov": 38
+    },
+    "over-candidate": {
+      "pos": [
+        -0.55,
+        1.3,
+        1.9
+      ],
+      "target": [
+        0.05,
+        0.95,
+        -0.7
+      ],
+      "fov": 40
+    },
+    "over-interviewer": {
+      "pos": [
+        0.85,
+        1.4,
+        -1.3
+      ],
+      "target": [
+        -0.05,
+        0.75,
+        0.95
+      ],
+      "fov": 40
+    }
+  }
+}

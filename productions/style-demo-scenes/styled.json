@@ -1,0 +1,22 @@
+{
+  "meta": { "id": "style-demo-scenes", "title": "シーン見本（全種類）", "fps": 30, "width": 1080, "height": 1920, "kind": "style-demo" },
+  "style": "living-diagram",
+  "voices": { "n": { "speaker": "青山龍星", "speed": 1.15 } },
+  "design": { "title": "シーン見本：図解・リスト・グラフ・ルート・分解図", "hook": { "overlay": "全部のシーン見本" } },
+  "sources": ["総務省統計局 人口推計・国勢調査（日本の総人口：1950年8320万、1970年1億467万、1990年1億2361万、2008年1億2808万、2020年1億2615万、2023年1億2435万）"],
+  "description": ["Style Shorts のシーン種類をひと通り確認するための技術見本。公開しない。"],
+  "beats": [
+    { "id": "path", "role": "hook", "line": { "who": "n", "text": "道はいつも、／まっすぐじゃない" }, "visual": { "scene": "path", "shape": "wander", "text": "道はいつも曲がっている" } },
+    { "id": "flow", "line": { "who": "n", "text": "あなたが払ったお金は、／お店から工場へ流れていく" },
+      "visual": { "scene": "diagram", "title": "お金の流れ", "nodes": [ { "id": "you", "icon": "person", "label": "あなた", "x": -0.6, "y": 0.6 }, { "id": "shop", "icon": "house", "label": "お店", "x": 0.55, "y": 0 }, { "id": "fac", "icon": "building", "label": "工場", "x": -0.4, "y": -0.7 } ],
+        "edges": [ { "from": "you", "to": "shop", "label": "払う" }, { "from": "shop", "to": "fac", "label": "仕入れ" } ] } },
+    { "id": "list", "line": { "who": "n", "text": "朝にやることは、／水・光・散歩の三つ" },
+      "visual": { "scene": "list", "title": "朝の3つ", "items": [ { "text": "コップ1杯の水", "icon": "drop" }, { "text": "カーテンを開ける", "icon": "sun" }, { "text": "5分だけ歩く", "icon": "person" } ] } },
+    { "id": "chart", "line": { "who": "n", "text": "日本の人口は2008年がピークで、／そこから減り続けている" },
+      "visual": { "scene": "chart", "type": "line", "label": "日本の総人口", "unit": "人", "format": "short", "points": [[1950, 83200000], [1970, 104670000], [1990, 123610000], [2008, 128080000], [2020, 126150000], [2023, 124350000]] } },
+    { "id": "route", "line": { "who": "n", "text": "家からコンビニまでは、／歩いて9分" }, "visual": { "scene": "route", "text": "家", "eta": "徒歩 9分", "label": "コンビニ" } },
+    { "id": "exploded", "line": { "who": "n", "text": "スマホを分解すると、／中は薄い層の重なりになっている" },
+      "visual": { "scene": "exploded", "object": "phone", "title": "スマホの中身（模式図）", "layers": [ { "label": "カバーガラス", "color": "#9fd3ff" }, { "label": "ディスプレイ", "color": "#2a2f3a" }, { "label": "フレーム", "color": "#9aa4b8" }, { "label": "基板", "color": "#2bb673" }, { "label": "バッテリー", "color": "#ff7a5c" }, { "label": "背面パネル", "color": "#d8d8d8" } ] } },
+    { "id": "quote", "role": "payoff", "line": { "who": "n", "text": "急がば回れ、／ということ" }, "visual": { "scene": "quote", "text": "急がば回れ", "author": "ことわざ" } }
+  ]
+}

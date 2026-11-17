@@ -95,6 +95,7 @@ python tools/shorts/shorts.py render productions/<id>/short.json
 - 音声: VOICEVOX（クレジット「VOICEVOX:話者名」を自動記載）。各キャラクターの利用規約を守る。
 - BGM: 現在は CC0 の 3 曲のみ（`assets/music`）。曲を足すときは `catalog/asset-library.json` に作者・ライセンス・出典を登録する。
 - YouTube の楽曲ライブラリや流行曲はダウンロードして使わない。
+- 選択肢: **Openverse**（キー不要で CC の画像・音声を横断検索。Commons API が 429 のときや、効果音・BGM を足したいとき）と **earshot**（聴けない音を測定・比較する。権利処理不要のコード製効果音バンクもある）。使い方・必須フィルタ（商用可・改変可）・注意点は [asset-sources.md](asset-sources.md)。
 
 ## 試作例
 

@@ -1,0 +1,1114 @@
+{
+  "meta": {
+    "id": "kenon-shitsuon",
+    "title": "検温したら、体温が室温と同じだった",
+    "fps": 30,
+    "width": 1080,
+    "height": 1920,
+    "variant": "baseline"
+  },
+  "design": {
+    "format": "institutional-absurdity",
+    "title": "検温したら、体温が室温と同じだった",
+    "titleAlternatives": [
+      "体温が低すぎてカルテに入らない患者",
+      "平熱にするために、部屋を温めた看護師"
+    ],
+    "titlePattern": "consequence",
+    "titleOnScreen": "card",
+    "titleScreenText": "検温したら\n体温が22.4度",
+    "hook": {
+      "type": "line-first",
+      "firstFrame": "診察室。看護師が体温計の表示を見て固まり、椅子の魔女は平然と座っている。壁には同じ22.4度を示す室温計",
+      "overlay": "体温22.4度"
+    },
+    "rule": "患者は変温動物で、体温がいつも室温と同じになる。電子カルテは36度未満を受け付けない",
+    "escalations": [
+      "看護師が自分の体温で体温計の正常を確かめると、故障ではなく本当に22.4度だと確定する",
+      "電子カルテが36度未満を受け付けず、数字を直すしかなくなる",
+      "看護師が患者ではなく部屋の温度を上げ、数字が36度を超えるまで追う"
+    ],
+    "turn": "看護師が、患者を治す代わりに、エアコンを上げて部屋のほうを温める",
+    "payoff": "体温が平熱になったので、魔女はぐったりして窓を開けたいと言う。看護師は数字が下がるので窓を開けさせない",
+    "button": "看護師は汗だくになりながら、自分の体温を36.6度と答える",
+    "loop": false,
+    "reaction": "laugh",
+    "audience": "数字や書式を満たすことを優先して、本来の目的を忘れてしまった経験がある人",
+    "reality": {
+      "place": "内科クリニックの診察室",
+      "normalEvent": "看護師が患者の体温を測り、電子カルテに入力する",
+      "onlyBreak": "患者がウーパー魔女（変温動物）で、体温が室温と同じになる"
+    },
+    "payoffMechanism": "number-protected-over-person",
+    "ideation": {
+      "gateVersion": 2,
+      "method": "creative-thinking (My Portal chat Skill, 3D寸劇ゲートv2)",
+      "candidates": 15,
+      "rejected": [
+        "A03: 社交辞令を避ける心理が客席に伝わりにくく、オチが悪魔の台詞頼みになる",
+        "A04: 尻尾が本心を漏らすという後付けの機構でオチる。柴犬バーガーの設定を足している",
+        "A05: 髪のない客という設定が一発で、二段目以降の発見が増えない",
+        "A06: 全員が口で『パン』と言う展開は面白いが、忘年会の人数が多く、画面に収まりにくい",
+        "A07: 画面を二分割する構成が現行のセットでは作れない",
+        "A08: 悩む悪魔の独白が長く、真顔の確認を長くやる形になる",
+        "A09: 『よし』の命令に従う犬は、笑いが犬の習性に寄りかかる",
+        "A10: オチの『流星群』が後付けの情報で、二段目以降の発見になっていない",
+        "A11: 異常を引き継ぐ手順の説明が台詞だけで、画の変化が少ない",
+        "A13: 駐輪場の規約という説明が前提で、35秒以内に前提を渡し切れない",
+        "A14: 送別会の言い換えは台詞の技術頼みで、人物の変化が小さい",
+        "A15: 一人客に誕生日のサプライズが届く場面は、日常の小さな気まずさに留まる"
+      ],
+      "corpus": {
+        "dataset": "radichichi",
+        "datasetVersion": "v1",
+        "retrievedAt": "2026-11-15T03:38:00Z",
+        "queryLog": [
+          {
+            "query": "ラジ父大喜利",
+            "resultChunkIds": [
+              "radichichi_1755068597_002",
+              "radichichi_1755068597_003",
+              "radichichi_1755068597_005"
+            ]
+          },
+          {
+            "query": "病院",
+            "resultChunkIds": [
+              "radichichi_1755068597_006",
+              "radichichi_1755068597_008"
+            ]
+          },
+          {
+            "query": "規則",
+            "resultChunkIds": [
+              "radichichi_1755068597_002",
+              "radichichi_1755068597_008"
+            ]
+          }
+        ],
+        "sourceChunks": [
+          {
+            "id": "radichichi_1755068597_002",
+            "dataset": "radichichi",
+            "retrievalTier": "creative",
+            "role": "ogiri_reference"
+          },
+          {
+            "id": "radichichi_1755068597_003",
+            "dataset": "radichichi",
+            "retrievalTier": "creative",
+            "role": "ogiri_reference"
+          },
+          {
+            "id": "radichichi_1755068597_005",
+            "dataset": "radichichi",
+            "retrievalTier": "creative",
+            "role": "ogiri_reference"
+          },
+          {
+            "id": "radichichi_1755068597_006",
+            "dataset": "radichichi",
+            "retrievalTier": "creative",
+            "role": "ogiri_reference"
+          },
+          {
+            "id": "radichichi_1755068597_008",
+            "dataset": "radichichi",
+            "retrievalTier": "creative",
+            "role": "ogiri_reference"
+          }
+        ],
+        "sourceChunkIds": [
+          "radichichi_1755068597_002",
+          "radichichi_1755068597_003",
+          "radichichi_1755068597_005",
+          "radichichi_1755068597_006",
+          "radichichi_1755068597_008"
+        ],
+        "sourceExampleIds": [
+          "radichichi-82",
+          "radichichi-83",
+          "radichichi-562",
+          "radichichi-563",
+          "radichichi-322",
+          "radichichi-323",
+          "radichichi-642"
+        ]
+      },
+      "mechanisms": [
+        {
+          "id": "rule-applied-past-its-purpose",
+          "sourceExampleIds": [
+            "radichichi-83",
+            "radichichi-82"
+          ],
+          "abstractOperation": "決まりを、目的を忘れたまま文字どおりに適用し続けた結果、決まりを守ることが目的に反する",
+          "transfer": "『カルテの入力範囲を満たす』決まりを守るために、患者ではなく部屋の温度を操作して、患者の体を悪くする"
+        },
+        {
+          "id": "flat-affect-in-odd-situation",
+          "sourceExampleIds": [
+            "radichichi-562"
+          ],
+          "abstractOperation": "異常な状況の当事者が驚かず、役割に沿った最小の動きだけで返す",
+          "transfer": "魔女は体温22.4度でも『いつものこと』と平然と答える。驚くのは看護師だけ"
+        },
+        {
+          "id": "literal-surface-as-the-measure",
+          "sourceExampleIds": [
+            "radichichi-563",
+            "radichichi-322"
+          ],
+          "abstractOperation": "表に出た数字や記号が、中身の判断の代わりに使われる",
+          "transfer": "表示が36度を超えたことで、看護師は患者の状態を『平熱』と判断する"
+        }
+      ],
+      "candidateLog": [
+        {
+          "id": "A01",
+          "mechanism": "rule-applied-past-its-purpose",
+          "mechanismFamily": "metric-target-shift",
+          "causalCore": "測った値を基準に合わせようとして、対象ではなく環境を変えると、数字は正常になり中身は悪くなる。",
+          "concept": "内科クリニックの処置スペース。検温で平熱が出ないので、看護師が患者ではなく部屋のほうを温める。（現実の出来事: 看護師が体温を測る／外す1点: 患者がウーパー魔女（両生類なので変温動物））",
+          "status": "selected",
+          "reason": "現実の診察の流れ（検温→カルテ入力）だけで進む。ズレは患者が変温動物という一点。数字を守るほど中身が悪化する因果で段が積める"
+        },
+        {
+          "id": "A02",
+          "mechanism": "flat-affect-in-odd-situation",
+          "mechanismFamily": "off-by-one-lag",
+          "causalCore": "返事がいつも一つ遅れて届くので、どの答えも一つ前の問いに対するものになる。",
+          "concept": "銀行のロビーと窓口。止まれないサメに、銀行員が通りかかるたびに一問ずつ質問するが、答えが一周遅れで返ってくる。（現実の出来事: 番号札で呼ばれて、口座開設の質問に答える／外す1点: 客がうきわザメで、止まれずにロビーを回り続ける）",
+          "status": "shortlisted",
+          "reason": "銀行ロビーを回り続けるサメは画が強いが、答えが一周遅れという新ルールの説明が要り、一点のズレに収まらない"
+        },
+        {
+          "id": "A03",
+          "mechanism": "flat-affect-in-odd-situation",
+          "mechanismFamily": "remedy-backfires-into-offense",
+          "causalCore": "危険だと思った言葉を避けて言い換えるほど、言い方がかえって危険な形式に近づく。",
+          "concept": "マンションの玄関先。悪魔の引っ越し挨拶を受けた住人が、自分のいつもの社交辞令を言えなくなる。（現実の出来事: 引っ越しの挨拶でタオルをもらう／外す1点: 越してきたのが悪魔）",
+          "status": "rejected",
+          "reason": "社交辞令を避ける心理が客席に伝わりにくく、オチが悪魔の台詞頼みになる"
+        },
+        {
+          "id": "A04",
+          "mechanism": "literal-surface-as-the-measure",
+          "mechanismFamily": "hidden-layer-leak",
+          "causalCore": "隠すべき評価が体の外に出てしまうと、相手はそれを目盛りにして値段を決められる。",
+          "concept": "中古品の買取カウンター。査定員の尻尾が本心を漏らすので、客が尻尾を見ながら値段を決めていく。（現実の出来事: 古いゲーム機を査定に出し「3000円です」と言われる／外す1点: 査定員が柴犬バーガー）",
+          "status": "rejected",
+          "reason": "尻尾が本心を漏らすという後付けの機構でオチる。柴犬バーガーの設定を足している"
+        },
+        {
+          "id": "A05",
+          "mechanism": "rule-applied-past-its-purpose",
+          "mechanismFamily": "ritual-without-premise",
+          "causalCore": "作業する対象がなくても手順を最後までやると、満足だけはちゃんと生まれる。",
+          "concept": "美容室のカット席。髪のない客に、美容師がカットの工程をひととおりやり切る。（現実の出来事: カウンセリング、カット、合わせ鏡での確認／外す1点: 客がウーパー魔女（髪に見えるのはエラ））",
+          "status": "rejected",
+          "reason": "髪のない客という設定が一発で、二段目以降の発見が増えない"
+        },
+        {
+          "id": "A06",
+          "mechanism": "flat-affect-in-odd-situation",
+          "mechanismFamily": "concession-hardens-into-norm",
+          "causalCore": "一人のための代わりのやり方に周りが合わせると、それが全体の正式なやり方になる。",
+          "concept": "居酒屋の座敷（忘年会）。一本締めで手の届かない恐竜に合わせるうちに、全員が口で「パン」と言うようになる。（現実の出来事: 締めの一本締め／外す1点: 参加者に腕の短い恐竜（セーター恐竜）がいる）",
+          "status": "rejected",
+          "reason": "全員が口で『パン』と言う展開は面白いが、忘年会の人数が多く、画面に収まりにくい"
+        },
+        {
+          "id": "A07",
+          "mechanism": "literal-surface-as-the-measure",
+          "mechanismFamily": "hidden-layer-leak",
+          "causalCore": "隠れているはずの裏側が筒抜けだと、表の定型対応がそのまま嘘の実況になる。",
+          "concept": "会社の代表電話（縦画面を上下に分けて、かける側と社内を見せる）。保留にし忘れた電話から、社内のやりとりが全部聞こえている。（現実の出来事: 「少々お待ちください」と言われて取り次ぎを待つ／外す1点: 保留ボタンが押されていない）",
+          "status": "rejected",
+          "reason": "画面を二分割する構成が現行のセットでは作れない"
+        },
+        {
+          "id": "A08",
+          "mechanism": "flat-affect-in-odd-situation",
+          "mechanismFamily": "all-options-self-defeating",
+          "causalCore": "相手を守る贈り物がどれも贈り主自身を遠ざけるので、選択が関係のないものへ後退していく。",
+          "concept": "神社の授与所。友人に贈るお守りを選ぶ悪魔が、どれを選んでも自分が近寄れなくなると気づく。（現実の出来事: 巫女が贈り物用のお守りを勧める／外す1点: 客が悪魔）",
+          "status": "rejected",
+          "reason": "悩む悪魔の独白が長く、真顔の確認を長くやる形になる"
+        },
+        {
+          "id": "A09",
+          "mechanism": "rule-applied-past-its-purpose",
+          "mechanismFamily": "asymmetric-signal",
+          "causalCore": "始まりの合図だけが通じて終わりの合図が通じないと、指示が永久に続いてしまう。",
+          "concept": "歯科医院の待合と受付。「お待ちください」で本当に待ち続ける客に、受付が「よし」と言うようになる。（現実の出来事: 受付が「おかけになってお待ちください」と言い、あとで名前を呼ぶ／外す1点: 客が柴犬バーガー）",
+          "status": "rejected",
+          "reason": "『よし』の命令に従う犬は、笑いが犬の習性に寄りかかる"
+        },
+        {
+          "id": "A10",
+          "mechanism": "literal-surface-as-the-measure",
+          "mechanismFamily": "avoided-topic-is-destination",
+          "causalCore": "周りが必死に避けている話題に、本人は自分から向かっている。",
+          "concept": "タクシーの車内。タクシー運転手が恐竜客に気を遣って話題を避け続けるが、客の目的地が流星群の観測だった。（現実の出来事: 行き先を聞き、天気の話などの雑談をする／外す1点: 客が恐竜（冒頭で「山の展望台まで」と言う））",
+          "status": "rejected",
+          "reason": "オチの『流星群』が後付けの情報で、二段目以降の発見になっていない"
+        },
+        {
+          "id": "A11",
+          "mechanism": "flat-affect-in-odd-situation",
+          "mechanismFamily": "anomaly-absorbed-into-category",
+          "causalCore": "どんな異常も業務の注意事項に変換されると、異常であることが話題にのぼらなくなる。",
+          "concept": "コンビニのレジ。常連のサメへの対応が、すべて普通の業務メモとして新人に引き継がれる。（現実の出来事: 先輩が新人に常連客の対応を小声で教える／外す1点: 常連客がうきわザメ）",
+          "status": "rejected",
+          "reason": "異常を引き継ぐ手順の説明が台詞だけで、画の変化が少ない"
+        },
+        {
+          "id": "A12",
+          "mechanism": "literal-surface-as-the-measure",
+          "mechanismFamily": "remedy-backfires-into-offense",
+          "causalCore": "侮辱のつもりの言葉が事実だと、謝るほどその事実を否定することになり、謝罪のほうが無礼になる。",
+          "concept": "路線バスの車内。子どもが悪魔を指さして「あくまだ」と言い、母の謝罪のほうが失礼になっていく。（現実の出来事: 子どもが他の乗客を指さして大声で言い、母親が謝る／外す1点: 指さされた乗客が本物の悪魔）",
+          "status": "shortlisted",
+          "reason": "バスの車内セットがなく、子どもと母と悪魔の三人は画面が散る"
+        },
+        {
+          "id": "A13",
+          "mechanism": "rule-applied-past-its-purpose",
+          "mechanismFamily": "anomaly-absorbed-into-category",
+          "causalCore": "規則に当てはまる分類がない物は、形が一番近い既存の枠に入れられ、その枠の普通の悩みまで引き継ぐ。",
+          "concept": "マンションのエントランス（掲示板と傘立て）。駐輪場の規約に箒の置き場がなく、最後は形が似ている傘立てに収まる。（現実の出来事: 管理人が新しい入居者に駐輪場のルールを説明する／外す1点: 入居者がウーパー魔女で、乗り物が箒）",
+          "status": "rejected",
+          "reason": "駐輪場の規約という説明が前提で、35秒以内に前提を渡し切れない"
+        },
+        {
+          "id": "A14",
+          "mechanism": "rule-applied-past-its-purpose",
+          "mechanismFamily": "ritual-without-premise",
+          "causalCore": "前提がなくなっても、用意した儀式の言葉は止まらず、言い換えで無理につなぎ続けられる。",
+          "concept": "会議室での送別会。異動が取り消された人の送別会が、言い換えながら最後まで続く。（現実の出来事: 花束を贈呈し、寄せ書きを読み上げる／外す1点: 本人の異動が前日に取り消されている（冒頭で本人が明かす））",
+          "status": "rejected",
+          "reason": "送別会の言い換えは台詞の技術頼みで、人物の変化が小さい"
+        },
+        {
+          "id": "A15",
+          "mechanism": "flat-affect-in-odd-situation",
+          "mechanismFamily": "concession-hardens-into-norm",
+          "causalCore": "その場の誤りを気遣いで受け入れると、訂正できるタイミングが消えて誤りが事実になる。",
+          "concept": "ファミレス。誕生日のサプライズを隣の席に届けられた一人客が、否定しそびれて祝われる側になる。（現実の出来事: 店員が歌いながら誕生日ケーキを席に運ぶ／外す1点: 運ぶ席が一つずれている）",
+          "status": "rejected",
+          "reason": "一人客に誕生日のサプライズが届く場面は、日常の小さな気まずさに留まる"
+        }
+      ],
+      "shortlist": [
+        "A01",
+        "A02",
+        "A12"
+      ],
+      "selectedCandidateId": "A01",
+      "selectionAuthority": "delegated",
+      "diversityAudit": {
+        "mode": "blind-reclassification",
+        "verdict": "pass",
+        "summary": "生成ラベルを隠し、causalCoreと一文概要だけを別のエージェントに渡して15案を再分類した。10系統に分かれ、最大は2案（13.3%）。生成側のラベルは批評側の分類に合わせた。",
+        "reviewedCandidateIds": [
+          "A01",
+          "A02",
+          "A03",
+          "A04",
+          "A05",
+          "A06",
+          "A07",
+          "A08",
+          "A09",
+          "A10",
+          "A11",
+          "A12",
+          "A13",
+          "A14",
+          "A15"
+        ],
+        "familyAssignments": [
+          {
+            "candidateId": "A01",
+            "familyId": "metric-target-shift"
+          },
+          {
+            "candidateId": "A02",
+            "familyId": "off-by-one-lag"
+          },
+          {
+            "candidateId": "A03",
+            "familyId": "remedy-backfires-into-offense"
+          },
+          {
+            "candidateId": "A04",
+            "familyId": "hidden-layer-leak"
+          },
+          {
+            "candidateId": "A05",
+            "familyId": "ritual-without-premise"
+          },
+          {
+            "candidateId": "A06",
+            "familyId": "concession-hardens-into-norm"
+          },
+          {
+            "candidateId": "A07",
+            "familyId": "hidden-layer-leak"
+          },
+          {
+            "candidateId": "A08",
+            "familyId": "all-options-self-defeating"
+          },
+          {
+            "candidateId": "A09",
+            "familyId": "asymmetric-signal"
+          },
+          {
+            "candidateId": "A10",
+            "familyId": "avoided-topic-is-destination"
+          },
+          {
+            "candidateId": "A11",
+            "familyId": "anomaly-absorbed-into-category"
+          },
+          {
+            "candidateId": "A12",
+            "familyId": "remedy-backfires-into-offense"
+          },
+          {
+            "candidateId": "A13",
+            "familyId": "anomaly-absorbed-into-category"
+          },
+          {
+            "candidateId": "A14",
+            "familyId": "ritual-without-premise"
+          },
+          {
+            "candidateId": "A15",
+            "familyId": "concession-hardens-into-norm"
+          }
+        ],
+        "familyDefinitions": [
+          {
+            "id": "metric-target-shift",
+            "definingMove": "測定値を基準に合わせるために対象ではなく環境や測り方を動かし、数字は正常になるが中身は悪化する。"
+          },
+          {
+            "id": "off-by-one-lag",
+            "definingMove": "返答が常に一つ遅れて届くため、どの答えも一つ前の問いに対するものになる。"
+          },
+          {
+            "id": "remedy-backfires-into-offense",
+            "definingMove": "失礼や危険を避けるための言い換えや謝罪が、かえって避けたかった失礼や危険そのものを強める。"
+          },
+          {
+            "id": "hidden-layer-leak",
+            "definingMove": "隠されているはずの裏側や本心が外に漏れ、表の振る舞いが嘘になったり、相手がそれを目盛りとして利用したりする。"
+          },
+          {
+            "id": "ritual-without-premise",
+            "definingMove": "対象や前提がなくなっても儀式や手順は最後まで実行され、言い換えや形だけの完遂で成立し続ける。"
+          },
+          {
+            "id": "concession-hardens-into-norm",
+            "definingMove": "その場の配慮や一時的な受け入れが、訂正の機会を失って全体の正式なやり方や事実として固まる。"
+          },
+          {
+            "id": "asymmetric-signal",
+            "definingMove": "開始の合図だけが通じて終了の合図が通じないため、指示が永久に続く。"
+          },
+          {
+            "id": "anomaly-absorbed-into-category",
+            "definingMove": "異常や分類不能なものが既存の業務や枠に押し込まれ、その枠の普通の事情を引き継いで異常として扱われなくなる。"
+          },
+          {
+            "id": "all-options-self-defeating",
+            "definingMove": "相手のための選択肢がどれも自分自身を遠ざけるため、選択が本来の目的と関係ない方向へ後退していく。"
+          },
+          {
+            "id": "avoided-topic-is-destination",
+            "definingMove": "周囲が必死に避けている話題に、当の本人が自分から向かっており、気遣いが空回りする。"
+          }
+        ],
+        "shortlistPairChecks": [
+          {
+            "candidateA": "A01",
+            "candidateB": "A02",
+            "sameCausalStructure": false,
+            "notOnlySettingChange": true,
+            "difference": "A01は目標の数字を守るために環境を操作し、数字は正常になるが対象は悪化する。A02は答えが常に一つ遅れて届くずれで、操作や目標は関与しない。"
+          },
+          {
+            "candidateA": "A01",
+            "candidateB": "A12",
+            "sameCausalStructure": false,
+            "notOnlySettingChange": true,
+            "difference": "A01は測定値を基準に合わせる手段が目的化する構造。A12は言い換えや謝罪という対処が、避けたい失礼を強める構造で、数字も環境操作も関与しない。"
+          },
+          {
+            "candidateA": "A02",
+            "candidateB": "A12",
+            "sameCausalStructure": false,
+            "notOnlySettingChange": true,
+            "difference": "A02は応答の時間的なずれが機序で、誰も悪意や失礼を持たない。A12は謝罪の内容そのものが事実の否定になり無礼になる、意味の反転が機序。"
+          }
+        ]
+      },
+      "userSeeds": [],
+      "selectionNote": "スケジュール実行の指示文が、15案以上から1本を選ぶことを明示的に委任している。人が不在のため3案提示→本人選択は行えない。"
+    },
+    "comedyAudit": {
+      "comicKernel": "患者の体温ではなく、カルテに入る数字を守ることが目的になる。数字を満たすために部屋を温め、数字が正常になるほど患者はぐったりする",
+      "audienceExpectation": "観客は、体温計の故障か患者の異常で、看護師が慌てて医師を呼ぶと予測する。実際には看護師は落ち着いて、数字だけを合わせにいく",
+      "characterIntent": "看護師はカルテを完成させて患者を診察につなげたい。魔女はいつもどおり診てもらって帰りたい",
+      "pressure": "カルテは36度未満を受け付けず、看護師は決まりを破れない。魔女の体温は室温と同じなので、数字を変えるには部屋を変えるしかない",
+      "escalations": [
+        {
+          "beatId": "always",
+          "change": "体温22.4度は故障ではなく、魔女にとっていつものことだと分かる"
+        },
+        {
+          "beatId": "karte",
+          "change": "36度未満はカルテが受け付けないという決まりが出て、数字を直さないと進めなくなる"
+        },
+        {
+          "beatId": "climb",
+          "change": "看護師が患者ではなく部屋を温めはじめ、数字は上がるが魔女の様子は変わっていく"
+        }
+      ],
+      "payoffCausality": "体温が室温と同じという一つのズレから、部屋を温めれば数字が上がるが、その部屋で魔女はぐったりして窓を開けたくなり、看護師は数字が下がるので開けさせない。新しい設定や小道具は足していない",
+      "laughMoment": {
+        "beatId": "noWindow",
+        "description": "ぐったりした魔女が窓を開けたいと言い、看護師が下がっちゃうのでと断る。数字を守ることが人を守ることを追い越す"
+      },
+      "independentReview": {
+        "mode": "hostile-reader",
+        "verdict": "pass",
+        "summary": "別のエージェントが台本を辛口に読み、『エラー下限（34度）より高く温める理由がない』『段4と段5が同質』『室温計の復唱は真顔の確認』『ボタンが二重落ち』と指摘した（verdict: revise）。これに従い、下限を36度に直して温度を36.1度で止め、段4と段5を2文に詰め、室温計の復唱を削り、ボタンを短くした。",
+        "strongestObjection": "数字を満たすために本質を犠牲にするという定番の型に乗っているだけで、段が数字の読み上げではないか",
+        "resolution": "段の新発見を、故障でない→決まりが受け付けない→環境を操作する、と種類を変えた。数字の読み上げは画（温度計表示・看護師の汗・魔女の傾き）で見せ、台詞は最小にした。笑いの強さは声と間に依存し、人の耳で確認する必要がある",
+        "checks": {
+          "premiseHasComicEngine": true,
+          "notJustMundaneIncident": true,
+          "payoffIsEarned": true,
+          "characterCanonRespected": true,
+          "noUnmotivatedAdditions": true,
+          "notOnlyRoleReversal": true
+        }
+      }
+    }
+  },
+  "voices": {
+    "nurse": {
+      "speaker": "春日部つむぎ",
+      "style": "ノーマル",
+      "speed": 1.08
+    },
+    "witch": {
+      "speaker": "雨晴はう",
+      "style": "ノーマル",
+      "speed": 0.98
+    }
+  },
+  "music": {
+    "track": "waiting-lounge",
+    "gain": 0.22,
+    "fadeIn": 0.2,
+    "fadeOut": 0.6
+  },
+  "set": {
+    "kind": "clinic-exam-room",
+    "params": {}
+  },
+  "captions": {
+    "y": 0.74
+  },
+  "actors": {
+    "nurse": {
+      "style": {
+        "skin": "#f2cdb0",
+        "hair": "#3a2a24",
+        "hairStyle": "ponytail",
+        "top": "#f2b8c4",
+        "bottom": "#f4f4f4",
+        "shoes": "#f0f0f0",
+        "nameTag": "看護師"
+      },
+      "root": {
+        "x": -0.4,
+        "z": 0.05,
+        "ry": 1.5708
+      },
+      "pose": "hold-doc",
+      "expr": "polite",
+      "captionColor": "#ffd2dc"
+    },
+    "witch": {
+      "vrm": "assets/3d/avatars/AjoMajo.vrm",
+      "height": 1.2,
+      "seated": true,
+      "root": {
+        "x": 0.5,
+        "y": -0.08,
+        "z": 0.05,
+        "ry": -1.5708
+      },
+      "pose": "idle",
+      "captionColor": "#c8b6ff"
+    }
+  },
+  "props": {
+    "chair": {
+      "kind": "gltf",
+      "params": {
+        "src": "assets/3d/kaykit/furniture/chair_A.gltf",
+        "scale": 0.8
+      },
+      "tf": {
+        "x": 0.5,
+        "y": 0,
+        "z": 0.05,
+        "ry": -1.5708
+      }
+    },
+    "wall": {
+      "kind": "wall-thermo",
+      "params": {
+        "v": 22.4,
+        "label": "室温"
+      },
+      "tf": {
+        "x": 0.35,
+        "y": 1.62,
+        "z": -1.56
+      }
+    },
+    "thermo": {
+      "kind": "clinical-thermometer",
+      "params": {
+        "v": 22.4,
+        "on": 1
+      },
+      "tf": {
+        "x": -0.12,
+        "y": 1.18,
+        "z": 0.12,
+        "ry": 0.0
+      }
+    }
+  },
+  "beats": [
+    {
+      "id": "title",
+      "role": "title",
+      "shot": "wide",
+      "dur": 1.3,
+      "do": [
+        {
+          "at": 0,
+          "sfx": "title-sting"
+        },
+        {
+          "at": 0,
+          "param": "wall",
+          "to": {
+            "v": 22.4
+          },
+          "dur": 0.01
+        },
+        {
+          "at": 0,
+          "param": "thermo",
+          "to": {
+            "v": 22.4,
+            "on": 1
+          },
+          "dur": 0.01
+        }
+      ]
+    },
+    {
+      "id": "reading",
+      "role": "hook",
+      "shot": "two-shot",
+      "pre": 0.1,
+      "post": 0.2,
+      "line": {
+        "who": "nurse",
+        "text": "……22.4度？"
+      },
+      "do": [
+        {
+          "at": 0,
+          "sfx": "thermo-beep"
+        },
+        {
+          "at": 0,
+          "look": "nurse",
+          "to": {
+            "pitch": 0.5
+          },
+          "dur": 0.2
+        },
+        {
+          "at": 0,
+          "face": "nurse",
+          "to": {
+            "expr": "doubtful"
+          },
+          "dur": 0.2
+        }
+      ]
+    },
+    {
+      "id": "always",
+      "role": "rule",
+      "shot": "patient-cu",
+      "pre": 0.25,
+      "post": 0.3,
+      "line": {
+        "who": "witch",
+        "text": "いつも、そのくらいです。"
+      },
+      "do": [
+        {
+          "at": 0,
+          "face": "witch",
+          "to": {
+            "expr": "polite"
+          },
+          "dur": 0.2
+        }
+      ]
+    },
+    {
+      "id": "broken",
+      "role": "escalate",
+      "shot": "nurse-cu",
+      "level": 1,
+      "pre": 0.2,
+      "post": 0.2,
+      "line": {
+        "who": "nurse",
+        "text": "壊れてる……？／私ので。"
+      },
+      "do": [
+        {
+          "at": 0,
+          "look": "nurse",
+          "to": {
+            "pitch": 0.3
+          },
+          "dur": 0.3
+        },
+        {
+          "at": "lineEnd",
+          "param": "thermo",
+          "to": {
+            "on": 0
+          },
+          "dur": 0.01
+        },
+        {
+          "at": "lineEnd+0.4",
+          "sfx": "thermo-beep"
+        },
+        {
+          "at": "lineEnd+0.4",
+          "param": "thermo",
+          "to": {
+            "v": 36.6,
+            "on": 1
+          },
+          "dur": 0.01
+        }
+      ]
+    },
+    {
+      "id": "mine",
+      "role": "bridge",
+      "shot": "nurse-cu",
+      "pre": 0.15,
+      "post": 0.2,
+      "line": {
+        "who": "nurse",
+        "text": "……36.6度。合ってる。"
+      },
+      "do": [
+        {
+          "at": 0,
+          "face": "nurse",
+          "to": {
+            "expr": "blank"
+          },
+          "dur": 0.2
+        }
+      ]
+    },
+    {
+      "id": "same",
+      "role": "escalate",
+      "shot": "patient-cu",
+      "level": 2,
+      "pre": 0.2,
+      "post": 0.15,
+      "line": {
+        "who": "witch",
+        "text": "お部屋と、同じになるんです。"
+      }
+    },
+    {
+      "id": "karte",
+      "role": "escalate",
+      "shot": "pc-cu",
+      "level": 3,
+      "pre": 0.9,
+      "post": 0.3,
+      "line": {
+        "who": "nurse",
+        "text": "でも、カルテに入らなくて。／36度未満は、エラーなんです。"
+      },
+      "do": [
+        {
+          "at": -0.9,
+          "move": "nurse",
+          "to": {
+            "x": -1.45,
+            "z": -0.55,
+            "ry": 3.14159
+          },
+          "dur": 0.85
+        },
+        {
+          "at": -0.9,
+          "sfx": "step"
+        },
+        {
+          "at": -0.55,
+          "sfx": "step"
+        },
+        {
+          "at": -0.25,
+          "sfx": "step"
+        },
+        {
+          "at": 0,
+          "pose": "nurse",
+          "to": "sign",
+          "dur": 0.3
+        },
+        {
+          "at": "lineEnd",
+          "sfx": "error-buzz"
+        }
+      ]
+    },
+    {
+      "id": "soudesu",
+      "role": "bridge",
+      "shot": "patient-cu",
+      "pre": 0.5,
+      "post": 0.2,
+      "line": {
+        "who": "witch",
+        "text": "そうなんですね。"
+      }
+    },
+    {
+      "id": "warm",
+      "role": "turn",
+      "shot": "ac-cu",
+      "pre": 1.0,
+      "post": 0.3,
+      "line": {
+        "who": "nurse",
+        "text": "分かりました。／お部屋の方を、温めます。"
+      },
+      "do": [
+        {
+          "at": -1.0,
+          "move": "nurse",
+          "to": {
+            "x": -0.4,
+            "z": -1.2,
+            "ry": 3.14159
+          },
+          "dur": 0.9
+        },
+        {
+          "at": -1.0,
+          "sfx": "step"
+        },
+        {
+          "at": -0.65,
+          "sfx": "step"
+        },
+        {
+          "at": -0.3,
+          "sfx": "step"
+        },
+        {
+          "at": 0.0,
+          "pose": "nurse",
+          "to": "point",
+          "dur": 0.3
+        },
+        {
+          "at": "line",
+          "sfx": "ac-beep"
+        },
+        {
+          "at": "line+0.5",
+          "sfx": "ac-beep"
+        },
+        {
+          "at": "lineEnd",
+          "sfx": "ac-beep"
+        },
+        {
+          "at": "line",
+          "param": "wall",
+          "to": {
+            "v": 35.4
+          },
+          "dur": 2.6,
+          "ease": "linear"
+        }
+      ]
+    },
+    {
+      "id": "climb",
+      "role": "escalate",
+      "shot": "wall-cu",
+      "level": 4,
+      "pre": 0.1,
+      "post": 0.25,
+      "line": {
+        "who": "nurse",
+        "text": "……35.9度。／あと0.1度。"
+      },
+      "do": [
+        {
+          "at": -0.1,
+          "param": "wall",
+          "to": {
+            "v": 35.9
+          },
+          "dur": 0.3,
+          "ease": "linear"
+        },
+        {
+          "at": -0.1,
+          "move": "nurse",
+          "to": {
+            "x": 0.0,
+            "z": -0.9,
+            "ry": 3.14159
+          },
+          "dur": 0.5
+        },
+        {
+          "at": -0.1,
+          "pose": "nurse",
+          "to": "idle",
+          "dur": 0.3
+        },
+        {
+          "at": 0,
+          "face": "nurse",
+          "to": {
+            "expr": "weary"
+          },
+          "dur": 0.4
+        },
+        {
+          "at": "lineEnd",
+          "sfx": "ac-beep"
+        },
+        {
+          "at": "lineEnd",
+          "param": "wall",
+          "to": {
+            "v": 36.1
+          },
+          "dur": 0.6,
+          "ease": "linear"
+        }
+      ]
+    },
+    {
+      "id": "normal",
+      "role": "escalate",
+      "shot": "nurse-cu",
+      "level": 5,
+      "pre": 0.6,
+      "post": 0.25,
+      "line": {
+        "who": "nurse",
+        "text": "36.1度。／平熱です！"
+      },
+      "do": [
+        {
+          "at": -0.6,
+          "move": "nurse",
+          "to": {
+            "x": -0.4,
+            "z": 0.05,
+            "ry": 1.5708
+          },
+          "dur": 0.6
+        },
+        {
+          "at": 0,
+          "sfx": "thermo-beep"
+        },
+        {
+          "at": 0,
+          "param": "thermo",
+          "to": {
+            "v": 36.1,
+            "on": 1
+          },
+          "dur": 0.01
+        },
+        {
+          "at": 0,
+          "face": "nurse",
+          "to": {
+            "expr": "polite"
+          },
+          "dur": 0.2
+        }
+      ]
+    },
+    {
+      "id": "gutta",
+      "role": "escalate",
+      "shot": "patient-cu",
+      "pre": 0.3,
+      "post": 0.25,
+      "line": {
+        "who": "witch",
+        "text": "あの、ちょっとぐったりして……／窓、開けてもいいですか。"
+      },
+      "do": [
+        {
+          "at": 0,
+          "face": "witch",
+          "to": {
+            "expr": "weary"
+          },
+          "dur": 0.6
+        },
+        {
+          "at": 0,
+          "move": "witch",
+          "to": {
+            "rx": 0.28
+          },
+          "dur": 0.8
+        },
+        {
+          "at": 0,
+          "look": "witch",
+          "to": {
+            "pitch": 0.25
+          },
+          "dur": 0.8
+        }
+      ],
+      "level": 6
+    },
+    {
+      "id": "noWindow",
+      "role": "payoff",
+      "shot": "window",
+      "pre": 0.5,
+      "post": 0.4,
+      "line": {
+        "who": "nurse",
+        "text": "だめです。／下がっちゃうので。"
+      },
+      "do": [
+        {
+          "at": -0.5,
+          "move": "nurse",
+          "to": {
+            "x": 1.0,
+            "z": -0.9,
+            "ry": 0.0
+          },
+          "dur": 0.5
+        },
+        {
+          "at": -0.5,
+          "sfx": "step"
+        },
+        {
+          "at": -0.25,
+          "sfx": "step"
+        },
+        {
+          "at": 0,
+          "pose": "nurse",
+          "to": "hand-up",
+          "dur": 0.25
+        },
+        {
+          "at": 0,
+          "sfx": "payoff-hit"
+        },
+        {
+          "at": 0,
+          "music": "cut"
+        }
+      ]
+    },
+    {
+      "id": "sweat",
+      "role": "bridge",
+      "shot": "patient-cu",
+      "pre": 0.3,
+      "post": 0.25,
+      "line": {
+        "who": "witch",
+        "text": "看護師さん、汗が。"
+      },
+      "do": [
+        {
+          "at": 0,
+          "music": "resume"
+        }
+      ]
+    },
+    {
+      "id": "button",
+      "role": "button",
+      "shot": "two-shot",
+      "pre": 0.3,
+      "post": 0.6,
+      "line": {
+        "who": "nurse",
+        "text": "36.6度です。"
+      },
+      "do": [
+        {
+          "at": -0.3,
+          "move": "nurse",
+          "to": {
+            "x": -0.4,
+            "z": 0.05,
+            "ry": 1.5708
+          },
+          "dur": 0.01
+        }
+      ]
+    }
+  ],
+  "description": [
+    "看護師が体温を測ると22.4度。壁の温度計と同じだった。電子カルテに入る数字にするため、看護師は部屋のほうを温める。",
+    "#ショート #コント #クリニック #あるある"
+  ]
+}
