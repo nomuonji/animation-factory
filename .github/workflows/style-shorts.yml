@@ -106,9 +106,11 @@ jobs:
               # gallery: one still per scene in every style + a contact sheet
               node tools/styles/gallery.mjs "$p"
               mkdir -p "artifact/$p-gallery" && cp outputs/styles/gallery/"$p"/*.jpg "artifact/$p-gallery/"
-              # and one full video so voice/music/mux are exercised
+              # and one full video so voice/music/mux are exercised, with its layout inspect
+              node tools/styles/render-style.mjs "$p" --inspect --scale 0.5 || echo "::warning::layout inspect found errors in $p"
               node tools/styles/render-style.mjs "$p"
               mkdir -p "artifact/$p" && cp -r "outputs/styles/$p/review/." "artifact/$p/"
+              cp -r "outputs/styles/$p/inspect" "artifact/$p/" || true
             elif [ -n "${STYLE:-}" ]; then
               node tools/styles/render-style.mjs "$p" --style "$STYLE" --inspect --scale 0.5 || true
               node tools/styles/render-style.mjs "$p" --style "$STYLE"
