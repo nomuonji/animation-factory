@@ -37,7 +37,17 @@ python tools/shorts/shorts.py lesson lessons/<id>.json   # ブリーフを生成
 
 各パターンの見本は `lessons/` にある（`en-running-late.json` は公開済み #1 と同じ中身。#1 の動画そのものは手で調整したブリーフから作った）。
 
-## 難易度（2026-10-20 チャンネル主の指示）
+## 難易度：CEFR で選ぶ（2026-10-20〜）
+
+チャンネル主の指示により、今後は CEFR の C1 / C2 を指標にする。`catalog/vocab/` の Octanove Vocabulary Profile C1/C2（CC BY-SA 4.0）でレベルを確かめ、スペックに `"cefr": "C2"` を入れる（短尺はタイトル先頭、長尺は単語の横と説明欄に表示。説明欄に出典を自動で入れる）。
+未使用の語は `python tools/shorts/shorts.py vocab --level C2 [--pos adjective]` で一覧できる。リストの語でも、専門用語・古語・日常でほぼ使わない語は選ばない。
+
+## 長尺「まとめて覚える」（pattern: review）
+
+`lessons/<id>.json` に `"pattern": "review"` と `words[]`（word, pos, ja, cefr, scene, nuance(0〜1個), examples(1個推奨)）を書くと、16:9 の長尺台本 `productions/<id>/longform.json` ができる。
+テンポ重視（2026-10-20 指示）：1語 約15秒（番号・単語・レベル表示 → 普通の速さ → ゆっくり → 意味一言 → 例文 → お手本の後に言う間）。10語ごとに「日本語→英語」の確認テスト。BGM あり（声の下で自動的に下がる）。
+
+## 旧：難易度（2026-10-20 チャンネル主の指示）
 
 英検1級より上。英検1級の単語集の頻出語は避ける。ネイティブは普通に使うが試験には出にくい語（口語・イディオム・ネイティブも混同する組・強い言い換え）を選ぶ。詳しくは `lessons/BACKLOG.md`。
 
@@ -54,6 +64,10 @@ python tools/shorts/shorts.py lesson lessons/<id>.json   # ブリーフを生成
 台本は公開前に人が見ないので、書く段階で品質を担保する。新しい台本は、まずこのリポジトリの `lessons/` に入れて PR のプレビュー描画で確認してから error-english に送るのが安全。
 
 日本語ナレーション（`say`）に英字があると生成時にエラーになる（VOICEVOX は英語を読めない）。英単語はカタカナで書くか、字幕（`cap`）だけに出す。
+
+## 長尺の自動投稿
+
+error-english の `publish-queue/longform/NNNN-<id>.json` に置くと、毎週土曜 20:17 JST に1本、1080p で制作して公開する（Shorts の1日上限とは別枠）。止めるときは `publish-queue/config.json` に `"longformEnabled": false`。
 
 ## ネタ帳
 

@@ -1,0 +1,270 @@
+{
+  "id": "en-review-vol1",
+  "pattern": "review",
+  "number": 1,
+  "level": "英検1級超",
+  "title": "英検1級のその先｜ネイティブは使うのに試験に出ない英単語10選",
+  "headline": "英検1級のその先\nまとめて覚える10語",
+  "words": [
+    {
+      "word": "shenanigans",
+      "pos": "名詞",
+      "ja": "いたずら・ごまかし",
+      "scene": "laughing",
+      "nuance": [
+        {
+          "cap": "ふざけた悪さから、ずるいごまかしまで",
+          "say": "子どものいたずらから、お金のごまかしまで使えます。"
+        },
+        {
+          "cap": "ふつう複数形で使う",
+          "say": "ふつうは、複数形で使います。"
+        }
+      ],
+      "examples": [
+        {
+          "en": "No more shenanigans, kids.",
+          "ja": "いたずらはもうおしまいだよ"
+        },
+        {
+          "en": "There were some financial shenanigans at the company.",
+          "ja": "その会社では、お金のごまかしがあった"
+        }
+      ]
+    },
+    {
+      "word": "discombobulated",
+      "pos": "形容詞",
+      "ja": "すっかり混乱した",
+      "scene": "frustrated",
+      "nuance": [
+        {
+          "cap": "頭がこんがらがって、調子が狂った",
+          "say": "頭がこんがらがって、調子が狂った感じです。"
+        },
+        {
+          "cap": "少しおどけた響き",
+          "say": "少しおどけた響きの言葉です。"
+        }
+      ],
+      "examples": [
+        {
+          "en": "I felt discombobulated after the long flight.",
+          "ja": "長いフライトの後、頭がぼんやりしていた"
+        },
+        {
+          "en": "The sudden change left everyone discombobulated.",
+          "ja": "急な変更で、みんな混乱した"
+        }
+      ]
+    },
+    {
+      "word": "persnickety",
+      "pos": "形容詞",
+      "ja": "細かいことにうるさい",
+      "scene": "office-desk",
+      "nuance": [
+        {
+          "cap": "どうでもいい細部にこだわる",
+          "say": "どうでもいい細かいところに、こだわる人に使います。"
+        },
+        {
+          "cap": "主にアメリカ英語",
+          "say": "主にアメリカ英語です。"
+        }
+      ],
+      "examples": [
+        {
+          "en": "My boss is persnickety about fonts.",
+          "ja": "上司はフォントにうるさい"
+        },
+        {
+          "en": "Don't be so persnickety.",
+          "ja": "そんなに細かいこと言わないで"
+        }
+      ]
+    },
+    {
+      "word": "humdrum",
+      "pos": "形容詞",
+      "ja": "単調な・平凡な",
+      "scene": "office-clocks",
+      "nuance": [
+        {
+          "cap": "毎日同じで、変化がない",
+          "say": "毎日同じことの繰り返しで、変化がない感じです。"
+        }
+      ],
+      "examples": [
+        {
+          "en": "I needed a break from my humdrum routine.",
+          "ja": "単調な毎日から抜け出したかった"
+        },
+        {
+          "en": "It was a humdrum little town.",
+          "ja": "平凡で小さな町だった"
+        }
+      ]
+    },
+    {
+      "word": "gumption",
+      "pos": "名詞",
+      "ja": "度胸・やる気・機転",
+      "scene": "meeting",
+      "nuance": [
+        {
+          "cap": "思い切って行動する力",
+          "say": "思い切って行動する力や、とっさの機転のことです。"
+        },
+        {
+          "cap": "ほめ言葉として使う",
+          "say": "ほめ言葉として使います。"
+        }
+      ],
+      "examples": [
+        {
+          "en": "She had the gumption to ask for a raise.",
+          "ja": "彼女は思い切って昇給を頼んだ"
+        },
+        {
+          "en": "It takes gumption to start your own business.",
+          "ja": "起業するには度胸がいる"
+        }
+      ]
+    },
+    {
+      "word": "chutzpah",
+      "pos": "名詞",
+      "ja": "図々しさ・大胆さ",
+      "scene": "argument",
+      "nuance": [
+        {
+          "cap": "ふつうは遠慮するところで、平気でやる",
+          "say": "ふつうは遠慮するところを、平気でやってのける図々しさです。"
+        },
+        {
+          "cap": "感心と呆れの両方",
+          "say": "感心と、呆れの、両方の意味で使います。"
+        }
+      ],
+      "examples": [
+        {
+          "en": "He had the chutzpah to ask me for money again.",
+          "ja": "彼は図々しくも、また金を貸してと言ってきた"
+        },
+        {
+          "en": "It took real chutzpah to pitch the idea to the CEO.",
+          "ja": "社長にその案を出すなんて、本当に大胆だった"
+        }
+      ]
+    },
+    {
+      "word": "bugbear",
+      "pos": "名詞",
+      "ja": "悩みの種・苦手なもの",
+      "scene": "phone-call",
+      "nuance": [
+        {
+          "cap": "いつもイライラさせられるもの",
+          "say": "いつもイライラさせられる、悩みの種です。"
+        }
+      ],
+      "examples": [
+        {
+          "en": "Noise is my biggest bugbear.",
+          "ja": "騒音がいちばんの悩みの種だ"
+        },
+        {
+          "en": "Slow internet is a real bugbear for remote workers.",
+          "ja": "遅いネットは、在宅勤務の人の悩みの種だ"
+        }
+      ]
+    },
+    {
+      "word": "comeuppance",
+      "pos": "名詞",
+      "ja": "当然の報い",
+      "scene": "street-waiting",
+      "nuance": [
+        {
+          "cap": "悪いことをした人に返ってくる罰",
+          "say": "悪いことをした人に、返ってくる罰のことです。"
+        },
+        {
+          "cap": "get one's comeuppance の形で",
+          "say": "ゲット、ワンズ、カムアップンス、の形でよく使います。"
+        }
+      ],
+      "examples": [
+        {
+          "en": "The bully finally got his comeuppance.",
+          "ja": "いじめっ子は、ついに報いを受けた"
+        },
+        {
+          "en": "Sooner or later, cheaters get their comeuppance.",
+          "ja": "ずるをする人は、いずれ報いを受ける"
+        }
+      ]
+    },
+    {
+      "word": "rigmarole",
+      "pos": "名詞",
+      "ja": "面倒な手続き",
+      "scene": "desk-flatlay",
+      "nuance": [
+        {
+          "cap": "長くて、ややこしくて、無駄が多い",
+          "say": "長くて、ややこしくて、無駄が多い手続きのことです。"
+        }
+      ],
+      "examples": [
+        {
+          "en": "Renewing my passport was such a rigmarole.",
+          "ja": "パスポートの更新は本当に面倒だった"
+        },
+        {
+          "en": "I can't face the whole rigmarole of moving again.",
+          "ja": "また引っ越しの面倒な手続きをする気になれない"
+        }
+      ]
+    },
+    {
+      "word": "wheelhouse",
+      "pos": "名詞",
+      "ja": "得意分野",
+      "scene": "notebook-writing",
+      "nuance": [
+        {
+          "cap": "いちばん力を発揮できる範囲",
+          "say": "自分がいちばん力を発揮できる範囲のことです。"
+        },
+        {
+          "cap": "主にアメリカ英語",
+          "say": "主にアメリカ英語です。"
+        }
+      ],
+      "examples": [
+        {
+          "en": "Data analysis is right in her wheelhouse.",
+          "ja": "データ分析は、まさに彼女の得意分野だ"
+        },
+        {
+          "en": "That's not really in my wheelhouse.",
+          "ja": "それは、あまり得意じゃない"
+        }
+      ]
+    }
+  ],
+  "sources": [
+    "https://dictionary.cambridge.org/dictionary/english/shenanigans",
+    "https://dictionary.cambridge.org/dictionary/english/discombobulated",
+    "https://dictionary.cambridge.org/dictionary/english/persnickety",
+    "https://dictionary.cambridge.org/dictionary/english/humdrum",
+    "https://dictionary.cambridge.org/dictionary/english/gumption",
+    "https://dictionary.cambridge.org/dictionary/english/chutzpah",
+    "https://dictionary.cambridge.org/dictionary/english/bugbear",
+    "https://dictionary.cambridge.org/dictionary/english/comeuppance",
+    "https://dictionary.cambridge.org/dictionary/english/rigmarole",
+    "https://dictionary.cambridge.org/dictionary/english/wheelhouse"
+  ]
+}

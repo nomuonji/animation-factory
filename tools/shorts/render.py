@@ -103,7 +103,8 @@ def build_timeline(b: dict, lock: dict | None) -> dict:
             caps[-1][1] = t + dur  # keep last caption until the cut
         beats.append({"id": bt["id"], "role": bt["role"], "start": t, "duration": dur, "lead": lead,
                       "speech": sp, "captions": caps, "shots": sh_out, "sfx": bt.get("sfx", "none"),
-                      "overlay": bt.get("overlay"), "overlayY": bt.get("overlayY", HEADLINE_Y), "emphasis": bt.get("emphasis", []),
+                      "overlay": bt.get("overlay"), "overlayY": bt.get("overlayY", HEADLINE_Y),
+                      "headline": bt.get("headline"), "headlineY": bt.get("headlineY", .30), "emphasis": bt.get("emphasis", []),
                       "moraRate": (sp["moras"] / sp["duration"]) if sp["duration"] else 0})
         t += dur
     return {"beats": beats, "total": t}
