@@ -31,6 +31,11 @@ function strong(st: StyleDef, c: string) {
   return r >= 3.6 ? c : fg(st);
 }
 export const fg = (st: StyleDef) => (isLight(st.bg) ? st.ink : st.figure === "line" ? st.ink : st.paper);
+/** top of the content area: while the hook text is on screen (top ~0.10-0.19), titles move below it */
+const top0 = (c: Ctx, frac: number) => {
+  const o = c.tl.overlay;
+  return (o && c.t >= o.start && c.t < o.end ? Math.max(frac, 0.23) : frac) * c.H;
+};
 /** lowest y (px) content may use above the captions */
 const zone = (st: StyleDef, H: number) => Math.min(0.74, st.caption.y - 0.08) * H;
 const font = (st: StyleDef, px: number, w = st.weight) => `${w} ${Math.round(px)}px ${st.font}`;
@@ -134,7 +139,7 @@ export function chart(c: Ctx) {
   const left = W * 0.1, right = W * 0.8, top = H * 0.32, bottom = zone(st, H) - W * 0.16;
   const u = ease.inOut(span(t, sc, "line", "lineEnd-0.3"));
   g.font = font(st, W * 0.036, 700); g.fillStyle = muted(st);
-  if (sc.label) { g.textAlign = "left"; g.fillText(sc.label, left, H * 0.2); }
+  if (sc.label) { g.textAlign = "left"; g.fillText(sc.label, left, top0(c, 0.2)); }
   if (sc.type === "bar" && sc.bars?.length) {
     const n = sc.bars.length, max = Math.max(...sc.bars.map((b) => b.value)) || 1, bw = (right - left) / n * 0.62;
     sc.bars.forEach((b, i) => {
@@ -240,8 +245,8 @@ export function list(c: Ctx) {
   const items = sc.items ?? [];
   const a = atTime("line", sc), b = atTime("lineEnd-0.3", sc);
   g.textBaseline = "middle";
-  if (sc.title) { g.font = font(st, W * 0.07); g.fillStyle = st.id === "paper-presenter" ? st.accent : ink; g.textAlign = "center"; g.fillText(sc.title, W / 2, H * 0.14); }
-  const top = H * 0.24, step = Math.min(H * 0.1, (zone(st, H) - top) / Math.max(1, items.length));
+  if (sc.title) { g.font = font(st, W * 0.07); g.fillStyle = st.id === "paper-presenter" ? st.accent : ink; g.textAlign = "center"; g.fillText(sc.title, W / 2, top0(c, 0.14)); }
+  const top = top0(c, 0.14) + H * 0.1, step = Math.min(H * 0.1, (zone(st, H) - top) / Math.max(1, items.length));
   items.forEach((it, i) => {
     const at = a + ((b - a) * i) / Math.max(1, items.length);
     const k = ease.back(clamp01((t - at) / 0.28));
@@ -268,7 +273,7 @@ export function diagram(c: Ctx) {
   nodes.forEach((n, i) => appear.set(n.id, n.at !== undefined ? atTime(n.at, sc) : a + ((b - a) * i) / Math.max(1, nodes.length)));
   const zc = (H * 0.16 + zone(st, H)) / 2, zs = (zone(st, H) - H * 0.16) / 2 - W * 0.12;
   const pos = (n: { x: number; y: number }) => [W / 2 + n.x * W * 0.36, zc + n.y * zs] as const;
-  if (sc.title) { g.font = font(st, W * 0.06); g.fillStyle = ink; g.textAlign = "center"; g.textBaseline = "middle"; g.fillText(sc.title, W / 2, H * 0.1); }
+  if (sc.title) { g.font = font(st, W * 0.06); g.fillStyle = ink; g.textAlign = "center"; g.textBaseline = "middle"; g.fillText(sc.title, W / 2, top0(c, 0.1)); }
   for (const e of sc.edges ?? []) {
     const na = nodes.find((n) => n.id === e.from), nb = nodes.find((n) => n.id === e.to);
     if (!na || !nb) continue;
@@ -322,7 +327,7 @@ export function path(c: Ctx) {
   g.beginPath(); g.arc(hx, hy, W * 0.012, 0, Math.PI * 2); g.fillStyle = st.ink; g.fill();
   const [sx, sy] = pts[0]!;
   g.beginPath(); g.arc(sx, sy, W * 0.008, 0, Math.PI * 2); g.fill();
-  if (sc.text) { g.font = font(st, W * 0.036, 500); g.fillStyle = muted(st); g.textAlign = "center"; g.fillText(sc.text, W / 2, H * 0.12); }
+  if (sc.text) { g.font = font(st, W * 0.036, 500); g.fillStyle = muted(st); g.textAlign = "center"; g.fillText(sc.text, W / 2, top0(c, 0.12)); }
 }
 
 // ---------------------------------------------------------------- quote
@@ -345,7 +350,7 @@ export function route(c: Ctx) {
   const { g, st, W, H, t, sc } = c;
   if (!c.noBg) drawSet(g, st, "plain", W, H, H, t);
   const ink = fg(st);
-  const top = H * 0.1, bot = zone(st, H), cell = W * 0.13;
+  const top = top0(c, 0.1), bot = zone(st, H), cell = W * 0.13;
   const ox = W / 2 - cell * 3, oy = top + (bot - top) / 2 - cell * 2.5;
   g.save();
   g.beginPath(); g.rect(W * 0.04, top, W * 0.92, bot - top); g.clip();
@@ -384,7 +389,7 @@ export function exploded(c: Ctx) {
   const cx = W * 0.34, gap = ((bot - top) / n) * u * 0.85 + W * 0.012;
   const mid = (top + bot) / 2;
   const a = atTime("line+0.6", sc), b = atTime("lineEnd-0.3", sc);
-  if (sc.title) { g.font = font(st, W * 0.036, 700); g.fillStyle = ink; g.textAlign = "left"; g.fillText(sc.title, W * 0.07, H * 0.09); }
+  if (sc.title) { g.font = font(st, W * 0.036, 700); g.fillStyle = ink; g.textAlign = "left"; g.fillText(sc.title, W * 0.07, top0(c, 0.09)); }
   // (labels stay left of the phone UI's right-hand buttons: x <= 0.86)
   for (let i = n - 1; i >= 0; i--) {
     const l = layers[i]!;

@@ -78,7 +78,9 @@ export function install() {
       }
       const key = `${text}|${Math.round(x)}|${Math.round(y)}`;
       // px = glyph height on a 1080x1920 frame, whatever the render scale
-      recs.push({ kind: "text", phase, text, ...b, px: (b.y1 - b.y0) * 1920, fg: colorLum(this.fillStyle), bg, outlined: lastStroke.includes(key) || this.shadowBlur > 0, boxed: false });
+      // px = font size on a 1080x1920 frame (glyph heights vary by script: digits are ~0.7em, kana ~0.9em)
+      const fs = Number(/(\d+(?:\.\d+)?)px/.exec(this.font)?.[1] ?? 0) * Math.hypot(this.getTransform().b, this.getTransform().d);
+      recs.push({ kind: "text", phase, text, ...b, px: (fs / H) * 1920, fg: colorLum(this.fillStyle), bg, outlined: lastStroke.includes(key) || this.shadowBlur > 0, boxed: false });
     }
     return mw === undefined ? fill.call(this, text, x, y) : fill.call(this, text, x, y, mw);
   };
@@ -109,7 +111,7 @@ export function checkLayout(rs: Rec[]): Issue[] {
       const i = inter(t, u);
       if (area(i) > area(t) * 0.25) out.push({ level: "warn", code: "unsafe-zone", msg: `「${t.text.slice(0, 16)}」が${u.name}の位置（スマホのUIで隠れる）`, box: t });
     }
-    if (t.px < 30 && t.text.length > 1) out.push({ level: "warn", code: "tiny-text", msg: `文字が小さい（${t.px.toFixed(0)}px/1920）「${t.text.slice(0, 16)}」`, box: t });
+    if (t.px < 34 && t.text.length > 1) out.push({ level: "warn", code: "tiny-text", msg: `文字が小さい（フォント${t.px.toFixed(0)}px、1080×1920で34px未満）「${t.text.slice(0, 16)}」`, box: t });
     if (t.fg >= 0 && t.bg >= 0 && !t.outlined) {
       const c = contrast(t.fg, t.bg);
       if (c < 3) out.push({ level: c < 1.8 ? "error" : "warn", code: "low-contrast", msg: `背景と文字のコントラスト ${c.toFixed(1)}:1「${t.text.slice(0, 16)}」`, box: t });
