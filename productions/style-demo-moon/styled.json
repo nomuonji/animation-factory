@@ -1,0 +1,63 @@
+{
+  "meta": { "id": "style-demo-moon", "title": "月まで歩いたら何年？", "fps": 30, "width": 1080, "height": 1920, "kind": "style-demo" },
+  "style": "stickman",
+  "voices": { "n": { "speaker": "青山龍星", "speed": 1.15 } },
+  "design": {
+    "title": "月まで歩いたら何年かかる？",
+    "hook": { "overlay": "月まで歩いたら？" }
+  },
+  "sources": ["NASA Moon Fact Sheet — mean Earth–Moon distance 384,400 km (https://nssdc.gsfc.nasa.gov/planetary/factsheet/moonfact.html)"],
+  "description": ["地球から月まで歩いたら何年かかるのか、乗り物と光で比べてみた。"],
+  "beats": [
+    {
+      "id": "hook", "role": "hook",
+      "line": { "who": "n", "text": "月まで歩いて行けたら／何年かかると思う？" },
+      "visual": {
+        "scene": "stage", "set": "space",
+        "actors": [{ "id": "a", "x": -0.25, "pose": [["start", "idle"], ["line+0.6", "think"]], "face": [["start", "neutral"], ["line+0.6", "smug"]], "emote": [["line+1.2", "?"]], "talks": false }],
+        "props": [{ "kind": "flag", "x": 0.55, "y": 0, "scale": 0.8 }],
+        "camera": { "zoom": 1.15, "to": { "zoom": 1.0 } }
+      }
+    },
+    {
+      "id": "distance",
+      "line": { "who": "n", "text": "地球から月までは／平均38万4400キロ" },
+      "visual": { "scene": "counter", "from": 0, "to": 384400, "unit": "km", "label": "地球 → 月（平均）", "icon": "moon", "format": "comma" }
+    },
+    {
+      "id": "walk",
+      "line": { "who": "n", "text": "時速4キロで／一度も休まず歩くと…" },
+      "visual": {
+        "scene": "stage", "set": "beach",
+        "actors": [{ "id": "a", "x": -0.9, "to": { "x": 0.5 }, "pose": "walk", "face": "happy", "color": "#e8463a" }]
+      }
+    },
+    {
+      "id": "years",
+      "line": { "who": "n", "text": "なんと約11年。／小学1年生が高校生になる" },
+      "visual": { "scene": "card", "text": "約11年", "sub": "休まず歩き続けた場合", "icon": "clock" }
+    },
+    {
+      "id": "compare",
+      "line": { "who": "n", "text": "車なら約160日、／飛行機でも約18日かかる" },
+      "visual": {
+        "scene": "chart", "type": "bar", "label": "月までの日数（休まず進んだ場合）", "unit": "日", "format": "comma",
+        "bars": [{ "label": "徒歩", "value": 4004, "icon": "person" }, { "label": "車", "value": 160, "icon": "car" }, { "label": "飛行機", "value": 18, "icon": "plane" }]
+      }
+    },
+    {
+      "id": "light",
+      "line": { "who": "n", "text": "でも光なら、／たった1.3秒で着く" },
+      "visual": { "scene": "card", "text": "1.3秒", "sub": "光の速さなら", "icon": "bolt" }
+    },
+    {
+      "id": "end", "role": "payoff",
+      "line": { "who": "n", "text": "月って、近いのか遠いのか／わからなくなるね" },
+      "visual": {
+        "scene": "stage", "set": "space",
+        "actors": [{ "id": "a", "x": 0, "pose": [["start", "shrug"], ["lineEnd-0.6", "cheer"]], "face": [["start", "worried"], ["lineEnd-0.6", "laugh"]], "emote": [["line+0.4", "sweat"]], "color": "#e8463a" }],
+        "camera": { "zoom": 1.0, "to": { "zoom": 1.2 } }
+      }
+    }
+  ]
+}

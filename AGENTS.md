@@ -52,3 +52,7 @@ Read `docs/longform.md` before making a chapter-based landscape film. Use `produ
 ## 3D Shorts
 
 For acted 3D skits (characters, props, a set) follow `docs/three-shorts-playbook.md` end to end (ideation → scene → lint/stills → voices → render → `tools/three/qa.mjs` → merge → publish with `tools/three/publish-pack.mjs` → `productions/<id>/published.json`). Tools are described in `docs/three-shorts.md`. Productions are `productions/<id>/scene3d.json`; reusable props/sets/poses live in `src/three/` and are listed under `three` in `catalog/components.json`. The pixel conventions above do not apply to this line.
+
+## Style Shorts (topic → one of 21 looks)
+
+To turn a topic into a narrated vertical short in a chosen look (stick figures, living charts, diagrams, paper, comic, risograph, retro anime, pixel art, minimal line, and 3D cartoon / what-if / low-poly / route map / exploded view / block world / toy bricks / retro console / block horror / clay / game avatar), use the `style-shorts` skill (`.claude/skills/style-shorts/SKILL.md`) and the per-look skills `.claude/skills/style-<id>/`. Productions are `productions/<id>/styled.json`; the reference is `docs/style-shorts.md`; looks are listed in `catalog/styles.json` (regenerate the skills with `node tools/styles/gen-skills.mjs` after editing it). Reusable drawing code lives in `src/styles/`, never in a production. `meta.kind: "style-demo"` productions are never published.
