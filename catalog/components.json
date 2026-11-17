@@ -464,6 +464,23 @@
           "bench": 0.45
         },
         "notes": "銭湯の休憩所（番台・長椅子・壁掛け時計・冷蔵ケース・扇風機・体重計）。番台は左奥、長椅子は中央〜右。座る人物は seated:true。時計は prop wall-clock（param t で針を進める）"
+      },
+      "animal-clinic": {
+        "cameras": [
+          "wide",
+          "dog-cu",
+          "patient-cu",
+          "vet-cu",
+          "over-dog",
+          "payoff",
+          "side"
+        ],
+        "surfaces": {
+          "floor": 0,
+          "scale": 0.155,
+          "exam": 0.98
+        },
+        "notes": "動物病院の診察室。部屋の壁・床・サインはセット、家具と診察台は既存KayKit Furniture Bits（bed_single_A / cabinet_medium_decorated / chair_A / table_medium）をscene3d.jsonから直接読み込む。診療記録には既存binder / pen propを使用。キャストは既存100Avatars R3のDogoBurger / Erika / Robert。"
       }
     },
     "props": {
