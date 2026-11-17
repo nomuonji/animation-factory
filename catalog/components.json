@@ -447,6 +447,23 @@
           "floor": 0,
           "mat": 0.02
         }
+      },
+      "sento-lobby": {
+        "cameras": [
+          "wide",
+          "bench-cu",
+          "bench-wide",
+          "clerk-cu",
+          "clock-cu",
+          "over-bench",
+          "side"
+        ],
+        "surfaces": {
+          "desk": 1.0,
+          "floor": 0,
+          "bench": 0.45
+        },
+        "notes": "銭湯の休憩所（番台・長椅子・壁掛け時計・冷蔵ケース・扇風機・体重計）。番台は左奥、長椅子は中央〜右。座る人物は seated:true。時計は prop wall-clock（param t で針を進める）"
       }
     },
     "props": {
@@ -544,6 +561,13 @@
       ],
       "exercise-bench": [
         "color"
+      ],
+      "wall-clock": [
+        "r",
+        "param:t"
+      ],
+      "milk-bottle": [
+        "param:empty"
       ]
     },
     "character": {

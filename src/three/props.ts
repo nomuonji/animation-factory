@@ -398,6 +398,57 @@ export const PROPS: Record<string, PropBuilder> = {
   },
 
   /** Wall room thermometer (室温計): white plate with a big LCD. param v = temperature in °C (tweenable); params.label (default "室温"). */
+  /** Analog wall clock (壁時計). Faces +Z, centred on its own origin. param t = time of day in hours (e.g. 20.67 = 20:40); hands redraw per minute. */
+  "wall-clock"(p) {
+    const r = num(p.r, 0.2);
+    const g = new THREE.Group();
+    const rim = mesh(new THREE.CylinderGeometry(r, r, 0.04, 36), toon("#5a4636"), 0.004);
+    rim.rotation.x = Math.PI / 2; g.add(rim);
+    const c = document.createElement("canvas"); c.width = 256; c.height = 256;
+    const ctx = c.getContext("2d")!;
+    const tex = new THREE.CanvasTexture(c); tex.colorSpace = THREE.SRGBColorSpace;
+    let shown = -1;
+    const draw = (t: number) => {
+      const m = Math.round(((t % 12) + 12) % 12 * 60);
+      if (m === shown) return;
+      shown = m;
+      ctx.fillStyle = "#fbf8ee"; ctx.fillRect(0, 0, 256, 256);
+      ctx.strokeStyle = "#2a2a2a"; ctx.fillStyle = "#2a2a2a";
+      for (let i = 0; i < 12; i++) {
+        const a = i * Math.PI / 6;
+        ctx.lineWidth = i % 3 === 0 ? 9 : 4;
+        ctx.beginPath(); ctx.moveTo(128 + Math.sin(a) * 100, 128 - Math.cos(a) * 100); ctx.lineTo(128 + Math.sin(a) * 118, 128 - Math.cos(a) * 118); ctx.stroke();
+      }
+      const hourA = (m / 720) * Math.PI * 2, minA = ((m % 60) / 60) * Math.PI * 2;
+      ctx.lineCap = "round";
+      ctx.lineWidth = 11; ctx.beginPath(); ctx.moveTo(128, 128); ctx.lineTo(128 + Math.sin(hourA) * 62, 128 - Math.cos(hourA) * 62); ctx.stroke();
+      ctx.lineWidth = 7; ctx.beginPath(); ctx.moveTo(128, 128); ctx.lineTo(128 + Math.sin(minA) * 92, 128 - Math.cos(minA) * 92); ctx.stroke();
+      ctx.beginPath(); ctx.arc(128, 128, 9, 0, Math.PI * 2); ctx.fill();
+      tex.needsUpdate = true;
+    };
+    draw(num(p.t, 20.67));
+    const face = new THREE.Mesh(new THREE.CircleGeometry(r * 0.93, 36), new THREE.MeshBasicMaterial({ map: tex }));
+    face.position.z = 0.0215; g.add(face);
+    return { object: g, setParam(k, v) { if (k === "t") draw(v); } };
+  },
+
+  /** Fruit-milk glass bottle (フルーツ牛乳). Stands on its origin; param empty = 1 hides the milk. */
+  "milk-bottle"(p) {
+    const g = new THREE.Group();
+    const col = str(p.color, "#f3e7c4");
+    const body = mesh(new THREE.CylinderGeometry(0.03, 0.03, 0.13, 14), new THREE.MeshPhongMaterial({ color: 0xe6f3f7, transparent: true, opacity: 0.6, shininess: 100 }), false);
+    body.position.y = 0.065; g.add(body);
+    const milk = mesh(new THREE.CylinderGeometry(0.026, 0.026, 0.1, 14), toon(col), false);
+    milk.position.y = 0.055; g.add(milk);
+    const neck = mesh(new THREE.CylinderGeometry(0.015, 0.03, 0.03, 12), new THREE.MeshPhongMaterial({ color: 0xe6f3f7, transparent: true, opacity: 0.6 }), false);
+    neck.position.y = 0.145; g.add(neck);
+    const cap = mesh(new THREE.CylinderGeometry(0.017, 0.017, 0.012, 12), toon("#f4efe2"), false);
+    cap.position.y = 0.166; g.add(cap);
+    const label = new THREE.Mesh(new THREE.CylinderGeometry(0.0305, 0.0305, 0.045, 14, 1, true), new THREE.MeshBasicMaterial({ color: new THREE.Color("#c9462f"), side: THREE.DoubleSide }));
+    label.position.y = 0.06; g.add(label);
+    return { object: g, setParam(k, v) { if (k === "empty") milk.visible = v < 0.5; } };
+  },
+
   "wall-thermo"(p) {
     const w = num(p.w, 0.3), h = num(p.h, 0.2);
     const g = new THREE.Group();
