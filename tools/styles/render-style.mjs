@@ -157,11 +157,39 @@ const browser = await chromium.launch({
 const page = await browser.newPage({ viewport: { width: 400, height: 400 } });
 page.on("pageerror", (e) => console.error("page error:", e.message));
 page.on("console", (m) => { if (m.type() === "error") console.error("console:", m.text()); });
-await page.addInitScript((tl) => { window.__STYLED__ = tl; }, timeline);
+await page.addInitScript(([tl, insp]) => { window.__STYLED__ = tl; window.__INSPECT__ = insp; }, [timeline, flag("inspect")]);
 await page.goto(`${url}styles.html?render=1`);
 await page.waitForFunction(() => window.__ready !== undefined, null, { timeout: 120000 });
 await page.evaluate(() => window.__ready);
 const grab = async (t) => Buffer.from((await page.evaluate((x) => window.__frame(x), t)).split(",")[1], "base64");
+
+// --inspect: the layout checks a reviewer does by eye (src/styles/inspect.ts), on two moments per scene
+if (flag("inspect")) {
+  const moments = opt("stills") && opt("stills") !== "auto" ? opt("stills").split(",").map(Number)
+    : scenes.flatMap((s) => [Math.min(s.end - 0.05, s.start + 0.45), Math.max(s.start + 0.5, (s.lineEnd ?? s.end) - 0.12)]);
+  const dir = join(outDir, "inspect");
+  await rm(dir, { recursive: true, force: true });
+  await mkdir(dir, { recursive: true });
+  const report = [];
+  for (const t of moments) {
+    await grab(t);
+    const r = await page.evaluate(() => window.__inspect());
+    const sc = scenes.filter((s) => t >= s.start).at(-1);
+    const name = `t${t.toFixed(2)}-${sc?.beat ?? ""}.jpg`;
+    await writeFile(join(dir, name), Buffer.from(r.annotated.split(",")[1], "base64"));
+    report.push({ t, beat: sc?.beat, scene: sc?.scene, image: name, issues: r.issues.map(({ level, code, msg }) => ({ level, code, msg })) });
+  }
+  const errors = report.flatMap((r) => r.issues.filter((i) => i.level === "error")).length;
+  const warns = report.flatMap((r) => r.issues.filter((i) => i.level === "warn")).length;
+  await writeFile(join(dir, "inspect.json"), JSON.stringify(report, null, 1));
+  const md = [`# layout inspect — ${outName} (${style})`, "", `errors ${errors} / warnings ${warns}。画像は番号付きの枠で問題箇所を示す（赤=error、橙=warn、薄赤の帯=スマホUIで隠れる領域）。`, "",
+    ...report.flatMap((r) => [`## ${r.t.toFixed(2)}s — ${r.beat} (${r.scene}) — ${r.image}`, ...(r.issues.length ? r.issues.map((i, k) => `${k + 1}. **${i.level}** ${i.msg}`) : ["- 問題なし"]), ""]),
+    "機械で見られるのは配置・はみ出し・重なり・文字の大きさ・コントラストだけ。何が映っているか・分かりやすいか・面白いかは画像を自分で見て判断する。"].join("\n");
+  await writeFile(join(dir, "inspect.md"), md + "\n");
+  console.log(`inspect: ${errors} errors, ${warns} warnings -> ${dir}/inspect.md`);
+  await browser.close(); await server.close();
+  process.exit(errors ? 1 : 0);
+}
 
 const stills = opt("stills");
 if (stills) {
@@ -194,6 +222,7 @@ await server.close();
 const SFX = { ...JSON.parse(await readFile(join(root, "catalog", "sfx3d.json"), "utf8")).sfx, ...JSON.parse(await readFile(join(root, "catalog", "sfx-styles.json"), "utf8")).sfx };
 const LIB = JSON.parse(await readFile(join(root, "catalog", "asset-library.json"), "utf8"));
 const styleInfo = STYLES.find((s) => s.id === style);
+const STYLE_TRANSITION = Object.fromEntries(STYLES.map((s) => [s.id, s.transition]));
 const genDir = join(outDir, "sfx");
 await mkdir(genDir, { recursive: true });
 const dur = meta.duration;
@@ -202,7 +231,10 @@ const add = (file, t, gain, bus) => { const i = inputs.length / 2; inputs.push("
 for (const l of compiled.audio.lines) if (l.audio) add(l.audio, l.t, prod.voices?.[l.who]?.gain ?? 1, vox);
 // scene-change cue from the style (production can switch it off with "autoSfx": false)
 const cues = [...compiled.audio.sfx];
-if (prod.autoSfx !== false && styleInfo.sceneSfx) for (const s of scenes.slice(1)) if (!s.continued) cues.push({ t: s.start, name: styleInfo.sceneSfx, gain: 0.8 });
+// only where the picture visibly moves (pop / slide / flash / wipe); a hard cut or fade gets no sound (docs/agent-video-craft.md §音)
+const MOVING = new Set(["pop", "slide", "flash", "wipe"]);
+const transitionOf = (sc) => sc.transition ?? STYLE_TRANSITION[style];
+if (prod.autoSfx !== false && styleInfo.sceneSfx) for (const s of scenes.slice(1)) if (!s.continued && MOVING.has(transitionOf(s))) cues.push({ t: s.start, name: styleInfo.sceneSfx, gain: 0.8 });
 for (const s of cues) {
   const def = SFX[s.name];
   if (!def) throw new Error(`Unknown sfx: ${s.name} (catalog/sfx3d.json)`);

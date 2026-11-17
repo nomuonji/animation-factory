@@ -49,7 +49,8 @@ function captions(g: CanvasRenderingContext2D, tl: StyledTimeline, st: StyleDef,
     lines.forEach((s, i) => {
       const y = top + i * lh;
       if (c.kind === "stroke") { g.lineWidth = size * 0.22; g.strokeStyle = c.stroke ?? "#000"; g.strokeText(s, 0, y); }
-      if (c.kind === "plain" && st.bg !== "#ffffff") { g.shadowColor = "rgba(0,0,0,0.45)"; g.shadowBlur = size * 0.2; }
+      // plain captions get a thin halo in the opposite tone, so they survive any background (dark sets in light styles, 3D)
+      if (c.kind === "plain") { g.lineWidth = size * 0.16; g.strokeStyle = isLight(c.fill) ? "rgba(0,0,0,0.85)" : "rgba(255,255,255,0.92)"; g.strokeText(s, 0, y); }
       g.fillStyle = c.fill; g.fillText(s, 0, y);
       g.shadowBlur = 0;
     });

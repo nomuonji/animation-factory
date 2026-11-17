@@ -11,8 +11,9 @@ import { SCENES2D } from "../draw2d/scenes";
 import { sceneAt, talkAt } from "../draw2d/engine2d";
 import { isLight } from "../overlay";
 import { JP } from "../themes";
+import { figureBox, inspecting } from "../inspect";
 
-const X = 0.75; // stage x (-1..1) -> world units
+const X = 0.62; // stage x (-1..1) -> world units
 
 interface Live { sc: Visual; set: Built3D; setName: string; figures: Map<string, Figure3D>; props: { spec: NonNullable<Visual["props"]>[number]; obj: THREE.Object3D }[]; extra: THREE.Group }
 
@@ -205,10 +206,23 @@ export class Engine3D {
     if (sc.scene === "route") this.updateRoute(sc, t);
     if (sc.scene === "exploded") this.updateExploded(sc, t);
     this.renderer.render(this.scene, this.camera);
+    if (inspecting() && sc.scene === "stage") for (const [id, f] of live.figures) {
+      const b = new THREE.Box3().setFromObject(f.root);
+      const xs: number[] = [], ys: number[] = [];
+      for (const x of [b.min.x, b.max.x]) for (const y of [b.min.y, b.max.y]) for (const z of [b.min.z, b.max.z]) { const p = new THREE.Vector3(x, y, z).project(this.camera); xs.push(p.x * 0.5 + 0.5); ys.push(-p.y * 0.5 + 0.5); }
+      figureBox(id, { x0: Math.min(...xs), y0: Math.min(...ys), x1: Math.max(...xs), y1: Math.max(...ys) });
+    }
+    // scene transitions (same vocabulary as the 2D engine)
+    const dt = tRaw - (sc.start ?? 0), first = (sc.index ?? 0) === 0;
+    const tr = first ? "cut" : (sc.transition ?? st.transition);
     out.save();
     out.imageSmoothingEnabled = this.lowRes === 1;
+    if (tr === "pop" && dt < 0.25) { const k = 0.9 + 0.1 * ease.back(clamp01(dt / 0.25)); out.fillStyle = st.bg; out.fillRect(0, 0, W, H); out.translate(W / 2, H / 2); out.scale(k, k); out.translate(-W / 2, -H / 2); }
+    if (tr === "slide" && dt < 0.32) { out.fillStyle = st.bg; out.fillRect(0, 0, W, H); out.translate((1 - ease.out(clamp01(dt / 0.32))) * W, 0); }
     out.drawImage(this.gl, 0, 0, W, H);
     out.restore();
+    if (tr === "flash" && dt < 0.16) { out.fillStyle = `rgba(255,255,255,${1 - dt / 0.16})`; out.fillRect(0, 0, W, H); }
+    if (tr === "fade" && dt < 0.25) { out.fillStyle = `rgba(0,0,0,${0.9 * (1 - dt / 0.25)})`; out.fillRect(0, 0, W, H); }
     if (st.look === "ps2" && this.dither) { out.save(); out.fillStyle = this.dither; out.scale(this.lowRes, this.lowRes); out.fillRect(0, 0, W / this.lowRes, H / this.lowRes); out.restore(); }
     if (st.look === "horror" || st.look === "ps2") vignette(out, W, H, st.look === "horror" ? 0.75 : 0.4);
     if (sc.scene === "route") this.routeLabels(out, sc, t, W, H);
@@ -320,8 +334,8 @@ export class Engine3D {
     const u = ease.inOut(span(t, sc, "start+0.2", "line+1.2"));
     live.extra.children.forEach((c, i) => { c.position.y = ((n - 1) / 2 - i) * (0.08 + 0.42 * u); });
     live.extra.rotation.y = -0.6 + Math.sin(t * 0.4) * 0.15;
-    this.camera.position.set(0, 0.5, 5.2);
-    this.camera.lookAt(0, 0.25, 0);
+    this.camera.position.set(0, 0.5, 5.6);
+    this.camera.lookAt(0, -0.45, 0);
   }
 
   private explodedLabels(g: CanvasRenderingContext2D, sc: Visual, t: number, W: number, H: number) {
@@ -335,11 +349,13 @@ export class Engine3D {
       const wp = new THREE.Vector3(); (c as THREE.Mesh).getWorldPosition(wp);
       const p = wp.project(this.camera);
       const x = (p.x * 0.5 + 0.5) * W, y = (-p.y * 0.5 + 0.5) * H;
-      const lx = W * 0.62, s = W * 0.032;
+      const lx = W * 0.6, s = W * 0.036;
       g.save(); g.globalAlpha = k;
       g.strokeStyle = "rgba(230,230,230,0.7)"; g.lineWidth = 2; g.beginPath(); g.moveTo(x + W * 0.05, y); g.lineTo(lx - W * 0.02, y); g.stroke();
       g.fillStyle = this.st.accent; g.beginPath(); g.arc(x + W * 0.05, y, 5, 0, Math.PI * 2); g.fill();
-      g.font = `700 ${Math.round(s)}px ${this.st.font}`; g.fillStyle = "#e6e6e6"; g.textBaseline = "middle"; g.fillText(l.label, lx, y - (l.detail ? s * 0.5 : 0));
+      g.font = `700 ${Math.round(s)}px ${this.st.font}`; g.textBaseline = "middle"; g.lineJoin = "round";
+      g.lineWidth = s * 0.25; g.strokeStyle = "#0d0f14"; g.strokeText(l.label, lx, y - (l.detail ? s * 0.5 : 0));
+      g.fillStyle = "#f2f2f2"; g.fillText(l.label, lx, y - (l.detail ? s * 0.5 : 0));
       if (l.detail) { g.font = `400 ${Math.round(s * 0.75)}px ${this.st.font}`; g.fillStyle = "#9aa4b8"; g.fillText(l.detail, lx, y + s * 0.7); }
       g.restore();
     });
@@ -366,12 +382,12 @@ export class Engine3D {
   private gameHud(g: CanvasRenderingContext2D, t: number, W: number, H: number) {
     const s = W * 0.032;
     g.save(); g.font = `800 ${Math.round(s)}px ${JP}`; g.textBaseline = "middle";
-    g.fillStyle = "rgba(20,20,30,0.55)"; g.beginPath(); g.roundRect(W * 0.04, H * 0.025, W * 0.2, s * 1.8, s * 0.4); g.fill();
-    g.fillStyle = "#fff"; g.fillText("● あなた", W * 0.06, H * 0.025 + s * 0.92);
+    g.fillStyle = "rgba(20,20,30,0.55)"; g.beginPath(); g.roundRect(W * 0.04, H * 0.05, W * 0.2, s * 1.8, s * 0.4); g.fill();
+    g.fillStyle = "#fff"; g.fillText("● あなた", W * 0.06, H * 0.05 + s * 0.92);
     const mm = Math.floor(7 + t / 60), ss = Math.floor(t % 60);
     const clock = `${String(mm).padStart(2, "0")}:${String(ss).padStart(2, "0")}`;
-    g.fillStyle = "rgba(20,20,30,0.55)"; g.beginPath(); g.roundRect(W * 0.78, H * 0.025, W * 0.18, s * 1.8, s * 0.4); g.fill();
-    g.fillStyle = "#fff"; g.textAlign = "center"; g.fillText(clock, W * 0.87, H * 0.025 + s * 0.92);
+    g.fillStyle = "rgba(20,20,30,0.55)"; g.beginPath(); g.roundRect(W * 0.78, H * 0.05, W * 0.18, s * 1.8, s * 0.4); g.fill();
+    g.fillStyle = "#fff"; g.textAlign = "center"; g.fillText(clock, W * 0.87, H * 0.05 + s * 0.92);
     g.restore();
   }
 }

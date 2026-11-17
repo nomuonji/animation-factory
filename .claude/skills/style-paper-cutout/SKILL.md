@@ -5,7 +5,7 @@ description: 「切り絵」画風のショート動画をトピックから作�
 
 # 切り絵（`paper-cutout`）
 
-全体の手順は `.claude/skills/style-shorts/SKILL.md`、データ仕様は `docs/style-shorts.md`。このファイルは「切り絵」固有の作り方だけを書く。
+全体の手順は `docs/style-shorts-playbook.md`、判断の理由と見るべき所は `docs/agent-video-craft.md`、データ仕様は `docs/style-shorts.md`。このファイルは「切り絵」固有の作り方だけを書く（普通の Markdown なので、どのエージェントもそのまま読んで使える）。
 
 ## 見た目
 紫と橙の重ねた色紙、影の落ちた切り絵の人物と雲、紙の繊維テクスチャ。
@@ -123,6 +123,7 @@ dusk-paper（宇宙・空も自動でここ）, beach, park
 
 ```bash
 node tools/styles/render-style.mjs <id> --stills auto --scale 0.5   # シーンごとの静止画を見る
+node tools/styles/render-style.mjs <id> --inspect --scale 0.5      # はみ出し・重なり・小さい文字・コントラスト・スマホUIの位置（error は必ず直す）
 node tools/styles/render-style.mjs <id>                            # 本番（VOICEVOX が必要。無ければ Actions「Style Shorts」）
 node tools/styles/qa.mjs <id>
 ```

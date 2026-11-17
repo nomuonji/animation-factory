@@ -69,7 +69,7 @@ export const STYLES: Record<string, StyleDef> = {
     bg: "#000000", ink: "#ffffff", paper: "#000000", accent: "#ffffff", accent2: "#9a9a9a",
     palette: ["#ffffff", "#bdbdbd", "#7a7a7a"],
     font: JP, weight: 500,
-    caption: { kind: "plain", fill: "#ffffff", y: 0.83, size: 0.042, weight: 500 },
+    caption: { kind: "plain", fill: "#ffffff", y: 0.76, size: 0.042, weight: 500 },
     fx: ["grain-light"], defaultSet: "void", setMap: { "*": "void" }, transition: "fade", stroke: 0.006,
     best: ["path", "stage", "card", "quote"]
   }),
@@ -78,7 +78,7 @@ export const STYLES: Record<string, StyleDef> = {
     bg: "#ffffff", ink: "#111111", paper: "#ffffff", accent: "#111111", accent2: "#e8463a",
     palette: ["#111111", "#e8463a", "#2f6fdb", "#9a9a9a"],
     font: JP, weight: 800,
-    caption: { kind: "plain", fill: "#111111", y: 0.86, size: 0.046, weight: 700 },
+    caption: { kind: "plain", fill: "#111111", y: 0.76, size: 0.046, weight: 700 },
     fx: [], defaultSet: "plain", transition: "fade", stroke: 0.005,
     best: ["chart", "counter", "list"]
   }),
@@ -105,7 +105,7 @@ export const STYLES: Record<string, StyleDef> = {
     bg: "#5d4a8c", ink: "#2b2140", paper: "#fff7e6", accent: "#ff8a3d", accent2: "#ffd6a5",
     palette: ["#ff8a3d", "#ffd6a5", "#b8a6e8", "#7a5fb5", "#fff7e6"],
     font: JP, weight: 900,
-    caption: { kind: "box", fill: "#2b2140", box: "#fff7e6", y: 0.8, size: 0.05 },
+    caption: { kind: "box", fill: "#2b2140", box: "#fff7e6", y: 0.76, size: 0.05 },
     fx: ["shadow", "paper"], defaultSet: "dusk-paper", setMap: { space: "dusk-paper", void: "dusk-paper", sky: "dusk-paper" }, transition: "slide", stroke: 0.0,
     best: ["stage", "card", "list"]
   }),
@@ -114,7 +114,7 @@ export const STYLES: Record<string, StyleDef> = {
     bg: "#ffe14d", ink: "#111111", paper: "#ffffff", accent: "#e8263a", accent2: "#2f6fdb",
     palette: ["#e8263a", "#2f6fdb", "#ffe14d", "#ffffff", "#111111"],
     font: JP, weight: 900,
-    caption: { kind: "box", fill: "#111111", box: "#ffffff", y: 0.84, size: 0.05, italic: true },
+    caption: { kind: "box", fill: "#111111", box: "#ffffff", y: 0.76, size: 0.05, italic: true },
     fx: ["halftone-bg", "panel"], defaultSet: "burst", setMap: { space: "burst", void: "burst", plain: "burst" }, transition: "flash", stroke: 0.012,
     best: ["stage", "card", "counter"]
   }),
@@ -123,7 +123,7 @@ export const STYLES: Record<string, StyleDef> = {
     bg: "#f3eee3", ink: "#1f3a93", paper: "#f3eee3", accent: "#ff4f79", accent2: "#1f3a93",
     palette: ["#ff4f79", "#1f3a93", "#ffcf3f"],
     font: JP, weight: 900,
-    caption: { kind: "plain", fill: "#1f3a93", y: 0.86, size: 0.052 },
+    caption: { kind: "plain", fill: "#1f3a93", y: 0.76, size: 0.052 },
     fx: ["riso"], defaultSet: "riso-night", setMap: { "*": "riso-night", plain: "plain" }, transition: "cut", stroke: 0.0,
     best: ["stage", "card", "list"]
   }),
@@ -132,7 +132,7 @@ export const STYLES: Record<string, StyleDef> = {
     bg: "#2a1b5c", ink: "#14102a", paper: "#fff3e0", accent: "#ff6fb5", accent2: "#ffd36b",
     palette: ["#ff6fb5", "#ffd36b", "#5be0ff", "#7b4dff", "#fff3e0"],
     font: JP, weight: 900,
-    caption: { kind: "stroke", fill: "#ffffff", stroke: "#2a1b5c", y: 0.82, size: 0.058, italic: true },
+    caption: { kind: "stroke", fill: "#ffffff", stroke: "#2a1b5c", y: 0.76, size: 0.058, italic: true },
     fx: ["speedlines", "scanlines", "aberration", "grain"], defaultSet: "sunset-grid", setMap: { space: "sunset-grid", void: "sunset-grid", city: "sunset-grid" }, transition: "flash", stroke: 0.008,
     best: ["stage", "card"]
   }),
@@ -141,7 +141,7 @@ export const STYLES: Record<string, StyleDef> = {
     bg: "#1b1f4a", ink: "#0b0d22", paper: "#f4f4d8", accent: "#ffd23f", accent2: "#ff7a2f",
     palette: ["#ffd23f", "#ff7a2f", "#5be0ff", "#f4f4d8", "#3a3f8f"],
     font: MONO, weight: 900,
-    caption: { kind: "box", fill: "#f4f4d8", box: "#0b0d22", y: 0.84, size: 0.046, font: MONO },
+    caption: { kind: "box", fill: "#f4f4d8", box: "#0b0d22", y: 0.76, size: 0.046, font: MONO },
     fx: ["pixelate:4"], defaultSet: "night-pixel", setMap: { space: "night-pixel", void: "night-pixel" }, transition: "cut", stroke: 0.012,
     best: ["stage", "card", "counter"]
   }),
@@ -169,7 +169,7 @@ export const STYLES: Record<string, StyleDef> = {
     bg: "#20203a", ink: "#111111", paper: "#ffffff", accent: "#ff8a3d", accent2: "#7b6cff",
     palette: ["#ff8a3d", "#7b6cff", "#c9c3ff", "#ffcf9e", "#5a5a8a"],
     font: JP, weight: 900,
-    caption: { kind: "stroke", fill: "#ffffff", stroke: "#20203a", y: 0.78, size: 0.058 },
+    caption: { kind: "stroke", fill: "#ffffff", stroke: "#20203a", y: 0.76, size: 0.058 },
     fx: [], defaultSet: "space-rocks", setMap: { "*": "space-rocks" }, transition: "cut", stroke: 0.01,
     best: ["stage", "card"]
   }),
@@ -178,7 +178,7 @@ export const STYLES: Record<string, StyleDef> = {
     bg: "#f2f2f2", ink: "#222222", paper: "#ffffff", accent: "#2f6fdb", accent2: "#e8463a",
     palette: ["#ffffff", "#e6e6e6", "#2f6fdb", "#e8463a"],
     font: JP, weight: 800,
-    caption: { kind: "tag", fill: "#ffffff", box: "#222222", y: 0.8, size: 0.044 },
+    caption: { kind: "tag", fill: "#ffffff", box: "#222222", y: 0.76, size: 0.044 },
     fx: [], defaultSet: "city-white", setMap: { "*": "city-white" }, transition: "fade", stroke: 0.006,
     best: ["route", "counter", "card"]
   }),
@@ -187,7 +187,7 @@ export const STYLES: Record<string, StyleDef> = {
     bg: "#0d0f14", ink: "#e6e6e6", paper: "#151821", accent: "#ff7a5c", accent2: "#5be0ff",
     palette: ["#ff7a5c", "#5be0ff", "#9aa4b8", "#2a2f3a"],
     font: MONO, weight: 700,
-    caption: { kind: "plain", fill: "#e6e6e6", y: 0.86, size: 0.042, font: JP, weight: 700 },
+    caption: { kind: "plain", fill: "#e6e6e6", y: 0.76, size: 0.042, font: JP, weight: 700 },
     fx: [], defaultSet: "void-dark", setMap: { "*": "void-dark" }, transition: "fade", stroke: 0.004,
     best: ["exploded", "card", "counter"]
   }),
@@ -214,7 +214,7 @@ export const STYLES: Record<string, StyleDef> = {
     bg: "#2b3a5a", ink: "#111111", paper: "#ffffff", accent: "#ffd23f", accent2: "#5be0ff",
     palette: ["#ff8a3d", "#3b5f8f", "#c9d6e8", "#2c3e2c"],
     font: JP, weight: 900,
-    caption: { kind: "box", fill: "#ffffff", box: "rgba(0,0,0,0.6)", y: 0.83, size: 0.046 },
+    caption: { kind: "box", fill: "#ffffff", box: "rgba(0,0,0,0.6)", y: 0.76, size: 0.046 },
     fx: [], defaultSet: "backyard-night", setMap: { "*": "backyard-night" }, transition: "fade", stroke: 0.01,
     best: ["stage", "card"]
   }),
@@ -223,7 +223,7 @@ export const STYLES: Record<string, StyleDef> = {
     bg: "#050507", ink: "#000000", paper: "#d8d8d8", accent: "#ffffff", accent2: "#c21d1d",
     palette: ["#1a1a22", "#2a2a33", "#c21d1d"],
     font: JP, weight: 900,
-    caption: { kind: "plain", fill: "#e8e8e8", y: 0.8, size: 0.05 },
+    caption: { kind: "plain", fill: "#e8e8e8", y: 0.76, size: 0.05 },
     fx: [], defaultSet: "dark-corridor", setMap: { "*": "dark-corridor" }, transition: "fade", stroke: 0.01,
     best: ["stage", "card"]
   }),
@@ -232,7 +232,7 @@ export const STYLES: Record<string, StyleDef> = {
     bg: "#bfe3ff", ink: "#2a2a2a", paper: "#ffffff", accent: "#ff7a2f", accent2: "#3f86e0",
     palette: ["#ff7a2f", "#3f86e0", "#ffd23f", "#7ac36a", "#f4f1ea"],
     font: JP, weight: 900,
-    caption: { kind: "stroke", fill: "#ffffff", stroke: "#2a2a2a", y: 0.8, size: 0.06 },
+    caption: { kind: "stroke", fill: "#ffffff", stroke: "#2a2a2a", y: 0.76, size: 0.06 },
     fx: [], defaultSet: "clay-sky", setMap: { "*": "clay-sky" }, transition: "cut", stroke: 0.01,
     best: ["stage", "card"]
   }),

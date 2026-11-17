@@ -2,6 +2,8 @@
 
 This repository is a reusable animation factory, not a collection of one-off video scripts.
 
+**Any agent (Claude, Codex, ChatGPT, a person) making or judging a video reads `docs/agent-video-craft.md` first.** It writes down the judgement an experienced maker applies without saying it: the work loop (small → look → fix), the order in which to look at a frame, phone-UI safe zones, script and number craft, real pacing numbers, audio rules, and the failures already met. The playbooks (`docs/style-shorts-playbook.md`, `docs/three-shorts-playbook.md`) are the step-by-step gates. Files under `.claude/skills/` are plain Markdown runbooks; agents other than Claude read them like any other doc.
+
 ## Before creating a production
 
 1. Read `catalog/components.json` and `catalog/audio.json`.
@@ -55,4 +57,4 @@ For acted 3D skits (characters, props, a set) follow `docs/three-shorts-playbook
 
 ## Style Shorts (topic → one of 21 looks)
 
-To turn a topic into a narrated vertical short in a chosen look (stick figures, living charts, diagrams, paper, comic, risograph, retro anime, pixel art, minimal line, and 3D cartoon / what-if / low-poly / route map / exploded view / block world / toy bricks / retro console / block horror / clay / game avatar), use the `style-shorts` skill (`.claude/skills/style-shorts/SKILL.md`) and the per-look skills `.claude/skills/style-<id>/`. Productions are `productions/<id>/styled.json`; the reference is `docs/style-shorts.md`; looks are listed in `catalog/styles.json` (regenerate the skills with `node tools/styles/gen-skills.mjs` after editing it). Reusable drawing code lives in `src/styles/`, never in a production. `meta.kind: "style-demo"` productions are never published.
+To turn a topic into a narrated vertical short in a chosen look (stick figures, living charts, diagrams, paper, comic, risograph, retro anime, pixel art, minimal line, and 3D cartoon / what-if / low-poly / route map / exploded view / block world / toy bricks / retro console / block horror / clay / game avatar), use the `style-shorts` skill (`.claude/skills/style-shorts/SKILL.md`) and the per-look skills `.claude/skills/style-<id>/`. Productions are `productions/<id>/styled.json`; the reference is `docs/style-shorts.md`; looks are listed in `catalog/styles.json` (regenerate the skills with `node tools/styles/gen-skills.mjs` after editing it). Reusable drawing code lives in `src/styles/`, never in a production. `meta.kind: "style-demo"` productions are never published. Follow `docs/style-shorts-playbook.md`; run `node tools/styles/render-style.mjs <id> --inspect` (layout checks: overflow, overlaps, tiny text, contrast, phone-UI zones) before any full render, and fix every error it reports.

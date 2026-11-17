@@ -6,6 +6,7 @@ import { drawFigure, halftone, type FigureState } from "./figures";
 import { mixPose, poseAt, ease } from "../pose";
 import { atTime, clamp01, fmt, hash, lerp, span, timed, wrapText } from "../util";
 import { isLight } from "../overlay";
+import { figure as inspectFigure } from "../inspect";
 
 export interface Ctx {
   g: CanvasRenderingContext2D;
@@ -21,6 +22,14 @@ export interface Ctx {
   noBg?: boolean;
 }
 
+/** secondary text (axis labels, sources, small captions) that still passes 4.5:1 */
+export const muted = (st: StyleDef) => (isLight(st.bg) ? "#555555" : "#bdbdbd");
+/** use `c` for big text only when it stands out from the background, else the main ink */
+function strong(st: StyleDef, c: string) {
+  const L = (h: string) => { const m = /^#?([0-9a-f]{6})$/i.exec(h); if (!m) return 0.5; const n = parseInt(m[1]!, 16); const f = (v: number) => { v /= 255; return v <= 0.03928 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4; }; return 0.2126 * f(n >> 16) + 0.7152 * f((n >> 8) & 255) + 0.0722 * f(n & 255); };
+  const a = L(c), b = L(st.bg); const r = (Math.max(a, b) + 0.05) / (Math.min(a, b) + 0.05);
+  return r >= 3.6 ? c : fg(st);
+}
 export const fg = (st: StyleDef) => (isLight(st.bg) ? st.ink : st.figure === "line" ? st.ink : st.paper);
 /** lowest y (px) content may use above the captions */
 const zone = (st: StyleDef, H: number) => Math.min(0.74, st.caption.y - 0.08) * H;
@@ -106,6 +115,7 @@ function actor(c: Ctx, a: ActorSpec, gy: number, fh: number) {
   // contact shadow
   if (st.figure !== "line" && ay < 0.05) { g.save(); g.shadowColor = "transparent"; g.fillStyle = "rgba(0,0,0,0.18)"; g.beginPath(); g.ellipse(x, gy + fh * 0.01, fh * 0.16 * scale, fh * 0.025, 0, 0, Math.PI * 2); g.fill(); g.restore(); }
   drawFigure(g, fst, f, x, y, fh * scale);
+  inspectFigure(g, a.id, x - fh * 0.24 * scale, y - fh * 1.22 * scale - pose.lift * fh, x + fh * 0.24 * scale, y);
 }
 
 function label(g: CanvasRenderingContext2D, st: StyleDef, text: string, x: number, y: number, s: number) {
@@ -121,9 +131,9 @@ export function chart(c: Ctx) {
   const { g, st, W, H, t, sc } = c;
   if (!c.noBg) drawSet(g, st, "plain", W, H, H, t);
   const ink = fg(st);
-  const left = W * 0.1, right = W * 0.9, top = H * 0.32, bottom = zone(st, H) - W * 0.16;
+  const left = W * 0.1, right = W * 0.8, top = H * 0.32, bottom = zone(st, H) - W * 0.16;
   const u = ease.inOut(span(t, sc, "line", "lineEnd-0.3"));
-  g.font = font(st, W * 0.03, 500); g.fillStyle = st.accent2 === ink ? "#888" : "#888";
+  g.font = font(st, W * 0.036, 700); g.fillStyle = muted(st);
   if (sc.label) { g.textAlign = "left"; g.fillText(sc.label, left, H * 0.2); }
   if (sc.type === "bar" && sc.bars?.length) {
     const n = sc.bars.length, max = Math.max(...sc.bars.map((b) => b.value)) || 1, bw = (right - left) / n * 0.62;
@@ -148,7 +158,7 @@ export function chart(c: Ctx) {
   const Y = (v: number) => bottom - ((v - lo) / (hi - lo || 1)) * (bottom - top);
   g.strokeStyle = "rgba(128,128,128,0.25)"; g.lineWidth = 2;
   for (let i = 0; i <= 4; i++) { const y = top + ((bottom - top) * i) / 4; g.beginPath(); g.moveTo(left, y); g.lineTo(right, y); g.stroke(); }
-  g.fillStyle = "#888"; g.font = font(st, W * 0.026, 500); g.textAlign = "center";
+  g.fillStyle = muted(st); g.font = font(st, W * 0.034, 600); g.textAlign = "center";
   const every = Math.max(1, Math.round(pts.length / 6));
   pts.forEach((p, i) => { if (i % every === 0 || i === pts.length - 1) g.fillText(String(p[0]), X(i), bottom + W * 0.045); });
   const head = u * (pts.length - 1);
@@ -179,8 +189,7 @@ export function counter(c: Ctx) {
   const s = fitFont(g, st, text, W * 0.86, W * 0.16, W * 0.06);
   g.textAlign = "center"; g.textBaseline = "middle";
   if (st.id === "comic") { g.lineWidth = s * 0.16; g.strokeStyle = st.ink; g.strokeText(text, 0, 0); g.fillStyle = "#fff"; }
-  else g.fillStyle = st.accent2 && isLight(st.bg) === isLight(st.accent2) ? ink : st.accent2;
-  if (st.id === "pixel-art" || st.id === "retro-anime") g.fillStyle = st.accent;
+  else g.fillStyle = strong(st, st.id === "pixel-art" || st.id === "retro-anime" ? st.accent : st.accent2);
   g.fillText(text, 0, 0);
   if (sc.label) { g.font = font(st, W * 0.05, 700); g.fillStyle = ink; g.fillText(sc.label, 0, s * 0.95); }
   g.restore();
@@ -273,7 +282,7 @@ export function diagram(c: Ctx) {
     g.strokeStyle = st.accent; g.lineWidth = W * 0.008; g.setLineDash([W * 0.02, W * 0.014]); g.lineDashOffset = -t * W * 0.06;
     g.beginPath(); g.moveTo(sx, sy); g.lineTo(hx, hy); g.stroke(); g.setLineDash([]);
     if (k > 0.95) { g.fillStyle = st.accent; g.beginPath(); g.moveTo(ex, ey); g.lineTo(ex - ux * W * 0.035 - uy * W * 0.022, ey - uy * W * 0.035 + ux * W * 0.022); g.lineTo(ex - ux * W * 0.035 + uy * W * 0.022, ey - uy * W * 0.035 - ux * W * 0.022); g.closePath(); g.fill(); }
-    if (e.label && k > 0.6) { const mx = (sx + ex) / 2, my = (sy + ey) / 2; g.font = font(st, W * 0.03, 700); const w = g.measureText(e.label).width + W * 0.03; g.fillStyle = st.bg; g.fillRect(mx - w / 2, my - W * 0.025, w, W * 0.05); g.fillStyle = st.accent; g.textAlign = "center"; g.textBaseline = "middle"; g.fillText(e.label, mx, my); }
+    if (e.label && k > 0.6) { const mx = (sx + ex) / 2, my = (sy + ey) / 2; g.font = font(st, W * 0.036, 800); const w = g.measureText(e.label).width + W * 0.03; g.fillStyle = st.bg; g.fillRect(mx - w / 2, my - W * 0.025, w, W * 0.05); g.fillStyle = ink; g.textAlign = "center"; g.textBaseline = "middle"; g.fillText(e.label, mx, my); }
   }
   for (const n of nodes) {
     const k = ease.back(clamp01((t - appear.get(n.id)!) / 0.32));
@@ -313,7 +322,7 @@ export function path(c: Ctx) {
   g.beginPath(); g.arc(hx, hy, W * 0.012, 0, Math.PI * 2); g.fillStyle = st.ink; g.fill();
   const [sx, sy] = pts[0]!;
   g.beginPath(); g.arc(sx, sy, W * 0.008, 0, Math.PI * 2); g.fill();
-  if (sc.text) { g.font = font(st, W * 0.032, 400); g.fillStyle = st.accent2; g.textAlign = "center"; g.fillText(sc.text, W / 2, H * 0.12); }
+  if (sc.text) { g.font = font(st, W * 0.036, 500); g.fillStyle = muted(st); g.textAlign = "center"; g.fillText(sc.text, W / 2, H * 0.12); }
 }
 
 // ---------------------------------------------------------------- quote
@@ -327,7 +336,7 @@ export function quote(c: Ctx) {
   g.font = font(st, W * 0.07); g.fillStyle = ink; g.textAlign = "center"; g.textBaseline = "middle";
   const lines = wrapText(g, sc.text ?? "", W * 0.78);
   lines.forEach((l, i) => g.fillText(l, W / 2, H * 0.34 + (i - (lines.length - 1) / 2) * W * 0.095));
-  if (sc.author) { g.font = font(st, W * 0.04, 600); g.fillStyle = "#888"; g.fillText(`— ${sc.author}`, W / 2, H * 0.34 + lines.length * W * 0.06 + W * 0.06); }
+  if (sc.author) { g.font = font(st, W * 0.04, 600); g.fillStyle = muted(st); g.fillText(`— ${sc.author}`, W / 2, H * 0.34 + lines.length * W * 0.06 + W * 0.06); }
   g.restore();
 }
 
@@ -376,6 +385,7 @@ export function exploded(c: Ctx) {
   const mid = (top + bot) / 2;
   const a = atTime("line+0.6", sc), b = atTime("lineEnd-0.3", sc);
   if (sc.title) { g.font = font(st, W * 0.036, 700); g.fillStyle = ink; g.textAlign = "left"; g.fillText(sc.title, W * 0.07, H * 0.09); }
+  // (labels stay left of the phone UI's right-hand buttons: x <= 0.86)
   for (let i = n - 1; i >= 0; i--) {
     const l = layers[i]!;
     const y = mid + (i - (n - 1) / 2) * gap;

@@ -3,6 +3,7 @@ import type { StyledTimeline, Visual } from "../types";
 import { SCENES2D } from "./scenes";
 import { ease } from "../pose";
 import { clamp01, rand } from "../util";
+import { inspecting, watch } from "../inspect";
 
 /** Talk amount (0..1) from the narration's mora timings, for mouth flaps. */
 export function talkAt(tl: StyledTimeline, t: number): number {
@@ -34,7 +35,8 @@ export class Engine2D {
     this.work = document.createElement("canvas");
     this.work.width = Math.round(tl.meta.width / this.px);
     this.work.height = Math.round(tl.meta.height / this.px);
-    this.wg = this.work.getContext("2d")!;
+    this.wg = this.work.getContext("2d", { willReadFrequently: inspecting() })!;
+    watch(this.work);
     for (let k = 0; k < 4; k++) this.noise.push(this.makeNoise(k));
     this.paper = this.makePaper();
   }

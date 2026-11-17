@@ -14,6 +14,11 @@ on:
         required: false
         default: ""
         type: string
+      voices_only:
+        description: only synthesize VOICEVOX takes (artifact three-voice) so another machine can render
+        required: false
+        default: false
+        type: boolean
   pull_request:
     paths:
       - "productions/**/styled.json"
@@ -84,6 +89,12 @@ jobs:
           docker run -d --rm --name vv -p 127.0.0.1:50021:50021 voicevox/voicevox_engine:cpu-latest
           for i in $(seq 1 120); do curl -fsS http://127.0.0.1:50021/version && exit 0; sleep 2; done; docker logs vv; exit 1
 
+      - name: Voices only
+        if: ${{ steps.resolve.outputs.list != '' && inputs.voices_only }}
+        run: |
+          for p in ${{ steps.resolve.outputs.list }}; do node tools/styles/render-style.mjs "$p" --voices-only; done
+          mkdir -p artifact && cp -r outputs/three-voice artifact/
+
       - name: Render
         env:
           STYLE: ${{ inputs.style }}
@@ -99,15 +110,20 @@ jobs:
               node tools/styles/render-style.mjs "$p"
               mkdir -p "artifact/$p" && cp -r "outputs/styles/$p/review/." "artifact/$p/"
             elif [ -n "${STYLE:-}" ]; then
+              node tools/styles/render-style.mjs "$p" --style "$STYLE" --inspect --scale 0.5 || true
               node tools/styles/render-style.mjs "$p" --style "$STYLE"
               mkdir -p "artifact/$p--$STYLE" && cp -r "outputs/styles/$p--$STYLE/review/." "artifact/$p--$STYLE/"
+              cp -r "outputs/styles/$p--$STYLE/inspect" "artifact/$p--$STYLE/" || true
             else
+              # layout inspect first (cheap), then the real render; both reports go to the artifact
+              node tools/styles/render-style.mjs "$p" --inspect --scale 0.5 || echo "::warning::layout inspect found errors in $p (see inspect/inspect.md)"
               node tools/styles/render-style.mjs "$p"
               node tools/styles/qa.mjs "$p" || true
               mkdir -p "artifact/$p" && cp -r "outputs/styles/$p/review/." "artifact/$p/"
+              cp -r "outputs/styles/$p/inspect" "artifact/$p/" || true
             fi
           done
-        if: ${{ steps.resolve.outputs.list != '' }}
+        if: ${{ steps.resolve.outputs.list != '' && !inputs.voices_only }}
 
       - uses: actions/upload-artifact@v4
         if: ${{ steps.resolve.outputs.list != '' }}

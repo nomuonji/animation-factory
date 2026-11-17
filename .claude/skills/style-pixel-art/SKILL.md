@@ -5,7 +5,7 @@ description: 「ドット絵」画風のショート動画をトピックから�
 
 # ドット絵（`pixel-art`）
 
-全体の手順は `.claude/skills/style-shorts/SKILL.md`、データ仕様は `docs/style-shorts.md`。このファイルは「ドット絵」固有の作り方だけを書く。
+全体の手順は `docs/style-shorts-playbook.md`、判断の理由と見るべき所は `docs/agent-video-craft.md`、データ仕様は `docs/style-shorts.md`。このファイルは「ドット絵」固有の作り方だけを書く（普通の Markdown なので、どのエージェントもそのまま読んで使える）。
 
 ## 見た目
 1/6解像度で描いて最近傍拡大した本物の粗いドット。夜空・月・家。等幅フォントの字幕箱。
@@ -123,6 +123,7 @@ night-pixel（宇宙も自動）, beach, park, city
 
 ```bash
 node tools/styles/render-style.mjs <id> --stills auto --scale 0.5   # シーンごとの静止画を見る
+node tools/styles/render-style.mjs <id> --inspect --scale 0.5      # はみ出し・重なり・小さい文字・コントラスト・スマホUIの位置（error は必ず直す）
 node tools/styles/render-style.mjs <id>                            # 本番（VOICEVOX が必要。無ければ Actions「Style Shorts」）
 node tools/styles/qa.mjs <id>
 ```

@@ -1,5 +1,7 @@
 # Style Shorts（トピック → 好きな画風のショート動画）
 
+手順は `docs/style-shorts-playbook.md`、判断の理由と見るべき所は `docs/agent-video-craft.md`。この文書はデータと道具の仕様。
+
 ひとつのトピックを、21種類の画風（`catalog/styles.json`）のどれか1つで 20〜58 秒の縦型ショートにするライン。
 台本・ナレーション（VOICEVOX）・BGM（CC0）・効果音・字幕・レンダリングまでリポジトリ内で完結する。
 画風ごとの作り方は `.claude/skills/style-<id>/SKILL.md`、全体の手順は `.claude/skills/style-shorts/SKILL.md`。
@@ -11,6 +13,7 @@
 | `tools/styles/scenes.mjs` | beat の visual を絶対時間のシーンにする（continue の引き継ぎ）＋ style lint |
 | `tools/styles/gallery.mjs` | 同じ台本を全画風（または指定）で静止画にして並べる |
 | `tools/styles/qa.mjs` | 本番レンダリング後の技術QA |
+| `src/styles/inspect.ts` | `--inspect` の中身：描いた文字・人物の位置を記録し、はみ出し・重なり・小さい文字・コントラスト・スマホUIの位置を検査 |
 | `src/styles/` | 描画：`themes.ts`（画風の定義）`pose.ts`（共通の骨格ポーズ）`icons.ts`（ピクトグラム）`draw2d/`（2D）`three/`（3D） |
 | `styles.html` | プレビュー：`npx vite` → `/styles.html?timeline=/outputs/styles/<id>/timeline.json` |
 | `.github/workflows/style-shorts.yml` | PR / 手動で VOICEVOX 付きレンダリング（公開はしない） |
@@ -20,6 +23,7 @@
 ```bash
 node tools/styles/render-style.mjs <id> --timeline-only           # 尺と lint だけ
 node tools/styles/render-style.mjs <id> --stills auto --scale 0.5  # シーンごとの静止画（数秒）
+node tools/styles/render-style.mjs <id> --inspect --scale 0.5      # 配置の機械チェック（inspect/inspect.md と枠付き画像）
 node tools/styles/render-style.mjs <id> --style comic --stills auto  # 別の画風で試す
 node tools/styles/gallery.mjs <id> --styles stickman,clay,comic     # 画風比較シート
 node tools/styles/render-style.mjs <id>                           # 本番（VOICEVOX が無いと無音・推定タイミング）

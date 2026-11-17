@@ -5,7 +5,8 @@ description: トピックを渡されたら、21種類の画風（棒人間・�
 
 # Style Shorts — トピックから完成動画まで
 
-データ仕様: `docs/style-shorts.md`。画風ごとの型: `.claude/skills/style-<id>/SKILL.md`。画風一覧: `catalog/styles.json`。
+手順書（関門つき）: `docs/style-shorts-playbook.md`。判断の理由と見るべき所: `docs/agent-video-craft.md`（**必ず先に読む**）。データ仕様: `docs/style-shorts.md`。画風ごとの型: `.claude/skills/style-<id>/SKILL.md`。画風一覧: `catalog/styles.json`。
+このファイルは要約。食い違ったら playbook と craft が正しい。
 
 ## 0. 先に決めること（聞かずに決めてよい）
 - **画風**: ユーザーが指定したらそれ。指定がなければ題材で選ぶ（下の表）。迷ったら `gallery.mjs` で2〜3案の静止画を見せて選んでもらう。
@@ -27,11 +28,13 @@ description: トピックを渡されたら、21種類の画風（棒人間・�
 | ノスタルジー・ミッション形式 | retro-console / toy-bricks |
 
 ## 1. 事実を集める
-数字・固有名詞は必ずウェブで一次情報を確認し、`sources` に書く（lint が警告する）。確認できない数字は使わない。模式図（route / exploded）は「模式図」と明記する。
+数字・固有名詞は必ずウェブで一次情報を確認し、`sources` に書く（lint が警告する）。確認できない数字は使わない。計算で出す数字はコードで計算して式を残す。大きな数字は生活の単位に翻訳する（38万km → 歩いて11年 → 小学1年生が高校生に）。模式図（route / exploded）は「模式図」と明記する。
 
 ## 2. 台本を書く（beats）
 - 1 beat = 1つのナレーション + 1つの画。6秒以内に画を変える。
 - 最初の beat（`role: "hook"`）で問いか意外な数字。`design.hook.overlay` は8〜12字。
+- 画面の文字は数字・キーワード、ナレーションは文脈。同じ言葉を読み上げない。
+- 推定の尺は実音声で約1.3倍になる。
 - 字幕チャンクは `／` で区切り、1チャンク26字以内。秒数は書かない。
 - 最後の beat（`role: "payoff"`）で回収。狙いすぎた小道具オチ・説明の言い直しで終えない。
 - 画風の SKILL.md の「構成の型」に沿ってシーンを選ぶ。
@@ -42,7 +45,10 @@ description: トピックを渡されたら、21種類の画風（棒人間・�
 node tools/styles/render-style.mjs <id> --timeline-only            # 尺・lint
 node tools/styles/render-style.mjs <id> --stills auto --scale 0.5   # シーンごとの静止画を自分で見る
 ```
-静止画で確認すること：1枚目で話題が分かるか／字幕と絵が重ならないか／人物が画面から切れていないか／数字と単位が正しいか。
+```bash
+node tools/styles/render-style.mjs <id> --inspect --scale 0.5      # 機械の目：はみ出し・重なり・小さい文字・コントラスト・スマホUIの位置
+```
+`inspect/inspect.md` の error は必ず直し、warning は全部読む。そのうえで静止画を並べて自分で見る（`docs/agent-video-craft.md` §2 の順番）：1枚目で話題が分かるか／主役は1つか／字幕と絵が重ならないか／人物が切れていないか／数字と単位が正しいか。
 
 ## 4. 本番レンダリング
 VOICEVOX が `$VOICEVOX_URL` にあればローカルで `node tools/styles/render-style.mjs <id>`。無ければブランチを push して GitHub Actions「Style Shorts」を `production=<id>` で実行（PR でも styled.json の変更で自動実行）。artifact に MP4・contact-sheet・captions.srt・description.txt が出る。

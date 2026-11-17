@@ -2,6 +2,7 @@ import { styleFor } from "./themes";
 import { drawOverlay } from "./overlay";
 import { Engine2D } from "./draw2d/engine2d";
 import type { StyledTimeline } from "./types";
+import { annotate, beginFrame, checkLayout, inspecting, install, records, setPhase, watch, type Issue, type Rec } from "./inspect";
 
 /**
  * Style Shorts page.
@@ -13,6 +14,8 @@ declare global {
     __STYLED__?: StyledTimeline;
     __ready?: Promise<void>;
     __frame?: (t: number) => Promise<string>;
+    __INSPECT__?: boolean;
+    __inspect?: () => { issues: Issue[]; records: Rec[]; annotated: string };
   }
 }
 
@@ -36,6 +39,7 @@ async function boot() {
   const out = document.createElement("canvas");
   out.width = W; out.height = H; out.id = "out";
   const g = out.getContext("2d")!;
+  if (inspecting()) { install(); watch(out); }
   let engine: Engine;
   if (st.engine === "3d") {
     const { Engine3D } = await import("./three/engine3d");
@@ -46,9 +50,12 @@ async function boot() {
 
   const draw = (t: number) => {
     g.save(); g.setTransform(1, 0, 0, 1, 0, 0); g.clearRect(0, 0, W, H); g.restore();
+    beginFrame(); setPhase("scene");
     engine.render(g, t);
+    setPhase("overlay");
     drawOverlay(g, tl!, st, t);
   };
+  window.__inspect = () => { const issues = checkLayout(records()); return { issues, records: records(), annotated: annotate(out, issues) }; };
   window.__frame = async (t: number) => { draw(t); return out.toDataURL("image/jpeg", 0.92); };
 
   if (!params.has("render")) {
