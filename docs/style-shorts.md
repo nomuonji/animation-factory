@@ -54,7 +54,7 @@ VOICEVOX は `$VOICEVOX_URL`（既定 `127.0.0.1:50021`）。ローカルに無�
 
 - `line.text` の `／` が字幕の区切り。1チャンク 26 字以内。秒数は書かない（声の長さで決まる）。
 - `role`: `hook`（冒頭。hook overlay はここまで表示）、`title`（全画面タイトルカード）、`payoff` など。
-- `pre` / `post` / `hold` / `dur` で間を足せる。`do` は 3D ラインと同じ（`sfx`、`music: cut|resume`）。
+- `pre` / `post` / `hold` / `dur` で間を足せる。`do` は 3D ラインと同じ（`sfx`、`music: cut|resume`）。効果音名は `catalog/sfx3d.json` と `catalog/sfx-styles.json`（`whoosh pop ding tick glitch question boom`）。
 - visual を書かない beat、または `"continue": true` は前のシーンの続き（人物は止まった位置から）。`drop: ["id"]` で退場。
 
 ### シーンの種類（visual.scene）

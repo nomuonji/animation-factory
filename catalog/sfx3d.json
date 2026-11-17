@@ -164,66 +164,6 @@
           "gain": 0.5
         }
       ]
-    },
-    "whoosh": {
-      "layers": [
-        {
-          "lavfi": "anoisesrc=color=pink:amplitude=0.5:d=0.35,bandpass=f=1800:w=1400,afade=t=in:d=0.12,afade=t=out:st=0.14:d=0.2",
-          "gain": 0.35
-        }
-      ]
-    },
-    "pop": {
-      "layers": [
-        {
-          "file": "assets/kenney/interface-sounds/Audio/drop_002.ogg",
-          "gain": 0.7
-        }
-      ]
-    },
-    "ding": {
-      "layers": [
-        {
-          "file": "assets/kenney/interface-sounds/Audio/confirmation_001.ogg",
-          "gain": 0.6
-        }
-      ]
-    },
-    "tick": {
-      "layers": [
-        {
-          "file": "assets/kenney/interface-sounds/Audio/tick_001.ogg",
-          "gain": 0.5
-        }
-      ]
-    },
-    "glitch": {
-      "layers": [
-        {
-          "file": "assets/kenney/interface-sounds/Audio/glitch_001.ogg",
-          "gain": 0.5
-        }
-      ]
-    },
-    "question": {
-      "layers": [
-        {
-          "file": "assets/kenney/interface-sounds/Audio/question_001.ogg",
-          "gain": 0.6
-        }
-      ]
-    },
-    "boom": {
-      "layers": [
-        {
-          "file": "assets/kenney/impact-sounds/Audio/impactSoft_heavy_001.ogg",
-          "gain": 0.9
-        },
-        {
-          "lavfi": "sine=f=48:d=0.8,afade=t=out:st=0.05:d=0.75",
-          "gain": 0.7
-        }
-      ]
     }
   }
 }

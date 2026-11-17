@@ -20,6 +20,7 @@ on:
       - "src/styles/**"
       - "tools/styles/**"
       - "catalog/styles.json"
+      - "catalog/sfx-styles.json"
       - "styles.html"
       - ".github/workflows/style-shorts.yml"
 

@@ -191,7 +191,7 @@ await browser.close();
 await server.close();
 
 // ---------- audio ----------
-const SFX = JSON.parse(await readFile(join(root, "catalog", "sfx3d.json"), "utf8")).sfx;
+const SFX = { ...JSON.parse(await readFile(join(root, "catalog", "sfx3d.json"), "utf8")).sfx, ...JSON.parse(await readFile(join(root, "catalog", "sfx-styles.json"), "utf8")).sfx };
 const LIB = JSON.parse(await readFile(join(root, "catalog", "asset-library.json"), "utf8"));
 const styleInfo = STYLES.find((s) => s.id === style);
 const genDir = join(outDir, "sfx");
