@@ -1,0 +1,32 @@
+name: Reference tools checks
+
+on:
+  pull_request:
+    paths:
+      - "tools/reference/**"
+      - "docs/reference-replication.md"
+      - ".github/workflows/reference-tools-checks.yml"
+  push:
+    branches: [main]
+    paths:
+      - "tools/reference/**"
+      - ".github/workflows/reference-tools-checks.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  smoke:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install ffmpeg and Python deps
+        run: |
+          sudo apt-get update -y
+          sudo apt-get install -y ffmpeg
+          python -m pip install numpy pillow
+      - name: Reference tools smoke test (synthetic media only)
+        run: python tools/reference/smoke_test.py
