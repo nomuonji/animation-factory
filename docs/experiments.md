@@ -33,10 +33,17 @@ variant=`baseline` の既存コント。数字は未取得（下の「状況」�
 | itsumono-hatsu | aObbaNGce-A | 2026-11-14 | 43.8 | baseline |
 | kenon-shitsuon | uNomz8Qnp-U | 2026-11-15 | 45.1 | baseline |
 | kyoryu-gym | WbiVJ9s1-vg | 2026-11-16 | 48.1 | baseline |
+| sento-akami | Uw-Y2GPvS5Q | 2026-11-17 | 39.7 | baseline |
 
 ## いま走っている実験
 
 なし（2026-11-14 時点）。理由: 数字が1本も取れていないため、判定が出せず、次に変える点を選べない。**迷ったら変えない**。
+
+## 状況（2026-11-17）
+
+- 実験は走っていない（変更なし）。hotel-niyari-furonto (VkrBX8rLbC8, 11-13) の数字を取得（窓 11-13〜11-15）: 再生338・平均視聴率93.4%（平均42秒）・3秒維持150%・5秒維持138%・10秒維持114%・20秒維持95%・最後27.4%・登録者増0・高評価1。**途中経過**: 同じ44秒でも平均視聴率が他の baseline（60%台）よりかなり高く見えるが、n が少なく、題材・公開時間・配信の当たり外れと切り分けられないため判定は出さない。
+- itsumono-hatsu (aObbaNGce-A, 11-14) は公開から3日たたず未取得（次回以降）。
+- 本日の sento-akami (Uw-Y2GPvS5Q) は variant=baseline（39.7秒）。
 
 ## 状況（2026-11-16）
 
@@ -88,3 +95,4 @@ variant=`baseline` の既存コント。数字は未取得（下の「状況」�
 - 2026-11-14: 台帳を新設。公開済み7本の YouTube ID・公開日・尺を `productions/<id>/metrics.json` に記録。baseline 定義。実験は未開始。metrics 取得は fuzoku 未接続のため未実施。
 - 2026-11-15: video-publisher の YouTube Metrics で baseline 5本の数字を取得し、途中経過を記載。kenon-shitsuon を追加（variant=baseline）。実験は未開始のまま。
 - 2026-11-16: akabeko-famiresu の数字を取得（再生44）。kyoryu-gym (WbiVJ9s1-vg, 48.1秒) を追加（variant=baseline）。実験は未開始のまま（判断が要る条件: 3本そろった判定がまだ無い）。
+- 2026-11-17: hotel-niyari-furonto の数字を取得（途中経過、判定なし）。sento-akami (Uw-Y2GPvS5Q, 39.7秒) を追加（variant=baseline）。実験は未開始のまま。

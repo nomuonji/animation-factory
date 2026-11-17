@@ -1,0 +1,12 @@
+{
+  "production": "sento-akami",
+  "youtubeId": "Uw-Y2GPvS5Q",
+  "postedAt": "2026-11-17",
+  "durationSec": 39.7,
+  "variant": "baseline",
+  "note": "",
+  "windowDays": 3,
+  "fetched": false,
+  "metrics": null,
+  "howToFetch": "video-publisher の YouTube Metrics: mode=video, concept=おもしろ, videos=\"Uw-Y2GPvS5Q:2026-11-17:40\"（公開から3日たってから）"
+}
