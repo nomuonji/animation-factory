@@ -448,6 +448,22 @@
           "mat": 0.02
         }
       },
+      "ward-office-window": {
+        "cameras": [
+          "wide",
+          "two-shot",
+          "side",
+          "clerk-cu",
+          "customer-cu",
+          "counter-top",
+          "display"
+        ],
+        "surfaces": {
+          "counter": 1.0,
+          "floor": 0
+        },
+        "notes": "区役所の窓口（番号札・呼出表示）。カウンター天板1.0がz=0、職員は奥 z≈-0.55 で ry=0、客は手前 z≈0.6 で ry=π。奥の壁に窓口番号の看板（params.windowNo 既定3）、掲示、書庫。右手前に番号札の発券機、左手前に待合の長椅子。呼出表示は prop ticket-display（奥の壁 z=-1.4 に掛ける、param n）、届出書は prop todoke-form"
+      },
       "sento-lobby": {
         "cameras": [
           "wide",
@@ -596,6 +612,24 @@
       ],
       "exercise-bench": [
         "color"
+      ],
+      "ticket-display": [
+        "window",
+        "w",
+        "h",
+        "param:n"
+      ],
+      "todoke-form": [
+        "title",
+        "sample",
+        "hand",
+        "name",
+        "birth",
+        "address",
+        "prev",
+        "stack",
+        "param:fill",
+        "param:stamp"
       ],
       "wall-clock": [
         "r",

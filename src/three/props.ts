@@ -230,6 +230,117 @@ export const PROPS: Record<string, PropBuilder> = {
     return { object: group };
   },
 
+  /** 窓口の呼出表示（壁掛け）。param n = 呼び出し番号。params: window（窓口番号）。向きは +Z（ry 0）で客側から読める。 */
+  "ticket-display"(p) {
+    const w = num(p.w, 0.72), h = num(p.h, 0.3);
+    const tex = canvasTexture(512, Math.round(512 * h / w), () => {});
+    const g2 = (tex.image as HTMLCanvasElement).getContext("2d")!;
+    let cur = -1;
+    const draw = (n: number) => {
+      if (n === cur) return;
+      cur = n;
+      const cw = 512, ch = Math.round(512 * h / w);
+      g2.fillStyle = "#14171a"; g2.fillRect(0, 0, cw, ch);
+      g2.strokeStyle = "#4b535a"; g2.lineWidth = 8; g2.strokeRect(6, 6, cw - 12, ch - 12);
+      g2.fillStyle = "#e9ecee"; g2.font = `bold 34px ${JP_FONT}`; g2.textAlign = "left"; g2.textBaseline = "middle";
+      g2.fillText("お呼び出し番号", 26, 38);
+      g2.textAlign = "right"; g2.fillStyle = "#7ddc8a"; g2.fillText(`${str(p.window, "3")}番窓口`, cw - 26, 38);
+      g2.fillStyle = "#ff5a3c"; g2.font = `bold ${Math.round(ch * 0.58)}px ${JP_FONT}`; g2.textAlign = "center";
+      g2.fillText(String(Math.round(n)).padStart(3, "0"), cw / 2, ch * 0.64);
+      tex.needsUpdate = true;
+    };
+    draw(num(p.n, 42));
+    const g = new THREE.Group();
+    const board = mesh(new THREE.BoxGeometry(w, h, 0.05), toon("#23282c"), 0.004); board.position.y = h / 2; g.add(board);
+    const face = new THREE.Mesh(new THREE.PlaneGeometry(w * 0.98, h * 0.96), new THREE.MeshBasicMaterial({ map: tex }));
+    face.position.set(0, h / 2, 0.027); g.add(face);
+    return { object: g, setParam(k, v) { if (k === "n") draw(v); } };
+  },
+
+  /**
+   * 届出書（A4）。params: title, sample（記入例: 赤い「記入例」札つきで整った手書き）, hand（"neat" | "messy"）,
+   * name / birth / address / prev（記入内容）, stack（>0 で下に紙束の厚み[m]）。
+   * param fill 0..1 で記入欄が上から順に埋まる、stamp 0..1 で「受理」の朱印。向きは document と同じ（ry 0 で客側から読める）。
+   */
+  "todoke-form"(p) {
+    const w = num(p.w, 0.21), d = num(p.d, 0.297), stackH = num(p.stack, 0);
+    const tw = 512, th = Math.round(512 * d / w);
+    const canvas = document.createElement("canvas"); canvas.width = tw; canvas.height = th;
+    const g = canvas.getContext("2d")!;
+    const tex = new THREE.CanvasTexture(canvas); tex.colorSpace = THREE.SRGBColorSpace; tex.anisotropy = 8;
+    const sample = !!p.sample, messy = str(p.hand, "neat") === "messy";
+    const fields: Array<[string, string]> = [
+      ["氏名", str(p.name, "山田 太郎")], ["生年月日", str(p.birth, "昭和63年4月1日")],
+      ["新しい住所", str(p.address, "○○市△△町1-2-3")], ["前の住所", str(p.prev, "□□市◇◇町4-5-6")]
+    ];
+    let fillQ = -1, stampQ = -1;
+    const redraw = (fill: number, stamp: number) => {
+      const fq = Math.round(fill * 40) / 40, sq = Math.round(stamp * 10) / 10;
+      if (fq === fillQ && sq === stampQ) return;
+      fillQ = fq; stampQ = sq;
+      g.fillStyle = "#fbfaf6"; g.fillRect(0, 0, tw, th);
+      g.fillStyle = "#1b1b1f"; g.textAlign = "center"; g.textBaseline = "middle";
+      g.font = `bold ${Math.round(tw * 0.1)}px ${JP_FONT}`; g.fillText(str(p.title, "転入届"), tw / 2, th * 0.07);
+      g.fillRect(tw * 0.08, th * 0.115, tw * 0.84, 4);
+      const rowH = th * 0.17;
+      fields.forEach(([label, val], i) => {
+        const y0 = th * 0.16 + i * rowH;
+        g.strokeStyle = "#1b1b1f"; g.lineWidth = 3; g.strokeRect(tw * 0.08, y0, tw * 0.84, rowH * 0.86);
+        g.fillStyle = "#e7ece3"; g.fillRect(tw * 0.08 + 1.5, y0 + 1.5, tw * 0.22, rowH * 0.86 - 3);
+        g.fillStyle = "#1b1b1f"; g.font = `bold ${Math.round(tw * 0.04)}px ${JP_FONT}`; g.textAlign = "center"; g.fillText(label, tw * 0.19, y0 + rowH * 0.43);
+        const prog = Math.max(0, Math.min(1, fq * fields.length - i));
+        if (prog <= 0) return;
+        const chars = [...val]; const n = Math.ceil(chars.length * prog);
+        const fs = Math.round(tw * (i === 0 ? 0.085 : 0.056));
+        g.textAlign = "center"; g.textBaseline = "middle";
+        let x = tw * 0.34;
+        for (let k = 0; k < n; k++) {
+          const ch = chars[k]!;
+          const r = rand(i * 31 + k * 7 + 3);
+          g.save();
+          const size = messy ? fs * (0.8 + r * 0.45) : fs;
+          g.font = `${messy ? "" : "bold "}${Math.round(size)}px ${JP_FONT}`;
+          const adv = size * (/[0-9\-]/.test(ch) ? 0.6 : 1.02);
+          g.translate(x + adv / 2, y0 + rowH * 0.43 + (messy ? (rand(k + i * 13) - 0.5) * fs * 0.45 : 0));
+          if (messy) g.rotate((rand(i * 17 + k) - 0.5) * 0.7);
+          g.fillStyle = messy ? "#2a2a52" : "#1c2a6b";
+          g.fillText(ch, 0, 0);
+          if (messy && r > 0.72) { g.strokeStyle = "#2a2a52"; g.lineWidth = 3; g.beginPath(); g.moveTo(-size * 0.5, size * 0.2); g.lineTo(size * 0.5, -size * 0.25); g.stroke(); }
+          g.restore();
+          x += adv;
+        }
+      });
+      if (sample) {
+        g.save(); g.translate(tw * 0.78, th * 0.07); g.rotate(0.12);
+        g.strokeStyle = "#cf2a2a"; g.fillStyle = "#cf2a2a"; g.lineWidth = 6; g.strokeRect(-tw * 0.15, -th * 0.04, tw * 0.3, th * 0.08);
+        g.font = `bold ${Math.round(tw * 0.085)}px ${JP_FONT}`; g.textAlign = "center"; g.textBaseline = "middle"; g.fillText("記入例", 0, 2); g.restore();
+      }
+      if (stamp > 0) {
+        g.save(); g.globalAlpha = Math.min(1, stamp) * 0.9; g.strokeStyle = "#cf2a2a"; g.fillStyle = "#cf2a2a";
+        const cx = tw * 0.76, cy = th * 0.88, r = tw * 0.1; g.lineWidth = tw * 0.014; g.beginPath(); g.arc(cx, cy, r, 0, Math.PI * 2); g.stroke();
+        g.font = `bold ${Math.round(r * 0.9)}px ${JP_FONT}`; g.textAlign = "center"; g.textBaseline = "middle"; g.fillText("受理", cx, cy + 3); g.restore();
+      }
+      tex.needsUpdate = true;
+    };
+    redraw(sample ? 1 : num(p.fill, 0), 0);
+    const sheetMats = [flat("#efede6"), flat("#efede6"), new THREE.MeshToonMaterial({ map: tex, gradientMap: (toon("#fff") as THREE.MeshToonMaterial).gradientMap }), flat("#efede6"), flat("#efede6"), flat("#efede6")];
+    const group = new THREE.Group();
+    if (stackH > 0) {
+      const edge = canvasTexture(64, 256, (c, cw, ch) => {
+        c.fillStyle = "#f3f1ea"; c.fillRect(0, 0, cw, ch);
+        for (let y = 0; y < ch; y += 3) { c.fillStyle = rand(y) > 0.5 ? "#dcd8cd" : "#e8e5dc"; c.fillRect(0, y, cw, 1); }
+      });
+      edge.wrapS = edge.wrapT = THREE.RepeatWrapping;
+      const em = new THREE.MeshToonMaterial({ map: edge, gradientMap: (toon("#fff") as THREE.MeshToonMaterial).gradientMap });
+      const stackBody = mesh(new THREE.BoxGeometry(w, stackH, d), [em, em, flat("#f3f1ea"), flat("#f3f1ea"), em, em] as unknown as THREE.Material, 0.003);
+      stackBody.position.y = stackH / 2; group.add(stackBody);
+    }
+    const sheet = new THREE.Mesh(new THREE.BoxGeometry(w, 0.0015, d), sheetMats);
+    sheet.position.y = stackH + 0.00075; sheet.receiveShadow = true; sheet.castShadow = true;
+    group.add(sheet);
+    return { object: group, setParam(k, v) { if (k === "fill") redraw(v, stampQ < 0 ? 0 : stampQ); if (k === "stamp") redraw(fillQ < 0 ? 0 : fillQ, v); } };
+  },
+
   document(p) { return paperSheet(p); },
 
   binder(p) {
