@@ -321,6 +321,27 @@
           "backCounter": 0.9
         }
       },
+      "convenience-store-night": {
+        "cameras": [
+          "hero",
+          "wide",
+          "side",
+          "clerk-cu",
+          "customer-cu",
+          "counter-top",
+          "over-clerk",
+          "kiosk-wide",
+          "kiosk-all",
+          "kiosk-cu",
+          "kiosk-side",
+          "counter-front"
+        ],
+        "surfaces": {
+          "counter": 0.96,
+          "backCounter": 0.9
+        },
+        "notes": "深夜のコンビニ（convenience-store を夜にしたもの）。セルフレジは prop self-register を x≈1.75, z≈0.45 に置く。客は z≈1.15 ry=π、係員はセルフレジ左 x≈1.3, z≈0.62。カウンターの右端 x=1.45 を回り込める"
+      },
       "interview-room": {
         "cameras": [
           "wide",
@@ -447,6 +468,22 @@
           "floor": 0,
           "mat": 0.02
         }
+      },
+      "ward-office-window": {
+        "cameras": [
+          "wide",
+          "two-shot",
+          "side",
+          "clerk-cu",
+          "customer-cu",
+          "counter-top",
+          "display"
+        ],
+        "surfaces": {
+          "counter": 1.0,
+          "floor": 0
+        },
+        "notes": "区役所の窓口（番号札・呼出表示）。カウンター天板1.0がz=0、職員は奥 z≈-0.55 で ry=0、客は手前 z≈0.6 で ry=π。奥の壁に窓口番号の看板（params.windowNo 既定3）、掲示、書庫。右手前に番号札の発券機、左手前に待合の長椅子。呼出表示は prop ticket-display（奥の壁 z=-1.4 に掛ける、param n）、届出書は prop todoke-form"
       },
       "sento-lobby": {
         "cameras": [
@@ -612,9 +649,31 @@
       "exercise-bench": [
         "color"
       ],
+      "ticket-display": [
+        "window",
+        "w",
+        "h",
+        "param:n"
+      ],
+      "todoke-form": [
+        "title",
+        "sample",
+        "hand",
+        "name",
+        "birth",
+        "address",
+        "prev",
+        "stack",
+        "param:fill",
+        "param:stamp"
+      ],
       "wall-clock": [
         "r",
         "param:t"
+      ],
+      "self-register": [
+        "color",
+        "param:alert"
       ],
       "milk-bottle": [
         "param:empty"

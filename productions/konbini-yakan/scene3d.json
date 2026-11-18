@@ -1,0 +1,1180 @@
+{
+  "meta": {
+    "id": "konbini-yakan",
+    "title": "自分の店で買い物したら係員を呼ばれた店員",
+    "fps": 30,
+    "width": 1080,
+    "height": 1920,
+    "variant": "baseline"
+  },
+  "design": {
+    "format": "role-reversal",
+    "title": "自分の店で買い物したら係員を呼ばれた",
+    "titleAlternatives": [
+      "セルフレジが店員を呼ぶ深夜のコンビニ",
+      "ワンオペ店員が自分のレジで客になった夜"
+    ],
+    "titlePattern": "consequence",
+    "titleOnScreen": "card",
+    "titleScreenText": "自分の店で\n買い物したら\n係員を呼ばれた",
+    "hook": {
+      "type": "in-media-res",
+      "firstFrame": "深夜のコンビニのセルフレジ。制服のベスト姿の店員が、自分の弁当をスキャンしている。弁当と緑茶が台の上にある",
+      "overlay": "ワンオペ夜勤"
+    },
+    "rule": "セルフレジが『係員をお呼びします』と言うたび、呼ばれる係員も呼んだ客も、ワンオペの同じ一人",
+    "escalations": [
+      "L1: バーコードが読めず、店員の自分が客の自分に詫びて直す",
+      "L2: 割引シールの確認で、貼ったのが自分だと店員の自分が報告する",
+      "L3: 本物の客が来て、店員の自分に別の用を頼む"
+    ],
+    "turn": "店員が『いま自分がお客なので』と、店員の仕事を断ろうとする",
+    "payoff": "本物の客が、機械に呼ばれている店員に『あちらのお客様、お待ちですよ』と言い、店員が誰もいない客の立ち位置に深く詫びる",
+    "button": "機械の『お買い上げありがとうございました』に、店員と客が同じ向きで頭を下げる",
+    "loop": false,
+    "reaction": "laugh",
+    "audience": "夜勤のコンビニで、セルフレジのエラーを見たことがある人",
+    "reality": {
+      "place": "深夜のコンビニのレジ",
+      "normalEvent": "ワンオペの夜勤の店員が自店の弁当を買い、セルフレジが読み取りエラーや割引シールで『係員をお呼びします』と鳴り、店員が駆けつける",
+      "onlyBreak": "呼ばれる係員も呼んだ客も同じ一人の店員なので、応対するほど自分を待たせる"
+    },
+    "payoffMechanism": "one-person-both-sides",
+    "ideation": {
+      "gateVersion": 2,
+      "method": "creative-thinking (My Portal chat Skill) — 無人の並列制作。選定は割り当て(LANE A)への委任",
+      "candidates": 16,
+      "rejected": [
+        "C02: C01と同じ構造の設定違い。社員割引という制度の細部を足さないと成立しない",
+        "C04: 質問者と回答者を入れ替えただけで二段目が作れない（役割逆転の言い換え）",
+        "C07: 焼肉作の『合図への反射』と構造が近く、二段目が繰り返しになる",
+        "C15: C01と同じ構造。サインという小道具が見せ場になり狙いすぎ"
+      ],
+      "corpus": {
+        "dataset": "radichichi",
+        "datasetVersion": "v1",
+        "retrievedAt": "2026-11-18T10:57:00Z",
+        "queryLog": [
+          {
+            "query": "コンビニ",
+            "resultChunkIds": [
+              "radichichi_1755068597_001",
+              "radichichi_1755068597_002",
+              "radichichi_1755068597_008",
+              "radichichi_1755068597_009"
+            ]
+          },
+          {
+            "query": "店員",
+            "resultChunkIds": [
+              "radichichi_1755068597_002",
+              "radichichi_1755068597_004",
+              "radichichi_1755068597_005",
+              "radichichi_1755068597_006",
+              "radichichi_1755068597_008"
+            ]
+          }
+        ],
+        "sourceChunks": [
+          {
+            "id": "radichichi_1755068597_002",
+            "dataset": "radichichi",
+            "retrievalTier": "creative",
+            "role": "ogiri_reference"
+          },
+          {
+            "id": "radichichi_1755068597_004",
+            "dataset": "radichichi",
+            "retrievalTier": "creative",
+            "role": "ogiri_reference"
+          },
+          {
+            "id": "radichichi_1755068597_005",
+            "dataset": "radichichi",
+            "retrievalTier": "creative",
+            "role": "ogiri_reference"
+          },
+          {
+            "id": "radichichi_1755068597_006",
+            "dataset": "radichichi",
+            "retrievalTier": "creative",
+            "role": "ogiri_reference"
+          },
+          {
+            "id": "radichichi_1755068597_008",
+            "dataset": "radichichi",
+            "retrievalTier": "creative",
+            "role": "ogiri_reference"
+          }
+        ],
+        "sourceChunkIds": [
+          "radichichi_1755068597_002",
+          "radichichi_1755068597_004",
+          "radichichi_1755068597_005",
+          "radichichi_1755068597_006",
+          "radichichi_1755068597_008"
+        ],
+        "sourceExampleIds": [
+          "radichichi-636",
+          "radichichi-639",
+          "radichichi-100",
+          "radichichi-145",
+          "radichichi-99",
+          "radichichi-476",
+          "radichichi-360",
+          "radichichi-258",
+          "radichichi-96"
+        ]
+      },
+      "mechanisms": [
+        {
+          "id": "m-one-body-two-roles",
+          "sourceExampleIds": [
+            "radichichi-636",
+            "radichichi-100"
+          ],
+          "abstractOperation": "店員という立場の人間の側に、客の側から見た不具合や配慮が回り込み、呼ぶ側と呼ばれる側の関係が一つの身体の中で成立してしまう",
+          "transfer": "セルフレジの『係員をお呼びします』に、呼ばれた店員が自分自身でもある一人の夜勤店員を当てた"
+        },
+        {
+          "id": "m-ritual-honoured",
+          "sourceExampleIds": [
+            "radichichi-639",
+            "radichichi-145"
+          ],
+          "abstractOperation": "接客の小さな儀礼を、受ける側もされる側も型どおり丁寧に守ってしまい、儀礼のほうが状況より先に進む",
+          "transfer": "店員が客の自分に詫び、客の自分が店員に礼を言う型どおりの往復"
+        },
+        {
+          "id": "m-world-accepts",
+          "sourceExampleIds": [
+            "radichichi-99",
+            "radichichi-476"
+          ],
+          "abstractOperation": "おかしな規則が出ても居合わせた周囲が淡々とその規則の内側で対応し、異常を指摘しない",
+          "transfer": "後から来た客が、二人に見える一人を二人として丁寧に扱う"
+        },
+        {
+          "id": "m-rule-on-its-maker",
+          "sourceExampleIds": [
+            "radichichi-360",
+            "radichichi-258",
+            "radichichi-96"
+          ],
+          "abstractOperation": "店の側の決まりごとが、決めた側に向けて文字どおり適用されて、手順の外へ出られなくなる",
+          "transfer": "店の仕組み（セルフレジの係員呼び出し）が店員自身にも例外なく適用される"
+        }
+      ],
+      "candidateLog": [
+        {
+          "id": "C01",
+          "mechanism": "m-one-body-two-roles",
+          "mechanismFamily": "one-person-both-sides",
+          "causalCore": "呼び出しを受ける側と呼び出す側が同じ一人で、自分の応対で自分を待たせて詫びる往復が一回ごとに積もる",
+          "concept": "深夜のワンオペ店員が自分の晩ごはんをセルフレジで買い、機械が出す『係員をお呼びします』に自分で駆けつけては、客の自分に詫びる",
+          "status": "selected",
+          "reason": "場所の現実（ワンオペ夜勤の店員が自分の買い物をする、セルフレジが係員を呼ぶ）のままで、ずらすのは『呼ぶのも呼ばれるのも自分』の一点だけ。段ごとに新しい発見（読み取り→割引シール→待たせた他人の登場）がある"
+        },
+        {
+          "id": "C02",
+          "mechanism": "m-one-body-two-roles",
+          "mechanismFamily": "one-person-both-sides",
+          "causalCore": "規則を適用する者と適用される者が同一人物で、自分の申請を自分で承認するための手続きだけが増える",
+          "concept": "店員が自分の社員割引を、自分でレジを打って自分で承認する",
+          "status": "rejected",
+          "reason": "C01と同じ構造の設定違い。社割という制度の細部を足さないと成立しない"
+        },
+        {
+          "id": "C03",
+          "mechanism": "m-ritual-honoured",
+          "mechanismFamily": "script-preempted-by-regular",
+          "causalCore": "常連が店員の定型の質問すべてに先回りして答え、店員の台詞が先に消えていき、最後に常連の予測を外す一言だけが残る",
+          "concept": "明け方の常連が『袋いらないです、ポイントカードないです』と店員の質問を先取りし、店員は一言も言えずに会計が終わる",
+          "status": "shortlisted",
+          "reason": "常連の先回りは現実にあるが、最後の予測外の一言を何にするかが後付けの設定になりやすい"
+        },
+        {
+          "id": "C04",
+          "mechanism": "m-ritual-honoured",
+          "mechanismFamily": "script-returned-sincerely",
+          "causalCore": "客が定型の質問をそのまま店員に返し、店員が初めて質問に本気で答えてしまい、客が実際に世話を焼く",
+          "concept": "客が『お箸はおつけしますか』を店員に聞き返し、店員が本気で答える",
+          "status": "rejected",
+          "reason": "質問者と回答者を入れ替えただけで、二段目が作れない"
+        },
+        {
+          "id": "C05",
+          "mechanism": "m-world-accepts",
+          "mechanismFamily": "competence-flows-to-bystander",
+          "causalCore": "経験の量が肩書より上で、教える側が客の側に立ち、新人の店員が教わる側に回る",
+          "concept": "ワンオペ初夜の新人店員に、毎晩来る常連客がレジの手順を客のまま教える",
+          "status": "shortlisted",
+          "reason": "現実にもある光景。ただし『客が詳しい』は携帯ショップ案と同じ主導権の移動で、笑いの核が弱い"
+        },
+        {
+          "id": "C06",
+          "mechanism": "m-world-accepts",
+          "mechanismFamily": "competence-flows-to-bystander",
+          "causalCore": "道を知る者のところへ問いが回り、問われた者が淡々と答えて持ち場が入れ替わる",
+          "concept": "道を聞かれた店員が、買い物中のタクシー運転手客に答えを回す",
+          "status": "rejected",
+          "reason": "小さな親切を描いただけで笑いの核と回収がない"
+        },
+        {
+          "id": "C07",
+          "mechanism": "m-ritual-honoured",
+          "mechanismFamily": "reflex-persists-past-role",
+          "causalCore": "役を降りても、身についた型が出て、役を引き継いだ人が居心地悪くなる",
+          "concept": "勤務明けの店員が客としてレジに立っても、いらっしゃいませと言ってしまう",
+          "status": "rejected",
+          "reason": "焼肉作の『合図への反射』と構造が近く、二段目が繰り返しになる"
+        },
+        {
+          "id": "C08",
+          "mechanism": "m-ritual-honoured",
+          "mechanismFamily": "reflex-persists-past-role",
+          "causalCore": "元の職の習性が、自動ドアの音という合図で毎回出てしまう",
+          "concept": "元コンビニ店員の客が、自動ドアのチャイムのたびに『いらっしゃいませ』と言う",
+          "status": "rejected",
+          "reason": "同じ反応の繰り返しで段が作れない。元店員という新設定が要る"
+        },
+        {
+          "id": "C09",
+          "mechanism": "m-world-accepts",
+          "mechanismFamily": "reflex-persists-past-role",
+          "causalCore": "互いが相手の礼儀に礼儀で返し続けて、どちらも降りられない",
+          "concept": "別の系列店の店員同士が客として会い、頭を下げ合い続ける",
+          "status": "rejected",
+          "reason": "譲り合いの繰り返しで、日常の気まずさを描いただけ"
+        },
+        {
+          "id": "C10",
+          "mechanism": "m-rule-on-its-maker",
+          "mechanismFamily": "stock-and-time-literalism",
+          "causalCore": "補充の約束が時間経過で空になり、最後の一個をめぐる順番が客の側に回る",
+          "concept": "深夜の肉まん蒸し器の最後の一個を客が待ち続ける",
+          "status": "rejected",
+          "reason": "笑いの核が一言で言えない"
+        },
+        {
+          "id": "C11",
+          "mechanism": "m-rule-on-its-maker",
+          "mechanismFamily": "stock-and-time-literalism",
+          "causalCore": "営業時間の表示を文字どおりに数えた者が、数え終えた時刻に別の行動を取る",
+          "concept": "24時間営業を文字どおりに数えた店員が、24時間たったので交代を宣言する",
+          "status": "rejected",
+          "reason": "先が読める上に、交代の仕組みを新設してしまう"
+        },
+        {
+          "id": "C12",
+          "mechanism": "m-rule-on-its-maker",
+          "mechanismFamily": "stock-and-time-literalism",
+          "causalCore": "レシートの時刻表示が客の行動の証拠として逆に使われる",
+          "concept": "レシートの時刻から、客が通う頻度を店員が指摘する",
+          "status": "rejected",
+          "reason": "指摘されて終わりで展開がない。客の私生活に踏み込む"
+        },
+        {
+          "id": "C13",
+          "mechanism": "m-ritual-honoured",
+          "mechanismFamily": "script-preempted-by-regular",
+          "causalCore": "店員が常連の注文を先取りして用意し、客が違う物を頼んで手順が詰まる",
+          "concept": "常連の定番を先に袋詰めした店員の前で、客が今日だけ別の物を買う",
+          "status": "rejected",
+          "reason": "C03の裏返しで、因果の核が同じ"
+        },
+        {
+          "id": "C14",
+          "mechanism": "m-ritual-honoured",
+          "mechanismFamily": "script-returned-sincerely",
+          "causalCore": "最後の一言が質問の形で返ってきて、場が持て余す",
+          "concept": "客が会計の最後に『ポイントカードはお持ちですか』と店員に聞く",
+          "status": "rejected",
+          "reason": "聞き返しで締める型が既存の面接作と同じ"
+        },
+        {
+          "id": "C15",
+          "mechanism": "m-one-body-two-roles",
+          "mechanismFamily": "one-person-both-sides",
+          "causalCore": "二つの窓口を一人で兼ねる者が、片方の窓口の受付時間のためにもう片方を閉める",
+          "concept": "宅配便の受付と受け取りを一人の店員が兼ね、自分宛ての荷物の受け取りサインを自分でする",
+          "status": "rejected",
+          "reason": "C01と同じ構造。サインという小道具が見せ場になり狙いすぎ"
+        },
+        {
+          "id": "C16",
+          "mechanism": "m-world-accepts",
+          "mechanismFamily": "competence-flows-to-bystander",
+          "causalCore": "頼まれた客が持ち場を預かり、頼んだ側より巧く務めて店員が客の側に戻る",
+          "concept": "店員に『ちょっと見てて』と頼まれた客が、そのままレジに立つ",
+          "status": "rejected",
+          "reason": "役割を逆にしただけで二段目がなく、客の能力を新設する"
+        }
+      ],
+      "shortlist": [
+        "C01",
+        "C03",
+        "C05"
+      ],
+      "selectedCandidateId": "C01",
+      "selectionAuthority": "delegated",
+      "diversityAudit": {
+        "mode": "blind-reclassification",
+        "verdict": "pass",
+        "summary": "生成時のラベルと一文概要を隠し、causalCoreだけを読んで16案を別工程で再分類した。批評側の再分類は6系統で、最大は『呼ぶ者＝呼ばれる者』『役を離れても出る型』『時間・在庫の字義』の各3案(19%)。C07/C08/C09は当初2系統に分けていたが、因果を読み直すと『役を離れても型が出る』で同じだったため生成側のラベルを合わせた。C13はC03の裏返しで同じ『先回り』の系統とした。shortlistはC01・C03・C05の別構造3案",
+        "reviewedCandidateIds": [
+          "C01",
+          "C02",
+          "C03",
+          "C04",
+          "C05",
+          "C06",
+          "C07",
+          "C08",
+          "C09",
+          "C10",
+          "C11",
+          "C12",
+          "C13",
+          "C14",
+          "C15",
+          "C16"
+        ],
+        "familyAssignments": [
+          {
+            "candidateId": "C01",
+            "familyId": "one-person-both-sides"
+          },
+          {
+            "candidateId": "C02",
+            "familyId": "one-person-both-sides"
+          },
+          {
+            "candidateId": "C03",
+            "familyId": "script-preempted-by-regular"
+          },
+          {
+            "candidateId": "C04",
+            "familyId": "script-returned-sincerely"
+          },
+          {
+            "candidateId": "C05",
+            "familyId": "competence-flows-to-bystander"
+          },
+          {
+            "candidateId": "C06",
+            "familyId": "competence-flows-to-bystander"
+          },
+          {
+            "candidateId": "C07",
+            "familyId": "reflex-persists-past-role"
+          },
+          {
+            "candidateId": "C08",
+            "familyId": "reflex-persists-past-role"
+          },
+          {
+            "candidateId": "C09",
+            "familyId": "reflex-persists-past-role"
+          },
+          {
+            "candidateId": "C10",
+            "familyId": "stock-and-time-literalism"
+          },
+          {
+            "candidateId": "C11",
+            "familyId": "stock-and-time-literalism"
+          },
+          {
+            "candidateId": "C12",
+            "familyId": "stock-and-time-literalism"
+          },
+          {
+            "candidateId": "C13",
+            "familyId": "script-preempted-by-regular"
+          },
+          {
+            "candidateId": "C14",
+            "familyId": "script-returned-sincerely"
+          },
+          {
+            "candidateId": "C15",
+            "familyId": "one-person-both-sides"
+          },
+          {
+            "candidateId": "C16",
+            "familyId": "competence-flows-to-bystander"
+          }
+        ],
+        "familyDefinitions": [
+          {
+            "id": "one-person-both-sides",
+            "definingMove": "呼ぶ役と呼ばれる役が同じ一人の中にあり、片方の応対が必ずもう片方を待たせる"
+          },
+          {
+            "id": "script-preempted-by-regular",
+            "definingMove": "定型の質問を受ける側が先に答えてしまい、質問する側の台詞が消えていく"
+          },
+          {
+            "id": "script-returned-sincerely",
+            "definingMove": "定型の質問がそのまま返され、質問者が答える側に回る"
+          },
+          {
+            "id": "competence-flows-to-bystander",
+            "definingMove": "経験や知識が居合わせた第三者のほうにあり、持ち場の主導権が移る"
+          },
+          {
+            "id": "reflex-persists-past-role",
+            "definingMove": "役を離れても身についた型が出続け、周囲がそれに付き合う"
+          },
+          {
+            "id": "stock-and-time-literalism",
+            "definingMove": "時間表示や在庫の約束事を文字どおりに数えて、行動が時間に縛られる"
+          }
+        ],
+        "shortlistPairChecks": [
+          {
+            "candidateA": "C01",
+            "candidateB": "C03",
+            "sameCausalStructure": false,
+            "notOnlySettingChange": true,
+            "difference": "C01は一人が二つの役を往復して自分の応対で自分を待たせる(一人の中の循環)。C03は客が店員の台詞を先取りして店員の出番が消える(二人の間で台詞が奪われる)。人数も、積み上がるものも違う"
+          },
+          {
+            "candidateA": "C01",
+            "candidateB": "C05",
+            "sameCausalStructure": false,
+            "notOnlySettingChange": true,
+            "difference": "C01は役が同じ人に重なる。C05は役は別々の二人のまま、知識の量が逆向きに流れる。C01は往復で笑い、C05は教える側と教わる側の入れ替わりで進む"
+          },
+          {
+            "candidateA": "C03",
+            "candidateB": "C05",
+            "sameCausalStructure": false,
+            "notOnlySettingChange": true,
+            "difference": "C03は客が答えを先取りして店員の出番を減らす台詞の奪い合い。C05は客が手順そのものを店員に教える知識の移動。前者は台詞の先取り、後者は手順の指導で、因果の持ち方が違う"
+          }
+        ]
+      },
+      "userSeeds": []
+    },
+    "comedyAudit": {
+      "comicKernel": "セルフレジの『係員をお呼びします』に、ワンオペの夜勤店員が自分で駆けつけ、客の自分に丁寧に詫びる。呼ぶのも呼ばれるのも自分なので、応対するほど自分を待たせる",
+      "audienceExpectation": "店員が自分の買い物をセルフレジで済ませる、ごく普通の光景。エラーが出ても店員なら自分で直せて終わる、と予測する",
+      "characterIntent": "店員は夜の休憩に自分の晩ごはんを買いたい。後から来た客はタバコを買いたい。どちらも早く済ませたい",
+      "pressure": "店には店員が一人しかおらず、セルフレジは客にも店員にも同じ手順を要求する。客の自分は待たされ、店員の自分は別の客に呼ばれる",
+      "escalations": [
+        {
+          "beatId": "esc1",
+          "change": "バーコードが読めない程度の呼び出しに、店員が客の自分に丁寧に詫びて直し、自分に礼を言う。呼ぶ側と呼ばれる側が同じ一人だと分かる"
+        },
+        {
+          "beatId": "esc2",
+          "change": "割引シールの確認が出て、貼ったのが自分だと店員の自分が報告する。呼び出しの理由まで自分の仕事に由来していると分かる"
+        },
+        {
+          "beatId": "esc3",
+          "change": "もう一人の客が来て、店員の自分に別の用を頼む。客の自分と店員の自分と、本物の客の三者が同時に待たされる"
+        }
+      ],
+      "payoffCausality": "冒頭から、呼ぶのも呼ばれるのも自分であり、店員の自分は客の自分に必ず詫びる、と段ごとに示した。本物の客が現れて『いま自分が客で』という言い訳もセルフレジの呼び出しに潰され、その客が二人を別人として丁寧に扱うのは、最初に見せた型どおりの礼儀から導ける",
+      "laughMoment": {
+        "beatId": "payoff",
+        "description": "後から来た客が、機械に呼ばれて動けない店員に『あちらのお客様、お待ちですよ』と言い、店員が誰もいない客の立ち位置に深く頭を下げて詫びる。客の自分の立ち位置には弁当だけが見える"
+      },
+      "independentReview": {
+        "mode": "hostile-reader",
+        "verdict": "pass",
+        "summary": "台詞と動作だけを読み直した。一人二役の往復は画で分かるが、同じ往復だけでは単調。割引シールを貼ったのが自分という理由づけと、本物の客が来て三者が待たされる展開で段が変わる。小道具や決め台詞はなく、使うのは弁当とセルフレジだけ",
+        "strongestObjection": "店員が自分の買い物でセルフレジに呼ばれる状況は、小さなドタバタを描いただけで、笑いの核が往復の繰り返しに留まるのではないか。ラストの『あちらのお客様』は台詞で説明しすぎではないか",
+        "resolution": "二段目で呼び出しの理由が自分の過去の行動（シールを貼った）に由来することを示し、三段目で第三者を加えて待たせる相手を増やした。ラストの一言は、第三者の視点でだけ成立する見え方で、店員が空の立ち位置に詫びる画が主役。台詞を削っても動作で成立するようにした",
+        "checks": {
+          "premiseHasComicEngine": true,
+          "notJustMundaneIncident": true,
+          "payoffIsEarned": true,
+          "characterCanonRespected": true,
+          "noUnmotivatedAdditions": true,
+          "notOnlyRoleReversal": true
+        }
+      }
+    }
+  },
+  "voices": {
+    "clerk": {
+      "speaker": "青山龍星",
+      "style": "ノーマル",
+      "speed": 1.12
+    },
+    "guest": {
+      "speaker": "春日部つむぎ",
+      "style": "ノーマル",
+      "speed": 1.05
+    },
+    "machine": {
+      "speaker": "No.7",
+      "style": "ノーマル",
+      "speed": 1.0
+    }
+  },
+  "music": {
+    "track": "bossa-thank-you-for-shopping",
+    "gain": 0.2,
+    "fadeIn": 0.2,
+    "fadeOut": 0.6
+  },
+  "set": {
+    "kind": "convenience-store-night",
+    "params": {
+      "price": "¥498",
+      "signText": "レジ"
+    }
+  },
+  "captions": {
+    "y": 0.76
+  },
+  "actors": {
+    "clerk": {
+      "style": {
+        "skin": "#e9bf9e",
+        "hair": "#241a14",
+        "hairStyle": "short",
+        "top": "#f6f1e6",
+        "vest": "#2f7d4f",
+        "vestTrim": "#f7f5ee",
+        "bottom": "#2b2b30",
+        "shoes": "#2b2b30",
+        "nameTag": "夜勤"
+      },
+      "root": {
+        "x": 1.4,
+        "z": 1.05,
+        "ry": 2.64
+      },
+      "pose": "counter",
+      "expr": "polite",
+      "captionColor": "#9be0b0"
+    },
+    "guest": {
+      "vrm": "assets/3d/avatars/Lydia.vrm",
+      "height": 1.6,
+      "root": {
+        "x": 9.0,
+        "z": 2.0,
+        "ry": 3.14159
+      },
+      "pose": "idle",
+      "expr": "polite",
+      "captionColor": "#ffe48a"
+    },
+    "machine": {
+      "style": {
+        "skin": "#cfd3d8"
+      },
+      "root": {
+        "x": 12.0,
+        "z": 0.0,
+        "ry": 0
+      },
+      "pose": "idle",
+      "captionColor": "#8fd3ff"
+    }
+  },
+  "props": {
+    "kiosk": {
+      "kind": "self-register",
+      "params": {
+        "alert": 0
+      },
+      "tf": {
+        "x": 1.75,
+        "y": 0,
+        "z": 0.45,
+        "s": 1.2
+      }
+    },
+    "bento": {
+      "kind": "box",
+      "params": {
+        "size": [
+          0.2,
+          0.045,
+          0.15
+        ],
+        "color": "#e0a040"
+      },
+      "tf": {
+        "x": 1.7,
+        "y": 0.99,
+        "z": 0.75
+      }
+    },
+    "tea": {
+      "kind": "box",
+      "params": {
+        "size": [
+          0.06,
+          0.17,
+          0.06
+        ],
+        "color": "#3c8f5a"
+      },
+      "tf": {
+        "x": 1.9,
+        "y": 0.99,
+        "z": 0.72
+      }
+    },
+    "clock": {
+      "kind": "wall-clock",
+      "params": {
+        "t": 3.17
+      },
+      "tf": {
+        "x": -0.9,
+        "y": 2.15,
+        "z": -1.4,
+        "ry": 0
+      }
+    }
+  },
+  "beats": [
+    {
+      "id": "title",
+      "role": "title",
+      "shot": "wide",
+      "dur": 1.2,
+      "do": [
+        {
+          "at": 0,
+          "sfx": "title-sting"
+        }
+      ]
+    },
+    {
+      "id": "hook",
+      "role": "hook",
+      "shot": "kiosk-wide",
+      "pre": 0.05,
+      "post": 0.12,
+      "line": {
+        "who": "clerk",
+        "text": "休憩、休憩。／晩ごはん買お"
+      },
+      "do": [
+        {
+          "at": 0,
+          "pose": "clerk",
+          "to": "counter",
+          "dur": 0.3
+        },
+        {
+          "at": "line+0.8",
+          "pose": "clerk",
+          "to": "point",
+          "dur": 0.4
+        }
+      ]
+    },
+    {
+      "id": "rule",
+      "role": "rule",
+      "shot": "kiosk-cu",
+      "pre": 0.1,
+      "post": 0.06,
+      "line": {
+        "who": "machine",
+        "text": "読み取れません。／係員をお呼びします"
+      },
+      "do": [
+        {
+          "at": 0,
+          "param": "kiosk",
+          "to": {
+            "alert": 1
+          },
+          "dur": 0.01
+        },
+        {
+          "at": 0,
+          "sfx": "error-buzz",
+          "gain": 0.6
+        },
+        {
+          "at": "line+0.9",
+          "face": "clerk",
+          "to": "doubtful",
+          "dur": 0.2
+        }
+      ]
+    },
+    {
+      "id": "esc1a",
+      "role": "bridge",
+      "shot": "kiosk-wide",
+      "pre": 0.14,
+      "post": 0.03,
+      "line": {
+        "who": "clerk",
+        "text": "はーい、いま行きます"
+      },
+      "do": [
+        {
+          "at": 0.1,
+          "move": "clerk",
+          "to": {
+            "x": 2.08,
+            "z": 0.75,
+            "ry": -1.5708
+          },
+          "dur": 0.8
+        },
+        {
+          "at": 0.1,
+          "face": "clerk",
+          "to": "polite",
+          "dur": 0.2
+        }
+      ]
+    },
+    {
+      "id": "esc1",
+      "role": "escalate",
+      "level": 1,
+      "shot": "kiosk-side",
+      "pre": 0.32,
+      "post": 0.06,
+      "line": {
+        "who": "clerk",
+        "text": "お待たせしました、お客様。／……読み取れました"
+      },
+      "do": [
+        {
+          "at": 0,
+          "pose": "clerk",
+          "to": "bow",
+          "dur": 0.4
+        },
+        {
+          "at": "line+1.3",
+          "pose": "clerk",
+          "to": "point",
+          "dur": 0.3
+        },
+        {
+          "at": "line+1.5",
+          "param": "kiosk",
+          "to": {
+            "alert": 0
+          },
+          "dur": 0.01
+        },
+        {
+          "at": "line+1.5",
+          "sfx": "set-down",
+          "gain": 0.4
+        }
+      ]
+    },
+    {
+      "id": "back1",
+      "role": "bridge",
+      "shot": "kiosk-wide",
+      "pre": 0.1,
+      "post": 0.06,
+      "line": {
+        "who": "clerk",
+        "text": "あ、すみません。／助かります"
+      },
+      "do": [
+        {
+          "at": -0.1,
+          "move": "clerk",
+          "to": {
+            "x": 1.4,
+            "z": 1.05,
+            "ry": 2.64
+          },
+          "dur": 0.01
+        },
+        {
+          "at": 0,
+          "pose": "clerk",
+          "to": "bow",
+          "dur": 0.4
+        },
+        {
+          "at": 0.5,
+          "pose": "clerk",
+          "to": "counter",
+          "dur": 0.3
+        },
+        {
+          "at": 0,
+          "face": "clerk",
+          "to": "polite",
+          "dur": 0.2
+        }
+      ]
+    },
+    {
+      "id": "call2",
+      "role": "bridge",
+      "shot": "kiosk-cu",
+      "pre": 0.21,
+      "post": 0.06,
+      "line": {
+        "who": "machine",
+        "text": "割引シールです。／係員をお呼びします"
+      },
+      "do": [
+        {
+          "at": 0,
+          "param": "kiosk",
+          "to": {
+            "alert": 1
+          },
+          "dur": 0.01
+        },
+        {
+          "at": 0,
+          "sfx": "error-buzz",
+          "gain": 0.6
+        }
+      ]
+    },
+    {
+      "id": "mutter",
+      "role": "bridge",
+      "shot": "kiosk-wide",
+      "pre": 0.14,
+      "post": 0.03,
+      "line": {
+        "who": "clerk",
+        "text": "それ、さっき／自分で貼ったやつ"
+      },
+      "do": [
+        {
+          "at": 0,
+          "face": "clerk",
+          "to": "doubtful",
+          "dur": 0.2
+        },
+        {
+          "at": "lineEnd",
+          "pose": "clerk",
+          "to": "idle",
+          "dur": 0.3
+        }
+      ]
+    },
+    {
+      "id": "esc2",
+      "role": "escalate",
+      "level": 2,
+      "shot": "kiosk-side",
+      "pre": 0.39,
+      "post": 0.06,
+      "line": {
+        "who": "clerk",
+        "text": "失礼します。／確かに、私が貼りました"
+      },
+      "do": [
+        {
+          "at": -0.4,
+          "move": "clerk",
+          "to": {
+            "x": 2.08,
+            "z": 0.75,
+            "ry": -1.5708
+          },
+          "dur": 0.7
+        },
+        {
+          "at": 0,
+          "face": "clerk",
+          "to": "polite",
+          "dur": 0.2
+        },
+        {
+          "at": 0,
+          "pose": "clerk",
+          "to": "point",
+          "dur": 0.4
+        },
+        {
+          "at": "line+1.4",
+          "param": "kiosk",
+          "to": {
+            "alert": 0
+          },
+          "dur": 0.01
+        },
+        {
+          "at": "line+1.4",
+          "sfx": "set-down",
+          "gain": 0.4
+        }
+      ]
+    },
+    {
+      "id": "esc3",
+      "role": "escalate",
+      "level": 3,
+      "shot": "counter-front",
+      "pre": 0.21,
+      "post": 0.06,
+      "line": {
+        "who": "guest",
+        "text": "すみません、／タバコお願いします"
+      },
+      "do": [
+        {
+          "at": -0.45,
+          "move": "guest",
+          "to": {
+            "x": 1.1,
+            "z": 2.1,
+            "ry": 3.14159
+          },
+          "dur": 0.01
+        },
+        {
+          "at": -0.4,
+          "move": "guest",
+          "to": {
+            "x": 1.1,
+            "z": 1.05,
+            "ry": 2.4
+          },
+          "dur": 0.9
+        },
+        {
+          "at": -0.3,
+          "sfx": "step",
+          "gain": 0.5
+        },
+        {
+          "at": 0,
+          "face": "guest",
+          "to": "polite",
+          "dur": 0.2
+        },
+        {
+          "at": "line+0.2",
+          "look": "clerk",
+          "to": {
+            "yaw": 0.0,
+            "pitch": 0.0
+          }
+        }
+      ]
+    },
+    {
+      "id": "turn",
+      "role": "turn",
+      "shot": "kiosk-wide",
+      "pre": 0.17,
+      "post": 0.06,
+      "line": {
+        "who": "clerk",
+        "text": "申し訳ありません。／いま自分が、お客でして"
+      },
+      "do": [
+        {
+          "at": 0,
+          "face": "clerk",
+          "to": "surprised",
+          "dur": 0.2
+        },
+        {
+          "at": 0,
+          "pose": "clerk",
+          "to": "idle",
+          "dur": 0.3
+        },
+        {
+          "at": "line+1.3",
+          "face": "clerk",
+          "to": "doubtful",
+          "dur": 0.2
+        }
+      ]
+    },
+    {
+      "id": "guestre",
+      "role": "bridge",
+      "shot": "counter-front",
+      "pre": 0.14,
+      "post": 0.03,
+      "line": {
+        "who": "guest",
+        "text": "……え？"
+      },
+      "do": [
+        {
+          "at": 0,
+          "face": "guest",
+          "to": "surprised",
+          "dur": 0.2
+        }
+      ]
+    },
+    {
+      "id": "call3",
+      "role": "bridge",
+      "shot": "kiosk-cu",
+      "pre": 0.17,
+      "post": 0.06,
+      "line": {
+        "who": "machine",
+        "text": "お支払いできません。／係員をお呼びします"
+      },
+      "do": [
+        {
+          "at": 0,
+          "param": "kiosk",
+          "to": {
+            "alert": 1
+          },
+          "dur": 0.01
+        },
+        {
+          "at": 0,
+          "music": "cut"
+        },
+        {
+          "at": 0,
+          "sfx": "error-buzz",
+          "gain": 0.6
+        }
+      ]
+    },
+    {
+      "id": "payoff",
+      "role": "payoff",
+      "shot": "counter-front",
+      "pre": 0.17,
+      "post": 0.12,
+      "line": {
+        "who": "guest",
+        "text": "店員さん。／あちらのお客様、お待ちですよ"
+      },
+      "do": [
+        {
+          "at": 0,
+          "face": "guest",
+          "to": "polite",
+          "dur": 0.2
+        },
+        {
+          "at": 0,
+          "move": "guest",
+          "to": {
+            "x": 1.1,
+            "z": 1.05,
+            "ry": 0.35
+          },
+          "dur": 0.5
+        },
+        {
+          "at": "line+0.8",
+          "sfx": "payoff-hit"
+        },
+        {
+          "at": "line+0.8",
+          "pose": "guest",
+          "to": "point",
+          "dur": 0.4
+        }
+      ]
+    },
+    {
+      "id": "apology",
+      "role": "bridge",
+      "shot": "kiosk-all",
+      "pre": 0.21,
+      "post": 0.09,
+      "line": {
+        "who": "clerk",
+        "text": "あっ、お待たせしました、／お客様！"
+      },
+      "do": [
+        {
+          "at": 0,
+          "music": "resume"
+        },
+        {
+          "at": 0,
+          "face": "clerk",
+          "to": "surprised",
+          "dur": 0.2
+        },
+        {
+          "at": 0,
+          "move": "clerk",
+          "to": {
+            "x": 2.08,
+            "z": 0.75,
+            "ry": -1.15
+          },
+          "dur": 0.4
+        },
+        {
+          "at": 0.4,
+          "pose": "clerk",
+          "to": "bow",
+          "dur": 0.4
+        },
+        {
+          "at": "line+0.5",
+          "param": "kiosk",
+          "to": {
+            "alert": 0
+          },
+          "dur": 0.01
+        }
+      ],
+      "hold": 0.6
+    },
+    {
+      "id": "button",
+      "role": "button",
+      "shot": "kiosk-all",
+      "pre": 0.14,
+      "post": 0.06,
+      "line": {
+        "who": "machine",
+        "text": "ありがとうございました"
+      },
+      "do": [
+        {
+          "at": 0,
+          "move": "guest",
+          "to": {
+            "x": 1.1,
+            "z": 1.05,
+            "ry": 2.4
+          },
+          "dur": 0.3
+        },
+        {
+          "at": "line+0.3",
+          "pose": "guest",
+          "to": "bow",
+          "dur": 0.4
+        },
+        {
+          "at": "line+0.3",
+          "pose": "clerk",
+          "to": "bow",
+          "dur": 0.4
+        }
+      ],
+      "hold": 0.5
+    }
+  ],
+  "description": [
+    "自分の店で買い物したら、セルフレジに係員として呼ばれた夜勤の店員の話。",
+    "#ショート #コンビニ #おもしろ"
+  ]
+}
