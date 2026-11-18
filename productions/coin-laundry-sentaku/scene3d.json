@@ -556,7 +556,7 @@
    "id": "title",
    "role": "title",
    "shot": "wide",
-   "dur": 1.2,
+   "dur": 1.1,
    "do": [
     {
      "at": 0,
@@ -568,9 +568,9 @@
    "id": "hook",
    "role": "hook",
    "shot": "table-top",
-   "pre": 0.05,
-   "post": 0.1,
-   "hold": 1.6,
+   "pre": 0.0,
+   "post": 0.0,
+   "hold": 0.7,
    "line": {
     "who": "a",
     "text": "まだ湿ってるな。／あと100円入れよう"
@@ -697,9 +697,9 @@
    "id": "rule",
    "role": "rule",
    "shot": "table-top",
-   "pre": 0.1,
-   "post": 0.05,
-   "hold": 0.2,
+   "pre": 0.05,
+   "post": 0.0,
+   "hold": 0.0,
    "line": {
     "who": "a",
     "text": "あれ、縮んだ？／でも、まだ湿ってる"
@@ -754,8 +754,8 @@
    "id": "react1",
    "role": "bridge",
    "shot": "b-cu",
-   "pre": 0.15,
-   "post": 0.1,
+   "pre": 0.1,
+   "post": 0.0,
    "line": {
     "who": "b",
     "text": "あの……それ、ウールですよね？"
