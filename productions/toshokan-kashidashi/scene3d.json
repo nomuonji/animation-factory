@@ -697,7 +697,7 @@
       "role": "hook",
       "shot": "wide",
       "pre": 0.05,
-      "post": 0.15,
+      "post": 0.05,
       "line": {
         "who": "kyaku",
         "text": "すみません、／予約した本、届いてますか？"
@@ -715,9 +715,9 @@
       "id": "rule",
       "role": "rule",
       "shot": "wide",
-      "pre": 0.1,
-      "post": 0.1,
-      "hold": 1.7,
+      "pre": 0.05,
+      "post": 0.05,
+      "hold": 0.1,
       "line": {
         "who": "shisho",
         "text": "確認しますね。／少々お待ちください"
@@ -752,8 +752,8 @@
       "role": "escalate",
       "level": 1,
       "shot": "wide",
-      "pre": 0.15,
-      "post": 0.1,
+      "pre": 0.1,
+      "post": 0.05,
       "line": {
         "who": "shisho",
         "text": "お客様は予約一番目です。／ただ、前の方が／まだ返却されていません"
@@ -807,7 +807,7 @@
       "level": 2,
       "shot": "wide",
       "pre": 0.1,
-      "post": 0.1,
+      "post": 0.05,
       "line": {
         "who": "shisho",
         "text": "返却期限は本日です。／閉館まで、お待ちください"
@@ -818,7 +818,7 @@
       "role": "escalate",
       "level": 2,
       "shot": "wide",
-      "dur": 3.3,
+      "dur": 2.6,
       "do": [
         {
           "at": 0.1,
@@ -845,11 +845,11 @@
           "dur": 0.4
         },
         {
-          "at": 2.5,
+          "at": 1.9,
           "shot": "face-up"
         },
         {
-          "at": 2.5,
+          "at": 1.9,
           "sfx": "pizz-sting-sad",
           "gain": 0.6
         }
@@ -860,8 +860,8 @@
       "role": "escalate",
       "level": 3,
       "shot": "wide",
-      "pre": 0.9,
-      "post": 0.15,
+      "pre": 0.6,
+      "post": 0.1,
       "line": {
         "who": "mae",
         "text": "返却、お願いします"
@@ -914,9 +914,9 @@
       "role": "escalate",
       "level": 3,
       "shot": "wide",
-      "pre": 0.2,
+      "pre": 0.1,
       "post": 0.1,
-      "hold": 2.6,
+      "hold": 1.7,
       "line": {
         "who": "shisho",
         "text": "お預かりします。／状態を確認しますね"
@@ -986,7 +986,7 @@
       "id": "turn",
       "role": "turn",
       "shot": "wide",
-      "pre": 0.2,
+      "pre": 0.1,
       "post": 0.15,
       "line": {
         "who": "shisho",
@@ -1006,7 +1006,7 @@
       "role": "bridge",
       "shot": "wide",
       "pre": 0.1,
-      "post": 0.2,
+      "post": 0.1,
       "line": {
         "who": "kyaku",
         "text": "あっ、すみません"
@@ -1035,8 +1035,8 @@
       "id": "payoff",
       "role": "payoff",
       "shot": "wide",
-      "pre": 0.7,
-      "post": 0.25,
+      "pre": 0.5,
+      "post": 0.2,
       "line": {
         "who": "shisho",
         "text": "お待たせしました。／ご用意できました"
@@ -1047,7 +1047,7 @@
           "music": "cut"
         },
         {
-          "at": 0.25,
+          "at": 0.2,
           "sfx": "ac-beep",
           "gain": 0.6
         },
@@ -1095,8 +1095,8 @@
       "id": "thanks",
       "role": "payoff",
       "shot": "patron-cu",
-      "pre": 0.45,
-      "post": 0.3,
+      "pre": 0.3,
+      "post": 0.25,
       "line": {
         "who": "kyaku",
         "text": "……ありがとうございます！"
@@ -1129,27 +1129,27 @@
       "id": "button",
       "role": "button",
       "shot": "wide",
-      "pre": 0.3,
+      "pre": 0.25,
       "post": 0.1,
-      "hold": 1.2,
+      "hold": 0.7,
       "line": {
         "who": "shisho",
         "text": "なお、下巻は／現在四十二番目です"
       },
       "do": [
         {
-          "at": "line+0.9",
+          "at": "line+0.5",
           "face": "kyaku",
           "to": "blank",
           "dur": 0.3
         },
         {
-          "at": "line+1.0",
+          "at": "line+0.7",
           "pose": "kyaku",
           "to": {
             "neckLen": 7
           },
-          "dur": 2.3,
+          "dur": 1.6,
           "ease": "linear"
         }
       ]
