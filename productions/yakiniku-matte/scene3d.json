@@ -1,0 +1,1386 @@
+{
+  "meta": {
+    "id": "yakiniku-matte",
+    "title": "焼肉の「待って」を全部聞いてしまう犬",
+    "fps": 30,
+    "width": 1080,
+    "height": 1920,
+    "variant": "baseline"
+  },
+  "design": {
+    "format": "literalization",
+    "title": "焼肉の「待って」を全部聞いてしまう犬",
+    "titleAlternatives": [
+      "焼肉で「待って」と言ったら犬が動かなくなった",
+      "言うことを聞きすぎる焼肉の相棒"
+    ],
+    "titlePattern": "world",
+    "titleOnScreen": "card",
+    "titleScreenText": "焼肉の「待って」を\n全部聞いてしまう犬",
+    "hook": {
+      "type": "line-first",
+      "firstFrame": "焼肉店のテーブル。ロースターの網の肉に、箸を伸ばしたまま止まっている柴バーガー。向かいで友人が手を出して止めている",
+      "overlay": "まだ生焼け"
+    },
+    "rule": "焼肉で言う『待って』『よし』に、柴バーガーの客は犬の合図として本当に従う",
+    "escalations": [
+      "『ちょっと待って、トング使うね』という別の理由の『待って』にも止まる",
+      "友人が電話で席を離れても、止まったまま待ち続け、肉が焦げる",
+      "戻った友人が『食べていいよ』と言っても動かず、『よし』の一語だけで解ける"
+    ],
+    "turn": "戻った友人が、ずっと待っていた客に気づく",
+    "payoff": "友人の『よし』だけで、客は焦げた肉をおいしそうに食べる",
+    "button": "店員の『ちょっと待ってくださいね』に、客がまた箸を止める",
+    "loop": false,
+    "reaction": "laugh",
+    "audience": "焼肉で『まだ！待って！』と言って焼き係をしたことがある人",
+    "reality": {
+      "place": "焼肉店のテーブル席",
+      "normalEvent": "友人どうしで焼き始め、焼き係が『まだ生だから待って』『よし、食べていいよ』と声をかけ、途中で電話などで席を離れる",
+      "onlyBreak": "客が柴の犬（柴バーガー）なので、『待って』『よし』を犬の合図として本当に守る"
+    },
+    "payoffMechanism": "obedience-outlasts-the-order",
+    "ideation": {
+      "gateVersion": 2,
+      "method": "creative-thinking (My Portal chat Skill) — 無人の定期実行。選定は定期タスクの標準指示による委任",
+      "candidates": 18,
+      "rejected": [
+        "C02: 犬が配達員に吠えるのは定番で先が読める。肉球で押印する落ちは小道具の見せびらかしに近い",
+        "C03: 項目ごとに『角です』の繰り返しで、二段目の新しい発見が作れない",
+        "C04: カエルは三本目で重なる。水かきの設定は既存キャラ記録にない",
+        "C05: 角が金属という設定を新設してオチにしてしまう（既存設定にない能力の追加）",
+        "C06: 年齢確認は『恐竜の身分証』と同型で、真顔の確認が長くなる",
+        "C07: 役割を逆にしただけで二段目が作れない"
+      ],
+      "corpus": {
+        "dataset": "radichichi",
+        "datasetVersion": "v1",
+        "retrievedAt": "2026-11-18T03:50:30Z",
+        "queryLog": [
+          {
+            "query": "店員",
+            "resultChunkIds": [
+              "radichichi_1755068597_009",
+              "radichichi_1755068597_008",
+              "radichichi_1755068597_006",
+              "radichichi_1755068597_005",
+              "radichichi_1755068597_004",
+              "radichichi_1755068597_002",
+              "radichichi_1755068597_001"
+            ]
+          },
+          {
+            "query": "役所",
+            "resultChunkIds": [
+              "radichichi_1755068597_009",
+              "radichichi_1755068597_001"
+            ]
+          }
+        ],
+        "sourceChunks": [
+          {
+            "id": "radichichi_1755068597_001",
+            "dataset": "radichichi",
+            "retrievalTier": "creative",
+            "role": "ogiri_reference"
+          },
+          {
+            "id": "radichichi_1755068597_002",
+            "dataset": "radichichi",
+            "retrievalTier": "creative",
+            "role": "ogiri_reference"
+          },
+          {
+            "id": "radichichi_1755068597_006",
+            "dataset": "radichichi",
+            "retrievalTier": "creative",
+            "role": "ogiri_reference"
+          },
+          {
+            "id": "radichichi_1755068597_008",
+            "dataset": "radichichi",
+            "retrievalTier": "creative",
+            "role": "ogiri_reference"
+          },
+          {
+            "id": "radichichi_1755068597_009",
+            "dataset": "radichichi",
+            "retrievalTier": "creative",
+            "role": "ogiri_reference"
+          }
+        ],
+        "sourceChunkIds": [
+          "radichichi_1755068597_001",
+          "radichichi_1755068597_002",
+          "radichichi_1755068597_006",
+          "radichichi_1755068597_008",
+          "radichichi_1755068597_009"
+        ],
+        "sourceExampleIds": [
+          "radichichi-4",
+          "radichichi-87",
+          "radichichi-435",
+          "radichichi-442",
+          "radichichi-598",
+          "radichichi-675",
+          "radichichi-690"
+        ]
+      },
+      "mechanisms": [
+        {
+          "id": "m-habit",
+          "sourceExampleIds": [
+            "radichichi-675",
+            "radichichi-4"
+          ],
+          "abstractOperation": "生き物や職業人が、身についた習性・掛け声を、その場の儀式にそのまま持ち込み、周囲がそれを前提として受け入れる",
+          "transfer": "犬の訓練語への反射を、焼肉で実際に言う『待って』『よし』に重ねた"
+        },
+        {
+          "id": "m-obey",
+          "sourceExampleIds": [
+            "radichichi-690",
+            "radichichi-87"
+          ],
+          "abstractOperation": "号令に忠実に従った結果の物理的な帰結が、段階を追って積み上がる",
+          "transfer": "『待って』に従い続けた結果として、網の肉が生→焼き→焦げと進む"
+        },
+        {
+          "id": "m-dawn",
+          "sourceExampleIds": [
+            "radichichi-598",
+            "radichichi-442"
+          ],
+          "abstractOperation": "当事者が手順の途中で、前提のずれに初めて気づく",
+          "transfer": "友人が『普通に言っただけ』の一言でも止まると、途中で気づく"
+        },
+        {
+          "id": "m-restage",
+          "sourceExampleIds": [
+            "radichichi-435"
+          ],
+          "abstractOperation": "段階が進んだ末に、冒頭の合図が別の意味で書き換わって戻ってくる",
+          "transfer": "最後に、店員の自然な『ちょっと待ってくださいね』が冒頭の合図としてもう一度降ってくる"
+        }
+      ],
+      "candidateLog": [
+        {
+          "id": "C01",
+          "mechanism": "m-habit",
+          "mechanismFamily": "obedience-to-cue",
+          "causalCore": "その場の自然な掛け声が、本人の身についた反射の合図と同じ音で、従順な本人は掛けた側が去っても従い続け、その代償が目の前で積もる",
+          "concept": "焼肉店で、友人の『待って』『よし』に犬が全部従ってしまい、友人が電話で離れている間に肉が焦げる",
+          "status": "selected",
+          "reason": "『待って』は焼肉で実際に言う一言で、ずらすのは客が犬という一点だけ。段ごとに新しい発見がある（言った覚えのない『待って』にも効く→言った本人が去っても続く→解除は特定の一語だけ）"
+        },
+        {
+          "id": "C02",
+          "mechanism": "m-habit",
+          "mechanismFamily": "obedience-to-cue",
+          "causalCore": "来訪者の制服や呼び鈴への本能的な反応を、礼儀正しい本人が毎回詫びながら繰り返す",
+          "concept": "玄関で宅配便を受け取る犬が、配達員のたびに吠えてしまい詫びる",
+          "status": "rejected",
+          "reason": "犬が配達員に吠えるのは定番で先が読める。肉球で押印する落ちは小道具の見せびらかしに近い"
+        },
+        {
+          "id": "C03",
+          "mechanism": "m-habit",
+          "mechanismFamily": "fixed-script-meets-body",
+          "causalCore": "定型の確認項目が客の身体特徴に当たり、項目ごとに別の返答が出る",
+          "concept": "美容室のシャンプーで『かゆいところはありませんか』に悪魔が角の根元と答える",
+          "status": "rejected",
+          "reason": "項目ごとに『角です』の繰り返しで、二段目の新しい発見が作れない"
+        },
+        {
+          "id": "C04",
+          "mechanism": "m-habit",
+          "mechanismFamily": "fixed-script-meets-body",
+          "causalCore": "試し履きの確認項目が、足の形が違う客に当たって順に噛み合わなくなる",
+          "concept": "靴屋の試し履きでカエルが水かきの余りを指摘される",
+          "status": "rejected",
+          "reason": "カエルは三本目で重なる。水かきの設定は既存キャラ記録にない"
+        },
+        {
+          "id": "C05",
+          "mechanism": "m-habit",
+          "mechanismFamily": "fixed-script-meets-body",
+          "causalCore": "検査の機械が、客の身体の一部に反応して手順が延びる",
+          "concept": "空港の保安検査で悪魔の角に金属探知機が鳴る",
+          "status": "rejected",
+          "reason": "角が金属という設定を新設してオチにしてしまう（既存設定にない能力の追加）"
+        },
+        {
+          "id": "C06",
+          "mechanism": "m-habit",
+          "mechanismFamily": "label-by-appearance",
+          "causalCore": "見た目で区分を決める窓口と、見た目と区分が食い違う客",
+          "concept": "映画館の窓口で、見た目が子どもの大人が料金区分を確認される",
+          "status": "rejected",
+          "reason": "年齢確認は『恐竜の身分証』と同型で、真顔の確認が長くなる"
+        },
+        {
+          "id": "C07",
+          "mechanism": "m-restage",
+          "mechanismFamily": "turnabout",
+          "causalCore": "驚かせる側が、驚かない客に逆に驚かされる",
+          "concept": "お化け屋敷で悪魔の客を見たお化け役のバイトが怖がる",
+          "status": "rejected",
+          "reason": "役割を逆にしただけで二段目が作れない"
+        },
+        {
+          "id": "C08",
+          "mechanism": "m-restage",
+          "mechanismFamily": "customer-outguns-clerk",
+          "causalCore": "客のほうが契約文言に詳しく、説明役を段ごとに上回る",
+          "concept": "携帯ショップで悪魔の客が料金プランの小さな字を読み上げ、店員が教わる",
+          "status": "shortlisted",
+          "reason": "悪魔が契約に詳しいという設定は既存記録にない。笑いの核は強いが、決め台詞で締める危険が高く次点"
+        },
+        {
+          "id": "C09",
+          "mechanism": "m-dawn",
+          "mechanismFamily": "gradual-discovery",
+          "causalCore": "手順どおりの確認を進めるうちに、客の事情が少しずつ分かる",
+          "concept": "引っ越しの訪問見積もりで荷物を確認するうち、部屋が空だと分かる",
+          "status": "rejected",
+          "reason": "笑いの核が一言で言えない"
+        },
+        {
+          "id": "C10",
+          "mechanism": "m-obey",
+          "mechanismFamily": "gradual-discovery",
+          "causalCore": "体験が進むほど前提が崩れる",
+          "concept": "防災体験の煙ハウスで、説明と実際の避難経路が食い違う",
+          "status": "rejected",
+          "reason": "体験の後に落ちる仕組みがなく、結末が唐突"
+        },
+        {
+          "id": "C11",
+          "mechanism": "m-dawn",
+          "mechanismFamily": "sincere-answer-overload",
+          "causalCore": "形式的な最後の質問に、応募者が真剣に長く質問する",
+          "concept": "面接の逆質問で応募者が池の水質を質問する",
+          "status": "rejected",
+          "reason": "舞台が『動物に例えると』の面接室と重なる"
+        },
+        {
+          "id": "C12",
+          "mechanism": "m-restage",
+          "mechanismFamily": "turnabout",
+          "causalCore": "聞く側と答える側が最後に入れ替わる",
+          "concept": "保育園のお迎え面談で保護者が保育士に同じ質問を返す",
+          "status": "rejected",
+          "reason": "聞き返しで締める型が既存の面接作と同じ仕組みになる"
+        },
+        {
+          "id": "C13",
+          "mechanism": "m-habit",
+          "mechanismFamily": "handled-thing-acts",
+          "causalCore": "扱われる物が自分で反応し、手続きが物に合わせて変わる",
+          "concept": "交番の落とし物窓口で、拾われた赤べこが返事のたびにうなずく",
+          "status": "rejected",
+          "reason": "うなずきの性質が写真館の作品と同じ"
+        },
+        {
+          "id": "C14",
+          "mechanism": "m-obey",
+          "mechanismFamily": "handled-thing-acts",
+          "causalCore": "査定される物の由来が、査定の手順を段ごとに壊す",
+          "concept": "質屋で恐竜が化石を査定に出す",
+          "status": "rejected",
+          "reason": "ボケのために用意した小道具を見せびらかす『狙いすぎ』"
+        },
+        {
+          "id": "C15",
+          "mechanism": "m-obey",
+          "mechanismFamily": "passing-loop",
+          "causalCore": "次へ回す約束事が一周して戻り、全員が同じ物を順に確認し続ける",
+          "concept": "アパートの回覧板が一周して戻り、全員がもう一度読む",
+          "status": "shortlisted",
+          "reason": "場面は現実的だが、ズレが制度で、二段目が『もう一周』の繰り返しになりやすい"
+        },
+        {
+          "id": "C16",
+          "mechanism": "m-obey",
+          "mechanismFamily": "setting-limit-applied-literally",
+          "causalCore": "設備の物理的な制限値が客の体格にそのまま適用される",
+          "concept": "エレベーターの定員表示と客の体重",
+          "status": "rejected",
+          "reason": "体重や尻尾の仕様を新設しないと成立しない"
+        },
+        {
+          "id": "C17",
+          "mechanism": "m-habit",
+          "mechanismFamily": "fixed-script-meets-body",
+          "causalCore": "安全確認の手順が客の体の特徴に噛み合わない",
+          "concept": "遊園地の安全バーを恐竜が下ろせない",
+          "status": "rejected",
+          "reason": "短い腕は『恐竜のジム』と同じ性質"
+        },
+        {
+          "id": "C18",
+          "mechanism": "m-obey",
+          "mechanismFamily": "passing-loop",
+          "causalCore": "お互いが相手に先を譲り続けて何も進まない",
+          "concept": "コインランドリーの最後の一台を譲り合う",
+          "status": "rejected",
+          "reason": "日常の小さな気まずさを描いただけで、笑いの核と回収がない"
+        }
+      ],
+      "shortlist": [
+        "C01",
+        "C08",
+        "C15"
+      ],
+      "selectedCandidateId": "C01",
+      "selectionAuthority": "delegated",
+      "diversityAudit": {
+        "mode": "blind-reclassification",
+        "verdict": "pass",
+        "summary": "生成時のラベルと一文概要を隠し、causalCoreだけを読んで18案を別工程で再分類した。批評側の再分類は10系統で、最大系統は『身体特徴×定型手順』の4案（22%）。生成側の素のラベルはC01/C02を別系統、C06/C16の系統名も違っていたが、因果構造を読み直すとC01とC02は同じ『合図への服従』、C07とC12は同じ『立場の入れ替え』だったため、生成側のラベルを盲検側に合わせて直し、C02は別案として数えないことにした。shortlistはC01・C08・C15の別構造3案。",
+        "reviewedCandidateIds": [
+          "C01",
+          "C02",
+          "C03",
+          "C04",
+          "C05",
+          "C06",
+          "C07",
+          "C08",
+          "C09",
+          "C10",
+          "C11",
+          "C12",
+          "C13",
+          "C14",
+          "C15",
+          "C16",
+          "C17",
+          "C18"
+        ],
+        "familyAssignments": [
+          {
+            "candidateId": "C01",
+            "familyId": "obedience-to-cue"
+          },
+          {
+            "candidateId": "C02",
+            "familyId": "obedience-to-cue"
+          },
+          {
+            "candidateId": "C03",
+            "familyId": "fixed-script-meets-body"
+          },
+          {
+            "candidateId": "C04",
+            "familyId": "fixed-script-meets-body"
+          },
+          {
+            "candidateId": "C05",
+            "familyId": "fixed-script-meets-body"
+          },
+          {
+            "candidateId": "C17",
+            "familyId": "fixed-script-meets-body"
+          },
+          {
+            "candidateId": "C06",
+            "familyId": "label-by-appearance"
+          },
+          {
+            "candidateId": "C07",
+            "familyId": "turnabout"
+          },
+          {
+            "candidateId": "C12",
+            "familyId": "turnabout"
+          },
+          {
+            "candidateId": "C11",
+            "familyId": "sincere-answer-overload"
+          },
+          {
+            "candidateId": "C08",
+            "familyId": "customer-outguns-clerk"
+          },
+          {
+            "candidateId": "C09",
+            "familyId": "gradual-discovery"
+          },
+          {
+            "candidateId": "C10",
+            "familyId": "gradual-discovery"
+          },
+          {
+            "candidateId": "C13",
+            "familyId": "handled-thing-acts"
+          },
+          {
+            "candidateId": "C14",
+            "familyId": "handled-thing-acts"
+          },
+          {
+            "candidateId": "C15",
+            "familyId": "passing-loop"
+          },
+          {
+            "candidateId": "C18",
+            "familyId": "passing-loop"
+          },
+          {
+            "candidateId": "C16",
+            "familyId": "setting-limit-applied-literally"
+          }
+        ],
+        "familyDefinitions": [
+          {
+            "id": "obedience-to-cue",
+            "definingMove": "言葉の合図に反射で従う性質が、場の自然な発話に当たって行動を縛る"
+          },
+          {
+            "id": "fixed-script-meets-body",
+            "definingMove": "決まった確認の手順が、相手の身体特徴にぶつかって手順側が崩れる"
+          },
+          {
+            "id": "label-by-appearance",
+            "definingMove": "見た目で区分する仕組みと、見た目が区分に合わない客のずれ"
+          },
+          {
+            "id": "turnabout",
+            "definingMove": "質問や驚かせる役の立場が最後に入れ替わる"
+          },
+          {
+            "id": "sincere-answer-overload",
+            "definingMove": "形式的な問いに、真剣な長い返答が返って場が持て余す"
+          },
+          {
+            "id": "customer-outguns-clerk",
+            "definingMove": "客のほうが説明役より専門知識を持ち、説明の主導権が移る"
+          },
+          {
+            "id": "gradual-discovery",
+            "definingMove": "進行の途中で、参加者が前提のずれに少しずつ気づいていく"
+          },
+          {
+            "id": "handled-thing-acts",
+            "definingMove": "扱われる物が自分の振る舞いで手続きを変える"
+          },
+          {
+            "id": "passing-loop",
+            "definingMove": "順送りや譲り合いが循環して終わらない"
+          },
+          {
+            "id": "setting-limit-applied-literally",
+            "definingMove": "設備の物理的な制限値が体格にそのまま適用される"
+          }
+        ],
+        "shortlistPairChecks": [
+          {
+            "candidateA": "C01",
+            "candidateB": "C08",
+            "sameCausalStructure": false,
+            "notOnlySettingChange": true,
+            "difference": "C01は言葉の合図が本人の行動を縛り続ける（従う側が主導権を失う）。C08は客の知識が店員の説明を上回る（主導権が客に移る）。主導権の向きが逆で、舞台・人物を替えても構造は変わらない"
+          },
+          {
+            "candidateA": "C01",
+            "candidateB": "C15",
+            "sameCausalStructure": false,
+            "notOnlySettingChange": true,
+            "difference": "C01は一人の本人が命令に従い続けた帰結が積み上がる直線の因果。C15は物が人から人へ循環して元に戻る環状の因果で、積み上がる帰結がない"
+          },
+          {
+            "candidateA": "C08",
+            "candidateB": "C15",
+            "sameCausalStructure": false,
+            "notOnlySettingChange": true,
+            "difference": "C08は二人の知識量の差が逆転する進行、C15は三人以上の順送りが循環する進行。前者は対話、後者は伝達で、因果の持ち方が違う"
+          }
+        ]
+      },
+      "userSeeds": []
+    },
+    "comedyAudit": {
+      "comicKernel": "焼肉で人が普通に言う『待って』『よし』を、犬の客だけが合図として100%守る。言った本人が覚えていない場面でも、解除の一語が来るまで止まり続ける",
+      "audienceExpectation": "観客は『待って』で止まる柴の犬を見て、『よし』で食べ始める流れ（犬のしつけの再現）を予測する",
+      "characterIntent": "友人は焼き係として、焼き加減を見ながら普通に焼肉を楽しみたい。犬の客は焼けた肉を食べたいが、合図を守る。店員は普通に接客したい",
+      "pressure": "友人の自然な口癖（ちょっと待って）や電話での離席という日常の事情が、犬の客を止め続ける。客は止まった理由を訴えず、肉だけが焦げていく",
+      "escalations": [
+        {
+          "beatId": "esc1",
+          "change": "別の理由で言った『ちょっと待って、トング使うね』にも犬が止まり、友人が合図の効き方に気づく"
+        },
+        {
+          "beatId": "esc2",
+          "change": "言った本人が電話で席を離れても止まったままで、命令の効力が本人の不在を超えて続くことが分かる"
+        },
+        {
+          "beatId": "free1",
+          "change": "『食べていいよ』では解けず、解除は『よし』の一語だけと分かり、解けない時間が重くなる"
+        }
+      ],
+      "payoffCausality": "冒頭で『待って』→『よし』の対が先に示され、途中で『普通の待って』にも効くことと本人不在でも続くことが提示済み。だから戻った友人が『食べていいよ』と言っても解けず『よし』だけで解けるのは前提から導ける。焦げた肉を食べるのは、待った分だけ素直に応えたから",
+      "laughMoment": {
+        "beatId": "button",
+        "description": "『よし』で焦げた肉を食べ終えた直後、店員が何気なく言う『ちょっと待ってくださいね』に、犬がまた箸を止める。友人も犬も何も言わず、画が止まる"
+      },
+      "independentReview": {
+        "mode": "hostile-reader",
+        "verdict": "pass",
+        "summary": "台詞と動作だけを読み直した。犬が『待て』に従うこと自体は予想どおりで驚きは小さい。面白さは、従う対象が焼肉の自然な口癖に広がり、さらに言った本人の不在まで超えて続くという拡張と、最後に同じ合図が店員から偶然に降ってくる回収にある。『焼肉の待てとよし』は既にネット上で言われる冗談で、既視感が出る恐れは残る。",
+        "strongestObjection": "『犬に待てが効く』は先が読め、焦げる肉も予想どおりで、笑いが二段目に進まないのではないか。『待て』『よし』の言葉遊びだけで、キャラが元からそうであること以外の展開がないのではないか",
+        "resolution": "各段で新しい情報がある（別理由の『待って』にも効く→言った本人が去っても続く→解除の語が決まっている）。焦げる肉は予想される結果だが、その間の表情と『……はい』が笑いどころ。ラストは既出の合図が自然に再び降る回収で、新設定を足していない。既視感の懸念は残るため、公開後の評価は本人の判断に委ねる",
+        "checks": {
+          "premiseHasComicEngine": true,
+          "notJustMundaneIncident": true,
+          "payoffIsEarned": true,
+          "characterCanonRespected": true,
+          "noUnmotivatedAdditions": true,
+          "notOnlyRoleReversal": true
+        }
+      }
+    }
+  },
+  "voices": {
+    "friend": {
+      "speaker": "春日部つむぎ",
+      "style": "ノーマル",
+      "speed": 1.05
+    },
+    "dog": {
+      "speaker": "白上虎太郎",
+      "style": "ノーマル",
+      "speed": 0.98
+    },
+    "staff": {
+      "speaker": "No.7",
+      "style": "ノーマル",
+      "speed": 1.0
+    }
+  },
+  "music": {
+    "track": "bossa-thank-you-for-shopping",
+    "gain": 0.2,
+    "fadeIn": 0.2,
+    "fadeOut": 0.6
+  },
+  "set": {
+    "kind": "yakiniku-booth",
+    "params": {}
+  },
+  "captions": {
+    "y": 0.76
+  },
+  "cameras": {
+    "hook-cam": {
+      "pos": [
+        0.7,
+        1.0,
+        -1.1
+      ],
+      "target": [
+        0.05,
+        0.8,
+        0.3
+      ],
+      "fov": 38
+    },
+    "serve-cam": {
+      "pos": [
+        4.6,
+        1.9,
+        1.6
+      ],
+      "target": [
+        0.2,
+        0.9,
+        0.0
+      ],
+      "fov": 38
+    },
+    "clock": {
+      "pos": [
+        -0.5,
+        1.9,
+        0.9
+      ],
+      "target": [
+        -2.36,
+        2.2,
+        0.9
+      ],
+      "fov": 30
+    }
+  },
+  "actors": {
+    "dog": {
+      "vrm": "assets/3d/avatars/DogoBurger.vrm",
+      "height": 1.1,
+      "seated": true,
+      "root": {
+        "x": 0.0,
+        "y": -0.06,
+        "z": 0.8,
+        "ry": 3.141592653589793
+      },
+      "pose": "counter",
+      "expr": "blank",
+      "captionColor": "#c8f59a"
+    },
+    "friend": {
+      "style": {
+        "skin": "#f2cdb0",
+        "hair": "#3a2a26",
+        "hairStyle": "ponytail",
+        "top": "#e9e2cf",
+        "bottom": "#3a3d4a",
+        "shoes": "#2b2b30"
+      },
+      "seated": true,
+      "root": {
+        "x": 0.0,
+        "y": -0.32,
+        "z": -0.78,
+        "ry": 0
+      },
+      "pose": "counter",
+      "expr": "polite",
+      "captionColor": "#ffe48a"
+    },
+    "staff": {
+      "style": {
+        "skin": "#e9bf9e",
+        "hair": "#241a14",
+        "hairStyle": "short",
+        "top": "#f6f1e6",
+        "vest": "#b3261e",
+        "vestTrim": "#f7f5ee",
+        "bottom": "#2b2b30",
+        "shoes": "#2b2b30"
+      },
+      "root": {
+        "x": 9.0,
+        "z": 0.0,
+        "ry": -1.5707963267948966
+      },
+      "pose": "idle",
+      "expr": "polite",
+      "captionColor": "#ffb3a0"
+    }
+  },
+  "props": {
+    "clock": {
+      "kind": "wall-clock",
+      "params": {
+        "t": 6.55
+      },
+      "tf": {
+        "x": -2.36,
+        "y": 2.3,
+        "z": 0.9,
+        "ry": 1.5707963267948966
+      }
+    },
+    "a": {
+      "kind": "meat",
+      "params": {
+        "done": 0.1
+      },
+      "tf": {
+        "x": 0.1,
+        "y": 0.77,
+        "z": 0.06
+      }
+    },
+    "b": {
+      "kind": "meat",
+      "params": {
+        "done": 0.5
+      },
+      "tf": {
+        "x": -0.06,
+        "y": 0.77,
+        "z": 0.06
+      },
+      "visible": false
+    },
+    "c": {
+      "kind": "meat",
+      "params": {
+        "done": 0.2
+      },
+      "tf": {
+        "x": 0.02,
+        "y": 0.77,
+        "z": 0.1
+      },
+      "visible": false
+    },
+    "smoke": {
+      "kind": "grill-smoke",
+      "params": {
+        "amount": 0.0
+      },
+      "tf": {
+        "x": 0.0,
+        "y": 0.78,
+        "z": 0.0
+      }
+    },
+    "chop": {
+      "kind": "chopsticks",
+      "params": {},
+      "tf": {
+        "x": 0.22,
+        "y": 0.86,
+        "z": 0.5,
+        "ry": 3.141592653589793,
+        "rx": 0.35
+      }
+    },
+    "plate": {
+      "kind": "meat-plate",
+      "params": {},
+      "tf": {
+        "x": 1.5,
+        "y": 0.72,
+        "z": 0.0
+      },
+      "visible": false
+    }
+  },
+  "beats": [
+    {
+      "id": "title",
+      "role": "title",
+      "shot": "wide",
+      "dur": 1.3,
+      "do": [
+        {
+          "at": 0,
+          "sfx": "title-sting"
+        }
+      ]
+    },
+    {
+      "id": "hook",
+      "role": "hook",
+      "shot": "table-low",
+      "pre": 0.05,
+      "post": 0.25,
+      "line": {
+        "who": "friend",
+        "text": "あっ、まだまだ！／待って！"
+      },
+      "do": [
+        {
+          "at": 0,
+          "pose": "dog",
+          "to": "give",
+          "dur": 0.45
+        },
+        {
+          "at": "line+1.2",
+          "shot": "wide"
+        },
+        {
+          "at": "line+1.2",
+          "face": "dog",
+          "to": "doubtful",
+          "dur": 0.2
+        },
+        {
+          "at": "line+0.2",
+          "param": "a",
+          "to": {
+            "done": 0.3
+          },
+          "dur": 1.5
+        }
+      ]
+    },
+    {
+      "id": "release1",
+      "role": "rule",
+      "shot": "wide",
+      "pre": 0.2,
+      "post": 0.1,
+      "line": {
+        "who": "friend",
+        "text": "中、まだ赤いから。／……よし、いいよ"
+      },
+      "do": [
+        {
+          "at": 0,
+          "param": "a",
+          "to": {
+            "done": 0.6
+          },
+          "dur": 1.6
+        },
+        {
+          "at": "line+1.5",
+          "shot": "table-low"
+        },
+        {
+          "at": "line+1.5",
+          "face": "dog",
+          "to": "polite",
+          "dur": 0.2
+        },
+        {
+          "at": "line+2.05",
+          "prop": "a",
+          "to": {
+            "x": 0.1,
+            "y": 0.88,
+            "z": 0.2
+          },
+          "dur": 0.2
+        },
+        {
+          "at": "line+2.3",
+          "prop": "a",
+          "to": {
+            "x": 0.12,
+            "y": 0.86,
+            "z": 0.66
+          },
+          "dur": 0.55
+        },
+        {
+          "at": "line+2.3",
+          "pose": "dog",
+          "to": "hand-up",
+          "dur": 0.55
+        },
+        {
+          "at": "line+2.9",
+          "hide": "a"
+        },
+        {
+          "at": "line+2.9",
+          "sfx": "set-down",
+          "gain": 0.4
+        }
+      ]
+    },
+    {
+      "id": "eat1",
+      "role": "rule",
+      "shot": "dog-cu",
+      "pre": 0.5,
+      "post": 0.3,
+      "line": {
+        "who": "dog",
+        "text": "……おいしいです"
+      },
+      "do": [
+        {
+          "at": 0,
+          "face": "dog",
+          "to": "grin",
+          "dur": 0.2
+        },
+        {
+          "at": "lineEnd",
+          "pose": "dog",
+          "to": "counter",
+          "dur": 0.4
+        },
+        {
+          "at": "lineEnd",
+          "show": "b"
+        }
+      ]
+    },
+    {
+      "id": "esc1",
+      "role": "escalate",
+      "level": 1,
+      "shot": "wide",
+      "pre": 0.2,
+      "post": 0.2,
+      "line": {
+        "who": "friend",
+        "text": "あ、ちょっと待って、／トング使うね"
+      },
+      "do": [
+        {
+          "at": 0,
+          "pose": "dog",
+          "to": "give",
+          "dur": 0.45
+        },
+        {
+          "at": "line+0.45",
+          "face": "dog",
+          "to": "doubtful",
+          "dur": 0.2
+        },
+        {
+          "at": "line+0.5",
+          "shot": "table-low"
+        }
+      ]
+    },
+    {
+      "id": "esc1b",
+      "role": "escalate",
+      "level": 2,
+      "shot": "friend-cu",
+      "pre": 0.15,
+      "post": 0.15,
+      "line": {
+        "who": "friend",
+        "text": "え、いまの／普通に言っただけなんだけど"
+      },
+      "do": [
+        {
+          "at": 0,
+          "face": "friend",
+          "to": "surprised",
+          "dur": 0.2
+        },
+        {
+          "at": "line+0.6",
+          "shot": "dog-cu"
+        }
+      ]
+    },
+    {
+      "id": "esc1c",
+      "role": "bridge",
+      "shot": "dog-cu",
+      "pre": 0.25,
+      "post": 0.2,
+      "line": {
+        "who": "dog",
+        "text": "……はい"
+      }
+    },
+    {
+      "id": "esc1d",
+      "role": "bridge",
+      "shot": "wide",
+      "pre": 0.3,
+      "post": 0.1,
+      "line": {
+        "who": "friend",
+        "text": "……よし"
+      },
+      "do": [
+        {
+          "at": "line+0.1",
+          "face": "dog",
+          "to": "polite",
+          "dur": 0.2
+        },
+        {
+          "at": "line+0.2",
+          "shot": "table-low"
+        },
+        {
+          "at": "line+0.65",
+          "prop": "b",
+          "to": {
+            "x": -0.04,
+            "y": 0.9,
+            "z": 0.2
+          },
+          "dur": 0.2
+        },
+        {
+          "at": "line+0.9",
+          "prop": "b",
+          "to": {
+            "x": 0.12,
+            "y": 0.86,
+            "z": 0.66
+          },
+          "dur": 0.5
+        },
+        {
+          "at": "line+0.9",
+          "pose": "dog",
+          "to": "hand-up",
+          "dur": 0.5
+        },
+        {
+          "at": "line+1.45",
+          "hide": "b"
+        }
+      ],
+      "hold": 1.0
+    },
+    {
+      "id": "esc2",
+      "role": "escalate",
+      "level": 3,
+      "shot": "wide",
+      "pre": 0.3,
+      "post": 0.1,
+      "line": {
+        "who": "friend",
+        "text": "あ、ごめん、電話。／ちょっと待ってて"
+      },
+      "do": [
+        {
+          "at": 0,
+          "sfx": "ac-beep",
+          "gain": 0.7
+        },
+        {
+          "at": 0,
+          "pose": "dog",
+          "to": "counter",
+          "dur": 0.3
+        },
+        {
+          "at": "lineEnd-0.1",
+          "pose": "dog",
+          "to": "give",
+          "dur": 0.4
+        },
+        {
+          "at": "lineEnd-0.1",
+          "show": "c"
+        },
+        {
+          "at": "lineEnd-0.1",
+          "face": "dog",
+          "to": "doubtful",
+          "dur": 0.2
+        },
+        {
+          "at": "lineEnd+0.2",
+          "shot": "dog-cu"
+        },
+        {
+          "at": "lineEnd+0.4",
+          "move": "friend",
+          "to": {
+            "x": 9,
+            "z": -0.78
+          },
+          "dur": 0.01
+        }
+      ]
+    },
+    {
+      "id": "esc2b",
+      "role": "bridge",
+      "shot": "dog-cu",
+      "pre": 0.3,
+      "post": 0.2,
+      "line": {
+        "who": "dog",
+        "text": "……はい"
+      }
+    },
+    {
+      "id": "wait",
+      "role": "escalate",
+      "level": 4,
+      "shot": "table-low",
+      "dur": 4.6,
+      "do": [
+        {
+          "at": 0,
+          "param": "c",
+          "to": {
+            "done": 0.5
+          },
+          "dur": 1.2
+        },
+        {
+          "at": 1.2,
+          "shot": "clock"
+        },
+        {
+          "at": 1.2,
+          "param": "clock",
+          "to": {
+            "t": 6.9
+          },
+          "dur": 1.0
+        },
+        {
+          "at": 1.2,
+          "param": "c",
+          "to": {
+            "done": 0.85
+          },
+          "dur": 1.0
+        },
+        {
+          "at": 1.2,
+          "param": "smoke",
+          "to": {
+            "amount": 0.7
+          },
+          "dur": 1.0
+        },
+        {
+          "at": 2.4,
+          "shot": "dog-cu"
+        },
+        {
+          "at": 2.4,
+          "face": "dog",
+          "to": "weary",
+          "dur": 0.4
+        },
+        {
+          "at": 2.4,
+          "sfx": "pizz-sting-sad",
+          "gain": 0.7
+        },
+        {
+          "at": 2.4,
+          "param": "c",
+          "to": {
+            "done": 1.0
+          },
+          "dur": 1.2
+        },
+        {
+          "at": 2.4,
+          "param": "smoke",
+          "to": {
+            "amount": 1.0
+          },
+          "dur": 1.2
+        },
+        {
+          "at": 3.6,
+          "shot": "table-low"
+        }
+      ]
+    },
+    {
+      "id": "back",
+      "role": "turn",
+      "shot": "wide",
+      "pre": 0.2,
+      "post": 0.2,
+      "line": {
+        "who": "friend",
+        "text": "ごめん、お待たせ！／……え、ずっと待ってたの？"
+      },
+      "do": [
+        {
+          "at": -0.15,
+          "move": "friend",
+          "to": {
+            "x": 0,
+            "z": -0.78
+          },
+          "dur": 0.01
+        },
+        {
+          "at": 0.3,
+          "face": "friend",
+          "to": "surprised",
+          "dur": 0.2
+        }
+      ]
+    },
+    {
+      "id": "free1",
+      "role": "payoff",
+      "shot": "dog-cu",
+      "pre": 0.2,
+      "post": 0.3,
+      "line": {
+        "who": "friend",
+        "text": "もう食べていいよ。／食べな？ ……いいよ？"
+      },
+      "do": [
+        {
+          "at": 0,
+          "music": "cut"
+        },
+        {
+          "at": 0,
+          "sfx": "payoff-hit"
+        },
+        {
+          "at": "line+1.0",
+          "face": "dog",
+          "to": "weary",
+          "dur": 0.3
+        }
+      ],
+      "hold": 0.7
+    },
+    {
+      "id": "free2",
+      "role": "payoff",
+      "shot": "wide",
+      "pre": 0.35,
+      "post": 0.1,
+      "line": {
+        "who": "friend",
+        "text": "……よし"
+      },
+      "do": [
+        {
+          "at": "line+0.1",
+          "face": "dog",
+          "to": "polite",
+          "dur": 0.2
+        },
+        {
+          "at": "line+0.2",
+          "shot": "table-low"
+        },
+        {
+          "at": "line+0.65",
+          "prop": "c",
+          "to": {
+            "x": 0.02,
+            "y": 0.9,
+            "z": 0.22
+          },
+          "dur": 0.2
+        },
+        {
+          "at": "line+0.95",
+          "prop": "c",
+          "to": {
+            "x": 0.12,
+            "y": 0.86,
+            "z": 0.66
+          },
+          "dur": 0.5
+        },
+        {
+          "at": "line+0.95",
+          "pose": "dog",
+          "to": "hand-up",
+          "dur": 0.5
+        },
+        {
+          "at": "line+1.5",
+          "hide": "c"
+        },
+        {
+          "at": "line+1.5",
+          "param": "smoke",
+          "to": {
+            "amount": 0.0
+          },
+          "dur": 0.8
+        },
+        {
+          "at": "line+1.5",
+          "shot": "dog-cu"
+        }
+      ],
+      "hold": 1.1
+    },
+    {
+      "id": "taste",
+      "role": "payoff",
+      "shot": "dog-cu",
+      "pre": 0.25,
+      "post": 0.35,
+      "line": {
+        "who": "dog",
+        "text": "……おいしいです"
+      },
+      "do": [
+        {
+          "at": 0,
+          "face": "dog",
+          "to": "grin",
+          "dur": 0.2
+        },
+        {
+          "at": 0.1,
+          "music": "resume"
+        },
+        {
+          "at": "lineEnd",
+          "pose": "dog",
+          "to": "counter",
+          "dur": 0.4
+        },
+        {
+          "at": "lineEnd-0.3",
+          "move": "staff",
+          "to": {
+            "x": 1.6,
+            "z": -0.1
+          },
+          "dur": 0.01
+        },
+        {
+          "at": "lineEnd-0.3",
+          "show": "plate"
+        }
+      ]
+    },
+    {
+      "id": "serve",
+      "role": "bridge",
+      "shot": "serve-cam",
+      "pre": 0.15,
+      "post": 0.1,
+      "line": {
+        "who": "staff",
+        "text": "お待たせしました、／上ロースです"
+      },
+      "do": [
+        {
+          "at": 0,
+          "face": "friend",
+          "to": "polite",
+          "dur": 0.2
+        },
+        {
+          "at": 0.25,
+          "prop": "plate",
+          "to": {
+            "x": 0.6,
+            "y": 0.72,
+            "z": 0.0
+          },
+          "dur": 0.4
+        },
+        {
+          "at": "lineEnd-0.1",
+          "sfx": "set-down",
+          "gain": 0.5
+        }
+      ]
+    },
+    {
+      "id": "button",
+      "role": "button",
+      "shot": "serve-cam",
+      "pre": 0.15,
+      "post": 0.2,
+      "line": {
+        "who": "staff",
+        "text": "お皿、熱いので／ちょっと待ってくださいね"
+      },
+      "do": [
+        {
+          "at": "line+1.05",
+          "pose": "dog",
+          "to": "give",
+          "dur": 0.3
+        },
+        {
+          "at": "line+1.4",
+          "face": "dog",
+          "to": "doubtful",
+          "dur": 0.15
+        }
+      ],
+      "hold": 0.9
+    }
+  ]
+}
