@@ -481,6 +481,24 @@
           "exam": 0.98
         },
         "notes": "動物病院の診察室。部屋の壁・床・サインはセット、家具と診察台は既存KayKit Furniture Bits（bed_single_A / cabinet_medium_decorated / chair_A / table_medium）をscene3d.jsonから直接読み込む。診療記録には既存binder / pen propを使用。キャストは既存100Avatars R3のDogoBurger / Erika / Robert。"
+      },
+      "yakiniku-booth": {
+        "cameras": [
+          "wide",
+          "aisle",
+          "grill-top",
+          "table-low",
+          "dog-cu",
+          "friend-cu",
+          "side"
+        ],
+        "surfaces": {
+          "table": 0.72,
+          "grill": 0.765,
+          "seat": 0.45,
+          "floor": 0
+        },
+        "notes": "焼肉店のテーブル席（ロースター付きの木のテーブル・排気ダクト・両側ベンチ・壁のメニュー・提灯）。客は +Z 側(ry=π) と -Z 側(ry=0) のベンチに seated:true、通路は +X 側で店員はテーブルの +X 端に立つ。壁時計は prop wall-clock（奥の壁 x=-2.36, ry=π/2）"
       }
     },
     "props": {
@@ -585,6 +603,20 @@
       ],
       "milk-bottle": [
         "param:empty"
+      ],
+      "meat": [
+        "param:done",
+        "size"
+      ],
+      "meat-plate": [
+        "count"
+      ],
+      "chopsticks": [
+        "length"
+      ],
+      "grill-smoke": [
+        "param:amount",
+        "color"
       ]
     },
     "character": {

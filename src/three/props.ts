@@ -647,5 +647,69 @@ export const PROPS: Record<string, PropBuilder> = {
     m.position.y = (s?.[1] ?? 0.1) / 2;
     const g = new THREE.Group(); g.add(m);
     return { object: g };
+  },
+
+  /** 焼肉の肉1枚（カルビ）。param done 0..1 で 生(ピンク) → 焼き上がり(茶) → 焦げ(黒)。ピボットは底面中央。params.size で大きさ。 */
+  "meat"(p) {
+    const g = new THREE.Group();
+    const sz = num(p.size, 1);
+    const mat = new THREE.MeshToonMaterial({ color: new THREE.Color("#d8566a"), gradientMap: (toon("#fff") as THREE.MeshToonMaterial).gradientMap });
+    const slab = mesh(new THREE.BoxGeometry(0.1 * sz, 0.012 * sz, 0.07 * sz), mat, 0.002); slab.position.y = 0.006 * sz; slab.rotation.y = 0.15; g.add(slab);
+    const fatM = new THREE.MeshToonMaterial({ color: new THREE.Color("#f6dfe0"), gradientMap: (toon("#fff") as THREE.MeshToonMaterial).gradientMap });
+    const fats: THREE.Mesh[] = [];
+    for (let i = 0; i < 3; i++) {
+      const f = new THREE.Mesh(new THREE.BoxGeometry(0.085 * sz, 0.0006, 0.007 * sz), fatM);
+      f.position.set(0, 0.0125 * sz, (-0.02 + i * 0.02) * sz); f.rotation.y = 0.15 + (i - 1) * 0.08; g.add(f); fats.push(f);
+    }
+    const cols = ["#d8566a", "#b86a50", "#8a4a2a", "#3a2a20", "#161212"].map((c) => new THREE.Color(c));
+    const fcols = ["#f6dfe0", "#e8c9a0", "#b8855a", "#4a3a30", "#1c1616"].map((c) => new THREE.Color(c));
+    const ramp = (arr: THREE.Color[], t: number) => { const x = Math.min(Math.max(t, 0), 1) * (arr.length - 1); const i = Math.min(Math.floor(x), arr.length - 2); return arr[i]!.clone().lerp(arr[i + 1]!, x - i); };
+    const apply = (d: number) => { mat.color.copy(ramp(cols, d)); fatM.color.copy(ramp(fcols, d)); };
+    apply(num(p.done, 0));
+    return { object: g, setParam(k, v) { if (k === "done") apply(v); } };
+  },
+
+  /** 生肉を盛った皿（店員が運ぶ）。ピボットは皿底。 */
+  "meat-plate"(p) {
+    const g = new THREE.Group();
+    const plate = mesh(new THREE.CylinderGeometry(0.15, 0.115, 0.02, 28), toon("#f6f3ec"), 0.003); plate.position.y = 0.01; g.add(plate);
+    const n = Math.round(num(p.count, 5));
+    for (let i = 0; i < n; i++) {
+      const sl = mesh(new THREE.BoxGeometry(0.1, 0.012, 0.07), toon("#d8566a"), 0.002);
+      sl.position.set((rand(i + 3) - 0.5) * 0.09, 0.026 + i * 0.011, (rand(i + 8) - 0.5) * 0.07); sl.rotation.y = rand(i + 1) * 1.2;
+      g.add(sl);
+      const fat = new THREE.Mesh(new THREE.BoxGeometry(0.085, 0.0006, 0.007), toon("#f6dfe0")); fat.position.set(sl.position.x, sl.position.y + 0.0068, sl.position.z); fat.rotation.y = sl.rotation.y; g.add(fat);
+    }
+    return { object: g };
+  },
+
+  /** 割り箸ではない塗り箸（2本）。ピボットは持ち手の中点、先端が +Z 側へ向く（params.length 既定 0.22）。 */
+  "chopsticks"(p) {
+    const g = new THREE.Group();
+    const len = num(p.length, 0.22);
+    for (const dx of [-0.006, 0.006]) {
+      const s = mesh(new THREE.CylinderGeometry(0.0035, 0.0025, len, 6), toon("#2b2b30"), false);
+      s.rotation.x = Math.PI / 2; s.position.set(dx, 0, len / 2 - 0.05); g.add(s);
+    }
+    return { object: g };
+  },
+
+  /** 網の上の煙。param amount 0..1 で濃さ。上昇する灰色の玉（t から決定的に動く）。ピボットは網の上。 */
+  "grill-smoke"(p) {
+    const g = new THREE.Group();
+    const puffs: THREE.Mesh[] = [];
+    const m = new THREE.MeshBasicMaterial({ color: new THREE.Color(str(p.color, "#cfcfd4")), transparent: true, opacity: 0 });
+    for (let i = 0; i < 9; i++) { const s = new THREE.Mesh(new THREE.SphereGeometry(0.05, 10, 8), m); puffs.push(s); g.add(s); }
+    let amount = num(p.amount, 0);
+    const place = (t: number) => {
+      puffs.forEach((s, i) => {
+        const ph = ((t * 0.35 + i / puffs.length) % 1);
+        s.position.set((rand(i + 2) - 0.5) * 0.12 + Math.sin(ph * 6 + i) * 0.03, ph * 0.5, (rand(i + 7) - 0.5) * 0.12);
+        const k = 0.5 + ph * 1.6; s.scale.set(k, k, k);
+      });
+      m.opacity = 0.42 * amount;
+    };
+    place(0);
+    return { object: g, setParam(k, v) { if (k === "amount") { amount = v; m.opacity = 0.42 * amount; } }, animate(t) { place(t); } };
   }
 };

@@ -1183,5 +1183,108 @@ export const SETS: Record<string, SetBuilder> = {
         side: { pos: [-2.1, 1.55, 1.8], target: [0.1, 0.9, 0.15], fov: 44 }
       }
     };
+  },
+
+  /** 焼肉店のテーブル席。壁側にベンチ、中央に無煙ロースター付きの木のテーブル（天板 0.72・ロースター網 0.74）、上に排気ダクト。
+   *  客は +Z 側（ry=π）と -Z 側（ry=0）のベンチに `seated: true` で座る（座面 0.45）。通路は +X 側で、店員はテーブルの +X 端（x≈1.0, ry=-π/2）に立つ。
+   *  壁時計は prop `wall-clock`（奥の壁 x=-2.36、ry=π/2）。カメラ: wide（+X から2人の横顔）, grill-top, dog-cu, friend-cu, table-low, aisle。 */
+  "yakiniku-booth"(scene, p) {
+    scene.background = new THREE.Color("#2a1a14");
+    lights(scene, { key: 1.25, warm: true });
+    const grad = (toon("#fff") as THREE.MeshToonMaterial).gradientMap;
+    const accent = String(p.accent ?? "#b3261e");
+    const shopName = String(p.shopName ?? "焼肉 ほまれ");
+    const floorTex = canvasTexture(512, 512, (g, w, h) => {
+      g.fillStyle = "#4a3a30"; g.fillRect(0, 0, w, h);
+      g.fillStyle = "#3f3027";
+      for (let i = 0; i < 4; i++) for (let j = 0; j < 4; j++) if ((i + j) % 2 === 0) g.fillRect(i * w / 4, j * h / 4, w / 4, h / 4);
+    });
+    floorTex.wrapS = floorTex.wrapT = THREE.RepeatWrapping; floorTex.repeat.set(7, 7);
+    const floor = new THREE.Mesh(new THREE.PlaneGeometry(14, 14), new THREE.MeshToonMaterial({ map: floorTex, gradientMap: grad }));
+    floor.rotation.x = -Math.PI / 2; floor.receiveShadow = true; scene.add(floor);
+    const wallC = String(p.wall ?? "#6b4a37");
+    const backW = mesh(new THREE.BoxGeometry(0.05, 3.2, 7), toon(wallC), false); backW.position.set(-2.4, 1.6, 0); scene.add(backW);
+    const wallN = mesh(new THREE.BoxGeometry(7, 3.2, 0.05), toon("#7a5640"), false); wallN.position.set(0, 1.6, -2.5); scene.add(wallN);
+    const wallS = mesh(new THREE.BoxGeometry(7, 3.2, 0.05), toon("#7a5640"), false); wallS.position.set(0, 1.6, 2.5); scene.add(wallS);
+    const ceil = new THREE.Mesh(new THREE.PlaneGeometry(9, 9), flat("#3a2a22")); ceil.rotation.x = Math.PI / 2; ceil.position.set(0, 3.1, 0); scene.add(ceil);
+    // lower wall: dark wood boards + a plaster band above
+    const boards = canvasTexture(512, 128, (g, w, h) => {
+      g.fillStyle = "#4b3226"; g.fillRect(0, 0, w, h);
+      g.strokeStyle = "#392519"; g.lineWidth = 4;
+      for (let i = 0; i <= 12; i++) { g.beginPath(); g.moveTo(i * w / 12, 0); g.lineTo(i * w / 12, h); g.stroke(); }
+    });
+    const boardWall = new THREE.Mesh(new THREE.PlaneGeometry(6.8, 1.0), new THREE.MeshBasicMaterial({ map: boards })); boardWall.position.set(-2.37, 0.5, 0); boardWall.rotation.y = Math.PI / 2; scene.add(boardWall);
+    // menu strips and a shop plaque on the back wall (x=-2.37)
+    const menuItems: Array<[string, string]> = [["上カルビ", "1,280"], ["ハラミ", "1,180"], ["タン塩", "1,480"], ["ロース", "980"], ["ホルモン", "680"], ["ライス", "250"]];
+    menuItems.forEach(([name, price], i) => {
+      const tex = canvasTexture(128, 300, (g, w, h) => {
+        g.fillStyle = "#f6ecd6"; g.fillRect(0, 0, w, h); g.strokeStyle = "#5a3a22"; g.lineWidth = 6; g.strokeRect(3, 3, w - 6, h - 6);
+        g.fillStyle = "#2a1c12"; g.font = `bold 44px ${JP_FONT}`; g.textAlign = "center"; g.textBaseline = "middle";
+        const chars = [...name]; const step = Math.min(50, 190 / chars.length);
+        chars.forEach((ch, k) => g.fillText(ch, w / 2, 28 + step * (k + 0.5)));
+        g.fillStyle = accent; g.font = `bold 30px ${JP_FONT}`; g.fillText(price, w / 2, h - 34);
+      });
+      const m = new THREE.Mesh(new THREE.PlaneGeometry(0.2, 0.47), new THREE.MeshBasicMaterial({ map: tex }));
+      m.position.set(-2.36, 1.55, -1.3 + i * 0.5); m.rotation.y = Math.PI / 2; scene.add(m);
+    });
+    const plq = canvasTexture(512, 112, (g, w, h) => {
+      g.fillStyle = accent; g.fillRect(0, 0, w, h); g.strokeStyle = "#f1d58a"; g.lineWidth = 5; g.strokeRect(7, 7, w - 14, h - 14);
+      g.fillStyle = "#fff4d6"; g.font = `bold 56px ${JP_FONT}`; g.textAlign = "center"; g.textBaseline = "middle"; g.fillText(shopName, w / 2, h / 2 + 2);
+    });
+    const plaque = new THREE.Mesh(new THREE.PlaneGeometry(1.3, 0.285), new THREE.MeshBasicMaterial({ map: plq })); plaque.position.set(-2.36, 2.55, -0.9); plaque.rotation.y = Math.PI / 2; scene.add(plaque);
+    // paper lanterns
+    for (const lz of [-1.7, 1.6]) {
+      const lan = mesh(new THREE.SphereGeometry(0.16, 16, 12), toon(accent, { emissive: "#5a1410" }), 0.004); lan.scale.set(1, 1.15, 1); lan.position.set(-2.1, 2.35, lz); scene.add(lan);
+      const cap = mesh(new THREE.CylinderGeometry(0.06, 0.06, 0.03, 10), toon("#2a1c12"), false); cap.position.set(-2.1, 2.55, lz); scene.add(cap);
+    }
+    // table: wooden top on a dark base, long axis along X
+    const tTop = 0.72;
+    const top = mesh(new THREE.BoxGeometry(1.4, 0.05, 0.9), toon("#b98a5c"), 0.005); top.position.set(0, tTop - 0.025, 0); scene.add(top);
+    const base = mesh(new THREE.BoxGeometry(0.2, tTop - 0.05, 0.2), toon("#3b2a20"), 0.004); base.position.set(0, (tTop - 0.05) / 2, 0); scene.add(base);
+    const foot = mesh(new THREE.BoxGeometry(0.9, 0.04, 0.5), toon("#3b2a20"), 0.004); foot.position.set(0, 0.02, 0); scene.add(foot);
+    // smokeless roaster set into the table centre
+    const ring = mesh(new THREE.CylinderGeometry(0.27, 0.27, 0.03, 28), toon("#2b2b30"), 0.004); ring.position.set(0, tTop + 0.005, 0); scene.add(ring);
+    const coal = mesh(new THREE.CylinderGeometry(0.22, 0.22, 0.02, 28), toon("#ff6a2a", { emissive: "#9c2a08" }), false); coal.position.set(0, tTop + 0.015, 0); scene.add(coal);
+    for (let i = 0; i < 9; i++) {
+      const bar = mesh(new THREE.BoxGeometry(0.46, 0.008, 0.012), toon("#3a3a42"), false);
+      bar.position.set(0, tTop + 0.04, -0.2 + i * 0.05); scene.add(bar);
+    }
+    const rim = mesh(new THREE.TorusGeometry(0.235, 0.012, 6, 32), toon("#4a4a52"), false); rim.rotation.x = Math.PI / 2; rim.position.set(0, tTop + 0.035, 0); scene.add(rim);
+    // exhaust hood and duct
+    const hood = mesh(new THREE.CylinderGeometry(0.2, 0.55, 0.28, 24, 1, true), toon("#b7bcc2"), 0.004);
+    (hood.material as THREE.Material).side = THREE.DoubleSide; hood.position.set(0, 1.9, 0); scene.add(hood);
+    const duct = mesh(new THREE.CylinderGeometry(0.2, 0.2, 1.4, 20), toon("#a9aeb4"), 0.004); duct.position.set(0, 2.55, 0); scene.add(duct);
+    // table items: tare dishes, cups, chopstick box, tongs, call button
+    const dishM = toon("#f4efe4");
+    for (const [dx, dz, sauce] of [[-0.5, 0.3, "#5a2a12"], [-0.5, -0.3, "#6b3a1a"], [0.5, 0.3, "#5a2a12"], [0.5, -0.3, "#6b3a1a"]] as const) {
+      const dish = mesh(new THREE.CylinderGeometry(0.06, 0.045, 0.025, 18), dishM, 0.003); dish.position.set(dx, tTop + 0.0125, dz); scene.add(dish);
+      const sc = mesh(new THREE.CylinderGeometry(0.052, 0.052, 0.004, 18), toon(sauce), false); sc.position.set(dx, tTop + 0.022, dz); scene.add(sc);
+    }
+    for (const [dx, dz] of [[-0.62, 0.0], [0.62, 0.0]] as const) {
+      const glass = mesh(new THREE.CylinderGeometry(0.035, 0.03, 0.11, 14), toon("#d6ecf2", { transparent: true, opacity: 0.55 }), 0.002); glass.position.set(dx, tTop + 0.055, dz); scene.add(glass);
+    }
+    const chopBox = mesh(new THREE.BoxGeometry(0.05, 0.12, 0.05), toon("#7a4b2a"), 0.003); chopBox.position.set(0.62, tTop + 0.06, -0.3); scene.add(chopBox);
+    const tongM = toon("#c9ced4");
+    for (const k of [-1, 1]) { const arm = mesh(new THREE.BoxGeometry(0.22, 0.008, 0.012), tongM, false); arm.position.set(0.4, tTop + 0.006, 0.34 + k * 0.012); arm.rotation.y = k * 0.05; scene.add(arm); }
+    const callBtn = mesh(new THREE.CylinderGeometry(0.025, 0.025, 0.02, 14), toon(accent), 0.002); callBtn.position.set(-0.62, tTop + 0.01, 0.3); scene.add(callBtn);
+    // bench seats along both long sides (seat 0.45), with a low back
+    const benchM = toon("#7a3b2a");
+    for (const sz of [-1, 1]) {
+      const seat = mesh(new THREE.BoxGeometry(1.5, 0.08, 0.42), benchM, 0.004); seat.position.set(0, 0.41, sz * 0.82); scene.add(seat);
+      const bBase = mesh(new THREE.BoxGeometry(1.4, 0.37, 0.36), toon("#3b2a20"), false); bBase.position.set(0, 0.185, sz * 0.82); scene.add(bBase);
+      const back = mesh(new THREE.BoxGeometry(1.5, 0.5, 0.06), benchM, 0.004); back.position.set(0, 0.74, sz * 1.04); scene.add(back);
+    }
+    return {
+      surfaces: { table: tTop, grill: tTop + 0.045, seat: 0.45, floor: 0 },
+      cameras: {
+        wide: { pos: [4.5, 1.55, 0], target: [0, 0.98, 0], fov: 45 },
+        aisle: { pos: [3.4, 1.4, 0.0], target: [0.3, 1.0, 0], fov: 40 },
+        "grill-top": { pos: [0.55, 1.55, 0.0], target: [0, 0.76, 0], fov: 34 },
+        "table-low": { pos: [1.55, 1.05, 0.0], target: [0, 0.84, 0], fov: 32 },
+        "dog-cu": { pos: [0.7, 1.35, -1.6], target: [0, 1.0, 0.8], fov: 30 },
+        "friend-cu": { pos: [0.7, 1.4, 1.7], target: [0, 1.1, -0.8], fov: 30 },
+        side: { pos: [3.0, 1.2, 1.6], target: [0, 0.95, 0], fov: 40 }
+      }
+    };
   }
 };

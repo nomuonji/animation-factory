@@ -4,9 +4,23 @@
   "postedAt": "2026-11-14",
   "durationSec": 43.8,
   "variant": "baseline",
-  "note": "",
+  "note": "2026-11-18 取得（video-publisher metrics.yml 経由）。窓=公開日〜+2日",
   "windowDays": 3,
-  "fetched": false,
-  "metrics": null,
+  "fetched": true,
+  "metrics": {
+    "views": 916,
+    "avgViewSec": 29,
+    "avgViewPct": 66.11,
+    "subsGained": 1,
+    "likes": 4,
+    "shortsFeedViews": 879,
+    "retention": {
+      "3s": 1.176,
+      "5s": 1.116,
+      "10s": 0.798,
+      "20s": 0.629,
+      "last": 0.4682
+    }
+  },
   "howToFetch": "fuzoku の GitHub Actions `metrics`: mode=video, concept=おもしろ, videos=\"aObbaNGce-A:2026-11-14:43.8\""
 }
