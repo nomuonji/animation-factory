@@ -641,17 +641,17 @@
       "role": "hook",
       "shot": "two-shot",
       "pre": 0.05,
-      "post": 0.15,
+      "post": 0.1,
       "line": {
         "who": "cust",
-        "text": "すみません、／305のドリンクお願いします。／えっと、ウーロン茶と……あれ？"
+        "text": "すみません、／305のドリンクお願いします。"
       },
       "do": [
         {
           "at": 0,
           "move": "cust",
           "to": {
-            "x": -0.25,
+            "x": 0.14,
             "z": 0.64,
             "ry": 3.141592653589793
           },
@@ -659,21 +659,34 @@
           "ease": "out"
         },
         {
-          "at": "line+0.2",
+          "at": "line+0.6",
           "param": "slip",
           "to": {
             "n": 1
           },
           "dur": 0.1
-        },
+        }
+      ]
+    },
+    {
+      "id": "rule1",
+      "role": "rule",
+      "shot": "guest-cu",
+      "pre": 0.15,
+      "post": 0.1,
+      "line": {
+        "who": "cust",
+        "text": "えっと、ウーロン茶と……あれ？"
+      },
+      "do": [
         {
-          "at": "lineEnd-0.9",
+          "at": "line+1.3",
           "face": "cust",
           "to": "doubtful",
           "dur": 0.25
         },
         {
-          "at": "lineEnd-0.9",
+          "at": "line+1.3",
           "look": "cust",
           "to": {
             "yaw": 0.5,
@@ -685,7 +698,7 @@
     },
     {
       "id": "s1",
-      "role": "rule",
+      "role": "bridge",
       "shot": "counter-top",
       "pre": 0.1,
       "post": 0.1,
@@ -726,7 +739,7 @@
     },
     {
       "id": "go1",
-      "role": "rule",
+      "role": "bridge",
       "shot": "two-shot",
       "pre": 0.1,
       "post": 0.1,
@@ -988,7 +1001,7 @@
       "id": "v4",
       "role": "turn",
       "shot": "two-shot",
-      "pre": 0.7,
+      "pre": 0.9,
       "post": 0.3,
       "line": {
         "who": "cust",
@@ -1038,7 +1051,7 @@
       "id": "payoff",
       "role": "payoff",
       "shot": "two-shot",
-      "pre": 0.4,
+      "pre": 0.7,
       "post": 0.2,
       "line": {
         "who": "staff",
@@ -1088,6 +1101,14 @@
           "face": "cust",
           "to": "surprised",
           "dur": 0.2
+        },
+        {
+          "at": "line+2.7",
+          "shot": "counter-top"
+        },
+        {
+          "at": "lineEnd",
+          "shot": "two-shot"
         }
       ]
     },
@@ -1095,7 +1116,7 @@
       "id": "button",
       "role": "button",
       "shot": "two-shot",
-      "pre": 0.5,
+      "pre": 0.7,
       "post": 0.3,
       "line": {
         "who": "cust",
@@ -1118,8 +1139,8 @@
       "id": "end",
       "role": "button",
       "shot": "two-shot",
-      "pre": 0.15,
-      "post": 0.4,
+      "pre": 0.2,
+      "post": 1.0,
       "line": {
         "who": "staff",
         "text": "ご一緒します"
