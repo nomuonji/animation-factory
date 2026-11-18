@@ -1,0 +1,1234 @@
+{
+  "meta": {
+    "id": "kuyakusho-madoguchi",
+    "title": "記入例の山田太郎さんが転入届に来た",
+    "fps": 30,
+    "width": 1080,
+    "height": 1920,
+    "variant": "baseline"
+  },
+  "design": {
+    "format": "institutional-absurdity",
+    "title": "記入例の山田太郎さんが転入届に来た",
+    "titleScreenText": "記入例の\n山田太郎さんが\n転入届に来た",
+    "titleAlternatives": [
+      "記入例と同じ内容は受理できない窓口",
+      "お手本の人が書き写しを疑われる区役所の窓口"
+    ],
+    "titlePattern": "consequence",
+    "hook": {
+      "type": "line-first",
+      "firstFrame": "区役所の3番窓口。カウンターの上に赤い『記入例』札の山田 太郎の届出書。向かいに立つ地味なシャツの男が、それを見て固まっている。奥の表示は『042』",
+      "overlay": "見本の人が来た"
+    },
+    "rule": "窓口には『記入例と同じ内容は受理できない』決まりがあり、記入例に載っている山田太郎本人にも例外なく適用される",
+    "escalations": [
+      "記入例を写して出す山田太郎が毎日大量に来るため、本人と写しの区別がつかない",
+      "住所や生年月日は事実で変えられない（変えると虚偽になる）",
+      "字だけは変えられるが、お手本の字がもともと本人の字"
+    ],
+    "turn": "山田が自分の字を崩して書く",
+    "payoff": "職員が『お手本と全然違う字です』と認めて受理印を押す",
+    "button": "次の番号で、山田花子が来る",
+    "loop": false,
+    "reaction": "laugh",
+    "audience": "役所の窓口で記入例を見ながら届出書を書いたことがある人",
+    "titleOnScreen": "card",
+    "reality": {
+      "place": "区役所の窓口（番号札・呼出表示のある転入届のカウンター）",
+      "normalEvent": "番号札で呼ばれて窓口に行き、記入例を見ながら届出書を書いて職員に提出する。記入例そのままの内容では受理されない",
+      "onlyBreak": "記入例に載っている架空の人物・山田太郎が実在し、本人として転入届を出しに来る"
+    },
+    "payoffMechanism": "original-rejected-as-copy",
+    "ideation": {
+      "gateVersion": 2,
+      "method": "creative-thinking (My Portal chat Skill) — 並列7本のうちの1本。選定は並列実行の指示（BRIEF.md）による委任",
+      "candidates": 18,
+      "rejected": [
+        "C03: 4人以上の職員が要り尺と配役が重い。区長という実在しうる役職の人物像を戯画化するのも避けたい。役割を上へ重ねるだけで二段目が弱い",
+        "C04: 弱い立場の客が困る構造が不快に寄る。笑いの核がなく日常の不便を描くだけ",
+        "C05: 体の一部が隙間を通る画は体勢の面白さに寄り、役所の論理の笑いにならない。オチも想像がつく",
+        "C06: 道具の説明が長く、二人が同時に書く画が作為的。真顔の確認を長くやる羽目になる",
+        "C07: 年齢設定を新設して画を大きくするだけで、scale-jump と同型。既存のキャラ記録にない設定をオチにしている",
+        "C08: 笑いが漢字の細部の知識に寄り、音だけでは伝わらない。ずらす一点がなく、日常の小さな気まずさにとどまる"
+      ],
+      "corpus": {
+        "dataset": "radichichi",
+        "datasetVersion": "v1",
+        "retrievedAt": "2026-11-18T09:20:00Z",
+        "queryLog": [
+          {
+            "query": "役所",
+            "resultChunkIds": [
+              "radichichi_756638728_001",
+              "radichichi_1755068597_009",
+              "radichichi_1755068597_001"
+            ]
+          },
+          {
+            "query": "窓口",
+            "resultChunkIds": [
+              "radichichi_1755068597_005"
+            ]
+          },
+          {
+            "query": "手続き",
+            "resultChunkIds": [
+              "radichichi_1755068597_003",
+              "radichichi_1755068597_001"
+            ]
+          }
+        ],
+        "sourceChunks": [
+          {
+            "id": "radichichi_1755068597_001",
+            "dataset": "radichichi",
+            "retrievalTier": "creative",
+            "role": "ogiri_reference"
+          },
+          {
+            "id": "radichichi_1755068597_003",
+            "dataset": "radichichi",
+            "retrievalTier": "creative",
+            "role": "ogiri_reference"
+          },
+          {
+            "id": "radichichi_1755068597_005",
+            "dataset": "radichichi",
+            "retrievalTier": "creative",
+            "role": "ogiri_reference"
+          },
+          {
+            "id": "radichichi_1755068597_009",
+            "dataset": "radichichi",
+            "retrievalTier": "creative",
+            "role": "ogiri_reference"
+          }
+        ],
+        "sourceChunkIds": [
+          "radichichi_1755068597_001",
+          "radichichi_1755068597_003",
+          "radichichi_1755068597_005",
+          "radichichi_1755068597_009"
+        ],
+        "sourceExampleIds": [
+          "radichichi-39",
+          "radichichi-73",
+          "radichichi-74",
+          "radichichi-361",
+          "radichichi-643",
+          "radichichi-647",
+          "radichichi-648",
+          "radichichi-655",
+          "radichichi-665"
+        ]
+      },
+      "mechanisms": [
+        {
+          "id": "m-proxy-self",
+          "sourceExampleIds": [
+            "radichichi-74",
+            "radichichi-73"
+          ],
+          "abstractOperation": "本来は他人事として処理される制度の書式や手続きに、当事者がそのまま自分の存在を持ち込んで、手続き側の言葉で扱われる",
+          "transfer": "記入例に載っている架空の人物が当事者として転入届に来て、窓口がそれを事務の口調で受ける"
+        },
+        {
+          "id": "m-institution-reacts",
+          "sourceExampleIds": [
+            "radichichi-73",
+            "radichichi-361",
+            "radichichi-647"
+          ],
+          "abstractOperation": "窓口や制度が、客に対して事務の範囲を越えた人間くさい反応を、手続きの口調を崩さないまま返す",
+          "transfer": "職員が記入例の人物に『お世話になっております』と日頃の付き合いの挨拶を、事務の口調のまま返す"
+        },
+        {
+          "id": "m-loophole-form",
+          "sourceExampleIds": [
+            "radichichi-655",
+            "radichichi-39"
+          ],
+          "abstractOperation": "決まりの趣旨ではなく形式上の条件だけを満たす抜け道を見つけ、実質を変えずに手続きを通す",
+          "transfer": "事実は変えられないので、『写しではない』という形式だけを満たすために字だけを崩して通す"
+        },
+        {
+          "id": "m-rule-as-frame",
+          "sourceExampleIds": [
+            "radichichi-665",
+            "radichichi-643",
+            "radichichi-648"
+          ],
+          "abstractOperation": "規則を例外なく字義どおりに適用すること自体が、場面の笑いの枠組みになる",
+          "transfer": "窓口に実在する注意書き『記入例と同じ内容は受理できない』を、記入例の本人にも例外なく適用する"
+        }
+      ],
+      "candidateLog": [
+        {
+          "id": "C01",
+          "mechanism": "m-proxy-self",
+          "mechanismFamily": "original-rejected-as-copy",
+          "causalCore": "見本と寸分違わない本物が、写しを弾く規則に引っかかって受理されず、見本から自分を崩した時にだけ本物として通る",
+          "concept": "記入例に載っている山田太郎が転入届に来るが、記入例と同じ内容は受理できない決まりのため、字を崩して初めて受理される",
+          "status": "selected",
+          "reason": "記入例は窓口に実在するもので、ずらすのは『記入例の本人が来た』の一点だけ。規則は現実の注意書きの字義どおりの適用で、新設定を足さない。段ごとに理解が進む（本人→写しが多数→嘘は書けない→自分のままでは出せない）"
+        },
+        {
+          "id": "C02",
+          "mechanism": "m-rule-as-frame",
+          "mechanismFamily": "authority-lives-in-the-seat",
+          "causalCore": "権限が人ではなく席に付いていて、同じ職員が座る席を替えるたびに答えが変わり、先ほどの自分の判断を別人のものとして扱う",
+          "concept": "職員が一人で三つの窓口を席を移りながら担当を名乗り分け、客はたらい回しされるが、移動はいつも職員のほうが先に着く",
+          "status": "shortlisted",
+          "reason": "動きの画は強いが、窓口の看板を付け替える／席を走る小道具的な動きに頼りがちで、オチが『閉庁』で弱い。次点"
+        },
+        {
+          "id": "C03",
+          "mechanism": "m-institution-reacts",
+          "mechanismFamily": "approval-chain-returns-to-asker",
+          "causalCore": "判断の責任を上へ上へ回し続けた末に、最上位が当事者本人に確認して終わる",
+          "concept": "小さな確認が係長、課長、区長へ上がっていき、最後に住民本人へ戻ってくる",
+          "status": "rejected",
+          "reason": "4人以上の職員が要り尺と配役が重い。区長という実在しうる役職の人物像を戯画化するのも避けたい。役割を上へ重ねるだけで二段目が弱い"
+        },
+        {
+          "id": "C04",
+          "mechanism": "m-rule-as-frame",
+          "mechanismFamily": "ticket-order-obeyed-over-urgency",
+          "causalCore": "番号札の順番を守ることが目的化し、急ぐ人ほど後回しになる",
+          "concept": "順番厳守のため、急ぎの客が呼ばれず番号が回るのを待たされる",
+          "status": "rejected",
+          "reason": "弱い立場の客が困る構造が不快に寄る。笑いの核がなく日常の不便を描くだけ"
+        },
+        {
+          "id": "C05",
+          "mechanism": "m-rule-as-frame",
+          "mechanismFamily": "deadline-binds-the-office",
+          "causalCore": "受付終了より前に発券したことが根拠になり、窓口側が閉庁後も客の遅さに縛られる",
+          "concept": "17時ちょうどに発券した客の手続きが長引き、シャッターが下りた窓口の隙間から腕だけで受付を続ける",
+          "status": "rejected",
+          "reason": "体の一部が隙間を通る画は体勢の面白さに寄り、役所の論理の笑いにならない。オチも想像がつく"
+        },
+        {
+          "id": "C06",
+          "mechanism": "m-loophole-form",
+          "mechanismFamily": "circular-requirement-resolved-by-simultaneity",
+          "causalCore": "署名がないと受理されず受理されないと署名欄が出ない相互依存を、同時操作という抜け道で解く",
+          "concept": "署名欄が受理後にしか現れない用紙を、職員と客が同時に書き込んで解消する",
+          "status": "rejected",
+          "reason": "道具の説明が長く、二人が同時に書く画が作為的。真顔の確認を長くやる羽目になる"
+        },
+        {
+          "id": "C07",
+          "mechanism": "m-institution-reacts",
+          "mechanismFamily": "history-outruns-the-form",
+          "causalCore": "記録の長さが様式の枠をはみ出し、紙を継ぎ足して物理的に延びていく",
+          "concept": "三百年分の住所履歴を持つ客のため、戸籍の附票に紙を継ぎ足し続けて床へ伸びる",
+          "status": "rejected",
+          "reason": "年齢設定を新設して画を大きくするだけで、scale-jump と同型。既存のキャラ記録にない設定をオチにしている"
+        },
+        {
+          "id": "C08",
+          "mechanism": "m-rule-as-frame",
+          "mechanismFamily": "official-form-defeats-common-form",
+          "causalCore": "戸籍上の正式な字体が日頃書いている字体と違い、本人が一生間違って書いてきたことになる",
+          "concept": "名前の漢字の異体字が戸籍では別の字で、窓口でそれを指摘される",
+          "status": "rejected",
+          "reason": "笑いが漢字の細部の知識に寄り、音だけでは伝わらない。ずらす一点がなく、日常の小さな気まずさにとどまる"
+        },
+        {
+          "id": "C09",
+          "mechanism": "m-proxy-self",
+          "mechanismFamily": "original-rejected-as-copy",
+          "causalCore": "登録済みの印影と完全に一致しすぎるため、写しではないかと疑われて確認が増える",
+          "concept": "印鑑証明の押印が登録印影と一分の狂いもなく、偽造を疑われる",
+          "status": "rejected",
+          "reason": "C01と近い『本物が一致しすぎて疑われる』構造で、別案として数えない。印影の違いは画面で読み取れない"
+        },
+        {
+          "id": "C10",
+          "mechanism": "m-rule-as-frame",
+          "mechanismFamily": "authority-lives-in-the-seat",
+          "causalCore": "名札を付け替えれば直前の自分の発言を覚えていないことになる、という建前が通用する",
+          "concept": "職員が胸の名札を付け替えて、直前に自分が出した拒否を別人として覆す",
+          "status": "rejected",
+          "reason": "C02と同系統（権限が席・肩書に付く）。名札という小道具を見せびらかす形になる"
+        },
+        {
+          "id": "C11",
+          "mechanism": "m-institution-reacts",
+          "mechanismFamily": "need-created-by-the-rule",
+          "causalCore": "番号札を発券した以上は手続きが必要だという建前から、職員が客のために該当する用事を探し当てる",
+          "concept": "用事がないのに番号札を取った客に、職員が受けられる手続きを探して本当に必要なものを見つける",
+          "status": "rejected",
+          "reason": "『おかしなルールが結局役に立つ』という rule-was-right と同型。現実から外す一点がなく、親切な話で終わる"
+        },
+        {
+          "id": "C12",
+          "mechanism": "m-rule-as-frame",
+          "mechanismFamily": "deadline-binds-the-office",
+          "causalCore": "古い番号札を持った客を、窓口が何十年経っても順番どおり呼び出す",
+          "concept": "三十五年前の番号札を持った客が、そのまま順番に呼ばれて丁寧に詫びられる",
+          "status": "rejected",
+          "reason": "obedience-outlasts-the-order（焼肉）と同じ『待ち続けた代償が積もる』構造。時間の長さが笑いの核で二段目が作れない"
+        },
+        {
+          "id": "C13",
+          "mechanism": "m-loophole-form",
+          "mechanismFamily": "chicken-and-egg-requirement",
+          "causalCore": "本人確認書類を取るのに本人確認書類が要る、という必要書類の輪",
+          "concept": "住民票の請求に本人確認書類が必要で、その書類を作るのに住民票が必要になる",
+          "status": "rejected",
+          "reason": "ニュースや体験談で言い尽くされた定番で既視感が強い。解決が『職員がそっと融通する』で終わり、展開がない"
+        },
+        {
+          "id": "C14",
+          "mechanism": "m-proxy-self",
+          "mechanismFamily": "official-form-defeats-common-form",
+          "causalCore": "戸籍に登録された読み方が、本人が名乗ってきた読み方と違う",
+          "concept": "窓口で呼ばれた名前の読みが戸籍上は別の読みと分かる",
+          "status": "rejected",
+          "reason": "C08と同系統。名前を取り違えられる気まずさが主で、笑いの核がない"
+        },
+        {
+          "id": "C15",
+          "mechanism": "m-proxy-self",
+          "mechanismFamily": "delegation-chain-closes-on-self",
+          "causalCore": "委任の連鎖が輪になって、代理人の最後の委任元が本人に戻る",
+          "concept": "代理人として来た客の委任状をさかのぼると、委任元が代理人本人になっている",
+          "status": "shortlisted",
+          "reason": "書類の読み合わせが長くなり真顔の確認が続く。画の動きが少ない。次点"
+        },
+        {
+          "id": "C16",
+          "mechanism": "m-loophole-form",
+          "mechanismFamily": "identifier-collision",
+          "causalCore": "同じ番号札が二人に出て、二人とも立ち上がる",
+          "concept": "番号札機が折り返して同じ番号を二人に発券する",
+          "status": "rejected",
+          "reason": "解決の仕方が思いつかずオチが作れない。日常の小さな不具合を描くだけ"
+        },
+        {
+          "id": "C17",
+          "mechanism": "m-rule-as-frame",
+          "mechanismFamily": "script-literal-execution",
+          "causalCore": "新人が研修用の手順書の括弧書きまで声に出して実行する",
+          "concept": "新人職員が『(笑顔)』『(深呼吸)』を読み上げながら接客する",
+          "status": "rejected",
+          "reason": "literal-callback と近く、人物の目的が薄い。手順書という小道具を見せびらかす"
+        },
+        {
+          "id": "C18",
+          "mechanism": "m-rule-as-frame",
+          "mechanismFamily": "age-boundary-rule",
+          "causalCore": "年齢の数え方の法的な決まりが、誕生日前日の夜に本人へ適用される",
+          "concept": "誕生日前日に婚姻届を出しに来た二人が、法律上の年齢の数え方を職員に説明される",
+          "status": "rejected",
+          "reason": "法律の知識が前提で一度で伝わらない。二段目の発見が作れない"
+        }
+      ],
+      "shortlist": [
+        "C01",
+        "C02",
+        "C15"
+      ],
+      "selectedCandidateId": "C01",
+      "selectionAuthority": "delegated",
+      "diversityAudit": {
+        "mode": "blind-reclassification",
+        "verdict": "pass",
+        "summary": "生成時のラベルと一文概要を隠し、causalCoreだけを読んで18案を別工程で再分類した。生成側のラベルではC09/C10/C12/C14を独立の系統にしていたが、因果構造を読み直すとC09はC01と同じ『一致しすぎる本物が写しと区別されない』、C10はC02と同じ『権限が席・肩書に付く』、C12はC05と同じ『締切・順番の規則が窓口側を拘束する』、C14はC08と同じ『登録された表記が名乗ってきた表記と違う』だったため、生成側のラベルを盲検側に合わせて直し、それらを別案として数えないことにした。再分類後は14系統で、最大系統は2案（11%）。shortlistのC01・C02・C15は別の因果構造",
+        "reviewedCandidateIds": [
+          "C01",
+          "C02",
+          "C03",
+          "C04",
+          "C05",
+          "C06",
+          "C07",
+          "C08",
+          "C09",
+          "C10",
+          "C11",
+          "C12",
+          "C13",
+          "C14",
+          "C15",
+          "C16",
+          "C17",
+          "C18"
+        ],
+        "familyAssignments": [
+          {
+            "candidateId": "C01",
+            "familyId": "original-rejected-as-copy"
+          },
+          {
+            "candidateId": "C02",
+            "familyId": "authority-lives-in-the-seat"
+          },
+          {
+            "candidateId": "C03",
+            "familyId": "approval-chain-returns-to-asker"
+          },
+          {
+            "candidateId": "C04",
+            "familyId": "ticket-order-obeyed-over-urgency"
+          },
+          {
+            "candidateId": "C05",
+            "familyId": "deadline-binds-the-office"
+          },
+          {
+            "candidateId": "C06",
+            "familyId": "circular-requirement-resolved-by-simultaneity"
+          },
+          {
+            "candidateId": "C07",
+            "familyId": "history-outruns-the-form"
+          },
+          {
+            "candidateId": "C08",
+            "familyId": "official-form-defeats-common-form"
+          },
+          {
+            "candidateId": "C09",
+            "familyId": "original-rejected-as-copy"
+          },
+          {
+            "candidateId": "C10",
+            "familyId": "authority-lives-in-the-seat"
+          },
+          {
+            "candidateId": "C11",
+            "familyId": "need-created-by-the-rule"
+          },
+          {
+            "candidateId": "C12",
+            "familyId": "deadline-binds-the-office"
+          },
+          {
+            "candidateId": "C13",
+            "familyId": "chicken-and-egg-requirement"
+          },
+          {
+            "candidateId": "C14",
+            "familyId": "official-form-defeats-common-form"
+          },
+          {
+            "candidateId": "C15",
+            "familyId": "delegation-chain-closes-on-self"
+          },
+          {
+            "candidateId": "C16",
+            "familyId": "identifier-collision"
+          },
+          {
+            "candidateId": "C17",
+            "familyId": "script-literal-execution"
+          },
+          {
+            "candidateId": "C18",
+            "familyId": "age-boundary-rule"
+          }
+        ],
+        "familyDefinitions": [
+          {
+            "id": "age-boundary-rule",
+            "definingMove": "年齢の数え方の規則が境界の日に適用される（age-boundary-rule）という因果機序"
+          },
+          {
+            "id": "approval-chain-returns-to-asker",
+            "definingMove": "確認の連鎖が最上位で当事者に戻る（approval-chain-returns-to-asker）という因果機序"
+          },
+          {
+            "id": "authority-lives-in-the-seat",
+            "definingMove": "判断の権限が人でなく席・窓口に付き、同じ人の答えが席で変わる（authority-lives-in-the-seat）という因果機序"
+          },
+          {
+            "id": "chicken-and-egg-requirement",
+            "definingMove": "必要書類が互いを要求する輪（chicken-and-egg-requirement）という因果機序"
+          },
+          {
+            "id": "circular-requirement-resolved-by-simultaneity",
+            "definingMove": "必要書類の相互依存を同時操作で解く（circular-requirement-resolved-by-simultaneity）という因果機序"
+          },
+          {
+            "id": "deadline-binds-the-office",
+            "definingMove": "締切の規則が客でなく窓口側を拘束する（deadline-binds-the-office）という因果機序"
+          },
+          {
+            "id": "delegation-chain-closes-on-self",
+            "definingMove": "委任の連鎖が輪になり本人に戻る（delegation-chain-closes-on-self）という因果機序"
+          },
+          {
+            "id": "history-outruns-the-form",
+            "definingMove": "記録の長さが様式の枠を越えて物理的に延びる（history-outruns-the-form）という因果機序"
+          },
+          {
+            "id": "identifier-collision",
+            "definingMove": "識別子が二人に重複する（identifier-collision）という因果機序"
+          },
+          {
+            "id": "need-created-by-the-rule",
+            "definingMove": "規則が手続きの必要性を作り出す（need-created-by-the-rule）という因果機序"
+          },
+          {
+            "id": "official-form-defeats-common-form",
+            "definingMove": "公式の字体が日頃の字体と違う（official-form-defeats-common-form）という因果機序"
+          },
+          {
+            "id": "original-rejected-as-copy",
+            "definingMove": "見本と区別がつかない本物が、写しを弾く規則に落ちる（original-rejected-as-copy）という因果機序"
+          },
+          {
+            "id": "script-literal-execution",
+            "definingMove": "手順書の書式指示まで文字どおり実行される（script-literal-execution）という因果機序"
+          },
+          {
+            "id": "ticket-order-obeyed-over-urgency",
+            "definingMove": "順番の規則が目的化し緊急が後回しになる（ticket-order-obeyed-over-urgency）という因果機序"
+          }
+        ],
+        "shortlistPairChecks": [
+          {
+            "candidateA": "C01",
+            "candidateB": "C02",
+            "sameCausalStructure": false,
+            "notOnlySettingChange": true,
+            "difference": "C01は『見本と一致する本物が、写しを弾く規則に落ちる』で、規則と本人の存在が衝突する一人芝居的な因果。C02は『権限が席に付き、同じ職員の答えが席で変わる』で、客が同じ職員に何度も当たる移動の因果。衝突する相手が規則か職員自身かが違い、設定を替えても構造は変わらない"
+          },
+          {
+            "candidateA": "C01",
+            "candidateB": "C15",
+            "sameCausalStructure": false,
+            "notOnlySettingChange": true,
+            "difference": "C01は規則を字義どおり適用した結果、本物が受理されない（排除）。C15は委任の連鎖をさかのぼると本人に戻る（循環）。前者は一点の規則の衝突、後者は書類の連鎖の閉じ方で、二段目の展開が違う"
+          },
+          {
+            "candidateA": "C02",
+            "candidateB": "C15",
+            "sameCausalStructure": false,
+            "notOnlySettingChange": true,
+            "difference": "C02は同じ人物が席を移り権限が切り替わる（人物は一人で担当が分裂）。C15は別々の人物の間の委任関係が輪になる（人物は複数で関係が閉じる）。分裂と循環で因果の向きが違う"
+          }
+        ]
+      },
+      "userSeeds": []
+    },
+    "comedyAudit": {
+      "comicKernel": "窓口に実在する注意書き『記入例と同じ内容は受理できません』を、記入例に載っている山田太郎本人にも例外なく適用すると、本人は本当のことを書くほど受理されず、自分の字を崩した時だけ本人として通る",
+      "audienceExpectation": "記入例の人が来た時点で、観客は職員が驚くか、面白がって特別扱いするかを予測する。実際は職員が事務の口調で日頃の付き合いのように受け、規則だけを淡々と適用する",
+      "characterIntent": "山田は転入届を出して手続きを終わらせたい。職員は規則どおりに正しく受理したい。記入例を写した届出が毎日大量に来るので、写しは弾く決まりを守っている",
+      "pressure": "山田の届出内容がすべて事実で、その事実がそのまま記入例と同一になるため、嘘を書かない限り写しと区別がつかない。職員は虚偽の届出も受けられない",
+      "escalations": [
+        {
+          "beatId": "esc2",
+          "change": "写しを出す人が毎日大量に来るという実情が分かり、山田の届出が三百十二枚と区別できないと示される"
+        },
+        {
+          "beatId": "esc3",
+          "change": "住所を変えれば通ると思った山田に、それは虚偽の届出だと返され、変えてよいのは字だけになる"
+        },
+        {
+          "beatId": "esc4",
+          "change": "字も自分の字がお手本の字だったと分かり、山田が自分のままでは出せないと理解する"
+        }
+      ],
+      "payoffCausality": "冒頭で『記入例を見て書く』ことが示され、規則『同じ内容は受理しない』、虚偽は不可、字だけが変えられる、お手本の字は山田の字、という前提が順に出ている。だから山田が字を崩して書き、職員が『お手本と全然違う字です』と認めて受理するのは前提の必然。新しい設定は足していない",
+      "laughMoment": {
+        "beatId": "payoff",
+        "description": "職員が山田の崩した字を見て『お手本と全然違う字です』と事務口調で認め、本人であることの証明として受理印を押す。山田は自分が本人でなくなって初めて通った形になる"
+      },
+      "independentReview": {
+        "mode": "hostile-reader",
+        "verdict": "pass",
+        "summary": "台詞と動作だけを読み直した。記入例の人が実在する、という前提は一見ひとことのダジャレに見えるが、その後の展開は規則の字義どおりの適用だけで進み、毎回新しい情報（毎日大量の写し／嘘は書けない／字も自分の字）が出る。ラストの受理は規則と矛盾せず、字を崩す動作が観客に見える。山田花子の出現は前提の延長で新しい設定ではない。",
+        "strongestObjection": "『記入例の人が来た』は設定を言っただけで、以降は同じ『受理できません』の繰り返しではないか。受理されるオチは字を崩すだけで当たり前ではないか",
+        "resolution": "各段で状況が変わる（毎日三百十二人の写しがいる→住所は変えられない→字がお手本の字だった）ため繰り返しではない。字を崩すのは当たり前でも、本人が本人らしくない字で書いた時だけ本人として受理される逆説が、職員の事務口調の一言で立つ。既視感のある『記入例の山田太郎』の名前自体は現実のものなので、足した小道具や決め台詞はない",
+        "checks": {
+          "premiseHasComicEngine": true,
+          "notJustMundaneIncident": true,
+          "payoffIsEarned": true,
+          "characterCanonRespected": true,
+          "noUnmotivatedAdditions": true,
+          "notOnlyRoleReversal": true
+        }
+      }
+    }
+  },
+  "voices": {
+    "clerk": {
+      "speaker": "春日部つむぎ",
+      "style": "ノーマル",
+      "speed": 1.2
+    },
+    "yamada": {
+      "speaker": "青山龍星",
+      "style": "ノーマル",
+      "speed": 1.2
+    },
+    "hanako": {
+      "speaker": "雨晴はう",
+      "style": "ノーマル",
+      "speed": 1.2
+    }
+  },
+  "music": {
+    "track": "waiting-lounge",
+    "gain": 0.22,
+    "fadeIn": 0.2,
+    "fadeOut": 0.6
+  },
+  "set": {
+    "kind": "ward-office-window",
+    "params": {}
+  },
+  "captions": {
+    "y": 0.76
+  },
+  "cameras": {
+    "form-top": {
+      "pos": [
+        -0.1,
+        2.4,
+        0.34
+      ],
+      "target": [
+        -0.1,
+        1.0,
+        0.1
+      ],
+      "fov": 38
+    }
+  },
+  "actors": {
+    "clerk": {
+      "style": {
+        "skin": "#f2cdb0",
+        "hair": "#2e2220",
+        "hairStyle": "ponytail",
+        "top": "#f2f4f0",
+        "vest": "#2f7d57",
+        "vestTrim": "#e6f3ea",
+        "nameTag": "田中",
+        "bottom": "#3a3d4a",
+        "shoes": "#2b2b30"
+      },
+      "root": {
+        "x": 0.04,
+        "z": -0.55,
+        "ry": 0
+      },
+      "pose": "counter",
+      "expr": "polite",
+      "captionColor": "#a8f0c4"
+    },
+    "yamada": {
+      "style": {
+        "skin": "#f2c9a8",
+        "hair": "#2a2226",
+        "hairStyle": "short",
+        "top": "#f4f2ee",
+        "bottom": "#3a3d4a",
+        "shoes": "#2b2b30",
+        "glasses": true
+      },
+      "root": {
+        "x": 0.1,
+        "z": 0.62,
+        "ry": 3.141592653589793
+      },
+      "pose": "idle",
+      "expr": "neutral",
+      "captionColor": "#ffe48a"
+    },
+    "hanako": {
+      "style": {
+        "skin": "#f4d2bb",
+        "hair": "#3a2a26",
+        "hairStyle": "side-part",
+        "top": "#e8c4d0",
+        "bottom": "#5b4a52",
+        "shoes": "#2b2b30"
+      },
+      "root": {
+        "x": 3.6,
+        "z": 0.95,
+        "ry": 3.141592653589793
+      },
+      "pose": "idle",
+      "expr": "polite",
+      "captionColor": "#ffc6dc"
+    }
+  },
+  "props": {
+    "display": {
+      "kind": "ticket-display",
+      "params": {
+        "n": 42,
+        "window": "3"
+      },
+      "tf": {
+        "x": -0.25,
+        "y": 1.95,
+        "z": -1.4
+      }
+    },
+    "kinyu": {
+      "kind": "todoke-form",
+      "params": {
+        "sample": true,
+        "title": "転入届"
+      },
+      "tf": {
+        "x": -0.3,
+        "y": 1.0,
+        "z": 0.1,
+        "ry": 0.04
+      }
+    },
+    "form": {
+      "kind": "todoke-form",
+      "params": {
+        "hand": "messy",
+        "title": "転入届",
+        "fill": 0
+      },
+      "tf": {
+        "x": 0.06,
+        "y": 1.0,
+        "z": -0.14,
+        "ry": 0.0
+      }
+    },
+    "stackp": {
+      "kind": "todoke-form",
+      "params": {
+        "stack": 0.14,
+        "fill": 1,
+        "title": "転入届"
+      },
+      "tf": {
+        "x": 0.4,
+        "y": 1.5,
+        "z": 0.08,
+        "ry": -0.05
+      },
+      "visible": false
+    },
+    "pen": {
+      "kind": "pen",
+      "tf": {
+        "x": 0.2,
+        "y": 1.005,
+        "z": 0.24,
+        "ry": 0.4
+      },
+      "visible": false
+    },
+    "hanko": {
+      "kind": "hanko",
+      "tf": {
+        "x": 0.06,
+        "y": 1.16,
+        "z": 0.14
+      },
+      "visible": false
+    }
+  },
+  "beats": [
+    {
+      "id": "title",
+      "role": "title",
+      "shot": "wide",
+      "dur": 1.2,
+      "do": [
+        {
+          "at": 0,
+          "sfx": "title-sting"
+        }
+      ]
+    },
+    {
+      "id": "hook",
+      "role": "hook",
+      "shot": "wide",
+      "pre": 0.05,
+      "post": 0.1,
+      "line": {
+        "who": "clerk",
+        "text": "四十二番の方、どうぞ。"
+      },
+      "do": [
+        {
+          "at": 0,
+          "sfx": "ac-beep",
+          "gain": 0.45
+        },
+        {
+          "at": "line+0.5",
+          "prop": "form",
+          "to": {
+            "z": 0.16
+          },
+          "dur": 0.45
+        },
+        {
+          "at": "line+0.5",
+          "pose": "clerk",
+          "to": "give",
+          "dur": 0.35
+        },
+        {
+          "at": "line+0.55",
+          "sfx": "paper"
+        },
+        {
+          "at": "lineEnd",
+          "pose": "clerk",
+          "to": "counter",
+          "dur": 0.35
+        },
+        {
+          "at": "line+0.7",
+          "look": "yamada",
+          "to": {
+            "yaw": 0,
+            "pitch": 0.55
+          },
+          "dur": 0.4
+        }
+      ]
+    },
+    {
+      "id": "rule",
+      "role": "rule",
+      "shot": "two-shot",
+      "pre": 0.1,
+      "post": 0.1,
+      "line": {
+        "who": "yamada",
+        "text": "あ、これ、僕です。／記入例の、山田太郎です。"
+      },
+      "do": [
+        {
+          "at": 0,
+          "pose": "yamada",
+          "to": "point",
+          "dur": 0.35
+        },
+        {
+          "at": 0,
+          "look": "yamada",
+          "to": {
+            "yaw": 0,
+            "pitch": 0.5
+          },
+          "dur": 0.2
+        },
+        {
+          "at": "line+1.0",
+          "look": "yamada",
+          "to": {
+            "yaw": 0,
+            "pitch": 0.0
+          },
+          "dur": 0.3
+        },
+        {
+          "at": "lineEnd",
+          "pose": "yamada",
+          "to": "idle",
+          "dur": 0.4
+        }
+      ]
+    },
+    {
+      "id": "esc1",
+      "role": "escalate",
+      "shot": "clerk-cu",
+      "level": 1,
+      "pre": 0.1,
+      "post": 0.1,
+      "line": {
+        "who": "clerk",
+        "text": "お世話になっております。／ただ、記入例と同じ内容は、お受けできません。"
+      },
+      "do": [
+        {
+          "at": "line+1.4",
+          "face": "clerk",
+          "to": "neutral",
+          "dur": 0.2
+        }
+      ]
+    },
+    {
+      "id": "esc2",
+      "role": "escalate",
+      "shot": "two-shot",
+      "level": 2,
+      "pre": 0.1,
+      "post": 0.2,
+      "line": {
+        "who": "clerk",
+        "text": "毎日、写された方が来て、区別がつかなくて。／本日、三百十二人目です。"
+      },
+      "do": [
+        {
+          "at": "line+3.6",
+          "show": "stackp"
+        },
+        {
+          "at": "line+3.6",
+          "prop": "stackp",
+          "to": {
+            "y": 1.0
+          },
+          "dur": 0.25,
+          "ease": "in"
+        },
+        {
+          "at": "line+3.85",
+          "sfx": "paper-thud"
+        }
+      ]
+    },
+    {
+      "id": "try",
+      "role": "bridge",
+      "shot": "customer-cu",
+      "pre": 0.1,
+      "post": 0.1,
+      "line": {
+        "who": "yamada",
+        "text": "じゃあ、住所を少し変えれば……"
+      },
+      "do": [
+        {
+          "at": 0,
+          "face": "yamada",
+          "to": "neutral",
+          "dur": 0.2
+        }
+      ]
+    },
+    {
+      "id": "esc3",
+      "role": "escalate",
+      "shot": "clerk-cu",
+      "level": 3,
+      "pre": 0.1,
+      "post": 0.15,
+      "line": {
+        "who": "clerk",
+        "text": "それは虚偽の届出です。／変えられるのは、字くらいです。"
+      }
+    },
+    {
+      "id": "esc4",
+      "role": "escalate",
+      "shot": "customer-cu",
+      "level": 4,
+      "pre": 0.1,
+      "post": 0.2,
+      "line": {
+        "who": "yamada",
+        "text": "字も、僕の字がお手本で……／僕のままだと、出せませんね。"
+      },
+      "do": [
+        {
+          "at": 0,
+          "face": "yamada",
+          "to": "weary",
+          "dur": 0.3
+        }
+      ]
+    },
+    {
+      "id": "turn",
+      "role": "turn",
+      "shot": "form-top",
+      "pre": 0.2,
+      "hold": 1.9,
+      "line": {
+        "who": "yamada",
+        "text": "……崩します。"
+      },
+      "do": [
+        {
+          "at": "lineEnd",
+          "show": "pen"
+        },
+        {
+          "at": "lineEnd",
+          "prop": "pen",
+          "to": {
+            "x": 0.2,
+            "y": 1.005,
+            "z": 0.22,
+            "ry": 0.5
+          },
+          "dur": 0.2
+        },
+        {
+          "at": "lineEnd",
+          "pose": "yamada",
+          "to": {
+            "pose": "sign",
+            "shoulderRX": -0.7,
+            "elbowR": -0.3
+          },
+          "dur": 0.4
+        },
+        {
+          "at": "lineEnd",
+          "look": "yamada",
+          "to": {
+            "pitch": 0.55,
+            "yaw": 0.1
+          },
+          "dur": 0.4
+        },
+        {
+          "at": "lineEnd+0.3",
+          "wiggle": "yamada",
+          "to": 1,
+          "dur": 0.1
+        },
+        {
+          "at": "lineEnd+0.3",
+          "param": "form",
+          "to": {
+            "fill": 1
+          },
+          "dur": 1.7,
+          "ease": "linear"
+        },
+        {
+          "at": "lineEnd+0.3",
+          "prop": "pen",
+          "to": {
+            "x": 0.0,
+            "z": 0.2,
+            "ry": 0.55
+          },
+          "dur": 1.7,
+          "ease": "linear"
+        },
+        {
+          "at": "lineEnd+0.3",
+          "sfx": "pen-scribble"
+        },
+        {
+          "at": "lineEnd+2.05",
+          "wiggle": "yamada",
+          "to": 0,
+          "dur": 0.1
+        },
+        {
+          "at": "lineEnd+2.1",
+          "hide": "pen"
+        },
+        {
+          "at": "lineEnd+2.1",
+          "pose": "yamada",
+          "to": "idle",
+          "dur": 0.4
+        }
+      ]
+    },
+    {
+      "id": "payoff",
+      "role": "payoff",
+      "shot": "two-shot",
+      "pre": 0.2,
+      "post": 0.3,
+      "line": {
+        "who": "clerk",
+        "text": "お手本と、全然違う字です。／受理します。"
+      },
+      "do": [
+        {
+          "at": 0,
+          "look": "clerk",
+          "to": {
+            "pitch": 0.45,
+            "yaw": 0
+          },
+          "dur": 0.3
+        },
+        {
+          "at": "line+1.7",
+          "shot": "form-top"
+        },
+        {
+          "at": "line+1.2",
+          "pose": "clerk",
+          "to": "stamp-up",
+          "dur": 0.35
+        },
+        {
+          "at": "line+1.2",
+          "show": "hanko"
+        },
+        {
+          "at": "line+1.3",
+          "prop": "hanko",
+          "to": {
+            "y": 1.16
+          },
+          "dur": 0.1
+        },
+        {
+          "at": "line+2.15",
+          "pose": "clerk",
+          "to": "stamp-down",
+          "dur": 0.12,
+          "ease": "in"
+        },
+        {
+          "at": "line+2.15",
+          "prop": "hanko",
+          "to": {
+            "y": 1.012
+          },
+          "dur": 0.12,
+          "ease": "in"
+        },
+        {
+          "at": "line+2.3",
+          "sfx": "stamp"
+        },
+        {
+          "at": "line+2.3",
+          "sfx": "payoff-hit"
+        },
+        {
+          "at": "line+2.3",
+          "music": "cut"
+        },
+        {
+          "at": "line+2.3",
+          "param": "form",
+          "to": {
+            "stamp": 1
+          },
+          "dur": 0.05
+        },
+        {
+          "at": "line+2.55",
+          "prop": "hanko",
+          "to": {
+            "y": 1.16
+          },
+          "dur": 0.2
+        },
+        {
+          "at": "line+2.75",
+          "hide": "hanko"
+        },
+        {
+          "at": "lineEnd",
+          "pose": "clerk",
+          "to": "counter",
+          "dur": 0.4
+        }
+      ]
+    },
+    {
+      "id": "next",
+      "role": "bridge",
+      "shot": "wide",
+      "pre": 0.3,
+      "post": 0.05,
+      "line": {
+        "who": "clerk",
+        "text": "四十三番の方、どうぞ。"
+      },
+      "do": [
+        {
+          "at": 0,
+          "music": "resume"
+        },
+        {
+          "at": 0,
+          "param": "display",
+          "to": {
+            "n": 43
+          },
+          "dur": 0.01
+        },
+        {
+          "at": 0,
+          "sfx": "ac-beep",
+          "gain": 0.45
+        },
+        {
+          "at": 0,
+          "move": "yamada",
+          "to": {
+            "x": -3.2,
+            "z": 0.62,
+            "ry": 1.5707963267948966
+          },
+          "dur": 1.6
+        },
+        {
+          "at": 0.2,
+          "move": "hanako",
+          "to": {
+            "x": 0.1,
+            "z": 0.62,
+            "ry": 3.141592653589793
+          },
+          "dur": 1.5
+        },
+        {
+          "at": 0,
+          "look": "clerk",
+          "to": {
+            "pitch": 0.0,
+            "yaw": 0
+          },
+          "dur": 0.3
+        }
+      ]
+    },
+    {
+      "id": "hana",
+      "role": "bridge",
+      "shot": "customer-cu",
+      "pre": 0.15,
+      "post": 0.15,
+      "line": {
+        "who": "hanako",
+        "text": "山田花子です。"
+      }
+    },
+    {
+      "id": "button",
+      "role": "button",
+      "shot": "clerk-cu",
+      "pre": 0.2,
+      "post": 0.5,
+      "line": {
+        "who": "clerk",
+        "text": "……お待ちしておりました。"
+      },
+      "do": [
+        {
+          "at": 0,
+          "face": "clerk",
+          "to": "polite",
+          "dur": 0.3
+        }
+      ]
+    }
+  ],
+  "description": [
+    "区役所の窓口に、記入例に載っている山田太郎さんが転入届を出しに来ました。",
+    "#ショート #コント #区役所 #おもしろ"
+  ]
+}

@@ -1,0 +1,1360 @@
+{
+ "meta": {
+  "id": "densha-seki",
+  "title": "席を譲ろうとしたら 一列まるごと詰めてくれた",
+  "fps": 30,
+  "width": 1080,
+  "height": 1920,
+  "variant": "baseline"
+ },
+ "design": {
+  "format": "escalation-ladder",
+  "title": "席を譲ろうとしたら 一列まるごと詰めてくれた",
+  "titleAlternatives": [
+   "立ってる人に席を空けるため 全員が詰める電車",
+   "座りたそうに見えた人と 列のみんな"
+  ],
+  "titlePattern": "consequence",
+  "titleOnScreen": "card",
+  "titleScreenText": "席を譲ろうとしたら\n一列まるごと\n詰めてくれた",
+  "hook": {
+   "type": "line-first",
+   "firstFrame": "電車のロングシート。座る4人の前に立つ年配の男性が、座席ではなく窓の上を見上げている。一番左の女子高生が『どうぞ』と声をかけている",
+   "overlay": "見てるのは席？"
+  },
+  "rule": "立っている人が上を見上げているのを、座席の人たちは『席に座りたいしるし』と読み、本人が断っても親切を重ねていく",
+  "escalations": [
+   "断られた女子高生が、列に『ひとつずつ詰めて』と頼み、空席が男性の目の前まで運ばれる",
+   "列の全員が男性を見つめ、断りにくい空気になる",
+   "男性が『私は次の——』と言いかけると、『次の次』と聞き取られ、遠いなら尚更と押し切られる"
+  ],
+  "turn": "断りきれなくなった男性が、『せっかくなので』と座る",
+  "payoff": "座った男性が『実は次で降りる』『あの駅弁フェアの広告が気になって』と明かし、全員が窓の上の広告を見上げる",
+  "button": "次の駅のアナウンス。男性が丁寧に礼をして降り、列がもとの並びに詰め直して全員が広告を見上げる",
+  "loop": false,
+  "reaction": "warm-laugh",
+  "audience": "通勤電車で『席を譲ろうか』と迷ったことがある人、満員で詰める作法を知っている人",
+  "reality": {
+   "place": "通勤電車のロングシート（車内の座席）",
+   "normalEvent": "立っている人に座っている人が席を勧め、断られたり、周りが少し詰めて空きをつくったりする。車内の窓上には広告がある",
+   "onlyBreak": "立つ男性の視線が広告に向いているだけなのに、座席の全員が『座りたいしるし』と読み、断る言葉をことごとく親切に読み替えて、列ごと詰めて空席を運んでしまう"
+  },
+  "payoffMechanism": "gift-accepted-to-spare-the-giver",
+  "ideation": {
+   "gateVersion": 2,
+   "method": "creative-thinking (My Portal chat Skill) — 無人の並列実行。選定は担当エージェントへの委任",
+   "candidates": 17,
+   "rejected": [
+    "C02: 内心の独白に頼らないと伝わらず、画だけでは誤解の構造が見えない",
+    "C03: 『実は何でもなかった』の雑な反転で、親切が生まれない",
+    "C04: うなずきの性質が既存の写真館の作品と同じ",
+    "C05: 通話マナーを責める空気を作る必要があり、親切に着地しない",
+    "C06: 誤解が最後まで解けず、解ける優しさにならない。降りる側の犠牲が重い",
+    "C07: 日常の小さな気まずさを置いただけで、二段目の発見と回収がない",
+    "C08: 二人芝居で尺が持たず、段が増やせない",
+    "C09: 先が読め、受け手の事情とのずれがない"
+   ],
+   "corpus": {
+    "dataset": "radichichi",
+    "datasetVersion": "v1",
+    "retrievedAt": "2026-11-18T11:00:00Z",
+    "queryLog": [
+     {
+      "query": "席",
+      "resultChunkIds": [
+       "radichichi_1755068597_008",
+       "radichichi_1755068597_007",
+       "radichichi_1755068597_002"
+      ]
+     },
+     {
+      "query": "勘違い",
+      "resultChunkIds": [
+       "radichichi_1755068597_009",
+       "radichichi_1755068597_002"
+      ]
+     },
+     {
+      "query": "電車",
+      "resultChunkIds": [
+       "radichichi_1755068597_006"
+      ]
+     }
+    ],
+    "sourceChunks": [
+     {
+      "id": "radichichi_1755068597_002",
+      "dataset": "radichichi",
+      "retrievalTier": "creative",
+      "role": "ogiri_reference"
+     },
+     {
+      "id": "radichichi_1755068597_006",
+      "dataset": "radichichi",
+      "retrievalTier": "creative",
+      "role": "ogiri_reference"
+     },
+     {
+      "id": "radichichi_1755068597_007",
+      "dataset": "radichichi",
+      "retrievalTier": "creative",
+      "role": "ogiri_reference"
+     },
+     {
+      "id": "radichichi_1755068597_008",
+      "dataset": "radichichi",
+      "retrievalTier": "creative",
+      "role": "ogiri_reference"
+     },
+     {
+      "id": "radichichi_1755068597_009",
+      "dataset": "radichichi",
+      "retrievalTier": "creative",
+      "role": "ogiri_reference"
+     }
+    ],
+    "sourceChunkIds": [
+     "radichichi_1755068597_002",
+     "radichichi_1755068597_006",
+     "radichichi_1755068597_007",
+     "radichichi_1755068597_008",
+     "radichichi_1755068597_009"
+    ],
+    "sourceExampleIds": [
+     "radichichi-82",
+     "radichichi-83",
+     "radichichi-130",
+     "radichichi-133",
+     "radichichi-505",
+     "radichichi-612",
+     "radichichi-688"
+    ]
+   },
+   "mechanisms": [
+    {
+     "id": "m-misread",
+     "sourceExampleIds": [
+      "radichichi-130",
+      "radichichi-133"
+     ],
+     "abstractOperation": "無害な物や言葉が、見る側の先入観で別の意図や欲求のしるしと読まれ、読んだ側の善意の行動だけが先へ進む",
+     "transfer": "立っている人が窓上の広告を見上げる視線を、周りが『席に座りたいしるし』と読む"
+    },
+    {
+     "id": "m-script",
+     "sourceExampleIds": [
+      "radichichi-82",
+      "radichichi-688"
+     ],
+     "abstractOperation": "席や場所をめぐる定型の言い回しが、言葉どおりの意味と場の気づかいの意味とでずれ、親切な側が一方的に押し切る",
+     "transfer": "『次の——』と言いかけた乗客を、周りが『次の次』と聞き取って先へ進む"
+    },
+    {
+     "id": "m-ritual",
+     "sourceExampleIds": [
+      "radichichi-505",
+      "radichichi-612"
+     ],
+     "abstractOperation": "その場所だけで通じる小さな作法に、居合わせた全員が自然に加わり、動作の連鎖が一人の頼みから全体へ広がる",
+     "transfer": "ベンチで『ひとつずつ詰める』作法が、一人の頼みから端の人までの連鎖になる"
+    },
+    {
+     "id": "m-consequence",
+     "sourceExampleIds": [
+      "radichichi-83",
+      "radichichi-688"
+     ],
+     "abstractOperation": "親切や取り決めの帰結が、それを受ける側の事情とずれて、用意した分だけ無駄になるのに気持ちだけが残る",
+     "transfer": "総出で空けた席が、座る本人の降車まで十数秒しか使われない"
+    }
+   ],
+   "candidateLog": [
+    {
+     "id": "C01",
+     "mechanism": "m-misread",
+     "mechanismFamily": "kindness-chain-on-misread-gaze",
+     "causalCore": "無関係な視線が欲しがるしるしと読まれ、親切が人から人へ連鎖して大きくなり、受ける側は断りきれず受けて、用意された分が無駄になる",
+     "concept": "立っている人が窓上の広告を見上げているのを、座席の人が席を欲しがっていると読み、列全員で詰めて空席を目の前まで運ぶ",
+     "status": "selected",
+     "reason": "場所と人だけで成立し、足した小道具や決め台詞がない。段ごとに巻き込む人数と誤解の厚みが変わる（一人→列→『次の次』の聞き違い）"
+    },
+    {
+     "id": "C02",
+     "mechanism": "m-ritual",
+     "mechanismFamily": "mutual-pretence-to-spare-face",
+     "causalCore": "二人がそれぞれ相手の面目を守るため同じ偽りを続け、同時に終点で露見する",
+     "concept": "肩に寄りかかられた人と寄りかかった人の双方が起きていて、寝たふりを続けて乗り過ごす",
+     "status": "rejected",
+     "reason": "内心の独白に頼らないと伝わらず、画だけでは誤解の構造が見えない"
+    },
+    {
+     "id": "C03",
+     "mechanism": "m-script",
+     "mechanismFamily": "shared-assumption-about-empty-thing",
+     "causalCore": "全員が根拠のない同じ憶測で空席を避け続け、憶測を持たない者が破る",
+     "concept": "満員なのに一席だけ誰も座らず、子どもが座って全員が気づく",
+     "status": "rejected",
+     "reason": "『実は何でもなかった』の雑な反転で、親切が生まれない"
+    },
+    {
+     "id": "C04",
+     "mechanism": "m-misread",
+     "mechanismFamily": "inanimate-motion-read-as-response",
+     "causalCore": "揺れや癖の動きが相づちと読まれ、話し手が励まされて結論へ進む",
+     "concept": "膝の上の赤べこが電車の揺れでうなずき、向かいの人の練習台詞に相づちを打つ形になる",
+     "status": "rejected",
+     "reason": "うなずきの性質が既存の写真館の作品と同じ"
+    },
+    {
+     "id": "C05",
+     "mechanism": "m-script",
+     "mechanismFamily": "solitary-speech-misfiled",
+     "causalCore": "独り言が禁止行為と誤認され、周囲の圧力で別の無害な目的が明かされる",
+     "concept": "車内の独り言が通話と誤解され、音声入力の練習だったと分かる",
+     "status": "rejected",
+     "reason": "通話マナーを責める空気を作る必要があり、親切に着地しない"
+    },
+    {
+     "id": "C06",
+     "mechanism": "m-consequence",
+     "mechanismFamily": "silent-self-sacrifice-for-stranger",
+     "causalCore": "待たれていると思った者が待ちを解消するため自分の予定を犠牲にして去り、待っていた側は気づかない",
+     "concept": "席取りに前に立たれた人が、降りない駅で降りて席を空ける",
+     "status": "rejected",
+     "reason": "誤解が最後まで解けず、解ける優しさにならない。降りる側の犠牲が重い"
+    },
+    {
+     "id": "C07",
+     "mechanism": "m-ritual",
+     "mechanismFamily": "circular-refusal",
+     "causalCore": "互いの辞退が循環して何も進まない",
+     "concept": "優先席を互いに譲り合って結局二人とも立つ",
+     "status": "rejected",
+     "reason": "日常の小さな気まずさを置いただけで、二段目の発見と回収がない"
+    },
+    {
+     "id": "C08",
+     "mechanism": "m-misread",
+     "mechanismFamily": "mutual-glance-same-object",
+     "causalCore": "互いに自分を見ていると思っていた視線が、実は間にある同じ対象へ向いていた",
+     "concept": "毎朝向かい合う二人が、お互い見られていると気にしていたが、同じ広告を見ていた",
+     "status": "rejected",
+     "reason": "二人芝居で尺が持たず、段が増やせない"
+    },
+    {
+     "id": "C09",
+     "mechanism": "m-ritual",
+     "mechanismFamily": "relay-of-lost-object",
+     "causalCore": "落とし物が手から手へ中継され持ち主が降りた後も続く",
+     "concept": "落とし物の手袋を乗客が順に手渡していく",
+     "status": "rejected",
+     "reason": "先が読め、受け手の事情とのずれがない"
+    },
+    {
+     "id": "C10",
+     "mechanism": "m-script",
+     "mechanismFamily": "herd-mishearing",
+     "causalCore": "一人の聞き違いが周囲の同調で広がり、最も自信のない者が訂正する",
+     "concept": "アナウンスの聞き違いで車内全員が立ち上がる",
+     "status": "rejected",
+     "reason": "全員の異常な行動になり、現実の土台が崩れる"
+    },
+    {
+     "id": "C11",
+     "mechanism": "m-consequence",
+     "mechanismFamily": "kindness-restraint-accrues-cost",
+     "causalCore": "起こさない選択が一駅ごとに送り手の代償を増やし、受け手は何も知らずに目覚める",
+     "concept": "肩に寝ている人を起こさず、自分の駅を何度も過ぎて終点まで行く",
+     "status": "shortlisted",
+     "reason": "親切の連鎖ではなく一人の我慢の積み上げ。次点（寝ている人は喋れず画が単調になりやすい）"
+    },
+    {
+     "id": "C12",
+     "mechanism": "m-script",
+     "mechanismFamily": "object-on-seat-read-as-selfish",
+     "causalCore": "席を占める荷物が身勝手と読まれ、持ち主の事情で評価が反転する",
+     "concept": "席に置かれた鞄が嫌がられ、実は妊婦の友人の席取りだった",
+     "status": "rejected",
+     "reason": "『実は〜』で雑に反転する"
+    },
+    {
+     "id": "C13",
+     "mechanism": "m-script",
+     "mechanismFamily": "rehearsal-treated-as-real",
+     "causalCore": "練習の台詞が本番の依頼と取られ、周囲が応じて練習が本番にされてしまう",
+     "concept": "降りる練習の『すみません降ります』に満員の客が道を空け、降りる気のない駅で降りるはめになる",
+     "status": "shortlisted",
+     "reason": "構造は面白いが、降りる意志のない者を動かすだけで親切の温度が低い"
+    },
+    {
+     "id": "C14",
+     "mechanism": "m-ritual",
+     "mechanismFamily": "mutual-apology-spiral",
+     "causalCore": "互いに落ち度と思って詫びを重ね、詫びの総量だけが増える",
+     "concept": "濡れた傘のしずくで互いに詫び合う",
+     "status": "rejected",
+     "reason": "小さな気まずさを描いただけ"
+    },
+    {
+     "id": "C15",
+     "mechanism": "m-ritual",
+     "mechanismFamily": "crowd-adopts-private-ritual",
+     "causalCore": "一人の私的な儀式に周囲が同調し、始めた本人が去っても続く",
+     "concept": "子どもの駅数えに大人が加わり、子どもが降りても数え続ける",
+     "status": "rejected",
+     "reason": "『obedience-outlasts-the-order』と因果が同じで既存作と重なる"
+    },
+    {
+     "id": "C16",
+     "mechanism": "m-consequence",
+     "mechanismFamily": "gift-voided-by-recipient-timing",
+     "causalCore": "善意の譲渡が受け手の事情で直後に無効になる",
+     "concept": "席を譲った相手が次の駅ですぐ降りる",
+     "status": "rejected",
+     "reason": "一言で終わる出来事で、段の展開がない"
+    },
+    {
+     "id": "C17",
+     "mechanism": "m-script",
+     "mechanismFamily": "literal-reading-of-sign",
+     "causalCore": "注意書きを文字どおり受け取った者が全員に従われる",
+     "concept": "『席をお詰めください』の掲示を一人が字義どおり実行し続ける",
+     "status": "rejected",
+     "reason": "literal-callback（既存）と重なる"
+    }
+   ],
+   "shortlist": [
+    "C01",
+    "C11",
+    "C13"
+   ],
+   "selectedCandidateId": "C01",
+   "selectionAuthority": "delegated",
+   "diversityAudit": {
+    "mode": "blind-reclassification",
+    "verdict": "pass",
+    "summary": "生成時のラベルと概要を隠し、causalCoreの文だけを読んで17案を別工程で再分類した。批評側の分類は17系統（同系統は重複なし）で、最大系統は1案（6%）。C03とC12は『憶測』を扱うが、C03は全員が避ける構造、C12は物の占有を悪意と読む構造で、因果の向きが違うため別系統とした。C06とC16は犠牲と無効化で別。shortlistはC01・C11・C13で、連鎖する善意、積み上がる我慢、練習の本番化と構造が異なる。",
+    "reviewedCandidateIds": [
+     "C01",
+     "C02",
+     "C03",
+     "C04",
+     "C05",
+     "C06",
+     "C07",
+     "C08",
+     "C09",
+     "C10",
+     "C11",
+     "C12",
+     "C13",
+     "C14",
+     "C15",
+     "C16",
+     "C17"
+    ],
+    "familyAssignments": [
+     {
+      "candidateId": "C01",
+      "familyId": "kindness-chain-on-misread-gaze"
+     },
+     {
+      "candidateId": "C02",
+      "familyId": "mutual-pretence-to-spare-face"
+     },
+     {
+      "candidateId": "C03",
+      "familyId": "shared-assumption-about-empty-thing"
+     },
+     {
+      "candidateId": "C04",
+      "familyId": "inanimate-motion-read-as-response"
+     },
+     {
+      "candidateId": "C05",
+      "familyId": "solitary-speech-misfiled"
+     },
+     {
+      "candidateId": "C06",
+      "familyId": "silent-self-sacrifice-for-stranger"
+     },
+     {
+      "candidateId": "C07",
+      "familyId": "circular-refusal"
+     },
+     {
+      "candidateId": "C08",
+      "familyId": "mutual-glance-same-object"
+     },
+     {
+      "candidateId": "C09",
+      "familyId": "relay-of-lost-object"
+     },
+     {
+      "candidateId": "C10",
+      "familyId": "herd-mishearing"
+     },
+     {
+      "candidateId": "C11",
+      "familyId": "kindness-restraint-accrues-cost"
+     },
+     {
+      "candidateId": "C12",
+      "familyId": "object-on-seat-read-as-selfish"
+     },
+     {
+      "candidateId": "C13",
+      "familyId": "rehearsal-treated-as-real"
+     },
+     {
+      "candidateId": "C14",
+      "familyId": "mutual-apology-spiral"
+     },
+     {
+      "candidateId": "C15",
+      "familyId": "crowd-adopts-private-ritual"
+     },
+     {
+      "candidateId": "C16",
+      "familyId": "gift-voided-by-recipient-timing"
+     },
+     {
+      "candidateId": "C17",
+      "familyId": "literal-reading-of-sign"
+     }
+    ],
+    "familyDefinitions": [
+     {
+      "id": "kindness-chain-on-misread-gaze",
+      "definingMove": "無関係な視線を欲求と読み、善意が人から人へ連鎖して受け手の辞退を押し切る"
+     },
+     {
+      "id": "mutual-pretence-to-spare-face",
+      "definingMove": "互いの面目を守る同じ偽りを二人が続け、同時に露見する"
+     },
+     {
+      "id": "shared-assumption-about-empty-thing",
+      "definingMove": "全員が根拠のない同じ憶測で何かを避け続け、一人の無頓着が破る"
+     },
+     {
+      "id": "inanimate-motion-read-as-response",
+      "definingMove": "揺れや癖の動きを返事と読み、話し手が励まされて進む"
+     },
+     {
+      "id": "solitary-speech-misfiled",
+      "definingMove": "独り言が禁止行為と誤認され、別の無害な目的が明かされる"
+     },
+     {
+      "id": "silent-self-sacrifice-for-stranger",
+      "definingMove": "待たれていると思った者が、見知らぬ相手のため黙って自分を犠牲にする"
+     },
+     {
+      "id": "circular-refusal",
+      "definingMove": "互いの辞退や譲りが循環して何も進まない"
+     },
+     {
+      "id": "mutual-glance-same-object",
+      "definingMove": "互いを見ていると思った視線が同じ第三の対象へ向いていた"
+     },
+     {
+      "id": "relay-of-lost-object",
+      "definingMove": "物が手から手へ順送りされる直線の伝達"
+     },
+     {
+      "id": "herd-mishearing",
+      "definingMove": "一人の聞き違いが同調で全体に広がる"
+     },
+     {
+      "id": "kindness-restraint-accrues-cost",
+      "definingMove": "動かない親切の代償が時間とともに積み上がる"
+     },
+     {
+      "id": "object-on-seat-read-as-selfish",
+      "definingMove": "物の占有を悪意と読み、事情の開示で評価が反転する"
+     },
+     {
+      "id": "rehearsal-treated-as-real",
+      "definingMove": "練習が本番として扱われ、本人が引っ込めなくなる"
+     },
+     {
+      "id": "mutual-apology-spiral",
+      "definingMove": "互いに非を認めて詫びが増幅する"
+     },
+     {
+      "id": "crowd-adopts-private-ritual",
+      "definingMove": "一人の私的な儀式に周囲が同調して続く"
+     },
+     {
+      "id": "gift-voided-by-recipient-timing",
+      "definingMove": "贈り物が受け手の都合で直後に無効になる"
+     },
+     {
+      "id": "literal-reading-of-sign",
+      "definingMove": "掲示を字義どおり実行する者に周囲が従う"
+     }
+    ],
+    "shortlistPairChecks": [
+     {
+      "candidateA": "C01",
+      "candidateB": "C11",
+      "sameCausalStructure": false,
+      "notOnlySettingChange": true,
+      "difference": "C01は受け手の無関係な行動を周りが誤読して親切が連鎖し膨らむ。C11は一人が動かないことで代償が積み上がる直線の我慢。前者は人数が増え、後者は時間が積もる"
+     },
+     {
+      "candidateA": "C01",
+      "candidateB": "C13",
+      "sameCausalStructure": false,
+      "notOnlySettingChange": true,
+      "difference": "C01は周囲が受け手の事情を誤読し受け手は辞退しきれない。C13は本人の練習が周囲に本番と誤読され本人が引き返せない。誤読する側と巻き込まれる側が逆で、帰結の使われ方も違う"
+     },
+     {
+      "candidateA": "C11",
+      "candidateB": "C13",
+      "sameCausalStructure": false,
+      "notOnlySettingChange": true,
+      "difference": "C11は送り手が一方的に黙って払う代償の累積。C13は周囲が一斉に応じる反応の連鎖で、誰も犠牲を払わず本人が引っ込みがつかなくなる。因果の主体が違う"
+     }
+    ]
+   },
+   "userSeeds": []
+  },
+  "comedyAudit": {
+   "comicKernel": "立つ人が窓の上の広告を見ているだけなのに、座席の全員がそれを『座りたいしるし』と読み、断る言葉まで親切に読み替えて列ごと詰めていく。善意が強くなるほど本人は断れなくなる",
+   "audienceExpectation": "観客は、断られた譲り手が引き下がるか、最後に立つ人が座って落ち着くと予想する。広告を見ていることは絵で先に分かり、いつ本人が言い出すかを待つ",
+   "characterIntent": "女子高生は立っている年配者に席を楽にしてあげたい。隣の乗客たちは場の空気に合わせて協力する。年配の男性は広告を読み終えて次の駅で降りたいだけで、親切を断りたい",
+   "pressure": "善意の人数が一人から列全員に増え、全員が自分を見ている。本人は事情を言えば全員の手間を無駄にしてしまうため、礼儀として断りきれなくなる",
+   "escalations": [
+    {
+     "beatId": "esc1",
+     "change": "断られた女子高生が一人で引き下がらず、列に詰めてもらって空席を男性の目の前へ運ぶ。善意が一人から列へ広がる"
+    },
+    {
+     "beatId": "esc2",
+     "change": "空いた席の前で男性が全員の視線を浴びる。断る側の立場が、断りにくい立場に変わる"
+    },
+    {
+     "beatId": "esc3c",
+     "change": "男性が降りる駅を言いかけたのに『次の次』と聞き取られ、事情を明かす機会が親切に上書きされる"
+    }
+   ],
+   "payoffCausality": "広告を見上げる姿は冒頭から見えており、『次の——』と言いかけた台詞は聞き違いで上書きされている。座った後に男性が『次で降りる』『広告が気になって』と明かすことで、視線の理由と聞き違いの両方が前提から説明される。新しい設定は足していない",
+   "laughMoment": {
+    "beatId": "payoff",
+    "description": "座った男性が『実は次で降りるんです。あの駅弁フェアが気になって』と言った直後、列の全員が揃って窓の上の広告を見上げて一瞬止まる"
+   },
+   "independentReview": {
+    "mode": "hostile-reader",
+    "verdict": "pass",
+    "summary": "台詞と動作だけを読み直した。席を譲る・詰めるは現実にあり、ずらす一点は『誤読の強さ』だけ。広告が見えているので観客は誤解を先に知り、笑いは辞退するほど親切が増える押し切りと、座った後の短い種明かしにある。種明かしの後は誰も責められず、礼をして終わる",
+    "strongestObjection": "広告を見ていただけという種明かしは小さく、最後が『実は〜』の反転に近い。座ってすぐ降りるのも都合が良すぎないか",
+    "resolution": "『次の——』と言いかけた台詞が『次の次』と聞き違えられる伏線を途中に置き、降りる駅と広告の駅弁フェアが同じ駅であることを広告の文字で結んだ。座ってすぐ降りるのは、断らなかった理由が礼儀であることの帰結として描く。種明かしは短く、責める人を作らない。弱さは残るため、公開後の評価は本人の判断に委ねる",
+    "checks": {
+     "premiseHasComicEngine": true,
+     "notJustMundaneIncident": true,
+     "payoffIsEarned": true,
+     "characterCanonRespected": true,
+     "noUnmotivatedAdditions": true,
+     "notOnlyRoleReversal": true
+    }
+   }
+  }
+ },
+ "voices": {
+  "ko": {
+   "speaker": "春日部つむぎ",
+   "style": "ノーマル",
+   "speed": 1.05
+  },
+  "sen": {
+   "speaker": "青山龍星",
+   "style": "ノーマル",
+   "speed": 0.95
+  },
+  "sen2": {
+   "speaker": "青山龍星",
+   "style": "ノーマル",
+   "speed": 0.95
+  },
+  "man": {
+   "speaker": "白上虎太郎",
+   "style": "ノーマル",
+   "speed": 1.0
+  },
+  "oba": {
+   "speaker": "冥鳴ひまり",
+   "style": "ノーマル",
+   "speed": 1.0
+  },
+  "ann": {
+   "speaker": "No.7",
+   "style": "ノーマル",
+   "speed": 1.0
+  }
+ },
+ "music": {
+  "track": "waiting-lounge",
+  "gain": 0.22,
+  "fadeIn": 0.2,
+  "fadeOut": 0.6
+ },
+ "set": {
+  "kind": "train-seat",
+  "params": {
+   "posterX": -0.5,
+   "posterTitle": "全国 駅弁フェア",
+   "posterSub": "桜ヶ丘駅 ホール",
+   "posterNote": "本日まで",
+   "posterAccent": "#d9532b"
+  }
+ },
+ "captions": {
+  "y": 0.76
+ },
+ "cameras": {},
+ "actors": {
+  "gaku": {
+   "style": {
+    "skin": "#f2cdb0",
+    "hair": "#3a2a26",
+    "hairStyle": "short",
+    "top": "#6b7f9a",
+    "hood": true,
+    "bottom": "#3a3d4a",
+    "shoes": "#ffffff"
+   },
+   "seated": true,
+   "root": {
+    "x": -1.0,
+    "y": -0.32,
+    "z": -0.85,
+    "ry": 0
+   },
+   "pose": "idle",
+   "expr": "blank",
+   "captionColor": "#cfe3ff"
+  },
+  "ko": {
+   "style": {
+    "skin": "#f2cdb0",
+    "hair": "#2a2226",
+    "hairStyle": "ponytail",
+    "top": "#f4f2ee",
+    "vest": "#2e3f6b",
+    "vestTrim": "#f7f5ee",
+    "bottom": "#2e3f6b",
+    "shoes": "#2b2b30"
+   },
+   "seated": true,
+   "root": {
+    "x": -0.5,
+    "y": -0.32,
+    "z": -0.85,
+    "ry": 0
+   },
+   "pose": "idle",
+   "expr": "polite",
+   "captionColor": "#ffe48a"
+  },
+  "man": {
+   "style": {
+    "skin": "#e9bf9e",
+    "hair": "#241a14",
+    "hairStyle": "side-part",
+    "top": "#d9dde3",
+    "bottom": "#33363f",
+    "shoes": "#2b2b30",
+    "glasses": true
+   },
+   "seated": true,
+   "root": {
+    "x": 0.0,
+    "y": -0.32,
+    "z": -0.85,
+    "ry": 0
+   },
+   "pose": "idle",
+   "expr": "neutral",
+   "captionColor": "#9ad0ff"
+  },
+  "oba": {
+   "style": {
+    "skin": "#f0cbb0",
+    "hair": "#d4d2ce",
+    "hairStyle": "side-part",
+    "top": "#a45a7a",
+    "bottom": "#5b4a58",
+    "shoes": "#3a2f2f",
+    "height": 0.94
+   },
+   "seated": true,
+   "root": {
+    "x": 0.5,
+    "y": -0.32,
+    "z": -0.85,
+    "ry": 0
+   },
+   "pose": "idle",
+   "expr": "polite",
+   "captionColor": "#ffb3d0"
+  },
+  "sen": {
+   "style": {
+    "skin": "#ecc3a2",
+    "hair": "#bdbdc0",
+    "hairStyle": "short",
+    "top": "#7a8aa0",
+    "bottom": "#4a4a52",
+    "shoes": "#2b2b30",
+    "height": 1.02
+   },
+   "root": {
+    "x": -0.85,
+    "y": 0,
+    "z": -0.16,
+    "ry": 3.141592653589793
+   },
+   "pose": "idle",
+   "expr": "polite",
+   "look": {
+    "yaw": 0,
+    "pitch": -0.38
+   },
+   "captionColor": "#c8f59a"
+  },
+  "sen2": {
+   "style": {
+    "skin": "#ecc3a2",
+    "hair": "#bdbdc0",
+    "hairStyle": "short",
+    "top": "#7a8aa0",
+    "bottom": "#4a4a52",
+    "shoes": "#2b2b30",
+    "height": 1.02
+   },
+   "seated": true,
+   "root": {
+    "x": 9.0,
+    "y": -0.32,
+    "z": -0.85,
+    "ry": 0
+   },
+   "pose": "idle",
+   "expr": "polite",
+   "captionColor": "#c8f59a"
+  },
+  "ann": {
+   "style": {
+    "skin": "#e9bf9e",
+    "hair": "#241a14",
+    "hairStyle": "short",
+    "top": "#f6f1e6",
+    "bottom": "#2b2b30",
+    "shoes": "#2b2b30"
+   },
+   "root": {
+    "x": 9.0,
+    "z": 0.0,
+    "ry": 0
+   },
+   "pose": "idle",
+   "expr": "polite",
+   "captionColor": "#e8e8e8"
+  }
+ },
+ "props": {},
+ "beats": [
+  {
+   "id": "title",
+   "role": "title",
+   "shot": "wide",
+   "dur": 1.2,
+   "do": [
+    {
+     "at": 0,
+     "sfx": "title-sting"
+    }
+   ]
+  },
+  {
+   "id": "hook",
+   "role": "hook",
+   "shot": "wide",
+   "pre": 0.05,
+   "post": 0.3,
+   "line": {
+    "who": "ko",
+    "text": "あの、よかったら／どうぞ"
+   },
+   "do": [
+    {
+     "at": 0.0,
+     "pose": "ko",
+     "to": "give",
+     "dur": 0.4
+    },
+    {
+     "at": "lineEnd",
+     "pose": "ko",
+     "to": "idle",
+     "dur": 0.4
+    }
+   ]
+  },
+  {
+   "id": "rule",
+   "role": "rule",
+   "shot": "s-cu",
+   "pre": 0.25,
+   "post": 0.3,
+   "line": {
+    "who": "sen",
+    "text": "いえいえ、／お構いなく"
+   },
+   "do": [
+    {
+     "at": 0,
+     "face": "sen",
+     "to": "polite",
+     "dur": 0.25
+    },
+    {
+     "at": "line+1.2",
+     "shot": "ko-cu"
+    },
+    {
+     "at": "line+1.2",
+     "face": "ko",
+     "to": "doubtful",
+     "dur": 0.25
+    },
+    {
+     "at": "line+1.2",
+     "look": "ko",
+     "to": {
+      "yaw": -0.2,
+      "pitch": 0.0
+     },
+     "dur": 0.35
+    }
+   ]
+  },
+  {
+   "id": "esc1",
+   "role": "escalate",
+   "level": 1,
+   "shot": "ko-cu",
+   "pre": 0.3,
+   "post": 0.25,
+   "line": {
+    "who": "ko",
+    "text": "すみません、／ひとつずつ詰めてもらえますか"
+   },
+   "do": [
+    {
+     "at": "line+0.1",
+     "look": "ko",
+     "to": {
+      "yaw": 0.7,
+      "pitch": 0.0
+     },
+     "dur": 0.3
+    },
+    {
+     "at": "line+0.1",
+     "look": "man",
+     "to": {
+      "yaw": -0.7,
+      "pitch": 0
+     },
+     "dur": 0.3
+    },
+    {
+     "at": "line+1.2",
+     "shot": "wide"
+    },
+    {
+     "at": "lineEnd",
+     "look": "ko",
+     "to": {
+      "yaw": 0,
+      "pitch": 0
+     },
+     "dur": 0.3
+    },
+    {
+     "at": "lineEnd+0.15",
+     "move": "oba",
+     "to": {
+      "x": 1.0
+     },
+     "dur": 0.55
+    },
+    {
+     "at": "lineEnd+0.15",
+     "sfx": "step",
+     "gain": 0.25
+    },
+    {
+     "at": "lineEnd+0.45",
+     "move": "man",
+     "to": {
+      "x": 0.5
+     },
+     "dur": 0.55
+    },
+    {
+     "at": "lineEnd+0.45",
+     "sfx": "step",
+     "gain": 0.25
+    },
+    {
+     "at": "lineEnd+0.75",
+     "move": "ko",
+     "to": {
+      "x": 0.0
+     },
+     "dur": 0.55
+    },
+    {
+     "at": "lineEnd+0.75",
+     "sfx": "step",
+     "gain": 0.25
+    }
+   ],
+   "hold": 1.0
+  },
+  {
+   "id": "esc1b",
+   "role": "escalate",
+   "level": 2,
+   "shot": "front",
+   "pre": 0.1,
+   "post": 0.15,
+   "line": {
+    "who": "ko",
+    "text": "こちら、／空きましたので"
+   },
+   "do": [
+    {
+     "at": 0.0,
+     "pose": "ko",
+     "to": "point",
+     "dur": 0.4
+    },
+    {
+     "at": 0.0,
+     "look": "ko",
+     "to": {
+      "yaw": -0.6,
+      "pitch": 0.0
+     },
+     "dur": 0.3
+    },
+    {
+     "at": "lineEnd",
+     "pose": "ko",
+     "to": "idle",
+     "dur": 0.4
+    }
+   ]
+  },
+  {
+   "id": "esc2",
+   "role": "escalate",
+   "level": 2,
+   "shot": "front",
+   "pre": 0.15,
+   "post": 0.2,
+   "line": {
+    "who": "sen",
+    "text": "あの、本当に／大丈夫ですので"
+   },
+   "do": [
+    {
+     "at": 0,
+     "look": "gaku",
+     "to": {
+      "yaw": 0.15000000000000002,
+      "pitch": 0
+     },
+     "dur": 0.4
+    },
+    {
+     "at": 0.05,
+     "look": "ko",
+     "to": {
+      "yaw": -0.85,
+      "pitch": 0
+     },
+     "dur": 0.4
+    },
+    {
+     "at": 0.1,
+     "look": "man",
+     "to": {
+      "yaw": -0.9,
+      "pitch": 0
+     },
+     "dur": 0.4
+    },
+    {
+     "at": 0.15,
+     "look": "oba",
+     "to": {
+      "yaw": -0.9,
+      "pitch": 0
+     },
+     "dur": 0.4
+    },
+    {
+     "at": 0,
+     "face": "sen",
+     "to": "doubtful",
+     "dur": 0.25
+    },
+    {
+     "at": 0.2,
+     "face": "ko",
+     "to": "polite",
+     "dur": 0.25
+    },
+    {
+     "at": 0.2,
+     "face": "man",
+     "to": "polite",
+     "dur": 0.25
+    },
+    {
+     "at": 0.2,
+     "face": "oba",
+     "to": "polite",
+     "dur": 0.25
+    },
+    {
+     "at": "line+0.9",
+     "shot": "row-cu"
+    }
+   ],
+   "hold": 0.5
+  },
+  {
+   "id": "esc3a",
+   "role": "escalate",
+   "level": 3,
+   "shot": "row-cu",
+   "pre": 0.2,
+   "post": 0.15,
+   "line": {
+    "who": "man",
+    "text": "どちらまで／行かれるんですか？"
+   }
+  },
+  {
+   "id": "esc3b",
+   "role": "escalate",
+   "level": 3,
+   "shot": "s-cu",
+   "pre": 0.15,
+   "post": 0.05,
+   "line": {
+    "who": "sen",
+    "text": "あ、私は次の——"
+   }
+  },
+  {
+   "id": "esc3c",
+   "role": "escalate",
+   "level": 4,
+   "shot": "row-cu",
+   "pre": 0.0,
+   "post": 0.2,
+   "line": {
+    "who": "oba",
+    "text": "次の次！／遠いわねえ、／どうぞどうぞ"
+   },
+   "do": [
+    {
+     "at": "line+0.1",
+     "face": "oba",
+     "to": "grin",
+     "dur": 0.2
+    },
+    {
+     "at": "line+1.4",
+     "shot": "front"
+    }
+   ],
+   "hold": 0.4
+  },
+  {
+   "id": "turn",
+   "role": "turn",
+   "shot": "s-cu",
+   "pre": 0.5,
+   "post": 0.2,
+   "line": {
+    "who": "sen",
+    "text": "……では、／せっかくなので"
+   },
+   "do": [
+    {
+     "at": 0,
+     "face": "sen",
+     "to": "weary",
+     "dur": 0.25
+    },
+    {
+     "at": "line+1.1",
+     "shot": "low-row"
+    },
+    {
+     "at": "line+1.1",
+     "move": "sen",
+     "to": {
+      "x": 9.0
+     },
+     "dur": 0.01
+    },
+    {
+     "at": "line+1.1",
+     "move": "sen2",
+     "to": {
+      "x": -0.5
+     },
+     "dur": 0.01
+    },
+    {
+     "at": "line+1.15",
+     "sfx": "set-down",
+     "gain": 0.4
+    },
+    {
+     "at": "lineEnd",
+     "music": "cut"
+    }
+   ],
+   "hold": 0.3
+  },
+  {
+   "id": "settle",
+   "role": "bridge",
+   "shot": "front",
+   "pre": 0.12,
+   "post": 0.05,
+   "line": {
+    "who": "ko",
+    "text": "ずっと上を向いて、／首も疲れたでしょう"
+   },
+   "do": [
+    {
+     "at": 0,
+     "look": "ko",
+     "to": {
+      "yaw": -0.6,
+      "pitch": 0.0
+     },
+     "dur": 0.3
+    },
+    {
+     "at": 0.1,
+     "face": "sen2",
+     "to": "polite",
+     "dur": 0.25
+    }
+   ]
+  },
+  {
+   "id": "payoff",
+   "role": "payoff",
+   "shot": "front",
+   "pre": 0.8,
+   "post": 0.2,
+   "line": {
+    "who": "sen2",
+    "text": "実は、次で降りるんです。／あの駅弁フェアが／気になって"
+   },
+   "do": [
+    {
+     "at": 0.0,
+     "music": "resume"
+    },
+    {
+     "at": 0.0,
+     "sfx": "payoff-hit",
+     "gain": 0.0
+    },
+    {
+     "at": "line+1.8",
+     "shot": "poster"
+    },
+    {
+     "at": "line+1.8",
+     "sfx": "payoff-hit"
+    },
+    {
+     "at": "line+2.0",
+     "look": "gaku",
+     "to": {
+      "yaw": 0,
+      "pitch": -0.8
+     },
+     "dur": 0.4
+    },
+    {
+     "at": "line+2.0",
+     "look": "ko",
+     "to": {
+      "yaw": 0,
+      "pitch": -0.8
+     },
+     "dur": 0.4
+    },
+    {
+     "at": "line+2.0",
+     "look": "man",
+     "to": {
+      "yaw": 0,
+      "pitch": -0.8
+     },
+     "dur": 0.4
+    },
+    {
+     "at": "line+2.0",
+     "look": "oba",
+     "to": {
+      "yaw": 0,
+      "pitch": -0.8
+     },
+     "dur": 0.4
+    },
+    {
+     "at": "line+2.0",
+     "look": "sen2",
+     "to": {
+      "yaw": 0,
+      "pitch": -0.8
+     },
+     "dur": 0.4
+    },
+    {
+     "at": "lineEnd+0.1",
+     "shot": "front"
+    }
+   ],
+   "hold": 0.9
+  },
+  {
+   "id": "bridge",
+   "role": "bridge",
+   "shot": "ko-cu",
+   "pre": 0.15,
+   "post": 0.1,
+   "line": {
+    "who": "ko",
+    "text": "……おいしそうですね"
+   },
+   "do": [
+    {
+     "at": 0,
+     "face": "ko",
+     "to": "grin",
+     "dur": 0.25
+    },
+    {
+     "at": 0,
+     "look": "ko",
+     "to": {
+      "yaw": 0,
+      "pitch": -0.3
+     },
+     "dur": 0.2
+    }
+   ]
+  },
+  {
+   "id": "button",
+   "role": "button",
+   "shot": "front",
+   "pre": 0.1,
+   "post": 0.1,
+   "line": {
+    "who": "ann",
+    "text": "まもなく／桜ヶ丘です"
+   },
+   "do": [
+    {
+     "at": 0,
+     "move": "sen2",
+     "to": {
+      "x": 9.0
+     },
+     "dur": 0.01
+    },
+    {
+     "at": 0,
+     "move": "sen",
+     "to": {
+      "x": -0.85,
+      "z": -0.16
+     },
+     "dur": 0.01
+    },
+    {
+     "at": 0.2,
+     "pose": "sen",
+     "to": "bow",
+     "dur": 0.5
+    },
+    {
+     "at": "line+0.9",
+     "pose": "sen",
+     "to": "idle",
+     "dur": 0.4
+    },
+    {
+     "at": "line+0.9",
+     "move": "sen",
+     "to": {
+      "x": -2.6
+     },
+     "dur": 1.2
+    },
+    {
+     "at": "line+1.0",
+     "move": "ko",
+     "to": {
+      "x": -0.5
+     },
+     "dur": 0.5
+    },
+    {
+     "at": "line+1.3",
+     "move": "man",
+     "to": {
+      "x": 0.0
+     },
+     "dur": 0.5
+    },
+    {
+     "at": "line+1.6",
+     "move": "oba",
+     "to": {
+      "x": 0.5
+     },
+     "dur": 0.5
+    },
+    {
+     "at": "line+1.0",
+     "look": "ko",
+     "to": {
+      "yaw": 0,
+      "pitch": -0.5
+     },
+     "dur": 0.01
+    }
+   ],
+   "hold": 1.0
+  }
+ ]
+}

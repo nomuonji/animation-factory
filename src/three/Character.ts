@@ -42,7 +42,7 @@ export const JOINT_NAMES = [
 
 /** Named poses. Angles in radians. Arms hang along -Y; negative X raises forward. */
 export const POSES: Record<string, Joints> = {
-  idle:        { spineX: 0, spineY: 0, shoulderLX: 0.05, shoulderLZ: 0.08, elbowL: -0.15, shoulderRX: 0.05, shoulderRZ: -0.08, elbowR: -0.15, wristL: 0, wristR: 0 },
+  idle:        { neckLen: 1, spineX: 0, spineY: 0, shoulderLX: 0.05, shoulderLZ: 0.08, elbowL: -0.15, shoulderRX: 0.05, shoulderRZ: -0.08, elbowR: -0.15, wristL: 0, wristR: 0 },
   counter:     { spineX: 0.06, spineY: 0, shoulderLX: -0.55, shoulderLZ: 0.12, elbowL: -1.05, shoulderRX: -0.55, shoulderRZ: -0.12, elbowR: -1.05, wristL: 0, wristR: 0 },
   "hold-doc":  { spineX: 0.02, spineY: 0, shoulderLX: -0.75, shoulderLZ: 0.18, elbowL: -1.35, shoulderRX: -0.75, shoulderRZ: -0.18, elbowR: -1.35, wristL: 0.2, wristR: 0.2 },
   "lift-doc":  { spineX: -0.02, spineY: 0, shoulderLX: -1.05, shoulderLZ: 0.22, elbowL: -1.25, shoulderRX: -1.05, shoulderRZ: -0.22, elbowR: -1.25, wristL: 0.3, wristR: 0.3 },
@@ -75,6 +75,7 @@ export class Character {
   private hips = new THREE.Group();
   private spine = new THREE.Group();
   private neck = new THREE.Group();
+  private neckMesh!: THREE.Mesh;
   readonly head = new THREE.Group();
   private shoulderL = new THREE.Group();
   private shoulderR = new THREE.Group();
@@ -226,6 +227,7 @@ export class Character {
     const neckMesh = mesh(new THREE.CylinderGeometry(0.05, 0.055, 0.09, 12), skin);
     neckMesh.position.y = 0.02;
     this.neck.add(neckMesh);
+    this.neckMesh = neckMesh;
     this.head.position.y = 0.17;
     this.neck.add(this.head);
     const skull = mesh(new THREE.SphereGeometry(0.165, 32, 24), skin, 0.007);
@@ -591,6 +593,11 @@ export class Character {
     this.handL.rotation.set(j.wristL ?? 0, 0, 0);
     this.handR.rotation.set(j.wristR ?? 0, 0, wig);
     this.neck.rotation.set(look.pitch - (j.spineX ?? 0) * 0.5, look.yaw, 0);
+    // neckLen: neck stretch factor (1 = normal). Stretches the neck cylinder from its base and lifts the head with it.
+    const nl = Math.max(0.2, j.neckLen ?? 1);
+    this.neckMesh.scale.set(1 / Math.pow(nl, 0.3), nl, 1 / Math.pow(nl, 0.3));
+    this.neckMesh.position.y = -0.025 + 0.045 * nl;
+    this.head.position.y = 0.17 + 0.09 * (nl - 1);
     this.chest.scale.y = 1 + state.breath * 0.012;
     const eyes = Math.max(0.05, face.eyes);
     this.eyeL.scale.y = this.eyeR.scale.y = this.eyeBase * eyes;
