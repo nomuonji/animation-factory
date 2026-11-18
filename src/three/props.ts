@@ -823,6 +823,57 @@ export const PROPS: Record<string, PropBuilder> = {
     place(0);
     return { object: g, setParam(k, v) { if (k === "amount") { amount = v; m.opacity = 0.42 * amount; } }, animate(t) { place(t); } };
   },
+  /** 注文メモ (order slip) lying flat on a counter, readable from the +Z side. param n = how many items are written (floor; 0..5): 1 room, 2 ウーロン茶 ？, 3 コーラ 1, 4 メロンソーダ 1, 5 人数, and from 6 the ？ is corrected to 3. params.lines overrides the five texts. */
+  "order-slip"(p) {
+    const W = 0.2, H = 0.3;
+    const lines = Array.isArray(p.lines) ? (p.lines as unknown[]).map(String) : ["305号室", "ウーロン茶 ？", "コーラ 1", "メロンソーダ 1", "5名様"];
+    const fixed = str(p.fixed, "ウーロン茶 3");
+    const c = document.createElement("canvas"); c.width = 256; c.height = 384;
+    const ctx = c.getContext("2d")!;
+    const tex = new THREE.CanvasTexture(c); tex.colorSpace = THREE.SRGBColorSpace; tex.anisotropy = 4;
+    let shown = -1;
+    const draw = (n: number) => {
+      const k = Math.floor(n + 1e-6);
+      if (k === shown) return;
+      shown = k;
+      ctx.fillStyle = "#fbf8ee"; ctx.fillRect(0, 0, 256, 384);
+      ctx.fillStyle = "#d9433a"; ctx.fillRect(0, 0, 256, 44);
+      ctx.fillStyle = "#fff"; ctx.font = `bold 28px ${JP_FONT}`; ctx.textAlign = "center"; ctx.textBaseline = "middle"; ctx.fillText("ご注文メモ", 128, 24);
+      ctx.textAlign = "left"; ctx.fillStyle = "#222"; ctx.font = `bold 34px ${JP_FONT}`;
+      lines.forEach((t, i) => {
+        if (i >= Math.min(k, lines.length)) return;
+        const y = 92 + i * 56;
+        const text = i === 1 && k >= 6 ? fixed : t;
+        ctx.fillStyle = i === 1 && k >= 6 ? "#c0261c" : "#222";
+        ctx.fillText(text, 18, y);
+        ctx.strokeStyle = "#b9b3a3"; ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(14, y + 22); ctx.lineTo(242, y + 22); ctx.stroke();
+      });
+      tex.needsUpdate = true;
+    };
+    draw(num(p.n, 0));
+    const g = new THREE.Group();
+    const sheet = new THREE.Mesh(new THREE.BoxGeometry(W, 0.004, H), [flat("#e8e2d0"), flat("#e8e2d0"), new THREE.MeshBasicMaterial({ map: tex }), flat("#e8e2d0"), flat("#e8e2d0"), flat("#e8e2d0")]);
+    sheet.position.y = 0.002; sheet.receiveShadow = true; g.add(sheet);
+    return { object: g, setParam(k, v) { if (k === "n") draw(v); } };
+  },
+
+  /** お盆のドリンク (drink tray): round tray with five glasses (3 oolong, 1 cola, 1 melon soda). Pivot at the tray bottom. params.colors overrides glass colours. */
+  "drink-tray"(p) {
+    const g = new THREE.Group();
+    const tray = mesh(new THREE.CylinderGeometry(0.19, 0.19, 0.016, 28), toon("#3b3340"), 0.004); tray.position.y = 0.008; g.add(tray);
+    const rim = mesh(new THREE.TorusGeometry(0.19, 0.008, 6, 28), toon("#5a4f66"), false); rim.rotation.x = Math.PI / 2; rim.position.y = 0.016; g.add(rim);
+    const colors = Array.isArray(p.colors) ? (p.colors as unknown[]).map(String) : ["#8a5a22", "#8a5a22", "#8a5a22", "#2a1812", "#5fd36a"];
+    const spots: Array<[number, number]> = [[-0.08, -0.07], [0.08, -0.07], [0, 0.0], [-0.07, 0.085], [0.07, 0.085]];
+    colors.forEach((col, i) => {
+      const [x, z] = spots[i % spots.length]!;
+      const glassM = toon("#dfeff6", { transparent: true, opacity: 0.45 });
+      const gl = mesh(new THREE.CylinderGeometry(0.036, 0.03, 0.11, 18, 1, true), glassM, 0.002); (gl.material as THREE.Material).side = THREE.DoubleSide;
+      gl.position.set(x, 0.016 + 0.055, z); g.add(gl);
+      const liq = mesh(new THREE.CylinderGeometry(0.034, 0.029, 0.09, 18), toon(col), false); liq.position.set(x, 0.016 + 0.047, z); g.add(liq);
+      const st = mesh(new THREE.CylinderGeometry(0.003, 0.003, 0.14, 6), toon("#f0f0f0"), false); st.position.set(x + 0.012, 0.016 + 0.08, z); st.rotation.z = -0.15; g.add(st);
+    });
+    return { object: g };
+  },
 
   /**
    * 図書館の本(ハードカバー)。ピボットは底面の中心、表紙が +Y を向いて平置き。

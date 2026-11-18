@@ -536,6 +536,21 @@
           "floor": 0
         },
         "notes": "焼肉店のテーブル席（ロースター付きの木のテーブル・排気ダクト・両側ベンチ・壁のメニュー・提灯）。客は +Z 側(ry=π) と -Z 側(ry=0) のベンチに seated:true、通路は +X 側で店員はテーブルの +X 端に立つ。壁時計は prop wall-clock（奥の壁 x=-2.36, ry=π/2）"
+      },
+      "karaoke-reception": {
+        "cameras": [
+          "wide",
+          "counter-top",
+          "staff-cu",
+          "guest-cu",
+          "two-shot",
+          "side"
+        ],
+        "surfaces": {
+          "counter": 1.05,
+          "floor": 0
+        },
+        "notes": "カラオケ店の受付カウンター。カウンター天板1.05はz=0、店員は後ろz≈-0.55で+Zを向き、客は手前z≈0.6でry=π。ルームへの通路は+X側（客はx≈1.6で画面外）。カウンター上にマイクかご・電話・ベル、奥に部屋鍵ボード・料金案内・ネオン看板(params.logo, params.accent)。注文メモは prop order-slip、ドリンクは prop drink-tray"
       }
     },
     "props": {
@@ -676,6 +691,14 @@
       "grill-smoke": [
         "param:amount",
         "color"
+      ],
+      "order-slip": [
+        "param:n",
+        "lines[]",
+        "fixed"
+      ],
+      "drink-tray": [
+        "colors[]"
       ]
     },
     "character": {

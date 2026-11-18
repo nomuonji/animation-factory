@@ -1388,6 +1388,84 @@ export const SETS: Record<string, SetBuilder> = {
       }
     };
   },
+  /** カラオケ受付 (karaoke reception): counter z=0 (top 1.05), staff behind at z≈-0.55 facing +Z, guest in front at z≈0.6 (ry=π). Corridor to the rooms is off to +X. */
+  "karaoke-reception"(scene, p) {
+    scene.background = new THREE.Color("#3a2b57");
+    lights(scene, { key: 1.5 });
+    const grad = (toon("#fff") as THREE.MeshToonMaterial).gradientMap;
+    const neon = String(p.accent ?? "#ff4fa3");
+    const carpet = canvasTexture(512, 512, (g, w, h) => {
+      g.fillStyle = "#2f2447"; g.fillRect(0, 0, w, h);
+      g.fillStyle = "#4a3a70";
+      for (let i = 0; i < 5; i++) for (let j = 0; j < 5; j++) { const x = i * w / 5 + w / 10 + (j % 2) * 18, y = j * h / 5 + h / 10; g.beginPath(); for (let k = 0; k < 10; k++) { const r = k % 2 ? 7 : 16, a = k * Math.PI / 5 - Math.PI / 2; g.lineTo(x + Math.cos(a) * r, y + Math.sin(a) * r); } g.closePath(); g.fill(); }
+    });
+    carpet.wrapS = carpet.wrapT = THREE.RepeatWrapping; carpet.repeat.set(7, 7);
+    const floor = new THREE.Mesh(new THREE.PlaneGeometry(14, 14), new THREE.MeshToonMaterial({ map: carpet, gradientMap: grad }));
+    floor.rotation.x = -Math.PI / 2; floor.receiveShadow = true; scene.add(floor);
+    const wallC = String(p.wall ?? "#5a4287");
+    const back = mesh(new THREE.BoxGeometry(12, 3.2, 0.05), toon(wallC), false); back.position.set(0, 1.6, -1.45); scene.add(back);
+    const wallL = mesh(new THREE.BoxGeometry(0.05, 3.2, 6), toon(wallC), false); wallL.position.set(-4.0, 1.6, 1.4); scene.add(wallL);
+    const wallR = mesh(new THREE.BoxGeometry(0.05, 3.2, 6), toon(wallC), false); wallR.position.set(6.0, 1.6, 1.4); scene.add(wallR);
+    const stripe = mesh(new THREE.BoxGeometry(11.9, 0.1, 0.03), toon(neon, { emissive: neon }), false); stripe.position.set(0, 1.28, -1.42); scene.add(stripe);
+    const ceil = new THREE.Mesh(new THREE.PlaneGeometry(8, 8), flat("#2a2040")); ceil.rotation.x = Math.PI / 2; ceil.position.set(0, 3.1, 1.2); scene.add(ceil);
+    // counter: cream body, neon edge strip
+    const cTop = 1.05;
+    const body = mesh(new THREE.BoxGeometry(2.6, cTop - 0.05, 0.6), toon("#efe5cf"), 0.005); body.position.set(0, (cTop - 0.05) / 2, 0); scene.add(body);
+    const front = mesh(new THREE.BoxGeometry(2.3, 0.1, 0.012), toon(neon, { emissive: neon }), false); front.position.set(0, 0.55, 0.306); scene.add(front);
+    const slab = mesh(new THREE.BoxGeometry(2.72, 0.05, 0.7), toon("#3a2f4e"), 0.005); slab.position.set(0, cTop - 0.025, 0); scene.add(slab);
+    // microphone basket (staff hand out mics at the counter)
+    const basket = mesh(new THREE.CylinderGeometry(0.1, 0.085, 0.1, 16), toon("#d9d3c4"), 0.004); basket.position.set(-0.95, cTop + 0.05, 0.14); scene.add(basket);
+    for (let i = 0; i < 3; i++) {
+      const mic = new THREE.Group();
+      const handle = mesh(new THREE.CylinderGeometry(0.014, 0.012, 0.16, 10), toon("#2a2a30"), 0.002);
+      const head = mesh(new THREE.SphereGeometry(0.026, 12, 10), toon("#9a9aa6"), 0.002); head.position.y = 0.09;
+      mic.add(handle, head); mic.position.set(-0.95 + (i - 1) * 0.04, cTop + 0.14, 0.14 + (i % 2) * 0.02); mic.rotation.z = (i - 1) * 0.28; scene.add(mic);
+    }
+    // phone and bell on the staff side
+    const phone = mesh(new THREE.BoxGeometry(0.16, 0.05, 0.2), toon("#e9e6df"), 0.003); phone.position.set(-0.85, cTop + 0.025, -0.1); scene.add(phone);
+    const handset = mesh(new THREE.BoxGeometry(0.05, 0.035, 0.18), toon("#d2cfc8"), 0.002); handset.position.set(-0.85, cTop + 0.065, -0.1); scene.add(handset);
+    const bell = mesh(new THREE.SphereGeometry(0.05, 14, 8, 0, Math.PI * 2, 0, Math.PI / 2), toon("#c9a24a"), 0.003); bell.position.set(0.62, cTop, 0.12); scene.add(bell);
+    // back wall: room-key board, price board, neon sign
+    const board = canvasTexture(512, 300, (g, w, h) => {
+      g.fillStyle = "#241a38"; g.fillRect(0, 0, w, h);
+      const cols = 6, rows = 3, cw = w / cols, ch = h / rows;
+      for (let r = 0; r < rows; r++) for (let c = 0; c < cols; c++) {
+        g.fillStyle = "#3a2a5a"; g.fillRect(c * cw + 4, r * ch + 4, cw - 8, ch - 8);
+        g.fillStyle = "#f2c35c"; g.fillRect(c * cw + cw / 2 - 3, r * ch + 12, 6, 24);
+        g.fillStyle = "#efe7d6"; g.font = `bold 26px ${JP_FONT}`; g.textAlign = "center"; g.fillText(String(301 + r * 10 + c), c * cw + cw / 2, r * ch + ch - 14);
+      }
+    });
+    const keyBoard = new THREE.Mesh(new THREE.PlaneGeometry(1.5, 0.88), new THREE.MeshBasicMaterial({ map: board })); keyBoard.position.set(0.5, 1.95, -1.4); scene.add(keyBoard);
+    const signTex = canvasTexture(512, 128, (g, w, h) => {
+      g.fillStyle = "#1b1330"; g.fillRect(0, 0, w, h); g.strokeStyle = neon; g.lineWidth = 8; g.strokeRect(8, 8, w - 16, h - 16);
+      g.fillStyle = "#ffe9f4"; g.shadowColor = neon; g.shadowBlur = 18; g.font = `bold 62px ${JP_FONT}`; g.textAlign = "center"; g.textBaseline = "middle"; g.fillText(String(p.logo ?? "カラオケ ひびき"), w / 2, h / 2 + 2);
+    });
+    const sign = new THREE.Mesh(new THREE.PlaneGeometry(1.2, 0.3), new THREE.MeshBasicMaterial({ map: signTex })); sign.position.set(-1.0, 2.55, -1.4); scene.add(sign);
+    const price = canvasTexture(256, 256, (g, w, h) => {
+      g.fillStyle = "#fffaf0"; g.fillRect(0, 0, w, h); g.fillStyle = neon; g.fillRect(0, 0, w, 40);
+      g.fillStyle = "#fff"; g.font = `bold 28px ${JP_FONT}`; g.textAlign = "center"; g.fillText("ご利用案内", w / 2, 30);
+      g.fillStyle = "#333"; g.textAlign = "left"; g.font = `bold 26px ${JP_FONT}`;
+      ["・ドリンクバー付き", "・10分前にお電話", "・延長は30分ごと", "・マイクは受付で"].forEach((t, i) => g.fillText(t, 14, 82 + i * 42));
+    });
+    const pBoard = new THREE.Mesh(new THREE.PlaneGeometry(0.6, 0.6), new THREE.MeshBasicMaterial({ map: price })); pBoard.position.set(-1.5, 1.75, -1.4); scene.add(pBoard);
+    const poster = canvasTexture(256, 360, (g, w, h) => {
+      g.fillStyle = "#1b1330"; g.fillRect(0, 0, w, h); g.fillStyle = neon; g.fillRect(0, 0, w, 56);
+      g.fillStyle = "#fff"; g.font = `bold 34px ${JP_FONT}`; g.textAlign = "center"; g.textBaseline = "middle"; g.fillText("ドリンクバー", w / 2, 30);
+      g.fillStyle = "#ffe9f4"; g.font = `bold 30px ${JP_FONT}`; g.fillText("ウーロン茶", w / 2, 120); g.fillText("コーラ", w / 2, 180); g.fillText("メロンソーダ", w / 2, 240); g.fillText("ほか多数", w / 2, 300);
+    });
+    const pstL = new THREE.Mesh(new THREE.PlaneGeometry(0.7, 0.98), new THREE.MeshBasicMaterial({ map: poster })); pstL.position.set(-3.95, 1.75, 0.2); pstL.rotation.y = Math.PI / 2; scene.add(pstL);
+    return {
+      surfaces: { counter: cTop, floor: 0 },
+      cameras: {
+        wide: { pos: [0.6, 1.75, 4.1], target: [0.1, 1.25, 0], fov: 42 },
+        "counter-top": { pos: [0.12, 2.7, 0.85], target: [0.12, 1.05, -0.05], fov: 30 },
+        "staff-cu": { pos: [0.7, 1.6, 1.15], target: [0.04, 1.58, -0.55], fov: 26 },
+        "guest-cu": { pos: [-0.75, 1.6, -0.9], target: [0.14, 1.55, 0.62], fov: 28 },
+        "two-shot": { pos: [4.2, 1.5, 0.05], target: [0, 1.4, 0.05], fov: 41 },
+        side: { pos: [3.2, 1.4, 0.05], target: [0, 1.28, 0], fov: 30 }
+      }
+    };
+  },
 
   /**
    * 図書館の貸出・返却カウンター。カウンター天板 1.0 が z=0、職員は奥 z≈-0.55 で +Z 向き、
