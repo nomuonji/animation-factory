@@ -877,11 +877,11 @@
       },
       "do": [
         {
-          "at": "line+2.0",
+          "at": "line+3.6",
           "show": "stackp"
         },
         {
-          "at": "line+2.0",
+          "at": "line+3.6",
           "prop": "stackp",
           "to": {
             "y": 1.0
@@ -890,7 +890,7 @@
           "ease": "in"
         },
         {
-          "at": "line+2.25",
+          "at": "line+3.85",
           "sfx": "paper-thud"
         }
       ]
@@ -1060,21 +1060,21 @@
           "dur": 0.3
         },
         {
-          "at": "line+1.2",
+          "at": "line+1.7",
           "shot": "form-top"
         },
         {
-          "at": "line+0.9",
+          "at": "line+1.2",
           "pose": "clerk",
           "to": "stamp-up",
           "dur": 0.35
         },
         {
-          "at": "line+0.9",
+          "at": "line+1.2",
           "show": "hanko"
         },
         {
-          "at": "line+1.0",
+          "at": "line+1.3",
           "prop": "hanko",
           "to": {
             "y": 1.16
@@ -1082,14 +1082,14 @@
           "dur": 0.1
         },
         {
-          "at": "line+1.7",
+          "at": "line+2.15",
           "pose": "clerk",
           "to": "stamp-down",
           "dur": 0.12,
           "ease": "in"
         },
         {
-          "at": "line+1.7",
+          "at": "line+2.15",
           "prop": "hanko",
           "to": {
             "y": 1.012
@@ -1098,19 +1098,19 @@
           "ease": "in"
         },
         {
-          "at": "line+1.85",
+          "at": "line+2.3",
           "sfx": "stamp"
         },
         {
-          "at": "line+1.85",
+          "at": "line+2.3",
           "sfx": "payoff-hit"
         },
         {
-          "at": "line+1.85",
+          "at": "line+2.3",
           "music": "cut"
         },
         {
-          "at": "line+1.85",
+          "at": "line+2.3",
           "param": "form",
           "to": {
             "stamp": 1
@@ -1118,7 +1118,7 @@
           "dur": 0.05
         },
         {
-          "at": "line+2.1",
+          "at": "line+2.55",
           "prop": "hanko",
           "to": {
             "y": 1.16
@@ -1126,7 +1126,7 @@
           "dur": 0.2
         },
         {
-          "at": "line+2.3",
+          "at": "line+2.75",
           "hide": "hanko"
         },
         {
