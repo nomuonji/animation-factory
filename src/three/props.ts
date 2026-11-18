@@ -230,6 +230,117 @@ export const PROPS: Record<string, PropBuilder> = {
     return { object: group };
   },
 
+  /** 窓口の呼出表示（壁掛け）。param n = 呼び出し番号。params: window（窓口番号）。向きは +Z（ry 0）で客側から読める。 */
+  "ticket-display"(p) {
+    const w = num(p.w, 0.72), h = num(p.h, 0.3);
+    const tex = canvasTexture(512, Math.round(512 * h / w), () => {});
+    const g2 = (tex.image as HTMLCanvasElement).getContext("2d")!;
+    let cur = -1;
+    const draw = (n: number) => {
+      if (n === cur) return;
+      cur = n;
+      const cw = 512, ch = Math.round(512 * h / w);
+      g2.fillStyle = "#14171a"; g2.fillRect(0, 0, cw, ch);
+      g2.strokeStyle = "#4b535a"; g2.lineWidth = 8; g2.strokeRect(6, 6, cw - 12, ch - 12);
+      g2.fillStyle = "#e9ecee"; g2.font = `bold 34px ${JP_FONT}`; g2.textAlign = "left"; g2.textBaseline = "middle";
+      g2.fillText("お呼び出し番号", 26, 38);
+      g2.textAlign = "right"; g2.fillStyle = "#7ddc8a"; g2.fillText(`${str(p.window, "3")}番窓口`, cw - 26, 38);
+      g2.fillStyle = "#ff5a3c"; g2.font = `bold ${Math.round(ch * 0.58)}px ${JP_FONT}`; g2.textAlign = "center";
+      g2.fillText(String(Math.round(n)).padStart(3, "0"), cw / 2, ch * 0.64);
+      tex.needsUpdate = true;
+    };
+    draw(num(p.n, 42));
+    const g = new THREE.Group();
+    const board = mesh(new THREE.BoxGeometry(w, h, 0.05), toon("#23282c"), 0.004); board.position.y = h / 2; g.add(board);
+    const face = new THREE.Mesh(new THREE.PlaneGeometry(w * 0.98, h * 0.96), new THREE.MeshBasicMaterial({ map: tex }));
+    face.position.set(0, h / 2, 0.027); g.add(face);
+    return { object: g, setParam(k, v) { if (k === "n") draw(v); } };
+  },
+
+  /**
+   * 届出書（A4）。params: title, sample（記入例: 赤い「記入例」札つきで整った手書き）, hand（"neat" | "messy"）,
+   * name / birth / address / prev（記入内容）, stack（>0 で下に紙束の厚み[m]）。
+   * param fill 0..1 で記入欄が上から順に埋まる、stamp 0..1 で「受理」の朱印。向きは document と同じ（ry 0 で客側から読める）。
+   */
+  "todoke-form"(p) {
+    const w = num(p.w, 0.21), d = num(p.d, 0.297), stackH = num(p.stack, 0);
+    const tw = 512, th = Math.round(512 * d / w);
+    const canvas = document.createElement("canvas"); canvas.width = tw; canvas.height = th;
+    const g = canvas.getContext("2d")!;
+    const tex = new THREE.CanvasTexture(canvas); tex.colorSpace = THREE.SRGBColorSpace; tex.anisotropy = 8;
+    const sample = !!p.sample, messy = str(p.hand, "neat") === "messy";
+    const fields: Array<[string, string]> = [
+      ["氏名", str(p.name, "山田 太郎")], ["生年月日", str(p.birth, "昭和63年4月1日")],
+      ["新しい住所", str(p.address, "○○市△△町1-2-3")], ["前の住所", str(p.prev, "□□市◇◇町4-5-6")]
+    ];
+    let fillQ = -1, stampQ = -1;
+    const redraw = (fill: number, stamp: number) => {
+      const fq = Math.round(fill * 40) / 40, sq = Math.round(stamp * 10) / 10;
+      if (fq === fillQ && sq === stampQ) return;
+      fillQ = fq; stampQ = sq;
+      g.fillStyle = "#fbfaf6"; g.fillRect(0, 0, tw, th);
+      g.fillStyle = "#1b1b1f"; g.textAlign = "center"; g.textBaseline = "middle";
+      g.font = `bold ${Math.round(tw * 0.1)}px ${JP_FONT}`; g.fillText(str(p.title, "転入届"), tw / 2, th * 0.07);
+      g.fillRect(tw * 0.08, th * 0.115, tw * 0.84, 4);
+      const rowH = th * 0.17;
+      fields.forEach(([label, val], i) => {
+        const y0 = th * 0.16 + i * rowH;
+        g.strokeStyle = "#1b1b1f"; g.lineWidth = 3; g.strokeRect(tw * 0.08, y0, tw * 0.84, rowH * 0.86);
+        g.fillStyle = "#e7ece3"; g.fillRect(tw * 0.08 + 1.5, y0 + 1.5, tw * 0.22, rowH * 0.86 - 3);
+        g.fillStyle = "#1b1b1f"; g.font = `bold ${Math.round(tw * 0.04)}px ${JP_FONT}`; g.textAlign = "center"; g.fillText(label, tw * 0.19, y0 + rowH * 0.43);
+        const prog = Math.max(0, Math.min(1, fq * fields.length - i));
+        if (prog <= 0) return;
+        const chars = [...val]; const n = Math.ceil(chars.length * prog);
+        const fs = Math.round(tw * (i === 0 ? 0.085 : 0.056));
+        g.textAlign = "center"; g.textBaseline = "middle";
+        let x = tw * 0.34;
+        for (let k = 0; k < n; k++) {
+          const ch = chars[k]!;
+          const r = rand(i * 31 + k * 7 + 3);
+          g.save();
+          const size = messy ? fs * (0.8 + r * 0.45) : fs;
+          g.font = `${messy ? "" : "bold "}${Math.round(size)}px ${JP_FONT}`;
+          const adv = size * (/[0-9\-]/.test(ch) ? 0.6 : 1.02);
+          g.translate(x + adv / 2, y0 + rowH * 0.43 + (messy ? (rand(k + i * 13) - 0.5) * fs * 0.45 : 0));
+          if (messy) g.rotate((rand(i * 17 + k) - 0.5) * 0.7);
+          g.fillStyle = messy ? "#2a2a52" : "#1c2a6b";
+          g.fillText(ch, 0, 0);
+          if (messy && r > 0.72) { g.strokeStyle = "#2a2a52"; g.lineWidth = 3; g.beginPath(); g.moveTo(-size * 0.5, size * 0.2); g.lineTo(size * 0.5, -size * 0.25); g.stroke(); }
+          g.restore();
+          x += adv;
+        }
+      });
+      if (sample) {
+        g.save(); g.translate(tw * 0.78, th * 0.07); g.rotate(0.12);
+        g.strokeStyle = "#cf2a2a"; g.fillStyle = "#cf2a2a"; g.lineWidth = 6; g.strokeRect(-tw * 0.15, -th * 0.04, tw * 0.3, th * 0.08);
+        g.font = `bold ${Math.round(tw * 0.085)}px ${JP_FONT}`; g.textAlign = "center"; g.textBaseline = "middle"; g.fillText("記入例", 0, 2); g.restore();
+      }
+      if (stamp > 0) {
+        g.save(); g.globalAlpha = Math.min(1, stamp) * 0.9; g.strokeStyle = "#cf2a2a"; g.fillStyle = "#cf2a2a";
+        const cx = tw * 0.76, cy = th * 0.88, r = tw * 0.1; g.lineWidth = tw * 0.014; g.beginPath(); g.arc(cx, cy, r, 0, Math.PI * 2); g.stroke();
+        g.font = `bold ${Math.round(r * 0.9)}px ${JP_FONT}`; g.textAlign = "center"; g.textBaseline = "middle"; g.fillText("受理", cx, cy + 3); g.restore();
+      }
+      tex.needsUpdate = true;
+    };
+    redraw(sample ? 1 : num(p.fill, 0), 0);
+    const sheetMats = [flat("#efede6"), flat("#efede6"), new THREE.MeshToonMaterial({ map: tex, gradientMap: (toon("#fff") as THREE.MeshToonMaterial).gradientMap }), flat("#efede6"), flat("#efede6"), flat("#efede6")];
+    const group = new THREE.Group();
+    if (stackH > 0) {
+      const edge = canvasTexture(64, 256, (c, cw, ch) => {
+        c.fillStyle = "#f3f1ea"; c.fillRect(0, 0, cw, ch);
+        for (let y = 0; y < ch; y += 3) { c.fillStyle = rand(y) > 0.5 ? "#dcd8cd" : "#e8e5dc"; c.fillRect(0, y, cw, 1); }
+      });
+      edge.wrapS = edge.wrapT = THREE.RepeatWrapping;
+      const em = new THREE.MeshToonMaterial({ map: edge, gradientMap: (toon("#fff") as THREE.MeshToonMaterial).gradientMap });
+      const stackBody = mesh(new THREE.BoxGeometry(w, stackH, d), [em, em, flat("#f3f1ea"), flat("#f3f1ea"), em, em] as unknown as THREE.Material, 0.003);
+      stackBody.position.y = stackH / 2; group.add(stackBody);
+    }
+    const sheet = new THREE.Mesh(new THREE.BoxGeometry(w, 0.0015, d), sheetMats);
+    sheet.position.y = stackH + 0.00075; sheet.receiveShadow = true; sheet.castShadow = true;
+    group.add(sheet);
+    return { object: group, setParam(k, v) { if (k === "fill") redraw(v, stampQ < 0 ? 0 : stampQ); if (k === "stamp") redraw(fillQ < 0 ? 0 : fillQ, v); } };
+  },
+
   document(p) { return paperSheet(p); },
 
   binder(p) {
@@ -786,5 +897,117 @@ export const PROPS: Record<string, PropBuilder> = {
     c.position.y = 0.00085 * sz; g.add(c);
     const ring = mesh(new THREE.TorusGeometry(0.0095 * sz, 0.0006 * sz, 4, 22), toon("#aeb3b8"), false); ring.rotation.x = Math.PI / 2; ring.position.y = 0.0018 * sz; g.add(ring);
     return { object: g };
+  },
+
+  /** 注文メモ (order slip) lying flat on a counter, readable from the +Z side. param n = how many items are written (floor; 0..5): 1 room, 2 ウーロン茶 ？, 3 コーラ 1, 4 メロンソーダ 1, 5 人数, and from 6 the ？ is corrected to 3. params.lines overrides the five texts. */
+  "order-slip"(p) {
+    const W = 0.2, H = 0.3;
+    const lines = Array.isArray(p.lines) ? (p.lines as unknown[]).map(String) : ["305号室", "ウーロン茶 ？", "コーラ 1", "メロンソーダ 1", "5名様"];
+    const fixed = str(p.fixed, "ウーロン茶 3");
+    const c = document.createElement("canvas"); c.width = 256; c.height = 384;
+    const ctx = c.getContext("2d")!;
+    const tex = new THREE.CanvasTexture(c); tex.colorSpace = THREE.SRGBColorSpace; tex.anisotropy = 4;
+    let shown = -1;
+    const draw = (n: number) => {
+      const k = Math.floor(n + 1e-6);
+      if (k === shown) return;
+      shown = k;
+      ctx.fillStyle = "#fbf8ee"; ctx.fillRect(0, 0, 256, 384);
+      ctx.fillStyle = "#d9433a"; ctx.fillRect(0, 0, 256, 44);
+      ctx.fillStyle = "#fff"; ctx.font = `bold 28px ${JP_FONT}`; ctx.textAlign = "center"; ctx.textBaseline = "middle"; ctx.fillText("ご注文メモ", 128, 24);
+      ctx.textAlign = "left"; ctx.fillStyle = "#222"; ctx.font = `bold 34px ${JP_FONT}`;
+      lines.forEach((t, i) => {
+        if (i >= Math.min(k, lines.length)) return;
+        const y = 92 + i * 56;
+        const text = i === 1 && k >= 6 ? fixed : t;
+        ctx.fillStyle = i === 1 && k >= 6 ? "#c0261c" : "#222";
+        ctx.fillText(text, 18, y);
+        ctx.strokeStyle = "#b9b3a3"; ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(14, y + 22); ctx.lineTo(242, y + 22); ctx.stroke();
+      });
+      tex.needsUpdate = true;
+    };
+    draw(num(p.n, 0));
+    const g = new THREE.Group();
+    const sheet = new THREE.Mesh(new THREE.BoxGeometry(W, 0.004, H), [flat("#e8e2d0"), flat("#e8e2d0"), new THREE.MeshBasicMaterial({ map: tex }), flat("#e8e2d0"), flat("#e8e2d0"), flat("#e8e2d0")]);
+    sheet.position.y = 0.002; sheet.receiveShadow = true; g.add(sheet);
+    return { object: g, setParam(k, v) { if (k === "n") draw(v); } };
+  },
+
+  /** お盆のドリンク (drink tray): round tray with five glasses (3 oolong, 1 cola, 1 melon soda). Pivot at the tray bottom. params.colors overrides glass colours. */
+  "drink-tray"(p) {
+    const g = new THREE.Group();
+    const tray = mesh(new THREE.CylinderGeometry(0.19, 0.19, 0.016, 28), toon("#3b3340"), 0.004); tray.position.y = 0.008; g.add(tray);
+    const rim = mesh(new THREE.TorusGeometry(0.19, 0.008, 6, 28), toon("#5a4f66"), false); rim.rotation.x = Math.PI / 2; rim.position.y = 0.016; g.add(rim);
+    const colors = Array.isArray(p.colors) ? (p.colors as unknown[]).map(String) : ["#8a5a22", "#8a5a22", "#8a5a22", "#2a1812", "#5fd36a"];
+    const spots: Array<[number, number]> = [[-0.08, -0.07], [0.08, -0.07], [0, 0.0], [-0.07, 0.085], [0.07, 0.085]];
+    colors.forEach((col, i) => {
+      const [x, z] = spots[i % spots.length]!;
+      const glassM = toon("#dfeff6", { transparent: true, opacity: 0.45 });
+      const gl = mesh(new THREE.CylinderGeometry(0.036, 0.03, 0.11, 18, 1, true), glassM, 0.002); (gl.material as THREE.Material).side = THREE.DoubleSide;
+      gl.position.set(x, 0.016 + 0.055, z); g.add(gl);
+      const liq = mesh(new THREE.CylinderGeometry(0.034, 0.029, 0.09, 18), toon(col), false); liq.position.set(x, 0.016 + 0.047, z); g.add(liq);
+      const st = mesh(new THREE.CylinderGeometry(0.003, 0.003, 0.14, 6), toon("#f0f0f0"), false); st.position.set(x + 0.012, 0.016 + 0.08, z); st.rotation.z = -0.15; g.add(st);
+    });
+    return { object: g };
+  },
+
+  /**
+   * 図書館の本(ハードカバー)。ピボットは底面の中心、表紙が +Y を向いて平置き。
+   * params: color(表紙), title(表紙の題字、縦に2行まで), thick(厚み m)。
+   */
+  "library-book"(p) {
+    const g = new THREE.Group();
+    const w = 0.15, d = 0.21, t = num(p.thick, 0.035);
+    const cover = str(p.color, "#2f4f6b");
+    const pages = mesh(new THREE.BoxGeometry(w - 0.01, t - 0.012, d - 0.01), toon("#f3ecd8"), 0.002); pages.position.set(0.004, t / 2, 0); g.add(pages);
+    const bot = mesh(new THREE.BoxGeometry(w, 0.006, d), toon(cover), 0.002); bot.position.y = 0.003; g.add(bot);
+    const top = mesh(new THREE.BoxGeometry(w, 0.006, d), toon(cover), 0.002); top.position.y = t - 0.003; g.add(top);
+    const spine = mesh(new THREE.BoxGeometry(0.008, t, d), toon(cover), 0.002); spine.position.set(-w / 2 + 0.004, t / 2, 0); g.add(spine);
+    const title = str(p.title, "");
+    if (title) {
+      const tex = canvasTexture(150, 210, (c, cw, ch) => {
+        c.fillStyle = "rgba(255,255,255,0.0)"; c.clearRect(0, 0, cw, ch);
+        c.fillStyle = "#f6efd8"; c.fillRect(14, 30, cw - 28, 96);
+        c.fillStyle = "#222"; c.font = `bold 30px ${JP_FONT}`; c.textAlign = "center"; c.textBaseline = "middle";
+        title.split("\n").forEach((ln, i, a) => c.fillText(ln, cw / 2, 78 + (i - (a.length - 1) / 2) * 36));
+      });
+      const lab = new THREE.Mesh(new THREE.PlaneGeometry(w, d), new THREE.MeshBasicMaterial({ map: tex, transparent: true }));
+      lab.rotation.x = -Math.PI / 2; lab.position.y = t + 0.0005; g.add(lab);
+    }
+    return { object: g };
+  },
+  /**
+   * セルフレジ（無人精算機）。ピボットは床の中央、画面は +Z 向き。高さ約1.12。
+   * param alert 0..1 で画面が赤い「係員をお呼びします」表示に変わり、上のランプが点く。
+   */
+  "self-register"(p) {
+    const g = new THREE.Group();
+    const body = mesh(new THREE.BoxGeometry(0.46, 0.8, 0.36), toon(str(p.color, "#e9e6df")), 0.004); body.position.y = 0.4; g.add(body);
+    const base = mesh(new THREE.BoxGeometry(0.5, 0.06, 0.4), toon("#3a3d44"), 0.004); base.position.y = 0.03; g.add(base);
+    const shelf = mesh(new THREE.BoxGeometry(0.44, 0.03, 0.3), toon("#c9ccd1"), 0.004); shelf.position.set(0, 0.82, 0.24); g.add(shelf);
+    const head = mesh(new THREE.BoxGeometry(0.46, 0.3, 0.12), toon("#2c2e33"), 0.004); head.position.set(0, 0.97, 0.02); head.rotation.x = -0.28; g.add(head);
+    const c = document.createElement("canvas"); c.width = 320; c.height = 200;
+    const ctx = c.getContext("2d")!;
+    const tex = new THREE.CanvasTexture(c); tex.colorSpace = THREE.SRGBColorSpace;
+    let shown = -1;
+    const draw = (a: number) => {
+      const on = a > 0.5 ? 1 : 0;
+      if (on === shown) return;
+      shown = on;
+      ctx.fillStyle = on ? "#b3261e" : "#14324a"; ctx.fillRect(0, 0, 320, 200);
+      ctx.fillStyle = "#ffffff"; ctx.textAlign = "center"; ctx.textBaseline = "middle";
+      ctx.font = `bold ${on ? 46 : 40}px ${JP_FONT}`;
+      if (on) { ctx.fillText("係員を", 160, 70); ctx.fillText("お呼びします", 160, 132); }
+      else { ctx.fillText("商品を", 160, 70); ctx.fillText("スキャン", 160, 130); }
+      tex.needsUpdate = true;
+    };
+    draw(num(p.alert, 0));
+    const scr = new THREE.Mesh(new THREE.PlaneGeometry(0.4, 0.25), new THREE.MeshBasicMaterial({ map: tex }));
+    scr.position.set(0, 0.97, 0.083); scr.rotation.x = -0.28; g.add(scr);
+    const lampMat = new THREE.MeshBasicMaterial({ color: new THREE.Color("#5a1a16") });
+    const lamp = new THREE.Mesh(new THREE.SphereGeometry(0.045, 14, 10), lampMat); lamp.position.set(0, 1.17, 0.0); g.add(lamp);
+    const setLamp = (a: number) => lampMat.color.set(a > 0.5 ? "#ff3b2e" : "#5a1a16");
+    setLamp(num(p.alert, 0));
+    return { object: g, setParam(k, v) { if (k === "alert") { draw(v); setLamp(v); } } };
   }
 };
