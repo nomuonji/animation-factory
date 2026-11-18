@@ -499,6 +499,24 @@
           "floor": 0
         },
         "notes": "焼肉店のテーブル席（ロースター付きの木のテーブル・排気ダクト・両側ベンチ・壁のメニュー・提灯）。客は +Z 側(ry=π) と -Z 側(ry=0) のベンチに seated:true、通路は +X 側で店員はテーブルの +X 端に立つ。壁時計は prop wall-clock（奥の壁 x=-2.36, ry=π/2）"
+      },
+      "coin-laundry": {
+        "cameras": [
+          "wide",
+          "dryer-cu",
+          "table-top",
+          "a-cu",
+          "b-cu",
+          "drum-cu",
+          "two-shot",
+          "side"
+        ],
+        "surfaces": {
+          "table": 0.9,
+          "bench": 0.45,
+          "floor": 0
+        },
+        "notes": "コインランドリー。左の壁に乾燥機・洗濯機が並び、featured の乾燥機は prop coin-dryer（x≈-1.985, ry=π/2 で +X 向き）。折りたたみ台（天板0.9, x -0.55..0.25 付近）、奥に長椅子・両替機・料金ポスター、右に窓。客は乾燥機の前 x≈-1.0 に立つ（機械に向くなら ry=-π/2、台に向くなら ry=π/2）"
       }
     },
     "props": {
@@ -617,6 +635,19 @@
       "grill-smoke": [
         "param:amount",
         "color"
+      ],
+      "coin-dryer": [
+        "param:open",
+        "param:min",
+        "accent"
+      ],
+      "sweater": [
+        "color",
+        "rib",
+        "tf.s"
+      ],
+      "coin-100": [
+        "size"
       ]
     },
     "character": {
