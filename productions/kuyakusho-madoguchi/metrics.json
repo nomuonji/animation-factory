@@ -1,0 +1,12 @@
+{
+  "production": "kuyakusho-madoguchi",
+  "youtubeId": "_jCPM2QM9cA",
+  "postedAt": "2026-11-19",
+  "durationSec": 41.1,
+  "variant": "baseline",
+  "note": "予約投稿（公開は postedAt 18:00 JST）",
+  "windowDays": 3,
+  "fetched": false,
+  "metrics": null,
+  "howToFetch": "video-publisher の YouTube Metrics: mode=video, concept=おもしろ, videos=\"_jCPM2QM9cA:2026-11-19:41\"（公開から3日たってから）"
+}

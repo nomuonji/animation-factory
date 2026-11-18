@@ -35,6 +35,13 @@ variant=`baseline` の既存コント。数字は未取得（下の「状況」�
 | kyoryu-gym | WbiVJ9s1-vg | 2026-11-16 | 48.1 | baseline |
 | sento-akami | Uw-Y2GPvS5Q | 2026-11-17 | 39.7 | baseline |
 | yakiniku-matte | nfW4hXB9WkM | 2026-11-18 | 45.7 | baseline |
+| kuyakusho-madoguchi | _jCPM2QM9cA | 2026-11-19 | 41.1 | baseline |
+| toshokan-kashidashi | TDYNsKZFzN0 | 2026-11-20 | 43.9 | baseline |
+| konbini-yakan | uAlCWf3hvgM | 2026-11-21 | 44.8 | baseline |
+| densha-seki | mEHyrO3GFCg | 2026-11-22 | 41.5 | baseline |
+| karaoke-uketsuke | gNbku9lR6eA | 2026-11-23 | 44.9 | baseline |
+| coin-laundry-sentaku | SBY9KqDICCM | 2026-11-24 | 40.3 | baseline |
+| genkan-takuhai | GTXQ7cRJSqk | 2026-11-25 | 43.9 | baseline |
 
 ## いま走っている実験
 
@@ -104,3 +111,4 @@ variant=`baseline` の既存コント。数字は未取得（下の「状況」�
 - 2026-11-16: akabeko-famiresu の数字を取得（再生44）。kyoryu-gym (WbiVJ9s1-vg, 48.1秒) を追加（variant=baseline）。実験は未開始のまま（判断が要る条件: 3本そろった判定がまだ無い）。
 - 2026-11-17: hotel-niyari-furonto の数字を取得（途中経過、判定なし）。sento-akami (Uw-Y2GPvS5Q, 39.7秒) を追加（variant=baseline）。実験は未開始のまま。
 - 2026-11-18: itsumono-hatsu の数字を取得（途中経過、判定なし）。yakiniku-matte を追加（variant=baseline、焼肉店・「待って／よし」を犬が守り抜く）。実験は未開始のまま。
+- 2026-11-18: 7本を予約投稿（11/19〜11/25 毎日18:00 JST、YouTube=非公開+公開予約／TikTok=Buffer customScheduled）。全て variant=baseline。各動画は公開から3日後に数字を取る。
