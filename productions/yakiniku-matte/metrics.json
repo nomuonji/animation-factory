@@ -1,0 +1,12 @@
+{
+  "production": "yakiniku-matte",
+  "youtubeId": "nfW4hXB9WkM",
+  "postedAt": "2026-11-18",
+  "durationSec": 45.7,
+  "variant": "baseline",
+  "note": "",
+  "windowDays": 3,
+  "fetched": false,
+  "metrics": null,
+  "howToFetch": "video-publisher の YouTube Metrics: mode=video, concept=おもしろ, videos=\"nfW4hXB9WkM:2026-11-18:46\"（公開から3日たってから）"
+}

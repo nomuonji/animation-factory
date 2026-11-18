@@ -34,6 +34,7 @@ variant=`baseline` の既存コント。数字は未取得（下の「状況」�
 | kenon-shitsuon | uNomz8Qnp-U | 2026-11-15 | 45.1 | baseline |
 | kyoryu-gym | WbiVJ9s1-vg | 2026-11-16 | 48.1 | baseline |
 | sento-akami | Uw-Y2GPvS5Q | 2026-11-17 | 39.7 | baseline |
+| yakiniku-matte | nfW4hXB9WkM | 2026-11-18 | 45.7 | baseline |
 
 ## いま走っている実験
 
@@ -43,7 +44,7 @@ variant=`baseline` の既存コント。数字は未取得（下の「状況」�
 
 - 実験は走っていない（変更なし）。itsumono-hatsu (aObbaNGce-A, 11-14) の数字を取得（窓 11-14〜11-16）: 再生916・平均視聴43.8秒中29秒（66.1%）・登録者増1・高評価4・Shorts フィード879。維持率は3秒117.6%・5秒111.6%・10秒79.8%・20秒62.9%・最後46.8%。**途中経過**: 再生数は取得済み baseline の中で多い側だが、題材・公開時間・配信の当たり外れと切り分けられず、判定は出さない。
 - kenon-shitsuon (11-15)・kyoryu-gym (11-16)・sento-akami (11-17) は公開から3日たたず未取得。
-- 本日の yakiniku-matte は variant=baseline（約41秒）。
+- 本日の yakiniku-matte (nfW4hXB9WkM) は variant=baseline（45.7秒）。
 
 ## 状況（2026-11-17）
 
