@@ -1,0 +1,1141 @@
+{
+  "meta": {
+    "id": "karaoke-uketsuke",
+    "title": "カラオケの受付に何度も戻ってくる人",
+    "fps": 30,
+    "width": 1080,
+    "height": 1920,
+    "variant": "baseline"
+  },
+  "design": {
+    "format": "escalation-ladder",
+    "title": "カラオケの受付に何度も戻ってくる人",
+    "titleAlternatives": [
+      "注文を忘れるたびにカラオケの受付へ戻る人",
+      "何号室か聞きに来るのが五回目のカラオケ客"
+    ],
+    "titlePattern": "too-much",
+    "titleOnScreen": "card",
+    "titleScreenText": "カラオケの受付に\n何度も戻ってくる人",
+    "hook": {
+      "type": "line-first",
+      "firstFrame": "カラオケの受付カウンター。客が店員に『305号室のドリンクをお願いします』と言いかけて、注文を思い出せずに首をかしげている",
+      "overlay": "ウーロン茶と……あれ"
+    },
+    "rule": "客は注文の断片しか覚えておらず、思い出した分だけ受付に持ってきては、残りを聞きに部屋へ戻る",
+    "escalations": [
+      "二度目はコーラとメロンソーダを持ってくるが人数を忘れる",
+      "三度目は人数を持ってくるが部屋番号を忘れる",
+      "四度目は何も持たず、何しに来たかを忘れている"
+    ],
+    "turn": "何も覚えていない客が、手ぶらで受付に戻る",
+    "payoff": "店員が書き溜めた断片から、人数−他の注文でウーロン茶の数まで算出し、盆に載せて出す",
+    "button": "客が盆を前に、また『何号室でしたっけ』と聞き、店員が一緒に運ぶ",
+    "loop": false,
+    "reaction": "laugh",
+    "audience": "カラオケで『ドリンク頼んでくる』と言って何を頼むか忘れたことがある人",
+    "reality": {
+      "place": "カラオケ店の受付カウンター",
+      "normalEvent": "部屋の客が飲み物を頼みに受付へ来て、店員が注文メモに書き取る。人数を聞き返すこともある",
+      "onlyBreak": "客が一度に注文を持ってこられず、思い出した分だけ受付に来ては戻ることを繰り返す"
+    },
+    "payoffMechanism": "fragments-assembled-by-the-listener",
+    "ideation": {
+      "gateVersion": 2,
+      "method": "creative-thinking (My Portal chat Skill) — 無人の並列実行。選定は実行指示による委任",
+      "candidates": 18,
+      "rejected": [
+        "C05: 友人が別々に同じ注文をするだけで、段ごとの新情報がない",
+        "C13: 定員の字義どおり適用は既存のescape-route-also-procedureに近い",
+        "C12: 何にでもうなずく客は赤べこの既存作と重なる",
+        "C02: 自分の名前まで忘れるのは飛躍が大きく、酔客の設定を足さないと成立しない"
+      ],
+      "corpus": {
+        "dataset": "radichichi",
+        "datasetVersion": "v1",
+        "retrievedAt": "2026-11-18T05:20:00Z",
+        "queryLog": [
+          {
+            "query": "店員",
+            "resultChunkIds": [
+              "radichichi_1755068597_009",
+              "radichichi_1755068597_008",
+              "radichichi_1755068597_006",
+              "radichichi_1755068597_005"
+            ]
+          },
+          {
+            "query": "何回も",
+            "resultChunkIds": [
+              "radichichi_1755068597_008"
+            ]
+          }
+        ],
+        "sourceChunks": [
+          {
+            "id": "radichichi_1755068597_005",
+            "dataset": "radichichi",
+            "retrievalTier": "creative",
+            "role": "ogiri_reference"
+          },
+          {
+            "id": "radichichi_1755068597_006",
+            "dataset": "radichichi",
+            "retrievalTier": "creative",
+            "role": "ogiri_reference"
+          },
+          {
+            "id": "radichichi_1755068597_008",
+            "dataset": "radichichi",
+            "retrievalTier": "creative",
+            "role": "ogiri_reference"
+          },
+          {
+            "id": "radichichi_1755068597_009",
+            "dataset": "radichichi",
+            "retrievalTier": "creative",
+            "role": "ogiri_reference"
+          }
+        ],
+        "sourceChunkIds": [
+          "radichichi_1755068597_005",
+          "radichichi_1755068597_006",
+          "radichichi_1755068597_008",
+          "radichichi_1755068597_009"
+        ],
+        "sourceExampleIds": [
+          "radichichi-360",
+          "radichichi-472",
+          "radichichi-476",
+          "radichichi-598",
+          "radichichi-619",
+          "radichichi-621",
+          "radichichi-623",
+          "radichichi-626",
+          "radichichi-636"
+        ]
+      },
+      "mechanisms": [
+        {
+          "id": "m-quiet-accumulation",
+          "sourceExampleIds": [
+            "radichichi-636",
+            "radichichi-621"
+          ],
+          "abstractOperation": "定型業務を担う側が、客に見えない所で小さな手当てを積み重ねていて、その蓄積が後で効いてくる",
+          "transfer": "受付係が注文の断片を黙って書き溜め、最後に全体として差し出す"
+        },
+        {
+          "id": "m-return-to-start",
+          "sourceExampleIds": [
+            "radichichi-626",
+            "radichichi-619"
+          ],
+          "abstractOperation": "長い手順を経ても、元の位置に戻ってくる往復の構造",
+          "transfer": "客が受付と部屋を往復し、そのたびに受付へ戻ってくる"
+        },
+        {
+          "id": "m-routine-confirmation",
+          "sourceExampleIds": [
+            "radichichi-623",
+            "radichichi-621"
+          ],
+          "abstractOperation": "定型の確認作業が繰り返され、繰り返しの中で意味が変わる",
+          "transfer": "受付の復唱と確認が、回を重ねるごとに注文の組み立てになる"
+        },
+        {
+          "id": "m-late-realization",
+          "sourceExampleIds": [
+            "radichichi-598"
+          ],
+          "abstractOperation": "手順が進んだ後半になって、当事者が前提を初めて理解する",
+          "transfer": "客が四度目に『何しに来たか』という前提そのものを忘れていると気づく"
+        },
+        {
+          "id": "m-mundane-detail",
+          "sourceExampleIds": [
+            "radichichi-476",
+            "radichichi-472",
+            "radichichi-360"
+          ],
+          "abstractOperation": "場所の細部（店の仕組み・人の振る舞い）を正確になぞり、一箇所だけずらす",
+          "transfer": "カラオケ受付の注文メモ・部屋番号・マイクかごを現実どおりに再現する"
+        }
+      ],
+      "candidateLog": [
+        {
+          "id": "C01",
+          "mechanism": "m-quiet-accumulation",
+          "mechanismFamily": "fragments-assembled-by-listener",
+          "causalCore": "話し手は断片しか持ってこられず、聞く側が黙って断片を書き溜め、最後に話し手が忘れた全体を断片同士の足し引きで組み立てて返す",
+          "concept": "ドリンクを頼みに来た客が、ウーロン茶・コーラ・メロンソーダ・人数と断片ずつ忘れては受付に戻り、店員が控えを繋いで全体を出す",
+          "status": "selected",
+          "reason": "受付で実際に書くご注文メモだけで成立し、新設定がない。断片が毎回画面に出て、回収は人数−他の注文という算数なので前提から導ける"
+        },
+        {
+          "id": "C02",
+          "mechanism": "m-return-to-start",
+          "mechanismFamily": "record-outknows-person",
+          "causalCore": "本人が忘れていく事柄を、記録のほうが全部持っていて、本人より先に答える",
+          "concept": "部屋番号→連れの名前→自分の名前と忘れる客に、受付が予約票から答える",
+          "status": "rejected",
+          "reason": "C01と同じく店員が復元役で、最後の「自分の名前」は笑いが飛躍しすぎ。酔客の設定が要る"
+        },
+        {
+          "id": "C03",
+          "mechanism": "m-routine-confirmation",
+          "mechanismFamily": "degrading-channel",
+          "causalCore": "同じ依頼を繰り返すたびに依頼する側の伝達手段が劣化し、受け手が同じ手順で受け続ける",
+          "concept": "延長のため何度も戻る客の声がかれていき、最後は指だけで延長を伝える",
+          "status": "shortlisted",
+          "reason": "店員の同じ応対が見どころだが、最後の二段目が指の本数で止まり、回収が弱い"
+        },
+        {
+          "id": "C04",
+          "mechanism": "m-return-to-start",
+          "mechanismFamily": "accumulating-arrivals",
+          "causalCore": "同じ一文を言う人数が増えることで、受け手の処理が積み上がる",
+          "concept": "先に来ている連れを探す客が一人ずつ現れ、全員が同じ『先に来てる者が』を言う",
+          "status": "shortlisted",
+          "reason": "人数が増える見た目は強いが、全員が同じ台詞で二段目の発見がない"
+        },
+        {
+          "id": "C05",
+          "mechanism": "m-routine-confirmation",
+          "mechanismFamily": "serial-same-order",
+          "causalCore": "個別に来る客が全員同じ注文をし、受け手の対応が摩耗する",
+          "concept": "友人五人が別々にウーロン茶だけを頼みに来る",
+          "status": "rejected",
+          "reason": "同じ注文の繰り返しで、新情報が増えない"
+        },
+        {
+          "id": "C06",
+          "mechanism": "m-routine-confirmation",
+          "mechanismFamily": "degrading-channel",
+          "causalCore": "時間経過とともに話す側の身体条件が悪化し、同じ手順が続く",
+          "concept": "フリータイムで夜通し歌い、客の声が消えていく",
+          "status": "rejected",
+          "reason": "C03と同系統で、受付の場面から外れる"
+        },
+        {
+          "id": "C07",
+          "mechanism": "m-mundane-detail",
+          "mechanismFamily": "reflex-cue",
+          "causalCore": "場の定型の合図が、本人の身についた反射を引き起こす",
+          "concept": "マイクを渡されると反射で歌い出してしまう客",
+          "status": "rejected",
+          "reason": "歌い出すのは声の演出が必要で、受付の場面から外れる"
+        },
+        {
+          "id": "C08",
+          "mechanism": "m-routine-confirmation",
+          "mechanismFamily": "call-and-response-loop",
+          "causalCore": "同じ呼びかけに同じ返事が繰り返され、返事の背景だけが変わる",
+          "concept": "十分前の内線に、部屋の背後の歌声が変わりながら『延長で』と答え続ける",
+          "status": "rejected",
+          "reason": "受付の外の部屋が主役になり、画の中心が受付でなくなる"
+        },
+        {
+          "id": "C09",
+          "mechanism": "m-mundane-detail",
+          "mechanismFamily": "literal-instruction",
+          "causalCore": "案内の文言を文字どおりに実行する",
+          "concept": "『お時間になりましたらお電話します』と聞いて受付の電話の前で待つ客",
+          "status": "rejected",
+          "reason": "行動が不自然で、二段目が作れない"
+        },
+        {
+          "id": "C10",
+          "mechanism": "m-late-realization",
+          "mechanismFamily": "record-outknows-person",
+          "causalCore": "忘れ物が増えるほど、保管側が全部知っている",
+          "concept": "忘れ物を取りに何度も戻り、最後の忘れ物が連れ本人",
+          "status": "rejected",
+          "reason": "最後が『実は〜だった』の反転で、前提との結びつきが弱い"
+        },
+        {
+          "id": "C11",
+          "mechanism": "m-return-to-start",
+          "mechanismFamily": "accumulating-arrivals",
+          "causalCore": "同姓の予約が重なって、呼ばれるたびに複数人が立つ",
+          "concept": "『田中様』で全員が立ち上がる",
+          "status": "rejected",
+          "reason": "全員が実はそうだったという既存の仕組み（reveal-everyone）に近い"
+        },
+        {
+          "id": "C12",
+          "mechanism": "m-mundane-detail",
+          "mechanismFamily": "reflex-cue",
+          "causalCore": "相づちの反射が、確認の質問すべてに肯定で返る",
+          "concept": "何を聞かれてもうなずく客に、料金が積み上がる",
+          "status": "rejected",
+          "reason": "赤べこのうなずきに近く、既存作と重なる"
+        },
+        {
+          "id": "C13",
+          "mechanism": "m-mundane-detail",
+          "mechanismFamily": "limit-applied-literally",
+          "causalCore": "定員の数字が、人の出入りにそのまま当てはめられる",
+          "concept": "定員六名の部屋に七人目が来て、誰かが廊下に出る",
+          "status": "rejected",
+          "reason": "制度の字義どおり適用で、既存のescape-route-also-procedureに近い"
+        },
+        {
+          "id": "C14",
+          "mechanism": "m-mundane-detail",
+          "mechanismFamily": "limit-applied-literally",
+          "causalCore": "料金規則を一人客に厳密に適用する",
+          "concept": "一人で十人部屋を取る客の料金計算",
+          "status": "rejected",
+          "reason": "計算を見せるだけで人物の目的と抵抗がない"
+        },
+        {
+          "id": "C15",
+          "mechanism": "m-routine-confirmation",
+          "mechanismFamily": "serial-same-order",
+          "causalCore": "学割確認が客ごとに同じ手順で繰り返される",
+          "concept": "学生証の確認が何度も続く",
+          "status": "rejected",
+          "reason": "真顔の確認を延ばすだけで、狙いすぎに寄る"
+        },
+        {
+          "id": "C16",
+          "mechanism": "m-routine-confirmation",
+          "mechanismFamily": "confirmation-drift",
+          "causalCore": "聞き返すたびに内容が少しずつずれ、受け手も気づかず進む",
+          "concept": "店員の復唱が一回ごとに別の注文に変わっていく",
+          "status": "rejected",
+          "reason": "店員の聞き間違いを笑う形になり、店員が愚かに見える"
+        },
+        {
+          "id": "C17",
+          "mechanism": "m-late-realization",
+          "mechanismFamily": "confirmation-drift",
+          "causalCore": "声が出ない客がうなずきだけで確認し、間違いが積み上がる",
+          "concept": "声がかれた客の注文が全部うなずきで通り、八杯届く",
+          "status": "rejected",
+          "reason": "C03と同じく声のかれが前提で、品が積み上がるだけ"
+        },
+        {
+          "id": "C18",
+          "mechanism": "m-return-to-start",
+          "mechanismFamily": "call-and-response-loop",
+          "causalCore": "同じ手順の往復が、元の位置へ戻って終わらない",
+          "concept": "受付と部屋を往復するだけの客",
+          "status": "rejected",
+          "reason": "展開がなく、日常の小さな不便を描いただけ"
+        }
+      ],
+      "shortlist": [
+        "C01",
+        "C03",
+        "C04"
+      ],
+      "selectedCandidateId": "C01",
+      "selectionAuthority": "delegated",
+      "diversityAudit": {
+        "mode": "blind-reclassification",
+        "verdict": "pass",
+        "summary": "生成時のラベルと一文概要を伏せ、causalCoreだけを読んで18案を別工程で再分類した。批評側は10系統に分け、最大系統は2案(11%)。生成側のラベルと食い違ったのはC16とC17(確認のずれと声のかれ)で、因果が違うため批評側のconfirmation-driftに合わせた。shortlistはC01・C03・C04で、それぞれ『聞く側が組み立てる』『伝える側が劣化する』『同じ一文を言う人が増える』と、因果の向きが違う",
+        "reviewedCandidateIds": [
+          "C01",
+          "C02",
+          "C03",
+          "C04",
+          "C05",
+          "C06",
+          "C07",
+          "C08",
+          "C09",
+          "C10",
+          "C11",
+          "C12",
+          "C13",
+          "C14",
+          "C15",
+          "C16",
+          "C17",
+          "C18"
+        ],
+        "familyAssignments": [
+          {
+            "candidateId": "C01",
+            "familyId": "fragments-assembled-by-listener"
+          },
+          {
+            "candidateId": "C02",
+            "familyId": "record-outknows-person"
+          },
+          {
+            "candidateId": "C03",
+            "familyId": "degrading-channel"
+          },
+          {
+            "candidateId": "C04",
+            "familyId": "accumulating-arrivals"
+          },
+          {
+            "candidateId": "C05",
+            "familyId": "serial-same-order"
+          },
+          {
+            "candidateId": "C06",
+            "familyId": "degrading-channel"
+          },
+          {
+            "candidateId": "C07",
+            "familyId": "reflex-cue"
+          },
+          {
+            "candidateId": "C08",
+            "familyId": "call-and-response-loop"
+          },
+          {
+            "candidateId": "C09",
+            "familyId": "literal-instruction"
+          },
+          {
+            "candidateId": "C10",
+            "familyId": "record-outknows-person"
+          },
+          {
+            "candidateId": "C11",
+            "familyId": "accumulating-arrivals"
+          },
+          {
+            "candidateId": "C12",
+            "familyId": "reflex-cue"
+          },
+          {
+            "candidateId": "C13",
+            "familyId": "limit-applied-literally"
+          },
+          {
+            "candidateId": "C14",
+            "familyId": "limit-applied-literally"
+          },
+          {
+            "candidateId": "C15",
+            "familyId": "serial-same-order"
+          },
+          {
+            "candidateId": "C16",
+            "familyId": "confirmation-drift"
+          },
+          {
+            "candidateId": "C17",
+            "familyId": "confirmation-drift"
+          },
+          {
+            "candidateId": "C18",
+            "familyId": "call-and-response-loop"
+          }
+        ],
+        "familyDefinitions": [
+          {
+            "id": "fragments-assembled-by-listener",
+            "definingMove": "話し手が断片しか出せず、聞く側が断片を溜めて全体を組み立てる"
+          },
+          {
+            "id": "record-outknows-person",
+            "definingMove": "忘れる本人より記録のほうが多くを知っている"
+          },
+          {
+            "id": "degrading-channel",
+            "definingMove": "繰り返すたびに伝える側の手段が劣化する"
+          },
+          {
+            "id": "accumulating-arrivals",
+            "definingMove": "同じ一文を言う人が増えて処理が積み上がる"
+          },
+          {
+            "id": "serial-same-order",
+            "definingMove": "別々の客が全く同じ注文を一人ずつ繰り返し持ってくる"
+          },
+          {
+            "id": "reflex-cue",
+            "definingMove": "場の定型の合図が本人の身についた反射を引き起こす"
+          },
+          {
+            "id": "call-and-response-loop",
+            "definingMove": "同じ呼びかけと返事が変奏されながら続く"
+          },
+          {
+            "id": "literal-instruction",
+            "definingMove": "案内文の言葉を額面どおりに実行してしまう"
+          },
+          {
+            "id": "limit-applied-literally",
+            "definingMove": "数の制限や料金の規則が人にそのまま当てはめられる"
+          },
+          {
+            "id": "confirmation-drift",
+            "definingMove": "確認や復唱のたびに内容が少しずつずれていく"
+          }
+        ],
+        "shortlistPairChecks": [
+          {
+            "candidateA": "C01",
+            "candidateB": "C03",
+            "sameCausalStructure": false,
+            "notOnlySettingChange": true,
+            "difference": "C01は話し手の記憶は一定のまま、聞き手が断片を蓄積して全体を作る。C03は聞き手が同じ応対を続けるだけで、話し手の伝達手段が劣化する。蓄積する側が逆"
+          },
+          {
+            "candidateA": "C01",
+            "candidateB": "C04",
+            "sameCausalStructure": false,
+            "notOnlySettingChange": true,
+            "difference": "C01は一人の客が断片を持ち帰り、店員が組み立てる。C04は別の人が同じ一文を言いに来る数の増加で、誰も何も組み立てない"
+          },
+          {
+            "candidateA": "C03",
+            "candidateB": "C04",
+            "sameCausalStructure": false,
+            "notOnlySettingChange": true,
+            "difference": "C03は一人の話し手が時間とともに劣化し、C04は複数人が同じ一文を足していく。変わるのが人の状態か人の数かで構造が違う"
+          }
+        ]
+      },
+      "userSeeds": []
+    },
+    "comedyAudit": {
+      "comicKernel": "飲み物を頼みに来た客は、ウーロン茶、コーラとメロンソーダ、人数、部屋番号と少しずつ忘れて受付に戻るだけ。受付の人は何も指摘せず黙って書き溜め、最後に客が忘れた全体を断片の足し引きで差し出す",
+      "audienceExpectation": "観客は、客が何度も戻るのを店員が呆れて対応する、または店員が『先にまとめて聞いてきてください』と言う流れを予測する",
+      "characterIntent": "客は友人五人分のドリンクを頼みたい。店員は注文を間違えずに受けたい",
+      "pressure": "客の記憶がもたず、一度に伝えきれない。店員は客に聞き返すより、聞いたことを確実に書き留める仕事を優先する",
+      "escalations": [
+        {
+          "beatId": "v2",
+          "change": "二度目は断片が増える（コーラとメロンソーダ）が、人数を忘れる。観客は『またか』から『何が足りないか』を数え始める"
+        },
+        {
+          "beatId": "v3",
+          "change": "三度目は人数（五人）を持ち帰るが、今度は部屋番号を忘れる。忘れる対象が注文から客自身の居場所に移る"
+        },
+        {
+          "beatId": "v4",
+          "change": "四度目は何も持たず、『何しに来たか』そのものを忘れている。観客は店員が書き溜めた紙に目が向く"
+        }
+      ],
+      "payoffCausality": "注文メモは冒頭から画面に出ていて、各回の断片が一行ずつ増えている。人数5、コーラ1、メロンソーダ1は客が言った事実で、ウーロン茶の数は5−2=3という算数から出る。新しい設定や能力は足していない",
+      "laughMoment": {
+        "beatId": "payoff",
+        "description": "『残りはウーロン茶で三つ』と、客が忘れた数を算数で埋めて盆ごと出す。客の『……それです』とそろって、四回分の断片が一度に回収される"
+      },
+      "independentReview": {
+        "mode": "hostile-reader",
+        "verdict": "pass",
+        "summary": "台詞と動作だけを読み直した。客が忘れて戻るのは日常にもあり、二度目までは先が読める。面白さは三度目から忘れる対象が変わること、受付が黙って記録していたこと、最後の足し算で全体が埋まることにある",
+        "strongestObjection": "客が何度も戻るだけで、店員の推理は後付けの便利な能力に見えるのではないか。『ご一緒します』の最後は不要ではないか",
+        "resolution": "推理は新設定ではなく、受付の注文メモに断片が一行ずつ増える様子を画で見せ、人数−他の注文という算数だけで成立させた。ウーロン茶の数は客が一度も言っていないので、観客が自分で足し算をして納得できる。最後の一言は部屋番号の伏線（三度目）を回収する短い締めで、削ると冒頭の『何号室』の往復が宙に浮く",
+        "checks": {
+          "premiseHasComicEngine": true,
+          "notJustMundaneIncident": true,
+          "payoffIsEarned": true,
+          "characterCanonRespected": true,
+          "noUnmotivatedAdditions": true,
+          "notOnlyRoleReversal": true
+        }
+      }
+    }
+  },
+  "voices": {
+    "cust": {
+      "speaker": "青山龍星",
+      "style": "ノーマル",
+      "speed": 1.05
+    },
+    "staff": {
+      "speaker": "春日部つむぎ",
+      "style": "ノーマル",
+      "speed": 1.05
+    }
+  },
+  "music": {
+    "track": "bossa-thank-you-for-shopping",
+    "gain": 0.22,
+    "fadeIn": 0.2,
+    "fadeOut": 0.6
+  },
+  "set": {
+    "kind": "karaoke-reception",
+    "params": {}
+  },
+  "captions": {
+    "y": 0.76
+  },
+  "actors": {
+    "staff": {
+      "style": {
+        "skin": "#f2cdb0",
+        "hair": "#3a2a26",
+        "hairStyle": "ponytail",
+        "top": "#f4f1ea",
+        "vest": "#ff4fa3",
+        "vestTrim": "#ffe9f4",
+        "bottom": "#2b2b35",
+        "shoes": "#2b2b30",
+        "nameTag": "ひびき"
+      },
+      "root": {
+        "x": 0.35,
+        "z": -0.55,
+        "ry": 0
+      },
+      "pose": "counter",
+      "expr": "polite",
+      "captionColor": "#ffd0e6"
+    },
+    "cust": {
+      "vrm": "assets/3d/avatars/Robert.vrm",
+      "height": 1.7,
+      "root": {
+        "x": 1.9,
+        "z": 0.64,
+        "ry": -1.5707963267948966
+      },
+      "pose": "idle",
+      "expr": "neutral",
+      "captionColor": "#ffe48a"
+    }
+  },
+  "props": {
+    "slip": {
+      "kind": "order-slip",
+      "params": {
+        "n": 0
+      },
+      "tf": {
+        "x": 0.12,
+        "y": 1.05,
+        "z": -0.02
+      }
+    },
+    "tray": {
+      "kind": "drink-tray",
+      "params": {},
+      "tf": {
+        "x": 0.02,
+        "y": 0.9,
+        "z": 0.12
+      },
+      "visible": false
+    }
+  },
+  "beats": [
+    {
+      "id": "title",
+      "role": "title",
+      "shot": "wide",
+      "dur": 1.2,
+      "do": [
+        {
+          "at": 0,
+          "sfx": "title-sting"
+        }
+      ]
+    },
+    {
+      "id": "hook",
+      "role": "hook",
+      "shot": "two-shot",
+      "pre": 0.05,
+      "post": 0.15,
+      "line": {
+        "who": "cust",
+        "text": "すみません、／305のドリンクお願いします。／えっと、ウーロン茶と……あれ？"
+      },
+      "do": [
+        {
+          "at": 0,
+          "move": "cust",
+          "to": {
+            "x": -0.25,
+            "z": 0.64,
+            "ry": 3.141592653589793
+          },
+          "dur": 0.5,
+          "ease": "out"
+        },
+        {
+          "at": "line+0.2",
+          "param": "slip",
+          "to": {
+            "n": 1
+          },
+          "dur": 0.1
+        },
+        {
+          "at": "lineEnd-0.9",
+          "face": "cust",
+          "to": "doubtful",
+          "dur": 0.25
+        },
+        {
+          "at": "lineEnd-0.9",
+          "look": "cust",
+          "to": {
+            "yaw": 0.5,
+            "pitch": -0.15
+          },
+          "dur": 0.4
+        }
+      ]
+    },
+    {
+      "id": "s1",
+      "role": "rule",
+      "shot": "counter-top",
+      "pre": 0.1,
+      "post": 0.1,
+      "line": {
+        "who": "staff",
+        "text": "はい、ウーロン茶ですね"
+      },
+      "do": [
+        {
+          "at": 0,
+          "look": "cust",
+          "to": {
+            "yaw": 0,
+            "pitch": 0
+          },
+          "dur": 0.2
+        },
+        {
+          "at": 0,
+          "face": "cust",
+          "to": "doubtful",
+          "dur": 0.1
+        },
+        {
+          "at": 0.3,
+          "param": "slip",
+          "to": {
+            "n": 2
+          },
+          "dur": 0.1
+        },
+        {
+          "at": 0.3,
+          "sfx": "paper",
+          "gain": 0.5
+        }
+      ]
+    },
+    {
+      "id": "go1",
+      "role": "rule",
+      "shot": "two-shot",
+      "pre": 0.1,
+      "post": 0.1,
+      "line": {
+        "who": "cust",
+        "text": "みんなに聞いてきます"
+      },
+      "do": [
+        {
+          "at": "lineEnd-0.1",
+          "move": "cust",
+          "to": {
+            "x": -0.25,
+            "z": 0.64,
+            "ry": 1.5707963267948966
+          },
+          "dur": 0.25
+        },
+        {
+          "at": "lineEnd+0.1",
+          "move": "cust",
+          "to": {
+            "x": 1.9,
+            "z": 0.64,
+            "ry": 1.5707963267948966
+          },
+          "dur": 0.5,
+          "ease": "in"
+        }
+      ]
+    },
+    {
+      "id": "v2",
+      "role": "escalate",
+      "level": 1,
+      "shot": "two-shot",
+      "pre": 0.25,
+      "post": 0.1,
+      "line": {
+        "who": "cust",
+        "text": "コーラと、メロンソーダです！／あと……人数、何人でしたっけ"
+      },
+      "do": [
+        {
+          "at": 0,
+          "move": "cust",
+          "to": {
+            "x": 1.9,
+            "z": 0.64,
+            "ry": -1.5707963267948966
+          },
+          "dur": 0.02
+        },
+        {
+          "at": 0.05,
+          "move": "cust",
+          "to": {
+            "x": -0.25,
+            "z": 0.64,
+            "ry": -1.5707963267948966
+          },
+          "dur": 0.55,
+          "ease": "out"
+        },
+        {
+          "at": 0.6000000000000001,
+          "move": "cust",
+          "to": {
+            "x": -0.25,
+            "z": 0.64,
+            "ry": 3.141592653589793
+          },
+          "dur": 0.2
+        },
+        {
+          "at": "line+1.7",
+          "face": "cust",
+          "to": "doubtful",
+          "dur": 0.2
+        }
+      ]
+    },
+    {
+      "id": "s2",
+      "role": "escalate",
+      "level": 1,
+      "shot": "counter-top",
+      "pre": 0.1,
+      "post": 0.1,
+      "line": {
+        "who": "staff",
+        "text": "かしこまりました"
+      },
+      "do": [
+        {
+          "at": 0.2,
+          "param": "slip",
+          "to": {
+            "n": 4
+          },
+          "dur": 0.1
+        },
+        {
+          "at": 0.2,
+          "sfx": "paper",
+          "gain": 0.5
+        }
+      ]
+    },
+    {
+      "id": "go2",
+      "role": "escalate",
+      "level": 1,
+      "shot": "two-shot",
+      "pre": 0.05,
+      "post": 0.1,
+      "line": {
+        "who": "cust",
+        "text": "数えてきます"
+      },
+      "do": [
+        {
+          "at": "lineEnd-0.1",
+          "move": "cust",
+          "to": {
+            "x": -0.25,
+            "z": 0.64,
+            "ry": 1.5707963267948966
+          },
+          "dur": 0.25
+        },
+        {
+          "at": "lineEnd+0.1",
+          "move": "cust",
+          "to": {
+            "x": 1.9,
+            "z": 0.64,
+            "ry": 1.5707963267948966
+          },
+          "dur": 0.5,
+          "ease": "in"
+        }
+      ]
+    },
+    {
+      "id": "v3",
+      "role": "escalate",
+      "level": 2,
+      "shot": "two-shot",
+      "pre": 0.25,
+      "post": 0.1,
+      "line": {
+        "who": "cust",
+        "text": "五人でした！／で……何号室でしたっけ"
+      },
+      "do": [
+        {
+          "at": 0,
+          "move": "cust",
+          "to": {
+            "x": 1.9,
+            "z": 0.64,
+            "ry": -1.5707963267948966
+          },
+          "dur": 0.02
+        },
+        {
+          "at": 0.05,
+          "move": "cust",
+          "to": {
+            "x": -0.25,
+            "z": 0.64,
+            "ry": -1.5707963267948966
+          },
+          "dur": 0.55,
+          "ease": "out"
+        },
+        {
+          "at": 0.6000000000000001,
+          "move": "cust",
+          "to": {
+            "x": -0.25,
+            "z": 0.64,
+            "ry": 3.141592653589793
+          },
+          "dur": 0.2
+        },
+        {
+          "at": "line+1.4",
+          "face": "cust",
+          "to": "doubtful",
+          "dur": 0.2
+        }
+      ]
+    },
+    {
+      "id": "s3",
+      "role": "escalate",
+      "level": 2,
+      "shot": "counter-top",
+      "pre": 0.1,
+      "post": 0.1,
+      "line": {
+        "who": "staff",
+        "text": "305号室です"
+      },
+      "do": [
+        {
+          "at": 0.2,
+          "param": "slip",
+          "to": {
+            "n": 5
+          },
+          "dur": 0.1
+        },
+        {
+          "at": 0.2,
+          "sfx": "paper",
+          "gain": 0.5
+        }
+      ]
+    },
+    {
+      "id": "go3",
+      "role": "escalate",
+      "level": 2,
+      "shot": "two-shot",
+      "pre": 0.05,
+      "post": 0.1,
+      "line": {
+        "who": "cust",
+        "text": "さんまるご、さんまるご"
+      },
+      "do": [
+        {
+          "at": "lineEnd-0.1",
+          "move": "cust",
+          "to": {
+            "x": -0.25,
+            "z": 0.64,
+            "ry": 1.5707963267948966
+          },
+          "dur": 0.25
+        },
+        {
+          "at": "lineEnd+0.1",
+          "move": "cust",
+          "to": {
+            "x": 1.9,
+            "z": 0.64,
+            "ry": 1.5707963267948966
+          },
+          "dur": 0.5,
+          "ease": "in"
+        }
+      ]
+    },
+    {
+      "id": "v4",
+      "role": "turn",
+      "shot": "two-shot",
+      "pre": 0.7,
+      "post": 0.3,
+      "line": {
+        "who": "cust",
+        "text": "……すみません。／僕、何しに来たんでしたっけ"
+      },
+      "do": [
+        {
+          "at": 0,
+          "move": "cust",
+          "to": {
+            "x": 1.9,
+            "z": 0.64,
+            "ry": -1.5707963267948966
+          },
+          "dur": 0.02
+        },
+        {
+          "at": 0.05,
+          "move": "cust",
+          "to": {
+            "x": -0.25,
+            "z": 0.64,
+            "ry": -1.5707963267948966
+          },
+          "dur": 0.8,
+          "ease": "out"
+        },
+        {
+          "at": 0.8500000000000001,
+          "move": "cust",
+          "to": {
+            "x": -0.25,
+            "z": 0.64,
+            "ry": 3.141592653589793
+          },
+          "dur": 0.2
+        },
+        {
+          "at": 0.8,
+          "face": "cust",
+          "to": "blank",
+          "dur": 0.2
+        }
+      ]
+    },
+    {
+      "id": "payoff",
+      "role": "payoff",
+      "shot": "two-shot",
+      "pre": 0.4,
+      "post": 0.2,
+      "line": {
+        "who": "staff",
+        "text": "305号室、五名様のドリンクです。／コーラ、メロンソーダ、／残りはウーロン茶で三つ"
+      },
+      "do": [
+        {
+          "at": 0,
+          "music": "cut"
+        },
+        {
+          "at": 0.1,
+          "param": "slip",
+          "to": {
+            "n": 6
+          },
+          "dur": 0.1
+        },
+        {
+          "at": 0.3,
+          "show": "tray"
+        },
+        {
+          "at": 0.3,
+          "prop": "tray",
+          "to": {
+            "x": 0.02,
+            "y": 1.05,
+            "z": 0.12
+          },
+          "dur": 0.5,
+          "ease": "out"
+        },
+        {
+          "at": 0.3,
+          "pose": "staff",
+          "to": "give",
+          "dur": 0.5
+        },
+        {
+          "at": 0.6,
+          "sfx": "set-down",
+          "gain": 0.5
+        },
+        {
+          "at": "lineEnd-0.2",
+          "face": "cust",
+          "to": "surprised",
+          "dur": 0.2
+        }
+      ]
+    },
+    {
+      "id": "button",
+      "role": "button",
+      "shot": "two-shot",
+      "pre": 0.5,
+      "post": 0.3,
+      "line": {
+        "who": "cust",
+        "text": "……それです。／あの、何号室でしたっけ"
+      },
+      "do": [
+        {
+          "at": 0,
+          "music": "resume"
+        },
+        {
+          "at": 0,
+          "face": "cust",
+          "to": "polite",
+          "dur": 0.3
+        }
+      ]
+    },
+    {
+      "id": "end",
+      "role": "button",
+      "shot": "two-shot",
+      "pre": 0.15,
+      "post": 0.4,
+      "line": {
+        "who": "staff",
+        "text": "ご一緒します"
+      },
+      "do": [
+        {
+          "at": 0,
+          "pose": "staff",
+          "to": "counter",
+          "dur": 0.5
+        }
+      ]
+    }
+  ],
+  "description": [
+    "カラオケの受付で、ドリンクの注文を思い出せないお客さんが何度も戻ってくる3Dショートコント。",
+    "#ショート #コント #カラオケ #3Dアニメ"
+  ]
+}
