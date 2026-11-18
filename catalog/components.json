@@ -568,6 +568,24 @@
           "floor": 0
         },
         "notes": "カラオケ店の受付カウンター。カウンター天板1.05はz=0、店員は後ろz≈-0.55で+Zを向き、客は手前z≈0.6でry=π。ルームへの通路は+X側（客はx≈1.6で画面外）。カウンター上にマイクかご・電話・ベル、奥に部屋鍵ボード・料金案内・ネオン看板(params.logo, params.accent)。注文メモは prop order-slip、ドリンクは prop drink-tray"
+      },
+      "coin-laundry": {
+        "cameras": [
+          "wide",
+          "dryer-cu",
+          "table-top",
+          "a-cu",
+          "b-cu",
+          "drum-cu",
+          "two-shot",
+          "side"
+        ],
+        "surfaces": {
+          "table": 0.9,
+          "bench": 0.45,
+          "floor": 0
+        },
+        "notes": "コインランドリー。左の壁に乾燥機・洗濯機が並び、featured の乾燥機は prop coin-dryer（x≈-1.985, ry=π/2 で +X 向き）。折りたたみ台（天板0.9, x -0.55..0.25 付近）、奥に長椅子・両替機・料金ポスター、右に窓。客は乾燥機の前 x≈-1.0 に立つ（機械に向くなら ry=-π/2、台に向くなら ry=π/2）"
       }
     },
     "props": {
@@ -716,6 +734,19 @@
       ],
       "drink-tray": [
         "colors[]"
+      ],
+      "coin-dryer": [
+        "param:open",
+        "param:min",
+        "accent"
+      ],
+      "sweater": [
+        "color",
+        "rib",
+        "tf.s"
+      ],
+      "coin-100": [
+        "size"
       ]
     },
     "character": {

@@ -1,0 +1,1265 @@
+{
+ "meta": {
+  "id": "coin-laundry-sentaku",
+  "title": "乾燥機に「あと100円」を入れ続けた客",
+  "fps": 30,
+  "width": 1080,
+  "height": 1920,
+  "variant": "baseline"
+ },
+ "design": {
+  "format": "institutional-absurdity",
+  "title": "乾燥機に「あと100円」を入れ続けた客",
+  "titleAlternatives": [
+   "まだ湿ってる、が止まらないコインランドリー",
+   "セーターが乾くまで100円を入れ続けたら"
+  ],
+  "titlePattern": "consequence",
+  "titleOnScreen": "card",
+  "titleScreenText": "乾燥機に\n「あと100円」を\n入れ続けた客",
+  "hook": {
+   "type": "line-first",
+   "firstFrame": "コインランドリーの折りたたみ台に、広げたオレンジのセーター。客が指で触って確かめ、乾燥機の扉は開いている",
+   "overlay": "まだ湿ってる"
+  },
+  "rule": "客は『まだ湿ってる』と感じるたびに100円を足し、乾燥機はそのたびにセーターを縮める",
+  "escalations": [
+   "少し縮むが、客は縮みより湿りを気にする",
+   "子ども服サイズまで縮み、隣の客がウールだと指摘する",
+   "手のひらサイズになり、隣の客が止めるが客は『最後に』と続ける"
+  ],
+  "turn": "最後の100円が終わり、客が扉を開けてもセーターが見つからない",
+  "payoff": "ドラムの底の小さなオレンジ色を隣の客が百円玉と間違えて指さす。客は『セーターです』と答え、『乾いてます』と続ける",
+  "button": "『乾いてます』『……よかったですね』",
+  "loop": false,
+  "reaction": "laugh",
+  "audience": "コインランドリーで『まだ湿ってる』と、あと100円を足したことがある人",
+  "reality": {
+   "place": "コインランドリー",
+   "normalEvent": "乾燥機が止まり、厚手の服の縫い目がまだ湿っているので、100円を足してもう10分回す",
+   "onlyBreak": "乾燥機が回すたびに服を大きく縮めてしまう（最後は百円玉の大きさになる）"
+  },
+  "payoffMechanism": "product-mistaken-for-its-price",
+  "ideation": {
+   "gateVersion": 2,
+   "method": "creative-thinking (My Portal chat Skill)",
+   "candidates": 15,
+   "rejected": [
+    "C02: 現実にいる人の几帳面さで、外す1点がなく展開もない",
+    "C07: 巨人の家族は天井の高さなど現実の辻褄が崩れ、外す点が複数になる",
+    "C13: 縮んだ物が別の誰かに合うのは、既存作の flaw-is-the-want と構造が近い"
+   ],
+   "corpus": {
+    "dataset": "radichichi",
+    "datasetVersion": "v1",
+    "retrievedAt": "2026-11-18T11:00:51Z",
+    "queryLog": [
+     {
+      "query": "サイズ",
+      "resultChunkIds": [
+       "radichichi_1755068597_007",
+       "radichichi_1337846307_003"
+      ]
+     },
+     {
+      "query": "洗濯",
+      "resultChunkIds": [
+       "radichichi_1755068597_007",
+       "radichichi_2106886372_001"
+      ]
+     },
+     {
+      "query": "小さい",
+      "resultChunkIds": [
+       "radichichi_1755068597_001",
+       "radichichi_1755068597_002",
+       "radichichi_1755068597_006",
+       "radichichi_1755068597_007"
+      ]
+     }
+    ],
+    "sourceChunks": [
+     {
+      "id": "radichichi_1755068597_001",
+      "dataset": "radichichi",
+      "retrievalTier": "creative",
+      "role": "ogiri_reference"
+     },
+     {
+      "id": "radichichi_1755068597_002",
+      "dataset": "radichichi",
+      "retrievalTier": "creative",
+      "role": "ogiri_reference"
+     },
+     {
+      "id": "radichichi_1755068597_007",
+      "dataset": "radichichi",
+      "retrievalTier": "creative",
+      "role": "ogiri_reference"
+     }
+    ],
+    "sourceChunkIds": [
+     "radichichi_1755068597_001",
+     "radichichi_1755068597_002",
+     "radichichi_1755068597_007"
+    ],
+    "sourceExampleIds": [
+     "radichichi-9",
+     "radichichi-125",
+     "radichichi-509",
+     "radichichi-489",
+     "radichichi-44",
+     "radichichi-46"
+    ]
+   },
+   "mechanisms": [
+    {
+     "id": "dignified-small-treatment",
+     "sourceExampleIds": [
+      "radichichi-9",
+      "radichichi-125"
+     ],
+     "abstractOperation": "極端に小さい物に、人間サイズの丁寧な作法がそのまま適用される",
+     "transfer": "小さくなった物体に、大きな物と同じ料金・手順の作法が淡々と続く"
+    },
+    {
+     "id": "resize-to-cope",
+     "sourceExampleIds": [
+      "radichichi-509",
+      "radichichi-489"
+     ],
+     "abstractOperation": "量や数が多すぎる問題を、物の大きさを変えることで実務的に処理してしまう／硬貨の枚数が勝敗を決める",
+     "transfer": "硬貨（100円）の追加投入と、物の大きさが連動して変わる"
+    },
+    {
+     "id": "script-in-scaled-space",
+     "sourceExampleIds": [
+      "radichichi-44",
+      "radichichi-46"
+     ],
+     "abstractOperation": "人間の社会的な段取りが、桁違いにスケールのずれた空間の中でそのまま運用される",
+     "transfer": "コインランドリーの定番の段取り（乾いたか確かめて追加で回す）が、縮み続ける物に対しても守られる"
+    }
+   ],
+   "candidateLog": [
+    {
+     "id": "C01",
+     "mechanism": "resize-to-cope",
+     "mechanismFamily": "metric-fixation-over-thing",
+     "causalCore": "「乾いたか」だけを基準に追加で硬貨を入れ続けると、基準を満たすほど物の方が小さくなり、最後は硬貨と見分けがつかなくなる",
+     "concept": "乾燥機の「まだ湿ってる」で100円ずつ追加し、セーターが縮み続けて最後は100円玉と間違えられる",
+     "status": "selected",
+     "reason": "shortlist。笑いの核が前提（100円の追加）と行動から素直に導ける。コイン＝ランドリーの場面固有"
+    },
+    {
+     "id": "C02",
+     "mechanism": "resize-to-cope",
+     "mechanismFamily": "metric-fixation-over-thing",
+     "causalCore": "容量の上限（8kg）ちょうどを守るため、洗濯物の重さを量って靴下を1枚ずつ出し入れする",
+     "concept": "洗濯機の上限8.0kgを守って靴下1枚ずつ調整する客",
+     "status": "rejected",
+     "reason": "ズレが無い（現実にいる人）。外す1点がない"
+    },
+    {
+     "id": "C03",
+     "mechanism": "resize-to-cope",
+     "mechanismFamily": "metric-fixation-over-thing",
+     "causalCore": "残り1分でも追加で100円を入れ続けるうち、残り時間表示の単位だけが伸びていく",
+     "concept": "残り時間の表示が客が硬貨を入れるたび『分』から『時間』へ変わる",
+     "status": "rejected",
+     "reason": "物の大きさの話から離れ、二段目が作れない"
+    },
+    {
+     "id": "C04",
+     "mechanism": "dignified-small-treatment",
+     "mechanismFamily": "grand-treatment-of-small",
+     "causalCore": "最も小さい持ち物に、最も大きい機械を割り当てる作法が、愛情として一貫して続く",
+     "concept": "赤べこのハンカチ1枚を、27kgの乾燥機で丁寧に回す悪魔",
+     "status": "rejected",
+     "reason": "盲検では別系統だが、赤べこのサイズ設定は既存作(akabeko-famiresu)と重なる"
+    },
+    {
+     "id": "C05",
+     "mechanism": "dignified-small-treatment",
+     "mechanismFamily": "grand-treatment-of-small",
+     "causalCore": "ぬいぐるみの洗濯を、人の入院の手順で受け付ける",
+     "concept": "大きなぬいぐるみを洗う客が、受付票を書く",
+     "status": "rejected",
+     "reason": "無人店でなぜ受付があるのか因果がない（後付け制度）"
+    },
+    {
+     "id": "C06",
+     "mechanism": "dignified-small-treatment",
+     "mechanismFamily": "grand-treatment-of-small",
+     "causalCore": "赤ちゃんの靴下1足だけを、座布団のように広い台で丁寧にたたむ",
+     "concept": "大人サイズの台で赤ちゃんの靴下を1足たたむ",
+     "status": "rejected",
+     "reason": "普通の出来事で外す1点がない"
+    },
+    {
+     "id": "C07",
+     "mechanism": "script-in-scaled-space",
+     "mechanismFamily": "hidden-scale-reveal",
+     "causalCore": "大きさの情報を最後まで見せず、最後の1カットで基準の大きさが変わる",
+     "concept": "『家族分の洗濯物』と言う客の家族が、全員巨人だと最後に引きで分かる",
+     "status": "rejected",
+     "reason": "天井の高さなど現実の辻褄が崩れる。外す1点が複数になる"
+    },
+    {
+     "id": "C08",
+     "mechanism": "script-in-scaled-space",
+     "mechanismFamily": "container-nesting",
+     "causalCore": "大きい物の中に小さい物が入れ子で出てくる連鎖で、最後に最小の物が出る",
+     "concept": "布団カバーから枕カバー、タオル、靴下が順に出てきて、最後に硬貨が出る",
+     "status": "rejected",
+     "reason": "落ちが『探していた物が最後に出る』で予想できる"
+    },
+    {
+     "id": "C09",
+     "mechanism": "script-in-scaled-space",
+     "mechanismFamily": "hidden-scale-reveal",
+     "causalCore": "他の客が荷物の大きさから客の人数を推測し、外れる",
+     "concept": "大きな布団袋を抱えた客が一人暮らしと分かる",
+     "status": "rejected",
+     "reason": "外れる意外性が弱く、普通の誤解で終わる"
+    },
+    {
+     "id": "C10",
+     "mechanism": "resize-to-cope",
+     "mechanismFamily": "container-nesting",
+     "causalCore": "硬貨投入口が硬貨サイズの物なら何でも受け付けてしまい、投入物が次々に消える",
+     "concept": "小さな消しゴムなどが投入口に入ってしまう",
+     "status": "rejected",
+     "reason": "日常の小さな事故で、展開と回収がない"
+    },
+    {
+     "id": "C11",
+     "mechanism": "script-in-scaled-space",
+     "mechanismFamily": "advice-compounds-physically",
+     "causalCore": "隣の客の親切な助言を忠実に守るほど、物が物理的に膨らみ続ける",
+     "concept": "ダウンを乾燥機に入れ、隣の客の助言どおりテニスボールを足していくと店中がダウンで埋まる",
+     "status": "rejected",
+     "reason": "画は大きいが、二人の人物の目的と因果が弱く、最後の回収が『埋まる』だけ"
+    },
+    {
+     "id": "C12",
+     "mechanism": "script-in-scaled-space",
+     "mechanismFamily": "advice-compounds-physically",
+     "causalCore": "柔軟剤を多めに入れるほど泡が増え、店を埋める",
+     "concept": "柔軟剤の入れ過ぎで泡が店中に広がる",
+     "status": "rejected",
+     "reason": "古典的な泡のギャグで既視感が強い"
+    },
+    {
+     "id": "C13",
+     "mechanism": "resize-to-cope",
+     "mechanismFamily": "size-mismatch-finds-fit",
+     "causalCore": "縮んだ服が、その場の別の誰か（小さな存在）にちょうど合う",
+     "concept": "縮んだセーターが赤べこにぴったり合う",
+     "status": "rejected",
+     "reason": "盲検でも別系統だが、既存の『flaw-is-the-want』に近い。赤べこの大きさも重なる"
+    },
+    {
+     "id": "C14",
+     "mechanism": "resize-to-cope",
+     "mechanismFamily": "size-mismatch-finds-fit",
+     "causalCore": "伸びた子ども服が、並んで待つ大人にちょうど合う",
+     "concept": "子ども服が洗濯で大人サイズになり、隣の客に渡る",
+     "status": "rejected",
+     "reason": "一つのズレで二つの服が変化し、外す点が二つになる"
+    },
+    {
+     "id": "C15",
+     "mechanism": "script-in-scaled-space",
+     "mechanismFamily": "nature-vs-fixtures",
+     "causalCore": "客の体の大きさと設備の高さ・小ささのズレが、設備の使い方を変える",
+     "concept": "背の高い客が低い投入口と乾燥機扉に苦労する",
+     "status": "rejected",
+     "reason": "設備の不便を描くだけで、二段目と回収がない"
+    }
+   ],
+   "shortlist": [
+    "C01",
+    "C04",
+    "C11"
+   ],
+   "selectedCandidateId": "C01",
+   "selectionAuthority": "delegated",
+   "diversityAudit": {
+    "mode": "blind-reclassification",
+    "verdict": "pass",
+    "summary": "生成時のラベルと題材を隠し、causalCoreと一文概要だけを読み直して全15案を再分類した。7系統に分かれ、最大系統は3案（20%）。生成側のラベルと盲検の分類は一致した。shortlistの3案は、基準の固執／丁寧さのずれ／助言の物理的な増殖で別系統。",
+    "reviewedCandidateIds": [
+     "C01",
+     "C02",
+     "C03",
+     "C04",
+     "C05",
+     "C06",
+     "C07",
+     "C08",
+     "C09",
+     "C10",
+     "C11",
+     "C12",
+     "C13",
+     "C14",
+     "C15"
+    ],
+    "familyAssignments": [
+     {
+      "candidateId": "C01",
+      "familyId": "metric-fixation-over-thing"
+     },
+     {
+      "candidateId": "C02",
+      "familyId": "metric-fixation-over-thing"
+     },
+     {
+      "candidateId": "C03",
+      "familyId": "metric-fixation-over-thing"
+     },
+     {
+      "candidateId": "C04",
+      "familyId": "grand-treatment-of-small"
+     },
+     {
+      "candidateId": "C05",
+      "familyId": "grand-treatment-of-small"
+     },
+     {
+      "candidateId": "C06",
+      "familyId": "grand-treatment-of-small"
+     },
+     {
+      "candidateId": "C07",
+      "familyId": "hidden-scale-reveal"
+     },
+     {
+      "candidateId": "C08",
+      "familyId": "container-nesting"
+     },
+     {
+      "candidateId": "C09",
+      "familyId": "hidden-scale-reveal"
+     },
+     {
+      "candidateId": "C10",
+      "familyId": "container-nesting"
+     },
+     {
+      "candidateId": "C11",
+      "familyId": "advice-compounds-physically"
+     },
+     {
+      "candidateId": "C12",
+      "familyId": "advice-compounds-physically"
+     },
+     {
+      "candidateId": "C13",
+      "familyId": "size-mismatch-finds-fit"
+     },
+     {
+      "candidateId": "C14",
+      "familyId": "size-mismatch-finds-fit"
+     },
+     {
+      "candidateId": "C15",
+      "familyId": "nature-vs-fixtures"
+     }
+    ],
+    "familyDefinitions": [
+     {
+      "id": "metric-fixation-over-thing",
+      "definingMove": "一つの基準（乾いたか／重さ）を満たし続けることだけが目的になり、物の方が変わっていく"
+     },
+     {
+      "id": "grand-treatment-of-small",
+      "definingMove": "極端に小さな物に、最大級の手順・設備が当てられる丁寧さのずれ"
+     },
+     {
+      "id": "hidden-scale-reveal",
+      "definingMove": "大きさの前提を隠し、最後の引きで基準が変わって見える"
+     },
+     {
+      "id": "container-nesting",
+      "definingMove": "入れ子の連鎖で最小の物が最後に出る"
+     },
+     {
+      "id": "advice-compounds-physically",
+      "definingMove": "助言に忠実に従うほど、物理的な量が増え続ける"
+     },
+     {
+      "id": "size-mismatch-finds-fit",
+      "definingMove": "サイズのずれが、別の誰かにちょうど合う"
+     },
+     {
+      "id": "nature-vs-fixtures",
+      "definingMove": "客の体の大きさと設備の寸法がかみ合わない"
+     }
+    ],
+    "shortlistPairChecks": [
+     {
+      "candidateA": "C01",
+      "candidateB": "C04",
+      "sameCausalStructure": false,
+      "notOnlySettingChange": true,
+      "difference": "C01は基準を満たし続ける行動の結果で物が縮み、見間違えが落ちになる。C04は最小の物に最大の設備を当てる愛情の釣り合いのずれで、行動の連鎖が違う"
+     },
+     {
+      "candidateA": "C01",
+      "candidateB": "C11",
+      "sameCausalStructure": false,
+      "notOnlySettingChange": true,
+      "difference": "C01は同じ人物の硬貨追加で物が小さくなる。C11は他人の助言に従うことで物が大きくなる。因果の主体（自分の基準／他人の助言）と方向（縮小／膨張）が違う"
+     },
+     {
+      "candidateA": "C04",
+      "candidateB": "C11",
+      "sameCausalStructure": false,
+      "notOnlySettingChange": true,
+      "difference": "C04は機械の割り当てを選ぶ一度の判断で、増殖がない。C11は繰り返しごとに量が積み上がる。構造が違う"
+     }
+    ]
+   },
+   "userSeeds": []
+  },
+  "comedyAudit": {
+   "comicKernel": "乾燥機の『まだ湿ってるから、あと100円』という現実の癖だけで押し切ると、乾くほど縮んだセーターが最後に百円玉と間違えられる。基準（乾いたか）は満たしたのに物が無くなる",
+   "audienceExpectation": "観客は『乾燥機でウールが縮む』失敗談を予測し、縮んだ服を見て諦める流れを期待する",
+   "characterIntent": "客は、濡れたまま持ち帰りたくない一心でセーターを乾かしたい。隣の客は、他人の事情に口は出さず静かに待ちたい",
+   "pressure": "厚手のセーターは縫い目が最後まで湿っぽく、毎回『まだ湿ってる』と感じる。隣の客の控えめな指摘は、客の目的（乾かす）を止めるほど強くない",
+   "escalations": [
+    {
+     "beatId": "rule",
+     "change": "一回目の追加で少し縮み、客が『縮んだ？でもまだ湿ってる』と、縮みより湿りを優先する人だと分かる"
+    },
+    {
+     "beatId": "esc1",
+     "change": "子ども服サイズまで縮み、隣の客がウールだと指摘するが、客はそれを知っていて続けると分かる"
+    },
+    {
+     "beatId": "esc2",
+     "change": "手のひらサイズになり、隣の客が止めに入るが、客は『最後に』と一回だけ約束して続ける。観客はもう見つからないほど小さくなると予測する"
+    }
+   ],
+   "payoffCausality": "追加の100円ごとに縮む様子を三度見せてあり、最後の一回でドラムの底に小さな点だけが残るのは前提の延長。隣の客が『百円玉』と見間違えるのは、客自身がいま100円玉を入れ続けていたから。『乾いてます』は冒頭の『まだ湿ってる』への回収",
+   "laughMoment": {
+    "beatId": "payoff",
+    "description": "ドラムの底の小さなオレンジ色を、隣の客が『百円玉が落ちてますよ』と親切に指さす。客が静かに『セーターです』と答える"
+   },
+   "independentReview": {
+    "mode": "hostile-reader",
+    "verdict": "pass",
+    "summary": "台詞と動作だけで読み直した。縮み続ける物は先が読めるが、『客が縮みより湿りを優先し続ける』という一点で人物が立ち、最後は百円玉との見間違えと『乾いてます』で回収される。縮む量の増加は小道具の大きさの変化として見せるため、台詞の繰り返しにはならない。",
+    "strongestObjection": "縮んでいくのは序盤で読め、客が止まらない理由も『湿ってるから』の繰り返しだけではないか。見間違えのオチは、後付けの駄洒落（コイン＝コインランドリー）ではないか",
+    "resolution": "客の台詞を繰り返しにせず、段ごとに隣の客の反応を変える（気づく→指摘→制止）。見間違えは、客が最後まで100円玉を入れ続けた実際の行動から出る。駄洒落の説明はせず、『百円玉』『セーターです』の二言だけで落とす。既視感（乾燥機で縮む）は残る",
+    "checks": {
+     "premiseHasComicEngine": true,
+     "notJustMundaneIncident": true,
+     "payoffIsEarned": true,
+     "characterCanonRespected": true,
+     "noUnmotivatedAdditions": true,
+     "notOnlyRoleReversal": true
+    }
+   }
+  }
+ },
+ "voices": {
+  "a": {
+   "speaker": "青山龍星",
+   "style": "ノーマル",
+   "speed": 1.05
+  },
+  "b": {
+   "speaker": "春日部つむぎ",
+   "style": "ノーマル",
+   "speed": 1.05
+  }
+ },
+ "music": {
+  "track": "waiting-lounge",
+  "gain": 0.22,
+  "fadeIn": 0.2,
+  "fadeOut": 0.6
+ },
+ "set": {
+  "kind": "coin-laundry",
+  "params": {}
+ },
+ "captions": {
+  "y": 0.76
+ },
+ "actors": {
+  "a": {
+   "vrm": "assets/3d/avatars/Robert.vrm",
+   "height": 1.75,
+   "root": {
+    "x": -1.0,
+    "z": 0.05,
+    "ry": 1.5707963267948966
+   },
+   "pose": "idle",
+   "expr": "polite",
+   "captionColor": "#ffe48a"
+  },
+  "b": {
+   "vrm": "assets/3d/avatars/Erika.vrm",
+   "height": 1.6,
+   "root": {
+    "x": 0.45,
+    "z": -1.5,
+    "ry": 0
+   },
+   "pose": "idle",
+   "expr": "polite",
+   "captionColor": "#c8f59a"
+  }
+ },
+ "props": {
+  "dryer": {
+   "kind": "coin-dryer",
+   "params": {
+    "open": 1,
+    "min": 0
+   },
+   "tf": {
+    "x": -1.985,
+    "y": 0,
+    "z": 0,
+    "ry": 1.5707963267948966
+   }
+  },
+  "sw": {
+   "kind": "sweater",
+   "params": {},
+   "tf": {
+    "x": -0.15,
+    "y": 0.9,
+    "z": 0.2,
+    "s": 0.45
+   }
+  },
+  "coin": {
+   "kind": "coin-100",
+   "params": {},
+   "tf": {
+    "x": -1.2,
+    "y": 1.3,
+    "z": 0.0
+   },
+   "visible": false
+  }
+ },
+ "beats": [
+  {
+   "id": "title",
+   "role": "title",
+   "shot": "wide",
+   "dur": 1.1,
+   "do": [
+    {
+     "at": 0,
+     "sfx": "title-sting"
+    }
+   ]
+  },
+  {
+   "id": "hook",
+   "role": "hook",
+   "shot": "table-top",
+   "pre": 0.0,
+   "post": 0.0,
+   "hold": 0.7,
+   "line": {
+    "who": "a",
+    "text": "まだ湿ってるな。／あと100円入れよう"
+   },
+   "do": [
+    {
+     "at": 0,
+     "pose": "a",
+     "to": "idle",
+     "dur": 0.4
+    },
+    {
+     "at": "line+1.6",
+     "shot": "wide"
+    },
+    {
+     "at": "line+1.6",
+     "pose": "a",
+     "to": "idle",
+     "dur": 0.3
+    },
+    {
+     "at": "lineEnd+0.15",
+     "move": "a",
+     "to": {
+      "x": -1.0,
+      "z": 0.05,
+      "ry": -0.6
+     },
+     "dur": 0.3
+    },
+    {
+     "at": "lineEnd+0.15",
+     "prop": "sw",
+     "to": {
+      "x": -1.5,
+      "y": 1.0,
+      "z": 0.0,
+      "s": 0.5
+     },
+     "dur": 0.4
+    },
+    {
+     "at": "lineEnd+0.3",
+     "shot": "dryer-cu"
+    },
+    {
+     "at": "lineEnd+0.55",
+     "hide": "sw"
+    },
+    {
+     "at": "lineEnd+0.55",
+     "param": "dryer",
+     "to": {
+      "open": 0
+     },
+     "dur": 0.3
+    },
+    {
+     "at": "lineEnd+0.75",
+     "show": "coin"
+    },
+    {
+     "at": "lineEnd+0.75",
+     "prop": "coin",
+     "to": {
+      "x": -1.25,
+      "y": 1.4,
+      "z": -0.1
+     },
+     "dur": 0.01
+    },
+    {
+     "at": "lineEnd+0.8",
+     "prop": "coin",
+     "to": {
+      "x": -1.57,
+      "y": 1.36,
+      "z": -0.2
+     },
+     "dur": 0.3
+    },
+    {
+     "at": "lineEnd+1.1",
+     "hide": "coin"
+    },
+    {
+     "at": "lineEnd+1.1",
+     "sfx": "set-down",
+     "gain": 0.5
+    },
+    {
+     "at": "lineEnd+1.1",
+     "param": "dryer",
+     "to": {
+      "min": 10
+     },
+     "dur": 0.01
+    },
+    {
+     "at": "lineEnd+1.35",
+     "param": "dryer",
+     "to": {
+      "min": 0
+     },
+     "dur": 0.9
+    },
+    {
+     "at": "lineEnd+2.35",
+     "sfx": "ac-beep",
+     "gain": 0.6
+    },
+    {
+     "at": "lineEnd+2.45",
+     "param": "dryer",
+     "to": {
+      "open": 1
+     },
+     "dur": 0.3
+    }
+   ]
+  },
+  {
+   "id": "rule",
+   "role": "rule",
+   "shot": "table-top",
+   "pre": 0.05,
+   "post": 0.0,
+   "hold": 0.0,
+   "line": {
+    "who": "a",
+    "text": "あれ、縮んだ？／でも、まだ湿ってる"
+   },
+   "do": [
+    {
+     "at": 0,
+     "prop": "sw",
+     "to": {
+      "x": -0.15,
+      "y": 0.9,
+      "z": 0.2,
+      "s": 0.34
+     },
+     "dur": 0.01
+    },
+    {
+     "at": 0,
+     "show": "sw"
+    },
+    {
+     "at": 0,
+     "move": "a",
+     "to": {
+      "x": -1.0,
+      "z": 0.05,
+      "ry": 1.5707963267948966
+     },
+     "dur": 0.01
+    },
+    {
+     "at": 0,
+     "pose": "a",
+     "to": "idle",
+     "dur": 0.3
+    },
+    {
+     "at": 0,
+     "face": "b",
+     "to": "doubtful",
+     "dur": 0.3
+    },
+    {
+     "at": "line+1.4",
+     "pose": "a",
+     "to": "idle",
+     "dur": 0.3
+    }
+   ]
+  },
+  {
+   "id": "react1",
+   "role": "bridge",
+   "shot": "b-cu",
+   "pre": 0.1,
+   "post": 0.0,
+   "line": {
+    "who": "b",
+    "text": "あの……それ、ウールですよね？"
+   },
+   "do": [
+    {
+     "at": 0,
+     "prop": "sw",
+     "to": {
+      "x": -0.15,
+      "y": 0.9,
+      "z": 0.2,
+      "s": 0.17
+     },
+     "dur": 0.01
+    },
+    {
+     "at": 0,
+     "show": "sw"
+    },
+    {
+     "at": 0,
+     "move": "a",
+     "to": {
+      "x": -1.0,
+      "z": 0.05,
+      "ry": 1.5707963267948966
+     },
+     "dur": 0.01
+    },
+    {
+     "at": 0,
+     "face": "b",
+     "to": "surprised",
+     "dur": 0.2
+    },
+    {
+     "at": "line+0.6",
+     "shot": "table-top"
+    }
+   ]
+  },
+  {
+   "id": "esc1",
+   "role": "escalate",
+   "level": 1,
+   "shot": "table-top",
+   "pre": 0.15,
+   "post": 0.1,
+   "hold": 2.7,
+   "line": {
+    "who": "a",
+    "text": "ウールです。／でも、まだ湿ってるので、／あと100円"
+   },
+   "do": [
+    {
+     "at": 0,
+     "pose": "a",
+     "to": "idle",
+     "dur": 0.3
+    },
+    {
+     "at": "line+1.6",
+     "pose": "a",
+     "to": "idle",
+     "dur": 0.3
+    },
+    {
+     "at": "lineEnd+0.15",
+     "move": "a",
+     "to": {
+      "x": -1.0,
+      "z": 0.05,
+      "ry": -0.6
+     },
+     "dur": 0.3
+    },
+    {
+     "at": "lineEnd+0.15",
+     "prop": "sw",
+     "to": {
+      "x": -1.5,
+      "y": 1.0,
+      "z": 0.0,
+      "s": 0.17
+     },
+     "dur": 0.4
+    },
+    {
+     "at": "lineEnd+0.3",
+     "shot": "dryer-cu"
+    },
+    {
+     "at": "lineEnd+0.55",
+     "hide": "sw"
+    },
+    {
+     "at": "lineEnd+0.55",
+     "param": "dryer",
+     "to": {
+      "open": 0
+     },
+     "dur": 0.3
+    },
+    {
+     "at": "lineEnd+0.75",
+     "show": "coin"
+    },
+    {
+     "at": "lineEnd+0.75",
+     "prop": "coin",
+     "to": {
+      "x": -1.25,
+      "y": 1.4,
+      "z": -0.1
+     },
+     "dur": 0.01
+    },
+    {
+     "at": "lineEnd+0.8",
+     "prop": "coin",
+     "to": {
+      "x": -1.57,
+      "y": 1.36,
+      "z": -0.2
+     },
+     "dur": 0.3
+    },
+    {
+     "at": "lineEnd+1.1",
+     "hide": "coin"
+    },
+    {
+     "at": "lineEnd+1.1",
+     "sfx": "set-down",
+     "gain": 0.5
+    },
+    {
+     "at": "lineEnd+1.1",
+     "param": "dryer",
+     "to": {
+      "min": 10
+     },
+     "dur": 0.01
+    },
+    {
+     "at": "lineEnd+1.35",
+     "param": "dryer",
+     "to": {
+      "min": 0
+     },
+     "dur": 0.9
+    },
+    {
+     "at": "lineEnd+2.35",
+     "sfx": "ac-beep",
+     "gain": 0.6
+    },
+    {
+     "at": "lineEnd+2.45",
+     "param": "dryer",
+     "to": {
+      "open": 1
+     },
+     "dur": 0.3
+    }
+   ]
+  },
+  {
+   "id": "react2",
+   "role": "bridge",
+   "shot": "b-cu",
+   "pre": 0.15,
+   "post": 0.1,
+   "line": {
+    "who": "b",
+    "text": "もう、手のひらサイズですよ"
+   },
+   "do": [
+    {
+     "at": 0,
+     "prop": "sw",
+     "to": {
+      "x": -0.15,
+      "y": 0.9,
+      "z": 0.2,
+      "s": 0.09
+     },
+     "dur": 0.01
+    },
+    {
+     "at": 0,
+     "show": "sw"
+    },
+    {
+     "at": 0,
+     "move": "a",
+     "to": {
+      "x": -1.0,
+      "z": 0.05,
+      "ry": 1.5707963267948966
+     },
+     "dur": 0.01
+    },
+    {
+     "at": 0,
+     "face": "b",
+     "to": "surprised",
+     "dur": 0.2
+    },
+    {
+     "at": "line+0.6",
+     "shot": "table-top"
+    }
+   ]
+  },
+  {
+   "id": "esc2",
+   "role": "escalate",
+   "level": 2,
+   "shot": "table-top",
+   "pre": 0.15,
+   "post": 0.1,
+   "hold": 2.7,
+   "line": {
+    "who": "a",
+    "text": "ええ。／最後にします。約束します"
+   },
+   "do": [
+    {
+     "at": 0,
+     "pose": "a",
+     "to": "idle",
+     "dur": 0.3
+    },
+    {
+     "at": "line+1.5",
+     "pose": "a",
+     "to": "idle",
+     "dur": 0.3
+    },
+    {
+     "at": "lineEnd+0.15",
+     "move": "a",
+     "to": {
+      "x": -1.0,
+      "z": 0.05,
+      "ry": -0.6
+     },
+     "dur": 0.3
+    },
+    {
+     "at": "lineEnd+0.15",
+     "prop": "sw",
+     "to": {
+      "x": -1.5,
+      "y": 1.0,
+      "z": 0.0,
+      "s": 0.09
+     },
+     "dur": 0.4
+    },
+    {
+     "at": "lineEnd+0.3",
+     "shot": "dryer-cu"
+    },
+    {
+     "at": "lineEnd+0.55",
+     "hide": "sw"
+    },
+    {
+     "at": "lineEnd+0.55",
+     "param": "dryer",
+     "to": {
+      "open": 0
+     },
+     "dur": 0.3
+    },
+    {
+     "at": "lineEnd+0.75",
+     "show": "coin"
+    },
+    {
+     "at": "lineEnd+0.75",
+     "prop": "coin",
+     "to": {
+      "x": -1.25,
+      "y": 1.4,
+      "z": -0.1
+     },
+     "dur": 0.01
+    },
+    {
+     "at": "lineEnd+0.8",
+     "prop": "coin",
+     "to": {
+      "x": -1.57,
+      "y": 1.36,
+      "z": -0.2
+     },
+     "dur": 0.3
+    },
+    {
+     "at": "lineEnd+1.1",
+     "hide": "coin"
+    },
+    {
+     "at": "lineEnd+1.1",
+     "sfx": "set-down",
+     "gain": 0.5
+    },
+    {
+     "at": "lineEnd+1.1",
+     "param": "dryer",
+     "to": {
+      "min": 10
+     },
+     "dur": 0.01
+    },
+    {
+     "at": "lineEnd+1.35",
+     "param": "dryer",
+     "to": {
+      "min": 0
+     },
+     "dur": 0.9
+    },
+    {
+     "at": "lineEnd+2.35",
+     "sfx": "ac-beep",
+     "gain": 0.6
+    },
+    {
+     "at": "lineEnd+2.45",
+     "param": "dryer",
+     "to": {
+      "open": 1
+     },
+     "dur": 0.3
+    },
+    {
+     "at": "lineEnd+2.7",
+     "prop": "sw",
+     "to": {
+      "x": -1.75,
+      "y": 0.53,
+      "z": 0.0,
+      "s": 0.04
+     },
+     "dur": 0.01
+    },
+    {
+     "at": "lineEnd+2.7",
+     "show": "sw"
+    }
+   ]
+  },
+  {
+   "id": "turn",
+   "role": "turn",
+   "shot": "drum-cu",
+   "pre": 0.2,
+   "post": 0.15,
+   "line": {
+    "who": "a",
+    "text": "……あれ。／セーターが、ない"
+   },
+   "do": [
+    {
+     "at": 0,
+     "look": "a",
+     "to": {
+      "yaw": 0,
+      "pitch": 0.3
+     },
+     "dur": 0.3
+    },
+    {
+     "at": "line+0.9",
+     "face": "b",
+     "to": "doubtful",
+     "dur": 0.2
+    },
+    {
+     "at": 0,
+     "move": "b",
+     "to": {
+      "x": -1.0,
+      "z": -0.45,
+      "ry": -1.5707963267948966
+     },
+     "dur": 1.6
+    }
+   ]
+  },
+  {
+   "id": "payoff",
+   "role": "payoff",
+   "shot": "wide",
+   "pre": 0.2,
+   "post": 0.25,
+   "line": {
+    "who": "b",
+    "text": "あの、そこ、／百円玉が落ちてますよ"
+   },
+   "do": [
+    {
+     "at": 0,
+     "music": "cut"
+    },
+    {
+     "at": 0,
+     "pose": "b",
+     "to": "point",
+     "dur": 0.4
+    },
+    {
+     "at": "line+0.8",
+     "shot": "drum-cu"
+    },
+    {
+     "at": "lineEnd",
+     "sfx": "payoff-hit"
+    }
+   ],
+   "hold": 0.4
+  },
+  {
+   "id": "answer",
+   "role": "payoff",
+   "shot": "dryer-cu",
+   "pre": 0.45,
+   "post": 0.2,
+   "line": {
+    "who": "a",
+    "text": "……セーターです"
+   },
+   "do": [
+    {
+     "at": 0,
+     "face": "b",
+     "to": "surprised",
+     "dur": 0.2
+    },
+    {
+     "at": "line+0.2",
+     "pose": "a",
+     "to": "hand-up",
+     "dur": 0.4
+    },
+    {
+     "at": "line+0.5",
+     "prop": "sw",
+     "to": {
+      "x": -1.2,
+      "y": 1.2,
+      "z": 0.1,
+      "s": 0.04
+     },
+     "dur": 0.5
+    },
+    {
+     "at": "lineEnd",
+     "shot": "a-cu"
+    }
+   ]
+  },
+  {
+   "id": "button",
+   "role": "button",
+   "shot": "a-cu",
+   "pre": 0.3,
+   "post": 0.2,
+   "line": {
+    "who": "a",
+    "text": "でも、乾いてます"
+   },
+   "do": [
+    {
+     "at": 0,
+     "music": "resume"
+    },
+    {
+     "at": "lineEnd+0.2",
+     "shot": "two-shot"
+    }
+   ],
+   "hold": 0.1
+  },
+  {
+   "id": "button2",
+   "role": "button",
+   "shot": "two-shot",
+   "pre": 0.3,
+   "post": 0.1,
+   "line": {
+    "who": "b",
+    "text": "……よかったですね"
+   },
+   "hold": 0.8
+  }
+ ],
+ "description": [
+  "コインランドリーの乾燥機に、あと100円を入れ続けたら。",
+  "#ショート #コインランドリー #コント"
+ ]
+}

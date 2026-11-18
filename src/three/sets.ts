@@ -1389,6 +1389,101 @@ export const SETS: Record<string, SetBuilder> = {
     };
   },
 
+  /** コインランドリー。左の壁 (x≈-1.95) に乾燥機・洗濯機が並び、featured の乾燥機は prop `coin-dryer`（ry=π/2 で +X 向き、x≈-1.35, z≈0）。
+   *  折りたたみ台（天板 0.9、x -0.55〜0.25, z -0.4〜0.8）、奥の壁に長椅子（座面 0.45, z≈-1.75）、右奥に両替機・洗剤の自販機。
+   *  客は乾燥機の前 x≈-0.5 に立つ（機械に向くなら ry=-π/2、台に向くなら ry=π/2）。カメラ: wide, dryer-cu, table-top, a-cu, b-cu, drum-cu, side。 */
+  "coin-laundry"(scene, p) {
+    scene.background = new THREE.Color("#cfe3ee");
+    lights(scene, { key: 1.5 });
+    const grad = (toon("#fff") as THREE.MeshToonMaterial).gradientMap;
+    const accent = String(p.accent ?? "#1f78c8");
+    const floorTex = canvasTexture(512, 512, (g, w, h) => {
+      g.fillStyle = "#e4e6e8"; g.fillRect(0, 0, w, h);
+      g.fillStyle = "#cfd3d8";
+      for (let i = 0; i < 4; i++) for (let j = 0; j < 4; j++) if ((i + j) % 2 === 0) g.fillRect(i * w / 4, j * h / 4, w / 4, h / 4);
+    });
+    floorTex.wrapS = floorTex.wrapT = THREE.RepeatWrapping; floorTex.repeat.set(6, 6);
+    const floor = new THREE.Mesh(new THREE.PlaneGeometry(12, 12), new THREE.MeshToonMaterial({ map: floorTex, gradientMap: grad }));
+    floor.rotation.x = -Math.PI / 2; floor.receiveShadow = true; scene.add(floor);
+    // walls: left (machines), back, right (storefront window)
+    const wallL = mesh(new THREE.BoxGeometry(0.05, 3.0, 8), toon("#eef3f6"), false); wallL.position.set(-2.4, 1.5, 0); scene.add(wallL);
+    const wallB = mesh(new THREE.BoxGeometry(8, 3.0, 0.05), toon("#e6eef3"), false); wallB.position.set(0, 1.5, -2.4); scene.add(wallB);
+    const wallR = mesh(new THREE.BoxGeometry(0.05, 3.0, 8), toon("#eef3f6"), false); wallR.position.set(2.6, 1.5, 0); scene.add(wallR);
+    const ceil = new THREE.Mesh(new THREE.PlaneGeometry(10, 10), flat("#f4f6f7")); ceil.rotation.x = Math.PI / 2; ceil.position.set(0, 2.9, 0); scene.add(ceil);
+    // blue band on the back wall + tile line
+    const band = new THREE.Mesh(new THREE.PlaneGeometry(8, 0.28), flat(accent)); band.position.set(0, 1.25, -2.37); scene.add(band);
+    const bandL = new THREE.Mesh(new THREE.PlaneGeometry(8, 0.28), flat(accent)); bandL.position.set(-2.37, 1.25, 0); bandL.rotation.y = Math.PI / 2; scene.add(bandL);
+    // ceiling light panels
+    for (const [lx, lz] of [[-0.6, -0.6], [0.9, -0.6], [-0.6, 1.0], [0.9, 1.0]] as const) {
+      const lp = new THREE.Mesh(new THREE.PlaneGeometry(0.9, 0.3), flat("#ffffff")); lp.rotation.x = Math.PI / 2; lp.position.set(lx, 2.88, lz); scene.add(lp);
+    }
+    // sign on the back wall: コインランドリー
+    const signTex = canvasTexture(768, 160, (g, w, h) => {
+      g.fillStyle = accent; g.fillRect(0, 0, w, h); g.strokeStyle = "#ffffff"; g.lineWidth = 6; g.strokeRect(8, 8, w - 16, h - 16);
+      g.fillStyle = "#ffffff"; g.font = `bold 84px ${JP_FONT}`; g.textAlign = "center"; g.textBaseline = "middle"; g.fillText(String(p.shopName ?? "コインランドリー"), w / 2, h / 2 + 4);
+    });
+    const sign = new THREE.Mesh(new THREE.PlaneGeometry(1.8, 0.375), new THREE.MeshBasicMaterial({ map: signTex })); sign.position.set(0.3, 2.15, -2.37); scene.add(sign);
+    // price poster (back wall, near the bench)
+    const priceTex = canvasTexture(256, 384, (g, w, h) => {
+      g.fillStyle = "#fffdf0"; g.fillRect(0, 0, w, h); g.strokeStyle = accent; g.lineWidth = 8; g.strokeRect(6, 6, w - 12, h - 12);
+      g.fillStyle = accent; g.font = `bold 40px ${JP_FONT}`; g.textAlign = "center"; g.textBaseline = "middle"; g.fillText("ご利用案内", w / 2, 46);
+      g.fillStyle = "#222"; g.font = `bold 30px ${JP_FONT}`;
+      g.fillText("乾燥 10分 100円", w / 2, 120); g.fillText("洗濯 8kg 400円", w / 2, 170); g.fillText("洗濯 18kg 800円", w / 2, 220);
+      g.font = `26px ${JP_FONT}`; g.fillText("100円玉のみ使えます", w / 2, 290); g.fillText("両替機はあちら", w / 2, 335);
+    });
+    const poster = new THREE.Mesh(new THREE.PlaneGeometry(0.5, 0.75), new THREE.MeshBasicMaterial({ map: priceTex })); poster.position.set(-0.8, 1.75, -2.37); scene.add(poster);
+    // machine bank on the left wall: dryers (tall) at z = -1.4 and 1.4, washers beyond; the featured dryer is a prop at z=0
+    const bodyM = toon("#e9eef1"), stripe = toon(accent), doorRing = toon("#c9d0d6"), glassM = toon("#9fc3dc", { transparent: true, opacity: 0.7 });
+    const staticDryer = (z: number, w = 0.8) => {
+      const body = mesh(new THREE.BoxGeometry(0.78, 1.55, w), bodyM, 0.004); body.position.set(-2.0, 0.775, z); scene.add(body);
+      const st = mesh(new THREE.BoxGeometry(0.04, 0.1, w), stripe, false); st.position.set(-1.6, 1.38, z); scene.add(st);
+      const ring = mesh(new THREE.TorusGeometry(0.27, 0.035, 8, 28), doorRing, 0.003); ring.rotation.y = Math.PI / 2; ring.position.set(-1.61, 0.78, z); scene.add(ring);
+      const gl = mesh(new THREE.CylinderGeometry(0.255, 0.255, 0.02, 28), glassM, false); gl.rotation.z = Math.PI / 2; gl.position.set(-1.61, 0.78, z); scene.add(gl);
+    };
+    staticDryer(-0.85); staticDryer(0.85); staticDryer(-1.7);
+    for (const z of [1.7, -2.15] as const) {
+      const wb = mesh(new THREE.BoxGeometry(0.7, 1.0, 0.8), toon("#dfe6ea"), 0.004); wb.position.set(-2.0, 0.5, z); scene.add(wb);
+      const wr = mesh(new THREE.TorusGeometry(0.25, 0.04, 8, 28), toon(accent), 0.003); wr.rotation.y = Math.PI / 2; wr.position.set(-1.64, 0.5, z); scene.add(wr);
+      const wg = mesh(new THREE.CylinderGeometry(0.23, 0.23, 0.02, 28), glassM, false); wg.rotation.z = Math.PI / 2; wg.position.set(-1.64, 0.5, z); scene.add(wg);
+    }
+    // folding table (top 0.9), x -0.55..0.25, z -0.4..0.8
+    const tTop = 0.9;
+    const tp = mesh(new THREE.BoxGeometry(0.8, 0.04, 1.2), toon("#d9d4c7"), 0.004); tp.position.set(-0.15, tTop - 0.02, 0.2); scene.add(tp);
+    for (const [lx, lz] of [[-0.5, -0.35], [0.2, -0.35], [-0.5, 0.75], [0.2, 0.75]] as const) {
+      const leg = mesh(new THREE.BoxGeometry(0.04, tTop - 0.04, 0.04), toon("#8a8f96"), false); leg.position.set(lx, (tTop - 0.04) / 2, lz); scene.add(leg);
+    }
+    // bench along the back wall (seat 0.45)
+    const bseat = mesh(new THREE.BoxGeometry(1.6, 0.06, 0.4), toon("#5b6a78"), 0.004); bseat.position.set(0.7, 0.42, -2.1); scene.add(bseat);
+    for (const bx of [0.0, 1.4]) { const bl = mesh(new THREE.BoxGeometry(0.06, 0.4, 0.34), toon("#8a8f96"), false); bl.position.set(bx, 0.2, -2.1); scene.add(bl); }
+    // change machine and detergent vending on the right/back
+    const chg = mesh(new THREE.BoxGeometry(0.6, 1.3, 0.45), toon("#2f6fb3"), 0.004); chg.position.set(2.2, 0.65, -1.9); scene.add(chg);
+    const chgTex = canvasTexture(256, 96, (g, w, h) => { g.fillStyle = "#fff"; g.fillRect(0, 0, w, h); g.fillStyle = "#1f4f86"; g.font = `bold 52px ${JP_FONT}`; g.textAlign = "center"; g.textBaseline = "middle"; g.fillText("両替機", w / 2, h / 2); });
+    const chgFace = new THREE.Mesh(new THREE.PlaneGeometry(0.45, 0.17), new THREE.MeshBasicMaterial({ map: chgTex })); chgFace.position.set(2.2, 1.05, -1.67); scene.add(chgFace);
+    const vend = mesh(new THREE.BoxGeometry(0.55, 1.2, 0.45), toon("#f2f2f2"), 0.004); vend.position.set(1.55, 0.6, -2.1); scene.add(vend);
+    const vendFace = new THREE.Mesh(new THREE.PlaneGeometry(0.4, 0.5), flat("#7fc4e8")); vendFace.position.set(1.55, 0.85, -1.87); scene.add(vendFace);
+    // storefront window on the right wall
+    const win = new THREE.Mesh(new THREE.PlaneGeometry(3.4, 1.6), flat("#a9d0e8")); win.position.set(2.56, 1.5, 0.3); win.rotation.y = -Math.PI / 2; scene.add(win);
+    const mullion = mesh(new THREE.BoxGeometry(0.05, 1.6, 0.05), toon("#d9dde0"), false); mullion.position.set(2.54, 1.5, 0.3); scene.add(mullion);
+    // laundry carts (wire baskets)
+    for (const [cx, cz] of [[1.5, 0.9], [-0.6, 1.9]] as const) {
+      const cart = mesh(new THREE.BoxGeometry(0.6, 0.4, 0.45), toon("#8fb7d6", { transparent: true, opacity: 0.8 }), 0.003); cart.position.set(cx, 0.55, cz); scene.add(cart);
+      const cs = mesh(new THREE.BoxGeometry(0.62, 0.35, 0.47), toon("#c9d0d6"), false); cs.position.set(cx, 0.175, cz); scene.add(cs);
+    }
+    return {
+      surfaces: { table: tTop, bench: 0.45, floor: 0 },
+      cameras: {
+        wide: { pos: [0.2, 1.55, 5.6], target: [-0.7, 1.0, 0.0], fov: 48 },
+        "dryer-cu": { pos: [0.4, 1.45, 2.3], target: [-1.45, 1.0, 0.0], fov: 34 },
+        "table-top": { pos: [0.4, 1.7, 1.55], target: [-0.2, 0.92, 0.2], fov: 30 },
+        "a-cu": { pos: [0.0, 1.55, 2.2], target: [-1.0, 1.5, 0.05], fov: 26 },
+        "b-cu": { pos: [0.95, 1.5, 0.4], target: [0.45, 1.35, -1.5], fov: 30 },
+        "drum-cu": { pos: [0.0, 1.55, 1.3], target: [-1.75, 0.55, 0.0], fov: 30 },
+        "two-shot": { pos: [0.9, 1.55, 2.6], target: [-1.1, 1.25, -0.1], fov: 36 },
+        side: { pos: [3.0, 1.5, 1.8], target: [-0.6, 1.0, -0.2], fov: 42 }
+      }
+    };
+  },
+
   /** 通勤電車のロングシート（座席の前の通路から見る）。奥の壁(z=-1.1)に窓と窓上の広告枠、壁沿いに5人掛けのベンチ（座面 0.45、座面の中心 z=-0.72）。
    *  座る人は `seated: true`、x=-1.0/-0.5/0/0.5/1.0、z≈-0.78、root.y≈-0.32、ry=0。立つ人は z≈-0.15、ry=π。吊り革は z=0.15。
    *  窓上の広告は `params.posterX`（既定 -0.5）に `params.posterTitle` / `posterSub` / `posterAccent` で出す。カメラ: wide, front, row-cu, s-cu, ko-cu, poster, low-row。 */

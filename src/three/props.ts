@@ -823,6 +823,82 @@ export const PROPS: Record<string, PropBuilder> = {
     place(0);
     return { object: g, setParam(k, v) { if (k === "amount") { amount = v; m.opacity = 0.42 * amount; } }, animate(t) { place(t); } };
   },
+
+  /** コインランドリーの乾燥機。前面は +Z（ry=π/2 で +X 向き）。扉は（機械の正面から見て）+X 向き配置では -Z 側の蝶番で param open 0..1 で開く。param min = 表示の残り分（0..99）。
+   *  ピボットは床。扉の中心 y=0.78、ドラム底 y≈0.52。コイン投入口は前面 (x≈0.18, y=1.33)。 */
+  "coin-dryer"(p) {
+    const g = new THREE.Group();
+    const accent = str(p.accent, "#1f78c8");
+    const bodyM = toon("#e9eef1");
+    const front = 0.375;
+    // rear block + a front frame around a square opening (0.5 x 0.5 at y=0.78) so the drum interior is really hollow
+    const rear = mesh(new THREE.BoxGeometry(0.8, 1.55, 0.45), bodyM, 0.004); rear.position.set(0, 0.775, -0.15); g.add(rear);
+    const fz = front - 0.15;
+    const fTop = mesh(new THREE.BoxGeometry(0.8, 0.52, 0.3), bodyM, 0.004); fTop.position.set(0, 1.29, fz); g.add(fTop);
+    const fBot = mesh(new THREE.BoxGeometry(0.8, 0.53, 0.3), bodyM, 0.004); fBot.position.set(0, (0.78 - 0.25) / 2, fz); g.add(fBot);
+    for (const sx of [-1, 1]) { const fs = mesh(new THREE.BoxGeometry(0.15, 0.5, 0.3), bodyM, 0.004); fs.position.set(sx * 0.325, 0.78, fz); g.add(fs); }
+    const stripe = mesh(new THREE.BoxGeometry(0.8, 0.1, 0.04), toon(accent), false); stripe.position.set(0, 1.08, front); g.add(stripe);
+    // drum interior: inside-out dark cylinder (axis z), floor at y≈0.51
+    const drumM = new THREE.MeshToonMaterial({ color: new THREE.Color("#4a4f57"), side: THREE.BackSide, gradientMap: (toon("#fff") as THREE.MeshToonMaterial).gradientMap });
+    const hole = new THREE.Mesh(new THREE.CylinderGeometry(0.27, 0.27, 0.3, 28, 1, true), drumM); hole.rotation.x = Math.PI / 2; hole.position.set(0, 0.78, front - 0.15); g.add(hole);
+    const back = new THREE.Mesh(new THREE.CircleGeometry(0.27, 28), flat("#2a2d33")); back.position.set(0, 0.78, front - 0.299); g.add(back);
+    const inner = mesh(new THREE.TorusGeometry(0.262, 0.018, 8, 28), toon("#9aa0a8"), false); inner.position.set(0, 0.78, front + 0.005); g.add(inner);
+    // door: pivot on the left edge (x=-0.3)
+    const hinge = new THREE.Group(); hinge.position.set(0.3, 0.78, front + 0.02); g.add(hinge);
+    const ring = mesh(new THREE.TorusGeometry(0.29, 0.04, 8, 30), toon("#c9d0d6"), 0.003); ring.position.set(-0.3, 0, 0.0); hinge.add(ring);
+    const glass = mesh(new THREE.CylinderGeometry(0.27, 0.27, 0.02, 30), toon("#9fc3dc", { transparent: true, opacity: 0.55 }), false); glass.rotation.x = Math.PI / 2; glass.position.set(-0.3, 0, 0.0); hinge.add(glass);
+    const handle = mesh(new THREE.BoxGeometry(0.03, 0.14, 0.03), toon("#6d747c"), false); handle.position.set(-0.58, 0, 0.03); hinge.add(handle);
+    // control panel with the LED timer and the coin slot
+    const panel = mesh(new THREE.BoxGeometry(0.7, 0.34, 0.03), toon("#2b3138"), 0.003); panel.position.set(0, 1.33, front + 0.01); g.add(panel);
+    const c = document.createElement("canvas"); c.width = 192; c.height = 96;
+    const ctx = c.getContext("2d")!;
+    const tex = new THREE.CanvasTexture(c); tex.colorSpace = THREE.SRGBColorSpace;
+    let shown = -1;
+    const draw = (m: number) => {
+      const v = Math.max(0, Math.round(m)); if (v === shown) return; shown = v;
+      ctx.fillStyle = "#14181c"; ctx.fillRect(0, 0, 192, 96);
+      ctx.fillStyle = v > 0 ? "#ff4a2a" : "#4a2a24"; ctx.font = "bold 70px monospace"; ctx.textAlign = "center"; ctx.textBaseline = "middle";
+      ctx.fillText(String(v).padStart(2, "0"), 78, 50);
+      ctx.fillStyle = v > 0 ? "#ff8a6a" : "#5a3a34"; ctx.font = `bold 28px ${JP_FONT}`; ctx.fillText("分", 160, 56);
+      tex.needsUpdate = true;
+    };
+    draw(num(p.min, 0));
+    const disp = new THREE.Mesh(new THREE.PlaneGeometry(0.3, 0.15), new THREE.MeshBasicMaterial({ map: tex })); disp.position.set(-0.14, 1.33, front + 0.027); g.add(disp);
+    const slotBox = mesh(new THREE.BoxGeometry(0.14, 0.2, 0.02), toon("#c9a24a"), 0.002); slotBox.position.set(0.2, 1.33, front + 0.03); g.add(slotBox);
+    const slot = new THREE.Mesh(new THREE.PlaneGeometry(0.1, 0.012), flat("#111")); slot.position.set(0.2, 1.36, front + 0.0415); g.add(slot);
+    const lbl = canvasTexture(128, 64, (gg, w, h) => { gg.fillStyle = "#c9a24a"; gg.fillRect(0, 0, w, h); gg.fillStyle = "#222"; gg.font = `bold 30px ${JP_FONT}`; gg.textAlign = "center"; gg.textBaseline = "middle"; gg.fillText("100円", w / 2, h / 2); });
+    const lab = new THREE.Mesh(new THREE.PlaneGeometry(0.1, 0.05), new THREE.MeshBasicMaterial({ map: lbl })); lab.position.set(0.2, 1.28, front + 0.0415); g.add(lab);
+    const setOpen = (o: number) => { hinge.rotation.y = Math.min(Math.max(o, 0), 1) * 1.9; };
+    setOpen(num(p.open, 0));
+    return { object: g, setParam(k, v) { if (k === "open") setOpen(v); else if (k === "min") draw(v); } };
+  },
+
+  /** ニットのセーター（平置き）。ピボットは中央の下面、前身頃は +Z 側が裾。tf.s で縮む（実寸 約0.6 m）。params.color。 */
+  "sweater"(p) {
+    const g = new THREE.Group();
+    const col = str(p.color, "#e8742a");
+    const m = toon(col);
+    const rib = toon(str(p.rib, "#c25a1a"));
+    const bodyM = mesh(new THREE.BoxGeometry(0.46, 0.04, 0.58), m, 0.003); bodyM.position.y = 0.02; g.add(bodyM);
+    const hem = mesh(new THREE.BoxGeometry(0.46, 0.045, 0.07), rib, false); hem.position.set(0, 0.022, 0.255); g.add(hem);
+    for (const sx of [-1, 1]) {
+      const sl = mesh(new THREE.BoxGeometry(0.4, 0.035, 0.15), m, 0.003); sl.position.set(sx * 0.4, 0.018, -0.12); sl.rotation.y = sx * -0.45; g.add(sl);
+      const cuff = mesh(new THREE.BoxGeometry(0.06, 0.04, 0.15), rib, false); cuff.position.set(sx * 0.57, 0.02, -0.02); cuff.rotation.y = sx * -0.45; g.add(cuff);
+    }
+    const neck = mesh(new THREE.BoxGeometry(0.16, 0.05, 0.06), rib, false); neck.position.set(0, 0.025, -0.27); g.add(neck);
+    return { object: g };
+  },
+
+  /** 100円玉。ピボットは下面中央、平置き。params.size（既定 1.4＝見やすさのため実物の1.4倍）。 */
+  "coin-100"(p) {
+    const g = new THREE.Group();
+    const sz = num(p.size, 1.4);
+    const c = mesh(new THREE.CylinderGeometry(0.0113 * sz, 0.0113 * sz, 0.0017 * sz, 22), toon("#d4d7da"), 0.0015);
+    c.position.y = 0.00085 * sz; g.add(c);
+    const ring = mesh(new THREE.TorusGeometry(0.0095 * sz, 0.0006 * sz, 4, 22), toon("#aeb3b8"), false); ring.rotation.x = Math.PI / 2; ring.position.y = 0.0018 * sz; g.add(ring);
+    return { object: g };
+  },
+
   /** 注文メモ (order slip) lying flat on a counter, readable from the +Z side. param n = how many items are written (floor; 0..5): 1 room, 2 ウーロン茶 ？, 3 コーラ 1, 4 メロンソーダ 1, 5 人数, and from 6 the ？ is corrected to 3. params.lines overrides the five texts. */
   "order-slip"(p) {
     const W = 0.2, H = 0.3;
