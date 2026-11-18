@@ -655,10 +655,10 @@
       "role": "hook",
       "shot": "kiosk-wide",
       "pre": 0.05,
-      "post": 0.2,
+      "post": 0.12,
       "line": {
         "who": "clerk",
-        "text": "休憩、休憩。／自分の晩ごはん、買お"
+        "text": "休憩、休憩。／晩ごはん買お"
       },
       "do": [
         {
@@ -679,11 +679,11 @@
       "id": "rule",
       "role": "rule",
       "shot": "kiosk-cu",
-      "pre": 0.15,
-      "post": 0.1,
+      "pre": 0.1,
+      "post": 0.06,
       "line": {
         "who": "machine",
-        "text": "商品を読み取れません。／係員をお呼びします"
+        "text": "読み取れません。／係員をお呼びします"
       },
       "do": [
         {
@@ -711,8 +711,8 @@
       "id": "esc1a",
       "role": "bridge",
       "shot": "kiosk-wide",
-      "pre": 0.2,
-      "post": 0.05,
+      "pre": 0.14,
+      "post": 0.03,
       "line": {
         "who": "clerk",
         "text": "はーい、いま行きます"
@@ -741,8 +741,8 @@
       "role": "escalate",
       "level": 1,
       "shot": "kiosk-side",
-      "pre": 0.45,
-      "post": 0.1,
+      "pre": 0.32,
+      "post": 0.06,
       "line": {
         "who": "clerk",
         "text": "お待たせしました、お客様。／……読み取れました"
@@ -779,8 +779,8 @@
       "id": "back1",
       "role": "bridge",
       "shot": "kiosk-wide",
-      "pre": 0.15,
-      "post": 0.1,
+      "pre": 0.1,
+      "post": 0.06,
       "line": {
         "who": "clerk",
         "text": "あ、すみません。／助かります"
@@ -820,11 +820,11 @@
       "id": "call2",
       "role": "bridge",
       "shot": "kiosk-cu",
-      "pre": 0.3,
-      "post": 0.1,
+      "pre": 0.21,
+      "post": 0.06,
       "line": {
         "who": "machine",
-        "text": "割引シールを確認します。／係員をお呼びします"
+        "text": "割引シールです。／係員をお呼びします"
       },
       "do": [
         {
@@ -846,8 +846,8 @@
       "id": "mutter",
       "role": "bridge",
       "shot": "kiosk-wide",
-      "pre": 0.2,
-      "post": 0.05,
+      "pre": 0.14,
+      "post": 0.03,
       "line": {
         "who": "clerk",
         "text": "それ、さっき／自分で貼ったやつ"
@@ -872,8 +872,8 @@
       "role": "escalate",
       "level": 2,
       "shot": "kiosk-side",
-      "pre": 0.55,
-      "post": 0.1,
+      "pre": 0.39,
+      "post": 0.06,
       "line": {
         "who": "clerk",
         "text": "失礼します。／確かに、私が貼りました"
@@ -921,11 +921,11 @@
       "role": "escalate",
       "level": 3,
       "shot": "counter-front",
-      "pre": 0.3,
-      "post": 0.1,
+      "pre": 0.21,
+      "post": 0.06,
       "line": {
         "who": "guest",
-        "text": "すみませーん。／タバコ、お願いします"
+        "text": "すみません、／タバコお願いします"
       },
       "do": [
         {
@@ -973,8 +973,8 @@
       "id": "turn",
       "role": "turn",
       "shot": "kiosk-wide",
-      "pre": 0.25,
-      "post": 0.1,
+      "pre": 0.17,
+      "post": 0.06,
       "line": {
         "who": "clerk",
         "text": "申し訳ありません。／いま自分が、お客でして"
@@ -1004,8 +1004,8 @@
       "id": "guestre",
       "role": "bridge",
       "shot": "counter-front",
-      "pre": 0.2,
-      "post": 0.05,
+      "pre": 0.14,
+      "post": 0.03,
       "line": {
         "who": "guest",
         "text": "……え？"
@@ -1023,11 +1023,11 @@
       "id": "call3",
       "role": "bridge",
       "shot": "kiosk-cu",
-      "pre": 0.25,
-      "post": 0.1,
+      "pre": 0.17,
+      "post": 0.06,
       "line": {
         "who": "machine",
-        "text": "お支払いが完了していません。／係員をお呼びします"
+        "text": "お支払いできません。／係員をお呼びします"
       },
       "do": [
         {
@@ -1053,8 +1053,8 @@
       "id": "payoff",
       "role": "payoff",
       "shot": "counter-front",
-      "pre": 0.25,
-      "post": 0.2,
+      "pre": 0.17,
+      "post": 0.12,
       "line": {
         "who": "guest",
         "text": "店員さん。／あちらのお客様、お待ちですよ"
@@ -1092,8 +1092,8 @@
       "id": "apology",
       "role": "bridge",
       "shot": "kiosk-all",
-      "pre": 0.3,
-      "post": 0.15,
+      "pre": 0.21,
+      "post": 0.09,
       "line": {
         "who": "clerk",
         "text": "あっ、お待たせしました、／お客様！"
@@ -1140,11 +1140,11 @@
       "id": "button",
       "role": "button",
       "shot": "kiosk-all",
-      "pre": 0.2,
-      "post": 0.1,
+      "pre": 0.14,
+      "post": 0.06,
       "line": {
         "who": "machine",
-        "text": "お買い上げ、／ありがとうございました"
+        "text": "ありがとうございました"
       },
       "do": [
         {
