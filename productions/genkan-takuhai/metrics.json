@@ -1,0 +1,12 @@
+{
+  "production": "genkan-takuhai",
+  "youtubeId": "GTXQ7cRJSqk",
+  "postedAt": "2026-11-25",
+  "durationSec": 43.9,
+  "variant": "baseline",
+  "note": "予約投稿（公開は postedAt 18:00 JST）",
+  "windowDays": 3,
+  "fetched": false,
+  "metrics": null,
+  "howToFetch": "video-publisher の YouTube Metrics: mode=video, concept=おもしろ, videos=\"GTXQ7cRJSqk:2026-11-25:44\"（公開から3日たってから）"
+}

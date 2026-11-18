@@ -1,0 +1,12 @@
+{
+  "production": "konbini-yakan",
+  "youtubeId": "uAlCWf3hvgM",
+  "postedAt": "2026-11-21",
+  "durationSec": 44.8,
+  "variant": "baseline",
+  "note": "予約投稿（公開は postedAt 18:00 JST）",
+  "windowDays": 3,
+  "fetched": false,
+  "metrics": null,
+  "howToFetch": "video-publisher の YouTube Metrics: mode=video, concept=おもしろ, videos=\"uAlCWf3hvgM:2026-11-21:45\"（公開から3日たってから）"
+}

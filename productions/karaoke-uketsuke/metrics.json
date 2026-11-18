@@ -1,0 +1,12 @@
+{
+  "production": "karaoke-uketsuke",
+  "youtubeId": "gNbku9lR6eA",
+  "postedAt": "2026-11-23",
+  "durationSec": 44.9,
+  "variant": "baseline",
+  "note": "予約投稿（公開は postedAt 18:00 JST）",
+  "windowDays": 3,
+  "fetched": false,
+  "metrics": null,
+  "howToFetch": "video-publisher の YouTube Metrics: mode=video, concept=おもしろ, videos=\"gNbku9lR6eA:2026-11-23:45\"（公開から3日たってから）"
+}
