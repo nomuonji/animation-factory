@@ -711,5 +711,31 @@ export const PROPS: Record<string, PropBuilder> = {
     };
     place(0);
     return { object: g, setParam(k, v) { if (k === "amount") { amount = v; m.opacity = 0.42 * amount; } }, animate(t) { place(t); } };
-  }
+  },
+
+  /**
+   * 図書館の本(ハードカバー)。ピボットは底面の中心、表紙が +Y を向いて平置き。
+   * params: color(表紙), title(表紙の題字、縦に2行まで), thick(厚み m)。
+   */
+  "library-book"(p) {
+    const g = new THREE.Group();
+    const w = 0.15, d = 0.21, t = num(p.thick, 0.035);
+    const cover = str(p.color, "#2f4f6b");
+    const pages = mesh(new THREE.BoxGeometry(w - 0.01, t - 0.012, d - 0.01), toon("#f3ecd8"), 0.002); pages.position.set(0.004, t / 2, 0); g.add(pages);
+    const bot = mesh(new THREE.BoxGeometry(w, 0.006, d), toon(cover), 0.002); bot.position.y = 0.003; g.add(bot);
+    const top = mesh(new THREE.BoxGeometry(w, 0.006, d), toon(cover), 0.002); top.position.y = t - 0.003; g.add(top);
+    const spine = mesh(new THREE.BoxGeometry(0.008, t, d), toon(cover), 0.002); spine.position.set(-w / 2 + 0.004, t / 2, 0); g.add(spine);
+    const title = str(p.title, "");
+    if (title) {
+      const tex = canvasTexture(150, 210, (c, cw, ch) => {
+        c.fillStyle = "rgba(255,255,255,0.0)"; c.clearRect(0, 0, cw, ch);
+        c.fillStyle = "#f6efd8"; c.fillRect(14, 30, cw - 28, 96);
+        c.fillStyle = "#222"; c.font = `bold 30px ${JP_FONT}`; c.textAlign = "center"; c.textBaseline = "middle";
+        title.split("\n").forEach((ln, i, a) => c.fillText(ln, cw / 2, 78 + (i - (a.length - 1) / 2) * 36));
+      });
+      const lab = new THREE.Mesh(new THREE.PlaneGeometry(w, d), new THREE.MeshBasicMaterial({ map: tex, transparent: true }));
+      lab.rotation.x = -Math.PI / 2; lab.position.y = t + 0.0005; g.add(lab);
+    }
+    return { object: g };
+  },
 };

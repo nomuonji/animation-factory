@@ -1,0 +1,1158 @@
+{
+  "meta": {
+    "id": "toshokan-kashidashi",
+    "title": "図書館の予約本を首を長くして待つ",
+    "fps": 30,
+    "width": 1080,
+    "height": 1920,
+    "variant": "baseline"
+  },
+  "design": {
+    "format": "literalization",
+    "title": "図書館の予約本を首を長くして待つ",
+    "titleAlternatives": [
+      "予約した本が来るまで首が伸びる図書館",
+      "図書館で予約本を待ったら首が長くなった"
+    ],
+    "titlePattern": "consequence",
+    "titleOnScreen": "card",
+    "titleScreenText": "図書館の予約本を\n首を長くして待つ",
+    "hook": {
+      "type": "line-first",
+      "firstFrame": "図書館の貸出カウンター。予約の本を受け取りに来た客が、カウンターの前で司書に声をかけている。奥の壁は書架、貸出返却の掲示",
+      "overlay": "予約した本を待つ"
+    },
+    "rule": "待たされるほど、客の首が文字どおり長くなる",
+    "escalations": [
+      "『少々お待ちください』のあいだに首が少し伸びる",
+      "前の貸出人の返却期限が閉館までと分かり、時計が進むほど首が伸びる",
+      "返却本の状態確認が始まり、首がカウンターを越えて画面をのぞき込む"
+    ],
+    "turn": "司書が『画面は見ないでください』と注意し、客が首を引く",
+    "payoff": "『ご用意できました』の一言で、首が一瞬で元の長さに戻る",
+    "button": "司書が『下巻は四十二番目です』と告げると、客の首がまた静かに伸び始める",
+    "loop": false,
+    "reaction": "laugh",
+    "audience": "人気の本を予約して、何か月も順番を待ったことがある人",
+    "reality": {
+      "place": "図書館の貸出カウンター",
+      "normalEvent": "予約した本を受け取りに来て、予約順位や前の人の返却予定を聞き、返却された本の状態確認が終わるのを待つ",
+      "onlyBreak": "客の首が、待たされた時間に比例して文字どおり長くなる(『首を長くして待つ』)"
+    },
+    "payoffMechanism": "idiom-gauge-snaps-back",
+    "ideation": {
+      "gateVersion": 2,
+      "method": "creative-thinking (My Portal chat Skill) — 無人の並列実行。選定は実行指示による委任",
+      "candidates": 18,
+      "rejected": [
+        "C04: C03と同じ型(制度が比喩を処理する)で、設定差だけ。体の一部が離れる絵は二つ目の非現実になる",
+        "C05: 命令に従い続ける型は焼肉の既存作(obedience-outlasts-the-order)に近い",
+        "C06: 慣用句の文字どおりではなく、聞き出しの繰り返しで二段目の新しい発見が弱い",
+        "C07: 虫のキャラが手持ちにいない。新キャラの設定を足すことになる",
+        "C08: 鱗という小道具を見せびらかす狙いすぎ。痕跡の発見は一回で終わる",
+        "C09: 同じ貸出の繰り返しで二段目・三段目の新しい発見が作れない"
+      ],
+      "corpus": {
+        "dataset": "radichichi",
+        "datasetVersion": "v1",
+        "retrievedAt": "2026-11-18T10:58:34Z",
+        "queryLog": [
+          {
+            "query": "図書館",
+            "resultChunkIds": [
+              "radichichi_1755068597_003"
+            ]
+          },
+          {
+            "query": "待つ",
+            "resultChunkIds": [
+              "radichichi_1755068597_007"
+            ]
+          },
+          {
+            "query": "首",
+            "resultChunkIds": [
+              "radichichi_1755068597_004",
+              "radichichi_1755068597_007",
+              "radichichi_1755068597_008"
+            ]
+          }
+        ],
+        "sourceChunks": [
+          {
+            "id": "radichichi_1755068597_003",
+            "dataset": "radichichi",
+            "retrievalTier": "creative",
+            "role": "ogiri_reference"
+          },
+          {
+            "id": "radichichi_1755068597_004",
+            "dataset": "radichichi",
+            "retrievalTier": "creative",
+            "role": "ogiri_reference"
+          },
+          {
+            "id": "radichichi_1755068597_007",
+            "dataset": "radichichi",
+            "retrievalTier": "creative",
+            "role": "ogiri_reference"
+          },
+          {
+            "id": "radichichi_1755068597_008",
+            "dataset": "radichichi",
+            "retrievalTier": "creative",
+            "role": "ogiri_reference"
+          }
+        ],
+        "sourceChunkIds": [
+          "radichichi_1755068597_003",
+          "radichichi_1755068597_004",
+          "radichichi_1755068597_007",
+          "radichichi_1755068597_008"
+        ],
+        "sourceExampleIds": [
+          "radichichi-164",
+          "radichichi-183",
+          "radichichi-207",
+          "radichichi-211",
+          "radichichi-212",
+          "radichichi-228",
+          "radichichi-631",
+          "radichichi-639"
+        ]
+      },
+      "mechanisms": [
+        {
+          "id": "m-bodygauge",
+          "sourceExampleIds": [
+            "radichichi-639",
+            "radichichi-228"
+          ],
+          "abstractOperation": "職業人や生き物の体の部位が、仕事や習性の都合でそのまま物理的に伸び縮み・回転し、周囲はそれを前提として手続きを進める",
+          "transfer": "『首を長くして待つ』という慣用句の状態を、待ち時間に比例して首が伸びる体の目盛りとして図書館の予約受け取りに置いた"
+        },
+        {
+          "id": "m-procedure",
+          "sourceExampleIds": [
+            "radichichi-211",
+            "radichichi-164"
+          ],
+          "abstractOperation": "制度や遊戯の決まりごとの論理を、現実の手順どおりに正確に適用し、各手順が新しい帰結を生む",
+          "transfer": "予約順位、前の貸出人の返却期限、返却本の状態確認という実在の貸出手順を一つずつ踏み、手順ごとに新しい待ちを生む"
+        },
+        {
+          "id": "m-restart",
+          "sourceExampleIds": [
+            "radichichi-212",
+            "radichichi-183"
+          ],
+          "abstractOperation": "一つの流れが決着した直後に、同じ仕組みが次の巻・次の相手という形で再び始まり、冒頭の状態に戻る",
+          "transfer": "上巻を受け取って首が戻った直後に、下巻の順番待ちという新しい待ちが始まる"
+        },
+        {
+          "id": "m-deadpan",
+          "sourceExampleIds": [
+            "radichichi-207",
+            "radichichi-631"
+          ],
+          "abstractOperation": "異常な体の状態に周囲が驚かず、職務の言葉だけを平常どおり言い続ける",
+          "transfer": "首が伸びた客に、司書は個人情報の注意と手順の案内だけを淡々と返す"
+        }
+      ],
+      "candidateLog": [
+        {
+          "id": "C01",
+          "mechanism": "m-bodygauge",
+          "mechanismFamily": "idiom-state-as-body-gauge",
+          "causalCore": "抽象的な状態(待つ気持ち)が体の部位の長さとして現れ、待ち時間に比例して伸び、原因が解消した瞬間に元へ戻る",
+          "concept": "図書館の予約本の受け取りで、待つほど客の首が文字どおり長くなる",
+          "status": "selected",
+          "reason": "場所の普通の出来事(予約順位・返却待ち・状態確認)が全部『待ち』になり、段ごとに新しい待ちが出る。ずらすのは首の一点だけ"
+        },
+        {
+          "id": "C02",
+          "mechanism": "m-procedure",
+          "mechanismFamily": "idiom-object-exists-as-fixture",
+          "causalCore": "慣用句が指す物(穴)が舞台の備品として実在し、感情の逃げ場がその備品へ向かう",
+          "concept": "十年延滞の本を返す客が『穴があったら入りたい』で返却口に入る",
+          "status": "shortlisted",
+          "reason": "備品と慣用句の一致は鮮やかだが、人が返却口に入る大きさの無理があり、入った後の展開が弱い"
+        },
+        {
+          "id": "C03",
+          "mechanism": "m-procedure",
+          "mechanismFamily": "institution-processes-the-metaphor-as-loan",
+          "causalCore": "慣用句の貸し借りを貸出システムの手続き(カード・期限・延長)がそのまま処理し、手続き側が比喩に引きずられる",
+          "concept": "『耳を貸してください』を貸出手続きで処理する",
+          "status": "shortlisted",
+          "reason": "制度が字義どおりに回る型で、役所系の別案と近く、笑いの核が手続きの量に寄る"
+        },
+        {
+          "id": "C04",
+          "mechanism": "m-procedure",
+          "mechanismFamily": "institution-processes-the-metaphor-as-loan",
+          "causalCore": "身体の一部を貸す約束に返却期限と延滞が付き、期限日に文字どおり戻すことになる",
+          "concept": "司書が『手を貸す』と言って手に貸出期限が付く",
+          "status": "rejected",
+          "reason": "C03と同じ型(制度が比喩を処理する)で、設定差だけ。体の一部が離れる絵は二つ目の非現実になる"
+        },
+        {
+          "id": "C05",
+          "mechanism": "m-deadpan",
+          "mechanismFamily": "sign-obeyed-to-the-letter",
+          "causalCore": "掲示の文言を字義どおりに守る人が、手続きの動作と矛盾するまで守り通す",
+          "concept": "『お子様から目を離さないで』を守り続ける父親が後ろ向きのまま貸出手続きをする",
+          "status": "rejected",
+          "reason": "命令に従い続ける型は焼肉の既存作(obedience-outlasts-the-order)に近い"
+        },
+        {
+          "id": "C06",
+          "mechanism": "m-deadpan",
+          "mechanismFamily": "secret-held-vs-leak",
+          "causalCore": "守秘する人の言葉は堅いが、顔や手の動きから答えが漏れて質問者が総当たりで当てる",
+          "concept": "貸出履歴を教えない司書に、彼氏の借りた本を当てに来る客",
+          "status": "rejected",
+          "reason": "慣用句の文字どおりではなく、聞き出しの繰り返しで二段目の新しい発見が弱い"
+        },
+        {
+          "id": "C07",
+          "mechanism": "m-bodygauge",
+          "mechanismFamily": "creature-nature-damages-item",
+          "causalCore": "生き物の習性が借りた物を物理的に傷つけ、返却時の状態確認が痕跡を一つずつ見つける",
+          "concept": "『本の虫』が返却した本が虫食いだらけ",
+          "status": "rejected",
+          "reason": "虫のキャラが手持ちにいない。新キャラの設定を足すことになる"
+        },
+        {
+          "id": "C08",
+          "mechanism": "m-procedure",
+          "mechanismFamily": "residue-found-in-item",
+          "causalCore": "借り手の比喩的な体験が物理的な痕跡として返却物に残り、状態確認が拾う",
+          "concept": "『目から鱗』の客の返却本から鱗が落ちる",
+          "status": "rejected",
+          "reason": "鱗という小道具を見せびらかす狙いすぎ。痕跡の発見は一回で終わる"
+        },
+        {
+          "id": "C09",
+          "mechanism": "m-restart",
+          "mechanismFamily": "count-reaches-literal-threshold",
+          "causalCore": "回数の積み上げが慣用句の閾値(百遍)に達して意味が自然に現れる",
+          "concept": "『読書百遍』で百回目の貸出に何かが起きる",
+          "status": "rejected",
+          "reason": "同じ貸出の繰り返しで二段目・三段目の新しい発見が作れない"
+        },
+        {
+          "id": "C10",
+          "mechanism": "m-deadpan",
+          "mechanismFamily": "intangible-made-object",
+          "causalCore": "目に見えないもの(声)を物として落とす・拾う動作に置き換える",
+          "concept": "『声を落とす』を落とし物として扱う",
+          "status": "rejected",
+          "reason": "声は画に出せず、落としたことが観客に伝わらない"
+        },
+        {
+          "id": "C11",
+          "mechanism": "m-deadpan",
+          "mechanismFamily": "intangible-made-object",
+          "causalCore": "場の雰囲気を物として本のように読み取る動作が成立する",
+          "concept": "『空気を読む』で本棚の空気を読む",
+          "status": "rejected",
+          "reason": "空気は画に出せない。C10と同じ『見えない物の物体化』"
+        },
+        {
+          "id": "C12",
+          "mechanism": "m-procedure",
+          "mechanismFamily": "residue-found-in-item",
+          "causalCore": "文章の行間に実際の空白があり、そこに挟まったものを読んで内容が変わる",
+          "concept": "『行間を読む』で行間に手紙が挟まっている",
+          "status": "rejected",
+          "reason": "手紙という小道具の見せびらかしで、オチのために用意した物になる"
+        },
+        {
+          "id": "C13",
+          "mechanism": "m-procedure",
+          "mechanismFamily": "institution-processes-the-metaphor-as-loan",
+          "causalCore": "恩義の借りを貸出手続きの期限・延長で処理し、返済の形が本の返却に置き換わる",
+          "concept": "『借りを返しに来た』客を返却手続きで処理する",
+          "status": "rejected",
+          "reason": "C03と同じ型。制度が比喩を処理するだけで、体の変化や画の驚きがない"
+        },
+        {
+          "id": "C14",
+          "mechanism": "m-bodygauge",
+          "mechanismFamily": "idiom-state-as-body-gauge",
+          "causalCore": "敬意の深さが頭の下がり量として現れ、礼を言われるほど戻らなくなる",
+          "concept": "『頭が下がる』常連の頭が下がったまま戻らない",
+          "status": "rejected",
+          "reason": "C01と同じ機序(状態を体の量にする)で別案と数えない。待ち時間のような手順の積み上がりがなく段が作れない"
+        },
+        {
+          "id": "C15",
+          "mechanism": "m-bodygauge",
+          "mechanismFamily": "idiom-state-as-body-gauge",
+          "causalCore": "負担の軽さが肩の高さとして現れ、荷を下ろすと実際に背が伸びる",
+          "concept": "『肩の荷が下りる』客が本を返して背が伸びる",
+          "status": "rejected",
+          "reason": "C01と同じ機序。返却は一瞬で終わり二段目が作れない"
+        },
+        {
+          "id": "C16",
+          "mechanism": "m-deadpan",
+          "mechanismFamily": "fixed-script-meets-body",
+          "causalCore": "決まった手続きの項目が客の体の特徴にぶつかって手順側が崩れる",
+          "concept": "『顔が広い』客の顔が貸出カードの写真枠に収まらない",
+          "status": "rejected",
+          "reason": "手続きと体の特徴が噛み合わない型は歯科・ジムの既存作と同じ。カードに写真は現実に不要"
+        },
+        {
+          "id": "C17",
+          "mechanism": "m-restart",
+          "mechanismFamily": "rule-enforced-by-literal-act",
+          "causalCore": "規則を守らせる側が慣用句の動作を字義どおり実行して静けさを作る",
+          "concept": "『水を打ったように静か』を作るため司書が館内で水を撒く",
+          "status": "rejected",
+          "reason": "司書が非現実の動作を足し、非現実が二つになる"
+        },
+        {
+          "id": "C18",
+          "mechanism": "m-restart",
+          "mechanismFamily": "queue-circulation",
+          "causalCore": "順送りの待ち行列が一周して、最初の人が最後に並び直す",
+          "concept": "全員が同じ予約本を待ち、一周して戻る",
+          "status": "rejected",
+          "reason": "日常の小さな不便を描くだけで笑いの核と回収がない"
+        }
+      ],
+      "shortlist": [
+        "C01",
+        "C02",
+        "C03"
+      ],
+      "selectedCandidateId": "C01",
+      "selectionAuthority": "delegated",
+      "userSeeds": [],
+      "diversityAudit": {
+        "mode": "blind-reclassification",
+        "verdict": "pass",
+        "summary": "生成時のラベルと一文概要を隠し、causalCoreの文だけを読んで18案を別工程で再分類した。批評側は12系統で、最大は『状態を体の量にする』『比喩を貸出手続きで処理する』の各3案(17%)。C14・C15は題材が違うがC01と同じ『状態を体の量にする』機序、C04・C13はC03と同じ『制度が比喩を処理する』機序と判断し、別案として数えずラベルを揃えた。shortlistはC01・C02・C03の別構造3案。",
+        "familyDefinitions": [
+          {
+            "id": "idiom-state-as-body-gauge",
+            "definingMove": "慣用句が表す気持ち・状態が体の部位の物理量になり、原因の長さに比例して変化し、解消で戻る"
+          },
+          {
+            "id": "idiom-object-exists-as-fixture",
+            "definingMove": "慣用句が指す物が舞台の備品として実在し、感情の行き先がその備品へ向かう"
+          },
+          {
+            "id": "institution-processes-the-metaphor-as-loan",
+            "definingMove": "制度の手続きが比喩的な貸し借りを字義どおりの貸出として処理し、手続き側が引きずられる"
+          },
+          {
+            "id": "sign-obeyed-to-the-letter",
+            "definingMove": "掲示の文言を字義どおりに守る人が、動作の矛盾が出るまで守り通す"
+          },
+          {
+            "id": "secret-held-vs-leak",
+            "definingMove": "守秘する側の言葉は堅いが、態度から答えが漏れて質問者が総当たりで当てる"
+          },
+          {
+            "id": "creature-nature-damages-item",
+            "definingMove": "生き物の習性が借りた物を傷つけ、返却時の確認が痕跡を見つける"
+          },
+          {
+            "id": "residue-found-in-item",
+            "definingMove": "借り手の比喩的な体験が物の痕跡として返却物に残り、確認作業が拾う"
+          },
+          {
+            "id": "count-reaches-literal-threshold",
+            "definingMove": "回数の積み上げが慣用句の閾値に達して意味が自然に現れる"
+          },
+          {
+            "id": "intangible-made-object",
+            "definingMove": "目に見えないものを物体として扱う動作に置き換える"
+          },
+          {
+            "id": "fixed-script-meets-body",
+            "definingMove": "決まった手続きの項目が相手の体の特徴にぶつかり手順側が崩れる"
+          },
+          {
+            "id": "rule-enforced-by-literal-act",
+            "definingMove": "規則を守らせる側が慣用句の動作を字義どおり実行して状態を作る"
+          },
+          {
+            "id": "queue-circulation",
+            "definingMove": "順送りの待ち行列が一周して最初の人が並び直す"
+          }
+        ],
+        "reviewedCandidateIds": [
+          "C01",
+          "C02",
+          "C03",
+          "C04",
+          "C05",
+          "C06",
+          "C07",
+          "C08",
+          "C09",
+          "C10",
+          "C11",
+          "C12",
+          "C13",
+          "C14",
+          "C15",
+          "C16",
+          "C17",
+          "C18"
+        ],
+        "familyAssignments": [
+          {
+            "candidateId": "C01",
+            "familyId": "idiom-state-as-body-gauge"
+          },
+          {
+            "candidateId": "C02",
+            "familyId": "idiom-object-exists-as-fixture"
+          },
+          {
+            "candidateId": "C03",
+            "familyId": "institution-processes-the-metaphor-as-loan"
+          },
+          {
+            "candidateId": "C04",
+            "familyId": "institution-processes-the-metaphor-as-loan"
+          },
+          {
+            "candidateId": "C05",
+            "familyId": "sign-obeyed-to-the-letter"
+          },
+          {
+            "candidateId": "C06",
+            "familyId": "secret-held-vs-leak"
+          },
+          {
+            "candidateId": "C07",
+            "familyId": "creature-nature-damages-item"
+          },
+          {
+            "candidateId": "C08",
+            "familyId": "residue-found-in-item"
+          },
+          {
+            "candidateId": "C09",
+            "familyId": "count-reaches-literal-threshold"
+          },
+          {
+            "candidateId": "C10",
+            "familyId": "intangible-made-object"
+          },
+          {
+            "candidateId": "C11",
+            "familyId": "intangible-made-object"
+          },
+          {
+            "candidateId": "C12",
+            "familyId": "residue-found-in-item"
+          },
+          {
+            "candidateId": "C13",
+            "familyId": "institution-processes-the-metaphor-as-loan"
+          },
+          {
+            "candidateId": "C14",
+            "familyId": "idiom-state-as-body-gauge"
+          },
+          {
+            "candidateId": "C15",
+            "familyId": "idiom-state-as-body-gauge"
+          },
+          {
+            "candidateId": "C16",
+            "familyId": "fixed-script-meets-body"
+          },
+          {
+            "candidateId": "C17",
+            "familyId": "rule-enforced-by-literal-act"
+          },
+          {
+            "candidateId": "C18",
+            "familyId": "queue-circulation"
+          }
+        ],
+        "shortlistPairChecks": [
+          {
+            "candidateA": "C01",
+            "candidateB": "C02",
+            "sameCausalStructure": false,
+            "notOnlySettingChange": true,
+            "difference": "C01は待ち時間に比例して体が連続的に変化し解消で戻る時間の積み上げ。C02は感情と備品が一点で一致して行動に移る瞬間の一致。時間の持ち方が違い、舞台を替えても構造は変わらない"
+          },
+          {
+            "candidateA": "C01",
+            "candidateB": "C03",
+            "sameCausalStructure": false,
+            "notOnlySettingChange": true,
+            "difference": "C01は気持ちの状態が体に現れ周囲が淡々と手順を進める。C03は制度の側が比喩を字義どおり処理して手続きが膨らむ。変化が起きる側(客の体と制度)が逆で、小道具や人物の差し替えでは同じにならない"
+          },
+          {
+            "candidateA": "C02",
+            "candidateB": "C03",
+            "sameCausalStructure": false,
+            "notOnlySettingChange": true,
+            "difference": "C02は客の感情が備品への行動になる一回の動き。C03は手続きの段階ごとに比喩が処理され続ける連鎖。一点の一致と手続きの連鎖で、因果の持ち方が違う"
+          }
+        ]
+      }
+    },
+    "comedyAudit": {
+      "comicKernel": "『首を長くして待つ』を字義どおりに受け、図書館の予約待ちの実在の手順(順位・返却期限・状態確認)の一つずつが首を一段ずつ伸ばす。待ちの正体が手順で、手順は誰も悪くない",
+      "audienceExpectation": "観客は予約本を取りに来た客が『まだですか』と待たされる図書館のありふれた場面を予測し、首が伸びることには気づかない",
+      "characterIntent": "客は予約した本を今日受け取りたい。司書は規則どおりに順位・返却・状態確認の手順を進め、個人情報の注意も守りたい。前の貸出人は期限日に返しに来ただけ",
+      "pressure": "本は前の貸出人の返却と状態確認が済むまで客に渡せないという貸出の手順そのものが、客を待たせ続ける",
+      "escalations": [
+        {
+          "beatId": "rule",
+          "change": "『少々お待ちください』のあいだに首が伸び、待つほど長くなるというルールが分かる"
+        },
+        {
+          "beatId": "wait",
+          "change": "前の人の返却期限が閉館までと分かり、時計が進むのに合わせて首がさらに高く伸びる"
+        },
+        {
+          "beatId": "flip",
+          "change": "返却本の状態確認が始まり、首がカウンターを越えて前のめりになり司書の画面に近づく"
+        }
+      ],
+      "payoffCausality": "冒頭から待った分だけ首が伸びるという一つのルールだけが働いており、本が渡る瞬間に待ちが終わるので首が戻る。足した設定はなく、順位・期限・状態確認はすべて実在の貸出手順で、本の受け渡しが待ちの終わりになる",
+      "laughMoment": {
+        "beatId": "payoff",
+        "description": "『ご用意できました』の一言で、天井近くまで伸びた首が一瞬で元の長さに縮み、司書は何事もなかったように本を差し出す。直後に下巻の順番を告げられて首がまた静かに伸び始める"
+      },
+      "independentReview": {
+        "mode": "hostile-reader",
+        "verdict": "pass",
+        "summary": "台詞と動作だけを読み直した。慣用句を字義どおりに受けて首が伸びること自体は予想しやすく、驚きは小さい。面白さは、首が伸びる理由が全部実在の貸出手順(順位・返却期限・状態確認)で、司書が個人情報の注意だけを淡々と返す点と、解消の瞬間の縮み方、直後に下巻で再開する点にある。",
+        "strongestObjection": "首が伸びる絵は『首を長くして』の字義どおりで先が読め、待ちの繰り返しで二段目の新しい発見がなく、縮んで終わるだけではないか",
+        "resolution": "段ごとに待ちの正体が変わる(順位の確認→前の人の期限→返却本の状態確認)ので同じ待ちの繰り返しではない。三段目で首が前のめりになり画面に近づくことが司書の注意(画面は見ないで)という新しい反応を生む。最後は新設定ではなく下巻の順番という同じ貸出の仕組みの再開で、冒頭のルールが戻る。既視感の懸念は残り、公開後の評価は本人の判断に委ねる",
+        "checks": {
+          "premiseHasComicEngine": true,
+          "notJustMundaneIncident": true,
+          "payoffIsEarned": true,
+          "characterCanonRespected": true,
+          "noUnmotivatedAdditions": true,
+          "notOnlyRoleReversal": true
+        }
+      }
+    }
+  },
+  "voices": {
+    "kyaku": {
+      "speaker": "春日部つむぎ",
+      "style": "ノーマル",
+      "speed": 1.05
+    },
+    "shisho": {
+      "speaker": "No.7",
+      "style": "ノーマル",
+      "speed": 1.0
+    },
+    "mae": {
+      "speaker": "青山龍星",
+      "style": "ノーマル",
+      "speed": 1.0
+    }
+  },
+  "music": {
+    "track": "waiting-lounge",
+    "gain": 0.22,
+    "fadeIn": 0.2,
+    "fadeOut": 0.6
+  },
+  "set": {
+    "kind": "library-counter",
+    "params": {}
+  },
+  "captions": {
+    "y": 0.76
+  },
+  "cameras": {
+    "head-up": {
+      "pos": [
+        2.6,
+        2.4,
+        2.9
+      ],
+      "target": [
+        0,
+        2.2,
+        0
+      ],
+      "fov": 38
+    }
+  },
+  "actors": {
+    "kyaku": {
+      "style": {
+        "skin": "#f2cdb0",
+        "hair": "#5a3a2a",
+        "hairStyle": "ponytail",
+        "top": "#9cc3b0",
+        "bottom": "#6b5a4a",
+        "shoes": "#4a3a30"
+      },
+      "root": {
+        "x": 0.0,
+        "z": 0.62,
+        "ry": 3.141592653589793
+      },
+      "pose": "idle",
+      "expr": "polite",
+      "captionColor": "#ffe48a"
+    },
+    "shisho": {
+      "style": {
+        "skin": "#e9bf9e",
+        "hair": "#241a14",
+        "hairStyle": "side-part",
+        "glasses": true,
+        "top": "#f6f1e6",
+        "vest": "#2f6b5a",
+        "vestTrim": "#f7f5ee",
+        "bottom": "#2b2b30",
+        "shoes": "#2b2b30",
+        "nameTag": "司書"
+      },
+      "root": {
+        "x": 0.0,
+        "z": -0.55,
+        "ry": 0
+      },
+      "pose": "counter",
+      "expr": "polite",
+      "captionColor": "#a9e0c8"
+    },
+    "mae": {
+      "style": {
+        "skin": "#e6b894",
+        "hair": "#bdb8b0",
+        "hairStyle": "short",
+        "top": "#7a5a3a",
+        "bottom": "#3a3d4a",
+        "shoes": "#2b2b30"
+      },
+      "root": {
+        "x": 5.2,
+        "z": 0.55,
+        "ry": -1.5707963267948966
+      },
+      "pose": "idle",
+      "expr": "neutral",
+      "captionColor": "#ffb3a0"
+    }
+  },
+  "props": {
+    "clock": {
+      "kind": "wall-clock",
+      "params": {
+        "t": 3.0,
+        "r": 0.3
+      },
+      "tf": {
+        "x": 0.95,
+        "y": 2.5,
+        "z": -1.93,
+        "ry": 0
+      }
+    },
+    "book": {
+      "kind": "library-book",
+      "params": {
+        "color": "#2f4f6b",
+        "title": "夜明けの\n約束 上",
+        "thick": 0.04
+      },
+      "tf": {
+        "x": 1.0,
+        "y": 1.25,
+        "z": 0.5
+      },
+      "visible": false
+    }
+  },
+  "beats": [
+    {
+      "id": "title",
+      "role": "title",
+      "shot": "wide",
+      "dur": 1.2,
+      "do": [
+        {
+          "at": 0,
+          "sfx": "title-sting"
+        }
+      ]
+    },
+    {
+      "id": "hook",
+      "role": "hook",
+      "shot": "wide",
+      "pre": 0.05,
+      "post": 0.15,
+      "line": {
+        "who": "kyaku",
+        "text": "すみません、／予約した本、届いてますか？"
+      },
+      "do": [
+        {
+          "at": 0,
+          "pose": "kyaku",
+          "to": "counter",
+          "dur": 0.4
+        }
+      ]
+    },
+    {
+      "id": "rule",
+      "role": "rule",
+      "shot": "wide",
+      "pre": 0.1,
+      "post": 0.1,
+      "hold": 1.7,
+      "line": {
+        "who": "shisho",
+        "text": "確認しますね。／少々お待ちください"
+      },
+      "do": [
+        {
+          "at": 0,
+          "look": "shisho",
+          "to": {
+            "pitch": 0.3
+          },
+          "dur": 0.3
+        },
+        {
+          "at": "line+0.8",
+          "pose": "kyaku",
+          "to": {
+            "neckLen": 5
+          },
+          "dur": 2.0
+        },
+        {
+          "at": "line+1.6",
+          "face": "kyaku",
+          "to": "doubtful",
+          "dur": 0.3
+        }
+      ]
+    },
+    {
+      "id": "esc1",
+      "role": "escalate",
+      "level": 1,
+      "shot": "wide",
+      "pre": 0.15,
+      "post": 0.1,
+      "line": {
+        "who": "shisho",
+        "text": "お客様は予約一番目です。／ただ、前の方が／まだ返却されていません"
+      },
+      "do": [
+        {
+          "at": "line+0.3",
+          "face": "kyaku",
+          "to": "surprised",
+          "dur": 0.2
+        },
+        {
+          "at": "line+1.9",
+          "face": "kyaku",
+          "to": "weary",
+          "dur": 0.3
+        },
+        {
+          "at": "line+1.9",
+          "pose": "kyaku",
+          "to": {
+            "neckLen": 6.5
+          },
+          "dur": 1.0
+        }
+      ]
+    },
+    {
+      "id": "esc1b",
+      "role": "escalate",
+      "level": 1,
+      "shot": "wide",
+      "pre": 0.1,
+      "post": 0.05,
+      "line": {
+        "who": "kyaku",
+        "text": "返却は、いつですか？"
+      },
+      "do": [
+        {
+          "at": 0,
+          "face": "kyaku",
+          "to": "doubtful",
+          "dur": 0.2
+        }
+      ]
+    },
+    {
+      "id": "esc1c",
+      "role": "escalate",
+      "level": 2,
+      "shot": "wide",
+      "pre": 0.1,
+      "post": 0.1,
+      "line": {
+        "who": "shisho",
+        "text": "返却期限は本日です。／閉館まで、お待ちください"
+      }
+    },
+    {
+      "id": "wait",
+      "role": "escalate",
+      "level": 2,
+      "shot": "wide",
+      "dur": 3.3,
+      "do": [
+        {
+          "at": 0.1,
+          "param": "clock",
+          "to": {
+            "t": 7.95
+          },
+          "dur": 2.4,
+          "ease": "linear"
+        },
+        {
+          "at": 0.1,
+          "pose": "kyaku",
+          "to": {
+            "neckLen": 10.5
+          },
+          "dur": 2.4,
+          "ease": "linear"
+        },
+        {
+          "at": 1.6,
+          "face": "kyaku",
+          "to": "weary",
+          "dur": 0.4
+        },
+        {
+          "at": 2.5,
+          "shot": "face-up"
+        },
+        {
+          "at": 2.5,
+          "sfx": "pizz-sting-sad",
+          "gain": 0.6
+        }
+      ]
+    },
+    {
+      "id": "prev",
+      "role": "escalate",
+      "level": 3,
+      "shot": "wide",
+      "pre": 0.9,
+      "post": 0.15,
+      "line": {
+        "who": "mae",
+        "text": "返却、お願いします"
+      },
+      "do": [
+        {
+          "at": 0,
+          "move": "mae",
+          "to": {
+            "x": 1.0,
+            "z": 0.5,
+            "ry": 3.141592653589793
+          },
+          "dur": 0.9
+        },
+        {
+          "at": "line+0.1",
+          "show": "book"
+        },
+        {
+          "at": "line+0.1",
+          "prop": "book",
+          "to": {
+            "x": 0.55,
+            "y": 1.0,
+            "z": 0.1
+          },
+          "dur": 0.35,
+          "arc": 0.1
+        },
+        {
+          "at": "line+0.5",
+          "sfx": "set-down",
+          "gain": 0.5
+        },
+        {
+          "at": "lineEnd",
+          "move": "mae",
+          "to": {
+            "x": 5.2,
+            "z": 0.5,
+            "ry": 1.5707963267948966
+          },
+          "dur": 1.4
+        }
+      ]
+    },
+    {
+      "id": "flip",
+      "role": "escalate",
+      "level": 3,
+      "shot": "wide",
+      "pre": 0.2,
+      "post": 0.1,
+      "hold": 2.6,
+      "line": {
+        "who": "shisho",
+        "text": "お預かりします。／状態を確認しますね"
+      },
+      "do": [
+        {
+          "at": "line+0.2",
+          "prop": "book",
+          "to": {
+            "x": 0.0,
+            "y": 1.18,
+            "z": -0.3,
+            "rx": -0.6
+          },
+          "dur": 0.5
+        },
+        {
+          "at": "line+0.9",
+          "pose": "kyaku",
+          "to": {
+            "neckLen": 14.5,
+            "spineX": 0.75
+          },
+          "dur": 2.2
+        },
+        {
+          "at": "line+0.9",
+          "move": "kyaku",
+          "to": {
+            "x": 0.4,
+            "z": 0.62,
+            "ry": 3.141592653589793
+          },
+          "dur": 0.8
+        },
+        {
+          "at": "line+0.9",
+          "look": "kyaku",
+          "to": {
+            "pitch": 0.38
+          },
+          "dur": 1.0
+        },
+        {
+          "at": "line+1.0",
+          "sfx": "paper",
+          "gain": 0.5
+        },
+        {
+          "at": "line+1.6",
+          "sfx": "paper",
+          "gain": 0.5
+        },
+        {
+          "at": "line+2.2",
+          "sfx": "paper",
+          "gain": 0.5
+        },
+        {
+          "at": "line+2.8",
+          "sfx": "paper",
+          "gain": 0.5
+        }
+      ]
+    },
+    {
+      "id": "turn",
+      "role": "turn",
+      "shot": "wide",
+      "pre": 0.2,
+      "post": 0.15,
+      "line": {
+        "who": "shisho",
+        "text": "お客様、／画面は見ないでください"
+      },
+      "do": [
+        {
+          "at": "line+0.3",
+          "face": "kyaku",
+          "to": "surprised",
+          "dur": 0.2
+        }
+      ]
+    },
+    {
+      "id": "sorry",
+      "role": "bridge",
+      "shot": "wide",
+      "pre": 0.1,
+      "post": 0.2,
+      "line": {
+        "who": "kyaku",
+        "text": "あっ、すみません"
+      },
+      "do": [
+        {
+          "at": 0,
+          "pose": "kyaku",
+          "to": {
+            "neckLen": 11,
+            "spineX": 0.15
+          },
+          "dur": 0.5
+        },
+        {
+          "at": 0,
+          "look": "kyaku",
+          "to": {
+            "pitch": 0.05
+          },
+          "dur": 0.5
+        }
+      ]
+    },
+    {
+      "id": "payoff",
+      "role": "payoff",
+      "shot": "wide",
+      "pre": 0.7,
+      "post": 0.25,
+      "line": {
+        "who": "shisho",
+        "text": "お待たせしました。／ご用意できました"
+      },
+      "do": [
+        {
+          "at": 0,
+          "music": "cut"
+        },
+        {
+          "at": 0.25,
+          "sfx": "ac-beep",
+          "gain": 0.6
+        },
+        {
+          "at": "line+0.15",
+          "prop": "book",
+          "to": {
+            "x": 0.4,
+            "y": 1.0,
+            "z": 0.28,
+            "rx": 0
+          },
+          "dur": 0.4
+        },
+        {
+          "at": "line+1.0",
+          "sfx": "payoff-hit"
+        },
+        {
+          "at": "line+1.0",
+          "pose": "kyaku",
+          "to": {
+            "neckLen": 1,
+            "spineX": 0.05
+          },
+          "dur": 0.14,
+          "ease": "out"
+        },
+        {
+          "at": "line+1.0",
+          "look": "kyaku",
+          "to": {
+            "pitch": 0
+          },
+          "dur": 0.2
+        },
+        {
+          "at": "line+1.1",
+          "sfx": "strobe-pop",
+          "gain": 0.5
+        }
+      ]
+    },
+    {
+      "id": "thanks",
+      "role": "payoff",
+      "shot": "patron-cu",
+      "pre": 0.45,
+      "post": 0.3,
+      "line": {
+        "who": "kyaku",
+        "text": "……ありがとうございます！"
+      },
+      "do": [
+        {
+          "at": 0,
+          "music": "resume"
+        },
+        {
+          "at": 0,
+          "face": "kyaku",
+          "to": "grin",
+          "dur": 0.2
+        },
+        {
+          "at": 0.3,
+          "prop": "book",
+          "to": {
+            "x": 0.4,
+            "y": 1.12,
+            "z": 0.42,
+            "rx": -0.5
+          },
+          "dur": 0.35
+        }
+      ]
+    },
+    {
+      "id": "button",
+      "role": "button",
+      "shot": "wide",
+      "pre": 0.3,
+      "post": 0.1,
+      "hold": 1.2,
+      "line": {
+        "who": "shisho",
+        "text": "なお、下巻は／現在四十二番目です"
+      },
+      "do": [
+        {
+          "at": "line+0.9",
+          "face": "kyaku",
+          "to": "blank",
+          "dur": 0.3
+        },
+        {
+          "at": "line+1.0",
+          "pose": "kyaku",
+          "to": {
+            "neckLen": 7
+          },
+          "dur": 2.3,
+          "ease": "linear"
+        }
+      ]
+    }
+  ]
+}

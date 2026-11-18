@@ -1286,5 +1286,110 @@ export const SETS: Record<string, SetBuilder> = {
         side: { pos: [3.0, 1.2, 1.6], target: [0, 0.95, 0], fov: 40 }
       }
     };
+  },
+
+  /**
+   * 図書館の貸出・返却カウンター。カウンター天板 1.0 が z=0、職員は奥 z≈-0.55 で +Z 向き、
+   * 利用者は手前 z≈0.6 で -Z 向き(ry=π)。奥の壁に書架・職員用ドア・貸出返却の掲示、
+   * 天板の左に職員用モニター(画面は職員側=-Z向き)、右に返却口、右奥にブックトラック。
+   * 天井は 3.5 m(縦長フレームで首の長い人物を収めるため背を高く取っている)。
+   */
+  "library-counter"(scene, p) {
+    scene.background = new THREE.Color("#ece7dc");
+    lights(scene, { key: 1.35 });
+    const grad = (toon("#fff") as THREE.MeshToonMaterial).gradientMap;
+    const accent = String(p.accent ?? "#2f6b5a");
+    const carpet = canvasTexture(256, 256, (g, w, h) => {
+      g.fillStyle = "#7d8c93"; g.fillRect(0, 0, w, h);
+      g.fillStyle = "#74838b"; g.fillRect(0, 0, w / 2, h / 2); g.fillRect(w / 2, h / 2, w / 2, h / 2);
+      g.strokeStyle = "#69777f"; g.lineWidth = 3; g.strokeRect(0, 0, w, h);
+    });
+    carpet.wrapS = carpet.wrapT = THREE.RepeatWrapping; carpet.repeat.set(10, 10);
+    const floor = new THREE.Mesh(new THREE.PlaneGeometry(16, 16), new THREE.MeshToonMaterial({ map: carpet, gradientMap: grad }));
+    floor.rotation.x = -Math.PI / 2; floor.receiveShadow = true; scene.add(floor);
+    const wallC = String(p.wall ?? "#f2ede1");
+    const H = 3.5;
+    const back = mesh(new THREE.BoxGeometry(9, H, 0.05), toon(wallC), false); back.position.set(0, H / 2, -2.0); scene.add(back);
+    for (const sx of [-3.4, 3.4]) { const w = mesh(new THREE.BoxGeometry(0.05, H, 8), toon(wallC), false); w.position.set(sx, H / 2, 1.5); scene.add(w); }
+    const ceil = new THREE.Mesh(new THREE.PlaneGeometry(9, 9), flat("#faf7ee")); ceil.rotation.x = Math.PI / 2; ceil.position.set(0, H, 2.4); scene.add(ceil);
+    for (const lx of [-1.3, 1.3]) { const lamp = new THREE.Mesh(new THREE.PlaneGeometry(1.0, 0.35), flat("#ffffff")); lamp.rotation.x = Math.PI / 2; lamp.position.set(lx, H - 0.01, 0.2); scene.add(lamp); }
+    // back-wall bookshelves (left) and a skirting board
+    shelfWall(scene, { w: 3.2, h: 2.5, rows: 6, cols: 20, seed: 11, palette: ["#2f4f6b", "#7a2f2f", "#d1b25c", "#3f6a4a", "#5b4a7a", "#c46a3a", "#e9e2d0", "#2b2b30"], depth: 0.3 }).position.set(-1.65, 0, -1.98);
+    shelfWall(scene, { w: 2.2, h: 2.5, rows: 6, cols: 14, seed: 53, palette: ["#2f4f6b", "#7a2f2f", "#d1b25c", "#3f6a4a", "#5b4a7a", "#c46a3a", "#e9e2d0", "#2b2b30"], depth: 0.3 }).position.set(2.6, 0, -1.98);
+    // staff door (right of centre)
+    const doorFrame = mesh(new THREE.BoxGeometry(1.0, 2.15, 0.06), toon("#6d5a45"), 0.004); doorFrame.position.set(0.9, 1.075, -1.96); scene.add(doorFrame);
+    const door = mesh(new THREE.BoxGeometry(0.86, 2.05, 0.04), toon("#9a8266"), 0.003); door.position.set(0.9, 1.03, -1.93); scene.add(door);
+    const knob = mesh(new THREE.SphereGeometry(0.03, 10, 8), toon("#c8c2b0"), false); knob.position.set(1.2, 1.0, -1.9); scene.add(knob);
+    const plateTex = canvasTexture(256, 96, (g, w, h) => {
+      g.fillStyle = "#f6f2e6"; g.fillRect(0, 0, w, h); g.strokeStyle = "#8c8272"; g.lineWidth = 4; g.strokeRect(3, 3, w - 6, h - 6);
+      g.fillStyle = "#333"; g.font = `bold 44px ${JP_FONT}`; g.textAlign = "center"; g.textBaseline = "middle"; g.fillText("職員用", w / 2, h / 2);
+    });
+    const plate = new THREE.Mesh(new THREE.PlaneGeometry(0.34, 0.13), new THREE.MeshBasicMaterial({ map: plateTex })); plate.position.set(0.9, 1.7, -1.9); scene.add(plate);
+    // hanging sign 貸出・返却 and a quiet-please poster
+    const sgn = canvasTexture(512, 128, (g, w, h) => {
+      g.fillStyle = accent; g.fillRect(0, 0, w, h); g.strokeStyle = "#f4efe0"; g.lineWidth = 6; g.strokeRect(8, 8, w - 16, h - 16);
+      g.fillStyle = "#f9f6ea"; g.font = `bold 62px ${JP_FONT}`; g.textAlign = "center"; g.textBaseline = "middle"; g.fillText(String(p.sign ?? "貸出・返却"), w / 2, h / 2 + 2);
+    });
+    const sgnM = new THREE.Mesh(new THREE.PlaneGeometry(1.0, 0.25), new THREE.MeshBasicMaterial({ map: sgn })); sgnM.position.set(-0.15, 2.85, -1.94); scene.add(sgnM);
+    const poster = canvasTexture(256, 360, (g, w, h) => {
+      g.fillStyle = "#f8f3e4"; g.fillRect(0, 0, w, h); g.strokeStyle = accent; g.lineWidth = 8; g.strokeRect(6, 6, w - 12, h - 12);
+      g.fillStyle = accent; g.font = `bold 46px ${JP_FONT}`; g.textAlign = "center"; g.textBaseline = "middle";
+      g.fillText("しずかに", w / 2, 90); g.fillText("よもう", w / 2, 150);
+      g.fillStyle = "#d9b865"; g.beginPath(); g.arc(w / 2, 250, 52, 0, Math.PI * 2); g.fill();
+      g.fillStyle = accent; g.fillRect(w / 2 - 40, 236, 80, 12);
+    });
+    const posterM = new THREE.Mesh(new THREE.PlaneGeometry(0.46, 0.65), new THREE.MeshBasicMaterial({ map: poster })); posterM.position.set(-0.35, 1.62, -1.94); scene.add(posterM);
+
+    // counter
+    const cTop = 1.0;
+    const cBody = mesh(new THREE.BoxGeometry(3.2, cTop - 0.05, 0.6), toon("#b88a5a"), 0.005); cBody.position.set(0, (cTop - 0.05) / 2, 0); scene.add(cBody);
+    const cPanel = mesh(new THREE.BoxGeometry(2.9, 0.66, 0.012), toon("#a37748"), false); cPanel.position.set(0, 0.5, 0.305); scene.add(cPanel);
+    const cSlab = mesh(new THREE.BoxGeometry(3.3, 0.05, 0.7), toon("#eadfca"), 0.005); cSlab.position.set(0, cTop - 0.025, 0); scene.add(cSlab);
+    // staff monitor: screen faces the staff (-Z)
+    const mon = mesh(new THREE.BoxGeometry(0.38, 0.25, 0.025), toon("#2b2e33"), 0.004); mon.position.set(0.45, cTop + 0.2, -0.12); scene.add(mon);
+    const monStand = mesh(new THREE.BoxGeometry(0.05, 0.1, 0.05), toon("#2b2e33"), 0.003); monStand.position.set(0.45, cTop + 0.05, -0.12); scene.add(monStand);
+    const monScreen = new THREE.Mesh(new THREE.PlaneGeometry(0.34, 0.21), new THREE.MeshBasicMaterial({ map: canvasTexture(256, 160, (g, w, h) => {
+      g.fillStyle = "#e6f0f4"; g.fillRect(0, 0, w, h); g.fillStyle = accent; g.fillRect(0, 0, w, 26);
+      g.fillStyle = "#3b5560"; for (let i = 0; i < 6; i++) g.fillRect(14, 40 + i * 18, 70 + (i * 41) % 120, 8);
+    }) }));
+    monScreen.rotation.y = Math.PI; monScreen.position.set(0.45, cTop + 0.2, -0.1315); scene.add(monScreen);
+    // barcode reader and date stamp on the staff side
+    const scanBase = mesh(new THREE.BoxGeometry(0.1, 0.02, 0.1), toon("#2b2e33"), 0.003); scanBase.position.set(-0.35, cTop + 0.01, -0.2); scene.add(scanBase);
+    const scanHead = mesh(new THREE.BoxGeometry(0.07, 0.05, 0.09), toon("#3a3f47"), 0.003); scanHead.position.set(-0.35, cTop + 0.045, -0.2); scene.add(scanHead);
+    const scanWin = new THREE.Mesh(new THREE.PlaneGeometry(0.05, 0.02), flat("#d6372a")); scanWin.position.set(-0.35, cTop + 0.045, -0.2 + 0.046); scene.add(scanWin);
+    const stampBase = mesh(new THREE.BoxGeometry(0.07, 0.03, 0.05), toon("#c0452d"), 0.003); stampBase.position.set(0.2, cTop + 0.015, -0.2); scene.add(stampBase);
+    const stampTop = mesh(new THREE.CylinderGeometry(0.014, 0.014, 0.05, 10), toon("#2c2420"), 0.003); stampTop.position.set(0.2, cTop + 0.055, -0.2); scene.add(stampTop);
+    // return slot box (right)
+    const slotBox = mesh(new THREE.BoxGeometry(0.46, 0.3, 0.32), toon("#d9d3c2"), 0.004); slotBox.position.set(1.1, cTop + 0.15, -0.05); scene.add(slotBox);
+    const slotCut = new THREE.Mesh(new THREE.PlaneGeometry(0.3, 0.045), flat("#1b1b1f")); slotCut.position.set(1.1, cTop + 0.2, 0.116); scene.add(slotCut);
+    const slotTex = canvasTexture(160, 60, (g, w, h) => { g.fillStyle = accent; g.fillRect(0, 0, w, h); g.fillStyle = "#fff6e0"; g.font = `bold 34px ${JP_FONT}`; g.textAlign = "center"; g.textBaseline = "middle"; g.fillText("返却", w / 2, h / 2 + 2); });
+    const slotLabel = new THREE.Mesh(new THREE.PlaneGeometry(0.2, 0.075), new THREE.MeshBasicMaterial({ map: slotTex })); slotLabel.position.set(1.1, cTop + 0.1, 0.117); scene.add(slotLabel);
+    // book cart (staff side, right)
+    const cartX = 2.0, cartZ = -0.85;
+    const cartFrame = toon("#8d8f95");
+    for (const [dx, dz] of [[-0.32, -0.2], [0.32, -0.2], [-0.32, 0.2], [0.32, 0.2]] as const) { const leg = mesh(new THREE.BoxGeometry(0.03, 0.9, 0.03), cartFrame, 0.003); leg.position.set(cartX + dx, 0.45, cartZ + dz); scene.add(leg); }
+    for (const y of [0.25, 0.55, 0.85]) {
+      const sh = mesh(new THREE.BoxGeometry(0.7, 0.025, 0.46), toon("#b8a07a"), 0.003); sh.position.set(cartX, y, cartZ); scene.add(sh);
+      const cols = ["#2f4f6b", "#7a2f2f", "#d1b25c", "#3f6a4a", "#5b4a7a", "#c46a3a"];
+      for (let i = 0; i < 6; i++) { const b = mesh(new THREE.BoxGeometry(0.07, 0.2 + rand(i + y * 7) * 0.05, 0.28), toon(cols[(i + Math.round(y * 10)) % cols.length]!), 0.003); b.position.set(cartX - 0.26 + i * 0.09, y + 0.12, cartZ); scene.add(b); }
+    }
+    for (const dx of [-0.28, 0.28]) { const w = mesh(new THREE.CylinderGeometry(0.04, 0.04, 0.03, 10), toon("#2b2b30"), false); w.rotation.z = Math.PI / 2; w.position.set(cartX + dx, 0.04, cartZ + 0.18); scene.add(w); }
+    // low reading bench at the left (foreground depth)
+    const bench = mesh(new THREE.BoxGeometry(1.4, 0.06, 0.45), toon("#8b6b4a"), 0.004); bench.position.set(-2.4, 0.42, 1.8); scene.add(bench);
+    for (const dx of [-0.6, 0.6]) { const l = mesh(new THREE.BoxGeometry(0.06, 0.4, 0.4), toon("#6e5238"), false); l.position.set(-2.4 + dx, 0.2, 1.8); scene.add(l); }
+    return {
+      surfaces: { counter: cTop, floor: 0 },
+      cameras: {
+        wide: { pos: [2.9, 1.75, 3.6], target: [0, 1.65, 0], fov: 46 },
+        "two-shot": { pos: [2.2, 1.5, 2.4], target: [0, 1.4, -0.1], fov: 36 },
+        "librarian-cu": { pos: [0.6, 1.6, 1.5], target: [0, 1.5, -0.55], fov: 28 },
+        "face-up": { pos: [1.4, 2.4, -1.7], target: [0, 2.25, 0.6], fov: 34 },
+        "patron-cu": { pos: [1.2, 1.75, -1.5], target: [0.4, 1.55, 0.62], fov: 30 },
+        "head-up": { pos: [1.1, 2.4, 3.2], target: [0, 2.3, 0], fov: 36 },
+        "counter-top": { pos: [0, 2.4, 0.8], target: [0, 1.0, -0.15], fov: 30 },
+        side: { pos: [4.2, 1.6, 0.1], target: [0, 1.6, 0], fov: 34 },
+        clock: { pos: [0.9, 2.5, 1.2], target: [0.9, 2.5, -1.95], fov: 24 }
+      }
+    };
   }
 };
