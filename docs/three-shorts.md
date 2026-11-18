@@ -78,6 +78,8 @@ and is marked `publish: false` in `status.json`; never send it to publishing).
 
 `ward-office-window` (区役所の窓口: 天板1.0のカウンターがz=0、職員は奥 z≈-0.55 で ry=0、客は手前 z≈0.6 で ry=π。奥の壁に窓口番号の緑の看板(`params.windowNo`、既定3)・掲示・書庫、右手前に番号札の発券機、左手前に待合の長椅子。呼出表示は prop `ticket-display`(奥の壁 z=-1.4 に掛ける、`param n`)、届出書は prop `todoke-form`(`sample` 記入例の札、`hand` neat/messy、`name/birth/address/prev`、`stack` 紙束の厚み、`param fill` 0..1 で記入欄が埋まる、`param stamp` 受理印; 立てかけるなら `rx` を付ける); cameras `wide`, `two-shot`, `side`, `clerk-cu`, `customer-cu`, `counter-top`, `display`) `coin-laundry` (コインランドリー: 左の壁に乾燥機・洗濯機の列、featured の乾燥機は prop `coin-dryer`（`param open` 0..1 で扉、`param min` で残り分のLED表示、`x≈-1.985, ry=π/2`）、折りたたみ台（天板0.9, x -0.55〜0.25）、奥に長椅子・両替機・料金ポスター。props `sweater`（平置き、`tf.s` で縮む）、`coin-100`；cameras `wide`, `dryer-cu`, `table-top`, `a-cu`, `b-cu`, `drum-cu`, `two-shot`, `side`).
 
+`genkan-entrance` (戸建ての玄関: 外が -Z、家の中が +Z。正面の壁 z=-0.9 のドア口に prop `genkan-door` を `{x:-0.45, z:-0.9}` で置き `param open` 0..1 で外開き。外のポーチに表札(`params.family`)・インターホン、土間(床0)、上がり框、板の間(床0.18)、下駄箱、スリッパ、靴。配達員は外 z≈-1.5 (ry=0)、住人は板の間 y=0.18 (ry=π)。props `parcel` (段ボール, `label`, `dest`)。Procedural characters take `style.cap` (uniform cap colour). cameras `wide`, `inside-wide`, `driver-cu`, `driver-in-cu`, `wife-cu`, `porch`, `stamp`).
+
 Actor extras: `root.rx` (also through `move`) tilts a VRM actor's whole body back (<0) or forward, after its yaw — for reclined chairs and beds. `face` actions take `{"jaw": n}` to open a VRM mouth beyond its talking shape ("aa" blend shape; values above 1 exaggerate it, e.g. 3 for a huge jaw); `{"jaw": 0}` returns it. Procedural characters take `style.mask` (face-mask colour) for dentists and nurses.
 
 ## Music

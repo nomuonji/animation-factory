@@ -1,0 +1,1267 @@
+{
+  "meta": {
+    "id": "genkan-takuhai",
+    "title": "宅配のお兄さんが丁寧すぎる玄関",
+    "fps": 30,
+    "width": 1080,
+    "height": 1920,
+    "variant": "baseline"
+  },
+  "design": {
+    "format": "wrong-expert",
+    "title": "宅配のお兄さんが丁寧すぎる玄関",
+    "titleAlternatives": [
+      "宅配の最後の一軒で起きたこと",
+      "夜の玄関、宅配員が帰らない"
+    ],
+    "titlePattern": "too-much",
+    "titleOnScreen": "card",
+    "titleScreenText": "宅配のお兄さんが\n丁寧すぎる玄関",
+    "hook": {
+      "type": "line-first",
+      "firstFrame": "夜の玄関ポーチ。段ボール箱を抱えた制服の宅配員が、表札『鈴木』の家のドアの前でチャイムを鳴らした直後。ドアの向こうに灯り",
+      "overlay": "最後の一軒"
+    },
+    "rule": "宅配員は、どこで誰に会っても、配達の手順と礼儀を崩さない",
+    "escalations": [
+      "『ご本人様確認』に住人が『お疲れさまです』と返す",
+      "靴のまま迷わず玄関の中に入り、荷物を定位置に置く",
+      "子どもが『パパだ』と言っても『お子さまは下がってください』と返す",
+      "夕飯の話にも『お答えできません』と返す"
+    ],
+    "turn": "住人が『あと何軒ですか』と聞き、宅配員が『ここが最後の一軒です』と答える",
+    "payoff": "外に出て扉を閉めた宅配員が、自分の家のチャイムを押し直し、『……ただいま』と言う",
+    "button": "住人が『おかえり』と迎え、お米は台所へ運ぶよう頼む",
+    "loop": false,
+    "reaction": "laugh",
+    "audience": "夜に宅配を受け取ったことがあり、配達の人の丁寧な言い方を知っている人",
+    "reality": {
+      "place": "自宅の玄関（夜の宅配の受け取り）",
+      "normalEvent": "夜に宅配員がチャイムを押し、本人確認と受領印で荷物を渡し、重い荷物は玄関の中まで運ぶ",
+      "onlyBreak": "最後の配達先が配達員自身の家で、彼が妻と子にも最後まで配達員として応対する"
+    },
+    "payoffMechanism": "threshold-ends-the-role",
+    "ideation": {
+      "gateVersion": 2,
+      "method": "creative-thinking (My Portal chat Skill) — 無人の並列実行。選定は実行指示による委任",
+      "candidates": 16,
+      "rejected": [
+        "C04: 犬の客は焼肉の作品と重なり、動物が自分宛ての荷物を受ける設定を足すことになる",
+        "C05: 他の担当（繰り返しの変形）と重なり、日常の小さな不便を描いただけ",
+        "C06: 気まずさを描くだけで二段目と回収がない",
+        "C07: 大きさのサプライズは別の担当の領分で、玄関の仕組みから笑いが出ない",
+        "C08: 置き場所探しの繰り返しで、展開が積み上がらない",
+        "C09: 注文を忘れるのは日常の小さな失敗で、笑いの核が弱い"
+      ],
+      "corpus": {
+        "dataset": "radichichi",
+        "datasetVersion": "v1",
+        "retrievedAt": "2026-11-18T05:20:00Z",
+        "queryLog": [
+          {
+            "query": "店員",
+            "resultChunkIds": [
+              "radichichi_1755068597_001",
+              "radichichi_1755068597_002",
+              "radichichi_1755068597_004",
+              "radichichi_1755068597_006",
+              "radichichi_1755068597_008",
+              "radichichi_1755068597_009"
+            ]
+          },
+          {
+            "query": "荷物",
+            "resultChunkIds": [
+              "radichichi_1755068597_002",
+              "radichichi_1755068597_008"
+            ]
+          },
+          {
+            "query": "家",
+            "resultChunkIds": [
+              "radichichi_1755068597_001",
+              "radichichi_1755068597_002",
+              "radichichi_1755068597_004",
+              "radichichi_1755068597_008"
+            ]
+          }
+        ],
+        "sourceChunks": [
+          {
+            "id": "radichichi_1755068597_001",
+            "dataset": "radichichi",
+            "retrievalTier": "creative",
+            "role": "ogiri_reference"
+          },
+          {
+            "id": "radichichi_1755068597_002",
+            "dataset": "radichichi",
+            "retrievalTier": "creative",
+            "role": "ogiri_reference"
+          },
+          {
+            "id": "radichichi_1755068597_004",
+            "dataset": "radichichi",
+            "retrievalTier": "creative",
+            "role": "ogiri_reference"
+          },
+          {
+            "id": "radichichi_1755068597_006",
+            "dataset": "radichichi",
+            "retrievalTier": "creative",
+            "role": "ogiri_reference"
+          },
+          {
+            "id": "radichichi_1755068597_008",
+            "dataset": "radichichi",
+            "retrievalTier": "creative",
+            "role": "ogiri_reference"
+          },
+          {
+            "id": "radichichi_1755068597_009",
+            "dataset": "radichichi",
+            "retrievalTier": "creative",
+            "role": "ogiri_reference"
+          }
+        ],
+        "sourceChunkIds": [
+          "radichichi_1755068597_001",
+          "radichichi_1755068597_002",
+          "radichichi_1755068597_004",
+          "radichichi_1755068597_006",
+          "radichichi_1755068597_008",
+          "radichichi_1755068597_009"
+        ],
+        "sourceExampleIds": [
+          "radichichi-15",
+          "radichichi-22",
+          "radichichi-43",
+          "radichichi-61",
+          "radichichi-64",
+          "radichichi-80",
+          "radichichi-100",
+          "radichichi-256",
+          "radichichi-289",
+          "radichichi-420",
+          "radichichi-476",
+          "radichichi-636"
+        ]
+      },
+      "mechanisms": [
+        {
+          "id": "m-role",
+          "sourceExampleIds": [
+            "radichichi-289",
+            "radichichi-636",
+            "radichichi-476"
+          ],
+          "abstractOperation": "役割を負った人物が、その役割の手順を場の事情にかかわらず最後まで忠実に適用し、周囲がそれを前提に受け入れる",
+          "transfer": "配達員が、そこが自分の家だと分かってからも配達の手順を守り続ける"
+        },
+        {
+          "id": "m-label",
+          "sourceExampleIds": [
+            "radichichi-256",
+            "radichichi-61",
+            "radichichi-64"
+          ],
+          "abstractOperation": "手続きの小道具（署名・ペン・意見欄）が、持ち主や出所についての予想外の側面を露わにする",
+          "transfer": "伝票・受領印・名札・表札といった玄関の手続きの小道具に、家族の関係が先に写っている"
+        },
+        {
+          "id": "m-cause",
+          "sourceExampleIds": [
+            "radichichi-80",
+            "radichichi-100",
+            "radichichi-15"
+          ],
+          "abstractOperation": "見えている振る舞いの意味が、見えていなかった前提の開示で変わる",
+          "transfer": "他人行儀な応対の意味が、子どもの一言で『家族だった』に変わる"
+        },
+        {
+          "id": "m-loop",
+          "sourceExampleIds": [
+            "radichichi-22",
+            "radichichi-43"
+          ],
+          "abstractOperation": "同じ手順が形を変えて繰り返され、戻ってくる",
+          "transfer": "最後に、外に出てもう一度チャイムを押す手順の回収に使う（繰り返し自体は笑いの核にしない）"
+        },
+        {
+          "id": "m-limit",
+          "sourceExampleIds": [
+            "radichichi-420"
+          ],
+          "abstractOperation": "物理的な制限が字義どおりに適用される",
+          "transfer": "ドアを一枚隔てた内外が役割の切り替わる境になる"
+        },
+        {
+          "id": "m-chain",
+          "sourceExampleIds": [
+            "radichichi-476"
+          ],
+          "abstractOperation": "言葉の受け取り違いが連鎖して別の対象に進む",
+          "transfer": "却下案の分析に使った（採用案には使わない）"
+        },
+        {
+          "id": "m-clue",
+          "sourceExampleIds": [
+            "radichichi-100"
+          ],
+          "abstractOperation": "観察の断片を並べて結論を出す",
+          "transfer": "却下案の分析に使った（採用案には使わない）"
+        }
+      ],
+      "candidateLog": [
+        {
+          "id": "C01",
+          "mechanism": "m-role",
+          "mechanismFamily": "role-held-at-threshold",
+          "causalCore": "公私で役割が切り替わる人物が、役割を保ったまま本来の居場所に着き、周囲は事情を知っているが本人は手順どおり続け、敷居を越えて初めて役割が解ける",
+          "concept": "宅配員が最後の一軒に着くと、そこは自分の家で、妻子にも配達員として応対し続け、一度外に出て自分でチャイムを押してから「ただいま」と言う",
+          "status": "selected",
+          "reason": "正体は小さな手がかり（表札・名札・スリッパ・「お疲れさま」）で先に提示済みで、最後の「外に出て押し直す」が敷居で役割が解ける回収になる。ずらすのは『配達員が仕事を崩さない』一点だけ"
+        },
+        {
+          "id": "C02",
+          "mechanism": "m-label",
+          "mechanismFamily": "reveal-reframes-emotion",
+          "causalCore": "受け手が否定的に受け取った物の出所が最後に明かされ、受け手の感情が一段で反転する",
+          "concept": "身に覚えのない宅配に怪訝な住人が、伝票の送り主欄を見て黙り、実家の母からの米だったと分かる",
+          "status": "shortlisted",
+          "reason": "反転は強いが『実家からの荷物』は定番で先が読め、送り主を後出しする事実頼みの回収になりやすい"
+        },
+        {
+          "id": "C03",
+          "mechanism": "m-cause",
+          "mechanismFamily": "hidden-cause-of-odd-behavior",
+          "causalCore": "不審な振る舞いの原因が、見えていなかった第三者の準備にあり、準備の完了で解消する",
+          "concept": "玄関で配達員が妙に引き延ばすのは、家の中で家族が誕生日の準備をしている間の時間稼ぎだった",
+          "status": "shortlisted",
+          "reason": "原因の開示は成立するが、時間稼ぎの台詞が説明的になり、配達員に『頼まれた』という新設定が要る"
+        },
+        {
+          "id": "C04",
+          "mechanism": "m-label",
+          "mechanismFamily": "wrong-addressee-identity",
+          "causalCore": "宛名人が人間だと思われていたが同居の動物で、受け取りの手続きがその主体に移る",
+          "concept": "宅配の宛名『ハナ様』が実はうちの犬で、玄関の足元に座って待っていた",
+          "status": "rejected",
+          "reason": "犬の客は焼肉の作品と重なり、動物が自分宛ての荷物を受ける設定を足すことになる"
+        },
+        {
+          "id": "C05",
+          "mechanism": "m-loop",
+          "mechanismFamily": "repetition-drift",
+          "causalCore": "同じ受け取りの失敗が、理由を少しずつ変えて繰り返される",
+          "concept": "再配達の不在票が毎回少し違う理由で積み上がる",
+          "status": "rejected",
+          "reason": "他の担当（繰り返しの変形）と重なり、日常の小さな不便を描いただけ"
+        },
+        {
+          "id": "C06",
+          "mechanism": "m-cause",
+          "mechanismFamily": "hidden-cause-of-odd-behavior",
+          "causalCore": "居留守の住人の存在が、ささいな物音で露見する",
+          "concept": "居留守を使う住人がドアの向こうでくしゃみをして配達員に気づかれる",
+          "status": "rejected",
+          "reason": "気まずさを描くだけで二段目と回収がない"
+        },
+        {
+          "id": "C07",
+          "mechanism": "m-limit",
+          "mechanismFamily": "physical-limit-literal",
+          "causalCore": "物理的な大きさの制限が、そのまま字義どおりに適用される",
+          "concept": "届いた荷物が玄関のドアより大きく入らない",
+          "status": "rejected",
+          "reason": "大きさのサプライズは別の担当の領分で、玄関の仕組みから笑いが出ない"
+        },
+        {
+          "id": "C08",
+          "mechanism": "m-limit",
+          "mechanismFamily": "physical-limit-literal",
+          "causalCore": "狭い空間の収容限度が、受け取りの手順を一つずつ崩していく",
+          "concept": "傘立てと下駄箱に荷物を置く場所がなくなり、玄関が荷物で埋まる",
+          "status": "rejected",
+          "reason": "置き場所探しの繰り返しで、展開が積み上がらない"
+        },
+        {
+          "id": "C09",
+          "mechanism": "m-label",
+          "mechanismFamily": "reveal-reframes-emotion",
+          "causalCore": "宛名と差出人が同一で、受け手の怒りが照れに反転する",
+          "concept": "夜中に自分で注文したことを忘れた住人が、送り主欄に自分の名前を見つける",
+          "status": "rejected",
+          "reason": "注文を忘れるのは日常の小さな失敗で、笑いの核が弱い"
+        },
+        {
+          "id": "C10",
+          "mechanism": "m-cause",
+          "mechanismFamily": "hidden-cause-of-odd-behavior",
+          "causalCore": "応対が妙に静かな理由が、画面外の出来事にあると最後に分かる",
+          "concept": "小声で応対する住人が、肩に眠った赤ちゃんを抱いていたと分かる",
+          "status": "rejected",
+          "reason": "日常のあるあるで、ずらす点がない（非現実の要素が一つもない）"
+        },
+        {
+          "id": "C11",
+          "mechanism": "m-chain",
+          "mechanismFamily": "mishearing-chain",
+          "causalCore": "聞き間違いが連鎖して、別の物の受け取りに話が進む",
+          "concept": "インターホン越しの聞き間違いで『お米』が別の物として話が進む",
+          "status": "rejected",
+          "reason": "勘違いが優しく解ける型は別の担当の領分"
+        },
+        {
+          "id": "C12",
+          "mechanism": "m-role",
+          "mechanismFamily": "role-held-at-threshold",
+          "causalCore": "制度上の役割を、親しい相手にも崩さず手順どおり適用する",
+          "concept": "お隣さんが預かった荷物を、顔見知りでも毎回フルネームで本人確認して渡す",
+          "status": "rejected",
+          "reason": "C01と同じ『役割を崩さない』構造で、舞台と人物を替えただけ"
+        },
+        {
+          "id": "C13",
+          "mechanism": "m-clue",
+          "mechanismFamily": "detective-inference",
+          "causalCore": "観察した断片から結論を積み上げ、最後に推理の盲点を突かれる",
+          "concept": "玄関の靴と傘から家族構成を推理する配達員が、最後に自分の推理の外れを知る",
+          "status": "rejected",
+          "reason": "推理の口調が狙いすぎで、真顔の説明が長くなる"
+        },
+        {
+          "id": "C14",
+          "mechanism": "m-label",
+          "mechanismFamily": "reveal-reframes-emotion",
+          "causalCore": "不在票の手書きの一言が、受け手の見方を変える",
+          "concept": "不在票の端に手書きの『お大事に』があり、住人が最近の風邪を思い出す",
+          "status": "rejected",
+          "reason": "配達員がなぜ知っているかの因果がなく、後付けになる"
+        },
+        {
+          "id": "C15",
+          "mechanism": "m-chain",
+          "mechanismFamily": "mishearing-chain",
+          "causalCore": "言い間違いを訂正するたびに、新しい言い間違いが生まれる",
+          "concept": "宛名の読み方を訂正し合う玄関で、毎回別の読みが生まれる",
+          "status": "rejected",
+          "reason": "言葉遊びの繰り返しで、二段目の新情報がない"
+        },
+        {
+          "id": "C16",
+          "mechanism": "m-loop",
+          "mechanismFamily": "repetition-drift",
+          "causalCore": "ハンコとサインの確認が、同じ手順で一周して戻ってくる",
+          "concept": "受領印を押すたびに別の欄が現れ、押し直しが続く",
+          "status": "rejected",
+          "reason": "手続きの水増しで、役所の担当と重なる"
+        }
+      ],
+      "shortlist": [
+        "C01",
+        "C02",
+        "C03"
+      ],
+      "selectedCandidateId": "C01",
+      "selectionAuthority": "delegated",
+      "diversityAudit": {
+        "mode": "blind-reclassification",
+        "verdict": "pass",
+        "summary": "生成時のラベルと一文概要を隠し、causalCoreだけを読んで16案を別工程で再分類した。批評側も8系統に分かれ、最大系統は『同じ失敗の理由を変えた繰り返し』ではなく『後から明かされる事実で感情が変わる』系の3案（19%）。C12はC01と同じ『役割を崩さない』構造だったので、別案として数えず却下理由に明記した。shortlistのC01・C02・C03は因果の向きが違う3案。",
+        "reviewedCandidateIds": [
+          "C01",
+          "C02",
+          "C03",
+          "C04",
+          "C05",
+          "C06",
+          "C07",
+          "C08",
+          "C09",
+          "C10",
+          "C11",
+          "C12",
+          "C13",
+          "C14",
+          "C15",
+          "C16"
+        ],
+        "familyAssignments": [
+          {
+            "candidateId": "C01",
+            "familyId": "role-held-at-threshold"
+          },
+          {
+            "candidateId": "C02",
+            "familyId": "reveal-reframes-emotion"
+          },
+          {
+            "candidateId": "C03",
+            "familyId": "hidden-cause-of-odd-behavior"
+          },
+          {
+            "candidateId": "C04",
+            "familyId": "wrong-addressee-identity"
+          },
+          {
+            "candidateId": "C05",
+            "familyId": "repetition-drift"
+          },
+          {
+            "candidateId": "C06",
+            "familyId": "hidden-cause-of-odd-behavior"
+          },
+          {
+            "candidateId": "C07",
+            "familyId": "physical-limit-literal"
+          },
+          {
+            "candidateId": "C08",
+            "familyId": "physical-limit-literal"
+          },
+          {
+            "candidateId": "C09",
+            "familyId": "reveal-reframes-emotion"
+          },
+          {
+            "candidateId": "C10",
+            "familyId": "hidden-cause-of-odd-behavior"
+          },
+          {
+            "candidateId": "C11",
+            "familyId": "mishearing-chain"
+          },
+          {
+            "candidateId": "C12",
+            "familyId": "role-held-at-threshold"
+          },
+          {
+            "candidateId": "C13",
+            "familyId": "detective-inference"
+          },
+          {
+            "candidateId": "C14",
+            "familyId": "reveal-reframes-emotion"
+          },
+          {
+            "candidateId": "C15",
+            "familyId": "mishearing-chain"
+          },
+          {
+            "candidateId": "C16",
+            "familyId": "repetition-drift"
+          }
+        ],
+        "familyDefinitions": [
+          {
+            "id": "detective-inference",
+            "definingMove": "観察の断片から結論を積み上げ、推理が外れる"
+          },
+          {
+            "id": "hidden-cause-of-odd-behavior",
+            "definingMove": "不審な振る舞いの原因が見えない場所にあり、開示で意味が変わる"
+          },
+          {
+            "id": "mishearing-chain",
+            "definingMove": "聞き間違いが連鎖して話が別の物に進む"
+          },
+          {
+            "id": "physical-limit-literal",
+            "definingMove": "物理的な大きさ・収容の制限が字義どおりに適用される"
+          },
+          {
+            "id": "repetition-drift",
+            "definingMove": "同じ失敗が理由を変えながら繰り返される"
+          },
+          {
+            "id": "reveal-reframes-emotion",
+            "definingMove": "後から明かされる出所の事実が、受け手の感情を一段で反転させる"
+          },
+          {
+            "id": "role-held-at-threshold",
+            "definingMove": "役割を負った人物が、場所が変わっても役割の手順を崩さず、敷居という物理的な境で初めて役割が解ける"
+          },
+          {
+            "id": "wrong-addressee-identity",
+            "definingMove": "宛名人の正体が想定と違い、手続きの主体が移る"
+          }
+        ],
+        "shortlistPairChecks": [
+          {
+            "candidateA": "C01",
+            "candidateB": "C02",
+            "sameCausalStructure": false,
+            "notOnlySettingChange": true,
+            "difference": "C01は人物の役割が敷居という境で解けるまで続く（本人の行動が因果を作る）。C02は物の出所の開示で受け手の感情が反転する（情報が因果を作る）。本人が動くか、事実が明かされるかで構造が違う"
+          },
+          {
+            "candidateA": "C01",
+            "candidateB": "C03",
+            "sameCausalStructure": false,
+            "notOnlySettingChange": true,
+            "difference": "C01は正体が小さな手がかりで先に出され、本人が役割を守り続ける展開。C03は不審な行動の原因を第三者の準備に求め、準備の完了で解消する展開。前者は役割の持続、後者は待ちの解消で、笑いが生まれる位置も違う"
+          },
+          {
+            "candidateA": "C02",
+            "candidateB": "C03",
+            "sameCausalStructure": false,
+            "notOnlySettingChange": true,
+            "difference": "C02は受け手の側の感情が出所の開示で一段で反転する。C03は配達員の側の振る舞いの原因が画面外にあり、準備の完了で解消する。反転する対象（受け手の感情と、振る舞いの意味）が違う"
+          }
+        ]
+      },
+      "userSeeds": []
+    },
+    "comedyAudit": {
+      "comicKernel": "宅配員が最後に着いた一軒が自分の家で、妻にも子どもにも配達員として最後まで応対し、お客様の『ご本人確認』や『お子さまは下がって』を真顔で通す。仕事の礼儀と家族の親しさがぶつかる",
+      "audienceExpectation": "夜の玄関での普通の宅配に見え、観客は荷物を渡して終わる短い受け取りを予測する。住人の『お疲れさまです』を、ただ丁寧な人だと受け取る",
+      "characterIntent": "配達員は時間指定の最後の一軒を規則どおりに終えたい。妻は荷物を受け取り、夫を迎えたい。子どもはパパに会えて嬉しい",
+      "pressure": "仕事中のため『ただいま』が言えない夫に対し、妻と子どもが家族として自然に接してくる。配達員は規則と礼儀で押し返すしかない",
+      "escalations": [
+        {
+          "beatId": "l1",
+          "change": "『鈴木ハナ様』の確認に、住人が『お疲れさまです』と答え、他人にしては親しすぎる違和感が生まれる"
+        },
+        {
+          "beatId": "l2",
+          "change": "配達員が靴のまま、迷わず玄関の中に入り、荷物を上がり框の定位置に置く。この家を知っている様子が増す"
+        },
+        {
+          "beatId": "kid1",
+          "change": "子どもが『パパだ』と言い、観客の予測が『他人の配達』から『自宅への配達』に変わる"
+        },
+        {
+          "beatId": "l5",
+          "change": "配達員は『お子さまは下がって』と他人として押し通し、家族の親しさが規則に押し返される"
+        },
+        {
+          "beatId": "l6",
+          "change": "晩ごはんのカレーの話にも『お答えできません』と返し、役割が私生活の領域に踏み込んでも崩れない"
+        }
+      ],
+      "payoffCausality": "冒頭から配達員の名札と表札が同じ名字で、住人は『お疲れさま』と言い、スリッパも並んでいる。最後の一軒で配達が終わるのを待つ妻の問いに『ここが最後』と答えた以上、規則どおりに終えた彼が外に出て扉を閉め、チャイムを押し直して『ただいま』と言うのは、役割が敷居で切り替わる因果から自然に出る",
+      "laughMoment": {
+        "beatId": "ring",
+        "description": "扉が閉まり、無音の間のあと、配達員が自分の家のチャイムを押し、開いた扉に『……ただいま』と言う。仕事を終えてから、律儀に外から入り直す姿"
+      },
+      "independentReview": {
+        "mode": "hostile-reader",
+        "verdict": "pass",
+        "summary": "台詞と動作だけで読み直した。『宅配員が実は家の人』はそれ自体が既視感のある発想で、子どもの『パパだ』の時点で観客に先が読まれる。面白さが成り立つとしたら、正体が分かった後も本人が役割を崩さない点と、敷居を一度越えて入り直すという最後の動作にある。手がかり（名札・表札・スリッパ・お疲れさま）は先に出ており、後付けの設定はない。",
+        "strongestObjection": "『実は自分の家だった』は読めるオチで、正体が分かった後は役割を続ける真顔のやりとりが繰り返しになり、二段目に進まないのではないか",
+        "resolution": "正体の開示後に新しい段を置いた（子ども→下がってください→カレーの話にも答えない→最後の一軒の確認→外に出て押し直し）。各段で、役割が私生活に踏み込まれる度合いが上がる。押し直しは役割の解ける条件（敷居）を動作にした回収で、台詞による説明はしない。既視感の懸念は残るので公開後の評価は本人に委ねる",
+        "checks": {
+          "premiseHasComicEngine": true,
+          "notJustMundaneIncident": true,
+          "payoffIsEarned": true,
+          "characterCanonRespected": true,
+          "noUnmotivatedAdditions": true,
+          "notOnlyRoleReversal": true
+        }
+      }
+    }
+  },
+  "voices": {
+    "driver": {
+      "speaker": "青山龍星",
+      "style": "ノーマル",
+      "speed": 1.08
+    },
+    "wife": {
+      "speaker": "春日部つむぎ",
+      "style": "ノーマル",
+      "speed": 1.0
+    },
+    "kid": {
+      "speaker": "ずんだもん",
+      "style": "ノーマル",
+      "speed": 1.05
+    }
+  },
+  "music": {
+    "track": "ukulele-short-loop",
+    "gain": 0.2,
+    "fadeIn": 0.2,
+    "fadeOut": 0.6
+  },
+  "set": {
+    "kind": "genkan-entrance",
+    "params": {
+      "family": "鈴木"
+    }
+  },
+  "captions": {
+    "y": 0.76
+  },
+  "actors": {
+    "driver": {
+      "style": {
+        "skin": "#f0c8a4",
+        "hair": "#2a2226",
+        "hairStyle": "short",
+        "top": "#2f6f68",
+        "bottom": "#2d3b45",
+        "shoes": "#1d1d22",
+        "cap": "#2f6f68",
+        "nameTag": "鈴木"
+      },
+      "root": {
+        "x": 0.0,
+        "z": -1.55,
+        "ry": 0
+      },
+      "pose": "give",
+      "expr": "polite",
+      "captionColor": "#9be3d6"
+    },
+    "wife": {
+      "style": {
+        "skin": "#f2cdb0",
+        "hair": "#4a3226",
+        "hairStyle": "ponytail",
+        "top": "#d9e6ef",
+        "vest": "#f5efe0",
+        "vestTrim": "#d9a05b",
+        "bottom": "#5b6475",
+        "shoes": "#c9a14a"
+      },
+      "root": {
+        "x": -0.12,
+        "y": 0.18,
+        "z": 0.78,
+        "ry": 3.141592653589793
+      },
+      "pose": "idle",
+      "expr": "neutral",
+      "captionColor": "#ffe48a"
+    },
+    "kid": {
+      "style": {
+        "skin": "#f4d0b4",
+        "hair": "#2a2226",
+        "hairStyle": "short",
+        "top": "#ffd04a",
+        "bottom": "#4a6fa8",
+        "shoes": "#c9423a",
+        "height": 0.6,
+        "eyeStyle": "big"
+      },
+      "root": {
+        "x": 9.0,
+        "y": 0.18,
+        "z": 1.35,
+        "ry": 3.141592653589793
+      },
+      "pose": "idle",
+      "expr": "grin",
+      "captionColor": "#ffb3c8"
+    }
+  },
+  "props": {
+    "door": {
+      "kind": "genkan-door",
+      "params": {
+        "open": 0,
+        "h": 2.25
+      },
+      "tf": {
+        "x": -0.45,
+        "y": 0,
+        "z": -0.9
+      }
+    },
+    "parcel": {
+      "kind": "parcel",
+      "params": {
+        "label": "お米 10kg",
+        "dest": "鈴木 ハナ 様"
+      },
+      "tf": {
+        "x": 0.0,
+        "y": 0.92,
+        "z": -1.12,
+        "ry": 0
+      }
+    },
+    "hanko": {
+      "kind": "hanko",
+      "params": {},
+      "tf": {
+        "x": 0.06,
+        "y": 1.12,
+        "z": 0.58,
+        "rx": 1.5708
+      },
+      "visible": false
+    }
+  },
+  "beats": [
+    {
+      "id": "title",
+      "role": "title",
+      "shot": "porch",
+      "dur": 1.2,
+      "do": [
+        {
+          "at": 0,
+          "sfx": "title-sting"
+        }
+      ]
+    },
+    {
+      "id": "hook",
+      "role": "hook",
+      "shot": "porch",
+      "pre": 0.55,
+      "post": 0.1,
+      "line": {
+        "who": "driver",
+        "text": "夜分にすみません、／お荷物のお届けです"
+      },
+      "do": [
+        {
+          "at": 0,
+          "sfx": "ac-beep",
+          "gain": 0.8
+        },
+        {
+          "at": 0.32,
+          "sfx": "ac-beep",
+          "gain": 0.8
+        }
+      ]
+    },
+    {
+      "id": "rule",
+      "role": "rule",
+      "shot": "porch",
+      "pre": 0.7,
+      "post": 0.1,
+      "line": {
+        "who": "wife",
+        "text": "はーい。／お待ちしてました"
+      },
+      "do": [
+        {
+          "at": 0,
+          "param": "door",
+          "to": {
+            "open": 1
+          },
+          "dur": 0.7
+        },
+        {
+          "at": 0,
+          "sfx": "set-down",
+          "gain": 0.3
+        },
+        {
+          "at": 0.9,
+          "shot": "wife-cu"
+        },
+        {
+          "at": 0.9,
+          "face": "wife",
+          "to": "polite",
+          "dur": 0.2
+        }
+      ]
+    },
+    {
+      "id": "l1",
+      "role": "escalate",
+      "level": 1,
+      "shot": "driver-cu",
+      "pre": 0.15,
+      "post": 0.1,
+      "line": {
+        "who": "driver",
+        "text": "お届け先は、鈴木ハナ様で／お間違いないですか"
+      },
+      "do": [
+        {
+          "at": 0,
+          "face": "driver",
+          "to": "polite",
+          "dur": 0.2
+        }
+      ]
+    },
+    {
+      "id": "l1b",
+      "role": "bridge",
+      "shot": "wife-cu",
+      "pre": 0.15,
+      "post": 0.1,
+      "line": {
+        "who": "wife",
+        "text": "はい。……お疲れさまです"
+      },
+      "do": [
+        {
+          "at": "line+0.5",
+          "face": "wife",
+          "to": "grin",
+          "dur": 0.3
+        }
+      ]
+    },
+    {
+      "id": "l2",
+      "role": "escalate",
+      "level": 2,
+      "shot": "inside-wide",
+      "pre": 0.2,
+      "post": 0.1,
+      "line": {
+        "who": "driver",
+        "text": "お米十キロです。／重いので、中まで失礼します"
+      },
+      "do": [
+        {
+          "at": "line+0.6",
+          "move": "driver",
+          "to": {
+            "x": 0.0,
+            "z": -0.2
+          },
+          "dur": 0.9
+        },
+        {
+          "at": "line+0.6",
+          "prop": "parcel",
+          "to": {
+            "x": 0.0,
+            "y": 0.92,
+            "z": 0.23
+          },
+          "dur": 0.9
+        },
+        {
+          "at": "line+0.9",
+          "sfx": "step",
+          "gain": 0.5
+        }
+      ]
+    },
+    {
+      "id": "l3",
+      "role": "escalate",
+      "level": 3,
+      "shot": "stamp",
+      "pre": 0.15,
+      "post": 0.1,
+      "line": {
+        "who": "driver",
+        "text": "こちらに、受領印をお願いします"
+      },
+      "do": [
+        {
+          "at": 0,
+          "show": "hanko"
+        },
+        {
+          "at": 0,
+          "prop": "hanko",
+          "to": {
+            "x": 0.06,
+            "y": 1.12,
+            "z": 0.58,
+            "rx": 1.5708
+          },
+          "dur": 0.01
+        },
+        {
+          "at": "line+0.1",
+          "pose": "wife",
+          "to": "stamp-up",
+          "dur": 0.3
+        },
+        {
+          "at": "line+0.5",
+          "pose": "wife",
+          "to": "stamp-down",
+          "dur": 0.2
+        },
+        {
+          "at": "line+0.5",
+          "prop": "hanko",
+          "to": {
+            "x": 0.06,
+            "y": 1.05,
+            "z": 0.36,
+            "rx": 1.5708
+          },
+          "dur": 0.2
+        },
+        {
+          "at": "line+0.72",
+          "sfx": "stamp"
+        },
+        {
+          "at": "line+1.0",
+          "prop": "hanko",
+          "to": {
+            "x": 0.06,
+            "y": 1.12,
+            "z": 0.58,
+            "rx": 1.5708
+          },
+          "dur": 0.25
+        },
+        {
+          "at": "line+1.0",
+          "pose": "wife",
+          "to": "idle",
+          "dur": 0.3
+        },
+        {
+          "at": "line+1.4",
+          "hide": "hanko"
+        }
+      ]
+    },
+    {
+      "id": "kid1",
+      "role": "escalate",
+      "level": 4,
+      "shot": "inside-wide",
+      "pre": 0.2,
+      "post": 0.1,
+      "line": {
+        "who": "kid",
+        "text": "あ、パパだ！"
+      },
+      "do": [
+        {
+          "at": -0.15,
+          "move": "kid",
+          "to": {
+            "x": 0.85,
+            "z": 2.0
+          },
+          "dur": 0.01
+        },
+        {
+          "at": 0,
+          "move": "kid",
+          "to": {
+            "x": 0.85,
+            "z": 1.35
+          },
+          "dur": 0.5
+        },
+        {
+          "at": 0,
+          "sfx": "pizz-sting",
+          "gain": 0.7
+        },
+        {
+          "at": "line+0.2",
+          "face": "driver",
+          "to": "doubtful",
+          "dur": 0.2
+        },
+        {
+          "at": "line+0.2",
+          "look": "driver",
+          "to": {
+            "yaw": 0,
+            "pitch": 0.15
+          }
+        }
+      ]
+    },
+    {
+      "id": "l5",
+      "role": "escalate",
+      "level": 5,
+      "shot": "driver-in-cu",
+      "pre": 0.4,
+      "post": 0.1,
+      "line": {
+        "who": "driver",
+        "text": "お客様、／お子さまは下がってください"
+      },
+      "do": [
+        {
+          "at": 0,
+          "face": "driver",
+          "to": "polite",
+          "dur": 0.2
+        }
+      ]
+    },
+    {
+      "id": "kid2",
+      "role": "escalate",
+      "level": 6,
+      "shot": "inside-wide",
+      "pre": 0.15,
+      "post": 0.1,
+      "line": {
+        "who": "kid",
+        "text": "きょうね、カレーだよ"
+      },
+      "do": [
+        {
+          "at": 0,
+          "face": "wife",
+          "to": "grin",
+          "dur": 0.2
+        }
+      ]
+    },
+    {
+      "id": "l6",
+      "role": "escalate",
+      "level": 6,
+      "shot": "driver-in-cu",
+      "pre": 0.3,
+      "post": 0.1,
+      "line": {
+        "who": "driver",
+        "text": "配達中ですので、／お答えできません"
+      },
+      "do": [
+        {
+          "at": "line+0.3",
+          "face": "driver",
+          "to": "weary",
+          "dur": 0.3
+        }
+      ]
+    },
+    {
+      "id": "turn",
+      "role": "turn",
+      "shot": "wife-cu",
+      "pre": 0.35,
+      "post": 0.1,
+      "line": {
+        "who": "wife",
+        "text": "あと、何軒あるんですか？"
+      },
+      "do": [
+        {
+          "at": 0,
+          "face": "wife",
+          "to": "polite",
+          "dur": 0.2
+        }
+      ]
+    },
+    {
+      "id": "last",
+      "role": "bridge",
+      "shot": "driver-in-cu",
+      "pre": 0.2,
+      "post": 0.15,
+      "line": {
+        "who": "driver",
+        "text": "ここが、最後の一軒です"
+      },
+      "do": [
+        {
+          "at": 0,
+          "face": "driver",
+          "to": "polite",
+          "dur": 0.2
+        }
+      ]
+    },
+    {
+      "id": "out",
+      "role": "payoff",
+      "shot": "inside-wide",
+      "pre": 0.2,
+      "post": 0.1,
+      "line": {
+        "who": "driver",
+        "text": "ありがとうございました！"
+      },
+      "do": [
+        {
+          "at": 0,
+          "prop": "parcel",
+          "to": {
+            "x": 0.0,
+            "y": 0.18,
+            "z": 0.62
+          },
+          "dur": 0.5
+        },
+        {
+          "at": 0.4,
+          "sfx": "set-down",
+          "gain": 0.5
+        },
+        {
+          "at": 0,
+          "pose": "driver",
+          "to": "bow",
+          "dur": 0.4
+        },
+        {
+          "at": "line+0.2",
+          "pose": "driver",
+          "to": "idle",
+          "dur": 0.4
+        },
+        {
+          "at": "line+0.3",
+          "move": "driver",
+          "to": {
+            "x": 0.0,
+            "z": -1.55
+          },
+          "dur": 0.9
+        },
+        {
+          "at": "line+0.5",
+          "sfx": "step",
+          "gain": 0.5
+        },
+        {
+          "at": "line+1.3",
+          "pose": "driver",
+          "to": "give",
+          "dur": 0.3
+        },
+        {
+          "at": "line+1.3",
+          "param": "door",
+          "to": {
+            "open": 0
+          },
+          "dur": 0.5
+        },
+        {
+          "at": "line+1.35",
+          "shot": "porch"
+        },
+        {
+          "at": "line+1.8",
+          "music": "cut"
+        },
+        {
+          "at": "line+1.8",
+          "sfx": "set-down",
+          "gain": 0.6
+        },
+        {
+          "at": "line+1.9",
+          "pose": "driver",
+          "to": "idle",
+          "dur": 0.3
+        }
+      ],
+      "hold": 0.6
+    },
+    {
+      "id": "ring",
+      "role": "payoff",
+      "shot": "porch",
+      "dur": 1.6,
+      "do": [
+        {
+          "at": 0.2,
+          "move": "wife",
+          "to": {
+            "x": -0.5,
+            "z": 1.0
+          },
+          "dur": 0.01
+        },
+        {
+          "at": 0.2,
+          "face": "driver",
+          "to": "neutral",
+          "dur": 0.1
+        },
+        {
+          "at": 0.4,
+          "sfx": "ac-beep",
+          "gain": 0.9
+        },
+        {
+          "at": 0.72,
+          "sfx": "ac-beep",
+          "gain": 0.9
+        },
+        {
+          "at": 1.0,
+          "param": "door",
+          "to": {
+            "open": 1
+          },
+          "dur": 0.6
+        },
+        {
+          "at": 1.2,
+          "shot": "driver-cu"
+        }
+      ]
+    },
+    {
+      "id": "tadaima",
+      "role": "payoff",
+      "shot": "driver-cu",
+      "pre": 0.15,
+      "post": 0.3,
+      "line": {
+        "who": "driver",
+        "text": "……ただいま"
+      },
+      "do": [
+        {
+          "at": 0,
+          "sfx": "payoff-hit"
+        },
+        {
+          "at": 0,
+          "face": "driver",
+          "to": "grin",
+          "dur": 0.3
+        }
+      ]
+    },
+    {
+      "id": "button",
+      "role": "button",
+      "shot": "inside-wide",
+      "pre": 0.1,
+      "post": 0.2,
+      "line": {
+        "who": "wife",
+        "text": "おかえり。／お米は台所ね"
+      },
+      "do": [
+        {
+          "at": 0,
+          "music": "resume"
+        },
+        {
+          "at": "line+0.2",
+          "move": "driver",
+          "to": {
+            "x": 0.0,
+            "z": -0.25
+          },
+          "dur": 0.8
+        },
+        {
+          "at": "line+0.4",
+          "sfx": "step",
+          "gain": 0.5
+        }
+      ],
+      "hold": 0.6
+    }
+  ],
+  "description": [
+    "宅配の最後の一軒で起きた、玄関先の小さな出来事。",
+    "#ショート #コント #宅配"
+  ]
+}
