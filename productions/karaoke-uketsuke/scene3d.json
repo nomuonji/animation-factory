@@ -1001,7 +1001,7 @@
       "id": "v4",
       "role": "turn",
       "shot": "two-shot",
-      "pre": 0.9,
+      "pre": 0.6,
       "post": 0.3,
       "line": {
         "who": "cust",
@@ -1051,7 +1051,7 @@
       "id": "payoff",
       "role": "payoff",
       "shot": "two-shot",
-      "pre": 0.7,
+      "pre": 0.5,
       "post": 0.2,
       "line": {
         "who": "staff",
@@ -1116,7 +1116,7 @@
       "id": "button",
       "role": "button",
       "shot": "two-shot",
-      "pre": 0.7,
+      "pre": 0.5,
       "post": 0.3,
       "line": {
         "who": "cust",
