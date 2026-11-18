@@ -634,6 +634,107 @@ export const SETS: Record<string, SetBuilder> = {
     };
   },
 
+  "ward-office-window"(scene, p) {
+    // 区役所の窓口（番号札・呼出表示つき）。客は +Z 側(ry=π)、職員はカウンターの奥 z≈-0.55 (ry=0)。
+    scene.background = new THREE.Color("#e3e9ec");
+    lights(scene, { key: 1.5 });
+    const grad = (toon("#fff") as THREE.MeshToonMaterial).gradientMap;
+    const accent = String(p.accent ?? "#2f7d57");
+    const floorTex = canvasTexture(512, 512, (g, w, h) => {
+      g.fillStyle = "#cfcbc0"; g.fillRect(0, 0, w, h);
+      g.fillStyle = "#c2beb2";
+      for (let i = 0; i < 4; i++) for (let j = 0; j < 4; j++) if ((i + j) % 2 === 0) g.fillRect(i * w / 4, j * h / 4, w / 4, h / 4);
+    });
+    floorTex.wrapS = floorTex.wrapT = THREE.RepeatWrapping; floorTex.repeat.set(7, 7);
+    const floor = new THREE.Mesh(new THREE.PlaneGeometry(14, 14), new THREE.MeshToonMaterial({ map: floorTex, gradientMap: grad }));
+    floor.rotation.x = -Math.PI / 2; floor.receiveShadow = true; scene.add(floor);
+    const wallC = String(p.wall ?? "#eef1e8");
+    const back = mesh(new THREE.BoxGeometry(8, 3.2, 0.05), toon(wallC), false); back.position.set(0, 1.6, -1.45); scene.add(back);
+    const wallL = mesh(new THREE.BoxGeometry(0.05, 3.2, 6), toon(wallC), false); wallL.position.set(-3.2, 1.6, 1.4); scene.add(wallL);
+    const wallR = mesh(new THREE.BoxGeometry(0.05, 3.2, 6), toon(wallC), false); wallR.position.set(3.2, 1.6, 1.4); scene.add(wallR);
+    const dado = mesh(new THREE.BoxGeometry(7.9, 0.9, 0.03), toon("#c3cdbf"), false); dado.position.set(0, 0.45, -1.42); scene.add(dado);
+    const ceil = new THREE.Mesh(new THREE.PlaneGeometry(8, 8), flat("#f6f6f1")); ceil.rotation.x = Math.PI / 2; ceil.position.set(0, 3.1, 1.2); scene.add(ceil);
+
+    // counter: pale wood top on a grey body
+    const cTop = 1.0;
+    const body = mesh(new THREE.BoxGeometry(3.2, cTop - 0.05, 0.6), toon("#c9cfd2"), 0.005); body.position.set(0, (cTop - 0.05) / 2, 0); scene.add(body);
+    const slab = mesh(new THREE.BoxGeometry(3.3, 0.05, 0.72), toon("#dcc7a2"), 0.005); slab.position.set(0, cTop - 0.025, 0.03); scene.add(slab);
+    const kick = mesh(new THREE.BoxGeometry(3.2, 0.1, 0.02), toon("#8c9498"), false); kick.position.set(0, 0.12, 0.31); scene.add(kick);
+    // acrylic dividers between windows (low, at the sides only so the shots stay open)
+    for (const sx of [-1, 1]) {
+      const pane = mesh(new THREE.BoxGeometry(0.012, 0.42, 0.62), toon("#cfe6f2", { transparent: true, opacity: 0.4 }), false);
+      pane.position.set(sx * 1.0, cTop + 0.21, 0.02); scene.add(pane);
+    }
+    // staff side: monitor, pen cup, stamp pad, tray
+    const monitor = mesh(new THREE.BoxGeometry(0.34, 0.22, 0.02), toon("#2b2e33"), 0.004); monitor.position.set(0.5, cTop + 0.19, -0.2); monitor.rotation.y = -0.2; scene.add(monitor);
+    const mStand = mesh(new THREE.BoxGeometry(0.05, 0.09, 0.04), toon("#2b2e33"), 0.003); mStand.position.set(0.5, cTop + 0.045, -0.2); scene.add(mStand);
+    const cup = mesh(new THREE.CylinderGeometry(0.03, 0.026, 0.07, 12), toon("#2c3340"), 0.003); cup.position.set(-0.55, cTop + 0.035, -0.15); scene.add(cup);
+    const padBase = mesh(new THREE.BoxGeometry(0.1, 0.02, 0.07), toon("#2a2a30"), 0.003); padBase.position.set(0.28, cTop + 0.01, -0.12); scene.add(padBase);
+    const padInk = mesh(new THREE.BoxGeometry(0.08, 0.004, 0.055), toon("#b3261e"), false); padInk.position.set(0.28, cTop + 0.022, -0.12); scene.add(padInk);
+    // window plate on the counter
+    const plateTex = canvasTexture(256, 128, (g, w, h) => {
+      g.fillStyle = accent; g.fillRect(0, 0, w, h); g.fillStyle = "#fff"; g.font = `bold 78px ${JP_FONT}`; g.textAlign = "center"; g.textBaseline = "middle"; g.fillText(String(p.windowNo ?? "3") + "番", w * 0.5, h * 0.52);
+    });
+    const plate = new THREE.Mesh(new THREE.BoxGeometry(0.2, 0.1, 0.02), [flat(accent), flat(accent), flat(accent), flat(accent), new THREE.MeshBasicMaterial({ map: plateTex }), flat(accent)]);
+    plate.position.set(0.82, cTop + 0.05, -0.05); scene.add(plate);
+
+    // hanging window sign (green), neighbouring window signs, wall notices
+    const signTex = (no: string, label: string) => canvasTexture(384, 192, (g, w, h) => {
+      g.fillStyle = accent; g.fillRect(0, 0, w, h); g.strokeStyle = "#e6f3ea"; g.lineWidth = 6; g.strokeRect(8, 8, w - 16, h - 16);
+      g.fillStyle = "#fff"; g.textAlign = "left"; g.textBaseline = "middle"; g.font = `bold 130px ${JP_FONT}`; g.fillText(no, 28, h / 2 + 4);
+      g.font = `bold 40px ${JP_FONT}`; g.textAlign = "center"; g.fillText(label, w * 0.64, h / 2 + 4);
+    });
+    const signs: Array<[number, string, string]> = [[0.0, String(p.windowNo ?? "3"), "転入・転出"], [-1.9, "2", "住民票・証明"], [1.9, "4", "国保・年金"]];
+    for (const [sx, no, label] of signs) {
+      const s = new THREE.Mesh(new THREE.PlaneGeometry(0.72, 0.36), new THREE.MeshBasicMaterial({ map: signTex(no, label) }));
+      s.position.set(sx, 2.62, -1.4); scene.add(s);
+    }
+    // wall notices
+    const noticeTex = (title: string, sub: string, col: string) => canvasTexture(256, 340, (g, w, h) => {
+      g.fillStyle = "#fffdf4"; g.fillRect(0, 0, w, h); g.fillStyle = col; g.fillRect(0, 0, w, 56);
+      g.fillStyle = "#fff"; g.font = `bold 34px ${JP_FONT}`; g.textAlign = "center"; g.textBaseline = "middle"; g.fillText(title, w / 2, 30);
+      g.fillStyle = "#333"; g.font = `bold 26px ${JP_FONT}`; let y = 92; for (const ln of sub.split("\n")) { g.fillText(ln, w / 2, y); y += 38; }
+      g.fillStyle = "#c9c6be"; for (let i = 0; i < 3; i++) g.fillRect(24, 220 + i * 28, w - 48 - i * 30, 8);
+    });
+    const n1 = new THREE.Mesh(new THREE.PlaneGeometry(0.42, 0.56), new THREE.MeshBasicMaterial({ map: noticeTex("お知らせ", "届出書の記入例を\nご覧ください", "#c0652b") }));
+    n1.position.set(-1.1, 1.75, -1.4); scene.add(n1);
+    const n2 = new THREE.Mesh(new THREE.PlaneGeometry(0.42, 0.56), new THREE.MeshBasicMaterial({ map: noticeTex("受付時間", "平日\n8:30〜17:00", "#2f6fa8") }));
+    n2.position.set(-1.65, 1.75, -1.4); scene.add(n2);
+    // back-office shelves and a filing cabinet behind the window
+    const sh = shelfWall(scene, { w: 1.2, h: 1.4, rows: 3, cols: 6, seed: 77, palette: ["#2f4f7a", "#5d7f5a", "#8a8f94", "#a89c7a", "#f1efe6"], depth: 0.28 });
+    sh.position.set(-2.15, 0.1, -1.4);
+    const cab = mesh(new THREE.BoxGeometry(0.7, 1.35, 0.5), toon("#9aa3a8"), 0.005); cab.position.set(1.95, 0.675, -1.15); scene.add(cab);
+    for (let i = 0; i < 3; i++) { const dr = mesh(new THREE.BoxGeometry(0.62, 0.38, 0.02), toon("#aab2b6"), false); dr.position.set(1.95, 0.25 + i * 0.43, -0.89); scene.add(dr); }
+
+    // lobby: ticket machine near the right wall, a waiting bench on the left
+    const tm = mesh(new THREE.BoxGeometry(0.42, 1.2, 0.34), toon("#f1f2ee"), 0.005); tm.position.set(2.7, 0.6, 0.6); tm.rotation.y = -0.5; scene.add(tm);
+    const tmTex = canvasTexture(256, 256, (g, w, h) => {
+      g.fillStyle = "#f6f7f3"; g.fillRect(0, 0, w, h); g.fillStyle = accent; g.fillRect(0, 0, w, 70);
+      g.fillStyle = "#fff"; g.font = `bold 38px ${JP_FONT}`; g.textAlign = "center"; g.textBaseline = "middle"; g.fillText("番号札", w / 2, 36);
+      g.fillStyle = "#333"; g.font = `bold 26px ${JP_FONT}`; g.fillText("お取りください", w / 2, 108);
+      g.fillStyle = "#d9442f"; g.beginPath(); g.arc(w / 2, 180, 40, 0, Math.PI * 2); g.fill();
+    });
+    const tmFace = new THREE.Mesh(new THREE.PlaneGeometry(0.36, 0.36), new THREE.MeshBasicMaterial({ map: tmTex }));
+    tmFace.position.set(2.7 - Math.sin(0.5) * 0.175, 1.0, 0.6 + Math.cos(0.5) * 0.175 + 0.002); tmFace.rotation.y = -0.5; scene.add(tmFace);
+    const benchM = toon("#6d7f8c");
+    for (const bx of [-2.3, -1.4]) {
+      const seat = mesh(new THREE.BoxGeometry(0.8, 0.07, 0.36), benchM, 0.004); seat.position.set(bx, 0.42, 1.5); scene.add(seat);
+      for (const lx of [-0.34, 0.34]) { const leg = mesh(new THREE.BoxGeometry(0.04, 0.4, 0.3), toon("#3b4248"), false); leg.position.set(bx + lx, 0.2, 1.5); scene.add(leg); }
+    }
+    return {
+      surfaces: { counter: cTop, floor: 0 },
+      cameras: {
+        wide: { pos: [2.3, 1.7, 2.7], target: [0.1, 1.25, 0], fov: 42 },
+        "two-shot": { pos: [2.4, 1.6, 1.7], target: [0, 1.3, -0.05], fov: 38 },
+        side: { pos: [3.0, 1.4, 0], target: [0, 1.3, -0.1], fov: 28 },
+        "clerk-cu": { pos: [0.85, 1.62, 1.0], target: [0, 1.5, -0.55], fov: 26 },
+        "customer-cu": { pos: [-0.8, 1.62, -0.95], target: [0, 1.6, 0.6], fov: 28 },
+        "counter-top": { pos: [0, 2.3, 0.3], target: [0, 1.0, -0.02], fov: 24 },
+        display: { pos: [0.2, 1.9, 1.3], target: [-0.7, 2.3, -1.4], fov: 30 }
+      }
+    };
+  },
+
   "diner-counter"(scene, p) {
     scene.background = new THREE.Color("#efe3cf");
     lights(scene, { key: 1.4 });
@@ -1392,4 +1493,25 @@ export const SETS: Record<string, SetBuilder> = {
       }
     };
   }
+};
+
+/**
+ * 深夜のコンビニ（ワンオペ夜勤）。昼用の `convenience-store` のカウンターと棚をそのまま使い、
+ * 外を夜にして、客側にセルフレジを置けるよう右端を空ける。セルフレジ本体は prop `self-register`
+ * （x≈1.75, z≈0.45 に置く。客は z≈1.15 で ry=π、係員はレジの左 x≈1.3, z≈0.62 に立つ）。
+ */
+SETS["convenience-store-night"] = (scene, p) => {
+  const built = SETS["convenience-store"]!(scene, p);
+  scene.background = new THREE.Color("#101826");
+  return {
+    surfaces: built.surfaces,
+    cameras: {
+      ...built.cameras,
+      "kiosk-wide": { pos: [1.7, 1.6, 2.65], target: [1.7, 1.05, 0.7], fov: 58 },
+      "kiosk-all": { pos: [1.6, 1.62, 2.65], target: [1.6, 1.05, 0.7], fov: 68 },
+      "kiosk-cu": { pos: [1.7, 1.55, 2.2], target: [1.75, 1.05, 0.5], fov: 40 },
+      "kiosk-side": { pos: [0.5, 1.5, 2.1], target: [1.7, 1.1, 0.7], fov: 48 },
+      "counter-front": { pos: [1.3, 1.55, 2.6], target: [1.2, 1.1, 0.6], fov: 58 }
+    }
+  };
 };
