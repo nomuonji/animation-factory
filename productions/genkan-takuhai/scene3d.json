@@ -1157,13 +1157,13 @@
           "dur": 0.3
         }
       ],
-      "hold": 1.0
+      "hold": 0.6
     },
     {
       "id": "ring",
       "role": "payoff",
       "shot": "porch",
-      "dur": 1.9,
+      "dur": 1.6,
       "do": [
         {
           "at": 0.2,
@@ -1191,7 +1191,7 @@
           "gain": 0.9
         },
         {
-          "at": 1.25,
+          "at": 1.0,
           "param": "door",
           "to": {
             "open": 1
@@ -1199,7 +1199,7 @@
           "dur": 0.6
         },
         {
-          "at": 1.45,
+          "at": 1.2,
           "shot": "driver-cu"
         }
       ]
