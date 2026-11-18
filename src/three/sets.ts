@@ -1287,4 +1287,81 @@ export const SETS: Record<string, SetBuilder> = {
       }
     };
   }
+  ,
+
+  /** 戸建ての玄関（宅配の受け取り）。外が -Z、家の中が +Z。正面の壁 z=-0.9 に幅0.9のドア口（x=-0.45..0.45、高さ2.25（prop の h=2.25 を指定）、蝶番は x=-0.45 → prop `genkan-door` を {x:-0.45,z:-0.9} に置く）。
+   *  外のポーチ（z<-0.9）に表札（`params.family` 既定「鈴木」）とインターホン、土間（床 y=0、z -0.9..0.5）、上がり框、板の間（床 y=0.18、z>0.5）、左壁(x=-1.9)の下駄箱、奥のふすま。
+   *  配達員は外（z≈-1.4, ry=0）、住人は板の間（z≈0.9, y=0.18, ry=π）。カメラ: wide（横から）, inside-wide（家の中から外を見る）, driver-cu（家の中から配達員）, wife-cu（外から住人）, porch（外から閉まったドアと表札）, step-low。 */
+  "genkan-entrance"(scene, p) {
+    scene.background = new THREE.Color("#2a2622");
+    lights(scene, { key: 1.35, warm: true });
+    const grad = (toon("#fff") as THREE.MeshToonMaterial).gradientMap;
+    const family = String(p.family ?? "鈴木");
+    const flat2 = (w: number, d: number, color: string, x: number, y: number, z: number) => {
+      const m = new THREE.Mesh(new THREE.PlaneGeometry(w, d), new THREE.MeshToonMaterial({ color, gradientMap: grad }));
+      m.rotation.x = -Math.PI / 2; m.position.set(x, y, z); m.receiveShadow = true; scene.add(m); return m;
+    };
+    flat2(14, 8, "#9c9a92", 0, -0.002, -5);             // 外の地面
+    flat2(5, 3.1, "#bdb8ab", 0, 0.001, -2.45);            // ポーチのたたき
+    flat2(5, 1.4, "#8d8b86", 0, 0.001, -0.2);             // 土間
+    flat2(5, 3.2, "#b98a5c", 0, 0.181, 2.1);              // 板の間
+    const kamachi = mesh(new THREE.BoxGeometry(5, 0.18, 0.1), toon("#7a5538"), 0.004); kamachi.position.set(0, 0.09, 0.55); scene.add(kamachi);
+    const wallM = toon("#f1ead8");
+    const outM = toon("#e5d8bd");
+    // 正面の壁（ドア口あり）
+    for (const [x0, x1] of [[-2.6, -0.45], [0.45, 2.6]] as const) {
+      const w = mesh(new THREE.BoxGeometry(x1 - x0, 2.6, 0.15), outM, false); w.position.set((x0 + x1) / 2, 1.3, -0.9); scene.add(w);
+    }
+    const lintel = mesh(new THREE.BoxGeometry(0.9, 0.35, 0.15), outM, false); lintel.position.set(0, 2.425, -0.9); scene.add(lintel);
+    const frameM = toon("#4a3426");
+    for (const fx of [-0.465, 0.465]) { const f = mesh(new THREE.BoxGeometry(0.03, 2.25, 0.17), frameM, false); f.position.set(fx, 1.125, -0.9); scene.add(f); }
+    // 左壁（下駄箱側）と奥の壁（ふすま）
+    const left = mesh(new THREE.BoxGeometry(0.1, 2.6, 4.6), wallM, false); left.position.set(-1.95, 1.3, 1.4); scene.add(left);
+    const back = mesh(new THREE.BoxGeometry(5, 2.6, 0.1), wallM, false); back.position.set(0, 1.3, 3.6); scene.add(back);
+    const fusuma = mesh(new THREE.BoxGeometry(1.3, 1.9, 0.03), toon("#e9e4d3"), 0.004); fusuma.position.set(0.5, 1.13, 3.53); scene.add(fusuma);
+    const fusumaEdge = mesh(new THREE.BoxGeometry(1.4, 2.0, 0.02), frameM, false); fusumaEdge.position.set(0.5, 1.13, 3.55); scene.add(fusumaEdge);
+    // 表札とインターホン（外壁、ドアの右）
+    const plateTex = canvasTexture(128, 256, (g, w, h) => {
+      g.fillStyle = "#2f2a27"; g.fillRect(0, 0, w, h); g.strokeStyle = "#8c7a5a"; g.lineWidth = 6; g.strokeRect(5, 5, w - 10, h - 10);
+      g.fillStyle = "#f4eedf"; g.font = `bold 78px ${JP_FONT}`; g.textAlign = "center"; g.textBaseline = "middle";
+      [...family].forEach((ch, i) => g.fillText(ch, w / 2, 70 + i * 100));
+    });
+    const plate = new THREE.Mesh(new THREE.PlaneGeometry(0.16, 0.32), new THREE.MeshBasicMaterial({ map: plateTex })); plate.position.set(0.78, 1.55, -0.9 - 0.0765); plate.rotation.y = Math.PI; scene.add(plate);
+    const bell = mesh(new THREE.BoxGeometry(0.1, 0.16, 0.03), toon("#d7d9dc"), 0.003); bell.position.set(0.78, 1.2, -0.9 - 0.09); scene.add(bell);
+    const bellBtn = mesh(new THREE.CylinderGeometry(0.02, 0.02, 0.012, 14), toon("#f0f0f0"), 0.002); bellBtn.rotation.x = Math.PI / 2; bellBtn.position.set(0, -0.03, -0.02); bell.add(bellBtn);
+    const bellLens = new THREE.Mesh(new THREE.CircleGeometry(0.012, 12), flat("#222")); bellLens.position.set(0, 0.04, -0.0155); bellLens.rotation.y = Math.PI; bell.add(bellLens);
+    // ポーチ: 植木鉢、傘立て
+    const pot = mesh(new THREE.CylinderGeometry(0.17, 0.12, 0.3, 16), toon("#a8583a"), 0.004); pot.position.set(-1.35, 0.15, -1.5); scene.add(pot);
+    for (let i = 0; i < 6; i++) { const lf = mesh(new THREE.SphereGeometry(0.09, 8, 6), toon("#4d8a46"), 0.003); lf.position.set(-1.35 + Math.sin(i * 1.05) * 0.1, 0.4 + (i % 3) * 0.07, -1.5 + Math.cos(i * 1.05) * 0.09); lf.scale.set(1, 0.8, 1); scene.add(lf); }
+    // 下駄箱（左壁沿い）と上の小物
+    const cab = mesh(new THREE.BoxGeometry(0.34, 1.05, 1.3), toon("#d9c7a6"), 0.005); cab.position.set(-1.73, 0.525, -0.1); scene.add(cab);
+    const cabTop = mesh(new THREE.BoxGeometry(0.36, 0.03, 1.32), toon("#8d6a47"), 0.004); cabTop.position.set(-1.73, 1.065, -0.1); scene.add(cabTop);
+    for (let i = 0; i < 3; i++) { const dr = mesh(new THREE.BoxGeometry(0.01, 0.28, 0.36), toon("#c4b08c"), false); dr.position.set(-1.555, 0.3 + i * 0.3, -0.1); scene.add(dr); }
+    const vase = mesh(new THREE.CylinderGeometry(0.05, 0.07, 0.18, 12), toon("#6f93a8"), 0.003); vase.position.set(-1.73, 1.17, 0.35); scene.add(vase);
+    const key = mesh(new THREE.BoxGeometry(0.1, 0.05, 0.12), toon("#a8583a"), 0.003); key.position.set(-1.73, 1.1, -0.45); scene.add(key);
+    // 靴（土間）: 大人のスニーカー、子どもの赤い靴、サンダル
+    const shoe = (x: number, z: number, ry: number, sz: number, color: string) => {
+      for (const dx of [-0.06, 0.06]) { const sh = mesh(new THREE.BoxGeometry(0.09 * sz, 0.07 * sz, 0.24 * sz), toon(color), 0.003); sh.position.set(x + dx * sz * Math.cos(ry), 0.035 * sz, z - dx * sz * Math.sin(ry)); sh.rotation.y = ry; scene.add(sh); }
+    };
+    shoe(-1.3, 0.05, 0.1, 1, "#33363f"); shoe(-1.05, 0.2, -0.15, 0.55, "#c9423a"); shoe(-1.25, -0.4, 0.3, 0.9, "#7b6a55");
+    // スリッパ（板の間のふち）
+    const slip = (x: number, z: number, color: string, sz: number) => {
+      for (const dx of [-0.07, 0.07]) { const sl = mesh(new THREE.BoxGeometry(0.1 * sz, 0.03, 0.26 * sz), toon(color), 0.003); sl.position.set(x + dx * sz, 0.2, z); scene.add(sl); }
+    };
+    slip(-1.3, 0.95, "#c9a14a", 1); slip(-0.95, 0.95, "#4a6fa8", 1.05); slip(-0.6, 0.95, "#d97a8a", 0.5);
+    // 照明
+    const lamp = mesh(new THREE.SphereGeometry(0.16, 14, 10), toon("#fff6dc", { emissive: "#c9b27a" }), false); lamp.position.set(0, 2.45, 0.3); scene.add(lamp);
+    return {
+      surfaces: { floor: 0, step: 0.18, porch: 0 },
+      cameras: {
+        wide: { pos: [5.5, 1.5, -0.3], target: [0, 1.0, -0.3], fov: 60 },
+        "inside-wide": { pos: [0.9, 1.45, 2.9], target: [-0.05, 1.0, -0.8], fov: 44 },
+        "driver-cu": { pos: [0.65, 1.55, 0.2], target: [0.0, 1.5, -1.55], fov: 30 },
+        "driver-in-cu": { pos: [0.9, 1.5, 1.6], target: [0.0, 1.5, -0.2], fov: 30 },
+        "wife-cu": { pos: [-0.28, 1.95, -2.7], target: [-0.05, 1.7, 0.78], fov: 22 },
+        porch: { pos: [0.4, 1.45, -4.6], target: [0.35, 1.25, -0.9], fov: 38 },
+        stamp: { pos: [2.0, 1.5, 0.7], target: [-0.02, 1.15, 0.55], fov: 40 }
+      }
+    };
+  }
 };

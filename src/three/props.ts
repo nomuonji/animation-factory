@@ -712,4 +712,39 @@ export const PROPS: Record<string, PropBuilder> = {
     place(0);
     return { object: g, setParam(k, v) { if (k === "amount") { amount = v; m.opacity = 0.42 * amount; } }, animate(t) { place(t); } };
   }
+  ,
+
+  /** 宅配の段ボール箱（茶色・ガムテープ・白い伝票ラベル）。ピボットは底面中央。params: w,h,d, label（伝票の品名）, dest（宛名）。 */
+  "parcel"(p) {
+    const w = num(p.w, 0.34), h = num(p.h, 0.2), d = num(p.d, 0.24);
+    const g = new THREE.Group();
+    const box = mesh(new THREE.BoxGeometry(w, h, d), toon("#c79a62"), 0.004); box.position.y = h / 2; g.add(box);
+    const tape = new THREE.Mesh(new THREE.BoxGeometry(0.05, 0.003, d + 0.002), flat("#e4cf9d")); tape.position.y = h + 0.0012; g.add(tape);
+    const tapeF = new THREE.Mesh(new THREE.PlaneGeometry(0.05, h * 0.45), flat("#e4cf9d")); tapeF.position.set(0, h * 0.78, d / 2 + 0.0012); g.add(tapeF);
+    const lab = canvasTexture(256, 160, (c, cw, ch) => {
+      c.fillStyle = "#fbfaf6"; c.fillRect(0, 0, cw, ch); c.strokeStyle = "#2a2a2e"; c.lineWidth = 4; c.strokeRect(3, 3, cw - 6, ch - 6);
+      c.fillStyle = "#2a2a2e"; c.textAlign = "left"; c.textBaseline = "middle";
+      c.font = `bold 30px ${JP_FONT}`; c.fillText(str(p.dest, "鈴木 ハナ 様"), 14, 36);
+      c.font = `24px ${JP_FONT}`; c.fillText("品名: " + str(p.label, "お米 10kg"), 14, 82);
+      for (let i = 0; i < 12; i++) { c.fillRect(14 + i * 19, 112, 4 + (i % 3) * 3, 34); }
+    });
+    const label = new THREE.Mesh(new THREE.PlaneGeometry(0.15, 0.094), new THREE.MeshBasicMaterial({ map: lab }));
+    label.position.set(0.06, h * 0.62, d / 2 + 0.002); g.add(label);
+    return { object: g };
+  },
+
+  /** 玄関ドア（戸建ての外開き）。ピボットは蝶番（x=-0.45 の壁の位置に置く）。param open 0..1 で外側へ最大 100° まで開く。 */
+  "genkan-door"(p) {
+    const g = new THREE.Group();
+    const leaf = new THREE.Group();
+    const wd = num(p.w, 0.9), ht = num(p.h, 2.02);
+    const slab = mesh(new THREE.BoxGeometry(wd, ht, 0.05), toon(str(p.color, "#6a4a36")), 0.005); slab.position.set(wd / 2, ht / 2, 0); leaf.add(slab);
+    const glass = new THREE.Mesh(new THREE.PlaneGeometry(0.22, 0.5), flat("#a9c7d6")); glass.position.set(wd / 2, 1.5, 0.0265); leaf.add(glass);
+    const glassB = glass.clone(); glassB.position.z = -0.0265; glassB.rotation.y = Math.PI; leaf.add(glassB);
+    for (const z of [0.04, -0.04]) { const hdl = mesh(new THREE.BoxGeometry(0.03, 0.2, 0.03), toon("#c9ced4"), 0.003); hdl.position.set(wd - 0.1, 1.0, z); leaf.add(hdl); }
+    g.add(leaf);
+    const set = (v: number) => { leaf.rotation.y = Math.min(Math.max(v, 0), 1) * 1.75; };
+    set(num(p.open, 0));
+    return { object: g, setParam(k, v) { if (k === "open") set(v); } };
+  }
 };

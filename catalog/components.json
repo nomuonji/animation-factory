@@ -499,6 +499,11 @@
           "floor": 0
         },
         "notes": "焼肉店のテーブル席（ロースター付きの木のテーブル・排気ダクト・両側ベンチ・壁のメニュー・提灯）。客は +Z 側(ry=π) と -Z 側(ry=0) のベンチに seated:true、通路は +X 側で店員はテーブルの +X 端に立つ。壁時計は prop wall-clock（奥の壁 x=-2.36, ry=π/2）"
+      },
+      "genkan-entrance": {
+        "cameras": ["wide", "inside-wide", "driver-cu", "driver-in-cu", "wife-cu", "porch", "stamp"],
+        "surfaces": {"floor": 0, "step": 0.18, "porch": 0},
+        "notes": "戸建ての玄関（宅配の受け取り）。外が -Z、家の中が +Z。正面の壁 z=-0.9 にドア口（x -0.45..0.45）。prop genkan-door を {x:-0.45,z:-0.9} に置く（param open 0..1 で外開き）。外のポーチに表札(params.family)とインターホン、土間(床0)、上がり框、板の間(床0.18, z>0.5)、左壁の下駄箱、スリッパ、靴。配達員は外(z≈-1.5, ry=0)、住人は板の間(y=0.18, ry=π)。Character style.cap で制服の帽子"
       }
     },
     "props": {
@@ -617,6 +622,19 @@
       "grill-smoke": [
         "param:amount",
         "color"
+      ],
+      "parcel": [
+        "w",
+        "h",
+        "d",
+        "label",
+        "dest"
+      ],
+      "genkan-door": [
+        "w",
+        "h",
+        "color",
+        "param:open"
       ]
     },
     "character": {

@@ -30,6 +30,7 @@ export interface CharacterStyle {
   boldBrows?: boolean;      // thick, outward-raised brows
   eyeShadow?: string | null; // painted shading around the eyes (face paint)
   mask?: string | null;     // surgical/face mask colour over nose and mouth (dentist, nurse); null = none
+  cap?: string | null;      // uniform cap colour (delivery driver, staff); null = none
 }
 
 export type Joints = Record<string, number>;
@@ -100,7 +101,7 @@ export class Character {
       skin: "#f2c9a8", hair: "#2a2226", hairStyle: "short", top: "#f4f2ee", vest: null, vestTrim: "#ffffff",
       bottom: "#3a3d4a", shoes: "#2b2b30", glasses: false, nameTag: null, hood: false, height: 1,
       horns: null, ears: "round", print: null, printColor: "#f6f3ec", teeth: false, cheeks: null,
-      eyeStyle: "dot", iris: "#2a1a14", boldBrows: false, eyeShadow: null, mask: null, ...style
+      eyeStyle: "dot", iris: "#2a1a14", boldBrows: false, eyeShadow: null, mask: null, cap: null, ...style
     } as Required<CharacterStyle>;
     const skin = toon(s.skin);
     const top = toon(s.top);
@@ -493,8 +494,25 @@ export class Character {
       this.head.add(bridge);
     }
     this.buildHair(s);
+    if (s.cap) this.buildCap(s.cap);
 
     this.root.scale.setScalar(s.height);
+  }
+
+  /** Uniform cap: a dome over the crown plus a short flat visor at the front. */
+  private buildCap(color: string) {
+    const mat = toon(color);
+    const dome = mesh(new THREE.SphereGeometry(0.19, 28, 12, 0, Math.PI * 2, 0, Math.PI * 0.4), mat, 0.006);
+    dome.scale.set(1, 1.02, 1.02);
+    this.head.add(dome);
+    const band = mesh(new THREE.CylinderGeometry(0.1905, 0.1905, 0.02, 28, 1, true), toon("#f2f1ea"), false);
+    (band.material as THREE.Material).side = THREE.DoubleSide;
+    band.position.y = 0.19 * Math.cos(Math.PI * 0.4) - 0.004;
+    this.head.add(band);
+    const visor = mesh(new THREE.BoxGeometry(0.17, 0.012, 0.085), mat, 0.003);
+    visor.position.set(0, 0.06, 0.21);
+    visor.rotation.x = 0.12;
+    this.head.add(visor);
   }
 
   private buildHair(s: Required<CharacterStyle>) {
