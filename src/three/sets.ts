@@ -1286,5 +1286,97 @@ export const SETS: Record<string, SetBuilder> = {
         side: { pos: [3.0, 1.2, 1.6], target: [0, 0.95, 0], fov: 40 }
       }
     };
+  },
+
+  /** 通勤電車のロングシート（座席の前の通路から見る）。奥の壁(z=-1.1)に窓と窓上の広告枠、壁沿いに5人掛けのベンチ（座面 0.45、座面の中心 z=-0.72）。
+   *  座る人は `seated: true`、x=-1.0/-0.5/0/0.5/1.0、z≈-0.78、root.y≈-0.32、ry=0。立つ人は z≈-0.15、ry=π。吊り革は z=0.15。
+   *  窓上の広告は `params.posterX`（既定 -0.5）に `params.posterTitle` / `posterSub` / `posterAccent` で出す。カメラ: wide, front, row-cu, s-cu, ko-cu, poster, low-row。 */
+  "train-seat"(scene, p) {
+    scene.background = new THREE.Color("#cfd8de");
+    lights(scene, { key: 1.35 });
+    const grad = (toon("#fff") as THREE.MeshToonMaterial).gradientMap;
+    const posterX = Number(p.posterX ?? -0.5);
+    const accent = String(p.posterAccent ?? "#d9532b");
+    const floorTex = canvasTexture(512, 512, (g, w, h) => {
+      g.fillStyle = "#9aa2ab"; g.fillRect(0, 0, w, h);
+      g.fillStyle = "#8f979f";
+      for (let i = 0; i < 8; i++) for (let j = 0; j < 8; j++) if ((i + j) % 2 === 0) g.fillRect(i * w / 8, j * h / 8, w / 8, h / 8);
+    });
+    floorTex.wrapS = floorTex.wrapT = THREE.RepeatWrapping; floorTex.repeat.set(6, 6);
+    const floor = new THREE.Mesh(new THREE.PlaneGeometry(14, 10), new THREE.MeshToonMaterial({ map: floorTex, gradientMap: grad }));
+    floor.rotation.x = -Math.PI / 2; floor.receiveShadow = true; floor.position.set(0, 0, 1.5); scene.add(floor);
+    // wall pieces around the windows (z=-1.1)
+    const wallM = "#e6e1d3";
+    const lower = mesh(new THREE.BoxGeometry(9, 0.95, 0.06), toon("#d8d2c2"), false); lower.position.set(0, 0.475, -1.13); scene.add(lower);
+    const upper = mesh(new THREE.BoxGeometry(9, 0.6, 0.06), toon(wallM), false); upper.position.set(0, 2.1, -1.13); scene.add(upper);
+    const upper2 = mesh(new THREE.BoxGeometry(9, 0.4, 0.06), toon(wallM), false); upper2.position.set(0, 2.5, -1.13); scene.add(upper2);
+    for (const px of [-2.6, -0.95, 0.95, 2.6]) { const pil = mesh(new THREE.BoxGeometry(0.16, 0.95, 0.07), toon("#d5cfbe"), false); pil.position.set(px, 1.425, -1.13); scene.add(pil); }
+    const ceil = new THREE.Mesh(new THREE.PlaneGeometry(10, 3.2), flat("#f1f0ea")); ceil.rotation.x = Math.PI / 2; ceil.position.set(0, 2.4, 0.3); scene.add(ceil);
+    for (const lx of [-1.8, 0.2, 2.2]) { const lamp = new THREE.Mesh(new THREE.PlaneGeometry(1.2, 0.16), flat("#fffef2")); lamp.rotation.x = Math.PI / 2; lamp.position.set(lx, 2.395, -0.25); scene.add(lamp); }
+    // view through the windows: daytime city strip
+    const cityTex = canvasTexture(1024, 256, (g, w, h) => {
+      const sky = g.createLinearGradient(0, 0, 0, h); sky.addColorStop(0, "#9fd0ee"); sky.addColorStop(1, "#e4f1f7");
+      g.fillStyle = sky; g.fillRect(0, 0, w, h);
+      for (let i = 0; i < 30; i++) {
+        const bw = 30 + rand(i * 3) * 60, bh = 40 + rand(i * 5 + 1) * 110, bx = i * 36 + rand(i) * 10;
+        g.fillStyle = ["#c7ced6", "#b7c0ca", "#d6d8d4", "#aab4bf"][i % 4]!; g.fillRect(bx, h - bh, bw, bh);
+        g.fillStyle = "#e9eff4";
+        for (let wy = h - bh + 8; wy < h - 10; wy += 16) for (let wx = bx + 6; wx < bx + bw - 8; wx += 14) g.fillRect(wx, wy, 6, 8);
+      }
+    });
+    const city = new THREE.Mesh(new THREE.PlaneGeometry(9, 1.1), new THREE.MeshBasicMaterial({ map: cityTex })); city.position.set(0, 1.4, -1.5); scene.add(city);
+    // window-top advert rail with the focus poster and decoys
+    const poster = canvasTexture(640, 320, (g, w, h) => {
+      g.fillStyle = "#fff6e0"; g.fillRect(0, 0, w, h);
+      g.fillStyle = accent; g.fillRect(0, 0, w, 78);
+      g.fillStyle = "#fff"; g.font = `bold 54px ${JP_FONT}`; g.textAlign = "center"; g.textBaseline = "middle";
+      g.fillText(String(p.posterTitle ?? "全国 駅弁フェア"), w / 2, 42);
+      g.fillStyle = "#3b2a20"; g.font = `bold 58px ${JP_FONT}`;
+      g.fillText(String(p.posterSub ?? "桜ヶ丘駅 ホール"), w / 2, 150);
+      g.fillStyle = accent; g.font = `bold 66px ${JP_FONT}`;
+      g.fillText(String(p.posterNote ?? "本日まで"), w / 2, 238);
+      g.fillStyle = "#d9a441"; g.beginPath(); g.arc(70, 240, 34, 0, Math.PI * 2); g.arc(570, 240, 34, 0, Math.PI * 2); g.fill();
+    });
+    const frame = mesh(new THREE.BoxGeometry(1.1, 0.58, 0.03), toon("#ffffff"), 0.003); frame.position.set(posterX, 2.12, -1.08); scene.add(frame);
+    const face = new THREE.Mesh(new THREE.PlaneGeometry(1.0, 0.5), new THREE.MeshBasicMaterial({ map: poster })); face.position.set(posterX, 2.12, -1.062); scene.add(face);
+    [[posterX - 1.6, "#3f7fb5"], [posterX + 1.6, "#5aa36b"], [posterX + 3.2, "#c9a13c"], [posterX - 3.2, "#8b6bb1"]].forEach(([dx, col], i) => {
+      const f2 = mesh(new THREE.BoxGeometry(1.1, 0.58, 0.03), toon("#ffffff"), 0.003); f2.position.set(dx as number, 2.12, -1.08); scene.add(f2);
+      const tex = canvasTexture(256, 128, (g, w, h) => {
+        g.fillStyle = col as string; g.fillRect(0, 0, w, h); g.fillStyle = "rgba(255,255,255,0.85)";
+        g.fillRect(14, 16, 150, 14); g.fillRect(14, 44, 110, 10); g.fillRect(14, 64, 190, 10); g.fillRect(150, 90, 90, 24);
+      });
+      const f3 = new THREE.Mesh(new THREE.PlaneGeometry(1.0, 0.5), new THREE.MeshBasicMaterial({ map: tex })); f3.position.set(dx as number, 2.12, -1.062 + i * 0.0001); scene.add(f3);
+    });
+    // bench: 5 seats of 0.5 m
+    const benchBase = mesh(new THREE.BoxGeometry(2.7, 0.38, 0.5), toon("#3a3f48"), 0.004); benchBase.position.set(0, 0.19, -0.72); scene.add(benchBase);
+    for (let i = 0; i < 5; i++) {
+      const cx = -1.0 + i * 0.5;
+      const cush = mesh(new THREE.BoxGeometry(0.46, 0.09, 0.48), toon("#2f6aa0"), 0.004); cush.position.set(cx, 0.405, -0.72); scene.add(cush);
+      const back = mesh(new THREE.BoxGeometry(0.46, 0.36, 0.07), toon("#2f6aa0"), 0.004); back.position.set(cx, 0.78, -1.04); back.rotation.x = -0.1; scene.add(back);
+    }
+    for (const ex of [-1.3, 1.3]) { const arm = mesh(new THREE.BoxGeometry(0.06, 0.3, 0.46), toon("#bfc4cb"), 0.003); arm.position.set(ex, 0.6, -0.74); scene.add(arm); }
+    // stanchion pole and the divider at the right end
+    const pole = mesh(new THREE.CylinderGeometry(0.025, 0.025, 2.4, 12), toon("#c7ccd2"), 0.003); pole.position.set(1.42, 1.2, -0.28); scene.add(pole);
+    const divider = mesh(new THREE.BoxGeometry(0.03, 0.9, 0.45), toon("#dfe6ea", { transparent: true, opacity: 0.45 }), false); divider.position.set(1.34, 1.0, -0.78); scene.add(divider);
+    // overhead grab rail and straps along z=0.15
+    const rail = mesh(new THREE.CylinderGeometry(0.018, 0.018, 7, 10), toon("#c7ccd2"), false); rail.rotation.z = Math.PI / 2; rail.position.set(0, 2.18, 0.15); scene.add(rail);
+    for (let i = -6; i <= 6; i++) {
+      const sx = i * 0.5 + 0.25;
+      if (Math.abs(sx - posterX) < 0.62) continue; // keep the advert readable
+      const cord = mesh(new THREE.CylinderGeometry(0.008, 0.008, 0.26, 6), toon("#555b63"), false); cord.position.set(sx, 2.04, 0.15); scene.add(cord);
+      const ring = mesh(new THREE.TorusGeometry(0.075, 0.012, 8, 20), toon("#e9ecef"), 0.002); ring.position.set(sx, 1.82, 0.15); ring.rotation.y = Math.PI / 2; scene.add(ring);
+    }
+    return {
+      surfaces: { seat: 0.45, floor: 0, rail: 2.18 },
+      cameras: {
+        wide: { pos: [1.9, 1.7, 5.4], target: [-0.05, 1.1, -0.5], fov: 48 },
+        front: { pos: [0.1, 1.5, 5.4], target: [0.0, 1.1, -0.6], fov: 46 },
+        "row-cu": { pos: [0.2, 1.3, 2.8], target: [0.0, 1.05, -0.75], fov: 36 },
+        "s-cu": { pos: [-3.6, 1.6, -0.1], target: [-0.85, 1.5, -0.15], fov: 30 },
+        "ko-cu": { pos: [0.9, 1.45, 1.5], target: [-0.25, 1.1, -0.7], fov: 28 },
+        poster: { pos: [posterX, 1.9, 1.4], target: [posterX, 2.1, -1.1], fov: 30 },
+        "low-row": { pos: [0.3, 0.9, 3.3], target: [0.0, 0.9, -0.75], fov: 38 }
+      }
+    };
   }
 };
