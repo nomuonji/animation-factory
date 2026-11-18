@@ -561,17 +561,17 @@
     "clerk": {
       "speaker": "春日部つむぎ",
       "style": "ノーマル",
-      "speed": 1.05
+      "speed": 1.2
     },
     "yamada": {
       "speaker": "青山龍星",
       "style": "ノーマル",
-      "speed": 1.08
+      "speed": 1.2
     },
     "hanako": {
       "speaker": "雨晴はう",
       "style": "ノーマル",
-      "speed": 1.05
+      "speed": 1.2
     }
   },
   "music": {
@@ -755,10 +755,10 @@
       "role": "hook",
       "shot": "wide",
       "pre": 0.05,
-      "post": 0.2,
+      "post": 0.1,
       "line": {
         "who": "clerk",
-        "text": "四十二番の方、どうぞ。／記入例を見て、ご記入ください。"
+        "text": "四十二番の方、どうぞ。"
       },
       "do": [
         {
@@ -767,7 +767,7 @@
           "gain": 0.45
         },
         {
-          "at": "line+1.5",
+          "at": "line+0.5",
           "prop": "form",
           "to": {
             "z": 0.16
@@ -775,13 +775,13 @@
           "dur": 0.45
         },
         {
-          "at": "line+1.5",
+          "at": "line+0.5",
           "pose": "clerk",
           "to": "give",
           "dur": 0.35
         },
         {
-          "at": "line+1.55",
+          "at": "line+0.55",
           "sfx": "paper"
         },
         {
@@ -791,7 +791,7 @@
           "dur": 0.35
         },
         {
-          "at": "line+1.7",
+          "at": "line+0.7",
           "look": "yamada",
           "to": {
             "yaw": 0,
@@ -805,8 +805,8 @@
       "id": "rule",
       "role": "rule",
       "shot": "two-shot",
-      "pre": 0.15,
-      "post": 0.25,
+      "pre": 0.1,
+      "post": 0.1,
       "line": {
         "who": "yamada",
         "text": "あ、これ、僕です。／記入例の、山田太郎です。"
@@ -828,7 +828,7 @@
           "dur": 0.2
         },
         {
-          "at": "line+1.2",
+          "at": "line+1.0",
           "look": "yamada",
           "to": {
             "yaw": 0,
@@ -849,8 +849,8 @@
       "role": "escalate",
       "shot": "clerk-cu",
       "level": 1,
-      "pre": 0.2,
-      "post": 0.2,
+      "pre": 0.1,
+      "post": 0.1,
       "line": {
         "who": "clerk",
         "text": "お世話になっております。／ただ、記入例と同じ内容は、お受けできません。"
@@ -865,42 +865,23 @@
       ]
     },
     {
-      "id": "ack",
-      "role": "bridge",
-      "shot": "customer-cu",
-      "pre": 0.1,
-      "post": 0.2,
-      "line": {
-        "who": "yamada",
-        "text": "でも、全部この通りなんです。"
-      },
-      "do": [
-        {
-          "at": 0,
-          "face": "yamada",
-          "to": "doubtful",
-          "dur": 0.2
-        }
-      ]
-    },
-    {
       "id": "esc2",
       "role": "escalate",
       "shot": "two-shot",
       "level": 2,
-      "pre": 0.15,
-      "post": 0.3,
+      "pre": 0.1,
+      "post": 0.2,
       "line": {
         "who": "clerk",
-        "text": "写された方と区別がつかなくて。／本日、三百十二人目なんです。"
+        "text": "毎日、写された方が来て、区別がつかなくて。／本日、三百十二人目です。"
       },
       "do": [
         {
-          "at": "line+1.3",
+          "at": "line+2.0",
           "show": "stackp"
         },
         {
-          "at": "line+1.3",
+          "at": "line+2.0",
           "prop": "stackp",
           "to": {
             "y": 1.0
@@ -909,7 +890,7 @@
           "ease": "in"
         },
         {
-          "at": "line+1.55",
+          "at": "line+2.25",
           "sfx": "paper-thud"
         }
       ]
@@ -918,8 +899,8 @@
       "id": "try",
       "role": "bridge",
       "shot": "customer-cu",
-      "pre": 0.15,
-      "post": 0.15,
+      "pre": 0.1,
+      "post": 0.1,
       "line": {
         "who": "yamada",
         "text": "じゃあ、住所を少し変えれば……"
@@ -938,8 +919,8 @@
       "role": "escalate",
       "shot": "clerk-cu",
       "level": 3,
-      "pre": 0.15,
-      "post": 0.25,
+      "pre": 0.1,
+      "post": 0.15,
       "line": {
         "who": "clerk",
         "text": "それは虚偽の届出です。／変えられるのは、字くらいです。"
@@ -950,11 +931,11 @@
       "role": "escalate",
       "shot": "customer-cu",
       "level": 4,
-      "pre": 0.15,
-      "post": 0.3,
+      "pre": 0.1,
+      "post": 0.2,
       "line": {
         "who": "yamada",
-        "text": "字は、僕の字がお手本で……／僕のままだと、出せないんですね。"
+        "text": "字も、僕の字がお手本で……／僕のままだと、出せませんね。"
       },
       "do": [
         {
@@ -970,7 +951,7 @@
       "role": "turn",
       "shot": "form-top",
       "pre": 0.2,
-      "hold": 2.2,
+      "hold": 1.9,
       "line": {
         "who": "yamada",
         "text": "……崩します。"
@@ -1062,8 +1043,8 @@
       "id": "payoff",
       "role": "payoff",
       "shot": "two-shot",
-      "pre": 0.3,
-      "post": 0.4,
+      "pre": 0.2,
+      "post": 0.3,
       "line": {
         "who": "clerk",
         "text": "お手本と、全然違う字です。／受理します。"
@@ -1160,8 +1141,8 @@
       "id": "next",
       "role": "bridge",
       "shot": "wide",
-      "pre": 0.5,
-      "post": 0.1,
+      "pre": 0.3,
+      "post": 0.05,
       "line": {
         "who": "clerk",
         "text": "四十三番の方、どうぞ。"
@@ -1219,8 +1200,8 @@
       "id": "hana",
       "role": "bridge",
       "shot": "customer-cu",
-      "pre": 0.25,
-      "post": 0.2,
+      "pre": 0.15,
+      "post": 0.15,
       "line": {
         "who": "hanako",
         "text": "山田花子です。"
@@ -1230,7 +1211,7 @@
       "id": "button",
       "role": "button",
       "shot": "clerk-cu",
-      "pre": 0.25,
+      "pre": 0.2,
       "post": 0.5,
       "line": {
         "who": "clerk",
