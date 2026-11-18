@@ -823,4 +823,40 @@ export const PROPS: Record<string, PropBuilder> = {
     place(0);
     return { object: g, setParam(k, v) { if (k === "amount") { amount = v; m.opacity = 0.42 * amount; } }, animate(t) { place(t); } };
   }
+
+  ,
+  /**
+   * セルフレジ（無人精算機）。ピボットは床の中央、画面は +Z 向き。高さ約1.12。
+   * param alert 0..1 で画面が赤い「係員をお呼びします」表示に変わり、上のランプが点く。
+   */
+  "self-register"(p) {
+    const g = new THREE.Group();
+    const body = mesh(new THREE.BoxGeometry(0.46, 0.8, 0.36), toon(str(p.color, "#e9e6df")), 0.004); body.position.y = 0.4; g.add(body);
+    const base = mesh(new THREE.BoxGeometry(0.5, 0.06, 0.4), toon("#3a3d44"), 0.004); base.position.y = 0.03; g.add(base);
+    const shelf = mesh(new THREE.BoxGeometry(0.44, 0.03, 0.3), toon("#c9ccd1"), 0.004); shelf.position.set(0, 0.82, 0.24); g.add(shelf);
+    const head = mesh(new THREE.BoxGeometry(0.46, 0.3, 0.12), toon("#2c2e33"), 0.004); head.position.set(0, 0.97, 0.02); head.rotation.x = -0.28; g.add(head);
+    const c = document.createElement("canvas"); c.width = 320; c.height = 200;
+    const ctx = c.getContext("2d")!;
+    const tex = new THREE.CanvasTexture(c); tex.colorSpace = THREE.SRGBColorSpace;
+    let shown = -1;
+    const draw = (a: number) => {
+      const on = a > 0.5 ? 1 : 0;
+      if (on === shown) return;
+      shown = on;
+      ctx.fillStyle = on ? "#b3261e" : "#14324a"; ctx.fillRect(0, 0, 320, 200);
+      ctx.fillStyle = "#ffffff"; ctx.textAlign = "center"; ctx.textBaseline = "middle";
+      ctx.font = `bold ${on ? 46 : 40}px ${JP_FONT}`;
+      if (on) { ctx.fillText("係員を", 160, 70); ctx.fillText("お呼びします", 160, 132); }
+      else { ctx.fillText("商品を", 160, 70); ctx.fillText("スキャン", 160, 130); }
+      tex.needsUpdate = true;
+    };
+    draw(num(p.alert, 0));
+    const scr = new THREE.Mesh(new THREE.PlaneGeometry(0.4, 0.25), new THREE.MeshBasicMaterial({ map: tex }));
+    scr.position.set(0, 0.97, 0.083); scr.rotation.x = -0.28; g.add(scr);
+    const lampMat = new THREE.MeshBasicMaterial({ color: new THREE.Color("#5a1a16") });
+    const lamp = new THREE.Mesh(new THREE.SphereGeometry(0.045, 14, 10), lampMat); lamp.position.set(0, 1.17, 0.0); g.add(lamp);
+    const setLamp = (a: number) => lampMat.color.set(a > 0.5 ? "#ff3b2e" : "#5a1a16");
+    setLamp(num(p.alert, 0));
+    return { object: g, setParam(k, v) { if (k === "alert") { draw(v); setLamp(v); } } };
+  }
 };
