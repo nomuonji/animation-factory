@@ -537,6 +537,23 @@
         },
         "notes": "焼肉店のテーブル席（ロースター付きの木のテーブル・排気ダクト・両側ベンチ・壁のメニュー・提灯）。客は +Z 側(ry=π) と -Z 側(ry=0) のベンチに seated:true、通路は +X 側で店員はテーブルの +X 端に立つ。壁時計は prop wall-clock（奥の壁 x=-2.36, ry=π/2）"
       },
+      "train-seat": {
+        "cameras": [
+          "wide",
+          "front",
+          "row-cu",
+          "s-cu",
+          "ko-cu",
+          "poster",
+          "low-row"
+        ],
+        "surfaces": {
+          "seat": 0.45,
+          "floor": 0,
+          "rail": 2.18
+        },
+        "notes": "通勤電車のロングシート（5人掛け・座面0.45・奥の壁に窓と窓上の広告枠・吊り革）。座る人は seated:true で x=-1.0/-0.5/0/0.5/1.0, z≈-0.78, root.y≈-0.32, ry=0。立つ人は z≈-0.15, ry=π。広告は params.posterX/posterTitle/posterSub/posterNote/posterAccent"
+      },
       "karaoke-reception": {
         "cameras": [
           "wide",
