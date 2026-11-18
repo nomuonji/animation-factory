@@ -128,3 +128,5 @@ Publishing: `node tools/three/publish-pack.mjs <id> --publisher <video-publisher
 ### Seated actors
 
 `"seated": true` on a VRM actor bends both legs (thighs forward, shins down). Procedural characters take it too (thighs forward, shins down; set `root.y` ≈ -0.32 for a 0.45 m seat). Lower `root.y` so the hips meet the seat; behind a desk with a modesty panel, raise it so the torso shows above the desk.
+
+`convenience-store-night` (深夜のコンビニ: `convenience-store` の夜版。右端 x≈1.45 を回り込める。prop `self-register` (セルフレジ、`param alert` 0..1 で赤い「係員をお呼びします」表示とランプ) を x≈1.75, z≈0.45 に置く。客は z≈1.15 で ry=π、係員は左脇 x≈1.3, z≈0.62 に立つ。cameras は昼版に加え `kiosk-wide`, `kiosk-cu`, `kiosk-side`, `counter-front`)

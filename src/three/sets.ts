@@ -1288,3 +1288,24 @@ export const SETS: Record<string, SetBuilder> = {
     };
   }
 };
+
+/**
+ * 深夜のコンビニ（ワンオペ夜勤）。昼用の `convenience-store` のカウンターと棚をそのまま使い、
+ * 外を夜にして、客側にセルフレジを置けるよう右端を空ける。セルフレジ本体は prop `self-register`
+ * （x≈1.75, z≈0.45 に置く。客は z≈1.15 で ry=π、係員はレジの左 x≈1.3, z≈0.62 に立つ）。
+ */
+SETS["convenience-store-night"] = (scene, p) => {
+  const built = SETS["convenience-store"]!(scene, p);
+  scene.background = new THREE.Color("#101826");
+  return {
+    surfaces: built.surfaces,
+    cameras: {
+      ...built.cameras,
+      "kiosk-wide": { pos: [1.7, 1.6, 2.65], target: [1.7, 1.05, 0.7], fov: 58 },
+      "kiosk-all": { pos: [1.6, 1.62, 2.65], target: [1.6, 1.05, 0.7], fov: 68 },
+      "kiosk-cu": { pos: [1.7, 1.55, 2.2], target: [1.75, 1.05, 0.5], fov: 40 },
+      "kiosk-side": { pos: [0.5, 1.5, 2.1], target: [1.7, 1.1, 0.7], fov: 48 },
+      "counter-front": { pos: [1.3, 1.55, 2.6], target: [1.2, 1.1, 0.6], fov: 58 }
+    }
+  };
+};
