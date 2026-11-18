@@ -1,9 +1,6 @@
-# Download + filmstrip these sources (one src per line) so they can be watched before
-# writing a brief. Committing this file to a PR runs it and attaches the results.
-# Audio-only sources get a waveform sheet with a seconds ruler (+ Commons English subtitles if any).
-commons:Apollo 13 SM.jpg
-commons:View of damaged Apollo 13 Service Module from the Lunar-Command Modules (as13-58-8458).jpg
-commons:View of damaged Apollo 13 Service Module from the Lunar-Command Modules (as13-59-8501).jpg
-commons:The Actual Apollo 13 Prime Crew - GPN-2000-001167.jpg
-commons:1970 Mission Control Apollo 13.jpg
-commons:Mission Operations Control Room during Apollo 13.jpg
+# Dojo: inspect real footage before script. No publishing.
+commons:Ascarosepion pfefferi grabs shrimp with tentacles.webm
+commons:Red cuttle hunting.webm
+commons:Archer fish shooting at prey.ogv
+commons:Wk215-deep-sea-octopuses.webm
+commons:Australian Physarum polycephalum timelapse.webm
