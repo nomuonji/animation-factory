@@ -4,7 +4,11 @@ This repository is a reusable animation factory, not a collection of one-off vid
 
 **Any agent (Claude, Codex, ChatGPT, a person) making or judging a video reads `docs/agent-video-craft.md` first.** It writes down the judgement an experienced maker applies without saying it: the work loop (small → look → fix), the order in which to look at a frame, phone-UI safe zones, script and number craft, real pacing numbers, audio rules, and the failures already met. The playbooks (`docs/style-shorts-playbook.md`, `docs/three-shorts-playbook.md`) are the step-by-step gates. Files under `.claude/skills/` are plain Markdown runbooks; agents other than Claude read them like any other doc.
 
-## Freeform motion productions\n\nFor React/Remotion productions use [docs/motionmaker-handoff.md](docs/motionmaker-handoff.md). This is a separate, manually executed production backend; do not route completed videos into the existing auto-publisher without explicit approval.\n\n## Before creating a production
+## Freeform motion productions
+
+For React/Remotion productions use [docs/motionmaker-handoff.md](docs/motionmaker-handoff.md). This is a separate, manually executed production backend; do not route completed videos into the existing auto-publisher without explicit approval.
+
+## Before creating a production
 
 1. Read `catalog/components.json` and `catalog/audio.json`.
    Check `catalog/asset-library.json` before creating or sourcing new art or sound.
