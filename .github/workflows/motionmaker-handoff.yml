@@ -1,0 +1,19 @@
+name: MotionMaker handoff checks
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - tools/motionmaker/**
+      - tests/motionmaker-export.test.mjs
+      - .github/workflows/motionmaker-handoff.yml
+permissions:
+  contents: read
+jobs:
+  export-contract:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: node --test tests/motionmaker-export.test.mjs
