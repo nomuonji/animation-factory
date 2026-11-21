@@ -77,7 +77,7 @@ jobs:
           npm ci
           npx playwright install --with-deps chromium
           sudo apt-get update -qq
-          sudo apt-get install -y -qq ffmpeg fonts-noto-cjk fonts-noto-cjk-extra
+          sudo apt-get install -y -qq ffmpeg fonts-noto-cjk fonts-noto-cjk-extra espeak-ng
 
       - name: Typecheck
         if: ${{ steps.resolve.outputs.list != '' }}
