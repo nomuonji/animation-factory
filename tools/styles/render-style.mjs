@@ -131,6 +131,10 @@ if (flag("voices-only")) { console.log(`voices: ${voiced ? "all synthesized/cach
 
 // ---------- timeline ----------
 const compiled = compile({ ...prod, beats: prod.beats.map((b) => ({ ...b, pre: b.pre ?? 0.06, post: b.post ?? 0.14 })) }, (l) => voices.get(l));
+const translated = prod.beats.filter((b) => b.line).map((b) => b.line.translation);
+compiled.timeline.lines.forEach((line, i) => {
+  if (translated[i]) line.translation = translated[i];
+});
 const scenes = resolveScenes(prod, compiled.beats);
 const lint = lintStyled(prod, compiled, scenes, style);
 await writeFile(join(outDir, "design-report.md"), lint.report);
