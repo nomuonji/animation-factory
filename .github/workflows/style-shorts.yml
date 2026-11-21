@@ -123,6 +123,15 @@ jobs:
               node tools/styles/qa.mjs "$p" || true
               mkdir -p "artifact/$p" && cp -r "outputs/styles/$p/review/." "artifact/$p/"
               cp -r "outputs/styles/$p/inspect" "artifact/$p/" || true
+              # Opt-in visual comparison: actual screenshots from the Style Shorts
+              # headless Chromium renderer, not generated reference illustrations.
+              preview_styles="$(node -e 'const p=require(process.argv[1]); process.stdout.write((p.previewStyles ?? []).join(","))' "$PWD/productions/$p/styled.json")"
+              if [ -n "$preview_styles" ]; then
+                node tools/styles/gallery.mjs "$p" --styles "$preview_styles" --scale 0.4
+                mkdir -p "artifact/$p-gallery"
+                cp "outputs/styles/gallery/$p/"*.jpg "artifact/$p-gallery/"
+                cp "outputs/styles/gallery/$p/rows.txt" "artifact/$p-gallery/"
+              fi
             fi
           done
         if: ${{ steps.resolve.outputs.list != '' && !inputs.voices_only }}
