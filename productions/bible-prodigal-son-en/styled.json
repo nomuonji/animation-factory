@@ -1,0 +1,440 @@
+{
+  "meta": {
+    "id": "bible-prodigal-son-en",
+    "title": "The Son Who Came Home｜放蕩息子の帰還",
+    "fps": 30,
+    "width": 1080,
+    "height": 1920
+  },
+  "style": "paper-cutout",
+  "voices": {
+    "n": {
+      "engine": "espeak-ng",
+      "speaker": "Narrator (EN)",
+      "voice": "en-us+m2",
+      "wpm": 145,
+      "pitch": 47,
+      "gain": 1
+    },
+    "s": {
+      "engine": "espeak-ng",
+      "speaker": "Son (EN)",
+      "voice": "en-us+m3",
+      "wpm": 128,
+      "pitch": 52,
+      "gain": 1
+    },
+    "f": {
+      "engine": "espeak-ng",
+      "speaker": "Father (EN)",
+      "voice": "en-us+m1",
+      "wpm": 124,
+      "pitch": 38,
+      "gain": 1
+    }
+  },
+  "music": {
+    "track": "flowerbed-fields",
+    "gain": 0.11
+  },
+  "autoSfx": false,
+  "captions": {
+    "y": 0.59,
+    "size": 0.055,
+    "translationSize": 0.042
+  },
+  "theme": {
+    "accent": "#eb9b50"
+  },
+  "design": {
+    "title": "すべてを失って帰った息子を、父はどう迎えた？",
+    "hook": {
+      "overlay": "HE LOST EVERYTHING"
+    }
+  },
+  "sources": [
+    "The World English Bible (public domain), Luke 15:11–24: https://www.biblegateway.com/passage/?search=Luke+15%3A11-24&version=WEB"
+  ],
+  "description": [
+    "A short English-learning dramatization of the Parable of the Prodigal Son (Luke 15:11–24).",
+    "English dialogue other than \"He was lost, and is found.\" is adapted for learning and is not a verbatim Bible quotation.",
+    "英語学習用の脚色です。父の最後の言葉のみWorld English Bible ルカ15:24を直接引用しています。"
+  ],
+  "beats": [
+    {
+      "id": "hook",
+      "role": "hook",
+      "line": {
+        "who": "n",
+        "text": "He had lost everything.",
+        "translation": "彼はすべてを失っていた。"
+      },
+      "hold": 0.25,
+      "visual": {
+        "scene": "stage",
+        "set": "dusk-paper",
+        "transition": "cut",
+        "actors": [
+          {
+            "id": "son",
+            "x": -0.42,
+            "scale": 1.08,
+            "color": "#b78155",
+            "accent": "#31253c",
+            "hair": "short",
+            "face": "sad",
+            "pose": "crouch",
+            "facing": 1,
+            "talks": false
+          },
+          {
+            "id": "father",
+            "x": 0.7,
+            "scale": 1.16,
+            "color": "#e9dcc6",
+            "accent": "#d3b18c",
+            "hair": "short",
+            "face": "worried",
+            "pose": "run",
+            "facing": -1,
+            "talks": false,
+            "to": {
+              "x": 0.32,
+              "at": "line",
+              "until": "lineEnd"
+            }
+          }
+        ],
+        "props": [
+          {
+            "kind": "house",
+            "x": 0.68,
+            "scale": 0.57
+          },
+          {
+            "kind": "sun",
+            "x": -0.8,
+            "y": 2.8,
+            "scale": 0.5
+          }
+        ],
+        "camera": {
+          "zoom": 1.16,
+          "to": {
+            "zoom": 1.29
+          }
+        }
+      }
+    },
+    {
+      "id": "road",
+      "line": {
+        "who": "n",
+        "text": "At last, he came home.",
+        "translation": "そしてついに、家に帰ってきた。"
+      },
+      "hold": 0.25,
+      "visual": {
+        "scene": "stage",
+        "set": "dusk-paper",
+        "transition": "fade",
+        "actors": [
+          {
+            "id": "son",
+            "x": -0.65,
+            "scale": 1.08,
+            "color": "#b78155",
+            "accent": "#31253c",
+            "hair": "short",
+            "face": "worried",
+            "pose": "walk",
+            "facing": 1,
+            "talks": false,
+            "to": {
+              "x": -0.18,
+              "at": "line",
+              "until": "lineEnd"
+            }
+          }
+        ],
+        "props": [
+          {
+            "kind": "house",
+            "x": 0.68,
+            "scale": 0.72
+          },
+          {
+            "kind": "tree",
+            "x": 0.9,
+            "scale": 0.8
+          }
+        ],
+        "camera": {
+          "zoom": 1.03,
+          "to": {
+            "zoom": 1.11
+          }
+        }
+      }
+    },
+    {
+      "id": "confession",
+      "line": {
+        "who": "s",
+        "text": "Father, I have sinned.",
+        "translation": "お父さん、僕は罪を犯しました。"
+      },
+      "hold": 0.2,
+      "visual": {
+        "scene": "stage",
+        "set": "dusk-paper",
+        "transition": "cut",
+        "actors": [
+          {
+            "id": "son",
+            "x": -0.43,
+            "scale": 1.08,
+            "color": "#b78155",
+            "accent": "#31253c",
+            "hair": "short",
+            "face": "sad",
+            "pose": "bow",
+            "facing": 1,
+            "talks": true
+          },
+          {
+            "id": "father",
+            "x": 0.48,
+            "scale": 1.16,
+            "color": "#e9dcc6",
+            "accent": "#d3b18c",
+            "hair": "short",
+            "face": "worried",
+            "pose": "idle",
+            "facing": -1,
+            "talks": false
+          }
+        ],
+        "camera": {
+          "zoom": 1.13,
+          "to": {
+            "zoom": 1.23
+          }
+        }
+      }
+    },
+    {
+      "id": "unworthy",
+      "line": {
+        "who": "s",
+        "text": "I'm no longer worthy／to be called your son.",
+        "translation": "もう、あなたの息子と呼ばれる資格はありません。"
+      },
+      "hold": 0.1,
+      "visual": {
+        "scene": "stage",
+        "set": "dusk-paper",
+        "transition": "cut",
+        "actors": [
+          {
+            "id": "son",
+            "x": -0.4,
+            "scale": 1.08,
+            "color": "#b78155",
+            "accent": "#31253c",
+            "hair": "short",
+            "face": "sad",
+            "pose": "crouch",
+            "facing": 1,
+            "talks": true
+          },
+          {
+            "id": "father",
+            "x": 0.38,
+            "scale": 1.16,
+            "color": "#e9dcc6",
+            "accent": "#d3b18c",
+            "hair": "short",
+            "face": "worried",
+            "pose": "shock",
+            "facing": -1,
+            "talks": false
+          }
+        ],
+        "camera": {
+          "zoom": 1.15,
+          "to": {
+            "zoom": 1.26
+          }
+        }
+      }
+    },
+    {
+      "id": "run",
+      "line": {
+        "who": "n",
+        "text": "But his father ran to him.",
+        "translation": "しかし父親は、息子に駆け寄った。"
+      },
+      "hold": 0.22,
+      "visual": {
+        "scene": "stage",
+        "set": "dusk-paper",
+        "transition": "slide",
+        "actors": [
+          {
+            "id": "son",
+            "x": -0.37,
+            "scale": 1.08,
+            "color": "#b78155",
+            "accent": "#31253c",
+            "hair": "short",
+            "face": "sad",
+            "pose": "crouch",
+            "facing": 1,
+            "talks": false
+          },
+          {
+            "id": "father",
+            "x": 0.73,
+            "scale": 1.16,
+            "color": "#e9dcc6",
+            "accent": "#d3b18c",
+            "hair": "short",
+            "face": "happy",
+            "pose": "run",
+            "facing": -1,
+            "talks": false,
+            "to": {
+              "x": -0.06,
+              "at": "line",
+              "until": "lineEnd"
+            }
+          }
+        ],
+        "camera": {
+          "zoom": 1.12,
+          "to": {
+            "zoom": 1.24
+          }
+        }
+      }
+    },
+    {
+      "id": "embrace",
+      "line": {
+        "who": "n",
+        "text": "And he embraced him.",
+        "translation": "そして息子を抱きしめた。"
+      },
+      "hold": 0.32,
+      "visual": {
+        "scene": "stage",
+        "set": "dusk-paper",
+        "transition": "fade",
+        "actors": [
+          {
+            "id": "son",
+            "x": -0.22,
+            "scale": 1.12,
+            "color": "#b78155",
+            "accent": "#31253c",
+            "hair": "short",
+            "face": "blush",
+            "pose": "hold",
+            "facing": 1,
+            "talks": false
+          },
+          {
+            "id": "father",
+            "x": 0.03,
+            "scale": 1.16,
+            "color": "#e9dcc6",
+            "accent": "#d3b18c",
+            "hair": "short",
+            "face": "happy",
+            "pose": "hold",
+            "facing": -1,
+            "talks": false,
+            "emote": [
+              [
+                "line+0.4",
+                "heart"
+              ]
+            ]
+          }
+        ],
+        "camera": {
+          "zoom": 1.21,
+          "to": {
+            "zoom": 1.32
+          }
+        }
+      }
+    },
+    {
+      "id": "verse",
+      "line": {
+        "who": "f",
+        "text": "He was lost, and is found.",
+        "translation": "失われていた息子が、見つかったのだ。"
+      },
+      "hold": 0.35,
+      "visual": {
+        "scene": "stage",
+        "set": "dusk-paper",
+        "transition": "fade",
+        "chip": "LUKE 15:24",
+        "actors": [
+          {
+            "id": "son",
+            "x": -0.18,
+            "scale": 1.16,
+            "color": "#b78155",
+            "accent": "#31253c",
+            "hair": "short",
+            "face": "blush",
+            "pose": "hold",
+            "facing": 1,
+            "talks": false
+          },
+          {
+            "id": "father",
+            "x": 0.05,
+            "scale": 1.24,
+            "color": "#e9dcc6",
+            "accent": "#d3b18c",
+            "hair": "short",
+            "face": "happy",
+            "pose": "hold",
+            "facing": -1,
+            "talks": true
+          }
+        ],
+        "camera": {
+          "zoom": 1.31,
+          "to": {
+            "zoom": 1.38
+          }
+        }
+      }
+    },
+    {
+      "id": "learn",
+      "role": "payoff",
+      "line": {
+        "who": "n",
+        "text": "Lost.／Found.／He was lost, and is found.",
+        "translation": "lost＝失われた。found＝見つかった。"
+      },
+      "hold": 0.4,
+      "visual": {
+        "scene": "card",
+        "text": "LOST → FOUND",
+        "sub": "Luke 15:24",
+        "icon": "heart",
+        "transition": "fade"
+      }
+    }
+  ]
+}
