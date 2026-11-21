@@ -436,5 +436,13 @@
         "transition": "fade"
       }
     }
+  ],
+  "previewStyles": [
+    "paper-cutout",
+    "retro-anime",
+    "comic",
+    "risograph",
+    "minimal-line",
+    "low-poly-3d"
   ]
 }
