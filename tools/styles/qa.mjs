@@ -23,7 +23,7 @@ if (mp4) {
   const tl = JSON.parse(readFileSync(join(out, "timeline.json"), "utf8"));
   const status = JSON.parse(readFileSync(join(review, "status.json"), "utf8"));
   const dur = tl.meta.duration;
-  check(status.voice === "voicevox", "音声: VOICEVOX", `音声が ${status.voice}（推定タイミング・無音）`);
+  check(["voicevox", "espeak-ng"].includes(status.voice), `音声: ${status.voice}`, `音声が ${status.voice}（推定タイミング・無音）`);
   check(dur >= 15 && dur <= 59, `尺 ${dur.toFixed(1)}s`, `尺 ${dur.toFixed(1)}s が 15〜59s の外`);
   const file = join(review, mp4);
   for (const row of execFileSync("ffprobe", ["-v", "error", "-show_entries", "stream=codec_type,duration", "-of", "csv=p=0", file]).toString().trim().split("\n")) {
@@ -35,7 +35,7 @@ if (mp4) {
   const lufs = m ? Number(m[1]) : NaN;
   check(lufs >= -15.5 && lufs <= -12.5, `音量 ${lufs} LUFS`, `音量 ${lufs} LUFS が -15.5〜-12.5 の外`);
   const desc = readFileSync(join(review, "description.txt"), "utf8");
-  check(/VOICEVOX:/.test(desc), "VOICEVOX クレジット", "description.txt に VOICEVOX のクレジットがない");
+  check(/VOICEVOX:|English voice: eSpeak NG/.test(desc), "音声クレジット", "description.txt に音声クレジットがない");
   const report = readFileSync(join(review, "design-report.md"), "utf8");
   check(!/## errors\n- (?!なし)/.test(report), "style lint: errors なし", "style lint に errors がある");
 }

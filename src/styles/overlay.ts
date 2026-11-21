@@ -55,6 +55,27 @@ function captions(g: CanvasRenderingContext2D, tl: StyledTimeline, st: StyleDef,
       g.shadowBlur = 0;
     });
     g.restore();
+    // Optional translation appears simultaneously with each English sentence;
+    // reserve its own line inside the phone-safe zone, not over the characters.
+    if (l.translation) {
+      const sz = W * (tl.captions?.translationSize ?? 0.043);
+      const cy = Math.min(y0 + H * 0.09, H * 0.735);
+      g.save();
+      g.textAlign = "center"; g.textBaseline = "middle";
+      g.font = `700 ${Math.round(sz)}px "Noto Sans CJK JP", sans-serif`;
+      const jaLines = wrapText(g, l.translation, W * 0.80);
+      const lhJa = sz * 1.3;
+      const wide = Math.max(...jaLines.map((x) => g.measureText(x).width));
+      const topJa = cy - (jaLines.length - 1) * lhJa / 2;
+      g.fillStyle = "rgba(12, 12, 20, 0.86)";
+      g.beginPath();
+      g.roundRect((W - wide) / 2 - sz * 0.4, topJa - lhJa * 0.62,
+        wide + sz * 0.8, jaLines.length * lhJa + sz * 0.25, sz * 0.18);
+      g.fill();
+      g.fillStyle = "#fff6db";
+      jaLines.forEach((x, i) => g.fillText(x, W / 2, topJa + i * lhJa));
+      g.restore();
+    }
     break;
   }
 }

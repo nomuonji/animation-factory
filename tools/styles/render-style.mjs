@@ -92,6 +92,17 @@ async function cached(line) {
 async function synth(line) {
   const v = voiceOf(line), k = keyOf(line);
   const wav = join(voiceDir, `${k}.wav`), meta = join(voiceDir, `${k}.json`);
+  if (v.engine === "espeak-ng") {
+    // Offline English prototype voice, without API credentials or paid services.
+    await run("espeak-ng", ["-v", v.voice ?? "en-us", "-s", String(v.wpm ?? 145),
+      "-p", String(v.pitch ?? 50), "-w", wav, plainText(line.text)]);
+    const duration = wavDuration(await readFile(wav));
+    const moras = Array.from({ length: Math.max(1, Math.floor(duration * 6)) },
+      (_, i) => [i / 6, Math.min(duration, (i + 0.7) / 6)]);
+    const info = { duration, moras, speaker: v.speaker ?? "English", engine: "espeak-ng" };
+    await writeFile(meta, JSON.stringify(info));
+    return { ...info, audio: wav };
+  }
   const sid = await speakerId(v);
   const q = await (await fetch(`${VV}/audio_query?text=${encodeURIComponent(plainText(line.text))}&speaker=${sid}`, { method: "POST" })).json();
   q.speedScale = v.speed; q.prePhonemeLength = 0.05; q.postPhonemeLength = 0.12;
@@ -112,7 +123,7 @@ let voiced = true;
 for (const b of prod.beats) if (b.line) {
   b.line.who ??= "n";
   let v = flag("no-voice") ? null : await cached(b.line);
-  if (!v && alive) v = await synth(b.line);
+  if (!v && (voiceOf(b.line).engine === "espeak-ng" || alive) && !flag("no-voice")) v = await synth(b.line);
   if (!v) { voiced = false; v = estimateVoice(b.line.text, voiceOf(b.line).speed); }
   voices.set(b.line, v);
 }
@@ -120,6 +131,10 @@ if (flag("voices-only")) { console.log(`voices: ${voiced ? "all synthesized/cach
 
 // ---------- timeline ----------
 const compiled = compile({ ...prod, beats: prod.beats.map((b) => ({ ...b, pre: b.pre ?? 0.06, post: b.post ?? 0.14 })) }, (l) => voices.get(l));
+const translated = prod.beats.filter((b) => b.line).map((b) => b.line.translation);
+compiled.timeline.lines.forEach((line, i) => {
+  if (translated[i]) line.translation = translated[i];
+});
 const scenes = resolveScenes(prod, compiled.beats);
 const lint = lintStyled(prod, compiled, scenes, style);
 await writeFile(join(outDir, "design-report.md"), lint.report);
@@ -290,7 +305,8 @@ const ts = (x) => { const ms = Math.round(x * 1000); const h = Math.floor(ms / 3
 let srt = "", k = 1;
 for (const l of timeline.lines) for (const c of l.chunks) srt += `${k++}\n${ts(c.start)} --> ${ts(c.end)}\n${c.text}\n\n`;
 await writeFile(join(review, "captions.srt"), srt);
-const credits = [...new Set([...voices.values()].map((v) => v.speaker).filter(Boolean))].map((s) => `VOICEVOX:${s}`);
+const voicevoxCredits = [...new Set([...voices.values()].filter((v) => v.engine !== "espeak-ng").map((v) => v.speaker).filter(Boolean))].map((s) => `VOICEVOX:${s}`);
+const credits = [...voicevoxCredits, ...([...voices.values()].some((v) => v.engine === "espeak-ng") ? ["English voice: eSpeak NG (offline prototype)"] : [])];
 const extra = [];
 if (musicCredit) extra.push(`BGM: "${musicCredit.title ?? musicCredit.id}" by ${musicCredit.author} (${musicCredit.license}) ${musicCredit.source}`);
 if (cues.length) extra.push("効果音: Kenney (CC0) / 一部コード生成");
@@ -300,5 +316,5 @@ const title = prod.design?.title ?? prod.meta.title;
 await run("cp", [final, join(review, `${title.replace(/[\\/:*?"<>|\s]+/g, "_")}.mp4`)]);
 await writeFile(join(review, "title.txt"), [title, ...(prod.design?.titleAlternatives ?? [])].join("\n") + "\n");
 await writeFile(join(review, "design-report.md"), lint.report);
-await writeFile(join(review, "status.json"), JSON.stringify({ production: id, style, duration: dur, voice: voiced ? "voicevox" : "none-estimated-timing", technical: "pass", editorial: "unreviewed", renderedAt: new Date().toISOString() }, null, 2));
+await writeFile(join(review, "status.json"), JSON.stringify({ production: id, style, duration: dur, voice: voiced ? ([...voices.values()].every((v) => v.engine === "espeak-ng") ? "espeak-ng" : "voicevox") : "none-estimated-timing", technical: "pass", editorial: "unreviewed", renderedAt: new Date().toISOString() }, null, 2));
 console.log(`done: ${final} (${dur.toFixed(1)}s, style=${style}, voice=${voiced ? "VOICEVOX" : "none"})`);
