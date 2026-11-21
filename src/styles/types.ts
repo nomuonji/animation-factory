@@ -102,6 +102,8 @@ export interface StyledLine {
   id: string;
   who: string;
   text: string;
+  /** Optional Japanese translation shown below English spoken captions. */
+  translation?: string;
   start: number;
   end: number;
   moras: [number, number][];
@@ -115,7 +117,7 @@ export interface StyledTimeline {
   theme?: Record<string, unknown>;
   scenes: Visual[];
   lines: StyledLine[];
-  captions?: { y?: number; size?: number; off?: boolean };
+  captions?: { y?: number; size?: number; translationSize?: number; off?: boolean };
   overlay?: { text: string; start: number; end: number } | null;
   titleCard?: { text: string; start: number; end: number; style?: "card" | "band"; label?: string } | null;
 }
