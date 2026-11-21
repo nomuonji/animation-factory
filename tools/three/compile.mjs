@@ -80,7 +80,7 @@ export function compile(prod, voiceFor) {
         acc += [...p].length;
         chunks.push({ text: p, start: s, end: lineStart + (acc / total) * v.duration });
       }
-      lines.push({ id, who: b.line.who, text: plainText(b.line.text), translation: b.line.translation ?? undefined, start: lineStart, end: lineEnd, moras: v.moras.map(([a, c]) => [lineStart + a, lineStart + c]), chunks, audio: v.audio ?? null });
+      lines.push({ id, who: b.line.who, text: plainText(b.line.text), start: lineStart, end: lineEnd, moras: v.moras.map(([a, c]) => [lineStart + a, lineStart + c]), chunks, audio: v.audio ?? null });
     }
     const natural = b.line ? (lineEnd - start) + (b.post ?? 0.22) : (b.role === "title" ? 1.5 : 0);
     const end = start + Math.max(natural, b.dur ?? 0) + (b.hold ?? 0);
