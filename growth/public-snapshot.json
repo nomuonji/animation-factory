@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 1,
+  "collectedAt": "2026-11-27T00:36:55.265Z",
+  "channelId": "UCka8SDf1XsNGVccbyLTj8cA",
+  "channelTitle": "今日の頑張り",
+  "publicStatistics": {
+    "subscribers": "1",
+    "views": "9",
+    "videoCount": "3"
+  },
+  "recentPublicVideos": [
+    {
+      "videoId": "vpGoiMJFbX0",
+      "title": "月から飛び立つ宇宙船を、誰が撮っていたのか",
+      "publishedAt": "2026-10-20T14:02:54Z",
+      "duration": "PT10M40S",
+      "views": "5",
+      "likes": "0",
+      "comments": "0"
+    },
+    {
+      "videoId": "8en98WSg3Vk",
+      "title": "雷の光は「下から上」に走っている【240fpsスロー】",
+      "publishedAt": "2026-10-20T09:30:09Z",
+      "duration": "PT30S",
+      "views": "1",
+      "likes": "0",
+      "comments": "0"
+    },
+    {
+      "videoId": "Nj3sristKfs",
+      "title": "カメレオンが色を変えるのは「隠れるため」じゃない",
+      "publishedAt": "2026-10-20T05:31:11Z",
+      "duration": "PT41S",
+      "views": "3",
+      "likes": "0",
+      "comments": "0"
+    }
+  ],
+  "limitations": [
+    "Public Data API counts only; not Studio Earn qualified views or watch hours",
+    "Recent uploads bounded to 150 playlist items; not full channel inventory",
+    "Subscriber count may be rounded",
+    "Duration alone does not determine Shorts status"
+  ],
+  "studioEarn": null
+}
