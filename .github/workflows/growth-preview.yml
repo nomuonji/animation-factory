@@ -1,0 +1,77 @@
+name: Ganbaru growth preview
+on:
+  push:
+    branches: [main]
+    paths: ['growth/preview-request.json']
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: ganbaru-growth-preview
+  cancel-in-progress: false
+jobs:
+  preview:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate request
+        id: req
+        shell: bash
+        run: |
+          set -euo pipefail
+          id="$(jq -er '.productionId' growth/preview-request.json)"
+          ref="$(jq -er '.factoryCommit' growth/preview-request.json)"
+          [[ "$id" =~ ^growth-[a-z0-9-]{3,50}$ ]]
+          [[ "$ref" =~ ^[a-f0-9]{40}$ ]]
+          test "$(jq -r '.adapter' growth/preview-request.json)" = styled
+          test -s "growth/productions/$id/styled.json"
+          test "$(jq -r '.meta.id' "growth/productions/$id/styled.json")" = "$id"
+          echo "id=$id" >> "$GITHUB_OUTPUT"
+          echo "ref=$ref" >> "$GITHUB_OUTPUT"
+      - uses: actions/checkout@v4
+        with:
+          repository: nomuonji/animation-factory
+          ref: ${{ steps.req.outputs.ref }}
+          path: factory
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Dependencies
+        working-directory: factory
+        run: |
+          npm ci
+          npx playwright install --with-deps chromium
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg fonts-noto-cjk
+      - name: Voice engine
+        run: |
+          docker run -d --rm --name vv -p 127.0.0.1:50021:50021 voicevox/voicevox_engine:cpu-latest
+          for i in $(seq 1 120); do curl -fsS http://127.0.0.1:50021/version && exit 0; sleep 2; done
+          exit 1
+      - name: Render and package exact bytes
+        env:
+          PRODUCTION: ${{ steps.req.outputs.id }}
+          FACTORY_SHA: ${{ steps.req.outputs.ref }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "factory/productions/$PRODUCTION" preview
+          cp "growth/productions/$PRODUCTION/styled.json" "factory/productions/$PRODUCTION/styled.json"
+          (cd factory && node tools/styles/render-style.mjs "$PRODUCTION" && node tools/styles/qa.mjs "$PRODUCTION")
+          cp -r "factory/outputs/styles/$PRODUCTION/review/." preview/
+          cp "factory/outputs/styles/$PRODUCTION/$PRODUCTION.mp4" preview/video.mp4
+          find preview -name '*.mp4' ! -name video.mp4 -delete
+          test "$(jq -r '.technical' preview/status.json)" = pass
+          test "$(jq -r '.voice' preview/status.json)" = voicevox
+          test "$(ffprobe -v error -select_streams v:0 -show_entries stream=codec_name -of csv=p=0 preview/video.mp4)" = h264
+          test "$(ffprobe -v error -select_streams a:0 -show_entries stream=codec_name -of csv=p=0 preview/video.mp4)" = aac
+          digest="$(sha256sum preview/video.mp4 | cut -d' ' -f1)"
+          jq -n --arg id "$PRODUCTION" --arg sha "$digest" --arg factory "$FACTORY_SHA" --arg source "$GITHUB_SHA" --arg run "$GITHUB_RUN_ID" '{productionId:$id,sha256:$sha,factoryCommit:$factory,sourceCommit:$source,runId:$run,editorial:"unreviewed"}' > preview/manifest.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ganbaru-growth-preview
+          path: preview/
+          retention-days: 30
+          if-no-files-found: error
