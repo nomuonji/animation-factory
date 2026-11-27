@@ -1,0 +1,44 @@
+name: Ganbaru Blender prototype
+on:
+  push:
+    branches: [main]
+    paths: ['growth/prototypes/gravity-race/request.json']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  render:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Blender and media tools
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq blender xvfb ffmpeg fonts-noto-cjk
+          blender --version
+      - name: Render Blender scene offline
+        env:
+          OUT: blender-preview
+          LIBGL_ALWAYS_SOFTWARE: '1'
+        run: |
+          xvfb-run -a blender -b -t 4 --python growth/prototypes/gravity-race/blender_scene.py
+          test -s blender-preview/race.blend
+          test "$(find blender-preview -name 'frame-*.png' | wc -l)" = 120
+      - name: Package preview
+        run: |
+          set -euo pipefail
+          mkdir -p review
+          font=/usr/share/fonts/opentype/noto/NotoSansCJK-Bold.ttc
+          ffmpeg -hide_banner -loglevel error -framerate 15 -i blender-preview/frame-%04d.png -vf "drawtext=fontfile=${font}:text='どのコースが一番速い？':fontsize=30:fontcolor=white:borderw=2:bordercolor=black:x=(w-tw)/2:y=54:enable='lt(t,2.0)',drawtext=fontfile=${font}:text='同じ高さからスタート':fontsize=21:fontcolor=white:borderw=1:bordercolor=black:x=(w-tw)/2:y=94:enable='lt(t,2.0)',drawtext=fontfile=${font}:text='理想条件のシミュレーション':fontsize=16:fontcolor=white:borderw=1:bordercolor=black:x=(w-tw)/2:y=h-120" -c:v libx264 -crf 19 -pix_fmt yuv420p -movflags +faststart review/race.mp4
+          cp blender-preview/race.blend blender-preview/simulation.json review/
+          cp blender-preview/frame-0001.png review/first-frame.png
+          cp blender-preview/frame-0047.png review/mid-frame.png
+          cp blender-preview/frame-0105.png review/final-frame.png
+          ffprobe -v error -show_format -show_streams review/race.mp4 > review/probe.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ganbaru-blender-prototype
+          path: review/
+          retention-days: 14
+          if-no-files-found: error
