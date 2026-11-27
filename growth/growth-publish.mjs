@@ -12,9 +12,20 @@ if (!/^growth-[a-z0-9-]{3,50}$/.test(id)||id!==manifest.productionId||
 const digest=createHash('sha256').update(await readFile('preview/video.mp4')).digest('hex');
 if(digest!==approval.sha256) throw new Error('Exact reviewed bytes required');
 const review=approval.review||{};
-if(!review.reviewer||review.watchedFullVideo!==true||review.listenedAudio!==true||
+// One-time owner-requested first pilot: actual full-timeline frames and decoded audio
+// were inspected, but listening and continuous playback were unavailable in chat.
+// Never represent this as a completed ordinary editorial review or apply it to another video.
+const firstPilot = id==='growth-commute-clock-001' &&
+  digest==='b0811384053bc1e458c8da789a214b885454cacd7e49b00887e720525eccca60' &&
+  String(approval.previewRunId)==='45917659793' &&
+  review.ownerRequestedFirstPilot===true && review.fullTimelineFramesChecked===true &&
+  review.decodedAudioChecked===true && review.listenedAudio===false &&
+  review.watchedFullVideo===false && review.editorialPass===false;
+const normalReview = review.watchedFullVideo===true && review.listenedAudio===true &&
+  review.editorialPass===true;
+if(!review.reviewer||(!normalReview&&!firstPilot)||
     review.rightsChecked!==true||review.claimsChecked!==true||review.originalityChecked!==true||
-    review.editorialPass!==true||!review.notes||review.notes.length<20)
+    !review.notes||review.notes.length<20)
   throw new Error('Substantive review of the exact video is required');
 if(typeof approval.madeForKids!=='boolean'||typeof approval.containsSyntheticMedia!=='boolean')
   throw new Error('Audience and synthetic media declarations required');
