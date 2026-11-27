@@ -1,0 +1,23 @@
+{
+  "productionId": "growth-commute-clock-001",
+  "previewRunId": "45917659793",
+  "sha256": "b0811384053bc1e458c8da789a214b885454cacd7e49b00887e720525eccca60",
+  "channelId": "UCka8SDf1XsNGVccbyLTj8cA",
+  "title": "同じ給料でも、通勤10分と60分では1年で何日違う？",
+  "description": "片道10分と60分、年間出社240日と仮定した比較です。通勤時間の差は1日100分、年間400時間（16日と16時間）。実際の平均値ではありません。\n\nVOICEVOX:青山龍星\n効果音: Kenney (CC0) / 一部コード生成\n映像: Animation Factoryによるオリジナルアニメーション\n#通勤 #時間 #ショート",
+  "madeForKids": false,
+  "containsSyntheticMedia": false,
+  "review": {
+    "reviewer": "chatgpt-ganbaru",
+    "ownerRequestedFirstPilot": true,
+    "fullTimelineFramesChecked": true,
+    "decodedAudioChecked": true,
+    "watchedFullVideo": false,
+    "listenedAudio": false,
+    "rightsChecked": true,
+    "claimsChecked": true,
+    "originalityChecked": true,
+    "editorialPass": false,
+    "notes": "本人の初回投稿指示に基づく限定公開実験（公開設定public）。実MP4 SHA照合、全尺1秒ごとのフレーム22枚、字幕全10区間、計算、オリジナルの棒人間と図表、VOICEVOXクレジット・CC0素材表示、全フレームデコード成功、音声全10区間のRMS -12〜-15.3 dBFS、ステレオ元音声最大-1.5 dBFSを確認。連続再生と聴取・発音判定は未実施。通常の編集合格と市場検証を主張しない。明らかなレイアウト破綻なしだが画面は単調。今回限りの初回実験。"
+  }
+}
