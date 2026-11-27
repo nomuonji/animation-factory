@@ -1,0 +1,75 @@
+name: Ganbaru growth publish
+on:
+  push:
+    branches: [main]
+    paths: ['growth/publish-request.json']
+permissions:
+  contents: write
+  actions: read
+concurrency:
+  group: ganbaru-growth-publish
+  cancel-in-progress: false
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      YOUTUBE_CLIENT_ID: ${{ secrets.YOUTUBE_CLIENT_ID }}
+      YOUTUBE_CLIENT_SECRET: ${{ secrets.YOUTUBE_CLIENT_SECRET }}
+      YOUTUBE_REFRESH_TOKEN: ${{ secrets.YOUTUBE_REFRESH_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Verify trusted preview run
+        id: req
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          run="$(jq -er '.previewRunId|tostring' growth/publish-request.json)"
+          id="$(jq -er '.productionId' growth/publish-request.json)"
+          sha="$(jq -er '.sha256' growth/publish-request.json)"
+          [[ "$run" =~ ^[0-9]+$ ]]
+          [[ "$id" =~ ^growth-[a-z0-9-]{3,50}$ ]]
+          [[ "$sha" =~ ^[a-f0-9]{64}$ ]]
+          test ! -e "growth/ledger/$id.json"
+          if [ -d growth/ledger ] && grep -rlF "$sha" growth/ledger; then exit 2; fi
+          gh api "repos/$GITHUB_REPOSITORY/actions/runs/$run" | jq -e '.conclusion=="success" and .head_branch=="main" and .path==".github/workflows/growth-preview.yml"' >/dev/null
+          echo "run=$run" >> "$GITHUB_OUTPUT"
+      - uses: actions/download-artifact@v4
+        with:
+          name: ganbaru-growth-preview
+          path: preview
+          run-id: ${{ steps.req.outputs.run }}
+          github-token: ${{ github.token }}
+      - run: npm install --no-save --package-lock=false --ignore-scripts googleapis@128.0.0
+      - run: node --check growth/growth-publish.mjs
+      - run: node growth/growth-publish.mjs --check
+      - name: Persist one-time upload intent before network mutation
+        run: |
+          set -euo pipefail
+          id="$(jq -er '.productionId' growth/publish-request.json)"
+          sha="$(jq -er '.sha256' growth/publish-request.json)"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          mkdir -p growth/ledger
+          jq -n --arg id "$id" --arg sha "$sha" --arg run "$GITHUB_RUN_ID" '{productionId:$id,sha256:$sha,runId:$run,stage:"upload_started"}' > "growth/ledger/$id.json"
+          git add "growth/ledger/$id.json"
+          git commit -m "Record one-time upload intent $id"
+          git pull --rebase origin main
+          git diff --exit-code "$GITHUB_SHA" HEAD -- growth/publish-request.json growth/growth-publish.mjs growth/verify-channel.mjs
+          git push origin HEAD:main
+      - name: Upload reviewed original and verify public result
+        run: node growth/growth-publish.mjs
+      - name: Commit verified public receipt
+        run: |
+          set -euo pipefail
+          id="$(jq -er '.productionId' growth/publish-request.json)"
+          test "$(jq -r '.stage' "growth/ledger/$id.json")" = published
+          git add "growth/ledger/$id.json"
+          git commit -m "Record verified public publication $id"
+          git pull --rebase origin main
+          git push origin HEAD:main
