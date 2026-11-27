@@ -1,0 +1,137 @@
+{
+  "meta": {
+    "id": "growth-commute-clock-001",
+    "title": "同じ給料、通勤10分と60分。1年後",
+    "fps": 30,
+    "width": 1080,
+    "height": 1920
+  },
+  "style": "stickman",
+  "voices": {
+    "n": {
+      "speaker": "青山龍星",
+      "speed": 1.15
+    }
+  },
+  "music": {
+    "track": "none"
+  },
+  "autoSfx": true,
+  "design": {
+    "title": "同じ給料、通勤10分と60分。1年後",
+    "hook": {
+      "overlay": "同じ給料。消えた400時間"
+    }
+  },
+  "sources": [
+    "仮想比較：片道10分と60分、年間出社240日、往復。50分×2×240÷60＝400時間。現実の平均値ではない。"
+  ],
+  "description": [
+    "架空の条件を比較するオリジナルアニメーション。通勤時間だけが異なる設定。"
+  ],
+  "beats": [
+    {
+      "id": "hook",
+      "role": "hook",
+      "line": {
+        "who": "n",
+        "text": "同じ給料の二人。／片方だけ、毎年400時間が消える。"
+      },
+      "visual": {
+        "scene": "stage",
+        "set": "city",
+        "actors": [
+          {
+            "id": "a",
+            "x": -0.5,
+            "pose": "walk",
+            "color": "#246c9b"
+          },
+          {
+            "id": "b",
+            "x": 0.5,
+            "pose": "walk",
+            "color": "#ae5229"
+          }
+        ],
+        "props": [
+          {
+            "kind": "clock",
+            "x": 0,
+            "y": 1.25,
+            "scale": 1.2
+          }
+        ]
+      }
+    },
+    {
+      "id": "setup",
+      "line": {
+        "who": "n",
+        "text": "左は会社まで10分。／右は会社まで60分。"
+      },
+      "visual": {
+        "scene": "chart",
+        "type": "bar",
+        "bars": [
+          {
+            "label": "片道10分",
+            "value": 10,
+            "icon": "person"
+          },
+          {
+            "label": "片道60分",
+            "value": 60,
+            "icon": "person"
+          }
+        ],
+        "unit": "分",
+        "label": "通勤時間"
+      }
+    },
+    {
+      "id": "daily",
+      "line": {
+        "who": "n",
+        "text": "往復で100分の差。／週5日なら、8時間20分。"
+      },
+      "visual": {
+        "scene": "counter",
+        "from": 0,
+        "to": 500,
+        "unit": "分",
+        "label": "1週間の差",
+        "icon": "clock"
+      }
+    },
+    {
+      "id": "year",
+      "line": {
+        "who": "n",
+        "text": "年間240日出社するなら。／差は400時間になる。"
+      },
+      "visual": {
+        "scene": "counter",
+        "from": 0,
+        "to": 400,
+        "unit": "時間",
+        "label": "1年間の差",
+        "icon": "clock"
+      }
+    },
+    {
+      "id": "payoff",
+      "role": "payoff",
+      "line": {
+        "who": "n",
+        "text": "丸一日で数えると16日と16時間。／毎年、半月以上の時間が違う。"
+      },
+      "visual": {
+        "scene": "card",
+        "text": "16日と16時間",
+        "sub": "年間の通勤時間の差",
+        "icon": "clock"
+      }
+    }
+  ]
+}
