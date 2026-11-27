@@ -39,5 +39,16 @@ jobs:
           git add growth/public-snapshot.json
           if git diff --cached --quiet; then exit 0; fi
           git commit -m "Update public Ganbaru growth snapshot"
-          git pull --rebase origin main
-          git push origin HEAD:main
+          for attempt in 1 2 3 4 5; do
+            git pull --rebase origin main
+            if git push origin HEAD:main; then exit 0; fi
+            sleep "$attempt"
+          done
+          exit 1
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: ganbaru-public-snapshot
+          path: growth/public-snapshot.json
+          if-no-files-found: warn
+          retention-days: 30
