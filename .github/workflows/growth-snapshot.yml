@@ -6,8 +6,6 @@ on:
       - '.github/workflows/growth-snapshot.yml'
       - 'growth/growth-snapshot.mjs'
       - 'growth/verify-channel.mjs'
-  schedule:
-    - cron: '17 23 * * *'
   workflow_dispatch:
 permissions:
   contents: write
