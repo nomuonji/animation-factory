@@ -1,0 +1,43 @@
+name: Ganbaru growth snapshot
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/growth-snapshot.yml'
+      - 'growth/growth-snapshot.mjs'
+      - 'growth/verify-channel.mjs'
+  schedule:
+    - cron: '17 23 * * *'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: ganbaru-growth-snapshot
+  cancel-in-progress: false
+jobs:
+  snapshot:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    env:
+      YOUTUBE_CLIENT_ID: ${{ secrets.YOUTUBE_CLIENT_ID }}
+      YOUTUBE_CLIENT_SECRET: ${{ secrets.YOUTUBE_CLIENT_SECRET }}
+      YOUTUBE_REFRESH_TOKEN: ${{ secrets.YOUTUBE_REFRESH_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm install --no-save --package-lock=false --ignore-scripts googleapis@128.0.0
+      - run: node --check growth/growth-snapshot.mjs
+      - run: node growth/growth-snapshot.mjs
+      - name: Save only public metrics
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add growth/public-snapshot.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "Update public Ganbaru growth snapshot"
+          git pull --rebase origin main
+          git push origin HEAD:main
